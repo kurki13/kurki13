@@ -1,0 +1,3 @@
+select kkoodi, lukukausi,lukuvuosi, kurssi_nro, arvpvm, suorpvm
+from valmis_ku where siirtopvm is null
+/

@@ -1,0 +1,320 @@
+SQL> r
+  1  select v.kkoodi,
+  2      knimi,
+  3      to_char(suorpvm,'dd.mm.yyyy') sp,
+  4      hetu, arvosana, k.opintopisteet, k.kopviikot 
+  5  from valmis_os v, valmis_ku k
+  6  where siirtopvm> to_date('1.8.2005','dd.mm.yyyy') and
+  7  laajuus_ov is null 
+  8  and v.kkoodi=k.kkoodi and
+  9  v.lukuvuosi=k.lukuvuosi and
+ 10  v.lukukausi=k.lukukausi and
+ 11  v.tyyppi=k.tyyppi and
+ 12  v.kurssi_nro=k.kurssi_nro
+ 13* order by sp, v.kkoodi
+
+582448                                                                          
+Tiedon louhinnan menetelmat                                                     
+05.12.2005 2905789118  0              6          3                              
+                                                                                
+582448                                                                          
+Tiedon louhinnan menetelmat                                                     
+05.12.2005 100979051R  1              6          3                              
+                                                                                
+582448                                                                          
+Tiedon louhinnan menetelmat                                                     
+05.12.2005 081181061W  5              6          3                              
+                                                                                
+582448                                                                          
+
+Tiedon louhinnan menetelmat                                                     
+05.12.2005 080280137U  4              6          3                              
+                                                                                
+582448                                                                          
+Tiedon louhinnan menetelmat                                                     
+05.12.2005 100280067V  3              6          3                              
+                                                                                
+582439                                                                          
+Graphical Models                                                                
+09.11.2005 2009801931  3              6          3                              
+                                                                                
+581305-6                                                                        
+Tietokoneen toiminta                                                            
+
+13.12.2005 071263123D  5              4          2                              
+                                                                                
+581305-6                                                                        
+Tietokoneen toiminta                                                            
+13.12.2005 140776135M  5              4          2                              
+                                                                                
+581325-0                                                                        
+Ohjelmoinnin perusteet (paaaineopiskelijoille)                                  
+17.10.2005 2710840337  0              5          3                              
+                                                                                
+581325-0                                                                        
+Ohjelmoinnin perusteet (paaaineopiskelijoille)                                  
+17.10.2005 2609851914  1              5          3                              
+
+                                                                                
+581325-0                                                                        
+Ohjelmoinnin perusteet (paaaineopiskelijoille)                                  
+17.10.2005 020784189P  1              5          3                              
+                                                                                
+581325-0                                                                        
+Ohjelmoinnin perusteet (paaaineopiskelijoille)                                  
+17.10.2005 0802821016  -              5          3                              
+                                                                                
+582482                                                                          
+Tietokannan suunnittelu                                                         
+17.10.2005 2001839027  1              4          2                              
+                                                                                
+
+581331-5                                                                        
+Kayttojarjestelmat I                                                            
+18.10.2005 080581227D  3              4          2                              
+                                                                                
+581331-5                                                                        
+Kayttojarjestelmat I                                                            
+18.10.2005 070959055S  3              4          2                              
+                                                                                
+581259-4                                                                        
+Ohjelmistotuotanto                                                              
+19.10.2005 1006800330  2              4          3                              
+                                                                                
+582483                                                                          
+
+Biological Sequence Analysis                                                    
+19.12.2005 221082219F  2              6          3                              
+                                                                                
+582483                                                                          
+Biological Sequence Analysis                                                    
+19.12.2005 201180077W  -              6          3                              
+                                                                                
+582483                                                                          
+Biological Sequence Analysis                                                    
+19.12.2005 220580046B  -              6          3                              
+                                                                                
+582483                                                                          
+Biological Sequence Analysis                                                    
+
+19.12.2005 100782901A  -              6          3                              
+                                                                                
+582483                                                                          
+Biological Sequence Analysis                                                    
+19.12.2005 0311850478  0              6          3                              
+                                                                                
+582483                                                                          
+Biological Sequence Analysis                                                    
+19.12.2005 050456230A  5              6          3                              
+                                                                                
+582483                                                                          
+Biological Sequence Analysis                                                    
+19.12.2005 150682154M  0              6          3                              
+
+                                                                                
+582483                                                                          
+Biological Sequence Analysis                                                    
+19.12.2005 070678101R  4              6          3                              
+                                                                                
+582483                                                                          
+Biological Sequence Analysis                                                    
+19.12.2005 260180072J  2              6          3                              
+                                                                                
+582483                                                                          
+Biological Sequence Analysis                                                    
+19.12.2005 0909830514  1              6          3                              
+                                                                                
+
+582483                                                                          
+Biological Sequence Analysis                                                    
+19.12.2005 2611751295  -              6          3                              
+                                                                                
+582483                                                                          
+Biological Sequence Analysis                                                    
+19.12.2005 100678015W  0              6          3                              
+                                                                                
+582483                                                                          
+Biological Sequence Analysis                                                    
+19.12.2005 1302819020  0              6          3                              
+                                                                                
+582483                                                                          
+
+Biological Sequence Analysis                                                    
+19.12.2005 220679193M  1              6          3                              
+                                                                                
+582483                                                                          
+Biological Sequence Analysis                                                    
+19.12.2005 191072117N  1              6          3                              
+                                                                                
+582483                                                                          
+Biological Sequence Analysis                                                    
+19.12.2005 0108850931  0              6          3                              
+                                                                                
+582483                                                                          
+Biological Sequence Analysis                                                    
+
+19.12.2005 2812661044  -              6          3                              
+                                                                                
+582483                                                                          
+Biological Sequence Analysis                                                    
+19.12.2005 311070007B  0              6          3                              
+                                                                                
+582483                                                                          
+Biological Sequence Analysis                                                    
+19.12.2005 220982190R  0              6          3                              
+                                                                                
+582483                                                                          
+Biological Sequence Analysis                                                    
+19.12.2005 1712801847  -              6          3                              
+
+                                                                                
+582483                                                                          
+Biological Sequence Analysis                                                    
+19.12.2005 0104611105  0              6          3                              
+                                                                                
+58160-8                                                                         
+Ohjelmoinnin harjoitustyo                                                       
+20.06.2005 1410570425                            2                              
+                                                                                
+58160-8                                                                         
+Ohjelmoinnin harjoitustyo                                                       
+20.06.2005 050978123K                            2                              
+                                                                                
+
+58160-8                                                                         
+Ohjelmoinnin harjoitustyo                                                       
+20.06.2005 0701771844                            2                              
+                                                                                
+58160-8                                                                         
+Ohjelmoinnin harjoitustyo                                                       
+20.06.2005 100678015W                            2                              
+                                                                                
+58160-8                                                                         
+Ohjelmoinnin harjoitustyo                                                       
+20.06.2005 220180025E  3                         2                              
+                                                                                
+58160-8                                                                         
+
+Ohjelmoinnin harjoitustyo                                                       
+20.06.2005 230282190R  1                         2                              
+                                                                                
+58160-8                                                                         
+Ohjelmoinnin harjoitustyo                                                       
+20.06.2005 160679089D  2                         2                              
+                                                                                
+58160-8                                                                         
+Ohjelmoinnin harjoitustyo                                                       
+20.06.2005 100176065Y                            2                              
+                                                                                
+58160-8                                                                         
+Ohjelmoinnin harjoitustyo                                                       
+
+20.06.2005 2510790838  3-                        2                              
+                                                                                
+58160-8                                                                         
+Ohjelmoinnin harjoitustyo                                                       
+20.06.2005 300980073L  4                         2                              
+                                                                                
+58160-8                                                                         
+Ohjelmoinnin harjoitustyo                                                       
+20.06.2005 190280158L  5                         2                              
+                                                                                
+58160-8                                                                         
+Ohjelmoinnin harjoitustyo                                                       
+20.06.2005 150781113V                            2                              
+
+                                                                                
+58160-8                                                                         
+Ohjelmoinnin harjoitustyo                                                       
+20.06.2005 041180053T  2                         2                              
+                                                                                
+58160-8                                                                         
+Ohjelmoinnin harjoitustyo                                                       
+20.06.2005 191183181C                            2                              
+                                                                                
+58160-8                                                                         
+Ohjelmoinnin harjoitustyo                                                       
+20.06.2005 041277043H                            2                              
+                                                                                
+
+58160-8                                                                         
+Ohjelmoinnin harjoitustyo                                                       
+20.06.2005 250578041L                            2                              
+                                                                                
+58160-8                                                                         
+Ohjelmoinnin harjoitustyo                                                       
+20.06.2005 0806810384                            2                              
+                                                                                
+58160-8                                                                         
+Ohjelmoinnin harjoitustyo                                                       
+20.06.2005 2203790332  2                         2                              
+                                                                                
+58160-8                                                                         
+
+Ohjelmoinnin harjoitustyo                                                       
+20.06.2005 080583071W                            2                              
+                                                                                
+58160-8                                                                         
+Ohjelmoinnin harjoitustyo                                                       
+20.06.2005 160678073M                            2                              
+                                                                                
+58160-8                                                                         
+Ohjelmoinnin harjoitustyo                                                       
+20.06.2005 0904750599                            2                              
+                                                                                
+58160-8                                                                         
+Ohjelmoinnin harjoitustyo                                                       
+
+20.06.2005 2502731115  2                         2                              
+                                                                                
+58160-8                                                                         
+Ohjelmoinnin harjoitustyo                                                       
+20.06.2005 2507760898                            2                              
+                                                                                
+58160-8                                                                         
+Ohjelmoinnin harjoitustyo                                                       
+20.06.2005 240581141Y  2-                        2                              
+                                                                                
+58160-8                                                                         
+Ohjelmoinnin harjoitustyo                                                       
+20.06.2005 170180031D  3                         2                              
+
+                                                                                
+58160-8                                                                         
+Ohjelmoinnin harjoitustyo                                                       
+20.06.2005 201082043H  3                         2                              
+                                                                                
+58160-8                                                                         
+Ohjelmoinnin harjoitustyo                                                       
+20.06.2005 2912832263  3-                        2                              
+                                                                                
+58160-8                                                                         
+Ohjelmoinnin harjoitustyo                                                       
+20.06.2005 050456230A  3                         2                              
+                                                                                
+
+58160-8                                                                         
+Ohjelmoinnin harjoitustyo                                                       
+20.06.2005 2606720316                            2                              
+                                                                                
+581259-4                                                                        
+Ohjelmistotuotanto                                                              
+20.09.2005 1406821639  1              4          3                              
+                                                                                
+581259-4                                                                        
+Ohjelmistotuotanto                                                              
+20.09.2005 2012650875  2              4          3                              
+                                                                                
+581324-7                                                                        
+
+Tietokone tyovalineena                                                          
+21.09.2005 201086112S  3              4          2                              
+                                                                                
+58127-1                                                                         
+C-ohjelmointi                                                                   
+27.09.2005 160173118S  2              4          2                              
+                                                                                
+
+70 rows selected.
+
+SQL> exit

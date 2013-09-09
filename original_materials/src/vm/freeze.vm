@@ -1,0 +1,70 @@
+#parse ("top.vm")
+	<tr>
+	  <td colspan="4" align="center">
+#if ($error && $error != "")
+<div class="error">
+<ul>
+  $error
+</ul>
+</div>
+<br>
+#end 
+#if ($result && $result != "")
+<div class="result">
+  $result
+</div>
+<br>
+#end
+
+<div class="instr">
+<ul>
+#if (!$selectedCourse.isFrozen())
+  <li>
+  Jäädytys tehdään, kun kurssi on valmis siirrettäväksi Oodiin.
+  </li>
+  <li>
+  Toimita allekirjoitettu tuloslista kansliaan. 
+  </li>
+  <li>
+  Saat tuloslistan kuittauksena sähköpostitse.
+  </li>
+  <li>
+  Huom! Korjauksien tekeminen on mahdollista jäädytyksen jälkeenkin.
+  </li>
+#else
+  <li>
+  Kanslisti tekee korjaukset Oodiin manuaalisesti korjauslistan perusteella. 
+  </li>
+  <li>
+  Toimita allekirjoitettu korjauslista kansliaan. 
+  </li>
+  <li>
+  Saat korjauslistan kuittauksena sähköpostitse.
+  </li>
+#end
+</ul>
+</div>
+<center>
+<form action="index" method="post">
+<table border="0" class="normal">
+  <tr>
+#if (!$selectedCourse.ExamDate)
+    <th>
+      Suorituspäivämäärä
+    </th>
+    <td nowrap>
+      <input type="text" value="" name="examDate" size="10" maxlength="10">(pp.kk.vvvv)
+    </td>
+  </tr>
+  <tr>
+#end
+    <th colspan="2">
+      <input type="submit" value="Jäädytä kurssi" name="freeze" class="submitb">
+    </th>
+  </tr>
+</table>
+</form></center>
+</div>
+          </td>
+        </tr>
+#parse ("bottom.vm")

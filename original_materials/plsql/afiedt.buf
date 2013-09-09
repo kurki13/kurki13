@@ -1,0 +1,3 @@
+select opnro, arvosana from valmis_os where kkoodi='582339' and lukuvuosi=2010 and lukukausi='K'
+and arvosana is null
+/
