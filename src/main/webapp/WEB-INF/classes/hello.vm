@@ -1,5 +1,11 @@
 <html>
 <body>
-Hello $name
+Hello $name<br><br>
+$label.hello
+
+<br>
+$pipe.getName()
+<br>
+$label.getString("hello")
 </body>
 <html>

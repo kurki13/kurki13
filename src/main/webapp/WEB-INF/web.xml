@@ -1,25 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+    <!-- Define Velocity template compiler -->
+    
+    <!-- Tällä servletillä voi katsella suoraan .vm tiedostoja -->
     <servlet>
-        <servlet-name>Hello</servlet-name>
-        <servlet-class>Hello</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>Hello</servlet-name>
-        <url-pattern>/Hello</url-pattern>
-    </servlet-mapping>    
-    <servlet>
-        <servlet-name>HelloTest</servlet-name>
-        <servlet-class>HelloTest</servlet-class>
+        <servlet-name>velocity</servlet-name>
+        <servlet-class>
+            org.apache.velocity.tools.view.servlet.VelocityViewServlet
+        </servlet-class>
+
+        <!-- 
+          Unless you plan to put your toolbox.xml and velocity.properties
+          under different folders or give them different names, then these
+          two init-params are unnecessary as of VelocityTools 1.3.  The
+          VelocityViewServlet will automatically look for these files in
+          the following locations.
+        -->
         <init-param>
-            <param-name>properties</param-name>
+            <param-name>org.apache.velocity.toolbox</param-name>
+            <param-value>/WEB-INF/toolbox.xml</param-value>
+        </init-param>
+
+        <init-param>
+            <param-name>org.apache.velocity.properties</param-name>
             <param-value>/WEB-INF/velocity.properties</param-value>
         </init-param>
     </servlet>
+
+    <!-- Map *.vm files to Velocity -->
+    <servlet-mapping>
+        <servlet-name>velocity</servlet-name>
+        <url-pattern>*.vm</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>HelloTest</servlet-name>
+        <servlet-class>HelloTest</servlet-class>
+        
+        <init-param>
+            <param-name>org.apache.velocity.properties</param-name>
+            <param-value>/WEB-INF/velocity.properties</param-value>
+        </init-param>
+        
+        <init-param>
+            <param-name>org.apache.velocity.toolbox</param-name>
+            <param-value>/WEB-INF/toolbox.xml</param-value>
+        </init-param>
+    </servlet>
+    
     <servlet-mapping>
         <servlet-name>HelloTest</servlet-name>
         <url-pattern>/HelloTest</url-pattern>
     </servlet-mapping>
+    
     <session-config>
         <session-timeout>
             30

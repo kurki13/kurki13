@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<toolbox>
+    <tool scope="application">
+        <key>label</key>
+        <class>org.apache.velocity.tools.generic.ResourceTool</class>
+        <parameter name="bundles" value="testBundle"/>
+        <parameter name="locale" value="en_US"/>
+    </tool>
+    
+    <tool>
+        <key>pipe</key>
+        <class>Pipe</class>
+    </tool>
+</toolbox>

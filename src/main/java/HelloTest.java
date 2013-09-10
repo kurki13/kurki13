@@ -1,3 +1,5 @@
+import java.util.Locale;
+import java.util.ResourceBundle;
 import org.apache.velocity.Template;
 import org.apache.velocity.servlet.VelocityServlet;
 import org.apache.velocity.app.Velocity;
@@ -12,6 +14,8 @@ public class HelloTest extends VelocityServlet {
                                    HttpServletResponse response,
                                    Context context ) {
         Template template = null;
+        context.put("pipe", new Pipe());
+        context.put("label", ResourceBundle.getBundle("testBundle", new Locale("fi")));
 
         try {
             context.put("name", "Velocity Test");
