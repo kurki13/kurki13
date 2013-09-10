@@ -1,0 +1,2 @@
+select * from kurssi where lukuvuosi=2008 and kurssikoodi='582201'
+/

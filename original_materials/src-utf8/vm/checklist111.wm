@@ -1,0 +1,12 @@
+Vastaukset hakukysymyksiin: ${selectedCourse.Label}: $!studentFilterDesc
+#set ($questions = $selectedCourse.Questions)
+Vastaustilanne: ${sysdate} klo: ${time}
+
+#foreach ($student in $students)  
+      ${student.Label} ($!{student.Hetu})
+  #foreach ($question in $questions)   
+    $(question.Label):
+    $!{student.getAnswer($question ))
+  #end
+#end
+

@@ -1,0 +1,72 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <title>KURKI</title>
+    <link rel="stylesheet" href="../kurki.css" title="kurki">
+    <script language='JavaScript' type='text/javascript' src='../kurki.js'></script>
+  </head>
+  
+  <body>
+    <center>
+      <h1>KURKI</h1>
+      
+      <table class="frame"   
+	width="90%" 
+	align="center"  
+	border="0" 
+	cellspacing="0" 
+	cellpadding="5">
+	
+	<tr class="navi1">
+	  <td colspan="2">
+	    <form action="index" name="navi" method="get">
+	      <table border="0" 
+		cellspacing="0" 
+		cellpadding="0"
+		align="left"
+		style="text-align:left;">
+		<tr>
+		  <td>
+##
+## Tähän kaikki kurssit, joilla käyttäjä ohjaajana
+##
+#if ($courses)
+		    <select name="kurssi" onChange="document.navi.submit();">
+		      <option value="" selected>-- valitse toiminto --</a>
+
+  #foreach ($course in $courses)
+    #if ($actions)
+		      <optgroup label="$course.label">
+      #foreach ($action in $actions)
+			<option value="$course.value+$action.value">$action.label</option>
+      #end
+	              </optgroup>
+    #else 
+		      <option value="$course.value">$course.label</option>
+    #end
+  #end
+		    </select>
+#else
+		    Käyttäjää ei tunnistettu
+#end
+		  </td>
+
+		  <td>
+#if ($sel_course && $sel_action)
+		    <h3>$sel_course.label --> $sel_action.label</h3>
+#else
+		    &nbsp;
+#end
+		  </td>
+		</tr>
+	      </table>
+	    </form>
+	  </td>
+	  <td colspan="2">
+#if ($result)
+	    $result
+#else
+	    &nbsp;
+#end
+	  </td>
+	</tr>

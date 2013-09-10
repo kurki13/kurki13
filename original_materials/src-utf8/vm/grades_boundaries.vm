@@ -1,0 +1,110 @@
+#parse ("top.vm")
+#set ($parts = $selectedCourse.PartsOrdered)
+##set ($lh = $parts.get(0))
+##set ($ht = $parts.get(1))
+#set ($grades = $parts.get(3).Grades)
+#set ($xtrTotal = 0)
+#set ($cols = 2)
+        <tr>
+          <td colspan="4">
+#if ($error && $error != "")
+<div class="error">
+  $error
+</div>
+#end 
+#if ($result && $result != "")
+<div class="result">
+  $result
+</div>
+#end
+<h3>${selectedCourse.label} - arvostelu: lisäpiste- ja arvosanarajat</h3>
+
+#set ($partnames = ["LH - lisäpisterajat:", "HT - lisäpisterajat:", "", "Arvosanarajat:"])
+<form action="index" name="boundaries" method="post">
+  <input type="hidden" name="TS" value="${TS}">
+<table class="normal" border="0">
+#foreach ($part in $selectedCourse.Parts)
+  #set ($pid = $part.Type)
+  #set ($maxScoreCount = $part.MaxScoreCount )
+  #if ( $pid != 2 )
+  <tr>
+    <th>$partnames.get($pid)
+    </th>
+    <td>
+      <table class="invisible">
+        <tr>
+    #set ($xtrId = 0)
+    #foreach ($score in $part.ScoreBoundaries)
+      #if ($xtrId > 9 && $xtrId % 10 == 0)
+        </tr>
+        <tr>
+      #end
+      #if ($pid == 3)
+        #set ( $xtrLabel = $grades.get($xtrId) )
+      #else
+        #set ( $xtrLabel = $xtrId + 1 )
+      #end
+          <td width="25">
+            <center>
+      #if ($score > $maxScoreCount)
+              <b><font color="red">${xtrLabel}</font></b><br>
+      #else
+              <b>${xtrLabel}</b><br>
+      #end
+      #if (!$frozen)
+              <input type="text" name="sb_${pid}_${xtrId}" value="${score}" size="3" maxlength="3">
+      #else
+              ${score}
+      #end
+            </center>
+          </td>
+      #set ($xtrId = $xtrId + 1)
+    #end
+        </tr>
+      </table>
+    </td>
+  </tr>
+  #end
+#end
+#*
+  <tr>
+    <th>
+      Arvosanarajat:
+    </th>
+     <td>
+#set ($gradeBoundaries = $selectedCourse.GradeBoundaries)
+#set ($i = 0)
+      <table class="invisible">
+        <tr>
+#foreach ($grade in $grades.Grades)
+          <td width="30">
+            <center>
+            <b>${grade}</b><br>
+      #if (!$frozen)
+            <input type="text" value="${gradeBoundaries.get($i)}" size="3" maxlength="3">
+      #else
+            ${gradeBoundaries.get($i)}
+      #end
+            </center>
+          </td>
+  #set ($i = $i + 1)
+#end
+        </tr>
+      </table>  
+    </td>
+  </tr>
+*#
+  <tr>
+    <th colspan="2">
+      <input type="submit" name="cancel" class="submitb" value=" Palaa takaisin ">
+#if (!$frozen)
+      <input type="submit" name="saveBoundaries" class="submitb" value=" Tallenna pisterajat ">
+      <input type="reset" class="submitb" value=" Palauta alkuarvot ">
+#end
+    </th>
+  </tr>
+</table>
+</form>
+          </td>
+        </tr>
+#parse ("bottom.vm")

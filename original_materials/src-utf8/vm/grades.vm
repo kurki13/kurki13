@@ -1,0 +1,454 @@
+#parse ("top.vm")
+#set ($parts = $selectedCourse.PartsOrdered)
+#set ($lh = $parts.get(0))
+#set ($ht = $parts.get(1))
+#set ($koe = $parts.get(2))
+#set ($xtrTotal = 0)
+#set ($conventionsDesc = "")
+#set ($cols = 2)
+        <tr>
+          <td colspan="4">
+
+<h3>${selectedCourse.label} - arvostelu</h3>
+
+#if ($error && $error != "")
+<div class="error">
+<ul>
+  $error
+</ul>
+</div>
+<br>
+#end 
+#if ($result && $result != "")
+<div class="result">
+  $result
+</div>
+<br>
+#end
+
+#if (!$lh && !$ht && !$koe)
+<table class="normal" border="0" width="500">
+  <tr>
+    <th>
+      EI OSASUORITUKSIA <br><br>
+      <form action="index" method="post">
+        <input type="submit" value="Määrittele kurssin osasuoritukset" class="submitb">
+        <input type="hidden" value="3coursebasics" name="service">
+      </form>
+    </th>
+  </tr>
+</table>
+#else
+<form action="index" name="grades" method="post">
+  <input type="hidden" name="TS" value="${TS}">
+<table class="normal" border="0">
+  <tr>
+    <td valign="top">
+      <table class="normal" border="1">
+        <tr>
+          <th>Suorituspäivämäärä</th>
+          <td nowrap> 
+  #if (!$frozen)
+           <input type="text" name="examDate" value="$!{selectedCourse.ExamDate}" size="10" maxlength="10"> (pp.kk.vvvv)
+  #else
+           $!{selectedCourse.ExamDate}
+  #end
+          </td>
+
+#if ($lh)
+  #set ($cols = $cols+1)
+          <th width="30">Lh</th>
+#end
+#if ($ht)
+  #set ($cols = $cols+1)
+          <th width="30">Ht</th>
+#end
+#if ($koe)
+  #set ($cols = $cols+1)
+          <th width="30">Koe</th>
+#end
+        </tr>
+
+##
+## OSASUORITUKSIA
+##
+
+        <tr>
+          <th rowspan="2" wrap>Osasuorituksia</th>
+          <th>yhteensä</th>
+
+#if ($lh)
+          <td>
+  #if (!$frozen)
+            <input type="hidden" name="nbr_${lh.Id}" value="${lh.NbrOfOfferings}">$lh.NbrOfOfferings
+  #else
+            $lh.NbrOfOfferings
+  #end
+          </td>
+#end
+#if ($ht)
+          <td>
+  #if (!$frozen)
+            <input type="hidden" name="nbr_${ht.Id}" value="${ht.NbrOfOfferings}">$ht.NbrOfOfferings
+  #else
+            $ht.NbrOfOfferings
+  #end
+          </td>
+#end
+#if ($koe)
+          <td>
+  #if (!$frozen)
+            <input type="hidden" name="nbr_${koe.Id}" value="${koe.NbrOfOfferings}">$koe.NbrOfOfferings
+  #else
+            $koe.NbrOfOfferings
+  #end
+          </td>
+#end 
+        </tr>
+        <tr>
+          <th>pakollisia</th>
+#if ($lh)
+          <td>
+  #if (!$frozen)
+            <input type="text" name="reqo_${lh.Id}" value="${lh.RequiredOfferings}" size="2" maxlength="2">
+  #else
+            ${lh.RequiredOfferings}
+  #end
+          </td>
+#end
+#if ($ht)
+          <td>
+  #if (!$frozen)
+            <input type="text" name="reqo_${ht.Id}" value="${ht.RequiredOfferings}" size="2" maxlength="2">
+  #else
+            ${ht.RequiredOfferings}
+  #end
+          </td>
+#end
+#if ($koe)
+          <td>
+  #if (!$frozen)
+            <input type="text" name="reqo_${koe.Id}" value="${koe.RequiredOfferings}" size="2" maxlength="2">
+  #else
+            ${koe.RequiredOfferings}
+  #end
+          </td>
+#end 
+        </tr>
+##        <tr><td colspan="${cols}">&nbsp;</td></tr>
+
+##
+## SUORITUSPISTEITÄ OSASUORITUKSISTA
+##
+
+        <tr>
+          <th rowspan="3" wrap>Suorituspisteitä <br> osasuorituksista</th>
+          <th>saatavissa</th>
+
+#if ($lh)
+  #set ($maxScore = $lh.MaxScoreCount)
+          <td>
+  #if (!$frozen)
+            <input type="hidden" name="max_${lh.Id}" value="$maxScore">$maxScore
+  #else
+            $maxScore
+  #end
+          </td>
+#end
+#if ($ht)
+  #set ($maxScore = $ht.MaxScoreCount)
+          <td>
+  #if (!$frozen)
+            <input type="hidden" name="max_${ht.Id}" value="$maxScore">$maxScore
+  #else
+            $maxScore
+  #end
+          </td>
+#end
+#if ($koe)
+  #set ($maxScore = $koe.MaxScoreCount)
+          <td>
+  #if (!$frozen)
+            <input type="hidden" name="max_${koe.Id}" value="$maxScore">$maxScore
+  #else
+            $maxScore
+  #end
+          </td>
+#end 
+        </tr>
+        <tr>
+          <th>hyv. rajojen summa</th>
+#if ($lh)
+          <td>${lh.MinScoreCount}</td>
+#end
+#if ($ht)
+          <td>${ht.MinScoreCount}</td>
+#end
+#if ($koe)
+          <td>${koe.MinScoreCount}</td>
+#end 
+        </tr>
+        <tr>
+          <th>Osuuden <br> hyväksymisraja</th>
+#if ($lh)
+          <td>
+  #if (!$frozen)
+            <input type="text" name="reqs_${lh.Id}" value="${lh.requiredScore}" size="4" maxlength="4">
+  #else
+            ${lh.requiredScore}
+  #end
+          </td>
+#end
+#if ($ht)
+          <td>
+  #if (!$frozen)
+            <input type="text" name="reqs_${ht.Id}" value="${ht.requiredScore}" size="4" maxlength="4">
+  #else
+            ${ht.requiredScore}
+  #end
+          </td>
+#end
+#if ($koe)
+          <td>
+  #if (!$frozen)
+            <input type="text" name="reqs_${koe.Id}" value="${koe.requiredScore}" size="4" maxlength="4">
+  #else
+            ${koe.requiredScore}
+  #end
+          </td>
+#end 
+        </tr>
+
+
+##
+## ARVOSTELUUN VAIKUTTAVAT LISÄPISTEET
+##
+
+        <tr>
+          <th rowspan="3" wrap>Arvosteluun <br> vaikuttavat <br>(lisä)pisteet</th>
+          <th>maksimi</th>
+
+#if ($lh)
+  #set ($xtrTotal = $xtrTotal + $lh.XtrScore)
+          <td>
+  #if (!$frozen)
+            <input type="text" name="xtr_${lh.Id}" value="${lh.XtrScore}" size="2" maxlength="2">
+  #else
+            ${lh.XtrScore}
+  #end
+          </td>
+#end
+#if ($ht)
+  #set ($xtrTotal = $xtrTotal + $ht.XtrScore)
+          <td>
+  #if (!$frozen)
+            <input type="text" name="xtr_${ht.Id}" value="${ht.XtrScore}" size="2" maxlength="2">
+  #else
+            ${ht.XtrScore}
+  #end
+          </td>
+#end
+#if ($koe)
+  #set ($xtrTotal = $xtrTotal + $koe.XtrScore)
+          <td><input type="hidden" name="xtr_${koe.Id}" value="${ht.XtrScore}">${koe.XtrScore}</td>
+#end 
+        </tr>
+        <tr>
+          <th>1. pisteen raja</th>
+#if ($lh)
+          <td>
+  #if (!$frozen)
+            <input type="text" name="xtr1st_${lh.Id}" value="${lh.getFirstXtrScore()}" size="4" maxlength="4">
+  #else
+            ${lh.getFirstXtrScore()}
+  #end
+          </td>
+#end
+#if ($ht)
+          <td>
+  #if (!$frozen)
+            <input type="text" name="xtr1st_${ht.Id}" value="${ht.getFirstXtrScore()}" size="4" maxlength="4">
+  #else
+            ${ht.getFirstXtrScore()}
+  #end
+          </td>
+#end
+#if ($koe)
+          <td>1</td>
+#end
+        </tr>
+        <tr>
+          <th>kartuntaväli</th>
+#if ($lh)
+          <td>
+  #if (!$frozen)
+            <input type="text" name="step_${lh.Id}" value="${lh.XtrStep}" size="5" maxlength="5">
+  #else
+            ${lh.XtrStep}
+  #end
+          </td>
+#end
+#if ($ht)
+          <td>
+  #if (!$frozen)
+            <input type="text" name="step_${ht.Id}" value="${ht.XtrStep}" size="5" maxlength="5">
+  #else
+            ${ht.XtrStep}
+  #end
+          </td>
+#end
+#if ($koe)
+          <td>1</td>
+#end
+        </tr>
+      </table>
+    </td>
+    <td valign="top">
+      <table class="normal" width="100%" border="1">
+<!--
+        <tr>
+          <th colspan="2">
+            ARVOSTELU
+          </th>
+        </tr>
+-->
+        <tr>
+          <th>Pisteitä max.</th>
+          <td>
+  #if (!$frozen)
+            <input type="text" name="xtrTotal" value="${xtrTotal}" size="3" maxlength="3" readonly>
+  #else
+            ${xtrTotal}
+  #end
+          </td>
+        </tr>
+      <tr>
+        <th>Hyväksymisalaraja</th>
+        <td>
+  #if (!$frozen)
+          <input type="text" name="xtr1st_3" value="${selectedCourse.MinScore}" size="4" maxlength="4">
+  #else
+          ${selectedCourse.MinScore}
+  #end
+        </td>
+      </tr>
+      <tr>
+        <th>Arvosanaväli</th>
+        <td>
+  #if (!$frozen) 
+          <input type="text" name="step_3" value="${selectedCourse.GradeStep}" size="5" maxlength="5">
+  #else
+          ${selectedCourse.GradeStep}
+  #end
+        </td>
+      </tr>
+      <tr>
+        <th>Arvosteluasteikko</th>
+        <td>
+#set ( $scale = $selectedCourse.Scale)  
+#if ( $scale && $scale == "E" )
+  #if (!$frozen)
+            <input type="radio" name="scale" value="K">Arvosanat
+            <input type="radio" name="scale" value="E" checked>Hyväksytty/hylätty
+  #else
+            Hyväksytty/hylätty
+  #end
+#else
+  #if (!$frozen)
+            <input type="radio" name="scale" value="K" checked>Arvosanat
+            <input type="radio" name="scale" value="E">Hyväksytty/hylätty
+  #else
+            Arvosanat
+  #end
+#end
+       </td>
+      </tr>
+      <tr>
+        <th>Arvostelutapa</th>
+        <td> 
+#if (!$frozen)
+          <select name="convention">
+#end
+#set ( $selectedConvention = $selectedCourse.GradingConvention )
+#foreach ( $convention in $selectedCourse.GradingConventions ) 
+  #set ($conventionsDesc = "${conventionsDesc}${selectedCourse.nl()}<dt>$convention.Label</dt><dd>$convention.Help</dd>")
+  #if ( $selectedConvention == $convention.Id )
+    #if (!$frozen)
+            <option value="${convention.Id}" selected>$convention.Label</option>
+    #else
+            $convention.Label
+    #end
+  #elseif (!$frozen) 
+            <option value="${convention.Id}">$convention.Label</option>
+  #end
+#end
+#if (!$frozen)
+          </select>
+#end
+        </td>
+      </tr>
+<!--
+      <tr>
+        <th  colspan="2">
+        </th>
+      </tr>
+-->
+      </table>
+      <input type="submit" name="makeAssessment" class="submitb" value=" Tee arvostelu "><br>
+  #if (!$frozen)
+      <input type="submit" name="saveBasic" class="submitb" value=" Tallenna muutokset "><br>
+      <input type="submit" name="modBoundaries" class="submitb" value=" Muuta piste-/arvosanarajoja "><br>
+  #else
+      <input type="submit" name="modBoundaries" class="submitb" value=" Piste-/arvosanarajat "><br>
+  #end
+    </td>
+  </tr>
+</table>
+</form>
+
+<!-- OHJEET -->
+#if (!$resultList)
+<div class="instr">
+<h3>Arvostelutapa</h3>
+<dl>
+$conventionsDesc
+</dl>
+</div>
+
+<!-- TULOKSET -->
+#else
+<div class="result">
+#set ($inc_noheader = "true")
+#set ($inc_ssn = "true")
+#set ($inc_lhsum = "true")
+#set ($inc_lhsumname = "LH-pisteet")
+#set ($inc_htsum = "true")
+#set ($inc_htsumname = "HT-pisteet")
+#set ($inc_koesum = "true")
+#set ($inc_koesumname = "Koepisteet")
+#set ($inc_sum = "true")
+#set ($inc_sumname = "Yhteispisteet")
+#set ($inc_grade = "true")
+#set ($inc_gradename = "Arvosana")
+#set ($inc_accepted = "true")
+#set ($inc_failed = "true")
+#if ($selectedCourse.isFrozen())
+#set ($inc_changes = "true")
+#end
+#set ($params = "ltype=99&ctype=text%2Fplain&useinc=true&inc_ssn=on&inc_lhsum=on&inc_lhsumname=LhS&inc_htsum=on&inc_htsumname=HtS&inc_lhlp=on&inc_lhlpname=LhP&inc_htlp=on&inc_htlpname=HtP&inc_koesum=on&inc_koesumname=Koe&inc_sum=on&inc_sumname=Yht&inc_grade=on&inc_gradename=Arvosana&inc_statistics=on&inc_gradeDistr=on&inc_feedback=on&inc_signature=on&inc_accepted=on&inc_failed=on&filter=&makeList=%3E%3E%3E")
+
+#if ($selectedCourse.isFrozen())
+#set ($params = "${params}&inc_changes=on")
+#end
+
+<center><h2>Tulokset</h2>(<a href="checklist?$params" target="_blank">tulostettavaksi</a> 
+- käytä "tuloslistat"-toimintoa, jos haluat itse määritellä tulostettavat tiedot)</center>
+<pre>
+#parse ("checklist99.vm")
+</pre>
+</div>
+#end
+#end 
+          </td>
+        </tr>
+#parse ("bottom.vm")
