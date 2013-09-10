@@ -1,0 +1,58 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+#set ($parts = $selectedCourse.Parts)
+<html>
+<head>
+  <title>KURKI - opiskelijat: nimi</title>
+</head>
+<body bgcolor="white">
+<pre>
+${selectedCourse.Label}: $!studentFilterDesc
+Kirjaustilanne: ${sysdate} klo: ${time}
+</pre>
+
+<table border="1">
+  <tr>
+    <th>Nimi</th>
+  #foreach ($part in $parts)
+    #if ($part.Id <3 )
+    <th><i>${part.Abbreviation}:</i></th>
+      #foreach ($offering in $part.Offerings) 
+        #set ($o = $offering.Id + 1)
+        #if ($o < 10 )
+    <th width="15" nowrap>&nbsp;${o}</th>
+        #else
+    <th width="15" nowrap>${o}</th>
+        #end
+      #end
+    #end
+  #end
+  </tr>
+#set ($prevname = "")
+#foreach ($student in $students)  
+  <tr>
+  #if (${student.Label} == $prevname)
+      <td>${student.Label} ($!{student.Birthday})</td>
+  #else 
+      <td>${student.Label}</td>
+  #end
+  #set ($prevname = ${student.Label})
+  #foreach ($part in $parts)   
+    #if ($part.Id <3 )
+    <td align="center"><i>${student.getScore( $part )}</i></td>
+      #foreach ($offering in $part.Offerings) 
+    <td width="15">
+        #if (${student.getScore( $part, $offering )})
+        ${student.getScore( $part, $offering )}
+        #else
+        &nbsp;
+        #end
+    </td>
+      #end
+    #end
+  #end
+  </tr>
+#end
+</table>
+"+" = hyv‰ksytty pisteitt‰ (esim. l‰‰k‰rintodistuksella).
+</body>
+</html>

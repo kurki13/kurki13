@@ -1,0 +1,211 @@
+#set ( $parts     = $selectedCourse.parts )
+#set ( $students  = $selectedCourse.Students )
+#if ( $students && $students.size() > 0 )
+  #set ( $student = $students.get(0) )
+#end 
+
+#if ($sid && $sid >= 0)
+  #set ( $prev = $sid - 1 )
+  #set ( $next = $sid + 1 )
+        <tr class="navi3">
+          <td colspan="4">
+  <table class="invisible" align="center" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td>
+        <center>
+        <form action="index" method="post" class="inline" style="margin:0;display:inline;">
+          <input type="hidden" name="TS" value="${TS}">
+          <input type="hidden" name="sid" value="${prev}">
+	  <input type="submit" name="doEdit" value="<- Edellinen" class="submitb">
+        </form>
+        </center>
+      </td>
+      <td>
+        <center>
+        <form action="index" method="post" class="inline" style="margin:0;display:inline;">
+	  <input type="submit" name="doList" value="valitse listalta" class="submitb">
+        </form>
+        </center>
+      </td>
+      <td>
+        <center>
+        <form action="index" method="post" class="inline" style="margin:0;display:inline;">
+          <input type="hidden" name="TS" value="${TS}">
+          <input type="hidden" name="sid" value="${next}">
+          <input type="submit" name="doEdit" value="Seurava ->" class="submitb">
+        </form>
+        </center>
+      </td>
+    </tr>
+  </table>
+	  </td>
+        </tr>
+#else 
+        <tr class="navi3">
+          <td colspan="4">
+    <center>
+      <form action="index" method="post" class="inline" style="margin:0;display:inline;">
+	<input type="submit" name="doList" value="takaisin" class="submitb">
+      </form>
+    </center>
+	  </td>
+        </tr>
+#end
+        <tr>
+          <td colspan="4">
+
+#if ( $result && $result != "" )
+<div class="result">
+$result
+</div>
+<br>
+#end
+#if ( $error && $error != "" )
+<div class="error">
+$error
+</div>
+<br>
+#end
+
+#if ($student)
+<h3>
+<center>
+$!{student.LName}, $!{student.FName} (${student.SSN})
+</center>
+</h3>
+
+<table class="normal" width="100%">
+#if (${student.PrevLName})
+  <tr>
+    <th width="20%">Entinen sukunimi
+    </th>
+    <td>$!{student.PrevLName}
+    </td>
+  </tr>
+#end
+  <tr>
+    <th width="20%">Osoite
+    </th>
+    <td>$!{student.Address}
+    </td>
+  </tr>
+  <tr>
+    <th>Puhelinnumero
+    </th>
+    <td>$!{student.Phone}
+    </td>
+  </tr>
+  <tr>
+    <th>Sähköpostiosoite
+    </th>
+    <td><a href="mailto:$!{student.EMail}">$!{student.EMail}</a>
+    </td>
+  </tr>
+  <tr>
+    <th>Pääaine
+    </th>
+    <td>$!{student.Major}
+    </td>
+  </tr>
+  <tr>
+    <th>Aloitusvuosi
+    </th>
+    <td>$!{student.StartYear}
+    </td>
+  </tr>
+</table>
+<br>
+#end
+
+#if ($student && $parts)
+<form action="index" method="get" name="defreeze" onSubmit="return false;">
+  <input type="hidden" name="defreeze" value="">
+</form>
+
+<form action="index" method="post" name="scores">
+  <input type="hidden" name="TS" value="${TS}">
+  <input type="hidden" name="sid" value="$!{sid}">
+
+  <table class="normal"
+         border="1"
+         width="100%">
+  #foreach ( $part in $parts )
+    #set ($pid = $part.Id)
+    <tr>
+      <th width="25%">${part.Label}</th>
+      <td>
+        <table class="invisible">
+          <tr>
+    #foreach ( $offering in $part.Offerings )
+      #set ( $oid = ${offering.Id}+1 )
+      #if ($oid == 10)
+          </tr>
+          <tr>
+      #end
+            <td nowrap>
+      #if ($pid != 3)
+        #if ($oid < 10)
+               &nbsp;
+        #end
+              <b>${oid}:</b>
+      #end
+      #if (!$student.isFrozen())
+              <br>
+              <input type="hidden" name="maxcheck_${pid}_${offering.Id}" value="${offering.MaxScore}">
+              <input type="text" name="s${pid}_${offering.Id}" size="2" maxlength="2" tabindex="1"
+        #if ($pid != 3)
+                     onBlur="this.value=='+' || rangecheck(this, 0, this.form.maxcheck_${pid}_${offering.Id}.value);"
+        #end
+                     value="$!{student.getScore( $part, $offering )}">
+      #else
+	#if (!${student.getScore( $part, $offering )})
+            <i>-</i>
+        #else
+            <i>${student.getScore( $part, $offering )}</i>
+        #end
+      #end
+            </td>
+    #end
+          </tr>
+        </table>
+      </td>
+    </tr>
+  #end
+    <tr>
+      <th colspan="2">
+  #if (!$student.isFrozen())
+    #if ($autosave)
+        <input type="hidden" name="asToggle" value="${asToggle}">
+        <input type="hidden" name="asNotify" value="">
+    #end
+        <input type="hidden" name="doSave" value="ok">
+        <input type="submit" tabindex="2" class="submitb" 
+    #if ($autosave)
+               onClick="this.form.asNotify.value=''"
+    #end
+               value="------> TALLENNA PISTEET <------">
+  #else 
+        <input type="button" class="button" value="--> sulata <--"
+               onClick="defreezeStudent('${sid}')">
+  #end
+      </th>
+    </tr>
+  </table>
+#elseif (!$student)
+  #if ( $result && $result != "" )
+<div class="result">
+$result
+</div>
+<br>
+  #end
+<div class="error">
+Opiskelijaa ei löytynyt kurssilta: joko hän on itse perunut ilmoittautumisensa tai
+toinen ohjaaja on poistanut hänet tältä kurssilta.
+</div>
+#elseif (!$parts)
+Kurssille ei ole määritelty osasuorituksia (laskareita, harjoitustöitä tai kokeita).
+#end
+
+</form>
+	  </td>
+        </tr>

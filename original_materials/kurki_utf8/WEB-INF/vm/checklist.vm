@@ -1,0 +1,99 @@
+#parse ("top.vm")
+	<tr class="navi2">
+	  <td colspan="4">
+            <form name="suoritevalinta" action="checklist" method="post" target="_blank">
+	      <table border="0" cellspacing="0" cellpadding="0" align="left" style="text-align:left;">
+	        <tr>
+		  <td nowrap>
+		    <b>Tyyppi:</b>
+		  </td>
+##
+## Tuotettavan listan tyyppi
+##
+		  <td>
+		    <select name="ltype" tabindex="32600">
+		      <!-- <listan numero>_<sisällön mime-tyyppi "text/..."> -->
+		      <option value="1_html">kirjanpitolista</option>
+		      <option value="2_plain">opNro ja nimi</option>
+		      <option value="3_plain">nimi</option>
+		      <option value="4_plain">nimi ja email</option>
+		      <option value="5_plain">email</option>
+		      <option value="6_plain">ilm.järjestys</option>
+		      <option value="7_html">tarkistuslista/nimi</option>
+		      <option value="8_html">tarkistuslista/opNro</option>
+		      <option value="9_plain">export</option>
+		    </select>
+	  	  </td>
+		  <td nowrap>&nbsp;<b>Kommentti:</b></td>
+		  <td>
+##
+##  Kommentti
+##
+                    <input type="text" value="" name="comment" size="15">
+		  </td>
+		  <td nowrap>&nbsp;
+
+##
+##  Haettavat opiskelijat - joko ryhmän mukaan tai sukunimen mukaan
+##
+		    <b>Opiskelijat:</b>
+		  </td>
+ 		  <td>
+		    <input type="text" name="filter" tabindex="32600" size="15" value = "$!studentFilter">
+
+		  </td>
+		  <td nowrap>&nbsp;
+		    <input type="submit" name="search" tabindex="32601" value=">>>" class="submitb">
+		  </td>
+	        </tr>
+	      </table>
+	    </form>
+	  </td>
+	</tr>
+      <tr>
+	<td colspan="4">
+<div class="instr">
+<b>Valitse haluamasi listan tyyppi ja anna opiskelijoiden hakukriteeri (opiskelijat):</b>
+	    <dl>
+	      <dt>tyhjä</dt>
+  	        <dd>Kaikki kurssin opiskelijat.</dd>
+	      <dt>numero</dt>
+	        <dd>Annetun ryhmän opiskelijat.</dd>
+              <dt>#opiskelijanumero</dt>
+                <dd>Opiskelijat opiskelijanumerolla.</dd>
+	      <dt>sukunimi</dt>
+	        <dd>Opiskelijat, joiden sukunimi alkaa merkkijonolla "sukunimi".</dd>
+	      <dt>alku .. loppu</dt>
+	        <dd>opiskelijat, joiden sukunimi sijoittuu aakkosjärjestyksessä
+		  alun ja lopun väliin. Välin voi myös jättää avoimeksi.</dd>
+	      <dt>kriteeri1, kriteeri2, ...</dt>
+	        <dd>Hakukriteereja voidaan antaa kerralla myös useampia pilkulla erotettuina.<br>
+		  Esim. "1, ah, pert" --> ryhmän 1 opiskelijat sekä kaikista kurssilla
+	 	  olevista ne, joiden sukunimi alkaa joko merkkijonolla "ah" tai "pert".</dd>
+	      <dt>mEiKäLäInEn</dt>
+		<dd>= Meikäläinen = meikäläinen, eli pienillä ja isoilla kirjaimilla
+		ei ole merkitystä.</dd>
+            </dl>
+	    <b>
+	    Voit myös halutessasi liittää kirjanpitolistaan vapaamuotoisen kommentin.
+            Lopuksi paina 
+
+	    <!-- 
+		NN ymmärtää tuon tyylin, kun se on kirjoitettu elementin 
+		style-atribuuttiin, mutta ei osaa lukea sitä erillisestä
+		CSS-tiedostosta.
+	    -->
+	    <form class="inline" style="margin:0;display:inline;"> 
+	      <input type="button" 
+		     tabindex="32605"
+		     value=">>>" 
+		     onClick="document.suoritevalinta.submit()" 
+	 	     class="submitb">.
+	    </form> 
+            </b>
+	    Sukunimellä hakeminen kohdistuu aina kaikkiin kurssin 
+	    opiskelijoihin.
+</div>
+	</td>
+      </tr>
+#parse ("bottom.vm")

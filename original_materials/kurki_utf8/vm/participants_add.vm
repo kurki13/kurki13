@@ -1,0 +1,84 @@
+	<tr>
+	  <td colspan="4">
+
+#if ( $error && $error != "" )
+<div class="error">
+<ul>
+$error
+</ul>
+</div>
+#end
+
+#if ($students)
+<table class="normal" border="1" width="100%">
+  <caption>
+   Opiskelijoita valittu ${students.size()}
+  </caption>
+  <tr>
+    <th>
+      Nimi (syntymäpäivä)
+    </th>
+    <th>
+#if ($useSNO)
+      OpNro
+#else
+      Hetu
+#end
+    </th>
+    <th>
+      Ryhmä
+    </th>
+    <th>
+      Ilmoita kurssille
+    </th>
+  </tr>
+  #set ($rowcount = 0)
+  #foreach ( $student in $students )
+    #if ($rowcount % 2 == 1)
+      #set ($bgcolor = $bgcolorDef)
+    #else
+      #set ($bgcolor = "#FFFFFF")
+    #end
+    #set ($rowcount = $rowcount + 1)
+  <tr>
+    <td bgcolor="${bgcolor}" nowrap>
+      <b><a href="mailto:$!{student.EMail}">$!{student.label}</a></b> ($!{student.Birthday})
+    </td>
+    <td bgcolor="${bgcolor}" nowrap>
+#if ($useSNO)
+      <center><tt>$!student.SNO</tt></center>
+#else
+      <center><tt>$!student.SSN</tt></center>
+#end
+    </td>
+    <td bgcolor="${bgcolor}" nowrap>
+      <center>
+      <form action="index" name="addForm${student.Id}" method="post" class="inline" style="margin:0;display:inline;">
+	<select name="group">
+#foreach ($group in $selectedCourse.Groups)
+          <option>${group}</option>
+#end
+        </select>
+##         <input type="text"  name="group" value="" size="2" maxlength="2" onBlur="rangecheck(this,0,99)">
+         <input type="hidden" name="TS" value="${TS}">
+         <input type="hidden" name="ssn" value="$!{student.SSNID}">
+         <input type="hidden" name="doAdd" value="$!{student.SSNID}">
+      </form>
+      </center>
+    </td>
+    <td bgcolor="${bgcolor}">
+      <center>
+      <form action="index" method="post" class="inline" style="margin:0;display:inline;" onSubmit="return false">
+         <input type="button" value="lisää" class="submitb"
+                onClick="document.addForm${student.Id}.submit()">
+      </form>
+      </center>
+    </td>
+  </tr>    
+  #end
+</table>
+#else 
+Yksikään opiskelija ei vastannut hakuehtoa.
+#end
+	  </td>
+        </tr>

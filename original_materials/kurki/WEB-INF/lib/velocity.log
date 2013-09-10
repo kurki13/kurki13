@@ -1,0 +1,30 @@
+Sat Aug 20 15:30:35 EEST 2005  [debug] AvalonLogSystem initialized using logfile /home/tkt_kurk/kurki/webapps/kurki/WEB-INF/lib/velocity.log
+Sat Aug 20 15:30:35 EEST 2005   [info] Jakarta Velocity v1.3-dev
+Sat Aug 20 15:30:35 EEST 2005   [info] RuntimeInstance initializing.
+Sat Aug 20 15:30:35 EEST 2005   [info] Default Properties File: org/apache/velocity/runtime/defaults/velocity.properties
+Sat Aug 20 15:30:35 EEST 2005   [info] Resource manager initializing.
+Sat Aug 20 15:30:35 EEST 2005   [info] Resource Loader Instantiated: org.apache.velocity.runtime.resource.loader.FileResourceLoader
+Sat Aug 20 15:30:35 EEST 2005   [info] FileResourceLoader : initialization starting.
+Sat Aug 20 15:30:35 EEST 2005   [info] FileResourceLoader : adding path '/home/tkt_kurk/kurki/webapps/kurki/WEB-INF/vm'
+Sat Aug 20 15:30:35 EEST 2005   [info] FileResourceLoader : initialization complete.
+Sat Aug 20 15:30:35 EEST 2005   [info] Loaded Pluggable Directive: org.apache.velocity.runtime.directive.Literal
+Sat Aug 20 15:30:35 EEST 2005   [info] Loaded Pluggable Directive: org.apache.velocity.runtime.directive.Macro
+Sat Aug 20 15:30:35 EEST 2005   [info] Loaded Pluggable Directive: org.apache.velocity.runtime.directive.Parse
+Sat Aug 20 15:30:35 EEST 2005   [info] Loaded Pluggable Directive: org.apache.velocity.runtime.directive.Include
+Sat Aug 20 15:30:35 EEST 2005   [info] Loaded Pluggable Directive: org.apache.velocity.runtime.directive.Foreach
+Sat Aug 20 15:30:35 EEST 2005   [info] Created: 20 parsers.
+Sat Aug 20 15:30:35 EEST 2005   [info] Velocimacro : initialization starting.
+Sat Aug 20 15:30:35 EEST 2005   [info] Velocimacro : adding VMs from VM library template : VM_global_library.vm
+Sat Aug 20 15:30:35 EEST 2005  [error] ResourceManager : unable to find resource 'VM_global_library.vm' in any resource loader.
+Sat Aug 20 15:30:35 EEST 2005   [info] Velocimacro : error using  VM library template VM_global_library.vm : org.apache.velocity.exception.ResourceNotFoundException: Unable to find resource 'VM_global_library.vm'
+Sat Aug 20 15:30:35 EEST 2005   [info] Velocimacro :  VM library template macro registration complete.
+Sat Aug 20 15:30:35 EEST 2005   [info] Velocimacro : allowInline = true : VMs can be defined inline in templates
+Sat Aug 20 15:30:35 EEST 2005   [info] Velocimacro : allowInlineToOverride = false : VMs defined inline may NOT replace previous VM definitions
+Sat Aug 20 15:30:35 EEST 2005   [info] Velocimacro : allowInlineLocal = false : VMs defined inline will be  global in scope if allowed.
+Sat Aug 20 15:30:35 EEST 2005   [info] Velocimacro : messages on  : VM system will output logging messages
+Sat Aug 20 15:30:35 EEST 2005   [info] Velocimacro : autoload off  : VM system will not automatically reload global library macros
+Sat Aug 20 15:30:35 EEST 2005   [info] Velocimacro : initialization complete.
+Sat Aug 20 15:30:35 EEST 2005   [info] Velocity successfully started.
+Sat Aug 20 15:30:36 EEST 2005   [info] ResourceManager : found index.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+Sat Aug 20 15:30:36 EEST 2005   [info] ResourceManager : found top.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+Sat Aug 20 15:30:36 EEST 2005   [info] ResourceManager : found bottom.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
