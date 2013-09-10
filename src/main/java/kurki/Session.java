@@ -192,7 +192,7 @@ public class Session implements java.io.Serializable {
      */
     protected Session( String ruser )
 	throws InitFailedException, SQLException, NullIdException, ClassNotFoundException {
-	if ( ruser == null || ruser.length() == 0 ) throw new InitFailedException("Käyttäjän tunnistus epäonnistui.");
+	//MKCT: commented if ( ruser == null || ruser.length() == 0 ) throw new InitFailedException("Käyttäjän tunnistus epäonnistui.");
 	this.ruser = ruser;
 	init();
     }

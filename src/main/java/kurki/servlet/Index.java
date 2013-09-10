@@ -50,7 +50,9 @@ public class Index extends VelocityServlet implements Log, Serializable {
 		/*
 		 *  Konfiguraatio...
 		 */
-		Configuration.setPropertiesFile( new File( ctx.getInitParameter("configurationFile") ) );
+                
+                //MKCT: Tähän piti lisätä getRealPath jotta web.xml:ssä voidaan käyttää relatiivista polkua!
+		Configuration.setPropertiesFile( new File( ctx.getRealPath(ctx.getInitParameter("configurationFile") ) ));
 
 		/*
 		 *  Lisätään tieto lokista konfiguraatioon.
@@ -80,8 +82,9 @@ public class Index extends VelocityServlet implements Log, Serializable {
  			     new Grades( serviceManager.getService( Session.GRADES ) ) );
  		handlers.put(Session.RESULT_LIST, 
  			     new ResultList( serviceManager.getService( Session.RESULT_LIST ) ) );
-                handlers.put(Session.FREEZE, 
-  			     new Freeze( serviceManager.getService( Session.FREEZE ) ) );
+                //MKCT: tää yks piti kommentoida pois
+//                handlers.put(Session.FREEZE, 
+//  			     new Freeze( serviceManager.getService( Session.FREEZE ) ) );
 
 //  		handlers.put(Session.LOGOUT, 
 //  			     new Logout( serviceManager.getService( Session.LOGOUT ) ) );
