@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
-    
     <context-param>
         <param-name>webmaster</param-name>
         <param-value>Harri.Laine@cs.Helsinki.FI</param-value>
@@ -10,14 +9,12 @@
         <param-value>/WEB-INF/kurki.cnf</param-value>
     </context-param>
     <!-- Define Velocity template compiler -->
-    
     <!-- Tällä servletillä voi katsella suoraan .vm tiedostoja -->
     <servlet>
         <servlet-name>velocity</servlet-name>
         <servlet-class>
             org.apache.velocity.tools.view.servlet.VelocityViewServlet
         </servlet-class>
-
         <!-- 
           Unless you plan to put your toolbox.xml and velocity.properties
           under different folders or give them different names, then these
@@ -29,24 +26,24 @@
             <param-name>org.apache.velocity.toolbox</param-name>
             <param-value>/WEB-INF/toolbox.xml</param-value>
         </init-param>
-
         <init-param>
             <param-name>org.apache.velocity.properties</param-name>
             <param-value>/WEB-INF/velocity.properties</param-value>
         </init-param>
     </servlet>
-
     <!-- Map *.vm files to Velocity -->
+    <servlet>
+        <servlet-name>Language</servlet-name>
+        <servlet-class>kurki.servlet.Language</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>velocity</servlet-name>
         <url-pattern>*.vm</url-pattern>
     </servlet-mapping>
-    
     <servlet-mapping>
         <servlet-name>velocity</servlet-name>
         <url-pattern>*.js</url-pattern>
     </servlet-mapping>
-    
     <servlet>
         <servlet-name>HelloTest</servlet-name>
         <servlet-class>HelloTest</servlet-class>
@@ -59,12 +56,10 @@
             <param-value>/WEB-INF/toolbox.xml</param-value>
         </init-param>
     </servlet>
-    
     <servlet-mapping>
         <servlet-name>HelloTest</servlet-name>
         <url-pattern>/HelloTest</url-pattern>
     </servlet-mapping>
-    
     <servlet>
         <servlet-name>index</servlet-name>
         <servlet-class>kurki.servlet.Index</servlet-class>
@@ -73,12 +68,10 @@
             <param-value>/WEB-INF/velocity.properties</param-value>
         </init-param>
     </servlet>
-    
     <servlet>
         <servlet-name>LoginManager</servlet-name>
         <servlet-class>kurki.servlet.LoginManager</servlet-class>
     </servlet>
-
     <servlet>
         <servlet-name>checklist</servlet-name>
         <servlet-class>kurki.servlet.ListMaker</servlet-class>
@@ -87,35 +80,30 @@
             <param-value>/WEB-INF/velocity.properties</param-value>
         </init-param>
     </servlet>
-
     <servlet>
         <servlet-name>logout</servlet-name>
         <servlet-class>kurki.servlet.Logout</servlet-class>
     </servlet>
- 
-    
-    
-
     <servlet-mapping>
         <servlet-name>index</servlet-name>
         <url-pattern>/servlet/index</url-pattern>
     </servlet-mapping>
-
     <servlet-mapping>
         <servlet-name>LoginManager</servlet-name>
         <url-pattern>/servlet/LoginManager</url-pattern>
     </servlet-mapping>
-
     <servlet-mapping>
         <servlet-name>checklist</servlet-name>
         <url-pattern>/servlet/checklist</url-pattern>
     </servlet-mapping>
-
     <servlet-mapping>
         <servlet-name>logout</servlet-name>
         <url-pattern>/servlet/logout</url-pattern>
     </servlet-mapping>
-    
+    <servlet-mapping>
+        <servlet-name>Language</servlet-name>
+        <url-pattern>/Language</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30

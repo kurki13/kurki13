@@ -6,7 +6,6 @@ import java.util.*;
 import java.sql.*;
 
 public class Session implements java.io.Serializable {
-    
     public static Locale locale = new Locale("fi");
     
     private static int rolehlp = 0;
@@ -414,6 +413,12 @@ public class Session implements java.io.Serializable {
 	return (CourseInfo)courses.get( cid );
     }
 
+    public static Locale getLanguage() {
+        return locale;
+    }
+    public static void setLanguage(Locale l) {
+        locale = l;
+    }
 
 //     /**
 //      **  Kurssin laskariryhmien perustiedot.
