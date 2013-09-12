@@ -42,12 +42,21 @@
         <url-pattern>*.vm</url-pattern>
     </servlet-mapping>
     
+    <servlet-mapping>
+        <servlet-name>velocity</servlet-name>
+        <url-pattern>*.js</url-pattern>
+    </servlet-mapping>
+    
     <servlet>
         <servlet-name>HelloTest</servlet-name>
         <servlet-class>HelloTest</servlet-class>
         <init-param>
             <param-name>org.apache.velocity.properties</param-name>
             <param-value>/WEB-INF/velocity.properties</param-value>
+        </init-param>
+        <init-param>
+            <param-name>org.apache.velocity.toolbox</param-name>
+            <param-value>/WEB-INF/toolbox.xml</param-value>
         </init-param>
     </servlet>
     

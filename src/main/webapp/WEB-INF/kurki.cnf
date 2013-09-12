@@ -7,7 +7,8 @@ webmaster=tktl-kurk@cs.Helsinki.FI
 
 #Oodi-siirroista vastaavan henkilön sähköpostiosoite
 #Tomcattia ei tarvitse uudelleenkäynnistää
-oodi=Reijo.Siven@cs.Helsinki.FI
+#oodi=Reijo.Siven@cs.Helsinki.FI
+oodi=taru.airola@helsinki.fi
 
 #Tietokanta
 #Tomcattia ei tarvitse uudelleenkäynnistää

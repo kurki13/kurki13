@@ -1,7 +1,7 @@
 <html>
 <body>
 Hello $name<br><br>
-$label.hello
+$testiBundle.hello<br>$piippu.getName<br>$piippu.getName()
 
 <br>
 $pipe.getName()
