@@ -13,18 +13,18 @@
 		  <td>
 		    <select name="ltype" tabindex="32600">
 		      <!-- <listan numero>_<sisällön mime-tyyppi "text/..."> -->
-		      <option value="1_html">kirjanpitolista</option>
-		      <option value="2_plain">hetu ja nimi</option>
-		      <option value="3_plain">nimi</option>
-		      <option value="4_plain">nimi ja email</option>
-		      <option value="5_plain">email</option>
-		      <option value="6_plain">ilm.järjestys</option>
-		      <option value="7_html">tarkistuslista</option>
-		      <option value="8_html">nimikirjoitus</option>
-		      <option value="9_plain">export</option>
+		      <option value="1_html">$bundle.getString("kirjanpitolista")</option>
+		      <option value="2_plain">$bundle.getString("hetunimi")</option>
+		      <option value="3_plain">$bundle.getString("nimi")</option>
+		      <option value="4_plain">$bundle.getString("nimiemail")</option>
+		      <option value="5_plain">$bundle.getString("email")</option>
+		      <option value="6_plain">$bundle.getString("ilmjarjestys")</option>
+		      <option value="7_html">$bundle.getString("tarkistuslista")</option>
+		      <option value="8_html">$bundle.getString("nimikirjoitus")</option>
+		      <option value="9_plain">$bundle.getString("export")</option>
 		    </select>
 	  	  </td>
-		  <td nowrap>&nbsp;<b>Kommentti:</b></td>
+		  <td nowrap>&nbsp;<b>$bundle.getString("kommenttikp")</b></td>
 		  <td>
 ##
 ##  Kommentti
@@ -36,7 +36,7 @@
 ##
 ##  Haettavat opiskelijat - joko ryhmän mukaan tai sukunimen mukaan
 ##
-		    <b>Opiskelijat:</b>
+		    <b>$bundle.getString("opiskelijatkp")</b>
 		  </td>
  		  <td>
 		    <input type="text" name="filter" tabindex="32600" size="15" value = "$!studentFilter">
@@ -53,12 +53,12 @@
       <tr>
 	<td colspan="4">
 <div class="instr">
-<b>Valitse haluamasi listan tyyppi ja anna opiskelijoiden hakukriteeri (opiskelijat):</b>
+<b>$bundle.getString("valitsetyyppi")</b>
 	    <dl>
-	      <dt>tyhjä</dt>
-  	        <dd>Kaikki kurssin opiskelijat.</dd>
-	      <dt>numero</dt>
-	        <dd>Annetun ryhmän opiskelijat.</dd>
+	      <dt>$bundle.getString("tyhja")</dt>
+  	        <dd>$bundle.getString("kaikkiopiskelijat")</dd>
+	      <dt>$bundle.getString("numero")</dt>
+	        <dd>$bundle.getString("annetunryhman")</dd>
               <dt>#henkilötunnus</dt>
                 <dd>Opiskelijat henkilötunnuksen mukaan.</dd>
 	      <dt>sukunimi</dt>

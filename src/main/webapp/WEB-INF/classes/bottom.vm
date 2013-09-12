@@ -6,7 +6,7 @@
           &nbsp;
         </td>
         <td align="right" nowrap>
-          <a href="logout">Kirjaudu ulos</a>
+          <a href="logout">$bundle.getString("logout")</a>
         </td>
       </tr>
     </table>

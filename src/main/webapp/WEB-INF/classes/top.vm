@@ -114,7 +114,8 @@ function disableAutosave() {
             <h1>KURKI 2.0</h1>
           </td>
           <td align="right" width="10%" nowrap>
-            <a href="logout">Kirjaudu ulos</a>
+            <a href="../Language?kieli=en">In English</a><br>
+            <a href="../Language?kieli=fi">Suomeksi</a>
           </td>
         </tr>
 
