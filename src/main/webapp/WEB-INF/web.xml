@@ -57,17 +57,54 @@
     </servlet-mapping>
     
     <servlet>
-        <servlet-name>Index</servlet-name>
+        <servlet-name>index</servlet-name>
         <servlet-class>kurki.servlet.Index</servlet-class>
         <init-param>
-            <param-name>org.apache.velocity.properties</param-name>
+            <param-name>properties</param-name>
             <param-value>/WEB-INF/velocity.properties</param-value>
         </init-param>
-    </servlet>    
+    </servlet>
     
+    <servlet>
+        <servlet-name>LoginManager</servlet-name>
+        <servlet-class>kurki.servlet.LoginManager</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>checklist</servlet-name>
+        <servlet-class>kurki.servlet.ListMaker</servlet-class>
+        <init-param>
+            <param-name>properties</param-name>
+            <param-value>/WEB-INF/velocity.properties</param-value>
+        </init-param>
+    </servlet>
+
+    <servlet>
+        <servlet-name>logout</servlet-name>
+        <servlet-class>kurki.servlet.Logout</servlet-class>
+    </servlet>
+ 
+    
+    
+
     <servlet-mapping>
-        <servlet-name>Index</servlet-name>
-        <url-pattern>/Index</url-pattern>
+        <servlet-name>index</servlet-name>
+        <url-pattern>/servlet/index</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>LoginManager</servlet-name>
+        <url-pattern>/servlet/LoginManager</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>checklist</servlet-name>
+        <url-pattern>/servlet/checklist</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>logout</servlet-name>
+        <url-pattern>/servlet/logout</url-pattern>
     </servlet-mapping>
     
     <session-config>

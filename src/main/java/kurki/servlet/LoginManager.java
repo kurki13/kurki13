@@ -30,7 +30,8 @@ public class LoginManager extends VelocityServlet {
 	 */
 	try {
 	    Properties p = new Properties();
-	    FileInputStream fis = new FileInputStream( ctx.getInitParameter("configurationFile") );
+            //MKCT: Real tal..path
+	    FileInputStream fis = new FileInputStream( ctx.getRealPath(ctx.getInitParameter("configurationFile")) );
 	    p.load(fis);
 	    
 	    Enumeration enames = p.propertyNames();
