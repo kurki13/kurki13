@@ -1,0 +1,6 @@
+${selectedCourse.Label}: $!studentFilterDesc
+Tilanne: ${sysdate} klo: ${time}
+
+#foreach ($student in $students)
+$!{student.EMail}
+#end
