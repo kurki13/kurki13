@@ -13,16 +13,19 @@ oodi=Reijo.Siven@cs.Helsinki.FI
 #Tomcattia ei tarvitse uudelleenkäynnistää
 dbDriver=oracle.jdbc.OracleDriver
 dbServer=jdbc:oracle:thin:@bodbacka.cs.helsinki.fi:1521:test
-dbUser=heikkiha
-dbPassword=aA03040304
+dbUser=tk_testi
+dbPassword=tapaus2
+#dbServer=jdbc:oracle:thin:@bodbacka.cs.helsinki.fi:1521:test
+#dbUser=heikkiha
+#dbPassword=aA03040304
 
 #Niiden henkilöiden käyttäjätunnukset, joilla on oikeus päivittää 
 #henkilo-taulun tktl-käyttäjätunnuksia
-loginManagers=laine, siven
+loginManagers=laine, siven, mkctammi
 
 
 #Henkilöt, joilla oikeus päivittää kaikkia kursseja
-superUsers= siven, laine
+superUsers= siven, laine, mkctammi
 
 #TKTL-verkon /etc/passwd-tiedosto
 #passwdFile=/fs/svc/domain/cs-passwd
