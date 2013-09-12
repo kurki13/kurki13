@@ -1,6 +1,6 @@
       <tr>
         <td align="left" nowrap>
-          <a href="logout">Kirjaudu ulos</a>
+          <a href="logout">$bundle.getString("logout")</a>
         </td>
         <td colspan="2">
           &nbsp;

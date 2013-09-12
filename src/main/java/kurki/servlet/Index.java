@@ -127,6 +127,7 @@ public class Index extends VelocityServlet implements Log, Serializable {
         try {
 	    // Luodaan template-konteksti 
             ctx = createContext( req, res );
+            ctx.put("bundle", ResourceBundle.getBundle("localisationBundle", Session.locale));
 
             setContentType( req, res );
 

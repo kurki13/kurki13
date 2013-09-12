@@ -7,6 +7,8 @@ import java.sql.*;
 
 public class Session implements java.io.Serializable {
     
+    public static Locale locale = new Locale("fi");
+    
     private static int rolehlp = 0;
 
     // Tunnistetun käyttäjäryhmät. Huom! Lueteltava oikeuksien mukaisessa

@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <toolbox>
     <tool scope="application">
-        <key>testiBundle</key>
+        <key>bundle</key>
         <class>org.apache.velocity.tools.generic.ResourceTool</class>
-        <parameter name="bundles" value="testBundle"/>
-        <parameter name="locale" value="en_US"/>
+        <parameter name="bundle" value="localisationBundle"/>
+        <parameter name="locale" value="fi"/>
     </tool>
     
     <tool>

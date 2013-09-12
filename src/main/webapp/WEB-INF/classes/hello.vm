@@ -6,6 +6,6 @@ $testiBundle.hello<br>$piippu.getName<br>$piippu.getName()
 <br>
 $pipe.getName()
 <br>
-$label.getString("hello")
+$bundle.getString("logout")
 </body>
 <html>
