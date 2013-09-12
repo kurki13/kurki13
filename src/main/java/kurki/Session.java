@@ -456,6 +456,8 @@ public class Session implements java.io.Serializable {
 		pstmt.setString( 1, this.ruser );
 		pstmt.setString( 2, this.ruser );
 	    }
+            //MKCT:
+            pstmt = con.prepareStatement( SUPER_INFOS );
 	    rs = pstmt.executeQuery();
 	
 	    while ( rs.next() ) {

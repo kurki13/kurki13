@@ -83,8 +83,8 @@ public class Index extends VelocityServlet implements Log, Serializable {
  		handlers.put(Session.RESULT_LIST, 
  			     new ResultList( serviceManager.getService( Session.RESULT_LIST ) ) );
                 //MKCT: tää yks piti kommentoida pois
-//                handlers.put(Session.FREEZE, 
-//  			     new Freeze( serviceManager.getService( Session.FREEZE ) ) );
+                handlers.put(Session.FREEZE, 
+  			     new Freeze( serviceManager.getService( Session.FREEZE ) ) );
 
 //  		handlers.put(Session.LOGOUT, 
 //  			     new Logout( serviceManager.getService( Session.LOGOUT ) ) );
