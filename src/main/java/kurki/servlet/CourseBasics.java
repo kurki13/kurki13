@@ -162,11 +162,8 @@ public class CourseBasics extends AbstractVelocityServiceProvider
 
 	if ( nullIfEmpty(error) != null )
 	    ctx.put( Index.ERROR, error );
-	// 	if ( nullIfEmpty(result) != null ) 
-	// 	    ctx.put( Index.RESULT, result );
 
-
-// 	ctx.put( "course", course );
+        ctx.put("bundle", ResourceBundle.getBundle("localisationBundle", Session.locale));
 	return template;
     }
 }

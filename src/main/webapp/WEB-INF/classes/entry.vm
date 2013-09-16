@@ -22,7 +22,7 @@
 	        <tr>
 		  <td>
                     <label for="type" accesskey="T">
-		    <b><u>T</u>yyppi:</b>
+		    <b>$bundle.getString("tyyppi")</b>
                     </label>
 		  </td>
 		  <td>
@@ -47,7 +47,7 @@
 	  	  </td>
 		  <td>&nbsp;
                     <label for="offering" accesskey="K">
-                    <b><u>K</u>erta:</b>
+                    <b>$bundle.getString("kerta")</b>
                     </label>
                   </td>
 		  <td>
@@ -76,7 +76,7 @@
 ##  Haettavat opiskelijat - joko ryhmän mukaan tai sukunimen mukaan
 ##
                     <label for="find" accesskey="O">
-		    <b><u>O</u>piskelijat:</b>
+		    <b>$bundle.getString("opiskelijatkp")</b>
                     </label>
 		  </td>
  		  <td>
@@ -111,7 +111,7 @@
   #if ($SelectDescription)
               $SelectDescription
   #else
-              kaikki kurssin oppilaat
+         $bundle.getString("kaikkiOppilaat")
   #end
 	      
 	  </h3>
@@ -140,18 +140,17 @@
           <div class="instr">
 	    <form action="index" name="sdef" method="post">
               <input type="hidden" name="TS" value="${TS}">
-
-	      Kirjattavan osasuorituksen tiedot ovat puutteelliset. 
-	      Ole ystävällinen ja <b>anna</b> vähintään
+              
+	      
 
 	      <table class="invisible">
 	        <tr>
-		  <td><b>maksimipistemäärä:<b></td>
+		  <td><b><b></td>
 		  <td>
 		    <input type="text" name="maxscore" tabindex="32500" size="2" maxlength="2"
                            onBlur="rangecheck(this, 0, 99)"> 
 		  </td>
-		  <td> ja, jos tiedossa, <b>hyväksymisraja:<b></td>
+		  <td> $bundle.getString("tiedHyvaksymisraja")</td>
 		  <td>
 		    <input type="text" name="minscore" tabindex="32501" size="2" maxlength="2" 
                            onBlur="rangecheck(this, 0, document.sdef.maxscore.value)">
@@ -195,7 +194,7 @@
             <form action="index" name="scores" method="post">
               <table class="normal" border="1" width="100%">
 
-              <caption>O<u>p</u>iskelijoita valittu $students.size()</caption>
+              <caption>$bundle.getString("opiskValittu") $students.size()</caption>
     #set ($rowcount = 0)
     #foreach ( $student in $students )
       #if ($rowcount % 2 == 0)
@@ -328,7 +327,7 @@
         #else
                     <!-- SULATUS -->
                     <center>
-                    <input type="button" class="button" value="--> sulata <--"
+                    <input type="button" class="button" value="--> $bundle.getString("sulata") <--"
                            onClick="!isModified() && defreezeStudent('${stid}')">
                     </center>
         #end
@@ -337,7 +336,7 @@
       #elseif ($student.isFrozen())
                     <!-- SULATUS -->
                     <center>
-                    <input type="button" class="button" value="--> sulata <--"
+                    <input type="button" class="button" value="--> $bundle.getString("sulata") <--"
                            onClick="defreezeStudent('${stid}')">
                     </center>
       #else 
@@ -351,7 +350,7 @@
 		  <td bgcolor="${bgcolor}" align="left">	
 
       #if (!$student.isFrozen())
-		    <input type="button" class="button" value="peru"
+		    <input type="button" class="button" value="$bundle.getString("peru")"
         #if ( $selectedOffering.MaxScore <= $radioLimit )
 			   onClick="oldScore(document.scores.o${stid}, document.scores.t${stid}, document.scores.r${stid}) && modifyCheck(document.scores.t${stid}.value, document.scores.o${stid}.value, document.scores.smod${stid}, 'img${stid}')">
         #else
@@ -374,7 +373,7 @@
     #end
                     <input type="hidden" name="TS" value="${TS}">
 		    <input type="hidden" name="commit" value="ok">
-	      	    <input type="submit" tabindex="2" class="submitb" value="------> TALLENNA PISTEET <------"
+	      	    <input type="submit" tabindex="2" class="submitb" value="------> $bundle.getString("tallennaPisteet") <------"
                            onClick="this.form.asNotify.value=''">
 	          </th>
 	        </tr>
@@ -398,34 +397,30 @@
 	    </form>
 
   #else 
-	Ryhmässä ei ole opiskelijoita.
+        $bundle.getString("ryhmaTyhja")
+
   #end
 #else 
 	  <div class="instr">
-	    <b>Valitse kirjattavan suoritteen tyyppi, kerta 
-	    ja anna opiskelijoiden hakukriteeri (opiskelijat):</b>
+	    <b>$bundle.getString("annaHakukriteerit")</b>
 	    <dl>
-	      <dt>tyhjä</dt>
-  	        <dd>Kaikki kurssin opiskelijat.</dd>
-	      <dt>numero</dt>
-	        <dd>Annetun ryhmän opiskelijat.</dd>
-              <dt>#henkilötunnus</dt>
-                <dd>Opiskelijat henkilötunnuksen mukaan.</dd>
-	      <dt>sukunimi</dt>
-	        <dd>Opiskelijat, joiden sukunimi alkaa merkkijonolla "sukunimi".</dd>
-	      <dt>alku .. loppu</dt>
-	        <dd>opiskelijat, joiden sukunimi sijoittuu aakkosjärjestyksessä
-		  alun ja lopun väliin. Välin voi myös jättää avoimeksi.</dd>
-	      <dt>kriteeri1, kriteeri2, ...</dt>
-	        <dd>Hakukriteereja voidaan antaa kerralla myös useampia pilkulla erotettuina.<br>
-		  Esim. "1, ah, pert" --> ryhmän 1 opiskelijat sekä kaikista kurssilla
-	 	  olevista ne, joiden sukunimi alkaa joko merkkijonolla "ah" tai "pert".</dd>
-	      <dt>mEiKäLäInEn</dt>
-		<dd>= Meikäläinen = meikäläinen, eli pienillä ja isoilla kirjaimilla
-		ei ole merkitystä.</dd>
+	      <dt>$bundle.getString("tyhja")</dt>
+  	        <dd>$bundle.getString("kaikkiopiskelijat")</dd>
+	      <dt>$bundle.getString("numero")</dt>
+	        <dd>$bundle.getString("annetunryhman")</dd>
+              <dt>$bundle.getString("hashhenktunnus")</dt>
+                <dd>$bundle.getString("opiskelijathenktunnus")</dd>
+	      <dt>$bundle.getString("sukunimi")</dt>
+	        <dd>$bundle.getString("opsukunimimerkki")</dd>
+	      <dt>$bundle.getString("alkuloppu")</dt>
+	        <dd>$bundle.getString("sukunimiaakkos")</dd>
+	      <dt>$bundle.getString("kriteerit")</dt>
+	        <dd>$bundle.getString("useatkriteerit")</dd>
+	      <dt>$bundle.getString("meikalainen")</dt>
+		<dd>$bundle.getString("pienetjaisot")</dd>
             </dl>
 	    
-	    <b>Lopuksi paina 
+	    <b>$bundle.getString("lopuksiPaina")
 
 	    <!-- 
 		NN ymmärtää tuon tyylin, kun se on kirjoitettu elementin 
@@ -440,8 +435,7 @@
 	 	     class="submitb">.
 	    </form> 
             </b>
-	    Sukunimellä hakeminen kohdistuu aina kaikkiin kurssin 
-	    opiskelijoihin.
+            $bundle.getString("sukunimellahaku")
 	  </div>
 #end
 	</td>

@@ -127,7 +127,7 @@ public class LoginManager extends VelocityServlet {
 		
 	    }
 	}
-
+        ctx.put("bundle", ResourceBundle.getBundle("localisationBundle", Session.locale));
 	return template;
     }
 }
