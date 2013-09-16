@@ -59,24 +59,19 @@
   	        <dd>$bundle.getString("kaikkiopiskelijat")</dd>
 	      <dt>$bundle.getString("numero")</dt>
 	        <dd>$bundle.getString("annetunryhman")</dd>
-              <dt>#henkilötunnus</dt>
+              <dt>$bundle.getString("hashhenktunnus")</dt>
                 <dd>$bundle.getString("opiskelijathenktunnus")(</dd>
-	      <dt>sukunimi</dt>
-	        <dd>Opiskelijat, joiden sukunimi alkaa merkkijonolla "sukunimi".</dd>
-	      <dt>alku .. loppu</dt>
-	        <dd>opiskelijat, joiden sukunimi sijoittuu aakkosjärjestyksessä
-		  alun ja lopun väliin. Välin voi myös jättää avoimeksi.</dd>
-	      <dt>kriteeri1, kriteeri2, ...</dt>
-	        <dd>Hakukriteereja voidaan antaa kerralla myös useampia pilkulla erotettuina.<br>
-		  Esim. "1, ah, pert" --> ryhmän 1 opiskelijat sekä kaikista kurssilla
-	 	  olevista ne, joiden sukunimi alkaa joko merkkijonolla "ah" tai "pert".</dd>
-	      <dt>mEiKäLäInEn</dt>
-		<dd>= Meikäläinen = meikäläinen, eli pienillä ja isoilla kirjaimilla
-		ei ole merkitystä.</dd>
+	      <dt>$bundle.getString("sukunimi")</dt>
+	        <dd>$bundle.getString("opsukunimimerkki")</dd>
+	      <dt>$bundle.getString("alkuloppu")</dt>
+	        <dd>$bundle.getString("sukunimiaakkos")</dd>
+	      <dt>$bundle.getString("kriteerit")</dt>
+	        <dd>$bundle.getString("useatkriteerit")</dd>
+	      <dt>$bundle.getString("meikalainen")</dt>
+		<dd>$bundle.getString("pienetjaisot")</dd>
             </dl>
 	    <b>
-	    Voit myös halutessasi liittää kirjanpitolistaan vapaamuotoisen kommentin.
-            Lopuksi paina 
+	    $bundle.getString("liitakommentti") 
 
 	    <!-- 
 		NN ymmärtää tuon tyylin, kun se on kirjoitettu elementin 
@@ -91,8 +86,7 @@
 	 	     class="submitb">.
 	    </form> 
             </b>
-	    Sukunimellä hakeminen kohdistuu aina kaikkiin kurssin 
-	    opiskelijoihin.
+	    $bundle.getString("sukunimellahaku")
 </div>
 	</td>
       </tr>
