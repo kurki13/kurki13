@@ -4,17 +4,9 @@ import kurki.*;
 import service.*;
 
 import java.io.*;
-import java.sql.*;
 import java.util.*;
-import javax.servlet.*;
 import javax.servlet.http.*;
-import java.net.URLEncoder;
-
-import org.apache.velocity.*;
 import org.apache.velocity.context.*;
-import org.apache.velocity.app.*;
-import org.apache.velocity.exception.*;
-import org.apache.velocity.servlet.*;
 
 public class CourseBasics extends AbstractVelocityServiceProvider 
     implements Serializable {
@@ -25,6 +17,7 @@ public class CourseBasics extends AbstractVelocityServiceProvider
  	super( service );
     }
 
+    @Override
     public String handleRequest( Session session, 
 				 HttpServletRequest req, 
 				 HttpServletResponse res, 
@@ -44,9 +37,9 @@ public class CourseBasics extends AbstractVelocityServiceProvider
 	    kurki.Part part = null;
 
 	    for ( int p=0; p < kurki.Part.ARVOSANA; p++ ) {
-		int nbr = 0;
-		int required = 0;
-		int xtr = 0;
+		int nbr;
+		int required;
+		int xtr;
 
 		String par = null;		
 		try {

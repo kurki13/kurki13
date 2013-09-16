@@ -173,12 +173,12 @@ public class ServiceManager {
     }
 
     /**
-     **  Onko palvelu &lt;act&gt; luvallinen roolille &lt;role&gt;?
+     **  Onko palvelu act luvallinen roolille role?
      */
     public boolean isValidServiceFor( Service act, int role ) {
 	
-	ServiceAdapter[] services = (ServiceAdapter[])servicesByRoles.get( role );
-	int found = Arrays.binarySearch( services, act );
+	ServiceAdapter[] serv = (ServiceAdapter[])servicesByRoles.get( role );
+	int found = Arrays.binarySearch( serv, act );
 	
 	return found >= 0;
     }
