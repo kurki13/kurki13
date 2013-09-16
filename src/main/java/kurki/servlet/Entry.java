@@ -219,7 +219,7 @@ public class Entry extends AbstractVelocityServiceProvider {
 	    if ( course.getSelectedPart().maxScoreDefined() )
 		ctx.put( "autosave", "document.scores" );
 	    ctx.put( "students", course.getStudents() );
-
+             ctx.put("bundle", ResourceBundle.getBundle("localisationBundle", Session.locale));
 	    studentFilter = null;
 	}
 	/*

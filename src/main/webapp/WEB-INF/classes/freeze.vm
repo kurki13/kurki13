@@ -20,26 +20,26 @@
 <ul>
 #if (!$selectedCourse.isFrozen())
   <li>
-  Jäädytys tehdään, kun kurssi on valmis siirrettäväksi Oodiin.
+  $bundle.getString("jaadytys")
   </li>
   <li>
-  Toimita allekirjoitettu tuloslista kansliaan. 
+  $bundle.getString("tuloslistanToimitus") 
   </li>
   <li>
-  Saat tuloslistan kuittauksena sähköpostitse.
+  $bundle.getString("tuloslista")
   </li>
   <li>
-  Huom! Korjauksien tekeminen on mahdollista jäädytyksen jälkeenkin.
+  $bundle.getString("korjaukset")
   </li>
 #else
   <li>
-  Kanslisti tekee korjaukset Oodiin manuaalisesti korjauslistan perusteella. 
+  $bundle.getString("kanslisti") 
   </li>
   <li>
-  Toimita allekirjoitettu korjauslista kansliaan. 
+  $bundle.getString("toimitus") 
   </li>
   <li>
-  Saat korjauslistan kuittauksena sähköpostitse.
+  $bundle.getString("kuittaus")
   </li>
 #end
 </ul>
@@ -50,7 +50,7 @@
   <tr>
 #if (!$selectedCourse.ExamDate)
     <th>
-      Suorituspäivämäärä
+      $bundle.getString("suorituspvm")
     </th>
     <td nowrap>
       <input type="text" value="" name="examDate" size="10" maxlength="10">(pp.kk.vvvv)
@@ -59,7 +59,7 @@
   <tr>
 #end
     <th colspan="2">
-      <input type="submit" value="Jäädytä kurssi" name="freeze" class="submitb">
+      <input type="submit" value="$bundle.getString("jaadyta")" name="freeze" class="submitb">
     </th>
   </tr>
 </table>

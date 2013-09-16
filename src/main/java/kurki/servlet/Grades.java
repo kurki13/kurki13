@@ -15,6 +15,7 @@ public class Grades extends AbstractVelocityServiceProvider
  	super( service );
     }
 
+    @Override
     public String handleRequest( Session session, 
 				 HttpServletRequest req, 
 				 HttpServletResponse res, 
@@ -33,7 +34,6 @@ public class Grades extends AbstractVelocityServiceProvider
 	String makeAssessment = nullIfEmpty( req.getParameter("makeAssessment") );
 	String modBoundaries = nullIfEmpty( req.getParameter("modBoundaries") );
 	String saveBoundaries  = nullIfEmpty( req.getParameter("saveBoundaries") );
-// 	String  = req.getParameter("");
 
 	/*
 	 * Tallenna lomakkeen tiedot
@@ -132,14 +132,6 @@ public class Grades extends AbstractVelocityServiceProvider
 			    +": lisäpisteiden kartuntaväli annettu virheellisesti.</li>";
 		    valOK = true;
 		}
-// 		val = nullIfEmpty( req.getParameter( ""+ptype ) );
-// 		if ( val != null ) {
-// 		    try {
-// 			part.set( Integer.parseInt( val ) );
-// 		    } catch ( NumberFormatException nfe ) {
-// 			error += "<li>"+part.getLabel()+" annettu virheellisesti.</li>";
-// 		    }
-// 		}
 	    }
 	    if ( !course.commitGradeDef() ) {
 		ok = false;
@@ -217,54 +209,10 @@ public class Grades extends AbstractVelocityServiceProvider
 		ctx.put( "students", course.getStudents() );
 		ctx.put( "selectedCourse", session.getSelectedCourse() );
 		ctx.put( "resultList", "true" );
-		
-
-// 		VelocityContext rslist = new VelocityContext();
-
-// 		rslist.put( "students", course.getStudents() );
-// 		rslist.put( "selectedCourse", session.getSelectedCourse() );
-
-		// Listaan mukaan otettavat tiedot
-// 		rslist.put( "inc_noheader", "true" ); // Ei otsakkeita
-// 		rslist.put( "inc_ssn", "true" ); // Hetu
-// 		rslist.put( "inc_lhsum", "true" ); // Laskaripisteet
-// 		rslist.put( "inc_lhsumname", "LH-pisteet" ); //  Laskaripisteiden sarakeotsake
-// 		rslist.put( "inc_htsum", "true" ); // Harjoitustyöpisteet
-// 		rslist.put( "inc_htsumname", "HT-pisteet" ); //  Harjoitustyöpisteiden sarakeotsake
-// 		rslist.put( "inc_koesum", "true" ); // Koepisteet 
-// 		rslist.put( "inc_koesumname", "Koepisteet" ); //  Koepisteiden sarakeotsake
-// 		rslist.put( "inc_sum", "true" ); // Yhteispisteet
-// 		rslist.put( "inc_sumname", "Yhteispisteet" ); // Yhteispisteiden sarakeotsake
-// 		rslist.put( "inc_grade", "true" ); // Arvosana
-// 		rslist.put( "inc_gradename", "Arvosana" ); // Arvosanan sarakeotsake
-// 		rslist.put( "inc_accepted", "true" ); // Hyväksytyt
-// 		rslist.put( "inc_failed", "true" ); // Hylätyt
-// 		rslist.put( "inc_signature", "true" ); // Hyväksyjän allekirjoitus
-// 			rslist.put( "inc_", "true" );
-
-
-// 		/*
-// 		 * Tuloslista
-// 		 */
-// 		// Korjauslista
-// 		if (course.isFrozen()) {
-// 		    rslist.put( "inc_changes", "true" ); // vain muutokset
-// 		}
-
-// 		rslist.put( "sysdate", 
-// 			     +calendar.get(Calendar.DAY_OF_MONTH)+"."
-// 			     +(calendar.get(Calendar.MONTH)+1)+"."
-// 			     +calendar.get(Calendar.YEAR) );
-
 		ctx.put( "sysdate", 
 			     +calendar.get(Calendar.DAY_OF_MONTH)+"."
 			     +(calendar.get(Calendar.MONTH)+1)+"."
 			     +calendar.get(Calendar.YEAR) );
-
-// 		StringWriter w = new StringWriter();
-// 		Velocity.mergeTemplate("checklist99.vm", rslist, w );
-// 		resultList = w.toString();
-
 	    }
 	    else {
 		error += "<li>Virhe: "+course.getMessage()+"</li>";

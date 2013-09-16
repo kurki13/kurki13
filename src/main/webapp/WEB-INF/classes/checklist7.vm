@@ -37,7 +37,7 @@ $bundle.getString("kirjaustilanne"): ${sysdate} $bundle.getString("klo"): ${time
   #end
   #set ($prevname = ${student.Label})
   #foreach ($part in $parts)   
-    #if ($part.Id != 3)
+    #if ($part.Id < 3)
     <td align="center"><i>${student.getScore( $part )}</i></td>
       #foreach ($offering in $part.Offerings) 
     <td width="15">
