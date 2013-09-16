@@ -12,6 +12,6 @@ public class Logout extends HttpServlet {
 	throws ServletException, IOException {
 	HttpSession s = req.getSession();
 	s.invalidate();
-	res.sendRedirect("../logout.html");
+	res.sendRedirect("../logout.vm");
     }
 }
