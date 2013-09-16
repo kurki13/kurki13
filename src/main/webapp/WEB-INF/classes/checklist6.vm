@@ -1,5 +1,5 @@
 ${selectedCourse.Label}: $!studentFilterDesc
-Tilanne: ${sysdate} klo: ${time}
+$bundle.getString("tilanne"): ${sysdate} $bundle.getString("klo"): ${time}
 
 #foreach ($student in $students)
 #set ($name = "$!{student.Label} ($!{student.Birthday})")

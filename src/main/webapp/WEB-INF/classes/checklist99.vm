@@ -1,20 +1,20 @@
 #if (!$inc_noheader)
 #if ($selectedCourse.isFrozen())
 #if ($inc_changes)
-HELSINGIN YLIOPISTO                                      Korjauksia
+$bundle.getString("HY")                                      $bundle.getString("korjauksia")
 #else
-HELSINGIN YLIOPISTO
+$bundle.getString("HY")
 #end
 #else
-HELSINGIN YLIOPISTO                                      TKTL-KurKi
+$bundle.getString("HY")                                      $bundle.getString("tktlkurki")
 #end
-Matemaattis-luonnontieteellinen tiedekunta
-Tietojenkäsittelytieteen laitos
+$bundle.getString("matlu")
+$bundle.getString("cslaitos")
 
-Opintojakso:    $selectedCourse.CCode, $selectedCourse.Label
-Laajuus:        $selectedCourse.CreditsNew op ( $selectedCourse.Credits ov )
-Suoritusaika:   $selectedCourse.ExamDate
-Hyväksyjä:      $selectedCourse.DonName
+$bundle.getString("opintojakso"):    $selectedCourse.CCode, $selectedCourse.Label
+$bundle.getString("laajuus"):        $selectedCourse.CreditsNew $bundle.getString("op") ( $selectedCourse.Credits $bundle.getString("ov") )
+$bundle.getString("suoritusaika"):   $selectedCourse.ExamDate
+$bundle.getString("hyvaksyja"):      $selectedCourse.DonName
 #end
 #set ($selectDesc = $selectedCourse.SelectDescription)
 #set ($parts = $selectedCourse.PartsOrdered)
@@ -35,7 +35,7 @@ Hyväksyjä:      $selectedCourse.DonName
 #set ($accepted = "${accepted}${c.getStr(' ', $nl)}  ")
 #if ($selectDesc)
 
-Valitut opiskelijat: ${selectDesc}
+$bundle.getString("valitutop"): ${selectDesc}
 #end
 ##
 ################### OTSAKKEET ###################
@@ -114,26 +114,26 @@ Valitut opiskelijat: ${selectDesc}
 #if ($inc_accepted)
 
 
-HYVÄKSYTYT
+$bundle.getString("hyvaksytyt")
 $accepted
 #end
 #if ($inc_statistics)
 #set ($participated = ${acceptcount} + ${failcount})
 
 
-TILASTOJA
-  Ilmoittautuneita: ${students.size()}
-  Osallistuneita:   ${participated}
-  Kokeessa:         ${participInExam}
-  Hyväksyttyjä:     ${acceptcount} 
-	(#if (${participated} > 0) ${c.percent(${acceptcount}, ${participated})}% osallistuneista,#end 
-	 #if (${participInExam} > 0) ${c.percent(${acceptcount}, ${participInExam})}% kokeessa olleista#end)
-  Hylättyjä:        ${failcount}
+$bundle.getString("tilastoja")
+  $bundle.getString("ilmonneita"): ${students.size()}
+  $bundle.getString("osallistuneita"):   ${participated}
+  $bundle.getString("kokeessa"):         ${participInExam}
+  $bundle.getString("hyvaksyttyja"):     ${acceptcount} 
+	(#if (${participated} > 0) ${c.percent(${acceptcount}, ${participated})}% $bundle.getString("osallistuneista"),#end 
+	 #if (${participInExam} > 0) ${c.percent(${acceptcount}, ${participInExam})}% $bundle.getString("kokeessaolleista")#end)
+  $bundle.getString("hylattyja"):        ${failcount}
 #end
 #if ($inc_gradeDistr)
 
 
-Arvosanajakauma
+$bundle.getString("arvosanajakauma")
 #set ($gradeDistr = "") 
 #foreach ($grade in $grades)
 #set ($gcount = $counter.getCount($grade))
@@ -155,26 +155,26 @@ Arvosanajakauma
 #if ($inc_feedback)
 
 
-Palautetilaisuus __.__ klo __:__ - __:__ huoneessa ____.
+$bundle.getString("Palautetilaisuus") __.__ $bundle.getString("klo") __:__ - __:__ $bundle.getString("huoneessa") ____.
 #end
 #if ($inc_signature) 
 
 
 
 
-Helsingissä ${sysdate}
+$bundle.getString("helsingissa") ${sysdate}
                        ___________________________
                         ${c.DonFName} ${c.DonLName}
 #end
 #if ($inc_failed)
 
 
-HYLÄTYT
+$bundle.getString("isohylatyt")
 $failed
 #end
 #if ($inc_changes && $removed)
 
 
-POISTETUT
+$bundle.getString("isopoistetut")
 ${removed}
 #end
