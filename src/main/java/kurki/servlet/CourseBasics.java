@@ -159,7 +159,6 @@ public class CourseBasics extends AbstractVelocityServiceProvider
 	if ( nullIfEmpty(error) != null )
 	    context.put( Index.ERROR, error );
 
-        context.put("bundle", ResourceBundle.getBundle("localisationBundle", Session.locale));
-	return template;
+        return template;
     }
 }
