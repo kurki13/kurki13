@@ -21,7 +21,10 @@ public class CourseBasics extends AbstractVelocityServiceProvider
     public String handleRequest( Session session, 
 				 HttpServletRequest req, 
 				 HttpServletResponse res, 
-				 Context ctx ) throws Exception {
+				 Context context ) throws Exception {
+        
+        //lokalisaatiobundlen lisääminen kontekstiin
+        context.put("bundle", ResourceBundle.getBundle("localisationBundle", Session.locale));
 
 	Log log         = (Log)Configuration.getProperty( "log" );
 	String template = "coursebasics.vm";
@@ -154,9 +157,9 @@ public class CourseBasics extends AbstractVelocityServiceProvider
 	}
 
 	if ( nullIfEmpty(error) != null )
-	    ctx.put( Index.ERROR, error );
+	    context.put( Index.ERROR, error );
 
-        ctx.put("bundle", ResourceBundle.getBundle("localisationBundle", Session.locale));
+        context.put("bundle", ResourceBundle.getBundle("localisationBundle", Session.locale));
 	return template;
     }
 }

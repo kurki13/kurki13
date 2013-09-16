@@ -58,7 +58,7 @@ public class LoginManager extends VelocityServlet {
     @Override
     public Template handleRequest( HttpServletRequest req,
 				   HttpServletResponse res,
-				   Context ctx )
+				   Context context )
 	throws Exception {
 	Template template = null;
 	String error = "";
@@ -115,8 +115,8 @@ public class LoginManager extends VelocityServlet {
 		DBConnectionManager.closeConnection( con );
 	    }
 
-	    ctx.put( "teachers", teachers );
-	    ctx.put( "error", error );
+	    context.put( "teachers", teachers );
+	    context.put( "error", error );
 	    
 	    try {
 		template = getTemplate("loginmanager.vm");
@@ -126,7 +126,10 @@ public class LoginManager extends VelocityServlet {
 		
 	    }
 	}
-        ctx.put("bundle", ResourceBundle.getBundle("localisationBundle", Session.locale));
+        
+        //lokalisaatiobundlen lisääminen kontekstiin
+        context.put("bundle", ResourceBundle.getBundle("localisationBundle", Session.locale));
+        
 	return template;
     }
 }

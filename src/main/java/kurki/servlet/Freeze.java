@@ -25,7 +25,10 @@ public class Freeze extends AbstractVelocityServiceProvider {
     public String handleRequest( kurki.Session session, 
 				 HttpServletRequest req, 
 				 HttpServletResponse res, 
-				 Context ctx ) throws Exception {
+				 Context context ) throws Exception {
+        
+        //lokalisaatiobundlen lisääminen kontekstiin
+        context.put("bundle", ResourceBundle.getBundle("localisationBundle", kurki.Session.locale));
 
 	Log log         = (Log)Configuration.getProperty( "log" );
 	String template = "freeze.vm";
@@ -170,9 +173,9 @@ public class Freeze extends AbstractVelocityServiceProvider {
 	}
 
 	if ( nullIfEmpty(result) != null )
-	    ctx.put( Index.RESULT, result );
+	    context.put( Index.RESULT, result );
 	if ( nullIfEmpty(error) != null )
-	    ctx.put( Index.ERROR, error );
+	    context.put( Index.ERROR, error );
 	
         return template;
     }
