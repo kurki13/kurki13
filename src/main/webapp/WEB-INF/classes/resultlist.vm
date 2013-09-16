@@ -50,7 +50,7 @@
                     <input type="checkbox" name="inc_htsep" checked>
                   </td>
                   <td nowrap>
-                    Harjoitustöiden pisteet eriteltyinä
+                    $bundle.getString("htpsterit")
                   </td>
                   <td>
                     <input type="text" name="inc_htsepname" size="8" maxlength="8" value="Työt">
@@ -63,7 +63,7 @@
                     <input type="checkbox" name="inc_koesep" checked>
                   </td>
                   <td nowrap>
-                    Koepisteet eriteltyinä
+                    $bundle.getString("koepsterit")
                   </td>
                   <td>
                     <input type="text" name="inc_koesepname" size="8" maxlength="8" value="Kokeet">
@@ -76,7 +76,7 @@
                     <input type="checkbox" name="inc_lhsum" checked>
                   </td>
                   <td nowrap>
-                    Laskuharjoituspisteiden summa
+                    $bundle.getString("lhtpsum")
                   </td>
                   <td>
                     <input type="text" name="inc_lhsumname" size="8" maxlength="8" value="LhS">
@@ -89,7 +89,7 @@
                     <input type="checkbox" name="inc_htsum" checked>
                   </td>
                   <td nowrap>
-                    Harjoitustyöpisteiden summa
+                    $bundle.getString("htpstsum")
                   </td>
                   <td>
                     <input type="text" name="inc_htsumname" size="8" maxlength="8" value="HtS">
@@ -102,7 +102,7 @@
                     <input type="checkbox" name="inc_koesum" checked>
                   </td>
                   <td nowrap>
-                    Koepisteiden summa
+                    $bundle.getString("koepstsum")
                   </td>
                   <td>
                     <input type="text" name="inc_koesumname" size="8" maxlength="8" value="KoeS">
@@ -115,7 +115,7 @@
                     <input type="checkbox" name="inc_lhlp" checked>
                   </td>
                   <td nowrap>
-                    Laskuharjoituslisäpisteet
+                    $bundle.getString("lhlpst")
                   </td>
                   <td>
                     <input type="text" name="inc_lhlpname" size="8" maxlength="8" value="LhP">
@@ -128,7 +128,7 @@
                     <input type="checkbox" name="inc_htlp" checked>
                   </td>
                   <td nowrap>
-                    Harjoitustyölisäpisteet
+                    $bundle.getString("htlpst")
                   </td>
                   <td>
                     <input type="text" name="inc_htlpname" size="8" maxlength="8" value="HtP">
@@ -141,7 +141,7 @@
                     <input type="checkbox" name="inc_sum" checked>
                   </td>
                   <td nowrap>
-                    Yhteispisteet
+                    $bundle.getString("yhtpst")
                   </td>
                   <td>
                     <input type="text" name="inc_sumname" size="8" maxlength="8" value="Yht">
@@ -153,7 +153,7 @@
                     <input type="checkbox" name="inc_grade" checked>
                   </td>
                   <td nowrap>
-                    Arvosana
+                    $bundle.getString("arvosana")
                   </td>
                   <td>
                     <input type="text" name="inc_gradename" size="8" maxlength="8" value="Arvosana">
@@ -165,7 +165,7 @@
                     <input type="checkbox" name="inc_crunits" checked>
                   </td>
                   <td nowrap>
-                    Opintopisteet
+                    $bundle.getString("opintopstt")
                   </td>
                   <td>
                     <input type="text" name="inc_cruname" size="8" maxlength="8" value="Op">
@@ -179,7 +179,7 @@
                     <input type="checkbox" name="inc_statistics">
                   </td>
                   <td nowrap>
-                    Tilastoja
+                    $bundle.getString("tilastoja")
                   </td>
                   <td>
                     &nbsp;
@@ -190,7 +190,7 @@
                     <input type="checkbox" name="inc_gradeDistr">
                   </td>
                   <td nowrap>
-                    Arvosanajakauma
+                    $bundle.getString("arvosanajakauma")
                   </td>
                   <td>
                     &nbsp;
@@ -201,7 +201,7 @@
                     <input type="checkbox" name="inc_feedback">
                   </td>
                   <td nowrap>
-                    Palautetilaisuus
+                    $bundle.getString("palautetilaisuus")
                   </td>
                   <td>
                     &nbsp;
@@ -212,7 +212,7 @@
                     <input type="checkbox" name="inc_signature">
                   </td>
                   <td nowrap>
-                    Allekirjoitus
+                    $bundle.getString("allekirj")
                   </td>
                   <td>
                     &nbsp;
@@ -223,7 +223,7 @@
                     <input type="checkbox" name="inc_accepted" checked>
                   </td>
                   <td nowrap>
-                    HYVÄKSYTYT
+                    $bundle.getString("hyv")
                   </td>
                   <td>
                     &nbsp;
@@ -234,7 +234,7 @@
                     <input type="checkbox" name="inc_failed" checked>
                   </td>
                   <td nowrap>
-                    HYLÄTYT
+                    $bundle.getString("hyl")
                   </td>
                   <td>
                     &nbsp;
@@ -246,7 +246,7 @@
                     <input type="checkbox" name="inc_changes" checked>
                   </td>
                   <td nowrap>
-                    Vain jäädytyksen jälkeiset muutokset
+                    bundle.getString("jaadytyksenJalkeiset")
                   </td>
                   <td>
                     &nbsp;
@@ -260,7 +260,7 @@
 ##
 	        <tr>
 		  <th colspan="3" nowrap>&nbsp;
-		    <b>Opiskelijat:</b>
+		    bundle.getString("opiskelijatl")
 		    <input type="text" name="filter" tabindex="32600" size="15" value = "$!studentFilter">
 		    <input type="submit" name="makeList" tabindex="32601" value=">>>" class="submitb">
 		  </th>
@@ -273,10 +273,10 @@
 	<td colspan="4">
 <div class="instr">
 <ol>
-  <li>Valitse listalta tiedot, jotka huomioidaan tuloslistalla ja sopivat sarakeotsikot.</li>
+  <li>$bundle.getString("tuloslistavalintainfo")</li>
 
 
-  <li>Voit myös antaa listalle otettavien opiskelijoiden hakuperusteen (opiskelijat):
+  <li>$bundle.getString("hakuperusteinfo")
 	    <dl>
 	      <dt>tyhjä</dt>
   	        <dd>Kaikki kurssin opiskelijat.</dd>
