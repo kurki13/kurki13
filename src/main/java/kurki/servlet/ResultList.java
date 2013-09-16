@@ -14,6 +14,7 @@ public class ResultList extends AbstractVelocityServiceProvider {
  	super( service );
     }
 
+    @Override
     public String handleRequest( Session session, 
 				 HttpServletRequest req, 
 				 HttpServletResponse res, 

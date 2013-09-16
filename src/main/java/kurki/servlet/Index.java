@@ -79,7 +79,6 @@ public class Index extends VelocityServlet implements Log, Serializable {
  			     new Grades( serviceManager.getService( Session.GRADES ) ) );
  		handlers.put(Session.RESULT_LIST, 
  			     new ResultList( serviceManager.getService( Session.RESULT_LIST ) ) );
-                //MKCT: tää yks piti kommentoida pois
                 handlers.put(Session.FREEZE, 
   			     new Freeze( serviceManager.getService( Session.FREEZE ) ) );
 
@@ -109,18 +108,6 @@ public class Index extends VelocityServlet implements Log, Serializable {
 	AbstractVelocityServiceProvider serviceProvider;
 	Template template = null;
 	HttpSession s = null;
-
-// 	Calendar cal = Calendar.getInstance();
-
-// 	res.setHeader( "Last-Modified",
-// 		       cal.get(Calendar.DAY_OF_WEEK)+", "
-// 		       +cal.get(Calendar.DAY_OF_MONTH)+"."
-// 		       +(cal.get(Calendar.MONTH)+1);
-
-// 	res.setDateHeader( "Last-Modified", System.currentTimeMillis() );
-// 	res.setDateHeader( "Expires", System.currentTimeMillis()-6000000 );
-// 	res.setHeader( "Cache-Control", "no-cache, must-revalidate" );
-// 	res.setHeader( "Pragma", "no-cache" );
 
         try {
 	    // Luodaan template-konteksti 
@@ -191,12 +178,6 @@ public class Index extends VelocityServlet implements Log, Serializable {
 	    else if ( session.courseSelected() ) {
 		course = session.getSelectedCourseInfo();
 	    }
-
-// 	    // kurssia ei jostain syystä ole valittu (sessio päättynyt tms.)
-// 	    else if ( !this.function.getId().equals( INDEX ) ) {
-// 		res.sendRedirect( "index" );
-// 		return;
-// 	    }
 
 	    ctx.put( "selectedCourse", session.getSelectedCourse() );
 
