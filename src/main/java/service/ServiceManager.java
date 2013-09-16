@@ -1,5 +1,10 @@
 package service;
 
+import service.exception.NullIdException;
+import service.exception.ServiceAlreadyDefinedException;
+import service.exception.ServicesLockedException;
+import service.exception.ServicesNotLockedException;
+import service.exception.UndefinedRoleException;
 import java.util.*;
 
 public class ServiceManager {

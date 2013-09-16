@@ -1,5 +1,7 @@
 package kurki;
 
+import kurki.exception.InvalidScoreException;
+import service.exception.NullIdException;
 import service.*;
 import java.io.Serializable;
 

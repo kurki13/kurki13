@@ -1,5 +1,7 @@
 package service;
 
+import service.exception.NullIdException;
+
 public class ServiceAdapter 
     extends ComparableOptionAdapter implements Service {
 
