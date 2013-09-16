@@ -1,5 +1,6 @@
 package kurki.servlet;
 
+import java.util.ResourceBundle;
 import kurki.*;
 import service.*;
 
@@ -16,9 +17,12 @@ public class Checklist extends AbstractVelocityServiceProvider {
     public String handleRequest( Session session, 
 				 HttpServletRequest req, 
 				 HttpServletResponse res, 
-				 Context ctx ) throws Exception {
+				 Context context ) throws Exception {
 	String template = "checklist.vm";
-	return template;
+        
+        //lokalisaatiobundlen lisääminen kontekstiin
+        context.put("bundle", ResourceBundle.getBundle("localisationBundle", Session.locale));
+	return template; 
     }
 }
 

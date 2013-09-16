@@ -22,7 +22,10 @@ public class Participants extends AbstractVelocityServiceProvider
     public String handleRequest( Session session, 
 				 HttpServletRequest req, 
 				 HttpServletResponse res, 
-				 Context ctx ) throws Exception {
+				 Context context ) throws Exception {
+        
+        //lokalisaatiobundlen lisääminen kontekstiin
+        context.put("bundle", ResourceBundle.getBundle("localisationBundle", Session.locale));
 
 	Log log         = (Log)Configuration.getProperty( "log" );
 	String template = "participants.vm";
@@ -104,7 +107,7 @@ public class Participants extends AbstractVelocityServiceProvider
 							    group,
 							    sstate,
 							    resultLimit );
-		    ctx.put( "students", students );
+		    context.put( "students", students );
 		    useSNO = new Boolean( idtype == 1 );
 
 		    if ( resultLimit > 0 && students.size() >= resultLimit ) {
@@ -145,7 +148,7 @@ public class Participants extends AbstractVelocityServiceProvider
 			course.findBySSN( ((Student)students.get(sid)).getSSNID() );
 
 			if ( sn > 1 ) 
-			    ctx.put( "sid", new Integer(sid) );
+			    context.put( "sid", new Integer(sid) );
 
 			// Automaattinen välitallennus
 // 			ctx.put( "autosave", "document.scores" );
@@ -221,7 +224,7 @@ public class Participants extends AbstractVelocityServiceProvider
 			}
 		    }
 		}
-		ctx.put( "students", students );
+		context.put( "students", students );
 	       
 		if ( error.length() > 0 ) error = "<ul>\n"+error+"</ul>\n";
 		else error = null;
@@ -239,7 +242,7 @@ public class Participants extends AbstractVelocityServiceProvider
 	    
 	    if ( tmp != null ) {
 		Vector students = (Vector)tmp;
-		ctx.put( "students", students );
+		context.put( "students", students );
 	    }
 	}
 
@@ -282,9 +285,9 @@ public class Participants extends AbstractVelocityServiceProvider
 		    }
 
 		    if ( sid >= 0 )
-			ctx.put( "sid", new Integer( sid ) );
+			context.put( "sid", new Integer( sid ) );
 // 		    ctx.put( "autosave", "document.scores" );
-		    ctx.put( "students", course.getStudents() );
+		    context.put( "students", course.getStudents() );
 		    
 		    if ( error.length() > 0 ) error = "<ul>\n"+error+"</ul>\n";
 		    else error = null;
@@ -319,7 +322,7 @@ public class Participants extends AbstractVelocityServiceProvider
 							    Session.STUDENT_ON_COURSE,
 							    1 );
 		    result = "Opiskelija lisätty kurssille.";
-		    ctx.put( "students", students );
+		    context.put( "students", students );
 
  		    ses.setAttribute( STUDENTS, students );
 		}
@@ -357,7 +360,7 @@ public class Participants extends AbstractVelocityServiceProvider
 			}
 		    }
 		}
-		ctx.put( "students", students );
+		context.put( "students", students );
 		
 		if ( error.length() > 0 ) error = "<ul>\n"+error+"</ul>\n";
 		else error = null;
@@ -392,7 +395,7 @@ public class Participants extends AbstractVelocityServiceProvider
 		    }
 		}
 		if ( sid >= 0 )
-		    ctx.put( "sid", new Integer( sid ) );
+		    context.put( "sid", new Integer( sid ) );
 	    } catch ( NumberFormatException nfe ) {
 		error = "<li>Sulatus ei onnistunut: Tuntematon opiskelija.</li>";
 	    }
@@ -403,10 +406,10 @@ public class Participants extends AbstractVelocityServiceProvider
 // 	    result += Index.asNotify("Pisteet/arvosana");
 // 	}
 
-	ctx.put( "useSNO", useSNO );
-	ctx.put( Index.ERROR, error );
-	ctx.put( Index.RESULT, result );
-	ctx.put( "view", view );
+	context.put( "useSNO", useSNO );
+	context.put( Index.ERROR, error );
+	context.put( Index.RESULT, result );
+	context.put( "view", view );
 // 	System.out.println(error);
 
 	return template;

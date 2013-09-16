@@ -9,7 +9,7 @@ HY/TKTL: ${selectedCourse.CCode}, ${selectedCourse.Label} (${selectedCourse.Cred
 #end
 
 #if ($selectDesc)
-Valitut opiskelijat: ${selectDesc}
+$bundle.getString("valitutop"): ${selectDesc}
 
 #end
 ##

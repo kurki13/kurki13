@@ -18,7 +18,10 @@ public class Entry extends AbstractVelocityServiceProvider {
     public String handleRequest( Session session, 
 				 HttpServletRequest req, 
 				 HttpServletResponse res, 
-				 Context ctx ) throws Exception {
+				 Context context ) throws Exception {
+        
+        //lokalisaatiobundlen lisääminen kontekstiin
+        context.put("bundle", ResourceBundle.getBundle("localisationBundle", Session.locale));
 
 	Log log         = (Log)Configuration.getProperty( "log" );
 	String template = "entry.vm";
@@ -49,7 +52,7 @@ public class Entry extends AbstractVelocityServiceProvider {
 	/*
 	 *  Toiminnot.
 	 */
-       ctx.put("pt",ptype);
+       context.put("pt",ptype);
        //aseta puuttuva offering valinta
        if (offering==null)
           offering="0";
@@ -127,8 +130,8 @@ public class Entry extends AbstractVelocityServiceProvider {
 	    }
 
 	    if ( course.getSelectedPart().maxScoreDefined() )
-		ctx.put( "autosave", "document.scores" );
-	    ctx.put( "students", course.getStudents() );
+		context.put( "autosave", "document.scores" );
+	    context.put( "students", course.getStudents() );
 	}
 
 	/*
@@ -154,8 +157,8 @@ public class Entry extends AbstractVelocityServiceProvider {
 	    // Kommentoi pois, jos haluat, ettei opiskelijoita näytetä
 	    // heti kirjattavan suoritteen tyyppiä muutettaessa.
 	    if ( course.getSelectedPart().maxScoreDefined() )
-		ctx.put( "autosave", "document.scores" );
-	    ctx.put( "students", course.getStudents() );
+		context.put( "autosave", "document.scores" );
+	    context.put( "students", course.getStudents() );
 	}
 
 	/*
@@ -178,8 +181,8 @@ public class Entry extends AbstractVelocityServiceProvider {
 		}
 
 		if ( course.getSelectedPart().maxScoreDefined() )
-		    ctx.put( "autosave", "document.scores" );
-		ctx.put( "students", course.getStudents() );
+		    context.put( "autosave", "document.scores" );
+		context.put( "students", course.getStudents() );
 	    } catch ( NumberFormatException nfe ) {
 		if ( maxs == -1 ) error += "<li>Osasuorituksen maksimipisteet annettu virheellisesti.</li>";
 		else if ( mins == -1 ) error += "<li>Osasuorituksen hyväksymisraja annettu virheellisesti.</li>";
@@ -217,9 +220,9 @@ public class Entry extends AbstractVelocityServiceProvider {
 		error += course.getMessage();
 	    }
 	    if ( course.getSelectedPart().maxScoreDefined() )
-		ctx.put( "autosave", "document.scores" );
-	    ctx.put( "students", course.getStudents() );
-
+		context.put( "autosave", "document.scores" );
+	    context.put( "students", course.getStudents() );
+             context.put("bundle", ResourceBundle.getBundle("localisationBundle", Session.locale));
 	    studentFilter = null;
 	}
 	/*
@@ -242,8 +245,8 @@ public class Entry extends AbstractVelocityServiceProvider {
 	    }
 	    
 	    if ( course.getSelectedPart().maxScoreDefined() )
-		ctx.put( "autosave", "document.scores" );
-	    ctx.put( "students", course.getStudents() );
+		context.put( "autosave", "document.scores" );
+	    context.put( "students", course.getStudents() );
 	}
 	else {
 	    course.selectOffering( kurki.Part.UNDEF );
@@ -257,7 +260,7 @@ public class Entry extends AbstractVelocityServiceProvider {
 	studentFilterDesc = course.getSelectDescription();
 	
 	if ( nullIfEmpty( req.getParameter("asNotify") ) != null ) {
-	    ctx.put( Index.RESULT, Index.asNotify("Pisteet/arvosanat") );
+	    context.put( Index.RESULT, Index.asNotify("Pisteet/arvosanat") );
 	}
 	
 // 	System.out.println("here");
@@ -266,22 +269,22 @@ public class Entry extends AbstractVelocityServiceProvider {
 // 	ctx.put( "filter", nullIfEmpty( filter ) );
 
 	// Opiskelija suodattimen tulkinta
-	ctx.put( "studentFilter",
+	context.put( "studentFilter",
 		 ( nullIfEmpty( studentFilter ) == null
 		   ? ""
 		   : studentFilter ) );
-	ctx.put( "studentFilterDesc",
+	context.put( "studentFilterDesc",
 		 ( nullIfEmpty( studentFilterDesc ) == null
 		   ? "kaikki kurssin opiskelijat"
 		   : studentFilterDesc ) );
 
-	ctx.put( Index.ERROR, nullIfEmpty( error ) );
-	ctx.put( Index.RESULT, nullIfEmpty( result ) );	
+	context.put( Index.ERROR, nullIfEmpty( error ) );
+	context.put( Index.RESULT, nullIfEmpty( result ) );	
 /*
 	 *  Laskuharjoitus/koe/harjoitustyö kerrat.
 	 */
 	if ( course.getSelectedPart() != null )
-	    ctx.put( "offerings", course.getSelectedPart().getOfferings() );
+	    context.put( "offerings", course.getSelectedPart().getOfferings() );
 
         return template;
     }

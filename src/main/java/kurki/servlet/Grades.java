@@ -19,7 +19,10 @@ public class Grades extends AbstractVelocityServiceProvider
     public String handleRequest( Session session, 
 				 HttpServletRequest req, 
 				 HttpServletResponse res, 
-				 Context ctx ) throws Exception {
+				 Context context ) throws Exception {
+        
+        //lokalisaatiobundlen lisääminen kontekstiin
+        context.put("bundle", ResourceBundle.getBundle("localisationBundle", Session.locale));
 
 	Log log         = (Log)Configuration.getProperty( "log" );
 	String template = "grades.vm";
@@ -206,10 +209,10 @@ public class Grades extends AbstractVelocityServiceProvider
 
 		// Kaikki opiskelijat
 		course.newSearch(true);
-		ctx.put( "students", course.getStudents() );
-		ctx.put( "selectedCourse", session.getSelectedCourse() );
-		ctx.put( "resultList", "true" );
-		ctx.put( "sysdate", 
+		context.put( "students", course.getStudents() );
+		context.put( "selectedCourse", session.getSelectedCourse() );
+		context.put( "resultList", "true" );
+		context.put( "sysdate", 
 			     +calendar.get(Calendar.DAY_OF_MONTH)+"."
 			     +(calendar.get(Calendar.MONTH)+1)+"."
 			     +calendar.get(Calendar.YEAR) );
@@ -219,8 +222,8 @@ public class Grades extends AbstractVelocityServiceProvider
 	    }
 	}
 
-	ctx.put( Index.ERROR, nullIfEmpty( error ) );
-	ctx.put( Index.RESULT, nullIfEmpty( result ) );
+	context.put( Index.ERROR, nullIfEmpty( error ) );
+	context.put( Index.RESULT, nullIfEmpty( result ) );
 	return template;
     }
 }
