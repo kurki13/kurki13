@@ -7,7 +7,6 @@ import javax.servlet.http.*;
 
 public class Logout extends HttpServlet {
 
-    @Override
     public void service( HttpServletRequest req, HttpServletResponse res )
 	throws ServletException, IOException {
 	HttpSession s = req.getSession();
