@@ -45,22 +45,23 @@ public class Index extends VelocityServlet implements Log, Serializable {
         }
     }
 
+    //MKCT: Wtf do we need handlers for when we have the ServiceManager singleton?
     private void init_handlers() {
         ServiceManager serviceManager = Session.getServiceManager();
-        handlers.put(Session.ENTRY,
-                new Entry(serviceManager.getService(Session.ENTRY)));
-        handlers.put(Session.PARTICIPANTS,
-                new Participants(serviceManager.getService(Session.PARTICIPANTS)));
-        handlers.put(Session.COURSE_BASICS,
-                new CourseBasics(serviceManager.getService(Session.COURSE_BASICS)));
-        handlers.put(Session.CHECKLIST,
-                new Checklist(serviceManager.getService(Session.CHECKLIST)));
-        handlers.put(Session.GRADES,
-                new Grades(serviceManager.getService(Session.GRADES)));
-        handlers.put(Session.RESULT_LIST,
-                new ResultList(serviceManager.getService(Session.RESULT_LIST)));
-        handlers.put(Session.FREEZE,
-                new Freeze(serviceManager.getService(Session.FREEZE)));
+        handlers.put(ServiceName.ENTRY,
+                new Entry(serviceManager.getService(ServiceName.ENTRY)));
+        handlers.put(ServiceName.PARTICIPANTS,
+                new Participants(serviceManager.getService(ServiceName.PARTICIPANTS)));
+        handlers.put(ServiceName.COURSE_BASICS,
+                new CourseBasics(serviceManager.getService(ServiceName.COURSE_BASICS)));
+        handlers.put(ServiceName.CHECKLIST,
+                new Checklist(serviceManager.getService(ServiceName.CHECKLIST)));
+        handlers.put(ServiceName.GRADES,
+                new Grades(serviceManager.getService(ServiceName.GRADES)));
+        handlers.put(ServiceName.RESULT_LIST,
+                new ResultList(serviceManager.getService(ServiceName.RESULT_LIST)));
+        handlers.put(ServiceName.FREEZE,
+                new Freeze(serviceManager.getService(ServiceName.FREEZE)));
     }
 
     private void init_config() {

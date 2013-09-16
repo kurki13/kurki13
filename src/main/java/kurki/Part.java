@@ -24,14 +24,8 @@ public class Part extends ComparableOptionAdapter
 
     public static final int UNDEF = Integer.MIN_VALUE;
 
-//    protected static final String[] oldGradeCodes =
-//    { "0", "+", "1-", "1", "1+", "2-", "2", "2+", "3-", "3" };
-
     protected static final String[] gradeCodes =
     { "0", "+", "1", "2", "3", "4", "5" };
-
-//    protected static final String[] oldGrades =
-//    { "1-", "1", "1+", "2-", "2", "2+", "3-", "3" };
 
     protected static final String[] grades =
     { "1", "2", "3", "4", "5" };
@@ -186,13 +180,6 @@ public class Part extends ComparableOptionAdapter
 
     public int getId() { return ((Integer)this.id).intValue(); }
 
-//     public int getMaxScore() {
-// 	if ( this.selectedOffering == null )
-// 	    return Offering.UNDEF;
-// 	else 
-// 	    return this.selectedOffering.getMaxScore();
-//     }
-
     public int getMaxScoreCount() {
 	if ( this.getId() == ARVOSANA ) return HI_LIMIT;
 
@@ -332,25 +319,7 @@ public class Part extends ComparableOptionAdapter
 	    }
 	    return true;
 	}
-   }
-
-/*
-   public void setGenericScores( int version) {
-     if ( this.getType == ARVOSANA ) {
-        if ( version==0 ) 
-           this.genericScores= oldGradeCodes;
-        else
-           this.genericScores= gradeCodes;
-     }
-     else {
-       if (this.getType==KIELIKOODI) 
-          this.genericScores=kielet;
-       else  
-          if ( this.getType>ARVOSANA )
-             this.genericScores=EMPTY;
-     }
-   }
-*/   
+   } 
     public boolean setNbrOfOfferings( int nbr )
 	throws NullIdException {
 

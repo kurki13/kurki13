@@ -20,7 +20,7 @@ public class CourseInfo extends ComparableOptionAdapter {
     public CourseInfo( String id, String name )
 	throws NullIdException {
 	
-	this( id, name, Session.OUTSIDER );
+	this( id, name, Rooli.OUTSIDER );
     }
 
     public CourseInfo( String id, String name, int userRole )

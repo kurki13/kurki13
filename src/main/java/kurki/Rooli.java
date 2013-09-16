@@ -1,22 +1,11 @@
 package kurki;
-
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- *
- * @author mkctammi
- */
-public enum Rooli {
-        OUTSIDER(1),
-        TUTOR(2),
-        PRIVILEGED(3),
-        SUPER(4);
-        public final int KOODI;
-        public final int NO_OF_ROLES = 4;
-        private Rooli(int koodi) {
-            this.KOODI = koodi;
-        }
+public class Rooli {
+    // Tunnistetun käyttäjäryhmät. Huom! Lueteltava oikeuksien mukaisessa
+    // järjestyksessä, alkaen siitä, jolla vähiten oikeuksia.
+    public static final int OUTSIDER = 0;
+    public static final int TUTOR = 1;
+    public static final int PRIVILEGED = 2; // käytännöllinen vastuuhlö 
+    public static final int SUPER = 3; // kaikkiin kursseihin oikeudet
+    
+    public static final int NO_OF_ROLES = 4;
 }

@@ -3,6 +3,9 @@ package kurki;
 import java.io.*;
 import java.util.*;
 
+/**
+ * Tämä luokka lataa tiedostosta muistiin konfiguraatiotiedoston.
+ */
 public class Configuration {
     protected static Properties props = new Properties();
     protected static File pfile = null;
@@ -28,9 +31,13 @@ public class Configuration {
 	return true;
     }
 
-    public static void setPropertiesFile( File f ) {
-	if ( f != null && f.exists() ) {
-	    pfile = f;
+    /**
+     * Asettaa käytettävän konfiguraatiotiedoston.
+     * @param file käytettävä tiedosto.
+     */
+    public static void setPropertiesFile( File file ) {
+	if ( file != null && file.exists() ) {
+	    pfile = file;
 	    loadProperties();
 	}
     }

@@ -13,26 +13,10 @@ import java.sql.*;
 public class Session implements java.io.Serializable {
 
     public static Locale locale = new Locale("fi");
-    private static int rolehlp = 0;
-    // Tunnistetun käyttäjäryhmät. Huom! Lueteltava oikeuksien mukaisessa
-    // järjestyksessä, alkaen siitä, jolla vähiten oikeuksia.
-    public static final int OUTSIDER = rolehlp++;
-    public static final int TUTOR = rolehlp++;
-    public static final int PRIVILEGED = rolehlp++; // käytännöllinen vastuuhlö 
-    public static final int SUPER = rolehlp++; // kaikkiin kursseihin oikeudet
-    public static final int NO_OF_ROLES = rolehlp;
+
     public static final int STUDENT_ON_COURSE = 0;
     public static final int STUDENT_NOT_ON_COURSE = 1;
     public static final int STUDENT_REMOVED = 2;
-    private static int namehlp = 0;
-    public static final String ENTRY = ++namehlp + "entry";
-    public static final String PARTICIPANTS = ++namehlp + "participants";
-    public static final String COURSE_BASICS = ++namehlp + "coursebasics";
-    public static final String CHECKLIST = ++namehlp + "checklist";
-    public static final String GRADES = ++namehlp + "grades";
-    public static final String RESULT_LIST = ++namehlp + "resultlist";
-    public static final String FREEZE = ++namehlp + "freezing";
-    public static final String LOGOUT = ++namehlp + "logout";
     public static final String LOGIN_SEPARATOR = "*";
     /**
      ** Kuinka pitkään kurssin tietoihin saa tehdä muutoksia.
@@ -130,15 +114,15 @@ public class Session implements java.io.Serializable {
 
         initialized = true;
         try {
-            ServiceManager.setNoOfRoles(NO_OF_ROLES);
+            ServiceManager.setNoOfRoles(Rooli.NO_OF_ROLES);
 
-            ServiceManager.defineService(ENTRY, TUTOR, "Suoritteiden kirjaus");
-            ServiceManager.defineService(PARTICIPANTS, TUTOR, "Osallistujatietojen muutokset");
-            ServiceManager.defineService(COURSE_BASICS, TUTOR, "Kurssin perustietojen muutokset");
-            ServiceManager.defineService(CHECKLIST, TUTOR, "Listat");
-            ServiceManager.defineService(GRADES, TUTOR, "Arvostelu");
-            ServiceManager.defineService(RESULT_LIST, TUTOR, "Tuloslistat");
-            ServiceManager.defineService(FREEZE, TUTOR, "Kurssin jäädytys");
+            ServiceManager.defineService(ServiceName.ENTRY, Rooli.TUTOR, "Suoritteiden kirjaus");
+            ServiceManager.defineService(ServiceName.PARTICIPANTS, Rooli.TUTOR, "Osallistujatietojen muutokset");
+            ServiceManager.defineService(ServiceName.COURSE_BASICS, Rooli.TUTOR, "Kurssin perustietojen muutokset");
+            ServiceManager.defineService(ServiceName.CHECKLIST, Rooli.TUTOR, "Listat");
+            ServiceManager.defineService(ServiceName.GRADES, Rooli.TUTOR, "Arvostelu");
+            ServiceManager.defineService(ServiceName.RESULT_LIST, Rooli.TUTOR, "Tuloslistat");
+            ServiceManager.defineService(ServiceName.FREEZE, Rooli.TUTOR, "Kurssin jäädytys");
 
             ServiceManager.lockServices();
 
@@ -443,7 +427,7 @@ public class Session implements java.io.Serializable {
                         resultSet.getString("tyyppi"),
                         resultSet.getInt("kurssi_nro"),
                         resultSet.getString("nimi") + nameaux,
-                        SUPER); // kurssin perustiedot
+                        Rooli.SUPER); // kurssin perustiedot
                 if (tila != null && tila.equals("J")) {
                     cinfo.freeze();
                 }

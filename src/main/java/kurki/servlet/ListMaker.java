@@ -15,6 +15,7 @@ public class ListMaker extends VelocityServlet implements Log, Serializable {
 
     public static final String RANGE_OP = "..";
     
+    @Override
     protected void doRequest( HttpServletRequest req, 
 			      HttpServletResponse res )
 	throws ServletException, IOException {

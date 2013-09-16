@@ -125,7 +125,7 @@ public class Pipe {
 					tyyppi,
 					kurssiNumero,
 					nimi+nameaux,
-					Rooli.SUPER.KOODI );
+					Rooli.SUPER );
                 if (tila != null && tila.equals("J")) 
                     cinfo.freeze();
 		courses.put( cinfo.getId(), cinfo );
