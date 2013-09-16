@@ -59,8 +59,8 @@
   	        <dd>$bundle.getString("kaikkiopiskelijat")</dd>
 	      <dt>$bundle.getString("numero")</dt>
 	        <dd>$bundle.getString("annetunryhman")</dd>
-              <dt>$bundle.getString("hashhenktunnus")</dt>
-                <dd>$bundle.getString("opiskelijathenktunnus")(</dd>
+              <dt>$bundle.getString("hashopnro")</dt>
+                <dd>$bundle.getString("opiskelijatopnro")</dd>
 	      <dt>$bundle.getString("sukunimi")</dt>
 	        <dd>$bundle.getString("opsukunimimerkki")</dd>
 	      <dt>$bundle.getString("alkuloppu")</dt>
