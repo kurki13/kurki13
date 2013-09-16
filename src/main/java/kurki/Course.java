@@ -3,13 +3,12 @@ package kurki;
 
 import kurki.exception.NullParameterException;
 import service.exception.NullIdException;
-import service.*;
 
 import java.util.*;
 import java.sql.*;
 import java.io.Serializable;
 
-public class Course implements Option, Serializable {
+public class Course implements Serializable {
 
     public static final String STR_TABLE_COL_UNDEF = "??";
     public static final int STR_TABLE_COL_LENGTH = STR_TABLE_COL_UNDEF.length();

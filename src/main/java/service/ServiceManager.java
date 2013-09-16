@@ -6,6 +6,7 @@ import service.exception.NullIdException;
 import service.exception.ServicesLockedException;
 import service.exception.ServicesNotLockedException;
 import java.util.*;
+import java.util.Map.Entry;
 
 public class ServiceManager {
 
@@ -33,7 +34,7 @@ public class ServiceManager {
     /**
      ** Kaikki mahdolliset toiminnot.
      */
-    private static Hashtable services = new Hashtable();
+    private static Hashtable<String, ServiceAdapter> services = new Hashtable();
 
     /**
      **  Toiminnot jaettuna roolien mukaan.
@@ -191,4 +192,26 @@ public class ServiceManager {
 	
 	noOfRoles = nor;
     } 
+
+    @Override
+    public String toString() {
+        String ret = "There are " + services.size() + " entries in the ServiceManager: <br>";
+        Iterator<Entry<String,ServiceAdapter>> eit = services.entrySet().iterator();
+        int count = 0;
+        while(eit.hasNext()) {
+            count++;
+            Entry<String,ServiceAdapter> entry = eit.next();
+            ServiceAdapter service = entry.getValue();
+            ret += " " + count + ". Key in Hashtable: " + entry.getKey() + 
+                    " || Description: " + service.getDesc() + 
+                    " || Id: " + service.getId() +
+                    " || Label: " + service.getLabel() +
+                    " || Value: " + service.getValue() +
+                    " || Smallest Role number: " + service.role + 
+                    "<br>";
+        }
+        return ret;
+    }
+    
+    
 }
