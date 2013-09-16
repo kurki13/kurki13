@@ -2,7 +2,7 @@
 #set ($parts = $selectedCourse.Parts)
 <html>
 <head>
-  <title>KURKI - opiskelijat: nimi</title>
+  <title>$bundle.getString("kurki")</title>
 </head>
 <body bgcolor="white">
 <pre>
