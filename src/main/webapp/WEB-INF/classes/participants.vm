@@ -10,14 +10,14 @@
 		  <td>
 		    <input type="text" id="lname" name="lname" size="10" maxlength="30">
 		  </td>
-<!--
+#*
 		  <td nowrap>&nbsp;
 		    <b>Enimi:</b>
 		  </td>
 		  <td>
 		    <input type="text" name="fname" size="10" maxlength="30">
 		  </td>
--->
+*#
 		  <td nowrap>&nbsp;
 		    <b>$bundle.getString("ryhma"):</b>
  		  </td>
@@ -34,7 +34,9 @@
                   <b>$bundle.getString("camelopnro"):</b>
 
 ## hetun ja opnron valinta pois, ja tilalle valinnaksi tulee aina 0 eli opiskelijanumero (vaikka siinä lukee hetu) -tka
-#* 		    <select name="idtype">
+#*
+
+ 		    <select name="idtype">
 
 #if (!$useSNO)
 
@@ -50,6 +52,7 @@
 
 #end
 		    </select>	
+
 *#
 
 ## idtype value aina nolla -tka
@@ -61,10 +64,10 @@
 		  </td>
 		  <td nowrap>&nbsp;
 		    <select name="doSearch"
-			    onChange="checkAndSubmitStudentFind(document.ophaku);">
+                        onChange="checkAndSubmitStudentFind(document.ophaku);">
 		      <option>-- $bundle.getString("valitsetoiminto") --</option>
 		      <option value="0">$bundle.getString("tiedot")</option>
-		      <option value="1">$bundle.getString("haelisattava")</option>
+		      <option value="1">$bundle.getString("haelisatop")</option>
 		      <option value="2">$bundle.getString("haepalop")</option>
  		    </select>
 		  </td>

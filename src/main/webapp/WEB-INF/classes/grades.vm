@@ -33,7 +33,7 @@
       $bundle.getString("isoeiosa") <br><br>
       <form action="index" method="post">
 
-## valuen vaihtaminen tähän????
+## valuen vaihtaminen tähän???? -tka
 
         <input type="submit" value="Määrittele kurssin osasuoritukset" class="submitb">
         <input type="hidden" value="3coursebasics" name="service">
