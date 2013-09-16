@@ -1,6 +1,6 @@
 package service;
 
-public interface ComparableOption extends Comparable {
+public interface ComparableOption extends Comparable, Option {
 
     @Override
     public int compareTo( Object another );
@@ -12,7 +12,9 @@ public interface ComparableOption extends Comparable {
 
     public String getDesc();
 
+    @Override
     public String getLabel();
 
+    @Override
     public String getValue();
 }
