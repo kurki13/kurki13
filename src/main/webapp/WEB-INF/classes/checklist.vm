@@ -60,7 +60,7 @@
 	      <dt>$bundle.getString("numero")</dt>
 	        <dd>$bundle.getString("annetunryhman")</dd>
               <dt>#henkilötunnus</dt>
-                <dd>Opiskelijat henkilötunnuksen mukaan.</dd>
+                <dd>$bundle.getString("opiskelijathenktunnus")(</dd>
 	      <dt>sukunimi</dt>
 	        <dd>Opiskelijat, joiden sukunimi alkaa merkkijonolla "sukunimi".</dd>
 	      <dt>alku .. loppu</dt>
