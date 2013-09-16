@@ -17,345 +17,311 @@ public class Index extends VelocityServlet implements Log, Serializable {
     public static final String RESULT = "result";
     public static final String ERROR = "error";
     public static final String INDEX = "index";
-
     public static final String SERVICE = "service";
     public static final String COURSE = "course";
-    
     private boolean initialized = false;
-    
     private final String BASIC_TEMPLATE = "index.vm";
     private final String SYNCHRONIZATION_ERROR = "syncerror.vm";
-
     public static final String TIMESTAMP = "TS";
-
-    private int sessionLen = 3600;
-
+    private int session_lenght = 3600;
     public static final String KURKI_SESSION = "session";
-
     public static final Hashtable handlers = new Hashtable();
 
     static {
-	Session.initialize();
+        Session.initialize();
     }
-    
+
     @Override
     public synchronized void init() {
-	if ( !initialized ) {
-	    try {
-		ServletContext ctx = getServletContext();
+        if (!initialized) {
+            try {
+                init_config();
+                init_handlers();
+            } catch (Exception e) {
+                e.printStackTrace();
+                System.exit(0);
+            }
+            initialized = true;
+        }
+    }
 
-		/*
-		 *  Konfiguraatio...
-		 */
-                
-                //MKCT: Tähän piti lisätä getRealPath jotta web.xml:ssä voidaan käyttää relatiivista polkua!
-		Configuration.setPropertiesFile( new File( ctx.getRealPath(ctx.getInitParameter("configurationFile") ) ));
+    private void init_handlers() {
+        ServiceManager serviceManager = Session.getServiceManager();
+        handlers.put(Session.ENTRY,
+                new Entry(serviceManager.getService(Session.ENTRY)));
+        handlers.put(Session.PARTICIPANTS,
+                new Participants(serviceManager.getService(Session.PARTICIPANTS)));
+        handlers.put(Session.COURSE_BASICS,
+                new CourseBasics(serviceManager.getService(Session.COURSE_BASICS)));
+        handlers.put(Session.CHECKLIST,
+                new Checklist(serviceManager.getService(Session.CHECKLIST)));
+        handlers.put(Session.GRADES,
+                new Grades(serviceManager.getService(Session.GRADES)));
+        handlers.put(Session.RESULT_LIST,
+                new ResultList(serviceManager.getService(Session.RESULT_LIST)));
+        handlers.put(Session.FREEZE,
+                new Freeze(serviceManager.getService(Session.FREEZE)));
+    }
 
-		/*
-		 *  Lisätään tieto lokista konfiguraatioon.
-		 */
-		Configuration.setProperty( "log", this );
-
-		/*
-		 *  "SUPER USERS"
-		 */ 
-		if ( Configuration.propertySet("superUsers") )
-		    Session.setSuperUsers( (String)Configuration.getProperty("superUsers") );
-
-		/*
-		 *  Palveluiden käsittelijöiden määritys
-		 */
-		ServiceManager serviceManager = Session.getServiceManager();
-		
-		handlers.put(Session.ENTRY, 
-			     new Entry( serviceManager.getService( Session.ENTRY ) ) );
-		handlers.put(Session.PARTICIPANTS, 
-			     new Participants( serviceManager.getService( Session.PARTICIPANTS ) ) );
-		handlers.put(Session.COURSE_BASICS, 
-			     new CourseBasics( serviceManager.getService( Session.COURSE_BASICS ) ) );
- 		handlers.put(Session.CHECKLIST, 
- 			     new Checklist( serviceManager.getService( Session.CHECKLIST ) ) );
- 		handlers.put(Session.GRADES, 
- 			     new Grades( serviceManager.getService( Session.GRADES ) ) );
- 		handlers.put(Session.RESULT_LIST, 
- 			     new ResultList( serviceManager.getService( Session.RESULT_LIST ) ) );
-                handlers.put(Session.FREEZE, 
-  			     new Freeze( serviceManager.getService( Session.FREEZE ) ) );
-
-//  		handlers.put(Session.LOGOUT, 
-//  			     new Logout( serviceManager.getService( Session.LOGOUT ) ) );
-		initialized = true;
-
-	    } catch ( Exception e ) {
-		e.printStackTrace();
-		System.exit(0);
-	    }
-	}
+    private void init_config() {
+        ServletContext ctx = getServletContext();
+        Configuration.setPropertiesFile(new File(ctx.getRealPath(ctx.getInitParameter("configurationFile"))));
+        //Lisätään tieto lokista konfiguraatioon.
+        Configuration.setProperty("log", this);
+        if (Configuration.propertySet("superUsers")) {
+            Session.setSuperUsers((String) Configuration.getProperty("superUsers"));
+        }
     }
 
     @Override
-    protected void doRequest( HttpServletRequest req, 
-			      HttpServletResponse res )
-	throws ServletException, IOException {
+    protected void doRequest(HttpServletRequest servletRequest,
+            HttpServletResponse servletResponse)
+            throws ServletException, IOException {
 
-	Vector vec = new Vector();
-	String ts;
-	String error = "";
-	String result = "";
-	CourseInfo course;
-	Session session = null;
-	Context ctx = null;
-	AbstractVelocityServiceProvider serviceProvider;
-	Template template = null;
-	HttpSession s = null;
+        Vector vec = new Vector();
+        String timestamp;
+        String error = "";
+        String result = "";
+        CourseInfo course;
+        Session session = null;
+        Context context = null;
+        AbstractVelocityServiceProvider serviceProvider;
+        Template template = null;
+        HttpSession httpSession = null;
 
         try {
-	    // Luodaan template-konteksti 
-            ctx = createContext( req, res );
-            ctx.put("bundle", ResourceBundle.getBundle("localisationBundle", Session.locale));
+            // Luodaan template-konteksti 
+            context = createContext(servletRequest, servletResponse);
+            //lokalisaatiobundlen lisääminen kontekstiin
+            context.put("bundle", ResourceBundle.getBundle("localisationBundle", Session.locale));
 
-            setContentType( req, res );
+            setContentType(servletRequest, servletResponse);
+            /*
+             *  Onko kyseessä jo joskus aloitettu, kenties vanhentunut sessio.
+             */
+            boolean oldSession = servletRequest.getRequestedSessionId() != null;
 
-	    /*
-	     *  Onko kyseessä jo joskus aloitettu, kenties vanhentunut sessio.
-	     */ 
-	    boolean oldSession = req.getRequestedSessionId() != null;
+            /*
+             *  Hae voimassaoleva sessio tai aloita uusi
+             */
+            httpSession = servletRequest.getSession();
+            httpSession.setMaxInactiveInterval(session_lenght);
 
-	    /*
-	     *  Hae voimassaoleva sessio tai aloita uusi
-	     */
-	    s = req.getSession();
-	    s.setMaxInactiveInterval( sessionLen );
+            // Ei käsitellä kahta saman session http-pyyntöä yhtä aikaa
+            if (!ServletMonitor.getMonitor().lock(httpSession)) {
+                httpSession = servletRequest.getSession(true);
+                ServletMonitor.getMonitor().lock(httpSession);
+            }
 
-	    // Ei käsitellä kahta saman session http-pyyntöä yhtä aikaa
-	    if ( !ServletMonitor.getMonitor().lock( s ) ) {
-		s = req.getSession( true );
-		ServletMonitor.getMonitor().lock( s );
-	    }
+            if (oldSession && httpSession.isNew()) {
+                result += "Istuntosi on vanhentunut.\n"
+                        + "Uusi istunto aloitettiin automaattisesti.\n"
+                        + "Jos sait tämän ilmoituksen painettuasi \"tallenna\"-nappia,\n"
+                        + "ei tekemiäsi muutoksi ole voitu tallentaa tietokantaan.";
+            }
 
-	    if ( oldSession && s.isNew() ) {
-		result += "Istuntosi on vanhentunut.\n"
-		    +"Uusi istunto aloitettiin automaattisesti.\n"
-		    +"Jos sait tämän ilmoituksen painettuasi \"tallenna\"-nappia,\n"
-		    +"ei tekemiäsi muutoksi ole voitu tallentaa tietokantaan.";
-	    }
+            Object tmpSession = httpSession.getAttribute(KURKI_SESSION);
 
-	    Object tmpSession = s.getAttribute( KURKI_SESSION );
+            if (tmpSession != null) {
+                session = (Session) tmpSession;
+            } else {
+                session = Session.getInstance(servletRequest.getRemoteUser());
+                httpSession.setAttribute(KURKI_SESSION, session);
+            }
 
-	    if ( tmpSession != null ) {
-		session = (Session)tmpSession;
-	    }
-	    else {
-		session = Session.getInstance( req.getRemoteUser() );
-		s.setAttribute( KURKI_SESSION, session );
-	    }
-
-	    /*
-	     *  Millä kursseilla käyttäjä on ohjaajana tai luennoitsijana
-	     *  --> courses
-	     */
-	    CourseInfo[] cinfos = session.getCourseInfos();
-	    ctx.put( "courseInfos", (cinfos.length > 0 ? cinfos : null) );
-
-
-	    /*
-	     *  Selvitä valittu kurssi
-	     */
-	    try {
-		// Onko kurssivalinta tullut http-parametrina?
-		course = session.getCourseInfo( nullIfEmpty( req.getParameter( COURSE ) ) );
-	
-    } catch ( Exception e ) {
-		course = null;
-	    }
-
-	    // kurssi http-parametrina
-	    if ( course != null ) {
-		session.setSelectedCourse( course );
-	    }
-
-	    // kurssi valittu aikaisemmin
-	    else if ( session.courseSelected() ) {
-		course = session.getSelectedCourseInfo();
-	    }
-
-	    ctx.put( "selectedCourse", session.getSelectedCourse() );
-
-	    /*
-	     *  Selvitä mihin toimintoihin käyttäjä on oikeutettu 
-	     *  suhteessa valittuun kurssiin
-	     */
-	    if ( session.courseSelected() ) {
- 		ctx.put( "services",
-			 session.getValidServices() );
-	    }
+            /*
+             *  Millä kursseilla käyttäjä on ohjaajana tai luennoitsijana
+             *  --> courses
+             */
+            CourseInfo[] courseInfos = session.getCourseInfos();
+            context.put("courseInfos", (courseInfos.length > 0 ? courseInfos : null));
 
 
-	    /*
-	     *  Pyytääkö käyttäjä uutta palvelua?
-	     */
-	    String service = nullIfEmpty( req.getParameter( SERVICE ) );
-	
-	    if ( service != null &&
-		 session.courseSelected() ) {
-		
-		// palvelua ei ole määritelty tai käyttäjän oikeudet eivät riitä
-		if ( !session.setService( service ) ) {
-		}
-	    }
+            /*
+             *  Selvitä valittu kurssi
+             */
+            try {
+                // Onko kurssivalinta tullut http-parametrina?
+                course = session.getCourseInfo(nullIfEmpty(servletRequest.getParameter(COURSE)));
 
-	    /*
-	     *  Aikaleiman tarkistus
-	     */
-	    String reqts = req.getParameter( TIMESTAMP );
-	    Object tmp = s.getAttribute( TIMESTAMP );
-	    if ( tmp != null )
-		ts  = (String)tmp;
-	    else ts = null;
+            } catch (Exception e) {
+                course = null;
+            }
 
-	    /*
-	     *  Palvelin ja käyttöliittymä eivät ole synkronissa - kriittinen toiminto
-	     */
-	    if ( reqts != null && ts != null && !reqts.equals( ts ) ) {
-		template = getTemplate( SYNCHRONIZATION_ERROR );
-	    }
+            // kurssi http-parametrina
+            if (course != null) {
+                session.setSelectedCourse(course);
+            } // kurssi valittu aikaisemmin
+            else if (session.courseSelected()) {
+                course = session.getSelectedCourseInfo();
+            }
 
-	    /*
-	     *  Onko palvelu valittu jo, jos niin nakita pyytö palvelun
-	     *  toteuttavalle käsittelijälle
-	     */
-	    else if ( session.courseSelected() &&
-		 session.serviceSelected() ) {
+            context.put("selectedCourse", session.getSelectedCourse());
 
-		// NAKITUS
-		serviceProvider =
-		    (AbstractVelocityServiceProvider)getHandlerFor( session.getSelectedService() );
-
-		ctx.put( "selectedService", serviceProvider );
-
-		String tmpl = serviceProvider.handleRequest( session, req, res, ctx );
-
-		if ( tmpl != null )
-		    template = getTemplate( tmpl );
-	    }
-
-	    // muuten pyydä valitsemaan palvelu
-	    else {
-		template = getTemplate( BASIC_TEMPLATE );
-	    }
-
-	    try {
-		/*
-		 *  Uusi aikaleima.
-		 */
-		ts = ""+System.currentTimeMillis();
-		s.setAttribute( TIMESTAMP, ts );
-		ctx.put( TIMESTAMP, ts );
-		
-		/*
-		 *  Automaattinen välitallennus - päällä vai poissa?
-		 */
-		tmp = nullIfEmpty( req.getParameter("asToggle") );
-		if ( tmp != null ) {
-		    ctx.put( "asToggle", tmp);
-		    s.setAttribute( "asToggle", tmp );
-
-		}
-		else if ( (tmp = s.getAttribute("asToggle")) != null ) {
-		    ctx.put( "asToggle", tmp);
-		}
-
-		ctx.put( "sessionLen", ""+sessionLen );
-	    } catch ( IllegalStateException ise ) {}
+            /*
+             *  Selvitä mihin toimintoihin käyttäjä on oikeutettu 
+             *  suhteessa valittuun kurssiin
+             */
+            if (session.courseSelected()) {
+                context.put("services",
+                        session.getValidServices());
+            }
 
 
-	    ctx.put( "webmaster", (String)Configuration.getProperty("webmaster") );
+            /*
+             *  Pyytääkö käyttäjä uutta palvelua?
+             */
+            String service = nullIfEmpty(servletRequest.getParameter(SERVICE));
 
-	    if ( nullIfEmpty(error) != null )
-		ctx.put( Index.ERROR, error );
-	    if ( nullIfEmpty(result) != null ) 
-		ctx.put( Index.RESULT, result );
+            if (service != null
+                    && session.courseSelected()) {
 
-	    /*
-	     *  bail if we can't find the template
-	     */
-	    if ( template == null ) {
-		return;
-	    }
-		
-	    /*
-	     *  now merge it
-	     */
-	    
-	    mergeTemplate( template, ctx, res );
-	    
-	    /*
-	     *  call cleanup routine to let a derived class do some cleanup
-	     */
-	    
-	    requestCleanup( req, res, ctx );
-	}
-	catch (Exception e) {
-	    /*
-	     *  call the error handler to let the derived class
-	     *  do something useful with this failure.
-	     */
-	    ServletOutputStream out;
-	    res.setContentType("text/html");
-	    out= res.getOutputStream();
+                // palvelua ei ole määritelty tai käyttäjän oikeudet eivät riitä
+                if (!session.setService(service)) {
+                }
+            }
 
-	    out.println( "<html><head>\n<title>Kurki: virheilmoitus</title>\n"
-			 +"<link rel='stylesheet' href='../kurki.css' title='kurki'>\n</head><body>\n"
-			 +"<div class='error' style='text-align:center;width=500px'>\n"
-			 +"<h2>Virheilmoitus</h2>\n<hr>\n<pre align='left'>\n" );
-            e.printStackTrace( new PrintStream( out ) );
-	    out.println( "\n</pre>\n<hr>\n<a href=\"mailto:tktl-kurki@cs.Helsinki.FI\">tktl-kurki@cs.Helsinki.FI</a></div></body></html>" ); 
-	    
-	    e.printStackTrace();
-// 	    error( req, res, e);
-	}
-	finally {
-	    if ( s != null ) 
-		ServletMonitor.getMonitor().unlock( s );
-	    else {
-		ServletMonitor.getMonitor().notifyAll();
-	    }
-	}
+            /*
+             *  Aikaleiman tarkistus
+             */
+            String reqts = servletRequest.getParameter(TIMESTAMP);
+            Object tmp = httpSession.getAttribute(TIMESTAMP);
+            if (tmp != null) {
+                timestamp = (String) tmp;
+            } else {
+                timestamp = null;
+            }
+
+            /*
+             *  Palvelin ja käyttöliittymä eivät ole synkronissa - kriittinen toiminto
+             */
+            if (reqts != null && timestamp != null && !reqts.equals(timestamp)) {
+                template = getTemplate(SYNCHRONIZATION_ERROR);
+            } /*
+             *  Onko palvelu valittu jo, jos niin nakita pyytö palvelun
+             *  toteuttavalle käsittelijälle
+             */ else if (session.courseSelected()
+                    && session.serviceSelected()) {
+
+                // NAKITUS
+                serviceProvider =
+                        (AbstractVelocityServiceProvider) getHandlerFor(session.getSelectedService());
+
+                context.put("selectedService", serviceProvider);
+
+                String tmpl = serviceProvider.handleRequest(session, servletRequest, servletResponse, context);
+
+                if (tmpl != null) {
+                    template = getTemplate(tmpl);
+                }
+            } // muuten pyydä valitsemaan palvelu
+            else {
+                template = getTemplate(BASIC_TEMPLATE);
+            }
+
+            try {
+                /*
+                 *  Uusi aikaleima.
+                 */
+                timestamp = "" + System.currentTimeMillis();
+                httpSession.setAttribute(TIMESTAMP, timestamp);
+                context.put(TIMESTAMP, timestamp);
+
+                /*
+                 *  Automaattinen välitallennus - päällä vai poissa?
+                 */
+                tmp = nullIfEmpty(servletRequest.getParameter("asToggle"));
+                if (tmp != null) {
+                    context.put("asToggle", tmp);
+                    httpSession.setAttribute("asToggle", tmp);
+
+                } else if ((tmp = httpSession.getAttribute("asToggle")) != null) {
+                    context.put("asToggle", tmp);
+                }
+
+                context.put("sessionLen", "" + session_lenght);
+            } catch (IllegalStateException ise) {
+            }
+
+
+            context.put("webmaster", (String) Configuration.getProperty("webmaster"));
+
+            if (nullIfEmpty(error) != null) {
+                context.put(Index.ERROR, error);
+            }
+            if (nullIfEmpty(result) != null) {
+                context.put(Index.RESULT, result);
+            }
+
+            /*
+             *  bail if we can't find the template
+             */
+            if (template == null) {
+                return;
+            }
+
+            /*
+             *  now merge it
+             */
+
+            mergeTemplate(template, context, servletResponse);
+
+            /*
+             *  call cleanup routine to let a derived class do some cleanup
+             */
+
+            requestCleanup(servletRequest, servletResponse, context);
+        } catch (Exception e) {
+            outputError(e, servletResponse);
+        } finally {
+            if (httpSession != null) {
+                ServletMonitor.getMonitor().unlock(httpSession);
+            } else {
+                ServletMonitor.getMonitor().notifyAll();
+            }
+        }
     }
+    
+    private void outputError(Exception e, ServletResponse servletResponse) throws IOException {
+        
+            /*
+             *  call the error handler to let the derived class
+             *  do something useful with this failure.
+             */
+            ServletOutputStream out;
+            servletResponse.setContentType("text/html");
+            out = servletResponse.getOutputStream();
 
-//     private int getAction( String act ) {
-// 	if ( act == null || act.equals("") ) {
-// 	    return -1;
-// 	} else {
-// 	    try {
-// 		return Integer.parseInt( act );
-// 	    } catch (NumberFormatException nfe) {
-// 		return -1;
-// 	    }
-// 	}
-//     }
+            out.println("<html><head>\n<title>Kurki: virheilmoitus</title>\n"
+                    + "<link rel='stylesheet' href='../kurki.css' title='kurki'>\n</head><body>\n"
+                    + "<div class='error' style='text-align:center;width=500px'>\n"
+                    + "<h2>Virheilmoitus</h2>\n<hr>\n<pre align='left'>\n");
+            e.printStackTrace(new PrintStream(out));
+            out.println("\n</pre>\n<hr>\n<a href=\"mailto:tktl-kurki@cs.Helsinki.FI\">tktl-kurki@cs.Helsinki.FI</a></div></body></html>");
+
+            e.printStackTrace();
+    }
 
     protected String nullIfEmpty(String str) {
-	if ( str == null || str.equals("") ) return null;
-	else return str;
+        if (str == null || str.equals("")) {
+            return null;
+        } else {
+            return str;
+        }
     }
 
-    public AbstractVelocityServiceProvider getHandlerFor( Service service ) {
-	return (AbstractVelocityServiceProvider)handlers.get( service.getId() );
+    public AbstractVelocityServiceProvider getHandlerFor(Service service) {
+        return (AbstractVelocityServiceProvider) handlers.get(service.getId());
     }
 
-    public static String asNotify( String target ) {
-	Calendar calendar = Calendar.getInstance();
-	int minute = calendar.get(Calendar.MINUTE);
-
-	return target+" tallennettu automaattisesti "
-	    +calendar.get(Calendar.DAY_OF_MONTH)
-	    +"."+(calendar.get(Calendar.MONTH) + 1)
-	    +"."+calendar.get(Calendar.YEAR)+" klo " 
-	    +calendar.get(Calendar.HOUR_OF_DAY)+":"
-	    +(minute < 10 ? "0"+minute : ""+minute)+".";
+    public static String asNotify(String target) {
+        Calendar calendar = Calendar.getInstance();
+        int minute = calendar.get(Calendar.MINUTE);
+        return target + " tallennettu automaattisesti "
+                + calendar.get(Calendar.DAY_OF_MONTH)
+                + "." + (calendar.get(Calendar.MONTH) + 1)
+                + "." + calendar.get(Calendar.YEAR) + " klo "
+                + calendar.get(Calendar.HOUR_OF_DAY) + ":"
+                + (minute < 10 ? "0" + minute : "" + minute) + ".";
     }
 }
-
-
-
