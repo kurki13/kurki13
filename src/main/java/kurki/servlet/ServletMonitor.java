@@ -1,5 +1,4 @@
 package kurki.servlet;
-import javax.servlet.*;
 import javax.servlet.http.*;
 
 public class ServletMonitor {

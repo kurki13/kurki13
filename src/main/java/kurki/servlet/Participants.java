@@ -6,15 +6,8 @@ import service.*;
 import java.io.*;
 import java.sql.*;
 import java.util.*;
-import javax.servlet.*;
 import javax.servlet.http.*;
-import java.net.URLEncoder;
-
-import org.apache.velocity.*;
 import org.apache.velocity.context.*;
-import org.apache.velocity.app.*;
-import org.apache.velocity.exception.*;
-import org.apache.velocity.servlet.*;
 
 public class Participants extends AbstractVelocityServiceProvider 
     implements Serializable {
@@ -25,6 +18,7 @@ public class Participants extends AbstractVelocityServiceProvider
  	super( service );
     }
 
+    @Override
     public String handleRequest( Session session, 
 				 HttpServletRequest req, 
 				 HttpServletResponse res, 
@@ -38,7 +32,7 @@ public class Participants extends AbstractVelocityServiceProvider
 	String view  = null;
 	HttpSession ses = req.getSession();
 	Object tmpUseSNO = ses.getAttribute( "useSNO" );
-	Boolean useSNO = (tmpUseSNO != null ? (Boolean)tmpUseSNO : new Boolean(false) );
+	Boolean useSNO = (tmpUseSNO != null ? (Boolean)tmpUseSNO : false );
 
 	// toimintaa ohjaavat parametrit
 	String doSearch  = nullIfEmpty( req.getParameter("doSearch") );

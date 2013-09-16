@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package kurki.servlet;
 
 import java.io.IOException;
@@ -14,8 +10,8 @@ import kurki.Session;
 import java.util.*;
 
 /**
- *
- * @author esaaksvu
+ * Servletti vaihtaa Session muuttujan kielikoodin annetun GET parametrin mukaisesti.
+ * Esim /Language?kieli=en
  */
 public class Language extends HttpServlet {
 

@@ -1,19 +1,14 @@
 package kurki.servlet;
 
 import kurki.*;
-import service.*;
 
 import java.io.*;
-import java.sql.*;
 import java.util.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
-import java.net.URLEncoder;
 
 import org.apache.velocity.*;
 import org.apache.velocity.context.*;
-import org.apache.velocity.app.*;
-import org.apache.velocity.exception.*;
 import org.apache.velocity.servlet.*;
 
 public class ListMaker extends VelocityServlet implements Log, Serializable {
@@ -25,14 +20,14 @@ public class ListMaker extends VelocityServlet implements Log, Serializable {
 	throws ServletException, IOException {
 	
 
-	String ts = null;
-	Session session = null;
-	Context ctx = null;
+	String ts;
+	Session session;
+	Context ctx;
 	AbstractVelocityServiceProvider serviceProvider = null;
-	Template template = null;
+	Template template;
 
 	// Opiskelijasuodattimen tulkinta
-	String studentFilterDesc = null;
+	String studentFilterDesc;
 	HttpSession s = null;
         try {
 	    
