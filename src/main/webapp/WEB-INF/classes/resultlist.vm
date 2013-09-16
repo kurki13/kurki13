@@ -26,9 +26,9 @@
                 <tr>
                   <th>&nbsp;
                   </th>
-                  <th nowrap>Tulostettava tieto
+                  <th nowrap>$bundle.getString("tulostettavaTieto")
                   </th>
-                  <th nowrap>Sarakeotsikko
+                  <th nowrap>$bundle.getString("sarakeOtsikko")
                   </th>
                 </tr>
 
@@ -37,7 +37,7 @@
                     <input type="checkbox" name="inc_ssn">
                   </td>
                   <td nowrap>
-                    Henkilötunnus
+                    $bundle.getString("opnro")
                   </td>
                   <td>
                     &nbsp;
