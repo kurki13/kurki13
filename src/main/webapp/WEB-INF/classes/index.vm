@@ -14,20 +14,15 @@
 <div class="instr">
 Huom!
 <ul>
-  <li>Järjestelmä vaatii toimiakseen <b>JavaScriptiä</b> tukevan selaimen (ja sen on oltava myös käytössä).
+  <li>$bundle.getString("javascript")
   </li>
-  <li>Järjestelmä vaatii toimiakseen <b>evästeiden</b> (cookie) sallimisen.
+  <li>$bundle.getString("evaste")
   </li>
-  <li>Järjestelmän käyttö aloitetaan tältä sivulta, valitsemalla kurssi, jonka tietoja halutaan muuttaa
-    sekä haluttu toiminto.
-    Tälle sivulle tultaessa, aloitetaan uusi istunto, jonka kesto on oletusarvoisesti 60 minuuttia
-    viimeisimmästä sivupyynnöstä. Tämän jälkeen aloitetaan uusi istunto ja mahdolliset tallentamattomat
-    muutokset menetetään.
+  <li>$bundle.getString("indexinfo")
   </li>
-  <li><b>Ongelmatilanteissa voit lähetää mailia osoitteeseen
-<a href="mailto:tktl-kurki@cs.helsinki.fi">tktl-kurki@cs.helsinki.fi</a>.</b>
+  <li>$bundle.getString("ongelmatilanteet")
   </li>
-  <li><a href="../paivitykset.html">Tietoa Kurssikirjanpitojärjestelmän päivityksistä</a>.
+  <li><a href="../paivitykset.html">$bundle.getString("paivitykset").
   </li>
 </ul>
 </div>
