@@ -1,20 +1,14 @@
 package kurki.servlet;
 
 import kurki.*;
-import service.*;
 
 import java.io.*;
-import java.sql.*;
 import java.util.*;
-import javax.servlet.*;
 import javax.servlet.http.*;
-import java.net.URLEncoder;
 
 import org.apache.velocity.*;
 import org.apache.velocity.context.*;
 import org.apache.velocity.app.*;
-import org.apache.velocity.exception.*;
-import org.apache.velocity.servlet.*;
 
 import javax.mail.*; 
 import javax.mail.internet.*;
@@ -125,7 +119,7 @@ public class Freeze extends AbstractVelocityServiceProvider {
 		    props.put("mail.smtp.host", "localhost");
 		    javax.mail.Session s = javax.mail.Session.getInstance(props,null);
 		    InternetAddress from = new InternetAddress( (String)Configuration.getProperty("webmaster") );
-		    MimeMessage message = null;
+		    MimeMessage message;
 	    
 		    // Jäädytysilmoitus Oodisiirroista vastaavalle ja jäädytyksen suorittajalle
 		    message = new MimeMessage(s);

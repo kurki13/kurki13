@@ -3,7 +3,6 @@ package kurki;
 import service.exception.NullIdException;
 import service.*;
 
-import java.util.*;
 import java.io.Serializable;
 
 public class Group extends ComparableOptionAdapter 
