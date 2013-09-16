@@ -4,7 +4,6 @@ import service.exception.NullIdException;
 import service.exception.ServicesNotLockedException;
 import service.*;
 
-import java.util.*;
 
 public class CourseInfo extends ComparableOptionAdapter {
     protected int userRole;

@@ -89,5 +89,6 @@ public class Offering extends ComparableOptionAdapter
 	}
     }
 
+    @Override
     public String toString() { return this.desc; }
 }

@@ -22,14 +22,19 @@ public abstract class ComparableOptionAdapter implements ComparableOption {
 	this.desc = clone.getDesc();
     }
  
+    @Override
     public String getLabel() { return this.desc; }
 
+    @Override
     public String getValue() { return ""+this.id; }
 
+    @Override
     public String getDesc() { return this.desc; }
 
+    @Override
     public Comparable getComparableId() { return this.id; }
 
+    @Override
     public boolean equals(Object another) {
 	if ( another != null ) 
 	    return this.compareTo( another ) == 0;
@@ -37,10 +42,12 @@ public abstract class ComparableOptionAdapter implements ComparableOption {
 	    return false;
     }
 
+    @Override
     public int compareTo( Object another ) {
 	return this.getComparableId().compareTo( ((ComparableOption)another).getComparableId() );
      }
 
+    @Override
     public String toString() {
 	return this.desc + " ("+this.id+")";
     }
