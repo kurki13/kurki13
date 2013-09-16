@@ -10,7 +10,7 @@
     <center> 
       <div class="error" style="text-align:left;width:500px" align="center">
     <center> 
-<h2>Uloskirjautuminen</h2>
+<h2>$bundle.getString("uloskirjautuminen")</h2>
     </center>
 <hr>
 <ul>
