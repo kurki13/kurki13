@@ -14,7 +14,7 @@
 		    <select name="ltype" tabindex="32600">
 		      <!-- <listan numero>_<sisällön mime-tyyppi "text/..."> -->
 		      <option value="1_html">$bundle.getString("kirjanpitolista")</option>
-		      <option value="2_plain">$bundle.getString("hetunimi")</option>
+		      <option value="2_plain">$bundle.getString("opnronimi")</option>
 		      <option value="3_plain">$bundle.getString("nimi")</option>
 		      <option value="4_plain">$bundle.getString("nimiemail")</option>
 		      <option value="5_plain">$bundle.getString("email")</option>
@@ -60,7 +60,7 @@
 	      <dt>$bundle.getString("numero")</dt>
 	        <dd>$bundle.getString("annetunryhman")</dd>
               <dt>$bundle.getString("hashopnro")</dt>
-                <dd>$bundle.getString("opiskelijatopnro")</dd>
+                <dd>$bundle.getString("opiskelijaopnro")</dd>
 	      <dt>$bundle.getString("sukunimi")</dt>
 	        <dd>$bundle.getString("opsukunimimerkki")</dd>
 	      <dt>$bundle.getString("alkuloppu")</dt>
