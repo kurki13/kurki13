@@ -22,7 +22,7 @@ public class ListMaker extends VelocityServlet implements Log, Serializable {
 
 	String ts;
 	Session session;
-	Context ctx;
+	Context context;
 	AbstractVelocityServiceProvider serviceProvider = null;
 	Template template;
 
@@ -43,7 +43,10 @@ public class ListMaker extends VelocityServlet implements Log, Serializable {
 	    String filter   = req.getParameter( "filter" );
 	    
 	    // Luodaan template-konteksti 
-            ctx = createContext( req, res );
+            context = createContext( req, res );
+            
+            //lokalisaatiobundlen lisääminen kontekstiin
+            context.put("bundle", ResourceBundle.getBundle("localisationBundle", Session.locale));
 
 	    int mime = ltype.indexOf("_");
 	    if (mime > 0) {
@@ -145,17 +148,17 @@ public class ListMaker extends VelocityServlet implements Log, Serializable {
 			for (Enumeration e = req.getParameterNames(); e.hasMoreElements() ; ) {
 			    String par = (String)e.nextElement();
 			    if ( par.indexOf("inc_") == 0 ) {
-				ctx.put( par, req.getParameter( par ) );
+				context.put( par, req.getParameter( par ) );
 			    }
 			}
 		    }
 
-		    ctx.put( "selectedCourse", session.getSelectedCourse() );
-		    ctx.put( "students", course.getStudents() );
-		    ctx.put( "comment", comment );
+		    context.put( "selectedCourse", session.getSelectedCourse() );
+		    context.put( "students", course.getStudents() );
+		    context.put( "comment", comment );
 
 		    Calendar calendar = Calendar.getInstance();
-		    ctx.put( "sysdate", 
+		    context.put( "sysdate", 
 			     +calendar.get(Calendar.DAY_OF_MONTH)+"."
 			     +(calendar.get(Calendar.MONTH)+1)+"."
 			     +calendar.get(Calendar.YEAR) );
@@ -165,12 +168,12 @@ public class ListMaker extends VelocityServlet implements Log, Serializable {
 		    if ( m < 10 ) minutes = "0"+m;
 		    else minutes = ""+m;
 		 
-		    ctx.put( "time", 
+		    context.put( "time", 
 			     +calendar.get(Calendar.HOUR_OF_DAY)+"."
 			     +minutes );
 
 		    studentFilterDesc = course.getSelectDescription();
-		    ctx.put( "studentFilterDesc",
+		    context.put( "studentFilterDesc",
 			     ( nullIfEmpty( studentFilterDesc ) == null
 			       ? "kaikki kurssin opiskelijat"
 			       : studentFilterDesc ) );
@@ -197,13 +200,13 @@ public class ListMaker extends VelocityServlet implements Log, Serializable {
 	     *  now merge it
 	     */
 	    
-	    mergeTemplate( template, ctx, res );
+	    mergeTemplate( template, context, res );
 	    
 	    /*
 	     *  call cleanup routine to let a derived class do some cleanup
 	     */
 	    
-	    requestCleanup( req, res, ctx );
+	    requestCleanup( req, res, context );
 	}
 	catch (Exception e) {
 	    /*
