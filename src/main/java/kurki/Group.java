@@ -1,5 +1,6 @@
 package kurki;
 
+import service.exception.NullIdException;
 import service.*;
 
 import java.util.*;

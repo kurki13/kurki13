@@ -1,5 +1,7 @@
 package service;
 
+import service.exception.NullIdException;
+
 public abstract class ComparableOptionAdapter implements ComparableOption {
     protected Comparable id;
     protected String desc;

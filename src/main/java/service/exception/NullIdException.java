@@ -1,4 +1,4 @@
-package service;
+package service.exception;
 
 public class NullIdException extends Exception {
     public NullIdException(){ super(); }

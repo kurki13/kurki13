@@ -1,5 +1,7 @@
 package kurki;
 
+import service.exception.NullIdException;
+import service.exception.ServicesNotLockedException;
 import service.*;
 
 import java.util.*;
