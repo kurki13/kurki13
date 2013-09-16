@@ -1,5 +1,10 @@
 package kurki;
 
+import kurki.exception.InitFailedException;
+import kurki.exception.NullParameterException;
+import kurki.exception.CourseNotDefinedException;
+import service.exception.NullIdException;
+import service.exception.ServicesNotDefinedException;
 import service.*;
 
 import java.util.*;
