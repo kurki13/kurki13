@@ -8,8 +8,6 @@ import org.apache.velocity.context.*;
 
 public class Checklist extends AbstractVelocityServiceProvider {
 
-//     public static final String RANGE_OP = "..";
-
     public Checklist( Service service ) {
  	super( service );
     }

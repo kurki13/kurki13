@@ -2,7 +2,7 @@
 #set ($parts = $selectedCourse.Parts)
 <html>
 <head>
-  <title>$bundle.getString("kurki")</title>
+  <title>$bundle.getString("kurkiOpiskNimi")</title>
 </head>
 <body bgcolor="white">
 <pre>
@@ -37,7 +37,7 @@ Kirjaustilanne: ${sysdate} klo: ${time}
   #end
   #set ($prevname = ${student.Label})
   #foreach ($part in $parts)   
-    #if ($part.Id != 3)
+    #if ($part.Id < 3)
     <td align="center"><i>${student.getScore( $part )}</i></td>
       #foreach ($offering in $part.Offerings) 
     <td width="15">

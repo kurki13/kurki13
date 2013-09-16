@@ -141,7 +141,6 @@ public class Student extends ComparableOptionAdapter
     }
 
     public int getCreditsNew() { return this.creditsNewUnits; }
-   // public int getCreditsOld() {return this.creditsOldUnits; }
 
     public int getGroup() { return this.group; }
     public int getGroupID() { return this.groupID; }

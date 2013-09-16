@@ -1,10 +1,10 @@
 #parse ("top.vm")
 #set ($parts = $selectedCourse.PartsOrdered)
-#set ($partnames = ["Laskuharjoituksia", "Harjoitustöitä", "Kokeita"])
+#set ($partnames = [$bundle.getString("laskuharjoituksia"), $bundle.getString("harjoitustoita"), $bundle.getString("kokeita")])
 #set ($maxEntriesPerLine = 9)
         <tr>
           <td colspan="4">
-<h3>$selectedCourse.label - kurssin perustiedot</h3>
+<h3>$selectedCourse.label - $bundle.getString("perustiedot")</h3>
 
 #if ($error && $error != "")
 <div class="error">
@@ -24,7 +24,7 @@
   <input type="hidden" name="TS" value="${TS}">
 <table class="normal" border="1" width="100%">
   <caption>
-   Osasuorituksien lukumäärät
+$bundle.getString("osasuoritukset")
   </caption>
 
 #set ($i = 0)
@@ -42,7 +42,7 @@
              onBlur="rangecheck(this,0,18)">
     #end
     </td>
-    <th>&nbsp;joista pakollisia:</th>
+    <th>&nbsp;$bundle.getString("jpakollisia")</th>
     <td>
     #if ($frozen)
       ${part.RequiredOfferings}
@@ -52,7 +52,7 @@
     #end
     </td>
     #if ($i != 2)
-    <th>&nbsp;lisäpisteitä:</th>
+    <th>&nbsp;$bundle.getString("lisapisteet")</th>
     <td>
     #if ($frozen)
       ${part.XtrScore}
@@ -74,7 +74,7 @@
       0
     #end
     </td>
-    <th>&nbsp;joista pakollisia:</th>
+    <th>&nbsp;$bundle.getString("jpakollisia")</th>
     <td>
     #if (!$frozen)
       <input type="text" size="2" name="no${i}_req" maxlength="2" value=""
@@ -84,7 +84,7 @@
    #end
     </td>
     #if ($i != 2)
-    <th>&nbsp;lisäpisteitä:</th>
+    <th>&nbsp;$bundle.getString("lisapisteet")</th>
     <td>
       #if (!$frozen)
       <input type="text" size="2" name="no${i}_xtr" maxlength="2" value=""
@@ -104,7 +104,7 @@
 #if (!$frozen)
   <tr>
     <th colspan="6">
-      <input type="submit" name="doBasic" value="tallenna muutokset" class="submitb">
+      <input type="submit" name="doBasic" value="$bundle.getString("tmuutokset")" class="submitb">
     </th>
   </tr>
 #end
@@ -115,7 +115,7 @@
 ##
 ## PISTERAJAT
 ##
-#set ($partnames = ["LH: ", "HT: ", "KOE:"])
+#set ($partnames = [$bundle.getString("lh"), $bundle.getString("ht"), $bundle.getString("koe")])
 
 <form action="index" method="post">
   <input type="hidden" name="TS" value="${TS}">
@@ -137,14 +137,14 @@
           <th rowspan="2" nowrap>${pname}&nbsp;</th>
           <th nowrap>
 <div style="height:1em;text-align:bottom;border-width:1pt;border-style:solid;border-color:black;margin:2pt 0pt;background-color:white;color:black;padding:1pt;">
-            <tt>maksimi&nbsp;</tt>
+            <tt>$bundle.getString("max")&nbsp;</tt>
 </div>
           </th>
         </tr>
         <tr>
           <th nowrap>
 <div style="height:1em;text-align:bottom;border-width:1pt;border-style:solid;border-color:black;margin:2pt 0pt;background-color:white;color:black;padding:1pt;">
-            <tt>hyv.raja </tt>
+            <tt>$bundle.getString("hyv.raja")</tt>
 </div>
           </th>
         </tr>
@@ -207,12 +207,12 @@
   #if (!$frozen)
   <tr>
     <th colspan="2">
-      <input type="submit" name="doScoreDef" value="tallenna muutokset" class="submitb">
+      <input type="submit" name="doScoreDef" value="$bundle.getString("tmuutokset")" class="submitb">
     </th>
   </tr>
   #end
 #else
-  <tr><th>EI OSASUORITUKSIA - määrittele osasuorituksien lukumäärät yllä olevalla lomakkeella.</th></tr>
+  <tr><th>$bundle.getString("eiOsasuorituksia")</th></tr>
 #end
 </table> 
 </form>
