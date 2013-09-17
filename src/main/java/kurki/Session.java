@@ -13,7 +13,7 @@ import java.sql.*;
 public class Session implements java.io.Serializable {
 
     public static Locale locale = new Locale("fi");
-
+    public static ResourceBundle rb;
     public static final int STUDENT_ON_COURSE = 0;
     public static final int STUDENT_NOT_ON_COURSE = 1;
     public static final int STUDENT_REMOVED = 2;
@@ -29,7 +29,7 @@ public class Session implements java.io.Serializable {
     private static String superUsers = LOGIN_SEPARATOR;
     protected static ServiceManager serviceManager = null;
     protected static final String COURSE_INFOS = //<editor-fold defaultstate="collapsed" desc="courseInfos">
-            
+
             // LUENTO- (JA LABORATORIOKURSSIT)
             "SELECT DISTINCT k.kurssikoodi, k.lukuvuosi, k.lukukausi, k.tyyppi, k.tila,\n"
             + "    k.kurssi_nro, k.nimi AS nimi, k.alkamis_pvm AS alkamis_pvm, k.paattymis_pvm,\n"
@@ -69,7 +69,7 @@ public class Session implements java.io.Serializable {
             + "    AND h.htunnus = ko.htunnus\n"
             + "    AND h.ktunnus = ?)\n"
             + "ORDER BY orderBy ASC, nimi ASC, alkamis_pvm ASC";
-            //</editor-fold>
+    //</editor-fold>
     protected static final String SUPER_INFOS = //<editor-fold defaultstate="collapsed" desc="superInfos">
 
             "SELECT DISTINCT k.kurssikoodi, k.lukuvuosi, k.lukukausi, k.tyyppi, k.tila,\n"
@@ -114,11 +114,13 @@ public class Session implements java.io.Serializable {
 
         initialized = true;
         try {
-            ServiceManager.setNoOfRoles(Rooli.NO_OF_ROLES);
 
+            rb = ResourceBundle.getBundle("localisationBundle", getLanguage());
+            ServiceManager.setNoOfRoles(Rooli.NO_OF_ROLES);
+            
             ServiceManager.defineService(ServiceName.ENTRY, Rooli.TUTOR, "Suoritteiden kirjaus");
             ServiceManager.defineService(ServiceName.PARTICIPANTS, Rooli.TUTOR, "Osallistujatietojen muutokset");
-            ServiceManager.defineService(ServiceName.COURSE_BASICS, Rooli.TUTOR, "Kurssin perustietojen muutokset");
+            ServiceManager.defineService(ServiceName.COURSE_BASICS, Rooli.TUTOR, "Kurssiin perustietojen muutokset");
             ServiceManager.defineService(ServiceName.CHECKLIST, Rooli.TUTOR, "Listat");
             ServiceManager.defineService(ServiceName.GRADES, Rooli.TUTOR, "Arvostelu");
             ServiceManager.defineService(ServiceName.RESULT_LIST, Rooli.TUTOR, "Tuloslistat");
