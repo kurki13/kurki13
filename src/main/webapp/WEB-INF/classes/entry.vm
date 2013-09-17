@@ -76,7 +76,7 @@
 ##  Haettavat opiskelijat - joko ryhmän mukaan tai sukunimen mukaan
 ##
                     <label for="find" accesskey="O">
-		    <b>$bundle.getString("opiskelijatkp")</b>
+		    <b>$bundle.getString("opiskelijat")</b>
                     </label>
 		  </td>
  		  <td>
