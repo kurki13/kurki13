@@ -1,0 +1,454 @@
+syys 12, 2013 12:29:49 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: init: Associated with Deployer 'Catalina:type=Deployer,host=localhost'
+syys 12, 2013 12:29:49 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: init: Global resources are available
+syys 12, 2013 12:29:49 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 12:29:49 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 12:29:49 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: undeploy: Undeploying web application at '/kurki13'
+syys 12, 2013 12:29:50 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: install: Installing context configuration at 'file:/tmp/context5381216024120790186.xml'
+syys 12, 2013 12:29:50 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: start: Starting web application '/kurki13'
+syys 12, 2013 12:31:06 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 12:31:06 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 12:31:06 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: undeploy: Undeploying web application at '/kurki13'
+syys 12, 2013 12:31:07 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: install: Installing context configuration at 'file:/tmp/context1909129711006580550.xml'
+syys 12, 2013 12:31:07 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: start: Starting web application '/kurki13'
+syys 12, 2013 12:36:18 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 12:36:18 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: restart: Reloading web application '/kurki13'
+syys 12, 2013 12:36:29 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 12:36:29 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 12:36:30 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: undeploy: Undeploying web application at '/kurki13'
+syys 12, 2013 12:36:31 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: install: Installing context configuration at 'file:/tmp/context5724796854806331438.xml'
+syys 12, 2013 12:36:31 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: start: Starting web application '/kurki13'
+syys 12, 2013 12:36:43 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 12:36:43 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: restart: Reloading web application '/kurki13'
+syys 12, 2013 12:37:58 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 12:37:58 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 12:37:58 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: undeploy: Undeploying web application at '/kurki13'
+syys 12, 2013 12:37:59 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: install: Installing context configuration at 'file:/tmp/context2307677161876527762.xml'
+syys 12, 2013 12:38:00 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: start: Starting web application '/kurki13'
+syys 12, 2013 12:40:46 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 12:40:58 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 12:40:58 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 12:40:58 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: undeploy: Undeploying web application at '/kurki13'
+syys 12, 2013 12:40:59 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: install: Installing context configuration at 'file:/tmp/context4657040513251352901.xml'
+syys 12, 2013 12:41:00 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: start: Starting web application '/kurki13'
+syys 12, 2013 1:24:31 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 1:24:31 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 1:24:31 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: undeploy: Undeploying web application at '/kurki13'
+syys 12, 2013 1:24:33 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: install: Installing context configuration at 'file:/tmp/context6669398638301276228.xml'
+syys 12, 2013 1:24:33 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: start: Starting web application '/kurki13'
+syys 12, 2013 1:26:06 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 1:26:24 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 1:26:24 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 1:26:25 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: undeploy: Undeploying web application at '/kurki13'
+syys 12, 2013 1:26:26 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: install: Installing context configuration at 'file:/tmp/context4900544332505663810.xml'
+syys 12, 2013 1:26:26 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: start: Starting web application '/kurki13'
+syys 12, 2013 1:44:48 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 1:45:23 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 1:45:24 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 1:45:24 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: undeploy: Undeploying web application at '/kurki13'
+syys 12, 2013 1:45:25 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: install: Installing context configuration at 'file:/tmp/context6854352251091119987.xml'
+syys 12, 2013 1:45:25 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: start: Starting web application '/kurki13'
+syys 12, 2013 1:45:31 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 1:46:49 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 1:47:32 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 1:47:32 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 1:47:32 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: undeploy: Undeploying web application at '/kurki13'
+syys 12, 2013 1:47:33 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: install: Installing context configuration at 'file:/tmp/context2655796846687904086.xml'
+syys 12, 2013 1:47:34 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: start: Starting web application '/kurki13'
+syys 12, 2013 1:50:46 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 1:50:46 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: stop: Stopping web application '/kurki13'
+syys 12, 2013 1:50:47 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: start: Starting web application '/kurki13'
+syys 12, 2013 1:51:24 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 1:51:24 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: undeploy: Undeploying web application at '/kurki13'
+syys 12, 2013 1:51:25 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: install: Installing context configuration at 'file:/tmp/context3599411788393928394.xml'
+syys 12, 2013 1:52:13 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 1:52:13 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 1:52:13 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: undeploy: Undeploying web application at '/kurki13'
+syys 12, 2013 1:52:15 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: install: Installing context configuration at 'file:/tmp/context189620521985682093.xml'
+syys 12, 2013 1:52:15 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: start: Starting web application '/kurki13'
+syys 12, 2013 1:53:18 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 1:53:19 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: restart: Reloading web application '/kurki13'
+syys 12, 2013 1:54:03 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 1:54:04 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: restart: Reloading web application '/kurki13'
+syys 12, 2013 1:54:50 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 1:54:50 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: restart: Reloading web application '/kurki13'
+syys 12, 2013 1:55:13 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 1:55:13 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 1:55:13 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: undeploy: Undeploying web application at '/kurki13'
+syys 12, 2013 1:55:14 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: install: Installing context configuration at 'file:/tmp/context3583335893280291101.xml'
+syys 12, 2013 1:55:15 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: start: Starting web application '/kurki13'
+syys 12, 2013 1:55:22 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 1:55:22 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: restart: Reloading web application '/kurki13'
+syys 12, 2013 1:56:28 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 1:56:28 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 1:56:29 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 1:56:29 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 1:56:30 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 1:56:30 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 1:56:31 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 1:57:09 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 1:57:09 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 1:57:09 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: undeploy: Undeploying web application at '/kurki13'
+syys 12, 2013 1:57:10 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: install: Installing context configuration at 'file:/tmp/context3036444587999045214.xml'
+syys 12, 2013 1:57:11 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: start: Starting web application '/kurki13'
+syys 12, 2013 2:03:58 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 2:03:58 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: restart: Reloading web application '/kurki13'
+syys 12, 2013 2:04:03 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 2:04:03 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: restart: Reloading web application '/kurki13'
+syys 12, 2013 2:04:24 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 2:04:24 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 2:04:25 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: undeploy: Undeploying web application at '/kurki13'
+syys 12, 2013 2:04:26 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: install: Installing context configuration at 'file:/tmp/context4523465178374688927.xml'
+syys 12, 2013 2:04:26 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: start: Starting web application '/kurki13'
+syys 12, 2013 2:07:03 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 2:07:05 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 2:07:05 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 2:07:06 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 2:07:06 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 2:07:06 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 2:07:07 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 2:07:07 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 2:07:08 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 2:07:08 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 2:07:08 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 2:07:08 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 2:07:09 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 2:07:09 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 2:07:09 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 2:07:10 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 2:08:30 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 2:08:30 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: restart: Reloading web application '/kurki13'
+syys 12, 2013 2:08:32 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 2:08:32 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: restart: Reloading web application '/kurki13'
+syys 12, 2013 2:08:58 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 2:08:58 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 2:08:58 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: undeploy: Undeploying web application at '/kurki13'
+syys 12, 2013 2:08:59 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: install: Installing context configuration at 'file:/tmp/context1221916467130050874.xml'
+syys 12, 2013 2:09:00 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: start: Starting web application '/kurki13'
+syys 12, 2013 2:09:46 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 2:09:46 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: restart: Reloading web application '/kurki13'
+syys 12, 2013 2:10:44 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 2:10:45 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: restart: Reloading web application '/kurki13'
+syys 12, 2013 2:11:07 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 2:11:07 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 2:11:07 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: undeploy: Undeploying web application at '/kurki13'
+syys 12, 2013 2:11:08 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: install: Installing context configuration at 'file:/tmp/context5098869286688447754.xml'
+syys 12, 2013 2:11:09 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: start: Starting web application '/kurki13'
+syys 12, 2013 2:13:52 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 2:13:58 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: restart: Reloading web application '/kurki13'
+syys 12, 2013 2:14:13 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 2:14:13 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 2:14:13 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: undeploy: Undeploying web application at '/kurki13'
+syys 12, 2013 2:14:14 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: install: Installing context configuration at 'file:/tmp/context2753150056083458232.xml'
+syys 12, 2013 2:14:15 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: start: Starting web application '/kurki13'
+syys 12, 2013 2:16:00 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 2:16:12 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 2:16:12 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 2:16:12 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: undeploy: Undeploying web application at '/kurki13'
+syys 12, 2013 2:16:13 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: install: Installing context configuration at 'file:/tmp/context6757627073510033200.xml'
+syys 12, 2013 2:16:13 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: start: Starting web application '/kurki13'
+syys 12, 2013 2:24:46 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 2:26:50 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 2:26:50 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: stop: Stopping web application '/kurki13'
+syys 12, 2013 2:26:51 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: start: Starting web application '/kurki13'
+syys 12, 2013 2:27:15 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 2:27:15 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 2:27:15 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: undeploy: Undeploying web application at '/kurki13'
+syys 12, 2013 2:27:16 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: install: Installing context configuration at 'file:/tmp/context2913011781775811331.xml'
+syys 12, 2013 2:27:17 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: start: Starting web application '/kurki13'
+syys 12, 2013 2:28:41 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 2:28:41 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: stop: Stopping web application '/kurki13'
+syys 12, 2013 2:28:41 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: start: Starting web application '/kurki13'
+syys 12, 2013 2:29:31 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 2:29:31 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 2:29:32 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: undeploy: Undeploying web application at '/kurki13'
+syys 12, 2013 2:29:33 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: install: Installing context configuration at 'file:/tmp/context8284900688274936668.xml'
+syys 12, 2013 2:29:33 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: start: Starting web application '/kurki13'
+syys 12, 2013 2:39:57 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 2:39:57 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: stop: Stopping web application '/kurki13'
+syys 12, 2013 2:39:57 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: start: Starting web application '/kurki13'
+syys 12, 2013 2:40:44 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 2:41:03 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 2:41:03 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 2:41:03 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: undeploy: Undeploying web application at '/kurki13'
+syys 12, 2013 2:41:05 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: install: Installing context configuration at 'file:/tmp/context7088034470208709172.xml'
+syys 12, 2013 2:41:06 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: start: Starting web application '/kurki13'
+syys 12, 2013 2:42:20 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 2:42:20 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 2:42:20 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: undeploy: Undeploying web application at '/kurki13'
+syys 12, 2013 2:42:21 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: install: Installing context configuration at 'file:/tmp/context7076587112246984896.xml'
+syys 12, 2013 2:42:22 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: start: Starting web application '/kurki13'
+syys 12, 2013 2:45:43 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 2:46:47 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 2:46:47 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 2:46:47 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: undeploy: Undeploying web application at '/kurki13'
+syys 12, 2013 2:46:48 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: install: Installing context configuration at 'file:/tmp/context3900288908184720875.xml'
+syys 12, 2013 2:46:49 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: start: Starting web application '/kurki13'
+syys 12, 2013 2:48:05 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 2:48:35 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 2:48:35 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 2:48:35 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: undeploy: Undeploying web application at '/kurki13'
+syys 12, 2013 2:48:36 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: install: Installing context configuration at 'file:/tmp/context4915372754342158380.xml'
+syys 12, 2013 2:48:37 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: start: Starting web application '/kurki13'
+syys 12, 2013 2:51:47 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 2:51:47 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: restart: Reloading web application '/kurki13'
+syys 12, 2013 2:53:07 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 2:53:07 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: restart: Reloading web application '/kurki13'
+syys 12, 2013 2:53:28 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 2:53:28 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: restart: Reloading web application '/kurki13'
+syys 12, 2013 2:53:42 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 2:53:42 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 2:53:42 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: undeploy: Undeploying web application at '/kurki13'
+syys 12, 2013 2:53:43 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: install: Installing context configuration at 'file:/tmp/context246398729113263447.xml'
+syys 12, 2013 2:53:44 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: start: Starting web application '/kurki13'
+syys 12, 2013 2:54:01 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 2:54:02 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: restart: Reloading web application '/kurki13'
+syys 12, 2013 4:02:08 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: init: Associated with Deployer 'Catalina:type=Deployer,host=localhost'
+syys 12, 2013 4:02:08 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: init: Global resources are available
+syys 12, 2013 4:02:08 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 4:02:08 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 4:02:08 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: undeploy: Undeploying web application at '/kurki13'
+syys 12, 2013 4:02:09 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: install: Installing context configuration at 'file:/tmp/context5991611287530202472.xml'
+syys 12, 2013 4:02:10 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: start: Starting web application '/kurki13'
+syys 12, 2013 4:03:25 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 4:03:25 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: restart: Reloading web application '/kurki13'
+syys 12, 2013 4:03:32 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 4:03:32 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: restart: Reloading web application '/kurki13'
+syys 12, 2013 4:05:07 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 4:05:07 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: undeploy: Undeploying web application at '/kurki13'
+syys 12, 2013 4:05:17 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 4:05:33 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 4:05:33 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 4:05:33 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: install: Installing context configuration at 'file:/tmp/context6043988052006522462.xml'
+syys 12, 2013 4:05:34 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: start: Starting web application '/kurki13'
+syys 12, 2013 4:09:57 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 4:09:57 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: undeploy: Undeploying web application at '/kurki13'
+syys 12, 2013 4:09:58 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 12, 2013 4:09:59 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: restart: Reloading web application '/kurki13'
+syys 12, 2013 4:10:45 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
