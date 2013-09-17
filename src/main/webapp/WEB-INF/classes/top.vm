@@ -212,15 +212,15 @@ KurKi-järjestelmän päivitys kesken. Alä käytä!
 			    tabindex="32701">
 
   #if (!$selectedService.value || !$selectedService.value)
-		      <option value="" selected>-- valitse toiminto --</option>
+		      <option value="" selected>-- $bundle.getString("valitse_toiminto") --</option>
   #end
   #set ($serviceNo = 1) 
   #foreach ($service in $services)
 
     #if ($selectedService && $service.value == $selectedService.value)
-		      <option value="$service.value" selected>${serviceNo}. $service.label</option>
+		      <option value="$service.value" selected>${serviceNo}. $bundle.getString($service.value)</option>
     #else
-		      <option value="$service.value">${serviceNo}. $service.label</option>
+		      <option value="$service.value">${serviceNo}. $bundle.getString($service.value)</option>
     #end
     #set ($serviceNo = $serviceNo + 1) 
   #end

@@ -180,7 +180,7 @@
 #end 
         </tr>
         <tr>
-          <th>$bundle.getString(hyvrajsum)</th>
+          <th>$bundle.getString("hyvrajsum")</th>
 #if ($lh)
           <td>${lh.MinScoreCount}</td>
 #end
@@ -192,7 +192,7 @@
 #end 
         </tr>
         <tr>
-          <th>$bundle.getString("Oshr")</th>
+          <th>$bundle.getString("oshr")</th>
 #if ($lh)
           <td>
   #if (!$frozen)
@@ -228,7 +228,7 @@
 ##
 
         <tr>
-          <th rowspan="3" wrap>bundle.getString("arvlp")</th>
+          <th rowspan="3" wrap>$bundle.getString("arvlp")</th>
           <th>maksimi</th>
 
 #if ($lh)
@@ -257,7 +257,7 @@
 #end 
         </tr>
         <tr>
-          <th>1. pisteen raja</th>
+          <th>$bundle.getString("1pstraja")</th>
 #if ($lh)
           <td>
   #if (!$frozen)
@@ -281,7 +281,7 @@
 #end
         </tr>
         <tr>
-          <th>kartuntaväli</th>
+          <th>$bundle.getString("kv")</th>
 #if ($lh)
           <td>
   #if (!$frozen)
@@ -311,12 +311,12 @@
 <!--
         <tr>
           <th colspan="2">
-            ARVOSTELU
+            $bundle.getString("arv")
           </th>
         </tr>
 -->
         <tr>
-          <th>Pisteitä max.</th>
+          <th>$bundle.getString("pstmax")</th>
           <td>
   #if (!$frozen)
             <input type="text" name="xtrTotal" value="${xtrTotal}" size="3" maxlength="3" readonly>
@@ -326,7 +326,7 @@
           </td>
         </tr>
       <tr>
-        <th>Hyväksymisalaraja</th>
+        <th>$bundle.getString("hyvar")</th>
         <td>
   #if (!$frozen)
           <input type="text" name="xtr1st_3" value="${selectedCourse.MinScore}" size="4" maxlength="4">
@@ -336,7 +336,7 @@
         </td>
       </tr>
       <tr>
-        <th>Arvosanaväli</th>
+        <th>$bundle.getString("asv")</th>
         <td>
   #if (!$frozen) 
           <input type="text" name="step_3" value="${selectedCourse.GradeStep}" size="5" maxlength="5">
@@ -346,28 +346,28 @@
         </td>
       </tr>
       <tr>
-        <th>Arvosteluasteikko</th>
+        <th>$bundle.getString("arvasteikko")</th>
         <td>
 #set ( $scale = $selectedCourse.Scale)  
 #if ( $scale && $scale == "E" )
   #if (!$frozen)
-            <input type="radio" name="scale" value="K">Arvosanat
-            <input type="radio" name="scale" value="E" checked>Hyväksytty/hylätty
+            <input type="radio" name="scale" value="K">$bundle.getString("arvosanat")
+            <input type="radio" name="scale" value="E" checked>$bundle.getString("hyvhyl")
   #else
-            Hyväksytty/hylätty
+            $bundle.getString("hyvhyl")
   #end
 #else
   #if (!$frozen)
-            <input type="radio" name="scale" value="K" checked>Arvosanat
-            <input type="radio" name="scale" value="E">Hyväksytty/hylätty
+            <input type="radio" name="scale" value="K" checked>$bundle.getString("arvosanat")
+            <input type="radio" name="scale" value="E">$bundle.getString("hyvhyl")
   #else
-            Arvosanat
+            $bundle.getString("arvosanat")
   #end
 #end
        </td>
       </tr>
       <tr>
-        <th>Arvostelutapa</th>
+        <th>$bundle.getString("arvtapa")</th>
         <td> 
 #if (!$frozen)
           <select name="convention">
@@ -397,12 +397,12 @@
       </tr>
 -->
       </table>
-      <input type="submit" name="makeAssessment" class="submitb" value=" Tee arvostelu "><br>
+      <input type="submit" name="makeAssessment" class="submitb" value="$bundle.getString("teearv")"><br>
   #if (!$frozen)
-      <input type="submit" name="saveBasic" class="submitb" value=" Tallenna muutokset "><br>
-      <input type="submit" name="modBoundaries" class="submitb" value=" Muuta piste-/arvosanarajoja "><br>
+      <input type="submit" name="saveBasic" class="submitb" value="$bundle.getString("tallennam")"><br>
+      <input type="submit" name="modBoundaries" class="submitb" value="$bundle.getString("muutaparajoja")"><br>
   #else
-      <input type="submit" name="modBoundaries" class="submitb" value=" Piste-/arvosanarajat "><br>
+      <input type="submit" name="modBoundaries" class="submitb" value="$bundle.getString("parajat")"><br>
   #end
     </td>
   </tr>
@@ -412,7 +412,7 @@
 <!-- OHJEET -->
 #if (!$resultList)
 <div class="instr">
-<h3>Arvostelutapa</h3>
+<h3>$bundle.getString("arvtapa")</h3>
 <dl>
 $conventionsDesc
 </dl>

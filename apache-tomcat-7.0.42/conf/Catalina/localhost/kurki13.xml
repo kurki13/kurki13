@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Context antiJARLocking="true" docBase="/cs/fs/home/tkairola/KURKI13/kurki13/target/kurki13-1.0-SNAPSHOT" path="/kurki13">
-  <Realm className="org.apache.catalina.realm.MemoryRealm" pathname="../../kurki13/src/main/webapp/WEB-INF/tomcat-users.xml"/>
-</Context>
