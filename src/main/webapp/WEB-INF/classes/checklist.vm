@@ -24,7 +24,7 @@
 		      <option value="9_plain">$bundle.getString("export")</option>
 		    </select>
 	  	  </td>
-		  <td nowrap>&nbsp;<b>$bundle.getString("kommenttikp")</b></td>
+		  <td nowrap>&nbsp;<b>$bundle.getString("kommentti"):</b></td>
 		  <td>
 ##
 ##  Kommentti
@@ -36,7 +36,7 @@
 ##
 ##  Haettavat opiskelijat - joko ryhmän mukaan tai sukunimen mukaan
 ##
-		    <b>$bundle.getString("opiskelijatkp")</b>
+		    <b>$bundle.getString("opiskelijat"):</b>
 		  </td>
  		  <td>
 		    <input type="text" name="filter" tabindex="32600" size="15" value = "$!studentFilter">
