@@ -9,6 +9,7 @@
     <title>KURKI</title>
     <link rel="stylesheet" href="../kurki.css" title="kurki">
     <script language='JavaScript' type='text/javascript' src='../kurki.js'></script>
+    <link rel="stylesheet" href="../font-awesome/css/font-awesome.min.css">
 
 #if ($autosave)
   #if (!$asToggle)
