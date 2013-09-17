@@ -167,7 +167,7 @@ public class Session implements java.io.Serializable {
      */
     protected Session(String ruser)
             throws InitFailedException, SQLException, NullIdException, ClassNotFoundException {
-        //MKCT: commented if ( ruser == null || ruser.length() == 0 ) throw new InitFailedException("Käyttäjän tunnistus epäonnistui.");
+        if ( ruser == null || ruser.length() == 0 ) throw new InitFailedException("Käyttäjän tunnistus epäonnistui.");
         this.ruser = ruser;
         init();
     }
@@ -412,7 +412,7 @@ public class Session implements java.io.Serializable {
                 preparedStatement.setString(2, this.ruser);
             }
             //MKCT:
-            preparedStatement = databaseConnection.prepareStatement(SUPER_INFOS);
+//            preparedStatement = databaseConnection.prepareStatement(SUPER_INFOS);
             resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {

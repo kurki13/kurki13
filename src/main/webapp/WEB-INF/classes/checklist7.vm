@@ -14,7 +14,7 @@ $bundle.getString("kirjaustilanne"): ${sysdate} $bundle.getString("klo"): ${time
   <tr>
     <th>$bundle.getString("isonimi")</th>
   #foreach ($part in $parts)
-    #if ($part.Id != 3)
+    #if ($part.Id != 3 && $part.Id < 3)
     <th><i>${part.Abbreviation}:</i></th>
       #foreach ($offering in $part.Offerings) 
         #set ($o = $offering.Id + 1)
@@ -36,8 +36,10 @@ $bundle.getString("kirjaustilanne"): ${sysdate} $bundle.getString("klo"): ${time
       <td>${student.Label}</td>
   #end
   #set ($prevname = ${student.Label})
-  #foreach ($part in $parts)   
-    #if ($part.Id < 3)
+  #foreach ($part in $parts) 
+##error jos ei ole ehtona myös pienempi kuin kolme -tka
+##    #if ($part.Id != 3)
+    #if ($part.Id != 3 && $part.Id < 3)
     <td align="center"><i>${student.getScore( $part )}</i></td>
       #foreach ($offering in $part.Offerings) 
     <td width="15">
