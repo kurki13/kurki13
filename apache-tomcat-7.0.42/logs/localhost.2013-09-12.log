@@ -1,0 +1,2120 @@
+syys 12, 2013 12:29:47 IP. org.apache.catalina.core.ApplicationContext log
+INFO: ContextListener: contextInitialized()
+syys 12, 2013 12:29:47 IP. org.apache.catalina.core.ApplicationContext log
+INFO: SessionListener: contextInitialized()
+syys 12, 2013 12:29:47 IP. org.apache.catalina.core.ApplicationContext log
+INFO: ContextListener: attributeAdded('org.apache.jasper.compiler.TldLocationsCache', 'org.apache.jasper.compiler.TldLocationsCache@542b7802')
+syys 12, 2013 12:32:11 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] Searching for properties at: /org/apache/velocity/tools/view/velocity.properties
+syys 12, 2013 12:32:11 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] Searching for properties at: /WEB-INF/velocity.properties
+syys 12, 2013 12:32:11 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Configuring Velocity with properties at: /WEB-INF/velocity.properties
+syys 12, 2013 12:32:11 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] Searching for properties at: /WEB-INF/velocity.properties
+syys 12, 2013 12:32:11 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Configuring Velocity with properties at: /WEB-INF/velocity.properties
+syys 12, 2013 12:32:11 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Initializing Velocity, Calling init()...
+syys 12, 2013 12:32:11 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] *******************************************************************
+syys 12, 2013 12:32:11 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Starting Apache Velocity v1.7 (compiled: 2010-11-19 12:14:37)
+syys 12, 2013 12:32:11 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] RuntimeInstance initializing.
+syys 12, 2013 12:32:11 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Default Properties File: org/apache/velocity/runtime/defaults/velocity.properties
+syys 12, 2013 12:32:11 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Trying to use logger class org.apache.velocity.runtime.log.ServletLogChute
+syys 12, 2013 12:32:11 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Using logger class org.apache.velocity.runtime.log.ServletLogChute
+syys 12, 2013 12:32:11 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] Default ResourceManager initializing. (class org.apache.velocity.runtime.resource.ResourceManagerImpl)
+syys 12, 2013 12:32:11 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] ResourceLoader instantiated: org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
+syys 12, 2013 12:32:11 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] ClasspathResourceLoader : initialization complete.
+syys 12, 2013 12:32:11 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] ResourceCache: initialized (class org.apache.velocity.runtime.resource.ResourceCacheImpl) with class java.util.Collections$SynchronizedMap cache map.
+syys 12, 2013 12:32:11 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] Default ResourceManager initialization complete.
+syys 12, 2013 12:32:11 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Loaded System Directive: org.apache.velocity.runtime.directive.Stop
+syys 12, 2013 12:32:11 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Loaded System Directive: org.apache.velocity.runtime.directive.Define
+syys 12, 2013 12:32:11 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Loaded System Directive: org.apache.velocity.runtime.directive.Break
+syys 12, 2013 12:32:11 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Loaded System Directive: org.apache.velocity.runtime.directive.Evaluate
+syys 12, 2013 12:32:11 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Loaded System Directive: org.apache.velocity.runtime.directive.Literal
+syys 12, 2013 12:32:11 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Loaded System Directive: org.apache.velocity.runtime.directive.Macro
+syys 12, 2013 12:32:11 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Loaded System Directive: org.apache.velocity.runtime.directive.Parse
+syys 12, 2013 12:32:11 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Loaded System Directive: org.apache.velocity.runtime.directive.Include
+syys 12, 2013 12:32:11 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Loaded System Directive: org.apache.velocity.runtime.directive.Foreach
+syys 12, 2013 12:32:11 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Created '20' parsers.
+syys 12, 2013 12:32:11 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] Velocimacro : initialization starting.
+syys 12, 2013 12:32:11 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Velocimacro : "velocimacro.library" is not set.  Trying default library: VM_global_library.vm
+syys 12, 2013 12:32:11 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Could not load resource 'VM_global_library.vm' from ResourceLoader org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader: ClasspathResourceLoader Error: cannot find resource VM_global_library.vm
+syys 12, 2013 12:32:11 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Velocimacro : Default library not found.
+syys 12, 2013 12:32:11 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Velocimacro : allowInline = true : VMs can be defined inline in templates
+syys 12, 2013 12:32:11 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Velocimacro : allowInlineToOverride = false : VMs defined inline may NOT replace previous VM definitions
+syys 12, 2013 12:32:11 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Velocimacro : allowInlineLocal = false : VMs defined inline will be global in scope if allowed.
+syys 12, 2013 12:32:11 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Velocimacro : autoload off : VM system will not automatically reload global library macros
+syys 12, 2013 12:32:11 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] Velocimacro : Velocimacro : initialization complete.
+syys 12, 2013 12:32:11 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] RuntimeInstance successfully initialized.
+syys 12, 2013 12:32:11 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] Searching for configuration at: /WEB-INF/toolbox.xml
+syys 12, 2013 12:32:11 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Loaded deprecated configuration from: /WEB-INF/toolbox.xml
+syys 12, 2013 12:32:11 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity   [warn] Please upgrade to new "/WEB-INF/tools.xml" format and conventional location. Support for "/WEB-INF/toolbox.xml" format and conventional file name will be removed in a future version.
+syys 12, 2013 12:32:11 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Default tools configuration has been suppressed to avoid conflicts with older application's context and toolbox definition.
+syys 12, 2013 12:32:11 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] Searching for configuration at: /WEB-INF/tools.xml
+syys 12, 2013 12:32:11 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Did not find resource at: /WEB-INF/tools.xml
+syys 12, 2013 12:32:11 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Configuring factory with: 
+FactoryConfiguration from 3 sources with 1 properties [deprecationSupportMode -auto-> true; ] and 1 toolboxes: 
+ Toolbox 'request' with 1 properties [scope -auto-> request; ] and 2 tools: 
+  Tool 'label' => org.apache.velocity.tools.generic.ResourceTool with 3 properties [bundles -auto-> testBundle; key -auto-> label; locale -auto-> en_US; ]
+  Tool 'pipe' => Pipe with 1 properties [key -auto-> pipe; ]
+  
+ 
+ Source 0: org.apache.velocity.tools.config.FactoryConfiguration(VelocityView.configure(config,factory))
+ Source 1: org.apache.velocity.tools.config.XmlFactoryConfiguration(ServletUtils.getConfiguration(/WEB-INF/toolbox.xml,ServletContext[,depMode=true]))
+ Source 2: org.apache.velocity.tools.config.FactoryConfiguration(ConfigurationUtils.getAutoLoaded(false))
+
+syys 12, 2013 12:32:11 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Default Content-Type is: text/html
+syys 12, 2013 12:32:11 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] org.apache.velocity.tools.view.servlet.VelocityViewServlet has been deprecated. Use org.apache.velocity.tools.view.servlet.VelocityViewServlet instead.
+syys 12, 2013 12:32:11 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] ResourceManager : found /index.vm with loader org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
+syys 12, 2013 12:32:11 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] ResourceManager : found top.vm with loader org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
+syys 12, 2013 12:32:11 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] ResourceManager : found bottom.vm with loader org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
+syys 12, 2013 12:32:11 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Null reference [template 'bottom.vm', line 16, column 23] : ${webmaster} cannot be resolved.
+syys 12, 2013 12:32:11 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Null reference [template 'bottom.vm', line 16, column 37] : ${webmaster} cannot be resolved.
+syys 12, 2013 12:32:25 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] ResourceManager : found /bottom.vm with loader org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
+syys 12, 2013 12:32:25 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Null reference [template '/bottom.vm', line 16, column 23] : ${webmaster} cannot be resolved.
+syys 12, 2013 12:32:25 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Null reference [template '/bottom.vm', line 16, column 37] : ${webmaster} cannot be resolved.
+syys 12, 2013 1:51:35 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Use of the properties initialization parameter 'properties' has been deprecated by 'org.apache.velocity.properties'
+syys 12, 2013 1:52:16 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Use of the properties initialization parameter 'properties' has been deprecated by 'org.apache.velocity.properties'
+syys 12, 2013 1:52:34 IP. org.apache.catalina.core.StandardWrapperValve invoke
+SEVERE: Allocate exception for servlet LoginManager
+javax.servlet.ServletException: Virhetilanne!<br>/WEB-INF/kurki.cnf (No such file or directory)
+	at kurki.servlet.LoginManager.init(LoginManager.java:55)
+	at javax.servlet.GenericServlet.init(GenericServlet.java:160)
+	at org.apache.velocity.servlet.VelocityServlet.init(VelocityServlet.java:157)
+	at org.apache.catalina.core.StandardWrapper.initServlet(StandardWrapper.java:1280)
+	at org.apache.catalina.core.StandardWrapper.loadServlet(StandardWrapper.java:1193)
+	at org.apache.catalina.core.StandardWrapper.allocate(StandardWrapper.java:865)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:136)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:123)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:502)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:171)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:99)
+	at org.apache.catalina.valves.AccessLogValve.invoke(AccessLogValve.java:953)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:408)
+	at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1023)
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:589)
+	at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:312)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:724)
+
+syys 12, 2013 1:53:19 IP. org.apache.catalina.core.StandardWrapperValve invoke
+SEVERE: Allocate exception for servlet LoginManager
+javax.servlet.ServletException: Virhetilanne!<br>/WEB-INF/kurki.cnf (No such file or directory)
+	at kurki.servlet.LoginManager.init(LoginManager.java:55)
+	at javax.servlet.GenericServlet.init(GenericServlet.java:160)
+	at org.apache.velocity.servlet.VelocityServlet.init(VelocityServlet.java:157)
+	at org.apache.catalina.core.StandardWrapper.initServlet(StandardWrapper.java:1280)
+	at org.apache.catalina.core.StandardWrapper.loadServlet(StandardWrapper.java:1193)
+	at org.apache.catalina.core.StandardWrapper.allocate(StandardWrapper.java:865)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:136)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:123)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:502)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:171)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:99)
+	at org.apache.catalina.valves.AccessLogValve.invoke(AccessLogValve.java:953)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:408)
+	at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1023)
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:589)
+	at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:310)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:724)
+
+syys 12, 2013 1:54:14 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Use of the properties initialization parameter 'properties' has been deprecated by 'org.apache.velocity.properties'
+syys 12, 2013 1:54:52 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Use of the properties initialization parameter 'properties' has been deprecated by 'org.apache.velocity.properties'
+syys 12, 2013 1:55:15 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Use of the properties initialization parameter 'properties' has been deprecated by 'org.apache.velocity.properties'
+syys 12, 2013 1:55:39 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Use of the properties initialization parameter 'properties' has been deprecated by 'org.apache.velocity.properties'
+syys 12, 2013 1:55:39 IP. org.apache.catalina.core.StandardWrapperValve invoke
+SEVERE: Servlet.service() for servlet [checklist] in context with path [/kurki13] threw exception
+java.lang.IllegalMonitorStateException
+	at java.lang.Object.notifyAll(Native Method)
+	at kurki.servlet.ListMaker.doRequest(ListMaker.java:235)
+	at org.apache.velocity.servlet.VelocityServlet.doGet(VelocityServlet.java:318)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:621)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:728)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:305)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:222)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:123)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:502)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:171)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:99)
+	at org.apache.catalina.valves.AccessLogValve.invoke(AccessLogValve.java:953)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:408)
+	at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1023)
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:589)
+	at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:310)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:724)
+
+syys 12, 2013 1:57:12 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Use of the properties initialization parameter 'properties' has been deprecated by 'org.apache.velocity.properties'
+syys 12, 2013 2:04:27 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Use of the properties initialization parameter 'properties' has been deprecated by 'org.apache.velocity.properties'
+syys 12, 2013 2:04:43 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Use of the properties initialization parameter 'properties' has been deprecated by 'org.apache.velocity.properties'
+syys 12, 2013 2:08:30 IP. org.apache.catalina.session.StandardSession writeObject
+WARNING: Cannot serialize session attribute session for session 7C3F8898450167CE1DC04D951AE7074A
+java.io.NotSerializableException: kurki.CourseInfo
+	at java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1181)
+	at java.io.ObjectOutputStream.writeObject(ObjectOutputStream.java:347)
+	at java.util.Hashtable.writeObject(Hashtable.java:988)
+	at sun.reflect.GeneratedMethodAccessor37.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at java.io.ObjectStreamClass.invokeWriteObject(ObjectStreamClass.java:988)
+	at java.io.ObjectOutputStream.writeSerialData(ObjectOutputStream.java:1493)
+	at java.io.ObjectOutputStream.writeOrdinaryObject(ObjectOutputStream.java:1429)
+	at java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1175)
+	at java.io.ObjectOutputStream.defaultWriteFields(ObjectOutputStream.java:1541)
+	at java.io.ObjectOutputStream.writeSerialData(ObjectOutputStream.java:1506)
+	at java.io.ObjectOutputStream.writeOrdinaryObject(ObjectOutputStream.java:1429)
+	at java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1175)
+	at java.io.ObjectOutputStream.writeObject(ObjectOutputStream.java:347)
+	at org.apache.catalina.session.StandardSession.writeObject(StandardSession.java:1671)
+	at org.apache.catalina.session.StandardSession.writeObjectData(StandardSession.java:1077)
+	at org.apache.catalina.session.StandardManager.doUnload(StandardManager.java:432)
+	at org.apache.catalina.session.StandardManager.unload(StandardManager.java:353)
+	at org.apache.catalina.session.StandardManager.stopInternal(StandardManager.java:518)
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:232)
+	at org.apache.catalina.core.StandardContext.stopInternal(StandardContext.java:5622)
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:232)
+	at org.apache.catalina.core.StandardContext.reload(StandardContext.java:3947)
+	at org.apache.catalina.manager.ManagerServlet.reload(ManagerServlet.java:954)
+	at org.apache.catalina.manager.ManagerServlet.doGet(ManagerServlet.java:364)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:621)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:728)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:305)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+	at org.apache.catalina.filters.SetCharacterEncodingFilter.doFilter(SetCharacterEncodingFilter.java:108)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:243)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:222)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:123)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:611)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:171)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:99)
+	at org.apache.catalina.valves.AccessLogValve.invoke(AccessLogValve.java:953)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:408)
+	at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1023)
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:589)
+	at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:312)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:724)
+
+syys 12, 2013 2:09:01 IP. org.apache.catalina.core.ApplicationContext log
+SEVERE: StandardWrapper.Throwable
+java.lang.NoClassDefFoundError: javax/mail/Address
+	at kurki.servlet.Index.init(Index.java:86)
+	at javax.servlet.GenericServlet.init(GenericServlet.java:160)
+	at org.apache.velocity.servlet.VelocityServlet.init(VelocityServlet.java:157)
+	at org.apache.catalina.core.StandardWrapper.initServlet(StandardWrapper.java:1280)
+	at org.apache.catalina.core.StandardWrapper.loadServlet(StandardWrapper.java:1193)
+	at org.apache.catalina.core.StandardWrapper.allocate(StandardWrapper.java:865)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:136)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:123)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:502)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:171)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:99)
+	at org.apache.catalina.valves.AccessLogValve.invoke(AccessLogValve.java:953)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:408)
+	at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1023)
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:589)
+	at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:310)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:724)
+Caused by: java.lang.ClassNotFoundException: javax.mail.Address
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1714)
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1559)
+	... 20 more
+
+syys 12, 2013 2:09:01 IP. org.apache.catalina.core.StandardWrapperValve invoke
+SEVERE: Allocate exception for servlet index
+java.lang.ClassNotFoundException: javax.mail.Address
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1714)
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1559)
+	at kurki.servlet.Index.init(Index.java:86)
+	at javax.servlet.GenericServlet.init(GenericServlet.java:160)
+	at org.apache.velocity.servlet.VelocityServlet.init(VelocityServlet.java:157)
+	at org.apache.catalina.core.StandardWrapper.initServlet(StandardWrapper.java:1280)
+	at org.apache.catalina.core.StandardWrapper.loadServlet(StandardWrapper.java:1193)
+	at org.apache.catalina.core.StandardWrapper.allocate(StandardWrapper.java:865)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:136)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:123)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:502)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:171)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:99)
+	at org.apache.catalina.valves.AccessLogValve.invoke(AccessLogValve.java:953)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:408)
+	at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1023)
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:589)
+	at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:310)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:724)
+
+syys 12, 2013 2:09:22 IP. org.apache.catalina.core.ApplicationContext log
+SEVERE: StandardWrapper.Throwable
+java.lang.NoClassDefFoundError: javax/mail/Address
+	at kurki.servlet.Index.init(Index.java:86)
+	at javax.servlet.GenericServlet.init(GenericServlet.java:160)
+	at org.apache.velocity.servlet.VelocityServlet.init(VelocityServlet.java:157)
+	at org.apache.catalina.core.StandardWrapper.initServlet(StandardWrapper.java:1280)
+	at org.apache.catalina.core.StandardWrapper.loadServlet(StandardWrapper.java:1193)
+	at org.apache.catalina.core.StandardWrapper.allocate(StandardWrapper.java:865)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:136)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:123)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:502)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:171)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:99)
+	at org.apache.catalina.valves.AccessLogValve.invoke(AccessLogValve.java:953)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:408)
+	at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1023)
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:589)
+	at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:310)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:724)
+Caused by: java.lang.ClassNotFoundException: javax.mail.Address
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1714)
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1559)
+	... 20 more
+
+syys 12, 2013 2:09:22 IP. org.apache.catalina.core.StandardWrapperValve invoke
+SEVERE: Allocate exception for servlet index
+java.lang.ClassNotFoundException: javax.mail.Address
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1714)
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1559)
+	at kurki.servlet.Index.init(Index.java:86)
+	at javax.servlet.GenericServlet.init(GenericServlet.java:160)
+	at org.apache.velocity.servlet.VelocityServlet.init(VelocityServlet.java:157)
+	at org.apache.catalina.core.StandardWrapper.initServlet(StandardWrapper.java:1280)
+	at org.apache.catalina.core.StandardWrapper.loadServlet(StandardWrapper.java:1193)
+	at org.apache.catalina.core.StandardWrapper.allocate(StandardWrapper.java:865)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:136)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:123)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:502)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:171)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:99)
+	at org.apache.catalina.valves.AccessLogValve.invoke(AccessLogValve.java:953)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:408)
+	at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1023)
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:589)
+	at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:310)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:724)
+
+syys 12, 2013 2:09:34 IP. org.apache.catalina.core.ApplicationContext log
+SEVERE: StandardWrapper.Throwable
+java.lang.NoClassDefFoundError: javax/mail/Address
+	at kurki.servlet.Index.init(Index.java:86)
+	at javax.servlet.GenericServlet.init(GenericServlet.java:160)
+	at org.apache.velocity.servlet.VelocityServlet.init(VelocityServlet.java:157)
+	at org.apache.catalina.core.StandardWrapper.initServlet(StandardWrapper.java:1280)
+	at org.apache.catalina.core.StandardWrapper.loadServlet(StandardWrapper.java:1193)
+	at org.apache.catalina.core.StandardWrapper.allocate(StandardWrapper.java:865)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:136)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:123)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:502)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:171)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:99)
+	at org.apache.catalina.valves.AccessLogValve.invoke(AccessLogValve.java:953)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:408)
+	at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1023)
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:589)
+	at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:310)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:724)
+Caused by: java.lang.ClassNotFoundException: javax.mail.Address
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1714)
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1559)
+	... 20 more
+
+syys 12, 2013 2:09:34 IP. org.apache.catalina.core.StandardWrapperValve invoke
+SEVERE: Allocate exception for servlet index
+java.lang.ClassNotFoundException: javax.mail.Address
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1714)
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1559)
+	at kurki.servlet.Index.init(Index.java:86)
+	at javax.servlet.GenericServlet.init(GenericServlet.java:160)
+	at org.apache.velocity.servlet.VelocityServlet.init(VelocityServlet.java:157)
+	at org.apache.catalina.core.StandardWrapper.initServlet(StandardWrapper.java:1280)
+	at org.apache.catalina.core.StandardWrapper.loadServlet(StandardWrapper.java:1193)
+	at org.apache.catalina.core.StandardWrapper.allocate(StandardWrapper.java:865)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:136)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:123)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:502)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:171)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:99)
+	at org.apache.catalina.valves.AccessLogValve.invoke(AccessLogValve.java:953)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:408)
+	at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1023)
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:589)
+	at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:310)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:724)
+
+syys 12, 2013 2:09:53 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Use of the properties initialization parameter 'properties' has been deprecated by 'org.apache.velocity.properties'
+syys 12, 2013 2:10:14 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Use of the properties initialization parameter 'properties' has been deprecated by 'org.apache.velocity.properties'
+syys 12, 2013 2:10:45 IP. org.apache.catalina.session.StandardSession writeObject
+WARNING: Cannot serialize session attribute session for session 4E704B22EE92C48A1111E400B5BB1CDC
+java.io.NotSerializableException: kurki.CourseInfo
+	at java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1181)
+	at java.io.ObjectOutputStream.writeObject(ObjectOutputStream.java:347)
+	at java.util.Hashtable.writeObject(Hashtable.java:988)
+	at sun.reflect.GeneratedMethodAccessor37.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at java.io.ObjectStreamClass.invokeWriteObject(ObjectStreamClass.java:988)
+	at java.io.ObjectOutputStream.writeSerialData(ObjectOutputStream.java:1493)
+	at java.io.ObjectOutputStream.writeOrdinaryObject(ObjectOutputStream.java:1429)
+	at java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1175)
+	at java.io.ObjectOutputStream.defaultWriteFields(ObjectOutputStream.java:1541)
+	at java.io.ObjectOutputStream.writeSerialData(ObjectOutputStream.java:1506)
+	at java.io.ObjectOutputStream.writeOrdinaryObject(ObjectOutputStream.java:1429)
+	at java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1175)
+	at java.io.ObjectOutputStream.writeObject(ObjectOutputStream.java:347)
+	at org.apache.catalina.session.StandardSession.writeObject(StandardSession.java:1671)
+	at org.apache.catalina.session.StandardSession.writeObjectData(StandardSession.java:1077)
+	at org.apache.catalina.session.StandardManager.doUnload(StandardManager.java:432)
+	at org.apache.catalina.session.StandardManager.unload(StandardManager.java:353)
+	at org.apache.catalina.session.StandardManager.stopInternal(StandardManager.java:518)
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:232)
+	at org.apache.catalina.core.StandardContext.stopInternal(StandardContext.java:5622)
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:232)
+	at org.apache.catalina.core.StandardContext.reload(StandardContext.java:3947)
+	at org.apache.catalina.manager.ManagerServlet.reload(ManagerServlet.java:954)
+	at org.apache.catalina.manager.ManagerServlet.doGet(ManagerServlet.java:364)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:621)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:728)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:305)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+	at org.apache.catalina.filters.SetCharacterEncodingFilter.doFilter(SetCharacterEncodingFilter.java:108)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:243)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:222)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:123)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:611)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:171)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:99)
+	at org.apache.catalina.valves.AccessLogValve.invoke(AccessLogValve.java:953)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:408)
+	at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1023)
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:589)
+	at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:312)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:724)
+
+syys 12, 2013 2:11:11 IP. org.apache.catalina.core.ApplicationContext log
+SEVERE: StandardWrapper.Throwable
+java.lang.NoClassDefFoundError: javax/mail/Address
+	at kurki.servlet.Index.init(Index.java:86)
+	at javax.servlet.GenericServlet.init(GenericServlet.java:160)
+	at org.apache.velocity.servlet.VelocityServlet.init(VelocityServlet.java:157)
+	at org.apache.catalina.core.StandardWrapper.initServlet(StandardWrapper.java:1280)
+	at org.apache.catalina.core.StandardWrapper.loadServlet(StandardWrapper.java:1193)
+	at org.apache.catalina.core.StandardWrapper.allocate(StandardWrapper.java:865)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:136)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:123)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:502)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:171)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:99)
+	at org.apache.catalina.valves.AccessLogValve.invoke(AccessLogValve.java:953)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:408)
+	at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1023)
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:589)
+	at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:310)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:724)
+Caused by: java.lang.ClassNotFoundException: javax.mail.Address
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1714)
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1559)
+	... 20 more
+
+syys 12, 2013 2:11:11 IP. org.apache.catalina.core.StandardWrapperValve invoke
+SEVERE: Allocate exception for servlet index
+java.lang.ClassNotFoundException: javax.mail.Address
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1714)
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1559)
+	at kurki.servlet.Index.init(Index.java:86)
+	at javax.servlet.GenericServlet.init(GenericServlet.java:160)
+	at org.apache.velocity.servlet.VelocityServlet.init(VelocityServlet.java:157)
+	at org.apache.catalina.core.StandardWrapper.initServlet(StandardWrapper.java:1280)
+	at org.apache.catalina.core.StandardWrapper.loadServlet(StandardWrapper.java:1193)
+	at org.apache.catalina.core.StandardWrapper.allocate(StandardWrapper.java:865)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:136)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:123)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:502)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:171)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:99)
+	at org.apache.catalina.valves.AccessLogValve.invoke(AccessLogValve.java:953)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:408)
+	at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1023)
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:589)
+	at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:310)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:724)
+
+syys 12, 2013 2:11:29 IP. org.apache.catalina.core.ApplicationContext log
+SEVERE: StandardWrapper.Throwable
+java.lang.NoClassDefFoundError: javax/mail/Address
+	at kurki.servlet.Index.init(Index.java:86)
+	at javax.servlet.GenericServlet.init(GenericServlet.java:160)
+	at org.apache.velocity.servlet.VelocityServlet.init(VelocityServlet.java:157)
+	at org.apache.catalina.core.StandardWrapper.initServlet(StandardWrapper.java:1280)
+	at org.apache.catalina.core.StandardWrapper.loadServlet(StandardWrapper.java:1193)
+	at org.apache.catalina.core.StandardWrapper.allocate(StandardWrapper.java:865)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:136)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:123)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:502)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:171)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:99)
+	at org.apache.catalina.valves.AccessLogValve.invoke(AccessLogValve.java:953)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:408)
+	at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1023)
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:589)
+	at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:310)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:724)
+Caused by: java.lang.ClassNotFoundException: javax.mail.Address
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1714)
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1559)
+	... 20 more
+
+syys 12, 2013 2:11:29 IP. org.apache.catalina.core.StandardWrapperValve invoke
+SEVERE: Allocate exception for servlet index
+java.lang.ClassNotFoundException: javax.mail.Address
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1714)
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1559)
+	at kurki.servlet.Index.init(Index.java:86)
+	at javax.servlet.GenericServlet.init(GenericServlet.java:160)
+	at org.apache.velocity.servlet.VelocityServlet.init(VelocityServlet.java:157)
+	at org.apache.catalina.core.StandardWrapper.initServlet(StandardWrapper.java:1280)
+	at org.apache.catalina.core.StandardWrapper.loadServlet(StandardWrapper.java:1193)
+	at org.apache.catalina.core.StandardWrapper.allocate(StandardWrapper.java:865)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:136)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:123)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:502)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:171)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:99)
+	at org.apache.catalina.valves.AccessLogValve.invoke(AccessLogValve.java:953)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:408)
+	at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1023)
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:589)
+	at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:310)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:724)
+
+syys 12, 2013 2:11:30 IP. org.apache.catalina.core.ApplicationContext log
+SEVERE: StandardWrapper.Throwable
+java.lang.NoClassDefFoundError: javax/mail/Address
+	at kurki.servlet.Index.init(Index.java:86)
+	at javax.servlet.GenericServlet.init(GenericServlet.java:160)
+	at org.apache.velocity.servlet.VelocityServlet.init(VelocityServlet.java:157)
+	at org.apache.catalina.core.StandardWrapper.initServlet(StandardWrapper.java:1280)
+	at org.apache.catalina.core.StandardWrapper.loadServlet(StandardWrapper.java:1193)
+	at org.apache.catalina.core.StandardWrapper.allocate(StandardWrapper.java:865)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:136)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:123)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:502)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:171)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:99)
+	at org.apache.catalina.valves.AccessLogValve.invoke(AccessLogValve.java:953)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:408)
+	at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1023)
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:589)
+	at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:310)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:724)
+Caused by: java.lang.ClassNotFoundException: javax.mail.Address
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1714)
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1559)
+	... 20 more
+
+syys 12, 2013 2:11:30 IP. org.apache.catalina.core.StandardWrapperValve invoke
+SEVERE: Allocate exception for servlet index
+java.lang.ClassNotFoundException: javax.mail.Address
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1714)
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1559)
+	at kurki.servlet.Index.init(Index.java:86)
+	at javax.servlet.GenericServlet.init(GenericServlet.java:160)
+	at org.apache.velocity.servlet.VelocityServlet.init(VelocityServlet.java:157)
+	at org.apache.catalina.core.StandardWrapper.initServlet(StandardWrapper.java:1280)
+	at org.apache.catalina.core.StandardWrapper.loadServlet(StandardWrapper.java:1193)
+	at org.apache.catalina.core.StandardWrapper.allocate(StandardWrapper.java:865)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:136)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:123)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:502)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:171)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:99)
+	at org.apache.catalina.valves.AccessLogValve.invoke(AccessLogValve.java:953)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:408)
+	at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1023)
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:589)
+	at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:310)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:724)
+
+syys 12, 2013 2:14:18 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Use of the properties initialization parameter 'properties' has been deprecated by 'org.apache.velocity.properties'
+syys 12, 2013 2:16:12 IP. org.apache.catalina.session.StandardSession writeObject
+WARNING: Cannot serialize session attribute session for session EE3C1C964BAFC80DCC5C9F1D475F7114
+java.io.NotSerializableException: kurki.CourseInfo
+	at java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1181)
+	at java.io.ObjectOutputStream.writeObject(ObjectOutputStream.java:347)
+	at java.util.Hashtable.writeObject(Hashtable.java:988)
+	at sun.reflect.GeneratedMethodAccessor37.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at java.io.ObjectStreamClass.invokeWriteObject(ObjectStreamClass.java:988)
+	at java.io.ObjectOutputStream.writeSerialData(ObjectOutputStream.java:1493)
+	at java.io.ObjectOutputStream.writeOrdinaryObject(ObjectOutputStream.java:1429)
+	at java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1175)
+	at java.io.ObjectOutputStream.defaultWriteFields(ObjectOutputStream.java:1541)
+	at java.io.ObjectOutputStream.writeSerialData(ObjectOutputStream.java:1506)
+	at java.io.ObjectOutputStream.writeOrdinaryObject(ObjectOutputStream.java:1429)
+	at java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1175)
+	at java.io.ObjectOutputStream.writeObject(ObjectOutputStream.java:347)
+	at org.apache.catalina.session.StandardSession.writeObject(StandardSession.java:1671)
+	at org.apache.catalina.session.StandardSession.writeObjectData(StandardSession.java:1077)
+	at org.apache.catalina.session.StandardManager.doUnload(StandardManager.java:432)
+	at org.apache.catalina.session.StandardManager.unload(StandardManager.java:353)
+	at org.apache.catalina.session.StandardManager.stopInternal(StandardManager.java:518)
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:232)
+	at org.apache.catalina.core.StandardContext.stopInternal(StandardContext.java:5622)
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:232)
+	at org.apache.catalina.manager.ManagerServlet.undeploy(ManagerServlet.java:1359)
+	at org.apache.catalina.manager.ManagerServlet.doGet(ManagerServlet.java:380)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:621)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:728)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:305)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+	at org.apache.catalina.filters.SetCharacterEncodingFilter.doFilter(SetCharacterEncodingFilter.java:108)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:243)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:222)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:123)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:611)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:171)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:99)
+	at org.apache.catalina.valves.AccessLogValve.invoke(AccessLogValve.java:953)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:408)
+	at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1023)
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:589)
+	at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:312)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:724)
+
+syys 12, 2013 2:16:14 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Use of the properties initialization parameter 'properties' has been deprecated by 'org.apache.velocity.properties'
+syys 12, 2013 2:17:46 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Use of the properties initialization parameter 'properties' has been deprecated by 'org.apache.velocity.properties'
+syys 12, 2013 2:26:50 IP. org.apache.catalina.session.StandardSession writeObject
+WARNING: Cannot serialize session attribute session for session 3E097D296720581C4636ABD0DD6BCAE6
+java.io.NotSerializableException: kurki.CourseInfo
+	at java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1181)
+	at java.io.ObjectOutputStream.writeObject(ObjectOutputStream.java:347)
+	at java.util.Hashtable.writeObject(Hashtable.java:988)
+	at sun.reflect.GeneratedMethodAccessor37.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at java.io.ObjectStreamClass.invokeWriteObject(ObjectStreamClass.java:988)
+	at java.io.ObjectOutputStream.writeSerialData(ObjectOutputStream.java:1493)
+	at java.io.ObjectOutputStream.writeOrdinaryObject(ObjectOutputStream.java:1429)
+	at java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1175)
+	at java.io.ObjectOutputStream.defaultWriteFields(ObjectOutputStream.java:1541)
+	at java.io.ObjectOutputStream.writeSerialData(ObjectOutputStream.java:1506)
+	at java.io.ObjectOutputStream.writeOrdinaryObject(ObjectOutputStream.java:1429)
+	at java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1175)
+	at java.io.ObjectOutputStream.writeObject(ObjectOutputStream.java:347)
+	at org.apache.catalina.session.StandardSession.writeObject(StandardSession.java:1671)
+	at org.apache.catalina.session.StandardSession.writeObjectData(StandardSession.java:1077)
+	at org.apache.catalina.session.StandardManager.doUnload(StandardManager.java:432)
+	at org.apache.catalina.session.StandardManager.unload(StandardManager.java:353)
+	at org.apache.catalina.session.StandardManager.stopInternal(StandardManager.java:518)
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:232)
+	at org.apache.catalina.core.StandardContext.stopInternal(StandardContext.java:5622)
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:232)
+	at org.apache.catalina.manager.ManagerServlet.stop(ManagerServlet.java:1306)
+	at org.apache.catalina.manager.ManagerServlet.doGet(ManagerServlet.java:378)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:621)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:728)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:305)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+	at org.apache.catalina.filters.SetCharacterEncodingFilter.doFilter(SetCharacterEncodingFilter.java:108)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:243)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:222)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:123)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:611)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:171)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:99)
+	at org.apache.catalina.valves.AccessLogValve.invoke(AccessLogValve.java:953)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:408)
+	at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1023)
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:589)
+	at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:312)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:724)
+
+syys 12, 2013 2:27:18 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Use of the properties initialization parameter 'properties' has been deprecated by 'org.apache.velocity.properties'
+syys 12, 2013 2:27:41 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Use of the properties initialization parameter 'properties' has been deprecated by 'org.apache.velocity.properties'
+syys 12, 2013 2:28:41 IP. org.apache.catalina.session.StandardSession writeObject
+WARNING: Cannot serialize session attribute session for session 156CDA090668BB079B4C199C465ACBE7
+java.io.NotSerializableException: kurki.CourseInfo
+	at java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1181)
+	at java.io.ObjectOutputStream.writeObject(ObjectOutputStream.java:347)
+	at java.util.Hashtable.writeObject(Hashtable.java:988)
+	at sun.reflect.GeneratedMethodAccessor37.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at java.io.ObjectStreamClass.invokeWriteObject(ObjectStreamClass.java:988)
+	at java.io.ObjectOutputStream.writeSerialData(ObjectOutputStream.java:1493)
+	at java.io.ObjectOutputStream.writeOrdinaryObject(ObjectOutputStream.java:1429)
+	at java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1175)
+	at java.io.ObjectOutputStream.defaultWriteFields(ObjectOutputStream.java:1541)
+	at java.io.ObjectOutputStream.writeSerialData(ObjectOutputStream.java:1506)
+	at java.io.ObjectOutputStream.writeOrdinaryObject(ObjectOutputStream.java:1429)
+	at java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1175)
+	at java.io.ObjectOutputStream.writeObject(ObjectOutputStream.java:347)
+	at org.apache.catalina.session.StandardSession.writeObject(StandardSession.java:1671)
+	at org.apache.catalina.session.StandardSession.writeObjectData(StandardSession.java:1077)
+	at org.apache.catalina.session.StandardManager.doUnload(StandardManager.java:432)
+	at org.apache.catalina.session.StandardManager.unload(StandardManager.java:353)
+	at org.apache.catalina.session.StandardManager.stopInternal(StandardManager.java:518)
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:232)
+	at org.apache.catalina.core.StandardContext.stopInternal(StandardContext.java:5622)
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:232)
+	at org.apache.catalina.manager.ManagerServlet.stop(ManagerServlet.java:1306)
+	at org.apache.catalina.manager.ManagerServlet.doGet(ManagerServlet.java:378)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:621)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:728)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:305)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+	at org.apache.catalina.filters.SetCharacterEncodingFilter.doFilter(SetCharacterEncodingFilter.java:108)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:243)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:222)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:123)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:611)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:171)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:99)
+	at org.apache.catalina.valves.AccessLogValve.invoke(AccessLogValve.java:953)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:408)
+	at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1023)
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:589)
+	at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:312)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:724)
+
+syys 12, 2013 2:29:34 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Use of the properties initialization parameter 'properties' has been deprecated by 'org.apache.velocity.properties'
+syys 12, 2013 2:39:57 IP. org.apache.catalina.session.StandardSession writeObject
+WARNING: Cannot serialize session attribute session for session A75E16F1A376EE38D9F368AA6DB5AED7
+java.io.NotSerializableException: kurki.CourseInfo
+	at java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1181)
+	at java.io.ObjectOutputStream.writeObject(ObjectOutputStream.java:347)
+	at java.util.Hashtable.writeObject(Hashtable.java:988)
+	at sun.reflect.GeneratedMethodAccessor37.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at java.io.ObjectStreamClass.invokeWriteObject(ObjectStreamClass.java:988)
+	at java.io.ObjectOutputStream.writeSerialData(ObjectOutputStream.java:1493)
+	at java.io.ObjectOutputStream.writeOrdinaryObject(ObjectOutputStream.java:1429)
+	at java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1175)
+	at java.io.ObjectOutputStream.defaultWriteFields(ObjectOutputStream.java:1541)
+	at java.io.ObjectOutputStream.writeSerialData(ObjectOutputStream.java:1506)
+	at java.io.ObjectOutputStream.writeOrdinaryObject(ObjectOutputStream.java:1429)
+	at java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1175)
+	at java.io.ObjectOutputStream.writeObject(ObjectOutputStream.java:347)
+	at org.apache.catalina.session.StandardSession.writeObject(StandardSession.java:1671)
+	at org.apache.catalina.session.StandardSession.writeObjectData(StandardSession.java:1077)
+	at org.apache.catalina.session.StandardManager.doUnload(StandardManager.java:432)
+	at org.apache.catalina.session.StandardManager.unload(StandardManager.java:353)
+	at org.apache.catalina.session.StandardManager.stopInternal(StandardManager.java:518)
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:232)
+	at org.apache.catalina.core.StandardContext.stopInternal(StandardContext.java:5622)
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:232)
+	at org.apache.catalina.manager.ManagerServlet.stop(ManagerServlet.java:1306)
+	at org.apache.catalina.manager.ManagerServlet.doGet(ManagerServlet.java:378)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:621)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:728)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:305)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+	at org.apache.catalina.filters.SetCharacterEncodingFilter.doFilter(SetCharacterEncodingFilter.java:108)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:243)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:222)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:123)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:611)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:171)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:99)
+	at org.apache.catalina.valves.AccessLogValve.invoke(AccessLogValve.java:953)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:408)
+	at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1023)
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:589)
+	at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:312)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:724)
+
+syys 12, 2013 2:40:23 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] Searching for properties at: /org/apache/velocity/tools/view/velocity.properties
+syys 12, 2013 2:40:23 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] Searching for properties at: /WEB-INF/velocity.properties
+syys 12, 2013 2:40:23 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Configuring Velocity with properties at: /WEB-INF/velocity.properties
+syys 12, 2013 2:40:23 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] Searching for properties at: /WEB-INF/velocity.properties
+syys 12, 2013 2:40:23 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Configuring Velocity with properties at: /WEB-INF/velocity.properties
+syys 12, 2013 2:40:23 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Initializing Velocity, Calling init()...
+syys 12, 2013 2:40:23 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] *******************************************************************
+syys 12, 2013 2:40:23 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Starting Apache Velocity v1.7 (compiled: 2010-11-19 12:14:37)
+syys 12, 2013 2:40:23 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] RuntimeInstance initializing.
+syys 12, 2013 2:40:23 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Default Properties File: org/apache/velocity/runtime/defaults/velocity.properties
+syys 12, 2013 2:40:23 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Trying to use logger class org.apache.velocity.runtime.log.ServletLogChute
+syys 12, 2013 2:40:23 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Using logger class org.apache.velocity.runtime.log.ServletLogChute
+syys 12, 2013 2:40:23 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] Default ResourceManager initializing. (class org.apache.velocity.runtime.resource.ResourceManagerImpl)
+syys 12, 2013 2:40:23 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] ResourceLoader instantiated: org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
+syys 12, 2013 2:40:23 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] ClasspathResourceLoader : initialization complete.
+syys 12, 2013 2:40:23 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] ResourceCache: initialized (class org.apache.velocity.runtime.resource.ResourceCacheImpl) with class java.util.Collections$SynchronizedMap cache map.
+syys 12, 2013 2:40:23 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] Default ResourceManager initialization complete.
+syys 12, 2013 2:40:23 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Loaded System Directive: org.apache.velocity.runtime.directive.Stop
+syys 12, 2013 2:40:23 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Loaded System Directive: org.apache.velocity.runtime.directive.Define
+syys 12, 2013 2:40:23 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Loaded System Directive: org.apache.velocity.runtime.directive.Break
+syys 12, 2013 2:40:23 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Loaded System Directive: org.apache.velocity.runtime.directive.Evaluate
+syys 12, 2013 2:40:23 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Loaded System Directive: org.apache.velocity.runtime.directive.Literal
+syys 12, 2013 2:40:23 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Loaded System Directive: org.apache.velocity.runtime.directive.Macro
+syys 12, 2013 2:40:23 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Loaded System Directive: org.apache.velocity.runtime.directive.Parse
+syys 12, 2013 2:40:23 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Loaded System Directive: org.apache.velocity.runtime.directive.Include
+syys 12, 2013 2:40:23 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Loaded System Directive: org.apache.velocity.runtime.directive.Foreach
+syys 12, 2013 2:40:23 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Created '20' parsers.
+syys 12, 2013 2:40:23 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] Velocimacro : initialization starting.
+syys 12, 2013 2:40:23 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Velocimacro : "velocimacro.library" is not set.  Trying default library: VM_global_library.vm
+syys 12, 2013 2:40:23 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Could not load resource 'VM_global_library.vm' from ResourceLoader org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader: ClasspathResourceLoader Error: cannot find resource VM_global_library.vm
+syys 12, 2013 2:40:23 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Velocimacro : Default library not found.
+syys 12, 2013 2:40:23 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Velocimacro : allowInline = true : VMs can be defined inline in templates
+syys 12, 2013 2:40:23 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Velocimacro : allowInlineToOverride = false : VMs defined inline may NOT replace previous VM definitions
+syys 12, 2013 2:40:23 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Velocimacro : allowInlineLocal = false : VMs defined inline will be global in scope if allowed.
+syys 12, 2013 2:40:23 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Velocimacro : autoload off : VM system will not automatically reload global library macros
+syys 12, 2013 2:40:23 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] Velocimacro : Velocimacro : initialization complete.
+syys 12, 2013 2:40:23 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] RuntimeInstance successfully initialized.
+syys 12, 2013 2:40:23 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] Searching for configuration at: /WEB-INF/toolbox.xml
+syys 12, 2013 2:40:23 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Loaded deprecated configuration from: /WEB-INF/toolbox.xml
+syys 12, 2013 2:40:23 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity   [warn] Please upgrade to new "/WEB-INF/tools.xml" format and conventional location. Support for "/WEB-INF/toolbox.xml" format and conventional file name will be removed in a future version.
+syys 12, 2013 2:40:23 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Default tools configuration has been suppressed to avoid conflicts with older application's context and toolbox definition.
+syys 12, 2013 2:40:23 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] Searching for configuration at: /WEB-INF/tools.xml
+syys 12, 2013 2:40:23 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Did not find resource at: /WEB-INF/tools.xml
+syys 12, 2013 2:40:23 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Configuring factory with: 
+FactoryConfiguration from 3 sources with 1 properties [deprecationSupportMode -auto-> true; ] and 1 toolboxes: 
+ Toolbox 'request' with 1 properties [scope -auto-> request; ] and 2 tools: 
+  Tool 'piippu' => Pipe with 1 properties [key -auto-> piippu; ]
+  Tool 'testiBundle' => org.apache.velocity.tools.generic.ResourceTool with 3 properties [bundles -auto-> testBundle; key -auto-> testiBundle; locale -auto-> en_US; ]
+  
+ 
+ Source 0: org.apache.velocity.tools.config.FactoryConfiguration(VelocityView.configure(config,factory))
+ Source 1: org.apache.velocity.tools.config.XmlFactoryConfiguration(ServletUtils.getConfiguration(/WEB-INF/toolbox.xml,ServletContext[,depMode=true]))
+ Source 2: org.apache.velocity.tools.config.FactoryConfiguration(ConfigurationUtils.getAutoLoaded(false))
+
+syys 12, 2013 2:40:23 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Default Content-Type is: text/html
+syys 12, 2013 2:40:23 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] org.apache.velocity.tools.view.servlet.VelocityViewServlet has been deprecated. Use org.apache.velocity.tools.view.servlet.VelocityViewServlet instead.
+syys 12, 2013 2:40:23 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] ResourceManager : found /index.vm with loader org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
+syys 12, 2013 2:40:23 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] ResourceManager : found top.vm with loader org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
+syys 12, 2013 2:40:23 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] ResourceManager : found bottom.vm with loader org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
+syys 12, 2013 2:40:23 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Null reference [template 'bottom.vm', line 16, column 23] : ${webmaster} cannot be resolved.
+syys 12, 2013 2:40:23 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Null reference [template 'bottom.vm', line 16, column 37] : ${webmaster} cannot be resolved.
+syys 12, 2013 2:40:28 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] ResourceManager : found /hello.vm with loader org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
+syys 12, 2013 2:40:28 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Null reference [template '/hello.vm', line 3, column 7] : $name cannot be resolved.
+syys 12, 2013 2:40:28 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Null reference [template '/hello.vm', line 4, column 23] : $piippu.getName cannot be resolved.
+syys 12, 2013 2:40:28 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Null reference [template '/hello.vm', line 7, column 1] : $pipe.getName() cannot be resolved.
+syys 12, 2013 2:40:28 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Null reference [template '/hello.vm', line 9, column 1] : $label.getString("hello") cannot be resolved.
+syys 12, 2013 2:41:07 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Use of the properties initialization parameter 'properties' has been deprecated by 'org.apache.velocity.properties'
+syys 12, 2013 2:41:33 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] Searching for properties at: /org/apache/velocity/tools/view/velocity.properties
+syys 12, 2013 2:41:33 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] Searching for properties at: /WEB-INF/velocity.properties
+syys 12, 2013 2:41:33 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Configuring Velocity with properties at: /WEB-INF/velocity.properties
+syys 12, 2013 2:41:33 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] Searching for properties at: /WEB-INF/velocity.properties
+syys 12, 2013 2:41:33 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Configuring Velocity with properties at: /WEB-INF/velocity.properties
+syys 12, 2013 2:41:33 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Initializing Velocity, Calling init()...
+syys 12, 2013 2:41:33 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] *******************************************************************
+syys 12, 2013 2:41:33 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Starting Apache Velocity v1.7 (compiled: 2010-11-19 12:14:37)
+syys 12, 2013 2:41:33 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] RuntimeInstance initializing.
+syys 12, 2013 2:41:33 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Default Properties File: org/apache/velocity/runtime/defaults/velocity.properties
+syys 12, 2013 2:41:33 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Trying to use logger class org.apache.velocity.runtime.log.ServletLogChute
+syys 12, 2013 2:41:33 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Using logger class org.apache.velocity.runtime.log.ServletLogChute
+syys 12, 2013 2:41:33 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] Default ResourceManager initializing. (class org.apache.velocity.runtime.resource.ResourceManagerImpl)
+syys 12, 2013 2:41:33 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] ResourceLoader instantiated: org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
+syys 12, 2013 2:41:33 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] ClasspathResourceLoader : initialization complete.
+syys 12, 2013 2:41:33 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] ResourceCache: initialized (class org.apache.velocity.runtime.resource.ResourceCacheImpl) with class java.util.Collections$SynchronizedMap cache map.
+syys 12, 2013 2:41:33 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] Default ResourceManager initialization complete.
+syys 12, 2013 2:41:33 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Loaded System Directive: org.apache.velocity.runtime.directive.Stop
+syys 12, 2013 2:41:33 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Loaded System Directive: org.apache.velocity.runtime.directive.Define
+syys 12, 2013 2:41:33 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Loaded System Directive: org.apache.velocity.runtime.directive.Break
+syys 12, 2013 2:41:33 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Loaded System Directive: org.apache.velocity.runtime.directive.Evaluate
+syys 12, 2013 2:41:33 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Loaded System Directive: org.apache.velocity.runtime.directive.Literal
+syys 12, 2013 2:41:33 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Loaded System Directive: org.apache.velocity.runtime.directive.Macro
+syys 12, 2013 2:41:33 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Loaded System Directive: org.apache.velocity.runtime.directive.Parse
+syys 12, 2013 2:41:33 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Loaded System Directive: org.apache.velocity.runtime.directive.Include
+syys 12, 2013 2:41:33 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Loaded System Directive: org.apache.velocity.runtime.directive.Foreach
+syys 12, 2013 2:41:33 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Created '20' parsers.
+syys 12, 2013 2:41:33 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] Velocimacro : initialization starting.
+syys 12, 2013 2:41:33 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Velocimacro : "velocimacro.library" is not set.  Trying default library: VM_global_library.vm
+syys 12, 2013 2:41:33 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Could not load resource 'VM_global_library.vm' from ResourceLoader org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader: ClasspathResourceLoader Error: cannot find resource VM_global_library.vm
+syys 12, 2013 2:41:33 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Velocimacro : Default library not found.
+syys 12, 2013 2:41:33 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Velocimacro : allowInline = true : VMs can be defined inline in templates
+syys 12, 2013 2:41:33 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Velocimacro : allowInlineToOverride = false : VMs defined inline may NOT replace previous VM definitions
+syys 12, 2013 2:41:33 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Velocimacro : allowInlineLocal = false : VMs defined inline will be global in scope if allowed.
+syys 12, 2013 2:41:33 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Velocimacro : autoload off : VM system will not automatically reload global library macros
+syys 12, 2013 2:41:33 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] Velocimacro : Velocimacro : initialization complete.
+syys 12, 2013 2:41:33 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] RuntimeInstance successfully initialized.
+syys 12, 2013 2:41:33 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] Searching for configuration at: /WEB-INF/toolbox.xml
+syys 12, 2013 2:41:33 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Loaded deprecated configuration from: /WEB-INF/toolbox.xml
+syys 12, 2013 2:41:33 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity   [warn] Please upgrade to new "/WEB-INF/tools.xml" format and conventional location. Support for "/WEB-INF/toolbox.xml" format and conventional file name will be removed in a future version.
+syys 12, 2013 2:41:33 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Default tools configuration has been suppressed to avoid conflicts with older application's context and toolbox definition.
+syys 12, 2013 2:41:33 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] Searching for configuration at: /WEB-INF/tools.xml
+syys 12, 2013 2:41:33 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Did not find resource at: /WEB-INF/tools.xml
+syys 12, 2013 2:41:33 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Configuring factory with: 
+FactoryConfiguration from 3 sources with 1 properties [deprecationSupportMode -auto-> true; ] and 1 toolboxes: 
+ Toolbox 'request' with 1 properties [scope -auto-> request; ] and 2 tools: 
+  Tool 'piippu' => Pipe with 1 properties [key -auto-> piippu; ]
+  Tool 'testiBundle' => org.apache.velocity.tools.generic.ResourceTool with 3 properties [bundles -auto-> testBundle; key -auto-> testiBundle; locale -auto-> en_US; ]
+  
+ 
+ Source 0: org.apache.velocity.tools.config.FactoryConfiguration(VelocityView.configure(config,factory))
+ Source 1: org.apache.velocity.tools.config.XmlFactoryConfiguration(ServletUtils.getConfiguration(/WEB-INF/toolbox.xml,ServletContext[,depMode=true]))
+ Source 2: org.apache.velocity.tools.config.FactoryConfiguration(ConfigurationUtils.getAutoLoaded(false))
+
+syys 12, 2013 2:41:33 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Default Content-Type is: text/html
+syys 12, 2013 2:41:33 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] org.apache.velocity.tools.view.servlet.VelocityViewServlet has been deprecated. Use org.apache.velocity.tools.view.servlet.VelocityViewServlet instead.
+syys 12, 2013 2:41:33 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [error] ResourceManager : unable to find resource '/kurki.js' in any resource loader.
+syys 12, 2013 2:41:33 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Resource not found for path '/kurki.js' - org.apache.velocity.exception.ResourceNotFoundException: Unable to find resource '/kurki.js'
+syys 12, 2013 2:41:35 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [error] ResourceManager : unable to find resource '/kurki.js' in any resource loader.
+syys 12, 2013 2:41:35 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Resource not found for path '/kurki.js' - org.apache.velocity.exception.ResourceNotFoundException: Unable to find resource '/kurki.js'
+syys 12, 2013 2:42:04 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [error] ResourceManager : unable to find resource '/kurki.js' in any resource loader.
+syys 12, 2013 2:42:04 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Resource not found for path '/kurki.js' - org.apache.velocity.exception.ResourceNotFoundException: Unable to find resource '/kurki.js'
+syys 12, 2013 2:42:04 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [error] ResourceManager : unable to find resource '/kurki.js' in any resource loader.
+syys 12, 2013 2:42:04 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Resource not found for path '/kurki.js' - org.apache.velocity.exception.ResourceNotFoundException: Unable to find resource '/kurki.js'
+syys 12, 2013 2:42:20 IP. org.apache.catalina.session.StandardSession writeObject
+WARNING: Cannot serialize session attribute session for session CB85401FCDDD990DE3E588F33E5BD78F
+java.io.NotSerializableException: kurki.CourseInfo
+	at java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1181)
+	at java.io.ObjectOutputStream.writeObject(ObjectOutputStream.java:347)
+	at java.util.Hashtable.writeObject(Hashtable.java:988)
+	at sun.reflect.GeneratedMethodAccessor37.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at java.io.ObjectStreamClass.invokeWriteObject(ObjectStreamClass.java:988)
+	at java.io.ObjectOutputStream.writeSerialData(ObjectOutputStream.java:1493)
+	at java.io.ObjectOutputStream.writeOrdinaryObject(ObjectOutputStream.java:1429)
+	at java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1175)
+	at java.io.ObjectOutputStream.defaultWriteFields(ObjectOutputStream.java:1541)
+	at java.io.ObjectOutputStream.writeSerialData(ObjectOutputStream.java:1506)
+	at java.io.ObjectOutputStream.writeOrdinaryObject(ObjectOutputStream.java:1429)
+	at java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1175)
+	at java.io.ObjectOutputStream.writeObject(ObjectOutputStream.java:347)
+	at org.apache.catalina.session.StandardSession.writeObject(StandardSession.java:1671)
+	at org.apache.catalina.session.StandardSession.writeObjectData(StandardSession.java:1077)
+	at org.apache.catalina.session.StandardManager.doUnload(StandardManager.java:432)
+	at org.apache.catalina.session.StandardManager.unload(StandardManager.java:353)
+	at org.apache.catalina.session.StandardManager.stopInternal(StandardManager.java:518)
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:232)
+	at org.apache.catalina.core.StandardContext.stopInternal(StandardContext.java:5622)
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:232)
+	at org.apache.catalina.manager.ManagerServlet.undeploy(ManagerServlet.java:1359)
+	at org.apache.catalina.manager.ManagerServlet.doGet(ManagerServlet.java:380)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:621)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:728)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:305)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+	at org.apache.catalina.filters.SetCharacterEncodingFilter.doFilter(SetCharacterEncodingFilter.java:108)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:243)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:222)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:123)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:611)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:171)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:99)
+	at org.apache.catalina.valves.AccessLogValve.invoke(AccessLogValve.java:953)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:408)
+	at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1023)
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:589)
+	at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:312)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:724)
+
+syys 12, 2013 2:42:23 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Use of the properties initialization parameter 'properties' has been deprecated by 'org.apache.velocity.properties'
+syys 12, 2013 2:42:24 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] Searching for properties at: /org/apache/velocity/tools/view/velocity.properties
+syys 12, 2013 2:42:24 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] Searching for properties at: /WEB-INF/velocity.properties
+syys 12, 2013 2:42:24 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Configuring Velocity with properties at: /WEB-INF/velocity.properties
+syys 12, 2013 2:42:24 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] Searching for properties at: /WEB-INF/velocity.properties
+syys 12, 2013 2:42:24 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Configuring Velocity with properties at: /WEB-INF/velocity.properties
+syys 12, 2013 2:42:24 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Initializing Velocity, Calling init()...
+syys 12, 2013 2:42:24 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] *******************************************************************
+syys 12, 2013 2:42:24 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Starting Apache Velocity v1.7 (compiled: 2010-11-19 12:14:37)
+syys 12, 2013 2:42:24 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] RuntimeInstance initializing.
+syys 12, 2013 2:42:24 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Default Properties File: org/apache/velocity/runtime/defaults/velocity.properties
+syys 12, 2013 2:42:24 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Trying to use logger class org.apache.velocity.runtime.log.ServletLogChute
+syys 12, 2013 2:42:24 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Using logger class org.apache.velocity.runtime.log.ServletLogChute
+syys 12, 2013 2:42:24 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] Default ResourceManager initializing. (class org.apache.velocity.runtime.resource.ResourceManagerImpl)
+syys 12, 2013 2:42:24 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] ResourceLoader instantiated: org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
+syys 12, 2013 2:42:24 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] ClasspathResourceLoader : initialization complete.
+syys 12, 2013 2:42:24 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] ResourceCache: initialized (class org.apache.velocity.runtime.resource.ResourceCacheImpl) with class java.util.Collections$SynchronizedMap cache map.
+syys 12, 2013 2:42:24 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] Default ResourceManager initialization complete.
+syys 12, 2013 2:42:24 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Loaded System Directive: org.apache.velocity.runtime.directive.Stop
+syys 12, 2013 2:42:24 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Loaded System Directive: org.apache.velocity.runtime.directive.Define
+syys 12, 2013 2:42:24 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Loaded System Directive: org.apache.velocity.runtime.directive.Break
+syys 12, 2013 2:42:24 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Loaded System Directive: org.apache.velocity.runtime.directive.Evaluate
+syys 12, 2013 2:42:24 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Loaded System Directive: org.apache.velocity.runtime.directive.Literal
+syys 12, 2013 2:42:24 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Loaded System Directive: org.apache.velocity.runtime.directive.Macro
+syys 12, 2013 2:42:24 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Loaded System Directive: org.apache.velocity.runtime.directive.Parse
+syys 12, 2013 2:42:24 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Loaded System Directive: org.apache.velocity.runtime.directive.Include
+syys 12, 2013 2:42:24 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Loaded System Directive: org.apache.velocity.runtime.directive.Foreach
+syys 12, 2013 2:42:24 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Created '20' parsers.
+syys 12, 2013 2:42:24 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] Velocimacro : initialization starting.
+syys 12, 2013 2:42:24 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Velocimacro : "velocimacro.library" is not set.  Trying default library: VM_global_library.vm
+syys 12, 2013 2:42:24 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Could not load resource 'VM_global_library.vm' from ResourceLoader org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader: ClasspathResourceLoader Error: cannot find resource VM_global_library.vm
+syys 12, 2013 2:42:24 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Velocimacro : Default library not found.
+syys 12, 2013 2:42:24 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Velocimacro : allowInline = true : VMs can be defined inline in templates
+syys 12, 2013 2:42:24 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Velocimacro : allowInlineToOverride = false : VMs defined inline may NOT replace previous VM definitions
+syys 12, 2013 2:42:24 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Velocimacro : allowInlineLocal = false : VMs defined inline will be global in scope if allowed.
+syys 12, 2013 2:42:24 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Velocimacro : autoload off : VM system will not automatically reload global library macros
+syys 12, 2013 2:42:24 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] Velocimacro : Velocimacro : initialization complete.
+syys 12, 2013 2:42:24 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] RuntimeInstance successfully initialized.
+syys 12, 2013 2:42:24 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] Searching for configuration at: /WEB-INF/toolbox.xml
+syys 12, 2013 2:42:24 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Loaded deprecated configuration from: /WEB-INF/toolbox.xml
+syys 12, 2013 2:42:24 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity   [warn] Please upgrade to new "/WEB-INF/tools.xml" format and conventional location. Support for "/WEB-INF/toolbox.xml" format and conventional file name will be removed in a future version.
+syys 12, 2013 2:42:24 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Default tools configuration has been suppressed to avoid conflicts with older application's context and toolbox definition.
+syys 12, 2013 2:42:24 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] Searching for configuration at: /WEB-INF/tools.xml
+syys 12, 2013 2:42:24 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Did not find resource at: /WEB-INF/tools.xml
+syys 12, 2013 2:42:24 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Configuring factory with: 
+FactoryConfiguration from 3 sources with 1 properties [deprecationSupportMode -auto-> true; ] and 1 toolboxes: 
+ Toolbox 'request' with 1 properties [scope -auto-> request; ] and 2 tools: 
+  Tool 'piippu' => Pipe with 1 properties [key -auto-> piippu; ]
+  Tool 'testiBundle' => org.apache.velocity.tools.generic.ResourceTool with 3 properties [bundles -auto-> testBundle; key -auto-> testiBundle; locale -auto-> en_US; ]
+  
+ 
+ Source 0: org.apache.velocity.tools.config.FactoryConfiguration(VelocityView.configure(config,factory))
+ Source 1: org.apache.velocity.tools.config.XmlFactoryConfiguration(ServletUtils.getConfiguration(/WEB-INF/toolbox.xml,ServletContext[,depMode=true]))
+ Source 2: org.apache.velocity.tools.config.FactoryConfiguration(ConfigurationUtils.getAutoLoaded(false))
+
+syys 12, 2013 2:42:24 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Default Content-Type is: text/html
+syys 12, 2013 2:42:24 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] org.apache.velocity.tools.view.servlet.VelocityViewServlet has been deprecated. Use org.apache.velocity.tools.view.servlet.VelocityViewServlet instead.
+syys 12, 2013 2:42:24 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] ResourceManager : found /kurki.js with loader org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
+syys 12, 2013 2:42:24 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] ResourceManager : found /kurki.js with loader org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
+syys 12, 2013 2:42:25 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] ResourceManager : found /kurki.js with loader org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
+syys 12, 2013 2:42:26 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] ResourceManager : found /kurki.js with loader org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
+syys 12, 2013 2:46:47 IP. org.apache.catalina.session.StandardSession writeObject
+WARNING: Cannot serialize session attribute session for session CAA8A3372F7534DF22B7F7F99843FD33
+java.io.NotSerializableException: kurki.CourseInfo
+	at java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1181)
+	at java.io.ObjectOutputStream.writeObject(ObjectOutputStream.java:347)
+	at java.util.Hashtable.writeObject(Hashtable.java:988)
+	at sun.reflect.GeneratedMethodAccessor37.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at java.io.ObjectStreamClass.invokeWriteObject(ObjectStreamClass.java:988)
+	at java.io.ObjectOutputStream.writeSerialData(ObjectOutputStream.java:1493)
+	at java.io.ObjectOutputStream.writeOrdinaryObject(ObjectOutputStream.java:1429)
+	at java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1175)
+	at java.io.ObjectOutputStream.defaultWriteFields(ObjectOutputStream.java:1541)
+	at java.io.ObjectOutputStream.writeSerialData(ObjectOutputStream.java:1506)
+	at java.io.ObjectOutputStream.writeOrdinaryObject(ObjectOutputStream.java:1429)
+	at java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1175)
+	at java.io.ObjectOutputStream.writeObject(ObjectOutputStream.java:347)
+	at org.apache.catalina.session.StandardSession.writeObject(StandardSession.java:1671)
+	at org.apache.catalina.session.StandardSession.writeObjectData(StandardSession.java:1077)
+	at org.apache.catalina.session.StandardManager.doUnload(StandardManager.java:432)
+	at org.apache.catalina.session.StandardManager.unload(StandardManager.java:353)
+	at org.apache.catalina.session.StandardManager.stopInternal(StandardManager.java:518)
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:232)
+	at org.apache.catalina.core.StandardContext.stopInternal(StandardContext.java:5622)
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:232)
+	at org.apache.catalina.manager.ManagerServlet.undeploy(ManagerServlet.java:1359)
+	at org.apache.catalina.manager.ManagerServlet.doGet(ManagerServlet.java:380)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:621)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:728)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:305)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+	at org.apache.catalina.filters.SetCharacterEncodingFilter.doFilter(SetCharacterEncodingFilter.java:108)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:243)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:222)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:123)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:611)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:171)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:99)
+	at org.apache.catalina.valves.AccessLogValve.invoke(AccessLogValve.java:953)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:408)
+	at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1023)
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:589)
+	at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:312)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:724)
+
+syys 12, 2013 2:46:50 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Use of the properties initialization parameter 'properties' has been deprecated by 'org.apache.velocity.properties'
+syys 12, 2013 2:46:51 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] Searching for properties at: /org/apache/velocity/tools/view/velocity.properties
+syys 12, 2013 2:46:51 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] Searching for properties at: /WEB-INF/velocity.properties
+syys 12, 2013 2:46:51 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Configuring Velocity with properties at: /WEB-INF/velocity.properties
+syys 12, 2013 2:46:51 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] Searching for properties at: /WEB-INF/velocity.properties
+syys 12, 2013 2:46:51 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Configuring Velocity with properties at: /WEB-INF/velocity.properties
+syys 12, 2013 2:46:51 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Initializing Velocity, Calling init()...
+syys 12, 2013 2:46:51 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] *******************************************************************
+syys 12, 2013 2:46:51 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Starting Apache Velocity v1.7 (compiled: 2010-11-19 12:14:37)
+syys 12, 2013 2:46:51 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] RuntimeInstance initializing.
+syys 12, 2013 2:46:51 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Default Properties File: org/apache/velocity/runtime/defaults/velocity.properties
+syys 12, 2013 2:46:51 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Trying to use logger class org.apache.velocity.runtime.log.ServletLogChute
+syys 12, 2013 2:46:51 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Using logger class org.apache.velocity.runtime.log.ServletLogChute
+syys 12, 2013 2:46:51 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] Default ResourceManager initializing. (class org.apache.velocity.runtime.resource.ResourceManagerImpl)
+syys 12, 2013 2:46:51 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] ResourceLoader instantiated: org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
+syys 12, 2013 2:46:51 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] ClasspathResourceLoader : initialization complete.
+syys 12, 2013 2:46:51 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] ResourceCache: initialized (class org.apache.velocity.runtime.resource.ResourceCacheImpl) with class java.util.Collections$SynchronizedMap cache map.
+syys 12, 2013 2:46:51 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] Default ResourceManager initialization complete.
+syys 12, 2013 2:46:51 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Loaded System Directive: org.apache.velocity.runtime.directive.Stop
+syys 12, 2013 2:46:51 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Loaded System Directive: org.apache.velocity.runtime.directive.Define
+syys 12, 2013 2:46:51 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Loaded System Directive: org.apache.velocity.runtime.directive.Break
+syys 12, 2013 2:46:51 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Loaded System Directive: org.apache.velocity.runtime.directive.Evaluate
+syys 12, 2013 2:46:51 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Loaded System Directive: org.apache.velocity.runtime.directive.Literal
+syys 12, 2013 2:46:51 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Loaded System Directive: org.apache.velocity.runtime.directive.Macro
+syys 12, 2013 2:46:51 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Loaded System Directive: org.apache.velocity.runtime.directive.Parse
+syys 12, 2013 2:46:51 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Loaded System Directive: org.apache.velocity.runtime.directive.Include
+syys 12, 2013 2:46:51 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Loaded System Directive: org.apache.velocity.runtime.directive.Foreach
+syys 12, 2013 2:46:51 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Created '20' parsers.
+syys 12, 2013 2:46:51 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] Velocimacro : initialization starting.
+syys 12, 2013 2:46:51 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Velocimacro : "velocimacro.library" is not set.  Trying default library: VM_global_library.vm
+syys 12, 2013 2:46:51 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Could not load resource 'VM_global_library.vm' from ResourceLoader org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader: ClasspathResourceLoader Error: cannot find resource VM_global_library.vm
+syys 12, 2013 2:46:51 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Velocimacro : Default library not found.
+syys 12, 2013 2:46:51 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Velocimacro : allowInline = true : VMs can be defined inline in templates
+syys 12, 2013 2:46:51 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Velocimacro : allowInlineToOverride = false : VMs defined inline may NOT replace previous VM definitions
+syys 12, 2013 2:46:51 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Velocimacro : allowInlineLocal = false : VMs defined inline will be global in scope if allowed.
+syys 12, 2013 2:46:51 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Velocimacro : autoload off : VM system will not automatically reload global library macros
+syys 12, 2013 2:46:51 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] Velocimacro : Velocimacro : initialization complete.
+syys 12, 2013 2:46:51 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] RuntimeInstance successfully initialized.
+syys 12, 2013 2:46:51 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] Searching for configuration at: /WEB-INF/toolbox.xml
+syys 12, 2013 2:46:51 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Loaded deprecated configuration from: /WEB-INF/toolbox.xml
+syys 12, 2013 2:46:51 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity   [warn] Please upgrade to new "/WEB-INF/tools.xml" format and conventional location. Support for "/WEB-INF/toolbox.xml" format and conventional file name will be removed in a future version.
+syys 12, 2013 2:46:51 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Default tools configuration has been suppressed to avoid conflicts with older application's context and toolbox definition.
+syys 12, 2013 2:46:51 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] Searching for configuration at: /WEB-INF/tools.xml
+syys 12, 2013 2:46:51 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Did not find resource at: /WEB-INF/tools.xml
+syys 12, 2013 2:46:51 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Configuring factory with: 
+FactoryConfiguration from 3 sources with 1 properties [deprecationSupportMode -auto-> true; ] and 1 toolboxes: 
+ Toolbox 'request' with 1 properties [scope -auto-> request; ] and 2 tools: 
+  Tool 'piippu' => Pipe with 1 properties [key -auto-> piippu; ]
+  Tool 'testiBundle' => org.apache.velocity.tools.generic.ResourceTool with 3 properties [bundles -auto-> testBundle; key -auto-> testiBundle; locale -auto-> en_US; ]
+  
+ 
+ Source 0: org.apache.velocity.tools.config.FactoryConfiguration(VelocityView.configure(config,factory))
+ Source 1: org.apache.velocity.tools.config.XmlFactoryConfiguration(ServletUtils.getConfiguration(/WEB-INF/toolbox.xml,ServletContext[,depMode=true]))
+ Source 2: org.apache.velocity.tools.config.FactoryConfiguration(ConfigurationUtils.getAutoLoaded(false))
+
+syys 12, 2013 2:46:51 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Default Content-Type is: text/html
+syys 12, 2013 2:46:51 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] org.apache.velocity.tools.view.servlet.VelocityViewServlet has been deprecated. Use org.apache.velocity.tools.view.servlet.VelocityViewServlet instead.
+syys 12, 2013 2:46:51 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] ResourceManager : found /kurki.js with loader org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
+syys 12, 2013 2:48:35 IP. org.apache.catalina.session.StandardSession writeObject
+WARNING: Cannot serialize session attribute session for session 206E14CCC30243AF4059FC6E22EF6E37
+java.io.NotSerializableException: kurki.CourseInfo
+	at java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1181)
+	at java.io.ObjectOutputStream.writeObject(ObjectOutputStream.java:347)
+	at java.util.Hashtable.writeObject(Hashtable.java:988)
+	at sun.reflect.GeneratedMethodAccessor37.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at java.io.ObjectStreamClass.invokeWriteObject(ObjectStreamClass.java:988)
+	at java.io.ObjectOutputStream.writeSerialData(ObjectOutputStream.java:1493)
+	at java.io.ObjectOutputStream.writeOrdinaryObject(ObjectOutputStream.java:1429)
+	at java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1175)
+	at java.io.ObjectOutputStream.defaultWriteFields(ObjectOutputStream.java:1541)
+	at java.io.ObjectOutputStream.writeSerialData(ObjectOutputStream.java:1506)
+	at java.io.ObjectOutputStream.writeOrdinaryObject(ObjectOutputStream.java:1429)
+	at java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1175)
+	at java.io.ObjectOutputStream.writeObject(ObjectOutputStream.java:347)
+	at org.apache.catalina.session.StandardSession.writeObject(StandardSession.java:1671)
+	at org.apache.catalina.session.StandardSession.writeObjectData(StandardSession.java:1077)
+	at org.apache.catalina.session.StandardManager.doUnload(StandardManager.java:432)
+	at org.apache.catalina.session.StandardManager.unload(StandardManager.java:353)
+	at org.apache.catalina.session.StandardManager.stopInternal(StandardManager.java:518)
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:232)
+	at org.apache.catalina.core.StandardContext.stopInternal(StandardContext.java:5622)
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:232)
+	at org.apache.catalina.manager.ManagerServlet.undeploy(ManagerServlet.java:1359)
+	at org.apache.catalina.manager.ManagerServlet.doGet(ManagerServlet.java:380)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:621)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:728)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:305)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+	at org.apache.catalina.filters.SetCharacterEncodingFilter.doFilter(SetCharacterEncodingFilter.java:108)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:243)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:222)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:123)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:611)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:171)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:99)
+	at org.apache.catalina.valves.AccessLogValve.invoke(AccessLogValve.java:953)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:408)
+	at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1023)
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:589)
+	at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:312)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:724)
+
+syys 12, 2013 2:48:37 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Use of the properties initialization parameter 'properties' has been deprecated by 'org.apache.velocity.properties'
+syys 12, 2013 2:48:38 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] Searching for properties at: /org/apache/velocity/tools/view/velocity.properties
+syys 12, 2013 2:48:38 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] Searching for properties at: /WEB-INF/velocity.properties
+syys 12, 2013 2:48:38 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Configuring Velocity with properties at: /WEB-INF/velocity.properties
+syys 12, 2013 2:48:38 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] Searching for properties at: /WEB-INF/velocity.properties
+syys 12, 2013 2:48:38 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Configuring Velocity with properties at: /WEB-INF/velocity.properties
+syys 12, 2013 2:48:38 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Initializing Velocity, Calling init()...
+syys 12, 2013 2:48:38 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] *******************************************************************
+syys 12, 2013 2:48:38 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Starting Apache Velocity v1.7 (compiled: 2010-11-19 12:14:37)
+syys 12, 2013 2:48:38 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] RuntimeInstance initializing.
+syys 12, 2013 2:48:38 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Default Properties File: org/apache/velocity/runtime/defaults/velocity.properties
+syys 12, 2013 2:48:38 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Trying to use logger class org.apache.velocity.runtime.log.ServletLogChute
+syys 12, 2013 2:48:38 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Using logger class org.apache.velocity.runtime.log.ServletLogChute
+syys 12, 2013 2:48:38 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] Default ResourceManager initializing. (class org.apache.velocity.runtime.resource.ResourceManagerImpl)
+syys 12, 2013 2:48:38 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] ResourceLoader instantiated: org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
+syys 12, 2013 2:48:38 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] ClasspathResourceLoader : initialization complete.
+syys 12, 2013 2:48:38 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] ResourceCache: initialized (class org.apache.velocity.runtime.resource.ResourceCacheImpl) with class java.util.Collections$SynchronizedMap cache map.
+syys 12, 2013 2:48:38 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] Default ResourceManager initialization complete.
+syys 12, 2013 2:48:38 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Loaded System Directive: org.apache.velocity.runtime.directive.Stop
+syys 12, 2013 2:48:38 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Loaded System Directive: org.apache.velocity.runtime.directive.Define
+syys 12, 2013 2:48:38 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Loaded System Directive: org.apache.velocity.runtime.directive.Break
+syys 12, 2013 2:48:38 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Loaded System Directive: org.apache.velocity.runtime.directive.Evaluate
+syys 12, 2013 2:48:38 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Loaded System Directive: org.apache.velocity.runtime.directive.Literal
+syys 12, 2013 2:48:38 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Loaded System Directive: org.apache.velocity.runtime.directive.Macro
+syys 12, 2013 2:48:38 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Loaded System Directive: org.apache.velocity.runtime.directive.Parse
+syys 12, 2013 2:48:38 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Loaded System Directive: org.apache.velocity.runtime.directive.Include
+syys 12, 2013 2:48:38 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Loaded System Directive: org.apache.velocity.runtime.directive.Foreach
+syys 12, 2013 2:48:38 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Created '20' parsers.
+syys 12, 2013 2:48:38 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] Velocimacro : initialization starting.
+syys 12, 2013 2:48:38 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Velocimacro : "velocimacro.library" is not set.  Trying default library: VM_global_library.vm
+syys 12, 2013 2:48:38 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Could not load resource 'VM_global_library.vm' from ResourceLoader org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader: ClasspathResourceLoader Error: cannot find resource VM_global_library.vm
+syys 12, 2013 2:48:38 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Velocimacro : Default library not found.
+syys 12, 2013 2:48:38 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Velocimacro : allowInline = true : VMs can be defined inline in templates
+syys 12, 2013 2:48:38 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Velocimacro : allowInlineToOverride = false : VMs defined inline may NOT replace previous VM definitions
+syys 12, 2013 2:48:38 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Velocimacro : allowInlineLocal = false : VMs defined inline will be global in scope if allowed.
+syys 12, 2013 2:48:38 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Velocimacro : autoload off : VM system will not automatically reload global library macros
+syys 12, 2013 2:48:38 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] Velocimacro : Velocimacro : initialization complete.
+syys 12, 2013 2:48:38 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] RuntimeInstance successfully initialized.
+syys 12, 2013 2:48:38 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] Searching for configuration at: /WEB-INF/toolbox.xml
+syys 12, 2013 2:48:39 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Loaded deprecated configuration from: /WEB-INF/toolbox.xml
+syys 12, 2013 2:48:39 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity   [warn] Please upgrade to new "/WEB-INF/tools.xml" format and conventional location. Support for "/WEB-INF/toolbox.xml" format and conventional file name will be removed in a future version.
+syys 12, 2013 2:48:39 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Default tools configuration has been suppressed to avoid conflicts with older application's context and toolbox definition.
+syys 12, 2013 2:48:39 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] Searching for configuration at: /WEB-INF/tools.xml
+syys 12, 2013 2:48:39 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Did not find resource at: /WEB-INF/tools.xml
+syys 12, 2013 2:48:39 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Configuring factory with: 
+FactoryConfiguration from 3 sources with 1 properties [deprecationSupportMode -auto-> true; ] and 1 toolboxes: 
+ Toolbox 'request' with 1 properties [scope -auto-> request; ] and 2 tools: 
+  Tool 'piippu' => Pipe with 1 properties [key -auto-> piippu; ]
+  Tool 'testiBundle' => org.apache.velocity.tools.generic.ResourceTool with 3 properties [bundles -auto-> testBundle; key -auto-> testiBundle; locale -auto-> en_US; ]
+  
+ 
+ Source 0: org.apache.velocity.tools.config.FactoryConfiguration(VelocityView.configure(config,factory))
+ Source 1: org.apache.velocity.tools.config.XmlFactoryConfiguration(ServletUtils.getConfiguration(/WEB-INF/toolbox.xml,ServletContext[,depMode=true]))
+ Source 2: org.apache.velocity.tools.config.FactoryConfiguration(ConfigurationUtils.getAutoLoaded(false))
+
+syys 12, 2013 2:48:39 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Default Content-Type is: text/html; charset=utf-8
+syys 12, 2013 2:48:39 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] org.apache.velocity.tools.view.servlet.VelocityViewServlet has been deprecated. Use org.apache.velocity.tools.view.servlet.VelocityViewServlet instead.
+syys 12, 2013 2:48:39 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] ResourceManager : found /kurki.js with loader org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
+syys 12, 2013 2:50:01 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] ResourceManager : found /kurki.js with loader org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
+syys 12, 2013 2:50:03 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] ResourceManager : found /kurki.js with loader org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
+syys 12, 2013 2:50:04 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] ResourceManager : found /kurki.js with loader org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
+syys 12, 2013 2:50:05 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] ResourceManager : found /kurki.js with loader org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
+syys 12, 2013 2:50:07 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] ResourceManager : found /kurki.js with loader org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
+syys 12, 2013 2:51:47 IP. org.apache.catalina.session.StandardSession writeObject
+WARNING: Cannot serialize session attribute session for session 3CDA8CD4B7F86EF40168B38F93516001
+java.io.NotSerializableException: kurki.CourseInfo
+	at java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1181)
+	at java.io.ObjectOutputStream.writeObject(ObjectOutputStream.java:347)
+	at java.util.Hashtable.writeObject(Hashtable.java:988)
+	at sun.reflect.GeneratedMethodAccessor37.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at java.io.ObjectStreamClass.invokeWriteObject(ObjectStreamClass.java:988)
+	at java.io.ObjectOutputStream.writeSerialData(ObjectOutputStream.java:1493)
+	at java.io.ObjectOutputStream.writeOrdinaryObject(ObjectOutputStream.java:1429)
+	at java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1175)
+	at java.io.ObjectOutputStream.defaultWriteFields(ObjectOutputStream.java:1541)
+	at java.io.ObjectOutputStream.writeSerialData(ObjectOutputStream.java:1506)
+	at java.io.ObjectOutputStream.writeOrdinaryObject(ObjectOutputStream.java:1429)
+	at java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1175)
+	at java.io.ObjectOutputStream.writeObject(ObjectOutputStream.java:347)
+	at org.apache.catalina.session.StandardSession.writeObject(StandardSession.java:1671)
+	at org.apache.catalina.session.StandardSession.writeObjectData(StandardSession.java:1077)
+	at org.apache.catalina.session.StandardManager.doUnload(StandardManager.java:432)
+	at org.apache.catalina.session.StandardManager.unload(StandardManager.java:353)
+	at org.apache.catalina.session.StandardManager.stopInternal(StandardManager.java:518)
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:232)
+	at org.apache.catalina.core.StandardContext.stopInternal(StandardContext.java:5622)
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:232)
+	at org.apache.catalina.core.StandardContext.reload(StandardContext.java:3947)
+	at org.apache.catalina.manager.ManagerServlet.reload(ManagerServlet.java:954)
+	at org.apache.catalina.manager.ManagerServlet.doGet(ManagerServlet.java:364)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:621)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:728)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:305)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+	at org.apache.catalina.filters.SetCharacterEncodingFilter.doFilter(SetCharacterEncodingFilter.java:108)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:243)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:222)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:123)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:611)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:171)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:99)
+	at org.apache.catalina.valves.AccessLogValve.invoke(AccessLogValve.java:953)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:408)
+	at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1023)
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:589)
+	at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:312)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:724)
+
+syys 12, 2013 2:53:44 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Use of the properties initialization parameter 'properties' has been deprecated by 'org.apache.velocity.properties'
+syys 12, 2013 2:53:45 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] Searching for properties at: /org/apache/velocity/tools/view/velocity.properties
+syys 12, 2013 2:53:45 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] Searching for properties at: /WEB-INF/velocity.properties
+syys 12, 2013 2:53:45 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Configuring Velocity with properties at: /WEB-INF/velocity.properties
+syys 12, 2013 2:53:45 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] Searching for properties at: /WEB-INF/velocity.properties
+syys 12, 2013 2:53:45 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Configuring Velocity with properties at: /WEB-INF/velocity.properties
+syys 12, 2013 2:53:45 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Initializing Velocity, Calling init()...
+syys 12, 2013 2:53:45 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] *******************************************************************
+syys 12, 2013 2:53:45 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Starting Apache Velocity v1.7 (compiled: 2010-11-19 12:14:37)
+syys 12, 2013 2:53:45 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] RuntimeInstance initializing.
+syys 12, 2013 2:53:45 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Default Properties File: org/apache/velocity/runtime/defaults/velocity.properties
+syys 12, 2013 2:53:45 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Trying to use logger class org.apache.velocity.runtime.log.ServletLogChute
+syys 12, 2013 2:53:45 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Using logger class org.apache.velocity.runtime.log.ServletLogChute
+syys 12, 2013 2:53:45 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] Default ResourceManager initializing. (class org.apache.velocity.runtime.resource.ResourceManagerImpl)
+syys 12, 2013 2:53:45 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] ResourceLoader instantiated: org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
+syys 12, 2013 2:53:45 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] ClasspathResourceLoader : initialization complete.
+syys 12, 2013 2:53:45 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] ResourceCache: initialized (class org.apache.velocity.runtime.resource.ResourceCacheImpl) with class java.util.Collections$SynchronizedMap cache map.
+syys 12, 2013 2:53:45 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] Default ResourceManager initialization complete.
+syys 12, 2013 2:53:45 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Loaded System Directive: org.apache.velocity.runtime.directive.Stop
+syys 12, 2013 2:53:45 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Loaded System Directive: org.apache.velocity.runtime.directive.Define
+syys 12, 2013 2:53:45 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Loaded System Directive: org.apache.velocity.runtime.directive.Break
+syys 12, 2013 2:53:45 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Loaded System Directive: org.apache.velocity.runtime.directive.Evaluate
+syys 12, 2013 2:53:45 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Loaded System Directive: org.apache.velocity.runtime.directive.Literal
+syys 12, 2013 2:53:45 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Loaded System Directive: org.apache.velocity.runtime.directive.Macro
+syys 12, 2013 2:53:45 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Loaded System Directive: org.apache.velocity.runtime.directive.Parse
+syys 12, 2013 2:53:45 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Loaded System Directive: org.apache.velocity.runtime.directive.Include
+syys 12, 2013 2:53:45 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Loaded System Directive: org.apache.velocity.runtime.directive.Foreach
+syys 12, 2013 2:53:45 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Created '20' parsers.
+syys 12, 2013 2:53:45 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] Velocimacro : initialization starting.
+syys 12, 2013 2:53:45 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Velocimacro : "velocimacro.library" is not set.  Trying default library: VM_global_library.vm
+syys 12, 2013 2:53:45 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Could not load resource 'VM_global_library.vm' from ResourceLoader org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader: ClasspathResourceLoader Error: cannot find resource VM_global_library.vm
+syys 12, 2013 2:53:45 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Velocimacro : Default library not found.
+syys 12, 2013 2:53:45 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Velocimacro : allowInline = true : VMs can be defined inline in templates
+syys 12, 2013 2:53:45 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Velocimacro : allowInlineToOverride = false : VMs defined inline may NOT replace previous VM definitions
+syys 12, 2013 2:53:45 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Velocimacro : allowInlineLocal = false : VMs defined inline will be global in scope if allowed.
+syys 12, 2013 2:53:45 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Velocimacro : autoload off : VM system will not automatically reload global library macros
+syys 12, 2013 2:53:45 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] Velocimacro : Velocimacro : initialization complete.
+syys 12, 2013 2:53:45 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] RuntimeInstance successfully initialized.
+syys 12, 2013 2:53:45 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] Searching for configuration at: /WEB-INF/toolbox.xml
+syys 12, 2013 2:53:46 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Loaded deprecated configuration from: /WEB-INF/toolbox.xml
+syys 12, 2013 2:53:46 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity   [warn] Please upgrade to new "/WEB-INF/tools.xml" format and conventional location. Support for "/WEB-INF/toolbox.xml" format and conventional file name will be removed in a future version.
+syys 12, 2013 2:53:46 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Default tools configuration has been suppressed to avoid conflicts with older application's context and toolbox definition.
+syys 12, 2013 2:53:46 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] Searching for configuration at: /WEB-INF/tools.xml
+syys 12, 2013 2:53:46 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Did not find resource at: /WEB-INF/tools.xml
+syys 12, 2013 2:53:46 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Configuring factory with: 
+FactoryConfiguration from 3 sources with 1 properties [deprecationSupportMode -auto-> true; ] and 1 toolboxes: 
+ Toolbox 'request' with 1 properties [scope -auto-> request; ] and 2 tools: 
+  Tool 'piippu' => Pipe with 1 properties [key -auto-> piippu; ]
+  Tool 'testiBundle' => org.apache.velocity.tools.generic.ResourceTool with 3 properties [bundles -auto-> testBundle; key -auto-> testiBundle; locale -auto-> en_US; ]
+  
+ 
+ Source 0: org.apache.velocity.tools.config.FactoryConfiguration(VelocityView.configure(config,factory))
+ Source 1: org.apache.velocity.tools.config.XmlFactoryConfiguration(ServletUtils.getConfiguration(/WEB-INF/toolbox.xml,ServletContext[,depMode=true]))
+ Source 2: org.apache.velocity.tools.config.FactoryConfiguration(ConfigurationUtils.getAutoLoaded(false))
+
+syys 12, 2013 2:53:46 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Default Content-Type is: text/html; charset=utf-8
+syys 12, 2013 2:53:46 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] org.apache.velocity.tools.view.servlet.VelocityViewServlet has been deprecated. Use org.apache.velocity.tools.view.servlet.VelocityViewServlet instead.
+syys 12, 2013 2:53:46 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] ResourceManager : found /kurki.js with loader org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
+syys 12, 2013 2:54:02 IP. org.apache.catalina.session.StandardSession writeObject
+WARNING: Cannot serialize session attribute session for session 02A21D09632C6B3C7B0D22B35DB8FF3D
+java.io.NotSerializableException: kurki.CourseInfo
+	at java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1181)
+	at java.io.ObjectOutputStream.writeObject(ObjectOutputStream.java:347)
+	at java.util.Hashtable.writeObject(Hashtable.java:988)
+	at sun.reflect.GeneratedMethodAccessor37.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at java.io.ObjectStreamClass.invokeWriteObject(ObjectStreamClass.java:988)
+	at java.io.ObjectOutputStream.writeSerialData(ObjectOutputStream.java:1493)
+	at java.io.ObjectOutputStream.writeOrdinaryObject(ObjectOutputStream.java:1429)
+	at java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1175)
+	at java.io.ObjectOutputStream.defaultWriteFields(ObjectOutputStream.java:1541)
+	at java.io.ObjectOutputStream.writeSerialData(ObjectOutputStream.java:1506)
+	at java.io.ObjectOutputStream.writeOrdinaryObject(ObjectOutputStream.java:1429)
+	at java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1175)
+	at java.io.ObjectOutputStream.writeObject(ObjectOutputStream.java:347)
+	at org.apache.catalina.session.StandardSession.writeObject(StandardSession.java:1671)
+	at org.apache.catalina.session.StandardSession.writeObjectData(StandardSession.java:1077)
+	at org.apache.catalina.session.StandardManager.doUnload(StandardManager.java:432)
+	at org.apache.catalina.session.StandardManager.unload(StandardManager.java:353)
+	at org.apache.catalina.session.StandardManager.stopInternal(StandardManager.java:518)
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:232)
+	at org.apache.catalina.core.StandardContext.stopInternal(StandardContext.java:5622)
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:232)
+	at org.apache.catalina.core.StandardContext.reload(StandardContext.java:3947)
+	at org.apache.catalina.manager.ManagerServlet.reload(ManagerServlet.java:954)
+	at org.apache.catalina.manager.ManagerServlet.doGet(ManagerServlet.java:364)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:621)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:728)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:305)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+	at org.apache.catalina.filters.SetCharacterEncodingFilter.doFilter(SetCharacterEncodingFilter.java:108)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:243)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:222)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:123)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:611)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:171)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:99)
+	at org.apache.catalina.valves.AccessLogValve.invoke(AccessLogValve.java:953)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:408)
+	at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1023)
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:589)
+	at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:312)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:724)
+
+syys 12, 2013 3:28:37 IP. org.apache.catalina.core.ApplicationContext log
+INFO: SessionListener: contextDestroyed()
+syys 12, 2013 3:28:37 IP. org.apache.catalina.core.ApplicationContext log
+INFO: ContextListener: contextDestroyed()
+syys 12, 2013 4:02:08 IP. org.apache.catalina.core.ApplicationContext log
+INFO: ContextListener: contextInitialized()
+syys 12, 2013 4:02:08 IP. org.apache.catalina.core.ApplicationContext log
+INFO: SessionListener: contextInitialized()
+syys 12, 2013 4:02:08 IP. org.apache.catalina.core.ApplicationContext log
+INFO: ContextListener: attributeAdded('org.apache.jasper.compiler.TldLocationsCache', 'org.apache.jasper.compiler.TldLocationsCache@14ad5843')
+syys 12, 2013 4:02:11 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Use of the properties initialization parameter 'properties' has been deprecated by 'org.apache.velocity.properties'
+syys 12, 2013 4:02:12 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] Searching for properties at: /org/apache/velocity/tools/view/velocity.properties
+syys 12, 2013 4:02:12 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] Searching for properties at: /WEB-INF/velocity.properties
+syys 12, 2013 4:02:12 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Configuring Velocity with properties at: /WEB-INF/velocity.properties
+syys 12, 2013 4:02:12 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] Searching for properties at: /WEB-INF/velocity.properties
+syys 12, 2013 4:02:12 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Configuring Velocity with properties at: /WEB-INF/velocity.properties
+syys 12, 2013 4:02:12 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Initializing Velocity, Calling init()...
+syys 12, 2013 4:02:12 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] *******************************************************************
+syys 12, 2013 4:02:12 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Starting Apache Velocity v1.7 (compiled: 2010-11-19 12:14:37)
+syys 12, 2013 4:02:12 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] RuntimeInstance initializing.
+syys 12, 2013 4:02:12 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Default Properties File: org/apache/velocity/runtime/defaults/velocity.properties
+syys 12, 2013 4:02:12 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Trying to use logger class org.apache.velocity.runtime.log.ServletLogChute
+syys 12, 2013 4:02:12 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Using logger class org.apache.velocity.runtime.log.ServletLogChute
+syys 12, 2013 4:02:12 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] Default ResourceManager initializing. (class org.apache.velocity.runtime.resource.ResourceManagerImpl)
+syys 12, 2013 4:02:12 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] ResourceLoader instantiated: org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
+syys 12, 2013 4:02:12 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] ClasspathResourceLoader : initialization complete.
+syys 12, 2013 4:02:12 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] ResourceCache: initialized (class org.apache.velocity.runtime.resource.ResourceCacheImpl) with class java.util.Collections$SynchronizedMap cache map.
+syys 12, 2013 4:02:12 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] Default ResourceManager initialization complete.
+syys 12, 2013 4:02:12 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Loaded System Directive: org.apache.velocity.runtime.directive.Stop
+syys 12, 2013 4:02:12 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Loaded System Directive: org.apache.velocity.runtime.directive.Define
+syys 12, 2013 4:02:12 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Loaded System Directive: org.apache.velocity.runtime.directive.Break
+syys 12, 2013 4:02:12 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Loaded System Directive: org.apache.velocity.runtime.directive.Evaluate
+syys 12, 2013 4:02:12 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Loaded System Directive: org.apache.velocity.runtime.directive.Literal
+syys 12, 2013 4:02:12 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Loaded System Directive: org.apache.velocity.runtime.directive.Macro
+syys 12, 2013 4:02:12 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Loaded System Directive: org.apache.velocity.runtime.directive.Parse
+syys 12, 2013 4:02:12 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Loaded System Directive: org.apache.velocity.runtime.directive.Include
+syys 12, 2013 4:02:12 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Loaded System Directive: org.apache.velocity.runtime.directive.Foreach
+syys 12, 2013 4:02:12 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Created '20' parsers.
+syys 12, 2013 4:02:12 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] Velocimacro : initialization starting.
+syys 12, 2013 4:02:12 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Velocimacro : "velocimacro.library" is not set.  Trying default library: VM_global_library.vm
+syys 12, 2013 4:02:12 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Could not load resource 'VM_global_library.vm' from ResourceLoader org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader: ClasspathResourceLoader Error: cannot find resource VM_global_library.vm
+syys 12, 2013 4:02:12 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Velocimacro : Default library not found.
+syys 12, 2013 4:02:12 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Velocimacro : allowInline = true : VMs can be defined inline in templates
+syys 12, 2013 4:02:12 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Velocimacro : allowInlineToOverride = false : VMs defined inline may NOT replace previous VM definitions
+syys 12, 2013 4:02:12 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Velocimacro : allowInlineLocal = false : VMs defined inline will be global in scope if allowed.
+syys 12, 2013 4:02:12 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Velocimacro : autoload off : VM system will not automatically reload global library macros
+syys 12, 2013 4:02:12 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] Velocimacro : Velocimacro : initialization complete.
+syys 12, 2013 4:02:12 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] RuntimeInstance successfully initialized.
+syys 12, 2013 4:02:12 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] Searching for configuration at: /WEB-INF/toolbox.xml
+syys 12, 2013 4:02:12 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Loaded deprecated configuration from: /WEB-INF/toolbox.xml
+syys 12, 2013 4:02:12 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity   [warn] Please upgrade to new "/WEB-INF/tools.xml" format and conventional location. Support for "/WEB-INF/toolbox.xml" format and conventional file name will be removed in a future version.
+syys 12, 2013 4:02:12 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Default tools configuration has been suppressed to avoid conflicts with older application's context and toolbox definition.
+syys 12, 2013 4:02:12 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] Searching for configuration at: /WEB-INF/tools.xml
+syys 12, 2013 4:02:12 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Did not find resource at: /WEB-INF/tools.xml
+syys 12, 2013 4:02:12 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Configuring factory with: 
+FactoryConfiguration from 3 sources with 1 properties [deprecationSupportMode -auto-> true; ] and 1 toolboxes: 
+ Toolbox 'request' with 1 properties [scope -auto-> request; ] and 2 tools: 
+  Tool 'piippu' => Pipe with 1 properties [key -auto-> piippu; ]
+  Tool 'testiBundle' => org.apache.velocity.tools.generic.ResourceTool with 3 properties [bundles -auto-> testBundle; key -auto-> testiBundle; locale -auto-> en_US; ]
+  
+ 
+ Source 0: org.apache.velocity.tools.config.FactoryConfiguration(VelocityView.configure(config,factory))
+ Source 1: org.apache.velocity.tools.config.XmlFactoryConfiguration(ServletUtils.getConfiguration(/WEB-INF/toolbox.xml,ServletContext[,depMode=true]))
+ Source 2: org.apache.velocity.tools.config.FactoryConfiguration(ConfigurationUtils.getAutoLoaded(false))
+
+syys 12, 2013 4:02:12 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Default Content-Type is: text/html; charset=utf-8
+syys 12, 2013 4:02:12 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] org.apache.velocity.tools.view.servlet.VelocityViewServlet has been deprecated. Use org.apache.velocity.tools.view.servlet.VelocityViewServlet instead.
+syys 12, 2013 4:02:12 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] ResourceManager : found /kurki.js with loader org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
+syys 12, 2013 4:03:25 IP. org.apache.catalina.session.StandardSession writeObject
+WARNING: Cannot serialize session attribute session for session 8CEC1A7E0CA34700EA7C9156B2D07FD0
+java.io.NotSerializableException: kurki.CourseInfo
+	at java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1181)
+	at java.io.ObjectOutputStream.writeObject(ObjectOutputStream.java:347)
+	at java.util.Hashtable.writeObject(Hashtable.java:988)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at java.io.ObjectStreamClass.invokeWriteObject(ObjectStreamClass.java:988)
+	at java.io.ObjectOutputStream.writeSerialData(ObjectOutputStream.java:1493)
+	at java.io.ObjectOutputStream.writeOrdinaryObject(ObjectOutputStream.java:1429)
+	at java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1175)
+	at java.io.ObjectOutputStream.defaultWriteFields(ObjectOutputStream.java:1541)
+	at java.io.ObjectOutputStream.writeSerialData(ObjectOutputStream.java:1506)
+	at java.io.ObjectOutputStream.writeOrdinaryObject(ObjectOutputStream.java:1429)
+	at java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1175)
+	at java.io.ObjectOutputStream.writeObject(ObjectOutputStream.java:347)
+	at org.apache.catalina.session.StandardSession.writeObject(StandardSession.java:1671)
+	at org.apache.catalina.session.StandardSession.writeObjectData(StandardSession.java:1077)
+	at org.apache.catalina.session.StandardManager.doUnload(StandardManager.java:432)
+	at org.apache.catalina.session.StandardManager.unload(StandardManager.java:353)
+	at org.apache.catalina.session.StandardManager.stopInternal(StandardManager.java:518)
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:232)
+	at org.apache.catalina.core.StandardContext.stopInternal(StandardContext.java:5622)
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:232)
+	at org.apache.catalina.core.StandardContext.reload(StandardContext.java:3947)
+	at org.apache.catalina.manager.ManagerServlet.reload(ManagerServlet.java:954)
+	at org.apache.catalina.manager.ManagerServlet.doGet(ManagerServlet.java:364)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:621)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:728)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:305)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+	at org.apache.catalina.filters.SetCharacterEncodingFilter.doFilter(SetCharacterEncodingFilter.java:108)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:243)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:222)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:123)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:611)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:171)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:99)
+	at org.apache.catalina.valves.AccessLogValve.invoke(AccessLogValve.java:953)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:408)
+	at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1023)
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:589)
+	at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:312)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:724)
+
+syys 12, 2013 4:05:34 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Use of the properties initialization parameter 'properties' has been deprecated by 'org.apache.velocity.properties'
+syys 12, 2013 4:05:35 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] Searching for properties at: /org/apache/velocity/tools/view/velocity.properties
+syys 12, 2013 4:05:35 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] Searching for properties at: /WEB-INF/velocity.properties
+syys 12, 2013 4:05:35 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Configuring Velocity with properties at: /WEB-INF/velocity.properties
+syys 12, 2013 4:05:35 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] Searching for properties at: /WEB-INF/velocity.properties
+syys 12, 2013 4:05:35 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Configuring Velocity with properties at: /WEB-INF/velocity.properties
+syys 12, 2013 4:05:35 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Initializing Velocity, Calling init()...
+syys 12, 2013 4:05:35 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] *******************************************************************
+syys 12, 2013 4:05:35 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Starting Apache Velocity v1.7 (compiled: 2010-11-19 12:14:37)
+syys 12, 2013 4:05:35 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] RuntimeInstance initializing.
+syys 12, 2013 4:05:35 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Default Properties File: org/apache/velocity/runtime/defaults/velocity.properties
+syys 12, 2013 4:05:35 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Trying to use logger class org.apache.velocity.runtime.log.ServletLogChute
+syys 12, 2013 4:05:35 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Using logger class org.apache.velocity.runtime.log.ServletLogChute
+syys 12, 2013 4:05:35 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] Default ResourceManager initializing. (class org.apache.velocity.runtime.resource.ResourceManagerImpl)
+syys 12, 2013 4:05:35 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] ResourceLoader instantiated: org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
+syys 12, 2013 4:05:35 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] ClasspathResourceLoader : initialization complete.
+syys 12, 2013 4:05:35 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] ResourceCache: initialized (class org.apache.velocity.runtime.resource.ResourceCacheImpl) with class java.util.Collections$SynchronizedMap cache map.
+syys 12, 2013 4:05:35 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] Default ResourceManager initialization complete.
+syys 12, 2013 4:05:35 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Loaded System Directive: org.apache.velocity.runtime.directive.Stop
+syys 12, 2013 4:05:35 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Loaded System Directive: org.apache.velocity.runtime.directive.Define
+syys 12, 2013 4:05:35 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Loaded System Directive: org.apache.velocity.runtime.directive.Break
+syys 12, 2013 4:05:35 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Loaded System Directive: org.apache.velocity.runtime.directive.Evaluate
+syys 12, 2013 4:05:35 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Loaded System Directive: org.apache.velocity.runtime.directive.Literal
+syys 12, 2013 4:05:35 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Loaded System Directive: org.apache.velocity.runtime.directive.Macro
+syys 12, 2013 4:05:35 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Loaded System Directive: org.apache.velocity.runtime.directive.Parse
+syys 12, 2013 4:05:35 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Loaded System Directive: org.apache.velocity.runtime.directive.Include
+syys 12, 2013 4:05:35 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Loaded System Directive: org.apache.velocity.runtime.directive.Foreach
+syys 12, 2013 4:05:35 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Created '20' parsers.
+syys 12, 2013 4:05:35 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] Velocimacro : initialization starting.
+syys 12, 2013 4:05:35 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Velocimacro : "velocimacro.library" is not set.  Trying default library: VM_global_library.vm
+syys 12, 2013 4:05:35 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Could not load resource 'VM_global_library.vm' from ResourceLoader org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader: ClasspathResourceLoader Error: cannot find resource VM_global_library.vm
+syys 12, 2013 4:05:35 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Velocimacro : Default library not found.
+syys 12, 2013 4:05:35 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Velocimacro : allowInline = true : VMs can be defined inline in templates
+syys 12, 2013 4:05:35 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Velocimacro : allowInlineToOverride = false : VMs defined inline may NOT replace previous VM definitions
+syys 12, 2013 4:05:35 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Velocimacro : allowInlineLocal = false : VMs defined inline will be global in scope if allowed.
+syys 12, 2013 4:05:35 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Velocimacro : autoload off : VM system will not automatically reload global library macros
+syys 12, 2013 4:05:35 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] Velocimacro : Velocimacro : initialization complete.
+syys 12, 2013 4:05:35 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] RuntimeInstance successfully initialized.
+syys 12, 2013 4:05:35 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] Searching for configuration at: /WEB-INF/toolbox.xml
+syys 12, 2013 4:05:35 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Loaded deprecated configuration from: /WEB-INF/toolbox.xml
+syys 12, 2013 4:05:35 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity   [warn] Please upgrade to new "/WEB-INF/tools.xml" format and conventional location. Support for "/WEB-INF/toolbox.xml" format and conventional file name will be removed in a future version.
+syys 12, 2013 4:05:35 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Default tools configuration has been suppressed to avoid conflicts with older application's context and toolbox definition.
+syys 12, 2013 4:05:35 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] Searching for configuration at: /WEB-INF/tools.xml
+syys 12, 2013 4:05:35 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Did not find resource at: /WEB-INF/tools.xml
+syys 12, 2013 4:05:35 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Configuring factory with: 
+FactoryConfiguration from 3 sources with 1 properties [deprecationSupportMode -auto-> true; ] and 1 toolboxes: 
+ Toolbox 'request' with 1 properties [scope -auto-> request; ] and 2 tools: 
+  Tool 'piippu' => Pipe with 1 properties [key -auto-> piippu; ]
+  Tool 'testiBundle' => org.apache.velocity.tools.generic.ResourceTool with 3 properties [bundles -auto-> testBundle; key -auto-> testiBundle; locale -auto-> en_US; ]
+  
+ 
+ Source 0: org.apache.velocity.tools.config.FactoryConfiguration(VelocityView.configure(config,factory))
+ Source 1: org.apache.velocity.tools.config.XmlFactoryConfiguration(ServletUtils.getConfiguration(/WEB-INF/toolbox.xml,ServletContext[,depMode=true]))
+ Source 2: org.apache.velocity.tools.config.FactoryConfiguration(ConfigurationUtils.getAutoLoaded(false))
+
+syys 12, 2013 4:05:35 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Default Content-Type is: text/html; charset=utf-8
+syys 12, 2013 4:05:35 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] org.apache.velocity.tools.view.servlet.VelocityViewServlet has been deprecated. Use org.apache.velocity.tools.view.servlet.VelocityViewServlet instead.
+syys 12, 2013 4:05:35 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] ResourceManager : found /kurki.js with loader org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
+syys 12, 2013 4:09:58 IP. org.apache.catalina.session.StandardSession writeObject
+WARNING: Cannot serialize session attribute session for session 861EB8351C9066385D448DD49300C07E
+java.io.NotSerializableException: kurki.CourseInfo
+	at java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1181)
+	at java.io.ObjectOutputStream.writeObject(ObjectOutputStream.java:347)
+	at java.util.Hashtable.writeObject(Hashtable.java:988)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at java.io.ObjectStreamClass.invokeWriteObject(ObjectStreamClass.java:988)
+	at java.io.ObjectOutputStream.writeSerialData(ObjectOutputStream.java:1493)
+	at java.io.ObjectOutputStream.writeOrdinaryObject(ObjectOutputStream.java:1429)
+	at java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1175)
+	at java.io.ObjectOutputStream.defaultWriteFields(ObjectOutputStream.java:1541)
+	at java.io.ObjectOutputStream.writeSerialData(ObjectOutputStream.java:1506)
+	at java.io.ObjectOutputStream.writeOrdinaryObject(ObjectOutputStream.java:1429)
+	at java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1175)
+	at java.io.ObjectOutputStream.writeObject(ObjectOutputStream.java:347)
+	at org.apache.catalina.session.StandardSession.writeObject(StandardSession.java:1671)
+	at org.apache.catalina.session.StandardSession.writeObjectData(StandardSession.java:1077)
+	at org.apache.catalina.session.StandardManager.doUnload(StandardManager.java:432)
+	at org.apache.catalina.session.StandardManager.unload(StandardManager.java:353)
+	at org.apache.catalina.session.StandardManager.stopInternal(StandardManager.java:518)
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:232)
+	at org.apache.catalina.core.StandardContext.stopInternal(StandardContext.java:5622)
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:232)
+	at org.apache.catalina.manager.ManagerServlet.undeploy(ManagerServlet.java:1359)
+	at org.apache.catalina.manager.ManagerServlet.doGet(ManagerServlet.java:380)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:621)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:728)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:305)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+	at org.apache.catalina.filters.SetCharacterEncodingFilter.doFilter(SetCharacterEncodingFilter.java:108)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:243)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:222)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:123)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:611)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:171)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:99)
+	at org.apache.catalina.valves.AccessLogValve.invoke(AccessLogValve.java:953)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:408)
+	at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1023)
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:589)
+	at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:312)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:724)
+
+syys 12, 2013 4:45:12 IP. org.apache.catalina.core.ApplicationContext log
+INFO: SessionListener: contextDestroyed()
+syys 12, 2013 4:45:12 IP. org.apache.catalina.core.ApplicationContext log
+INFO: ContextListener: contextDestroyed()
