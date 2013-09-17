@@ -5,21 +5,21 @@
 	      <table border="0" cellspacing="0" cellpadding="0" align="left" style="text-align:left;">
 	        <tr>
 		  <td>
-		    <b>Snimi:</b>
+		    <b>$bundle.getString("isosnimi"):</b>
 		  </td>
 		  <td>
 		    <input type="text" id="lname" name="lname" size="10" maxlength="30">
 		  </td>
-<!--
+#*
 		  <td nowrap>&nbsp;
 		    <b>Enimi:</b>
 		  </td>
 		  <td>
 		    <input type="text" name="fname" size="10" maxlength="30">
 		  </td>
--->
+*#
 		  <td nowrap>&nbsp;
-		    <b>Ryhmä:</b>
+		    <b>$bundle.getString("ryhma"):</b>
  		  </td>
 		  <td>
                     <select name="group">
@@ -31,26 +31,44 @@
 ##		    <input type="text" id="group" name="group" size="2" maxlength="2" onBlur="rangecheck(this, 1, 99);">
 		  </td>
   		  <td nowrap>&nbsp;
+                  <b>$bundle.getString("camelopnro"):</b>
+
+## hetun ja opnron valinta pois, ja tilalle valinnaksi tulee aina 0 eli opiskelijanumero (vaikka siinä lukee hetu) -tka
+#*
+
  		    <select name="idtype">
+
 #if (!$useSNO)
+
 		      <option value="0" selected>Hetu:</option>
 		      <option value="1">OpNro:</option>
+
+
 #else
+
 		      <option value="0">Hetu:</option>
 		      <option value="1" selected>OpNro:</option>
+
+
 #end
 		    </select>	
+
+*#
+
+## idtype value aina nolla -tka
+<input type="hidden" value="0" name="idtype">
+
 		  </td>
 		  <td>
 		    <input type="text" id="idvalue" name="idvalue" size="11" maxlength="11">
 		  </td>
 		  <td nowrap>&nbsp;
 		    <select name="doSearch"
-			    onChange="checkAndSubmitStudentFind(document.ophaku);">
-		      <option>-- valitse toiminto --</option>
-		      <option value="0">tiedot (ryhmän vaihto, poisto, suoritukset)</option>
-		      <option value="1">hae lisättävä opiskelija</option>
-		      <option value="2">hae palautettava opiskelija</option>
+                        onChange="checkAndSubmitStudentFind(document.ophaku);">
+		      <option>-- $bundle.getString("valitsetoiminto") --</option>
+		      <option value="0">$bundle.getString("tiedot")</option>
+		      <option value="1">$bundle.getString("haelisatop")</option>
+		      <option value="2">$bundle.getString("haepalop")</option>
  		    </select>
 		  </td>
 		</tr>
@@ -75,18 +93,7 @@
 </div>
   #end
 <div class="instr">
-<b>Anna opiskelijoiden hakuperuste</b>: sukunimi, etunimi ja hetu tai oppilasnumero.
-<em>Tähti (*) tarkoittaa mitä tahansa merkkijonoa.</em>
-<p>
-Lopuksi <b>valitse toiminto</b> valikosta oikealla:
-voit joko <em>muokata kurssilaisten tietoja</em> 
-(poistaa, vaihtaa ryhmää, muuttaa/kirjata pisteitä),
-<em>lisätä</em> kurssille uuden opiskelijan tai
-<em>palauttaa</em> kurssilta erehdyksessä poistetun henkilön takaisin kurssille.
-<p>
-Opiskelijaa kurssille lisättäessä, näytetään hakutuloksessa 
-vain 50 ensimmäistä opiskelijaa, joten <em>pyri antamaan mahdollisimman
-tarkka hakuehto</em>.
+$bundle.getString("ophakuperuste")
 </div>
           </td>
         </tr>
