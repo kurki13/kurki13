@@ -3,6 +3,10 @@ body
 	text-align: center;
 	background-image: url(//www.cs.Helsinki.FI/include/tktl-lines.gif);
 	color: black;
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+        -khtml-border-radius: 10px;
+        border-radius: 10px;
 }
 
 .center
@@ -141,21 +145,37 @@ caption
 
 form 
 {	margin: 0pt;
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+        -khtml-border-radius: 10px;
+        border-radius: 10px;
 }
 
 input 
 {	color: black;
 	background-color: white;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        -khtml-border-radius: 5px;
+        border-radius: 5px;
 }
 
 input.button
 {	color: black;
 	background-color: #CCCCCC;
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+        -khtml-border-radius: 10px;
+        border-radius: 10px;
 }
 
 input.submitb
 {	color: black;
 	background-color: #CCCCCC;
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+        -khtml-border-radius: 10px;
+        border-radius: 10px;
 }
 
 form.inline 
