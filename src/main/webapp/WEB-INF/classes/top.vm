@@ -7,7 +7,7 @@
   <head>
     <META charset='utf-8'/>
     <title>KURKI</title>
-    <link rel="stylesheet" href="../kurki.css" title="kurki">
+    <link rel="stylesheet" type="text/css" href="../kurki.css" title="kurki">
     <script language='JavaScript' type='text/javascript' src='../kurki.js'></script>
 
 #if ($autosave)

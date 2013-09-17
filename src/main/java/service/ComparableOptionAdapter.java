@@ -1,8 +1,9 @@
 package service;
 
+import java.io.Serializable;
 import service.exception.NullIdException;
 
-public abstract class ComparableOptionAdapter implements ComparableOption {
+public abstract class ComparableOptionAdapter implements ComparableOption, Serializable {
     protected Comparable id;
     protected String desc;
 
