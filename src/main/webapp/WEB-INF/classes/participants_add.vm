@@ -12,24 +12,24 @@ $error
 #if ($students)
 <table class="normal" border="1" width="100%">
   <caption>
-   Opiskelijoita valittu ${students.size()}
+   $bundle.getString("opvalittu") ${students.size()}
   </caption>
   <tr>
     <th>
-      Nimi (syntymäpäivä)
+      $bundle.getString("nimiIso") ($bundle.getString("syntymapaiva"))
     </th>
     <th>
 #if ($useSNO)
-      OpNro
+      $bundle.getString("camelopnro")
 #else
-      Hetu
+      $bundle.getString("camelopnro")
 #end
     </th>
     <th>
-      Ryhmä
+      $bundle.getString("ryhma")
     </th>
     <th>
-      Ilmoita kurssille
+      $bundle.getString("ilmoitakurssille")
     </th>
   </tr>
   #set ($rowcount = 0)
@@ -78,7 +78,7 @@ $error
   #end
 </table>
 #else 
-Yksikään opiskelija ei vastannut hakuehtoa.
+$bundle.getString("opeivastannut")
 #end
 	  </td>
         </tr>
