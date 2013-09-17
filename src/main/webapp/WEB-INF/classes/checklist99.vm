@@ -12,7 +12,7 @@ $bundle.getString("matlu")
 $bundle.getString("cslaitos")
 
 $bundle.getString("opintojakso"):    $selectedCourse.CCode, $selectedCourse.Label
-$bundle.getString("laajuus"):        $selectedCourse.CreditsNew $bundle.getString("op") ( $selectedCourse.Credits $bundle.getString("ov") )
+$bundle.getString("laajuus"):        $selectedCourse.NewCredits $bundle.getString("op") ( $selectedCourse.Credits $bundle.getString("ov") )
 $bundle.getString("suoritusaika"):   $selectedCourse.ExamDate
 $bundle.getString("hyvaksyja"):      $selectedCourse.DonName
 #end
