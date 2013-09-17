@@ -15,16 +15,14 @@
 <hr>
 <ul>
 <li>
-Istunnollesi varatut resurssit on vapautettu.
+$bundle.getString("varatutResurssit")
 </li>
 <li>
-Jos käytit Kurki-järjestelmää julkiselta koneelta, 
-<b>tyhjennä selaimesi välimuisti ja sivuhistoria</b> sekä 
-lopuksi <b>sulje selain</b>. Näin luottamukselliset
-tiedot eivät jää koneen muistiin.
+$bundle.getString("luottamuksellisetTiedot")
+
 </li>
 <li>
-Jos kirjauduit ulos vahingossa, voit <a href="index">aloittaa uuden istunnon</a> tästä.
+$bundle.getString("kirjauduitUlosVahingossa")
 </li>
 </ul>
       </div>
