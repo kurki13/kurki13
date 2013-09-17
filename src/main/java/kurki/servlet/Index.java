@@ -25,7 +25,6 @@ public class Index extends VelocityServlet implements Log, Serializable {
     public static final String TIMESTAMP = "TS";
     private int session_lenght = 3600;
     public static final String KURKI_SESSION = "session";
-    public static final Hashtable handlers = new Hashtable();
 
     static {
         Session.initialize();
@@ -36,32 +35,12 @@ public class Index extends VelocityServlet implements Log, Serializable {
         if (!initialized) {
             try {
                 init_config();
-                init_handlers();
             } catch (Exception e) {
                 e.printStackTrace();
                 System.exit(0);
             }
             initialized = true;
         }
-    }
-
-    //MKCT: Wtf do we need handlers for when we have the ServiceManager singleton?
-    private void init_handlers() {
-        ServiceManager serviceManager = Session.getServiceManager();
-        handlers.put(ServiceName.ENTRY,
-                new Entry(serviceManager.getService(ServiceName.ENTRY)));
-        handlers.put(ServiceName.PARTICIPANTS,
-                new Participants(serviceManager.getService(ServiceName.PARTICIPANTS)));
-        handlers.put(ServiceName.COURSE_BASICS,
-                new CourseBasics(serviceManager.getService(ServiceName.COURSE_BASICS)));
-        handlers.put(ServiceName.CHECKLIST,
-                new Checklist(serviceManager.getService(ServiceName.CHECKLIST)));
-        handlers.put(ServiceName.GRADES,
-                new Grades(serviceManager.getService(ServiceName.GRADES)));
-        handlers.put(ServiceName.RESULT_LIST,
-                new ResultList(serviceManager.getService(ServiceName.RESULT_LIST)));
-        handlers.put(ServiceName.FREEZE,
-                new Freeze(serviceManager.getService(ServiceName.FREEZE)));
     }
 
     private void init_config() {
@@ -309,10 +288,6 @@ public class Index extends VelocityServlet implements Log, Serializable {
         } else {
             return str;
         }
-    }
-
-    public AbstractVelocityServiceProvider getHandlerFor(Service service) {
-        return (AbstractVelocityServiceProvider) handlers.get(service.getId());
     }
 
     public static String asNotify(String target) {

@@ -411,8 +411,6 @@ public class Session implements java.io.Serializable {
                 preparedStatement.setString(1, this.ruser);
                 preparedStatement.setString(2, this.ruser);
             }
-            //MKCT:
-//            preparedStatement = databaseConnection.prepareStatement(SUPER_INFOS);
             resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
