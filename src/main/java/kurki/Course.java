@@ -1493,12 +1493,6 @@ public class Course implements Serializable, Option {
                     
                     s.setCreditsNew(rs.getInt("laajuus_op"));
                     s.setLanguage(rs.getString("kielikoodi"));
-
-                    // 		int grp = s.getGroup();
-                    // 		if ( isFrozen() || ( grp > 0 && grp < MAX_GROUP && frozenGrp[ grp-1 ] ) ) {
-                    // 		    s.freeze();
-                    // 		}
-
                     String[] scoreFields = {"laskarisuoritukset", "harjoitustyopisteet", "koepisteet", "arvosana", "laajuus_op", "kielikoodi"};
                     
                     for (int i = 0; i < this.parts.size(); i++) {
@@ -1583,14 +1577,12 @@ public class Course implements Serializable, Option {
             
             while (rs.next()) {
                 int grp = rs.getInt("ilmo_jnro");
-// 		System.out.println("loading group: "+grp);
                 if (!rs.wasNull()) {
                     this.groups.add(new Integer(grp));
                 }
             }
             rs.close();
             pstmt.close();
-// 	    System.out.println("groups loaded");
 
             pstmt = con.prepareStatement(LOAD_COURSE_SQL);
             
@@ -1690,7 +1682,6 @@ public class Course implements Serializable, Option {
                     this.parts.add(part);
                 }
                 if (maxScores == null) {
-// 		    System.out.println("Lh maxScores == null");
                     isNull[0] = true;
                 }
 
@@ -1746,7 +1737,6 @@ public class Course implements Serializable, Option {
                     this.parts.add(part);
                 }
                 if (maxScores == null) {
-// 		    System.out.println("Ht maxScores == null");
                     isNull[1] = true;
                 }
 
@@ -1801,11 +1791,6 @@ public class Course implements Serializable, Option {
                 firstXtr = rs.getInt("min_yhteispisteet");
                 xtrStep = rs.getDouble("arvostelun_askelkoko");
                 scoreBoundaries = rs.getString("arvosanarajat");
-
-                // Oletusarvot
-                // 	    if ( firstXtr == 0 ) firstXtr = 30;
-                // 	    if ( xtrStep == 0 ) xtrStep = 3;
-
                 part = new Part(Part.ARVOSANA, 1);
                 part.setXtrScore(Part.grades.length);
                 part.setFirstXtrScore(firstXtr);
@@ -1829,25 +1814,6 @@ public class Course implements Serializable, Option {
                 part = new Part(Part.OPINTOPISTEET, points);
                 part.partDefMod();
                 this.parts.add(part);
-
-                /*
-                 * Opintoviikot, poistettu 2011-08-19 HL
-                 *
-                 * Offering[] weeks = new Offering[1];
-                 * weeks[0] = new Offering(0,this.creditsMax);
-                 * weeks[0].initMinScore(this.credits);
-                 * part = new Part( Part.OPINTOVIIKOT, weeks);
-                 *  part.partDefMod();
-                 * this.parts.add( part );
-                 */
-
-                /*
-                 * Kielikoodi, lisatty 2011-08-19, HL
-                 */
-
-                // Offering[] languages = new Offering[1];
-                // languages[0] = new Offering(0,this.creditsMax);
-                // weeks[0].initMinScore(this.credits);
                 part = new Part(Part.KIELIKOODI, 1);
                 part.partDefMod();
                 this.parts.add(part);

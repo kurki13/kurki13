@@ -132,6 +132,7 @@ public class Pipe {
 		coursesList.add( cinfo );
                 
                 answer += cinfo.toString() + "<br>";
+                DBConnectionManager.closeConnection(databaseConnection);
             }
         } catch (SQLException ex) {
             Logger.getLogger(Pipe.class.getName()).log(Level.SEVERE, null, ex);
