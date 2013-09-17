@@ -17,9 +17,9 @@ $!error
 </th>
 <th>$bundle.getString("etunimi")
 </th>
-<th>hetu
+<th>$bundle.getString("opnro")
 </th>
-<th>ktunnus
+<th>$bundle.getString("ktunnus")
 </th>
 </tr>
 #foreach ($t in $teachers)
@@ -27,7 +27,7 @@ $t
 #end
 <tr>
   <th colspan="4">
-    <input type="submit" name="save" value="tallenna käyttäjätunnukset">
+    <input type="submit" name="save" value="$bundle.getString("tallennaKayttajat")">
   </th>
 </tr>
 </table>

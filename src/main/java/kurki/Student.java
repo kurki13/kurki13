@@ -238,13 +238,16 @@ public class Student extends ComparableOptionAdapter
 /*
 * vanha opnro versio korvattu 08/7
 *    public String getSNO() { return this.sno; }
+* 
+* Tätä ei enää käytetä.
+* Tulee error kun yrittää käyttää ja opiskelijanumero tulee getSSO (eli hetun kohdasta). -tka
 */
-    public String getSNO() { 
-	if ( this.sno.length() < 10 || this.sno.length() > 10 )
-	    return this.sno;
-	else 
-	    return this.sno.substring(0, 6)+"-"+this.sno.substring(6, 10);
-    }
+//    public String getSNO() { 
+//	if ( this.sno.length() < 10 || this.sno.length() > 10 )
+//	    return this.sno;
+//	else 
+//	    return this.sno.substring(0, 6)+"-"+this.sno.substring(6, 10);
+//    }
 
 /*
 * vanha hetu versio korvattu 08/7

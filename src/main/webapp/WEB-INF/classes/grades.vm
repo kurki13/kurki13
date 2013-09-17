@@ -30,8 +30,11 @@
 <table class="normal" border="0" width="500">
   <tr>
     <th>
-      EI OSASUORITUKSIA <br><br>
+      $bundle.getString("isoeiosa") <br><br>
       <form action="index" method="post">
+
+## valuen vaihtaminen tähän???? -tka
+
         <input type="submit" value="Määrittele kurssin osasuoritukset" class="submitb">
         <input type="hidden" value="3coursebasics" name="service">
       </form>

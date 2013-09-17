@@ -53,6 +53,6 @@ $bundle.getString("kirjaustilanne"): ${sysdate} $bundle.getString("klo"): ${time
   </tr>
 #end
 </table>
-$bundle.getString("hyvakspisteitta")
+"+" = $bundle.getString("hyvakspisteitta")
 </body>
 </html>
