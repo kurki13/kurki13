@@ -9,7 +9,7 @@
         <tr>
           <td colspan="4">
 
-<h3>${selectedCourse.label} - arvostelu</h3>
+<h3>${selectedCourse.label} - $bundle.getString("arvostelu")</h3>
 
 #if ($error && $error != "")
 <div class="error">
@@ -49,10 +49,10 @@
     <td valign="top">
       <table class="normal" border="1">
         <tr>
-          <th>Suorituspäivämäärä</th>
+          <th>$bundle.getString("suorituspvm")</th>
           <td nowrap> 
   #if (!$frozen)
-           <input type="text" name="examDate" value="$!{selectedCourse.ExamDate}" size="10" maxlength="10"> (pp.kk.vvvv)
+           <input type="text" name="examDate" value="$!{selectedCourse.ExamDate}" size="10" maxlength="10"> ($bundle.getString("pvm"))
   #else
            $!{selectedCourse.ExamDate}
   #end
@@ -77,8 +77,8 @@
 ##
 
         <tr>
-          <th rowspan="2" wrap>Osasuorituksia</th>
-          <th>yhteensä</th>
+          <th rowspan="2" wrap>$bundle.getString("osasuorituksia")</th>
+          <th>$bundle.getString("yht")</th>
 
 #if ($lh)
           <td>
@@ -109,7 +109,7 @@
 #end 
         </tr>
         <tr>
-          <th>pakollisia</th>
+          <th>$bundle.getString("pakollisia")</th>
 #if ($lh)
           <td>
   #if (!$frozen)
@@ -145,8 +145,8 @@
 ##
 
         <tr>
-          <th rowspan="3" wrap>Suorituspisteitä <br> osasuorituksista</th>
-          <th>saatavissa</th>
+          <th rowspan="3" wrap>$bundle.getString("suorpstos")</th>
+          <th>$bundle.getString("saatavissa")</th>
 
 #if ($lh)
   #set ($maxScore = $lh.MaxScoreCount)
@@ -180,7 +180,7 @@
 #end 
         </tr>
         <tr>
-          <th>hyv. rajojen summa</th>
+          <th>$bundle.getString(hyvrajsum)</th>
 #if ($lh)
           <td>${lh.MinScoreCount}</td>
 #end
@@ -192,7 +192,7 @@
 #end 
         </tr>
         <tr>
-          <th>Osuuden <br> hyväksymisraja</th>
+          <th>$bundle.getString("Oshr")</th>
 #if ($lh)
           <td>
   #if (!$frozen)
@@ -228,7 +228,7 @@
 ##
 
         <tr>
-          <th rowspan="3" wrap>Arvosteluun <br> vaikuttavat <br>(lisä)pisteet</th>
+          <th rowspan="3" wrap>bundle.getString("arvlp")</th>
           <th>maksimi</th>
 
 #if ($lh)
