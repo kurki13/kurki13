@@ -1,0 +1,1974 @@
+syys 16, 2013 12:24:40 IP. org.apache.catalina.core.AprLifecycleListener init
+INFO: The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: /usr/lib/jvm/java-7-openjdk-amd64/jre/lib/amd64:/usr/lib/jvm/java-7-openjdk-amd64/jre/lib/i386::/usr/java/packages/lib/amd64:/usr/lib/jni:/lib:/usr/lib
+syys 16, 2013 12:24:40 IP. org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["http-bio-8080"]
+syys 16, 2013 12:24:40 IP. org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["ajp-bio-8009"]
+syys 16, 2013 12:24:40 IP. org.apache.catalina.startup.Catalina load
+INFO: Initialization processed in 464 ms
+syys 16, 2013 12:24:40 IP. org.apache.catalina.core.StandardService startInternal
+INFO: Starting service Catalina
+syys 16, 2013 12:24:40 IP. org.apache.catalina.core.StandardEngine startInternal
+INFO: Starting Servlet Engine: Apache Tomcat/7.0.42
+syys 16, 2013 12:24:40 IP. org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /cs/fs/home/mkctammi/apache-tomcat-7.0.42/webapps/docs
+syys 16, 2013 12:24:49 IP. org.apache.catalina.util.SessionIdGenerator createSecureRandom
+INFO: Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [8,506] milliseconds.
+syys 16, 2013 12:24:49 IP. org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /cs/fs/home/mkctammi/apache-tomcat-7.0.42/webapps/host-manager
+syys 16, 2013 12:24:49 IP. org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /cs/fs/home/mkctammi/apache-tomcat-7.0.42/webapps/examples
+syys 16, 2013 12:24:50 IP. org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /cs/fs/home/mkctammi/apache-tomcat-7.0.42/webapps/ROOT
+syys 16, 2013 12:24:50 IP. org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /cs/fs/home/mkctammi/apache-tomcat-7.0.42/webapps/manager
+syys 16, 2013 12:24:50 IP. org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["http-bio-8080"]
+syys 16, 2013 12:24:50 IP. org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["ajp-bio-8009"]
+syys 16, 2013 12:24:50 IP. org.apache.catalina.startup.Catalina start
+INFO: Server startup in 9590 ms
+syys 16, 2013 12:24:50 IP. org.apache.catalina.startup.HostConfig deployDescriptor
+INFO: Deploying configuration descriptor /cs/fs/home/mkctammi/apache-tomcat-7.0.42/conf/Catalina/localhost/kurki13.xml
+syys 16, 2013 12:24:50 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 12:24:51 IP. org.apache.catalina.util.LifecycleBase start
+INFO: The start() method was called on component [StandardEngine[Catalina].StandardHost[localhost].StandardContext[/kurki13]] after start() had already been called. The second call will be ignored.
+syys 16, 2013 12:27:20 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 12:27:20 IP. org.apache.catalina.loader.WebappClassLoader clearReferencesJdbc
+SEVERE: The web application [/kurki13] registered the JDBC driver [oracle.jdbc.driver.OracleDriver] but failed to unregister it when the web application was stopped. To prevent a memory leak, the JDBC Driver has been forcibly unregistered.
+syys 16, 2013 12:27:20 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 12:27:21 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 12:37:16 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 12:37:16 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 12:37:17 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 12:37:18 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 12:37:19 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 12:37:19 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 12:37:22 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 12:37:22 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 12:37:23 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 12:37:23 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 12:37:24 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 12:37:24 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 12:37:28 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 12:37:29 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 12:37:29 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 12:37:29 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 12:37:30 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 12:37:30 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 12:41:20 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 12:41:20 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 12:41:21 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 12:41:21 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 12:41:22 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 12:41:22 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 12:46:35 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 12:46:36 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 12:46:41 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 12:46:41 IP. org.apache.catalina.startup.HostConfig checkResources
+INFO: Reloading context [/kurki13]
+syys 16, 2013 12:46:41 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 12:46:41 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 12:46:41 IP. org.apache.catalina.util.LifecycleBase start
+INFO: The start() method was called on component [StandardEngine[Catalina].StandardHost[localhost].StandardContext[/kurki13]] after start() had already been called. The second call will be ignored.
+syys 16, 2013 12:46:53 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 12:46:53 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 12:46:54 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 12:46:56 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 12:47:00 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 12:47:01 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 12:47:01 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 12:47:01 IP. org.apache.catalina.startup.HostConfig checkResources
+INFO: Reloading context [/kurki13]
+syys 16, 2013 12:47:01 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 12:47:02 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 12:47:02 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 12:47:04 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 12:47:04 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 12:47:05 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 12:47:27 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 12:47:28 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 12:47:29 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 12:47:29 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 12:47:29 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 12:47:30 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 12:47:46 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 12:47:46 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 12:47:47 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 12:47:47 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 12:47:47 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 12:47:48 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 12:50:49 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 12:50:49 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 12:50:50 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 12:50:50 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 12:50:50 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 12:50:51 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 12:52:53 IP. org.apache.catalina.startup.HostConfig checkResources
+INFO: Reloading context [/kurki13]
+syys 16, 2013 12:52:53 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 12:52:54 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 12:52:55 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 12:52:57 IP. org.apache.catalina.startup.HostConfig deleteRedeployResources
+INFO: Undeploying context [/kurki13]
+syys 16, 2013 12:52:57 IP. org.apache.catalina.startup.HostConfig deployDescriptor
+INFO: Deploying configuration descriptor /cs/fs/home/mkctammi/apache-tomcat-7.0.42/conf/Catalina/localhost/kurki13.xml
+syys 16, 2013 12:52:57 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 12:52:57 IP. org.apache.catalina.util.LifecycleBase start
+INFO: The start() method was called on component [StandardEngine[Catalina].StandardHost[localhost].StandardContext[/kurki13]] after start() had already been called. The second call will be ignored.
+syys 16, 2013 12:57:41 IP. org.apache.catalina.loader.WebappClassLoader clearReferencesJdbc
+SEVERE: The web application [/kurki13] registered the JDBC driver [oracle.jdbc.driver.OracleDriver] but failed to unregister it when the web application was stopped. To prevent a memory leak, the JDBC Driver has been forcibly unregistered.
+syys 16, 2013 12:57:42 IP. org.apache.catalina.startup.HostConfig deleteRedeployResources
+INFO: Undeploying context [/kurki13]
+syys 16, 2013 12:57:42 IP. org.apache.catalina.startup.ExpandWar deleteDir
+SEVERE: [/cs/fs/home/mkctammi/apache-tomcat-7.0.42/work/Catalina/localhost/kurki13/loader/oracle/sql/converter_xcharset] could not be completely deleted. The presence of the remaining files may cause problems
+syys 16, 2013 12:57:42 IP. org.apache.catalina.startup.ExpandWar deleteDir
+SEVERE: [/cs/fs/home/mkctammi/apache-tomcat-7.0.42/work/Catalina/localhost/kurki13/loader/oracle/sql] could not be completely deleted. The presence of the remaining files may cause problems
+syys 16, 2013 12:57:42 IP. org.apache.catalina.startup.ExpandWar deleteDir
+SEVERE: [/cs/fs/home/mkctammi/apache-tomcat-7.0.42/work/Catalina/localhost/kurki13/loader/oracle] could not be completely deleted. The presence of the remaining files may cause problems
+syys 16, 2013 12:57:42 IP. org.apache.catalina.startup.ExpandWar deleteDir
+SEVERE: [/cs/fs/home/mkctammi/apache-tomcat-7.0.42/work/Catalina/localhost/kurki13/loader] could not be completely deleted. The presence of the remaining files may cause problems
+syys 16, 2013 12:57:42 IP. org.apache.catalina.startup.ExpandWar deleteDir
+SEVERE: [/cs/fs/home/mkctammi/apache-tomcat-7.0.42/work/Catalina/localhost/kurki13] could not be completely deleted. The presence of the remaining files may cause problems
+syys 16, 2013 12:57:42 IP. org.apache.catalina.startup.ExpandWar delete
+SEVERE: [/cs/fs/home/mkctammi/apache-tomcat-7.0.42/work/Catalina/localhost/kurki13] could not be completely deleted. The presence of the remaining files may cause problems
+syys 16, 2013 12:57:42 IP. org.apache.catalina.startup.HostConfig deployDescriptor
+INFO: Deploying configuration descriptor /cs/fs/home/mkctammi/apache-tomcat-7.0.42/conf/Catalina/localhost/kurki13.xml
+syys 16, 2013 12:57:42 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 12:57:43 IP. org.apache.catalina.util.LifecycleBase start
+INFO: The start() method was called on component [StandardEngine[Catalina].StandardHost[localhost].StandardContext[/kurki13]] after start() had already been called. The second call will be ignored.
+syys 16, 2013 12:57:56 IP. org.apache.catalina.core.StandardServer await
+INFO: A valid shutdown command was received via the shutdown port. Stopping the Server instance.
+syys 16, 2013 12:57:56 IP. org.apache.coyote.AbstractProtocol pause
+INFO: Pausing ProtocolHandler ["http-bio-8080"]
+syys 16, 2013 12:57:56 IP. org.apache.coyote.AbstractProtocol pause
+INFO: Pausing ProtocolHandler ["ajp-bio-8009"]
+syys 16, 2013 12:57:56 IP. org.apache.catalina.core.StandardService stopInternal
+INFO: Stopping service Catalina
+syys 16, 2013 12:57:56 IP. org.apache.catalina.loader.WebappClassLoader clearReferencesJdbc
+SEVERE: The web application [/kurki13] registered the JDBC driver [oracle.jdbc.driver.OracleDriver] but failed to unregister it when the web application was stopped. To prevent a memory leak, the JDBC Driver has been forcibly unregistered.
+syys 16, 2013 12:57:56 IP. org.apache.coyote.AbstractProtocol stop
+INFO: Stopping ProtocolHandler ["http-bio-8080"]
+syys 16, 2013 12:57:56 IP. org.apache.coyote.AbstractProtocol stop
+INFO: Stopping ProtocolHandler ["ajp-bio-8009"]
+syys 16, 2013 12:57:56 IP. org.apache.coyote.AbstractProtocol destroy
+INFO: Destroying ProtocolHandler ["http-bio-8080"]
+syys 16, 2013 12:57:56 IP. org.apache.coyote.AbstractProtocol destroy
+INFO: Destroying ProtocolHandler ["ajp-bio-8009"]
+syys 16, 2013 12:58:00 IP. org.apache.catalina.core.AprLifecycleListener init
+INFO: The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: /usr/lib/jvm/java-7-openjdk-amd64/jre/lib/amd64:/usr/lib/jvm/java-7-openjdk-amd64/jre/lib/i386::/usr/java/packages/lib/amd64:/usr/lib/jni:/lib:/usr/lib
+syys 16, 2013 12:58:00 IP. org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["http-bio-8080"]
+syys 16, 2013 12:58:00 IP. org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["ajp-bio-8009"]
+syys 16, 2013 12:58:00 IP. org.apache.catalina.startup.Catalina load
+INFO: Initialization processed in 431 ms
+syys 16, 2013 12:58:00 IP. org.apache.catalina.core.StandardService startInternal
+INFO: Starting service Catalina
+syys 16, 2013 12:58:00 IP. org.apache.catalina.core.StandardEngine startInternal
+INFO: Starting Servlet Engine: Apache Tomcat/7.0.42
+syys 16, 2013 12:58:00 IP. org.apache.catalina.startup.HostConfig deployDescriptor
+INFO: Deploying configuration descriptor /cs/fs/home/mkctammi/apache-tomcat-7.0.42/conf/Catalina/localhost/kurki13.xml
+syys 16, 2013 12:58:00 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 12:58:02 IP. org.apache.catalina.session.StandardManager doLoad
+SEVERE: IOException while loading persisted sessions: java.io.WriteAbortedException: writing aborted; java.io.NotSerializableException: kurki.CourseInfo
+java.io.WriteAbortedException: writing aborted; java.io.NotSerializableException: kurki.CourseInfo
+	at java.io.ObjectInputStream.readObject0(ObjectInputStream.java:1352)
+	at java.io.ObjectInputStream.readObject(ObjectInputStream.java:370)
+	at java.util.Hashtable.readObject(Hashtable.java:1029)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at java.io.ObjectStreamClass.invokeReadObject(ObjectStreamClass.java:1017)
+	at java.io.ObjectInputStream.readSerialData(ObjectInputStream.java:1891)
+	at java.io.ObjectInputStream.readOrdinaryObject(ObjectInputStream.java:1796)
+	at java.io.ObjectInputStream.readObject0(ObjectInputStream.java:1348)
+	at java.io.ObjectInputStream.defaultReadFields(ObjectInputStream.java:1989)
+	at java.io.ObjectInputStream.readSerialData(ObjectInputStream.java:1913)
+	at java.io.ObjectInputStream.readOrdinaryObject(ObjectInputStream.java:1796)
+	at java.io.ObjectInputStream.readObject0(ObjectInputStream.java:1348)
+	at java.io.ObjectInputStream.readObject(ObjectInputStream.java:370)
+	at org.apache.catalina.session.StandardSession.readObject(StandardSession.java:1595)
+	at org.apache.catalina.session.StandardSession.readObjectData(StandardSession.java:1060)
+	at org.apache.catalina.session.StandardManager.doLoad(StandardManager.java:284)
+	at org.apache.catalina.session.StandardManager.load(StandardManager.java:204)
+	at org.apache.catalina.session.StandardManager.startInternal(StandardManager.java:491)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:150)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5443)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:150)
+	at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase.java:901)
+	at org.apache.catalina.core.ContainerBase.addChild(ContainerBase.java:877)
+	at org.apache.catalina.core.StandardHost.addChild(StandardHost.java:633)
+	at org.apache.catalina.startup.HostConfig.deployDescriptor(HostConfig.java:656)
+	at org.apache.catalina.startup.HostConfig$DeployDescriptor.run(HostConfig.java:1635)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:471)
+	at java.util.concurrent.FutureTask$Sync.innerRun(FutureTask.java:334)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:166)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:724)
+Caused by: java.io.NotSerializableException: kurki.CourseInfo
+	at java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1181)
+	at java.io.ObjectOutputStream.writeObject(ObjectOutputStream.java:347)
+	at java.util.Hashtable.writeObject(Hashtable.java:988)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at java.io.ObjectStreamClass.invokeWriteObject(ObjectStreamClass.java:988)
+	at java.io.ObjectOutputStream.writeSerialData(ObjectOutputStream.java:1493)
+	at java.io.ObjectOutputStream.writeOrdinaryObject(ObjectOutputStream.java:1429)
+	at java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1175)
+	at java.io.ObjectOutputStream.defaultWriteFields(ObjectOutputStream.java:1541)
+	at java.io.ObjectOutputStream.writeSerialData(ObjectOutputStream.java:1506)
+	at java.io.ObjectOutputStream.writeOrdinaryObject(ObjectOutputStream.java:1429)
+	at java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1175)
+	at java.io.ObjectOutputStream.writeObject(ObjectOutputStream.java:347)
+	at org.apache.catalina.session.StandardSession.writeObject(StandardSession.java:1671)
+	at org.apache.catalina.session.StandardSession.writeObjectData(StandardSession.java:1077)
+	at org.apache.catalina.session.StandardManager.doUnload(StandardManager.java:432)
+	at org.apache.catalina.session.StandardManager.unload(StandardManager.java:353)
+	at org.apache.catalina.session.StandardManager.stopInternal(StandardManager.java:518)
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:232)
+	at org.apache.catalina.core.StandardContext.stopInternal(StandardContext.java:5622)
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:232)
+	at org.apache.catalina.core.ContainerBase$StopChild.call(ContainerBase.java:1575)
+	at org.apache.catalina.core.ContainerBase$StopChild.call(ContainerBase.java:1564)
+	... 5 more
+
+syys 16, 2013 12:58:02 IP. org.apache.catalina.session.StandardManager startInternal
+SEVERE: Exception loading sessions from persistent storage
+java.io.WriteAbortedException: writing aborted; java.io.NotSerializableException: kurki.CourseInfo
+	at java.io.ObjectInputStream.readObject0(ObjectInputStream.java:1352)
+	at java.io.ObjectInputStream.readObject(ObjectInputStream.java:370)
+	at java.util.Hashtable.readObject(Hashtable.java:1029)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at java.io.ObjectStreamClass.invokeReadObject(ObjectStreamClass.java:1017)
+	at java.io.ObjectInputStream.readSerialData(ObjectInputStream.java:1891)
+	at java.io.ObjectInputStream.readOrdinaryObject(ObjectInputStream.java:1796)
+	at java.io.ObjectInputStream.readObject0(ObjectInputStream.java:1348)
+	at java.io.ObjectInputStream.defaultReadFields(ObjectInputStream.java:1989)
+	at java.io.ObjectInputStream.readSerialData(ObjectInputStream.java:1913)
+	at java.io.ObjectInputStream.readOrdinaryObject(ObjectInputStream.java:1796)
+	at java.io.ObjectInputStream.readObject0(ObjectInputStream.java:1348)
+	at java.io.ObjectInputStream.readObject(ObjectInputStream.java:370)
+	at org.apache.catalina.session.StandardSession.readObject(StandardSession.java:1595)
+	at org.apache.catalina.session.StandardSession.readObjectData(StandardSession.java:1060)
+	at org.apache.catalina.session.StandardManager.doLoad(StandardManager.java:284)
+	at org.apache.catalina.session.StandardManager.load(StandardManager.java:204)
+	at org.apache.catalina.session.StandardManager.startInternal(StandardManager.java:491)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:150)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5443)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:150)
+	at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase.java:901)
+	at org.apache.catalina.core.ContainerBase.addChild(ContainerBase.java:877)
+	at org.apache.catalina.core.StandardHost.addChild(StandardHost.java:633)
+	at org.apache.catalina.startup.HostConfig.deployDescriptor(HostConfig.java:656)
+	at org.apache.catalina.startup.HostConfig$DeployDescriptor.run(HostConfig.java:1635)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:471)
+	at java.util.concurrent.FutureTask$Sync.innerRun(FutureTask.java:334)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:166)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:724)
+Caused by: java.io.NotSerializableException: kurki.CourseInfo
+	at java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1181)
+	at java.io.ObjectOutputStream.writeObject(ObjectOutputStream.java:347)
+	at java.util.Hashtable.writeObject(Hashtable.java:988)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at java.io.ObjectStreamClass.invokeWriteObject(ObjectStreamClass.java:988)
+	at java.io.ObjectOutputStream.writeSerialData(ObjectOutputStream.java:1493)
+	at java.io.ObjectOutputStream.writeOrdinaryObject(ObjectOutputStream.java:1429)
+	at java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1175)
+	at java.io.ObjectOutputStream.defaultWriteFields(ObjectOutputStream.java:1541)
+	at java.io.ObjectOutputStream.writeSerialData(ObjectOutputStream.java:1506)
+	at java.io.ObjectOutputStream.writeOrdinaryObject(ObjectOutputStream.java:1429)
+	at java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1175)
+	at java.io.ObjectOutputStream.writeObject(ObjectOutputStream.java:347)
+	at org.apache.catalina.session.StandardSession.writeObject(StandardSession.java:1671)
+	at org.apache.catalina.session.StandardSession.writeObjectData(StandardSession.java:1077)
+	at org.apache.catalina.session.StandardManager.doUnload(StandardManager.java:432)
+	at org.apache.catalina.session.StandardManager.unload(StandardManager.java:353)
+	at org.apache.catalina.session.StandardManager.stopInternal(StandardManager.java:518)
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:232)
+	at org.apache.catalina.core.StandardContext.stopInternal(StandardContext.java:5622)
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:232)
+	at org.apache.catalina.core.ContainerBase$StopChild.call(ContainerBase.java:1575)
+	at org.apache.catalina.core.ContainerBase$StopChild.call(ContainerBase.java:1564)
+	... 5 more
+
+syys 16, 2013 12:58:02 IP. org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /cs/fs/home/mkctammi/apache-tomcat-7.0.42/webapps/docs
+syys 16, 2013 12:58:02 IP. org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /cs/fs/home/mkctammi/apache-tomcat-7.0.42/webapps/host-manager
+syys 16, 2013 12:58:02 IP. org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /cs/fs/home/mkctammi/apache-tomcat-7.0.42/webapps/examples
+syys 16, 2013 12:58:02 IP. org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /cs/fs/home/mkctammi/apache-tomcat-7.0.42/webapps/ROOT
+syys 16, 2013 12:58:02 IP. org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory /cs/fs/home/mkctammi/apache-tomcat-7.0.42/webapps/manager
+syys 16, 2013 12:58:02 IP. org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["http-bio-8080"]
+syys 16, 2013 12:58:02 IP. org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["ajp-bio-8009"]
+syys 16, 2013 12:58:02 IP. org.apache.catalina.startup.Catalina start
+INFO: Server startup in 1938 ms
+syys 16, 2013 12:58:03 IP. org.apache.catalina.startup.HostConfig deleteRedeployResources
+INFO: Undeploying context [/kurki13]
+syys 16, 2013 12:58:03 IP. org.apache.catalina.startup.HostConfig deployDescriptor
+INFO: Deploying configuration descriptor /cs/fs/home/mkctammi/apache-tomcat-7.0.42/conf/Catalina/localhost/kurki13.xml
+syys 16, 2013 12:58:03 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 12:58:04 IP. org.apache.catalina.util.LifecycleBase start
+INFO: The start() method was called on component [StandardEngine[Catalina].StandardHost[localhost].StandardContext[/kurki13]] after start() had already been called. The second call will be ignored.
+syys 16, 2013 1:01:14 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 1:01:14 IP. org.apache.catalina.loader.WebappClassLoader clearReferencesJdbc
+SEVERE: The web application [/kurki13] registered the JDBC driver [oracle.jdbc.driver.OracleDriver] but failed to unregister it when the web application was stopped. To prevent a memory leak, the JDBC Driver has been forcibly unregistered.
+syys 16, 2013 1:01:15 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 1:01:15 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 1:03:36 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 1:03:36 IP. org.apache.catalina.loader.WebappClassLoader clearReferencesJdbc
+SEVERE: The web application [/kurki13] registered the JDBC driver [oracle.jdbc.driver.OracleDriver] but failed to unregister it when the web application was stopped. To prevent a memory leak, the JDBC Driver has been forcibly unregistered.
+syys 16, 2013 1:03:37 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 1:03:38 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 1:04:05 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 1:04:06 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 1:04:06 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 1:04:11 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 1:04:12 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 1:04:13 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 1:04:51 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 1:04:52 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 1:04:52 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 1:05:13 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 1:05:14 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 1:05:15 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 1:05:18 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 1:05:18 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 1:05:19 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 1:06:04 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 1:06:05 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 1:06:05 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 1:08:00 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 1:08:00 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 1:08:01 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 1:08:23 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 1:08:24 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 1:08:24 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 1:08:29 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 1:08:30 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 1:08:30 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 1:09:05 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 1:09:06 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 1:09:06 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 1:09:07 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 1:09:07 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 1:09:07 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 1:09:19 IP. org.apache.catalina.startup.HostConfig deleteRedeployResources
+INFO: Undeploying context [/kurki13]
+syys 16, 2013 1:09:19 IP. org.apache.catalina.startup.HostConfig deployDescriptor
+INFO: Deploying configuration descriptor /cs/fs/home/mkctammi/apache-tomcat-7.0.42/conf/Catalina/localhost/kurki13.xml
+syys 16, 2013 1:09:19 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 1:09:19 IP. org.apache.catalina.util.LifecycleBase start
+INFO: The start() method was called on component [StandardEngine[Catalina].StandardHost[localhost].StandardContext[/kurki13]] after start() had already been called. The second call will be ignored.
+syys 16, 2013 1:15:12 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 1:15:12 IP. org.apache.catalina.loader.WebappClassLoader clearReferencesJdbc
+SEVERE: The web application [/kurki13] registered the JDBC driver [oracle.jdbc.driver.OracleDriver] but failed to unregister it when the web application was stopped. To prevent a memory leak, the JDBC Driver has been forcibly unregistered.
+syys 16, 2013 1:15:13 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 1:15:14 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 1:15:14 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 1:15:14 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 1:15:15 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 1:15:23 IP. org.apache.catalina.startup.HostConfig deleteRedeployResources
+INFO: Undeploying context [/kurki13]
+syys 16, 2013 1:15:23 IP. org.apache.catalina.startup.HostConfig deployDescriptor
+INFO: Deploying configuration descriptor /cs/fs/home/mkctammi/apache-tomcat-7.0.42/conf/Catalina/localhost/kurki13.xml
+syys 16, 2013 1:15:23 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 1:15:23 IP. org.apache.catalina.util.LifecycleBase start
+INFO: The start() method was called on component [StandardEngine[Catalina].StandardHost[localhost].StandardContext[/kurki13]] after start() had already been called. The second call will be ignored.
+syys 16, 2013 1:30:59 IP. org.apache.catalina.loader.WebappClassLoader clearReferencesJdbc
+SEVERE: The web application [/kurki13] registered the JDBC driver [oracle.jdbc.driver.OracleDriver] but failed to unregister it when the web application was stopped. To prevent a memory leak, the JDBC Driver has been forcibly unregistered.
+syys 16, 2013 1:31:00 IP. org.apache.catalina.startup.HostConfig deleteRedeployResources
+INFO: Undeploying context [/kurki13]
+syys 16, 2013 1:31:00 IP. org.apache.catalina.startup.HostConfig deployDescriptor
+INFO: Deploying configuration descriptor /cs/fs/home/mkctammi/apache-tomcat-7.0.42/conf/Catalina/localhost/kurki13.xml
+syys 16, 2013 1:31:00 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 1:31:01 IP. org.apache.catalina.util.LifecycleBase start
+INFO: The start() method was called on component [StandardEngine[Catalina].StandardHost[localhost].StandardContext[/kurki13]] after start() had already been called. The second call will be ignored.
+syys 16, 2013 1:31:02 IP. org.apache.velocity.runtime.log.CommonsLogLogChute log
+SEVERE: Exception parsing modificationCheckInterval setting: 1 
+java.lang.NumberFormatException: For input string: "1 "
+	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
+	at java.lang.Long.parseLong(Long.java:441)
+	at java.lang.Long.<init>(Long.java:702)
+	at org.apache.commons.collections.ExtendedProperties.getLong(ExtendedProperties.java:1511)
+	at org.apache.commons.collections.ExtendedProperties.getLong(ExtendedProperties.java:1489)
+	at org.apache.velocity.runtime.resource.loader.ResourceLoader.commonInit(ResourceLoader.java:96)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.initialize(ResourceManagerImpl.java:142)
+	at org.apache.velocity.runtime.RuntimeInstance.initializeResourceManager(RuntimeInstance.java:730)
+	at org.apache.velocity.runtime.RuntimeInstance.init(RuntimeInstance.java:263)
+	at org.apache.velocity.runtime.RuntimeInstance.init(RuntimeInstance.java:646)
+	at org.apache.velocity.runtime.RuntimeSingleton.init(RuntimeSingleton.java:226)
+	at org.apache.velocity.app.Velocity.init(Velocity.java:97)
+	at org.apache.velocity.servlet.VelocityServlet.initVelocity(VelocityServlet.java:195)
+	at org.apache.velocity.servlet.VelocityServlet.init(VelocityServlet.java:162)
+	at org.apache.catalina.core.StandardWrapper.initServlet(StandardWrapper.java:1280)
+	at org.apache.catalina.core.StandardWrapper.loadServlet(StandardWrapper.java:1193)
+	at org.apache.catalina.core.StandardWrapper.allocate(StandardWrapper.java:865)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:136)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:123)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:502)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:171)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:99)
+	at org.apache.catalina.valves.AccessLogValve.invoke(AccessLogValve.java:953)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:408)
+	at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1023)
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:589)
+	at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:310)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:724)
+
+syys 16, 2013 1:37:14 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 1:37:15 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 1:37:15 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 1:37:33 IP. org.apache.catalina.startup.HostConfig deleteRedeployResources
+INFO: Undeploying context [/kurki13]
+syys 16, 2013 1:37:33 IP. org.apache.catalina.startup.HostConfig deployDescriptor
+INFO: Deploying configuration descriptor /cs/fs/home/mkctammi/apache-tomcat-7.0.42/conf/Catalina/localhost/kurki13.xml
+syys 16, 2013 1:37:33 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 1:37:34 IP. org.apache.catalina.util.LifecycleBase start
+INFO: The start() method was called on component [StandardEngine[Catalina].StandardHost[localhost].StandardContext[/kurki13]] after start() had already been called. The second call will be ignored.
+syys 16, 2013 1:38:41 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 1:38:41 IP. org.apache.catalina.loader.WebappClassLoader clearReferencesJdbc
+SEVERE: The web application [/kurki13] registered the JDBC driver [oracle.jdbc.driver.OracleDriver] but failed to unregister it when the web application was stopped. To prevent a memory leak, the JDBC Driver has been forcibly unregistered.
+syys 16, 2013 1:38:42 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 1:38:42 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 1:40:36 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 1:40:36 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 1:40:37 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 1:43:08 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 1:43:09 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 1:43:09 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 1:43:15 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 1:43:16 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 1:43:16 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 1:43:25 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 1:43:25 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 1:43:26 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 1:44:38 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 1:44:39 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 1:44:39 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 1:45:38 IP. org.apache.catalina.startup.HostConfig deleteRedeployResources
+INFO: Undeploying context [/kurki13]
+syys 16, 2013 1:45:38 IP. org.apache.catalina.startup.HostConfig deployDescriptor
+INFO: Deploying configuration descriptor /cs/fs/home/mkctammi/apache-tomcat-7.0.42/conf/Catalina/localhost/kurki13.xml
+syys 16, 2013 1:45:38 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 1:45:39 IP. org.apache.catalina.util.LifecycleBase start
+INFO: The start() method was called on component [StandardEngine[Catalina].StandardHost[localhost].StandardContext[/kurki13]] after start() had already been called. The second call will be ignored.
+syys 16, 2013 1:46:51 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 1:46:51 IP. org.apache.catalina.loader.WebappClassLoader clearReferencesJdbc
+SEVERE: The web application [/kurki13] registered the JDBC driver [oracle.jdbc.driver.OracleDriver] but failed to unregister it when the web application was stopped. To prevent a memory leak, the JDBC Driver has been forcibly unregistered.
+syys 16, 2013 1:46:52 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 1:46:52 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 1:47:03 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 1:47:04 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 1:47:04 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 1:47:17 IP. org.apache.velocity.runtime.log.CommonsLogLogChute log
+SEVERE: Exception rendering #parse(top.vm) at checklist.vm[line 1, column 1]
+ClientAbortException:  java.net.SocketException: Broken pipe
+	at org.apache.catalina.connector.OutputBuffer.realWriteBytes(OutputBuffer.java:406)
+	at org.apache.tomcat.util.buf.ByteChunk.append(ByteChunk.java:342)
+	at org.apache.catalina.connector.OutputBuffer.writeBytes(OutputBuffer.java:431)
+	at org.apache.catalina.connector.OutputBuffer.write(OutputBuffer.java:419)
+	at org.apache.catalina.connector.CoyoteOutputStream.write(CoyoteOutputStream.java:91)
+	at sun.nio.cs.StreamEncoder.writeBytes(StreamEncoder.java:221)
+	at sun.nio.cs.StreamEncoder.implWrite(StreamEncoder.java:282)
+	at sun.nio.cs.StreamEncoder.write(StreamEncoder.java:125)
+	at java.io.OutputStreamWriter.write(OutputStreamWriter.java:207)
+	at org.apache.velocity.io.VelocityWriter.flushBuffer(VelocityWriter.java:129)
+	at org.apache.velocity.io.VelocityWriter.write(VelocityWriter.java:306)
+	at org.apache.velocity.io.VelocityWriter.write(VelocityWriter.java:322)
+	at org.apache.velocity.runtime.parser.node.ASTReference.render(ASTReference.java:491)
+	at org.apache.velocity.runtime.parser.node.ASTBlock.render(ASTBlock.java:72)
+	at org.apache.velocity.runtime.parser.node.SimpleNode.render(SimpleNode.java:342)
+	at org.apache.velocity.runtime.parser.node.ASTIfStatement.render(ASTIfStatement.java:106)
+	at org.apache.velocity.runtime.parser.node.ASTBlock.render(ASTBlock.java:72)
+	at org.apache.velocity.runtime.directive.Foreach.render(Foreach.java:420)
+	at org.apache.velocity.runtime.parser.node.ASTDirective.render(ASTDirective.java:207)
+	at org.apache.velocity.runtime.parser.node.ASTBlock.render(ASTBlock.java:72)
+	at org.apache.velocity.runtime.parser.node.ASTIfStatement.render(ASTIfStatement.java:87)
+	at org.apache.velocity.runtime.parser.node.SimpleNode.render(SimpleNode.java:342)
+	at org.apache.velocity.runtime.directive.Parse.render(Parse.java:260)
+	at org.apache.velocity.runtime.parser.node.ASTDirective.render(ASTDirective.java:207)
+	at org.apache.velocity.runtime.parser.node.SimpleNode.render(SimpleNode.java:342)
+	at org.apache.velocity.Template.merge(Template.java:356)
+	at org.apache.velocity.Template.merge(Template.java:260)
+	at org.apache.velocity.servlet.VelocityServlet.mergeTemplate(VelocityServlet.java:452)
+	at kurki.servlet.Index.doRequest(Index.java:290)
+	at org.apache.velocity.servlet.VelocityServlet.doPost(VelocityServlet.java:332)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:647)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:728)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:305)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:222)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:123)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:502)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:171)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:99)
+	at org.apache.catalina.valves.AccessLogValve.invoke(AccessLogValve.java:953)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:408)
+	at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1023)
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:589)
+	at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:312)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:724)
+Caused by: java.net.SocketException: Broken pipe
+	at java.net.SocketOutputStream.socketWrite0(Native Method)
+	at java.net.SocketOutputStream.socketWrite(SocketOutputStream.java:109)
+	at java.net.SocketOutputStream.write(SocketOutputStream.java:153)
+	at org.apache.coyote.http11.InternalOutputBuffer.realWriteBytes(InternalOutputBuffer.java:215)
+	at org.apache.tomcat.util.buf.ByteChunk.flushBuffer(ByteChunk.java:480)
+	at org.apache.tomcat.util.buf.ByteChunk.append(ByteChunk.java:366)
+	at org.apache.coyote.http11.InternalOutputBuffer$OutputStreamOutputBuffer.doWrite(InternalOutputBuffer.java:240)
+	at org.apache.coyote.http11.filters.ChunkedOutputFilter.doWrite(ChunkedOutputFilter.java:119)
+	at org.apache.coyote.http11.AbstractOutputBuffer.doWrite(AbstractOutputBuffer.java:192)
+	at org.apache.coyote.Response.doWrite(Response.java:517)
+	at org.apache.catalina.connector.OutputBuffer.realWriteBytes(OutputBuffer.java:401)
+	... 47 more
+
+syys 16, 2013 1:47:55 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 1:47:55 IP. org.apache.catalina.loader.WebappClassLoader clearReferencesJdbc
+SEVERE: The web application [/kurki13] registered the JDBC driver [oracle.jdbc.driver.OracleDriver] but failed to unregister it when the web application was stopped. To prevent a memory leak, the JDBC Driver has been forcibly unregistered.
+syys 16, 2013 1:47:56 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 1:47:57 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 2:34:19 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 2:34:19 IP. org.apache.catalina.loader.WebappClassLoader clearReferencesJdbc
+SEVERE: The web application [/kurki13] registered the JDBC driver [oracle.jdbc.driver.OracleDriver] but failed to unregister it when the web application was stopped. To prevent a memory leak, the JDBC Driver has been forcibly unregistered.
+syys 16, 2013 2:34:20 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 2:34:20 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 2:40:03 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 2:40:04 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 2:40:04 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 2:40:18 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 2:40:19 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 2:40:19 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 2:42:48 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 2:42:48 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 2:42:49 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 2:43:00 IP. org.apache.catalina.startup.HostConfig deleteRedeployResources
+INFO: Undeploying context [/kurki13]
+syys 16, 2013 2:43:00 IP. org.apache.catalina.startup.HostConfig deployDescriptor
+INFO: Deploying configuration descriptor /cs/fs/home/mkctammi/apache-tomcat-7.0.42/conf/Catalina/localhost/kurki13.xml
+syys 16, 2013 2:43:00 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 2:43:00 IP. org.apache.catalina.util.LifecycleBase start
+INFO: The start() method was called on component [StandardEngine[Catalina].StandardHost[localhost].StandardContext[/kurki13]] after start() had already been called. The second call will be ignored.
+syys 16, 2013 2:43:54 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 2:43:54 IP. org.apache.catalina.loader.WebappClassLoader clearReferencesJdbc
+SEVERE: The web application [/kurki13] registered the JDBC driver [oracle.jdbc.driver.OracleDriver] but failed to unregister it when the web application was stopped. To prevent a memory leak, the JDBC Driver has been forcibly unregistered.
+syys 16, 2013 2:43:55 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 2:43:55 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 2:46:24 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 2:46:24 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 2:46:25 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 2:46:25 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 2:46:26 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 2:46:26 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 2:46:31 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 2:46:32 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 2:46:32 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 2:46:33 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 2:46:33 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 2:46:34 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 2:46:34 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 2:46:35 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 2:46:35 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 2:49:16 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 2:49:16 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 2:49:17 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 2:49:20 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 2:49:21 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 2:49:21 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 2:49:33 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 2:49:34 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 2:49:34 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 2:49:37 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 2:49:38 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 2:49:39 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 2:49:45 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 2:49:45 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 2:49:46 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 2:51:53 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 2:51:54 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 2:51:54 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 2:54:28 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 2:54:28 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 2:54:29 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 2:57:00 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 2:57:01 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 2:57:01 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 2:57:10 IP. org.apache.catalina.startup.HostConfig deleteRedeployResources
+INFO: Undeploying context [/kurki13]
+syys 16, 2013 2:57:10 IP. org.apache.catalina.startup.HostConfig deployDescriptor
+INFO: Deploying configuration descriptor /cs/fs/home/mkctammi/apache-tomcat-7.0.42/conf/Catalina/localhost/kurki13.xml
+syys 16, 2013 2:57:10 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 2:57:10 IP. org.apache.catalina.util.LifecycleBase start
+INFO: The start() method was called on component [StandardEngine[Catalina].StandardHost[localhost].StandardContext[/kurki13]] after start() had already been called. The second call will be ignored.
+syys 16, 2013 2:58:48 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 2:58:48 IP. org.apache.catalina.loader.WebappClassLoader clearReferencesJdbc
+SEVERE: The web application [/kurki13] registered the JDBC driver [oracle.jdbc.driver.OracleDriver] but failed to unregister it when the web application was stopped. To prevent a memory leak, the JDBC Driver has been forcibly unregistered.
+syys 16, 2013 2:58:49 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 2:58:49 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 2:59:06 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 2:59:07 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 2:59:07 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 3:06:34 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 3:06:34 IP. org.apache.catalina.loader.WebappClassLoader clearReferencesJdbc
+SEVERE: The web application [/kurki13] registered the JDBC driver [oracle.jdbc.driver.OracleDriver] but failed to unregister it when the web application was stopped. To prevent a memory leak, the JDBC Driver has been forcibly unregistered.
+syys 16, 2013 3:06:35 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 3:06:36 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 3:06:36 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 3:06:36 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 3:06:37 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 3:06:55 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 3:06:55 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 3:06:56 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 3:07:01 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 3:07:01 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 3:07:02 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 3:07:02 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 3:07:02 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 3:07:03 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 3:07:16 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 3:07:16 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 3:07:17 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 3:08:03 IP. org.apache.catalina.startup.HostConfig deleteRedeployResources
+INFO: Undeploying context [/kurki13]
+syys 16, 2013 3:08:03 IP. org.apache.catalina.startup.HostConfig deployDescriptor
+INFO: Deploying configuration descriptor /cs/fs/home/mkctammi/apache-tomcat-7.0.42/conf/Catalina/localhost/kurki13.xml
+syys 16, 2013 3:08:03 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 3:08:04 IP. org.apache.catalina.util.LifecycleBase start
+INFO: The start() method was called on component [StandardEngine[Catalina].StandardHost[localhost].StandardContext[/kurki13]] after start() had already been called. The second call will be ignored.
+syys 16, 2013 3:09:21 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 3:09:21 IP. org.apache.catalina.loader.WebappClassLoader clearReferencesJdbc
+SEVERE: The web application [/kurki13] registered the JDBC driver [oracle.jdbc.driver.OracleDriver] but failed to unregister it when the web application was stopped. To prevent a memory leak, the JDBC Driver has been forcibly unregistered.
+syys 16, 2013 3:09:22 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 3:09:22 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 3:09:54 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 3:09:55 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 3:09:55 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 3:11:21 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 3:11:21 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 3:11:22 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 3:19:21 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 3:19:21 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 3:19:22 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 3:19:22 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 3:19:22 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 3:19:23 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 3:22:43 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 3:22:43 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 3:22:43 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 3:24:18 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 3:24:19 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 3:24:19 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 3:24:55 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 3:24:55 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 3:24:56 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 3:25:20 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 3:25:20 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 3:25:21 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 3:36:07 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 3:36:08 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 3:36:08 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 3:36:46 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 3:36:46 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 3:36:46 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 3:38:32 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 3:38:32 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 3:38:33 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 3:38:33 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 3:38:33 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 3:38:34 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 3:43:53 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 3:43:53 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 3:43:54 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 3:43:54 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 3:43:54 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 3:43:55 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 3:44:04 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 3:44:05 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 3:44:05 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 3:44:06 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 3:44:07 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 3:44:07 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 3:44:15 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 3:44:15 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 3:44:16 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 3:44:16 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 3:44:16 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 3:44:16 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 3:45:25 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 3:45:26 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 3:45:26 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 3:46:04 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 3:46:05 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 3:46:05 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 3:46:05 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 3:46:06 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 3:46:06 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 3:46:21 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 3:46:22 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 3:46:22 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 3:47:14 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 3:47:15 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 3:47:15 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 3:47:37 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 3:47:38 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 3:47:38 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 3:48:26 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 3:48:27 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 3:48:27 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 3:48:56 IP. org.apache.catalina.startup.HostConfig deleteRedeployResources
+INFO: Undeploying context [/kurki13]
+syys 16, 2013 3:48:57 IP. org.apache.catalina.startup.HostConfig deployDescriptor
+INFO: Deploying configuration descriptor /cs/fs/home/mkctammi/apache-tomcat-7.0.42/conf/Catalina/localhost/kurki13.xml
+syys 16, 2013 3:48:57 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 3:48:57 IP. org.apache.catalina.util.LifecycleBase start
+INFO: The start() method was called on component [StandardEngine[Catalina].StandardHost[localhost].StandardContext[/kurki13]] after start() had already been called. The second call will be ignored.
+syys 16, 2013 3:51:55 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 3:51:55 IP. org.apache.catalina.loader.WebappClassLoader clearReferencesJdbc
+SEVERE: The web application [/kurki13] registered the JDBC driver [oracle.jdbc.driver.OracleDriver] but failed to unregister it when the web application was stopped. To prevent a memory leak, the JDBC Driver has been forcibly unregistered.
+syys 16, 2013 3:51:56 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 3:51:56 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 3:53:02 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 3:53:02 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 3:53:03 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 3:54:09 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 3:54:09 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 3:54:10 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 4:00:05 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 4:00:05 IP. org.apache.catalina.loader.WebappClassLoader clearReferencesJdbc
+SEVERE: The web application [/kurki13] registered the JDBC driver [oracle.jdbc.driver.OracleDriver] but failed to unregister it when the web application was stopped. To prevent a memory leak, the JDBC Driver has been forcibly unregistered.
+syys 16, 2013 4:00:06 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 4:00:06 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 4:00:59 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 4:00:59 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 4:01:00 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 4:01:53 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 4:01:54 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 4:01:54 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 4:07:02 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 4:07:02 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 4:07:03 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 4:07:03 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 4:07:03 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 4:07:03 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 4:07:12 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 4:07:13 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 4:07:13 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 4:07:13 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 4:07:14 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 4:07:14 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 4:09:58 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 4:09:59 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 4:09:59 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 4:10:06 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 4:10:07 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 4:10:07 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 4:10:07 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 4:10:08 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 4:10:08 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 4:10:48 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 4:10:48 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 4:10:49 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 4:10:49 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 4:10:49 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 4:10:50 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 4:11:07 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 4:11:08 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 4:11:08 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 4:11:23 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 4:11:24 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 4:11:24 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 4:11:49 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 4:11:50 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 4:11:50 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 4:11:51 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 4:11:51 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 4:11:52 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 4:12:27 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 4:12:28 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 4:12:28 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 4:12:36 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 4:12:36 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 4:12:37 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 4:12:37 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 4:12:37 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 4:12:38 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 4:13:04 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 4:13:04 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 4:13:05 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 4:13:05 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 4:13:05 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 4:13:06 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 4:13:19 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 4:13:19 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 4:13:20 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 4:14:03 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 4:14:03 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 4:14:04 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 4:14:04 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 4:14:04 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 4:14:05 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 4:14:56 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 4:14:57 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 4:14:57 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 4:14:57 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 4:14:58 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 4:14:58 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 4:14:58 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 4:14:59 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 4:14:59 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 4:15:15 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 4:15:15 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 4:15:16 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 4:15:38 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 4:15:39 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 4:15:39 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 4:15:39 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 4:15:40 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 4:15:40 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 4:16:04 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 4:16:05 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 4:16:05 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 4:16:06 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 4:16:07 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 4:16:07 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 4:16:38 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 4:16:38 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 4:16:39 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 4:16:39 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 4:16:40 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 4:16:40 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 4:18:18 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 4:18:19 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 4:18:19 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 4:18:43 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 4:18:44 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 4:18:45 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 4:18:49 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 4:18:50 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 4:18:52 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 4:19:35 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 4:19:36 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 4:19:38 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 4:19:39 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 4:19:39 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 4:19:40 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 4:19:45 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 4:19:46 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 4:19:47 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 4:22:00 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 4:22:01 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 4:22:01 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 4:26:49 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 4:26:50 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 4:26:50 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 4:27:20 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 4:27:20 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 4:27:21 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 4:27:50 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 4:27:51 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 4:27:51 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 4:27:58 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 4:27:58 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 4:27:59 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 4:28:09 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 4:28:09 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 4:28:10 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 4:29:26 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 4:29:27 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 4:29:27 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 4:29:27 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 4:29:28 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 4:29:28 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 4:29:52 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 4:29:52 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 4:29:53 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 4:30:24 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 4:30:24 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 4:30:25 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 4:30:25 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 4:30:25 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 4:30:26 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 4:30:47 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 4:30:47 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 4:30:48 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 4:30:48 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 4:30:49 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 4:30:49 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 4:30:51 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 4:30:51 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 4:30:51 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 4:30:52 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 4:30:52 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 4:30:53 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 4:30:55 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 4:30:56 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 4:30:56 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 4:31:07 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 4:31:08 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 4:31:08 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 4:31:24 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 4:31:24 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 4:31:25 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 4:31:58 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 4:31:59 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 4:31:59 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 4:32:00 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 4:32:01 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 4:32:01 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 4:32:02 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 4:32:02 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 4:32:03 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 4:32:27 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 4:32:28 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 4:32:28 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 4:32:28 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 4:32:29 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 4:32:29 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 4:35:11 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 4:35:12 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 4:35:12 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 4:35:12 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 4:35:13 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 4:35:13 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 4:35:25 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 4:35:25 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 4:35:26 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 4:35:52 IP. org.apache.catalina.startup.HostConfig deleteRedeployResources
+INFO: Undeploying context [/kurki13]
+syys 16, 2013 4:35:52 IP. org.apache.catalina.startup.HostConfig deployDescriptor
+INFO: Deploying configuration descriptor /cs/fs/home/mkctammi/apache-tomcat-7.0.42/conf/Catalina/localhost/kurki13.xml
+syys 16, 2013 4:35:52 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 4:35:52 IP. org.apache.catalina.util.LifecycleBase start
+INFO: The start() method was called on component [StandardEngine[Catalina].StandardHost[localhost].StandardContext[/kurki13]] after start() had already been called. The second call will be ignored.
+syys 16, 2013 4:37:09 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 4:37:09 IP. org.apache.catalina.loader.WebappClassLoader clearReferencesJdbc
+SEVERE: The web application [/kurki13] registered the JDBC driver [oracle.jdbc.driver.OracleDriver] but failed to unregister it when the web application was stopped. To prevent a memory leak, the JDBC Driver has been forcibly unregistered.
+syys 16, 2013 4:37:11 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 4:37:12 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 4:38:48 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 4:38:48 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 4:38:49 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 4:38:50 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 4:38:50 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 4:38:51 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 4:38:51 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 4:38:52 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 4:38:52 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 4:39:09 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 4:39:09 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 4:39:10 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 4:39:13 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 4:39:14 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 4:39:15 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 4:40:28 IP. org.apache.catalina.startup.HostConfig deleteRedeployResources
+INFO: Undeploying context [/kurki13]
+syys 16, 2013 4:40:28 IP. org.apache.catalina.startup.HostConfig deployDescriptor
+INFO: Deploying configuration descriptor /cs/fs/home/mkctammi/apache-tomcat-7.0.42/conf/Catalina/localhost/kurki13.xml
+syys 16, 2013 4:40:28 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 4:40:28 IP. org.apache.catalina.util.LifecycleBase start
+INFO: The start() method was called on component [StandardEngine[Catalina].StandardHost[localhost].StandardContext[/kurki13]] after start() had already been called. The second call will be ignored.
+syys 16, 2013 4:40:50 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 4:40:50 IP. org.apache.catalina.loader.WebappClassLoader clearReferencesJdbc
+SEVERE: The web application [/kurki13] registered the JDBC driver [oracle.jdbc.driver.OracleDriver] but failed to unregister it when the web application was stopped. To prevent a memory leak, the JDBC Driver has been forcibly unregistered.
+syys 16, 2013 4:40:52 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 4:40:53 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 4:40:54 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 4:40:55 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 4:40:55 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 4:41:56 IP. org.apache.catalina.startup.HostConfig deleteRedeployResources
+INFO: Undeploying context [/kurki13]
+syys 16, 2013 4:41:56 IP. org.apache.catalina.startup.HostConfig deployDescriptor
+INFO: Deploying configuration descriptor /cs/fs/home/mkctammi/apache-tomcat-7.0.42/conf/Catalina/localhost/kurki13.xml
+syys 16, 2013 4:41:56 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 4:41:57 IP. org.apache.catalina.util.LifecycleBase start
+INFO: The start() method was called on component [StandardEngine[Catalina].StandardHost[localhost].StandardContext[/kurki13]] after start() had already been called. The second call will be ignored.
+syys 16, 2013 4:43:22 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 4:43:22 IP. org.apache.catalina.loader.WebappClassLoader clearReferencesJdbc
+SEVERE: The web application [/kurki13] registered the JDBC driver [oracle.jdbc.driver.OracleDriver] but failed to unregister it when the web application was stopped. To prevent a memory leak, the JDBC Driver has been forcibly unregistered.
+syys 16, 2013 4:43:23 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 4:43:23 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 4:43:40 IP. org.apache.catalina.startup.HostConfig deleteRedeployResources
+INFO: Undeploying context [/kurki13]
+syys 16, 2013 4:43:40 IP. org.apache.catalina.startup.HostConfig deployDescriptor
+INFO: Deploying configuration descriptor /cs/fs/home/mkctammi/apache-tomcat-7.0.42/conf/Catalina/localhost/kurki13.xml
+syys 16, 2013 4:43:40 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 4:43:40 IP. org.apache.catalina.util.LifecycleBase start
+INFO: The start() method was called on component [StandardEngine[Catalina].StandardHost[localhost].StandardContext[/kurki13]] after start() had already been called. The second call will be ignored.
+syys 16, 2013 4:44:20 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 4:44:20 IP. org.apache.catalina.loader.WebappClassLoader clearReferencesJdbc
+SEVERE: The web application [/kurki13] registered the JDBC driver [oracle.jdbc.driver.OracleDriver] but failed to unregister it when the web application was stopped. To prevent a memory leak, the JDBC Driver has been forcibly unregistered.
+syys 16, 2013 4:44:21 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 4:44:22 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 4:45:28 IP. org.apache.catalina.startup.HostConfig deleteRedeployResources
+INFO: Undeploying context [/kurki13]
+syys 16, 2013 4:45:28 IP. org.apache.catalina.startup.HostConfig deployDescriptor
+INFO: Deploying configuration descriptor /cs/fs/home/mkctammi/apache-tomcat-7.0.42/conf/Catalina/localhost/kurki13.xml
+syys 16, 2013 4:45:28 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 4:45:28 IP. org.apache.catalina.util.LifecycleBase start
+INFO: The start() method was called on component [StandardEngine[Catalina].StandardHost[localhost].StandardContext[/kurki13]] after start() had already been called. The second call will be ignored.
+syys 16, 2013 4:47:03 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 4:47:03 IP. org.apache.catalina.loader.WebappClassLoader clearReferencesJdbc
+SEVERE: The web application [/kurki13] registered the JDBC driver [oracle.jdbc.driver.OracleDriver] but failed to unregister it when the web application was stopped. To prevent a memory leak, the JDBC Driver has been forcibly unregistered.
+syys 16, 2013 4:47:03 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 4:47:04 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 4:51:23 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 4:51:24 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 4:51:24 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 4:52:17 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 4:52:18 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 4:52:18 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 4:52:18 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 4:52:19 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 4:52:19 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 4:52:55 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 4:52:55 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 4:52:55 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 4:54:01 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 4:54:02 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 4:54:02 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 5:01:26 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 5:01:27 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 5:01:27 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 5:01:39 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 5:01:40 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 5:01:40 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 5:02:01 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 5:02:02 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 5:02:03 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 5:03:33 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 5:03:34 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 5:03:34 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 5:03:35 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 5:03:35 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 5:03:35 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 5:03:46 IP. org.apache.catalina.startup.HostConfig deleteRedeployResources
+INFO: Undeploying context [/kurki13]
+syys 16, 2013 5:03:46 IP. org.apache.catalina.startup.HostConfig deployDescriptor
+INFO: Deploying configuration descriptor /cs/fs/home/mkctammi/apache-tomcat-7.0.42/conf/Catalina/localhost/kurki13.xml
+syys 16, 2013 5:03:46 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 5:03:47 IP. org.apache.catalina.util.LifecycleBase start
+INFO: The start() method was called on component [StandardEngine[Catalina].StandardHost[localhost].StandardContext[/kurki13]] after start() had already been called. The second call will be ignored.
+syys 16, 2013 5:04:09 IP. org.apache.catalina.loader.WebappClassLoader clearReferencesJdbc
+SEVERE: The web application [/kurki13] registered the JDBC driver [oracle.jdbc.driver.OracleDriver] but failed to unregister it when the web application was stopped. To prevent a memory leak, the JDBC Driver has been forcibly unregistered.
+syys 16, 2013 5:04:10 IP. org.apache.catalina.startup.HostConfig deleteRedeployResources
+INFO: Undeploying context [/kurki13]
+syys 16, 2013 5:04:10 IP. org.apache.catalina.startup.ExpandWar deleteDir
+SEVERE: [/cs/fs/home/mkctammi/apache-tomcat-7.0.42/work/Catalina/localhost/kurki13/loader/oracle/sql/converter_xcharset] could not be completely deleted. The presence of the remaining files may cause problems
+syys 16, 2013 5:04:10 IP. org.apache.catalina.startup.ExpandWar deleteDir
+SEVERE: [/cs/fs/home/mkctammi/apache-tomcat-7.0.42/work/Catalina/localhost/kurki13/loader/oracle/sql] could not be completely deleted. The presence of the remaining files may cause problems
+syys 16, 2013 5:04:10 IP. org.apache.catalina.startup.ExpandWar deleteDir
+SEVERE: [/cs/fs/home/mkctammi/apache-tomcat-7.0.42/work/Catalina/localhost/kurki13/loader/oracle] could not be completely deleted. The presence of the remaining files may cause problems
+syys 16, 2013 5:04:10 IP. org.apache.catalina.startup.ExpandWar deleteDir
+SEVERE: [/cs/fs/home/mkctammi/apache-tomcat-7.0.42/work/Catalina/localhost/kurki13/loader] could not be completely deleted. The presence of the remaining files may cause problems
+syys 16, 2013 5:04:10 IP. org.apache.catalina.startup.ExpandWar deleteDir
+SEVERE: [/cs/fs/home/mkctammi/apache-tomcat-7.0.42/work/Catalina/localhost/kurki13] could not be completely deleted. The presence of the remaining files may cause problems
+syys 16, 2013 5:04:10 IP. org.apache.catalina.startup.ExpandWar delete
+SEVERE: [/cs/fs/home/mkctammi/apache-tomcat-7.0.42/work/Catalina/localhost/kurki13] could not be completely deleted. The presence of the remaining files may cause problems
+syys 16, 2013 5:04:10 IP. org.apache.catalina.startup.HostConfig deployDescriptor
+INFO: Deploying configuration descriptor /cs/fs/home/mkctammi/apache-tomcat-7.0.42/conf/Catalina/localhost/kurki13.xml
+syys 16, 2013 5:04:11 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 5:04:11 IP. org.apache.catalina.util.LifecycleBase start
+INFO: The start() method was called on component [StandardEngine[Catalina].StandardHost[localhost].StandardContext[/kurki13]] after start() had already been called. The second call will be ignored.
+syys 16, 2013 5:07:32 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 5:07:32 IP. org.apache.catalina.loader.WebappClassLoader clearReferencesJdbc
+SEVERE: The web application [/kurki13] registered the JDBC driver [oracle.jdbc.driver.OracleDriver] but failed to unregister it when the web application was stopped. To prevent a memory leak, the JDBC Driver has been forcibly unregistered.
+syys 16, 2013 5:07:34 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 5:07:35 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 5:10:36 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 5:10:36 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 5:10:37 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 5:11:28 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 5:11:29 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 5:11:29 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 5:11:40 IP. org.apache.catalina.startup.HostConfig deleteRedeployResources
+INFO: Undeploying context [/kurki13]
+syys 16, 2013 5:11:40 IP. org.apache.catalina.startup.HostConfig deployDescriptor
+INFO: Deploying configuration descriptor /cs/fs/home/mkctammi/apache-tomcat-7.0.42/conf/Catalina/localhost/kurki13.xml
+syys 16, 2013 5:11:40 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 5:11:41 IP. org.apache.catalina.util.LifecycleBase start
+INFO: The start() method was called on component [StandardEngine[Catalina].StandardHost[localhost].StandardContext[/kurki13]] after start() had already been called. The second call will be ignored.
+syys 16, 2013 5:12:31 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 5:12:31 IP. org.apache.catalina.loader.WebappClassLoader clearReferencesJdbc
+SEVERE: The web application [/kurki13] registered the JDBC driver [oracle.jdbc.driver.OracleDriver] but failed to unregister it when the web application was stopped. To prevent a memory leak, the JDBC Driver has been forcibly unregistered.
+syys 16, 2013 5:12:32 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 5:12:32 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 5:12:44 IP. org.apache.catalina.startup.HostConfig deleteRedeployResources
+INFO: Undeploying context [/kurki13]
+syys 16, 2013 5:12:44 IP. org.apache.catalina.startup.HostConfig deployDescriptor
+INFO: Deploying configuration descriptor /cs/fs/home/mkctammi/apache-tomcat-7.0.42/conf/Catalina/localhost/kurki13.xml
+syys 16, 2013 5:12:44 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 5:12:45 IP. org.apache.catalina.util.LifecycleBase start
+INFO: The start() method was called on component [StandardEngine[Catalina].StandardHost[localhost].StandardContext[/kurki13]] after start() had already been called. The second call will be ignored.
+syys 16, 2013 5:13:50 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 5:13:50 IP. org.apache.catalina.loader.WebappClassLoader clearReferencesJdbc
+SEVERE: The web application [/kurki13] registered the JDBC driver [oracle.jdbc.driver.OracleDriver] but failed to unregister it when the web application was stopped. To prevent a memory leak, the JDBC Driver has been forcibly unregistered.
+syys 16, 2013 5:13:50 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 5:13:51 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 5:14:02 IP. org.apache.catalina.startup.HostConfig deleteRedeployResources
+INFO: Undeploying context [/kurki13]
+syys 16, 2013 5:14:02 IP. org.apache.catalina.startup.HostConfig deployDescriptor
+INFO: Deploying configuration descriptor /cs/fs/home/mkctammi/apache-tomcat-7.0.42/conf/Catalina/localhost/kurki13.xml
+syys 16, 2013 5:14:02 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 5:14:02 IP. org.apache.catalina.util.LifecycleBase start
+INFO: The start() method was called on component [StandardEngine[Catalina].StandardHost[localhost].StandardContext[/kurki13]] after start() had already been called. The second call will be ignored.
+syys 16, 2013 5:14:57 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 5:14:57 IP. org.apache.catalina.loader.WebappClassLoader clearReferencesJdbc
+SEVERE: The web application [/kurki13] registered the JDBC driver [oracle.jdbc.driver.OracleDriver] but failed to unregister it when the web application was stopped. To prevent a memory leak, the JDBC Driver has been forcibly unregistered.
+syys 16, 2013 5:14:58 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 5:14:59 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 5:15:13 IP. org.apache.catalina.startup.HostConfig deleteRedeployResources
+INFO: Undeploying context [/kurki13]
+syys 16, 2013 5:15:13 IP. org.apache.catalina.startup.HostConfig deployDescriptor
+INFO: Deploying configuration descriptor /cs/fs/home/mkctammi/apache-tomcat-7.0.42/conf/Catalina/localhost/kurki13.xml
+syys 16, 2013 5:15:13 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 5:15:14 IP. org.apache.catalina.util.LifecycleBase start
+INFO: The start() method was called on component [StandardEngine[Catalina].StandardHost[localhost].StandardContext[/kurki13]] after start() had already been called. The second call will be ignored.
+syys 16, 2013 5:20:17 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 5:20:17 IP. org.apache.catalina.loader.WebappClassLoader clearReferencesJdbc
+SEVERE: The web application [/kurki13] registered the JDBC driver [oracle.jdbc.driver.OracleDriver] but failed to unregister it when the web application was stopped. To prevent a memory leak, the JDBC Driver has been forcibly unregistered.
+syys 16, 2013 5:20:18 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 5:20:19 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 5:20:33 IP. org.apache.catalina.startup.HostConfig deleteRedeployResources
+INFO: Undeploying context [/kurki13]
+syys 16, 2013 5:20:33 IP. org.apache.catalina.startup.HostConfig deployDescriptor
+INFO: Deploying configuration descriptor /cs/fs/home/mkctammi/apache-tomcat-7.0.42/conf/Catalina/localhost/kurki13.xml
+syys 16, 2013 5:20:33 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 5:20:33 IP. org.apache.catalina.util.LifecycleBase start
+INFO: The start() method was called on component [StandardEngine[Catalina].StandardHost[localhost].StandardContext[/kurki13]] after start() had already been called. The second call will be ignored.
+syys 16, 2013 5:21:11 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 5:21:11 IP. org.apache.catalina.loader.WebappClassLoader clearReferencesJdbc
+SEVERE: The web application [/kurki13] registered the JDBC driver [oracle.jdbc.driver.OracleDriver] but failed to unregister it when the web application was stopped. To prevent a memory leak, the JDBC Driver has been forcibly unregistered.
+syys 16, 2013 5:21:11 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 5:21:12 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 5:21:23 IP. org.apache.catalina.startup.HostConfig deleteRedeployResources
+INFO: Undeploying context [/kurki13]
+syys 16, 2013 5:21:23 IP. org.apache.catalina.startup.HostConfig deployDescriptor
+INFO: Deploying configuration descriptor /cs/fs/home/mkctammi/apache-tomcat-7.0.42/conf/Catalina/localhost/kurki13.xml
+syys 16, 2013 5:21:23 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 5:21:24 IP. org.apache.catalina.util.LifecycleBase start
+INFO: The start() method was called on component [StandardEngine[Catalina].StandardHost[localhost].StandardContext[/kurki13]] after start() had already been called. The second call will be ignored.
+syys 16, 2013 5:22:29 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 5:22:29 IP. org.apache.catalina.loader.WebappClassLoader clearReferencesJdbc
+SEVERE: The web application [/kurki13] registered the JDBC driver [oracle.jdbc.driver.OracleDriver] but failed to unregister it when the web application was stopped. To prevent a memory leak, the JDBC Driver has been forcibly unregistered.
+syys 16, 2013 5:22:30 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 5:22:30 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 5:25:40 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 5:25:41 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 5:25:41 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 5:25:42 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 5:25:42 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 5:25:43 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 5:25:45 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 5:25:45 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 5:25:46 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 5:25:46 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 5:25:46 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 5:25:47 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 5:25:49 IP. org.apache.catalina.startup.HostConfig checkResources
+INFO: Reloading context [/kurki13]
+syys 16, 2013 5:25:49 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 5:25:49 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 5:25:50 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 5:25:50 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 5:25:51 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 5:25:51 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 5:25:52 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 5:27:00 IP. org.apache.catalina.startup.HostConfig deleteRedeployResources
+INFO: Undeploying context [/kurki13]
+syys 16, 2013 5:27:00 IP. org.apache.catalina.startup.HostConfig deployDescriptor
+INFO: Deploying configuration descriptor /cs/fs/home/mkctammi/apache-tomcat-7.0.42/conf/Catalina/localhost/kurki13.xml
+syys 16, 2013 5:27:00 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 5:27:01 IP. org.apache.catalina.util.LifecycleBase start
+INFO: The start() method was called on component [StandardEngine[Catalina].StandardHost[localhost].StandardContext[/kurki13]] after start() had already been called. The second call will be ignored.
+syys 16, 2013 5:28:03 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 5:28:03 IP. org.apache.catalina.loader.WebappClassLoader clearReferencesJdbc
+SEVERE: The web application [/kurki13] registered the JDBC driver [oracle.jdbc.driver.OracleDriver] but failed to unregister it when the web application was stopped. To prevent a memory leak, the JDBC Driver has been forcibly unregistered.
+syys 16, 2013 5:28:04 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 5:28:04 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 5:28:30 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 5:28:31 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 5:28:31 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 5:28:32 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 5:28:33 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 5:28:33 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 5:28:41 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 5:28:42 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 5:28:42 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 5:28:43 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 5:28:44 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 5:28:44 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 5:28:45 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 5:28:46 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 5:28:46 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 5:28:47 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 5:28:50 IP. org.apache.catalina.startup.HostConfig checkResources
+INFO: Reloading context [/kurki13]
+syys 16, 2013 5:28:50 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 5:28:51 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 5:28:51 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 5:30:17 IP. org.apache.catalina.startup.HostConfig deleteRedeployResources
+INFO: Undeploying context [/kurki13]
+syys 16, 2013 5:30:17 IP. org.apache.catalina.startup.HostConfig deployDescriptor
+INFO: Deploying configuration descriptor /cs/fs/home/mkctammi/apache-tomcat-7.0.42/conf/Catalina/localhost/kurki13.xml
+syys 16, 2013 5:30:17 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 5:30:17 IP. org.apache.catalina.util.LifecycleBase start
+INFO: The start() method was called on component [StandardEngine[Catalina].StandardHost[localhost].StandardContext[/kurki13]] after start() had already been called. The second call will be ignored.
+syys 16, 2013 5:30:40 IP. org.apache.catalina.loader.WebappClassLoader clearReferencesJdbc
+SEVERE: The web application [/kurki13] registered the JDBC driver [oracle.jdbc.driver.OracleDriver] but failed to unregister it when the web application was stopped. To prevent a memory leak, the JDBC Driver has been forcibly unregistered.
+syys 16, 2013 5:30:41 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 5:30:41 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 5:30:42 IP. org.apache.catalina.startup.HostConfig checkResources
+INFO: Reloading context [/kurki13]
+syys 16, 2013 5:30:42 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 5:30:42 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 5:30:42 IP. org.apache.catalina.util.LifecycleBase start
+INFO: The start() method was called on component [StandardEngine[Catalina].StandardHost[localhost].StandardContext[/kurki13]] after start() had already been called. The second call will be ignored.
+syys 16, 2013 5:30:45 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 5:30:45 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 5:30:46 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 5:30:46 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 5:30:46 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 5:30:47 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 5:33:48 IP. org.apache.catalina.loader.WebappClassLoader clearReferencesJdbc
+SEVERE: The web application [/kurki13] registered the JDBC driver [oracle.jdbc.driver.OracleDriver] but failed to unregister it when the web application was stopped. To prevent a memory leak, the JDBC Driver has been forcibly unregistered.
+syys 16, 2013 5:33:49 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 5:33:50 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 5:33:50 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 5:33:51 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 5:33:51 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 5:33:52 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 5:33:52 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 5:33:53 IP. org.apache.catalina.startup.HostConfig checkResources
+INFO: Reloading context [/kurki13]
+syys 16, 2013 5:33:53 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 5:33:53 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 5:33:54 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 5:33:54 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] has started
+syys 16, 2013 5:33:54 IP. org.apache.catalina.loader.WebappClassLoader validateJarFile
+INFO: validateJarFile(/cs/fs/home/mkctammi/ohtuprog/kurki13/target/kurki13-1.0-SNAPSHOT/WEB-INF/lib/servlet-api-2.3.jar) - jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class
+syys 16, 2013 5:33:55 IP. org.apache.catalina.core.StandardContext reload
+INFO: Reloading Context with name [/kurki13] is completed
+syys 16, 2013 5:34:03 IP. org.apache.catalina.core.StandardServer await
+INFO: A valid shutdown command was received via the shutdown port. Stopping the Server instance.
+syys 16, 2013 5:34:03 IP. org.apache.coyote.AbstractProtocol pause
+INFO: Pausing ProtocolHandler ["http-bio-8080"]
+syys 16, 2013 5:34:03 IP. org.apache.coyote.AbstractProtocol pause
+INFO: Pausing ProtocolHandler ["ajp-bio-8009"]
+syys 16, 2013 5:34:03 IP. org.apache.catalina.core.StandardService stopInternal
+INFO: Stopping service Catalina
+syys 16, 2013 5:34:04 IP. org.apache.coyote.AbstractProtocol stop
+INFO: Stopping ProtocolHandler ["http-bio-8080"]
+syys 16, 2013 5:34:04 IP. org.apache.coyote.AbstractProtocol stop
+INFO: Stopping ProtocolHandler ["ajp-bio-8009"]
+syys 16, 2013 5:34:04 IP. org.apache.coyote.AbstractProtocol destroy
+INFO: Destroying ProtocolHandler ["http-bio-8080"]
+syys 16, 2013 5:34:04 IP. org.apache.coyote.AbstractProtocol destroy
+INFO: Destroying ProtocolHandler ["ajp-bio-8009"]
