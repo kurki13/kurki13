@@ -23,12 +23,14 @@
 <form action="index" name="boundaries" method="post">
   <input type="hidden" name="TS" value="${TS}">
 <table class="normal" border="0">
-#foreach ($part in $selectedCourse.Parts)
+#foreach ($part in $parts)
   #set ($pid = $part.Type)
   #set ($maxScoreCount = $part.MaxScoreCount )
-  #if ( $pid != 2 )
+## lisätty && $pid <= 3 muuten tulee indexoutofbounds error -tka
+  #if ( $pid != 2 && $pid <= 3 )
   <tr>
-    <th>$partnames.get($pid)
+    <th>
+    $partnames.get($pid)
     </th>
     <td>
       <table class="invisible">
