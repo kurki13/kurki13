@@ -19,7 +19,8 @@ public class HelloTest extends VelocityServlet {
         context.put("bundle", ResourceBundle.getBundle("localisationBundle", Session.locale));
 
         try {
-            context.put("name", "Velocity Test");
+            int a=0;
+            context.put("name", "" + a++);
             template = Velocity.getTemplate("hello.vm");
         } catch( Exception e ) {
           System.err.println("Exception caught: " + e.getMessage());

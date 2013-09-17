@@ -36,10 +36,7 @@ public class Student extends ComparableOptionAdapter
     protected int[] xtrScore = { 0, 0, 0 }; // Yhteispisteet { lh, ht, koe }
     protected int xtrTotal = 0;
     protected int creditsNewUnits = 0;
-    // protected int creditsOldUnits = 0;
     protected String language = "0";
-
-//     protected String grade = null;
 
     protected LinkedList scoreUpdate = new LinkedList();
 
@@ -61,7 +58,6 @@ public class Student extends ComparableOptionAdapter
     public Student( int id, String ssn, String lname, String fname, String email, int group )
 	throws NullIdException {
 	super( new Integer( id ), "" );
-//	this.ssn = ( ssn == null ? "??????-????" : checkSSN( ssn, true ) ); HL 08/7
 	this.ssn = ( ssn == null ? "??????????": ssn );
 	this.group = group;
 	this.email = email;
@@ -75,11 +71,6 @@ public class Student extends ComparableOptionAdapter
 
 	this.desc = this.lname+", "
 	    +this.fname.substring(0, i );
-
-//	this.bday = ( this.ssn.length() < 6
-//		      ? "?"
-//		      : this.ssn.substring( 0, 2 )+"."+this.ssn.substring( 2, 4 )+".");
-//   HL08/7
   
 	this.bday = ( this.ssn.length() <3
 		      ? "?"
@@ -189,8 +180,6 @@ public class Student extends ComparableOptionAdapter
 
     public String getFName() { return this.fname; }
     public String getLName() { return this.lname; }
-//    public String getLanguage() {
-//         return this.language; }
     public String getLanguage() {
       if (this.language==null || this.language.length()==0)
         return " ";
@@ -217,9 +206,6 @@ public class Student extends ComparableOptionAdapter
 	int ptype = part.getType();
 	int oid = offering.getId();
 	String rv = null;
-
-//  	System.out.println("getScore("+ptype+", "+offering+")");
-
 	// Onko halutun suorituksen arvosanat ladattu?
 	if ( ptype >= 0
 	     && ptype < this.scores.length
@@ -228,8 +214,6 @@ public class Student extends ComparableOptionAdapter
 
 	    rv = ((Score)this.scores[ ptype ].get( oid )).getScore();
 	}
-// 	System.out.println("Student#getScore: rv="+rv);
-
 	return rv;
     }
 
@@ -245,33 +229,6 @@ public class Student extends ComparableOptionAdapter
 	}
 	return scoreSum;
     }
-
-//     public String getScoreTotal( Vector parts ) {
-// 	int scoreSum = 0;
-
-// 	if ( parts != null ) {
-// 	    for ( int i=0; i < parts.size(); i++ ) {
-// 		int score = 0;
-// 		Part part = null;
-// 		Object tmp = parts.get(i);
-
-// 		if ( tmp == null ) continue;
-// 		else part = (Part)tmp;
-
-// 		if ( part.getType() == Part.ARVOSANA ) break;
-
-// 		try {
-// 		    String scoretmp = getScore( part );
-// 		    if ( scoretmp != null )
-// 			score = Integer.parseInt( scoretmp );
-// 		} catch ( NumberFormatException nfe ) {
-// 		    score = 0;
-// 		}
-// 		scoreSum += score;		
-// 	    }
-// 	}
-// 	return ""+scoreSum;
-//     }
 
     public Iterator getScoreUpdate() {
 	Iterator rv = this.scoreUpdate.iterator();
@@ -332,9 +289,7 @@ public class Student extends ComparableOptionAdapter
 	if ( part == null ) return null;
 	int pid = part.getType();
 	if ( pid == Part.ARVOSANA ) return null;
-	
 	return ""+xtrScore[ pid ];
-// 	return ""+part.getXtrScore( getScore(part) );
     }
 
     public String getXtrTotal() {
@@ -352,9 +307,7 @@ public class Student extends ComparableOptionAdapter
     public void setAddress( String address ) { this.address = address; }
 
     public void setCreditsNew(int cdt) {this.creditsNewUnits=cdt;}
-
-    //public void setCreditsOld(int cdt) {this.creditsOldUnits=cdt;}
-
+    
     public void setEnrolment( java.util.Date date ) {
 	this.enrolment = date;
     }
@@ -412,9 +365,7 @@ public class Student extends ComparableOptionAdapter
 	    this.scores[pid] = new Vector();
 	    this.scores[pid].setSize( part.getNbrOfOfferings() );
 	}
-
-// 	System.out.println("Student#this.scores[ pid ].add("+oid+", "+score+")");
-
+        
 	try {
 	    Score newScore = new Score( part, offering, score );
 	    Score oldScore = null;

@@ -1,11 +1,7 @@
 <html>
 <body>
-Hello $name<br><br>
-$testiBundle.hello<br>$piippu.getName<br>$piippu.getName()
-
-<br>
-$pipe.getName()
-<br>
-$bundle.getString("logout")
+$name <br>
+$piippu.course_infos() <br>
+$piippu.service_manager()
 </body>
 <html>

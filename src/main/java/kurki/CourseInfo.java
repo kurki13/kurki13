@@ -20,7 +20,7 @@ public class CourseInfo extends ComparableOptionAdapter {
     public CourseInfo( String id, String name )
 	throws NullIdException {
 	
-	this( id, name, Session.OUTSIDER );
+	this( id, name, Rooli.OUTSIDER );
     }
 
     public CourseInfo( String id, String name, int userRole )
@@ -89,9 +89,15 @@ public class CourseInfo extends ComparableOptionAdapter {
 	return service.isValidServiceFor( this.userRole );
     }
 
-
     public int getUserRole() {
 	return this.userRole;
     }
+
+    @Override
+    public String toString() {
+        return "ccode: " + this.ccode + "\t\tdesc: "+ this.desc + "\t\tterm: "+ this.term + "\t\ttype: " + this.type;
+    }
+    
+    
 
 }

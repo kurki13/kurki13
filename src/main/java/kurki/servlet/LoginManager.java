@@ -16,7 +16,7 @@ import org.apache.velocity.servlet.*;
 public class LoginManager extends VelocityServlet {
 
     private String LOGIN_SEPARATOR = ",";
-    protected String lmanagers = LOGIN_SEPARATOR;
+    protected String loginManagers = LOGIN_SEPARATOR;
     
     @Override
     public synchronized void init()
@@ -28,13 +28,12 @@ public class LoginManager extends VelocityServlet {
 	 */
 	try {
 	    Properties p = new Properties();
-            //MKCT: Real tal..path
 	    FileInputStream fis = new FileInputStream( ctx.getRealPath(ctx.getInitParameter("configurationFile")) );
 	    p.load(fis);
 	    
-	    Enumeration enames = p.propertyNames();
-	    while ( enames.hasMoreElements() ) {
-		String key   = (String)enames.nextElement();
+	    Enumeration propertyNames = p.propertyNames();
+	    while ( propertyNames.hasMoreElements() ) {
+		String key   = (String)propertyNames.nextElement();
 		String value = p.getProperty( key );
 		Configuration.setProperty( key, value );
 	    }
@@ -47,8 +46,8 @@ public class LoginManager extends VelocityServlet {
 		while ( st.hasMoreTokens() ) {
 		    String login = st.nextToken().trim();
 		    if ( login.length() > 0 )
-			this.lmanagers += login+LOGIN_SEPARATOR;
-		}
+			this.loginManagers += login+LOGIN_SEPARATOR;
+                }
 	    }
 	} catch ( Exception e ) {
 	    throw new ServletException( "Virhetilanne!<br>"+e.getMessage() );
@@ -65,7 +64,7 @@ public class LoginManager extends VelocityServlet {
 
 	String ruser = req.getRemoteUser();
 
-	if ( ruser != null && this.lmanagers.indexOf( LOGIN_SEPARATOR+ruser+LOGIN_SEPARATOR ) >= 0 ) {
+	if ( ruser != null && this.loginManagers.indexOf( LOGIN_SEPARATOR+ruser+LOGIN_SEPARATOR ) >= 0 ) {
 
 	    Vector teachers = new Vector();
 	    Connection con = DBConnectionManager.createConnection();
@@ -84,7 +83,6 @@ public class LoginManager extends VelocityServlet {
 			    String htunnus = st.nextToken();
 			    String oktunnus = (st.hasMoreTokens() ? st.nextToken() : "");
 			    String ktunnus  = req.getParameter(p);
-			    // 			System.out.println(p+"--> >"+htunnus+"< : >"+oktunnus+"< = >"+ktunnus+"<");
 			    if ( !ktunnus.equals(oktunnus) ) {
 				if ( stmt.executeUpdate("UPDATE henkilo SET ktunnus='"+ktunnus+"'\n"
 							+"  WHERE htunnus='"+htunnus+"'") != 1 ) {
