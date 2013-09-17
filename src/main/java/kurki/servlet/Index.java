@@ -198,22 +198,21 @@ public class Index extends VelocityServlet implements Log, Serializable {
              */
             if (reqts != null && timestamp != null && !reqts.equals(timestamp)) {
                 template = getTemplate(SYNCHRONIZATION_ERROR);
-            } /*
-             *  Onko palvelu valittu jo, jos niin nakita pyytö palvelun
-             *  toteuttavalle käsittelijälle
-             */ else if (session.courseSelected()
+            } 
+            //Kurssi ja palvelu valittu
+            else if (session.courseSelected()
                     && session.serviceSelected()) {
 
-                // NAKITUS
+                // 
                 serviceProvider =
                         (AbstractVelocityServiceProvider) getHandlerFor(session.getSelectedService());
 
                 context.put("selectedService", serviceProvider);
 
-                String tmpl = serviceProvider.handleRequest(session, servletRequest, servletResponse, context);
+                String serviceTemplateName = serviceProvider.handleRequest(session, servletRequest, servletResponse, context);
 
-                if (tmpl != null) {
-                    template = getTemplate(tmpl);
+                if (serviceTemplateName != null) {
+                    template = getTemplate(serviceTemplateName);
                 }
             } // muuten pyydä valitsemaan palvelu
             else {
@@ -282,25 +281,25 @@ public class Index extends VelocityServlet implements Log, Serializable {
             }
         }
     }
-    
+
     private void outputError(Exception e, ServletResponse servletResponse) throws IOException {
-        
-            /*
-             *  call the error handler to let the derived class
-             *  do something useful with this failure.
-             */
-            ServletOutputStream out;
-            servletResponse.setContentType("text/html");
-            out = servletResponse.getOutputStream();
 
-            out.println("<html><head>\n<title>Kurki: virheilmoitus</title>\n"
-                    + "<link rel='stylesheet' href='../kurki.css' title='kurki'>\n</head><body>\n"
-                    + "<div class='error' style='text-align:center;width=500px'>\n"
-                    + "<h2>Virheilmoitus</h2>\n<hr>\n<pre align='left'>\n");
-            e.printStackTrace(new PrintStream(out));
-            out.println("\n</pre>\n<hr>\n<a href=\"mailto:tktl-kurki@cs.Helsinki.FI\">tktl-kurki@cs.Helsinki.FI</a></div></body></html>");
+        /*
+         *  call the error handler to let the derived class
+         *  do something useful with this failure.
+         */
+        ServletOutputStream out;
+        servletResponse.setContentType("text/html");
+        out = servletResponse.getOutputStream();
 
-            e.printStackTrace();
+        out.println("<html><head>\n<title>Kurki: virheilmoitus</title>\n"
+                + "<link rel='stylesheet' href='../kurki.css' title='kurki'>\n</head><body>\n"
+                + "<div class='error' style='text-align:center;width=500px'>\n"
+                + "<h2>Virheilmoitus</h2>\n<hr>\n<pre align='left'>\n");
+        e.printStackTrace(new PrintStream(out));
+        out.println("\n</pre>\n<hr>\n<a href=\"mailto:tktl-kurki@cs.Helsinki.FI\">tktl-kurki@cs.Helsinki.FI</a></div></body></html>");
+
+        e.printStackTrace();
     }
 
     protected String nullIfEmpty(String str) {

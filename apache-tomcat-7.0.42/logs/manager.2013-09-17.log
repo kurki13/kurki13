@@ -332,3 +332,13 @@ syys 17, 2013 3:45:09 IP. org.apache.catalina.core.ApplicationContext log
 INFO: Manager: install: Installing context configuration at 'file:/tmp/context5248140907196494149.xml'
 syys 17, 2013 3:45:10 IP. org.apache.catalina.core.ApplicationContext log
 INFO: Manager: start: Starting web application '/kurki13'
+syys 17, 2013 3:52:37 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 17, 2013 3:52:42 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 17, 2013 3:52:42 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: restart: Reloading web application '/kurki13'
+syys 17, 2013 3:52:43 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 17, 2013 3:52:45 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: restart: Reloading web application '/kurki13'
