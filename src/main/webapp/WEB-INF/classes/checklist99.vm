@@ -155,7 +155,7 @@ $bundle.getString("arvosanajakauma")
 #if ($inc_feedback)
 
 
-$bundle.getString("Palautetilaisuus") __.__ $bundle.getString("klo") __:__ - __:__ $bundle.getString("huoneessa") ____.
+$bundle.getString("palautetilaisuus") __.__ $bundle.getString("klo") __:__ - __:__ $bundle.getString("huoneessa") ____.
 #end
 #if ($inc_signature) 
 
