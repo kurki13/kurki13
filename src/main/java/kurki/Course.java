@@ -281,7 +281,7 @@ public class Course implements Serializable, Option {
     public synchronized boolean addOnCourse(String ssn, int group)
             throws SQLException, ClassNotFoundException {
         if (ssn == null) {
-            this.msg = "Tuntematon opiskelija.";
+            this.msg = LocalisationBundle.getString("tuntemOpisk");
             return false;
         }
         
@@ -305,7 +305,7 @@ public class Course implements Serializable, Option {
 // 	    System.out.println(rv);
             if (!rv.equals("ok")) {
                 if (rv.indexOf("ORA-01400") >= 0 && rv.indexOf("RYHMA_NRO") >= 0) {
-                    this.msg = "Ryhmää " + group + " ei ole olemassa.";
+                    this.msg = LocalisationBundle.getString("ryhmaa") + group + LocalisationBundle.getString("eioleolem");
                 } else {
                     this.msg = rv;
                 }
@@ -328,7 +328,7 @@ public class Course implements Serializable, Option {
     public synchronized boolean commitCourseInfo()
             throws SQLException, ClassNotFoundException {
         if (isFrozen()) {
-            this.msg = "Kurssi on jäädytetty.";
+            this.msg = LocalisationBundle.getString("kurssiJaadytetty");
             return false;
         }
         
@@ -468,7 +468,7 @@ public class Course implements Serializable, Option {
     public synchronized boolean commitGradeDef()
             throws SQLException, ClassNotFoundException {
         if (isFrozen()) {
-            this.msg = "Kurssi on jäädytetty.";
+            this.msg = LocalisationBundle.getString("kurssiJaadytetty");
             return false;
         }
         
@@ -591,7 +591,7 @@ public class Course implements Serializable, Option {
                 pstmt.setInt(5, this.courseInfo.cno);
                 
                 if (pstmt.executeUpdate() < 1) {
-                    this.msg = "Kurssia ei löytynyt.";
+                    this.msg = LocalisationBundle.getString("kurssiaEiLoydy");
                     rv = false;
                 }
             }
@@ -672,7 +672,7 @@ public class Course implements Serializable, Option {
                         pstmt.setString(1, grade);
                         pstmt.setString(2, ruser);
                     }
-                    
+          /////// LOCALBUNDLE TEHTY          
                     if (pstmt.executeUpdate() < 1) {
                         this.msg = "Opiskelijan " + s.getLabel() + " pisteiden tallennus ei onnistunut.\n"
                                 + "Joko hänen ilmoittautumisensa on peruuntunut tai kurssi on jäädytetty.";
