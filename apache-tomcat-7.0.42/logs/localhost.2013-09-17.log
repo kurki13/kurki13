@@ -1371,3 +1371,119 @@ syys 17, 2013 2:28:15 IP. org.apache.catalina.core.ApplicationContext log
 INFO:  Velocity  [debug] ResourceManager : found /kurki.js with loader org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
 syys 17, 2013 2:28:29 IP. org.apache.catalina.core.ApplicationContext log
 INFO:  Velocity  [debug] ResourceManager : found /kurki.js with loader org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
+syys 17, 2013 2:56:25 IP. org.apache.catalina.core.ApplicationContext log
+INFO: ContextListener: contextInitialized()
+syys 17, 2013 2:56:25 IP. org.apache.catalina.core.ApplicationContext log
+INFO: SessionListener: contextInitialized()
+syys 17, 2013 2:56:25 IP. org.apache.catalina.core.ApplicationContext log
+INFO: ContextListener: attributeAdded('org.apache.jasper.compiler.TldLocationsCache', 'org.apache.jasper.compiler.TldLocationsCache@2b3227f6')
+syys 17, 2013 2:57:12 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Use of the properties initialization parameter 'properties' has been deprecated by 'org.apache.velocity.properties'
+syys 17, 2013 2:57:13 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] Searching for properties at: /org/apache/velocity/tools/view/velocity.properties
+syys 17, 2013 2:57:13 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] Searching for properties at: /WEB-INF/velocity.properties
+syys 17, 2013 2:57:13 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Configuring Velocity with properties at: /WEB-INF/velocity.properties
+syys 17, 2013 2:57:13 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] Searching for properties at: /WEB-INF/velocity.properties
+syys 17, 2013 2:57:13 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Configuring Velocity with properties at: /WEB-INF/velocity.properties
+syys 17, 2013 2:57:13 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Initializing Velocity, Calling init()...
+syys 17, 2013 2:57:13 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] *******************************************************************
+syys 17, 2013 2:57:13 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Starting Apache Velocity v1.7 (compiled: 2010-11-19 12:14:37)
+syys 17, 2013 2:57:13 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] RuntimeInstance initializing.
+syys 17, 2013 2:57:13 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Default Properties File: org/apache/velocity/runtime/defaults/velocity.properties
+syys 17, 2013 2:57:13 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Trying to use logger class org.apache.velocity.runtime.log.ServletLogChute
+syys 17, 2013 2:57:13 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Using logger class org.apache.velocity.runtime.log.ServletLogChute
+syys 17, 2013 2:57:13 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] Default ResourceManager initializing. (class org.apache.velocity.runtime.resource.ResourceManagerImpl)
+syys 17, 2013 2:57:13 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] ResourceLoader instantiated: org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
+syys 17, 2013 2:57:13 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] ClasspathResourceLoader : initialization complete.
+syys 17, 2013 2:57:13 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] ResourceCache: initialized (class org.apache.velocity.runtime.resource.ResourceCacheImpl) with class java.util.Collections$SynchronizedMap cache map.
+syys 17, 2013 2:57:13 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] Default ResourceManager initialization complete.
+syys 17, 2013 2:57:13 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Loaded System Directive: org.apache.velocity.runtime.directive.Stop
+syys 17, 2013 2:57:13 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Loaded System Directive: org.apache.velocity.runtime.directive.Define
+syys 17, 2013 2:57:13 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Loaded System Directive: org.apache.velocity.runtime.directive.Break
+syys 17, 2013 2:57:13 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Loaded System Directive: org.apache.velocity.runtime.directive.Evaluate
+syys 17, 2013 2:57:13 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Loaded System Directive: org.apache.velocity.runtime.directive.Literal
+syys 17, 2013 2:57:13 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Loaded System Directive: org.apache.velocity.runtime.directive.Macro
+syys 17, 2013 2:57:13 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Loaded System Directive: org.apache.velocity.runtime.directive.Parse
+syys 17, 2013 2:57:13 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Loaded System Directive: org.apache.velocity.runtime.directive.Include
+syys 17, 2013 2:57:13 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Loaded System Directive: org.apache.velocity.runtime.directive.Foreach
+syys 17, 2013 2:57:13 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Created '20' parsers.
+syys 17, 2013 2:57:13 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] Velocimacro : initialization starting.
+syys 17, 2013 2:57:13 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Velocimacro : "velocimacro.library" is not set.  Trying default library: VM_global_library.vm
+syys 17, 2013 2:57:13 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Could not load resource 'VM_global_library.vm' from ResourceLoader org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader: ClasspathResourceLoader Error: cannot find resource VM_global_library.vm
+syys 17, 2013 2:57:13 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Velocimacro : Default library not found.
+syys 17, 2013 2:57:13 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Velocimacro : allowInline = true : VMs can be defined inline in templates
+syys 17, 2013 2:57:13 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Velocimacro : allowInlineToOverride = false : VMs defined inline may NOT replace previous VM definitions
+syys 17, 2013 2:57:13 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Velocimacro : allowInlineLocal = false : VMs defined inline will be global in scope if allowed.
+syys 17, 2013 2:57:13 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Velocimacro : autoload off : VM system will not automatically reload global library macros
+syys 17, 2013 2:57:13 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] Velocimacro : Velocimacro : initialization complete.
+syys 17, 2013 2:57:13 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] RuntimeInstance successfully initialized.
+syys 17, 2013 2:57:13 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] Searching for configuration at: /WEB-INF/toolbox.xml
+syys 17, 2013 2:57:13 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Loaded deprecated configuration from: /WEB-INF/toolbox.xml
+syys 17, 2013 2:57:13 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity   [warn] Please upgrade to new "/WEB-INF/tools.xml" format and conventional location. Support for "/WEB-INF/toolbox.xml" format and conventional file name will be removed in a future version.
+syys 17, 2013 2:57:13 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Default tools configuration has been suppressed to avoid conflicts with older application's context and toolbox definition.
+syys 17, 2013 2:57:13 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [trace] Searching for configuration at: /WEB-INF/tools.xml
+syys 17, 2013 2:57:13 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Did not find resource at: /WEB-INF/tools.xml
+syys 17, 2013 2:57:13 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Configuring factory with: 
+FactoryConfiguration from 3 sources with 1 properties [deprecationSupportMode -auto-> true; ] and 1 toolboxes: 
+ Toolbox 'request' with 1 properties [scope -auto-> request; ] and 2 tools: 
+  Tool 'bundle' => org.apache.velocity.tools.generic.ResourceTool with 3 properties [bundle -auto-> localisationBundle; key -auto-> bundle; locale -auto-> fi; ]
+  Tool 'piippu' => Pipe with 1 properties [key -auto-> piippu; ]
+  
+ 
+ Source 0: org.apache.velocity.tools.config.FactoryConfiguration(VelocityView.configure(config,factory))
+ Source 1: org.apache.velocity.tools.config.XmlFactoryConfiguration(ServletUtils.getConfiguration(/WEB-INF/toolbox.xml,ServletContext[,depMode=true]))
+ Source 2: org.apache.velocity.tools.config.FactoryConfiguration(ConfigurationUtils.getAutoLoaded(false))
+
+syys 17, 2013 2:57:13 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] Default Content-Type is: text/html; charset=utf-8
+syys 17, 2013 2:57:13 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] org.apache.velocity.tools.view.servlet.VelocityViewServlet has been deprecated. Use org.apache.velocity.tools.view.servlet.VelocityViewServlet instead.
+syys 17, 2013 2:57:13 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] ResourceManager : found /kurki.js with loader org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
+syys 17, 2013 2:57:16 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] ResourceManager : found /kurki.js with loader org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
+syys 17, 2013 2:57:17 IP. org.apache.catalina.core.ApplicationContext log
+INFO:  Velocity  [debug] ResourceManager : found /kurki.js with loader org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader

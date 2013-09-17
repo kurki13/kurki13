@@ -7,7 +7,10 @@
   <head>
     <META charset='utf-8'/>
     <title>KURKI</title>
-    <link rel="stylesheet" type="text/css" href="../kurki.css" title="kurki">
+##    <link rel="stylesheet" type="text/css" href="../kurki.css" title="kurki">
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+
     <script language='JavaScript' type='text/javascript' src='../kurki.js'></script>
 
 #if ($autosave)

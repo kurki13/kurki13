@@ -260,3 +260,23 @@ syys 17, 2013 2:28:03 IP. org.apache.catalina.core.ApplicationContext log
 INFO: Manager: install: Installing context configuration at 'file:/tmp/context5014692017440713632.xml'
 syys 17, 2013 2:28:04 IP. org.apache.catalina.core.ApplicationContext log
 INFO: Manager: start: Starting web application '/kurki13'
+syys 17, 2013 2:56:25 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: init: Associated with Deployer 'Catalina:type=Deployer,host=localhost'
+syys 17, 2013 2:56:25 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: init: Global resources are available
+syys 17, 2013 2:56:25 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 17, 2013 2:56:25 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: undeploy: Undeploying web application at '/kurki13'
+syys 17, 2013 2:56:26 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: install: Installing context configuration at 'file:/tmp/context9045248607257985313.xml'
+syys 17, 2013 2:56:27 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: start: Starting web application '/kurki13'
+syys 17, 2013 2:56:40 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: list: Listing contexts for virtual host 'localhost'
+syys 17, 2013 2:56:40 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: undeploy: Undeploying web application at '/kurki13'
+syys 17, 2013 2:56:41 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: install: Installing context configuration at 'file:/tmp/context3145400461131710361.xml'
+syys 17, 2013 2:56:41 IP. org.apache.catalina.core.ApplicationContext log
+INFO: Manager: start: Starting web application '/kurki13'
