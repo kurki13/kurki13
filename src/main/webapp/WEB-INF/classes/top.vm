@@ -116,25 +116,18 @@ function disableAutosave() {
 
 #end
 
-    <div class="container">
-
-    <div class="navbar navbar-inverse navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container">
-          <div class="nav-collapse collapse">
-              <ul class="nav">
-              <li><h2>KURKI 2.0</h2></li>
-              <li><a href="../Language?kieli=en" style="margin-left:30px">In English</a></li>
-              <li><a href="../Language?kieli=fi" style="margin-left:10px">Suomeksi</a></li>
-            </ul>
-          <a href="logout" style="float:right;margin-right:20px" class="btn btn-small btn-danger">Kirjaudu ulos</a>
-          </div><!--/.nav-collapse -->
-        </div>
-      </div>
-    </div>
-
-    <div class="container">
-
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="navbar-header">
+    <a class="navbar-brand">Kurki 2.0</a>
+  </div>
+  <div class="collapse navbar-collapse navbar-ex1-collapse">
+    <a href="logout" class="btn btn-small btn-danger pull-right" style="margin-right:20px">Kirjaudu ulos</a>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="../Language?kieli=en">In English</a></li>
+      <li><a href="../Language?kieli=fi" style="margin-right:30px">Suomeksi</a></li>
+    </ul>
+  </div>
+</nav>
 
 #* vanha yläpalkki -tka
 
