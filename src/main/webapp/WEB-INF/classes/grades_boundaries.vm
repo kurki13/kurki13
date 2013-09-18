@@ -33,7 +33,8 @@
     $partnames.get($pid)
     </th>
     <td>
-      <table class="invisible">
+##tablesta class="invisible" poistettu koska bootstrap piilottaa sen muuten -tka
+      <table>
         <tr>
     #set ($xtrId = 0)
     #foreach ($score in $part.ScoreBoundaries)
@@ -50,6 +51,7 @@
             <center>
       #if ($score > $maxScoreCount)
               <b><font color="red">${xtrLabel}</font></b><br>
+              kodsakodsa
       #else
               <b>${xtrLabel}</b><br>
       #end
@@ -76,7 +78,7 @@
      <td>
 #set ($gradeBoundaries = $selectedCourse.GradeBoundaries)
 #set ($i = 0)
-      <table class="invisible">
+      <table>
         <tr>
 #foreach ($grade in $grades.Grades)
           <td width="30">

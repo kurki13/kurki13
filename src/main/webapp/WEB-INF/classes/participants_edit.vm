@@ -9,7 +9,7 @@
   #set ( $next = $sid + 1 )
         <tr class="navi3">
           <td colspan="4">
-  <table class="invisible" align="center" border="0" cellspacing="0" cellpadding="0">
+  <table align="center" border="0" cellspacing="0" cellpadding="0">
     <tr>
       <td>
         <center>
@@ -134,7 +134,7 @@ $!{student.LName}, $!{student.FName} (${student.SSN} / $!{student.sno})
     <tr>
       <th width="25%">${part.Label}</th>
       <td>
-        <table class="invisible">
+        <table>
           <tr>
     #foreach ( $offering in $part.Offerings )
       #set ( $oid = ${offering.Id}+1 )
