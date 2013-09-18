@@ -4,3 +4,6 @@
 /apache-tomcat-7.0.42/work/
 apache-tomcat-7.0.42/conf/Catalina/localhost/kurki13.xml
 apache-tomcat-7.0.42/conf/.*
+
+apache-tomcat-7.0.42/conf/Catalina
+apache-tomcat-7.0.42/bin/
