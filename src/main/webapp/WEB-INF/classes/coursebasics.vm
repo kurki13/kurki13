@@ -22,8 +22,7 @@
 ##
 <form action="index" method="post" name="basic">
   <input type="hidden" name="TS" value="${TS}">
-## bootstrap table muokkaukset -tka
-<table class="table table-bordered table-condensed" style="max-width:1000px">
+<table class="normal" border="1" width="100%" style="max-width:1000px">
   <caption>
 $bundle.getString("osasuoritukset")
   </caption>
@@ -120,7 +119,7 @@ $bundle.getString("osasuoritukset")
 
 <form action="index" method="post">
   <input type="hidden" name="TS" value="${TS}">
-<table class="table table-bordered table-condensed" style="max-width:1000px">
+<table class="normal" border="1" width="100%" style="max-width:1000px">
   <caption>
     Pisterajat
   </caption>
@@ -133,22 +132,22 @@ $bundle.getString("osasuoritukset")
     #set ($offerings = $part.Offerings)
 
   <tr>
-    <th valign="top">
+    <th style="width:150px">
 
       <table>
         <tr>
           <th rowspan="2" nowrap>${pname}&nbsp;</th>
-          <th nowrap>
-<div class="table-bordered">
-            <tt>$bundle.getString("max")&nbsp;</tt>
-</div>
+          <th nowrap> 
+<table class="normal" border="1">
+            <th style="width:70px">$bundle.getString("max")&nbsp;</th>
+</table>
           </th>
         </tr>
         <tr>
           <th nowrap>
-<div class="table-bordered">
-            <tt>$bundle.getString("hyv.raja")</tt>
-</div>
+<table class="normal" border="1">
+            <th style="width:70px">$bundle.getString("hyv.raja")</th>
+</table>
           </th>
         </tr>
       </table>
