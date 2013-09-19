@@ -374,9 +374,7 @@
 #end
 #set ( $selectedConvention = $selectedCourse.GradingConvention )
 #foreach ( $convention in $selectedCourse.GradingConventions ) 
-  #set ($bundleConventionHelpString = "conventionHelp" + $convention.Id)
-  #set ($bundleConventionLabelString = "conventionLabel" + $convention.Id)
-  #set ($conventionsDesc = "${conventionsDesc}${selectedCourse.nl()}<dt>$bundle.getString($bundleConventionLabelString)</dt><dd>$bundle.getString($bundleConventionHelpString)</dd>")
+  #set ($conventionsDesc = "${conventionsDesc}${selectedCourse.nl()}<dt>$convention.getLabel()</dt><dd>$convention.getHelp()</dd>")
   #if ( $selectedConvention == $convention.Id )
     #if (!$frozen)
             <option value="${convention.Id}" selected>$convention.Label</option>

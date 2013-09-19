@@ -10,10 +10,17 @@ public class Convention extends ComparableOptionAdapter{
 	this.desc = desc;
 	this.helpTxt = helpTxt;
     }
+
+    @Override
+    public String getLabel() {
+        return LocalisationBundle.getString("conventionLabel" + id);
+    }
+    
+    
     
     public int getId() {
 	return ((Integer)this.id).intValue();
     }
 
-    public String getHelp() { return this.helpTxt; }
+    public String getHelp() { return LocalisationBundle.getString("conventionHelp" + id); }
 }
