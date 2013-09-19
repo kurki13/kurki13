@@ -100,10 +100,10 @@
 *#
   <tr>
     <th colspan="2">
-      <input type="submit" name="cancel" class="submitb" value=" Palaa takaisin ">
+      <input type="submit" name="cancel" class="btn btn-primary" value=" Palaa takaisin ">
 #if (!$frozen)
-      <input type="submit" name="saveBoundaries" class="submitb" value=" Tallenna pisterajat ">
-      <input type="reset" class="submitb" value=" Palauta alkuarvot ">
+      <input type="submit" name="saveBoundaries" class="btn btn-success" value=" Tallenna pisterajat ">
+      <input type="reset" class="btn btn-primary" value=" Palauta alkuarvot ">
 #end
     </th>
   </tr>

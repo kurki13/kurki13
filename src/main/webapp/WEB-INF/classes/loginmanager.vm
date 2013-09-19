@@ -27,7 +27,7 @@ $t
 #end
 <tr>
   <th colspan="4">
-    <input type="submit" name="save" value="$bundle.getString("tallennaKayttajat")">
+    <input type="submit" name="save" class="btn btn-success" value="$bundle.getString("tallennaKayttajat")">
   </th>
 </tr>
 </table>

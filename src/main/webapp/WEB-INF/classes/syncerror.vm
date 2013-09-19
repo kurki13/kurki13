@@ -13,7 +13,7 @@
 <hr>
 $bundle.getString("eiVoiSuorittaa")
       <form action="index" method="post">
-        <input type="submit" value="OK">
+        <input type="submit" class="btn btn-success" value="OK">
       </form>
       </div>
     </center>

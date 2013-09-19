@@ -35,7 +35,7 @@
 
 ## valuen vaihtaminen tähän???? -tka
 
-        <input type="submit" value="Määrittele kurssin osasuoritukset" class="submitb">
+        <input type="submit" value="Määrittele kurssin osasuoritukset" class="btn btn-primary">
         <input type="hidden" value="3coursebasics" name="service">
       </form>
     </th>
@@ -399,12 +399,12 @@
       </tr>
 -->
       </table>
-      <input type="submit" name="makeAssessment" class="submitb" value="$bundle.getString("teearv")"><br>
+      <input type="submit" name="makeAssessment" class="btn btn-primary" value="$bundle.getString("teearv")"><br>
   #if (!$frozen)
-      <input type="submit" name="saveBasic" class="submitb" value="$bundle.getString("tallennam")"><br>
+      <input type="submit" name="saveBasic" class="btn btn-success" value="$bundle.getString("tallennam")"><br>
       <input type="submit" name="modBoundaries" class="submitb" value="$bundle.getString("muutaparajoja")"><br>
   #else
-      <input type="submit" name="modBoundaries" class="submitb" value="$bundle.getString("parajat")"><br>
+      <input type="submit" name="modBoundaries" class="btn btn-primary" value="$bundle.getString("parajat")"><br>
   #end
     </td>
   </tr>

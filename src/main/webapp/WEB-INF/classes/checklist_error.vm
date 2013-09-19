@@ -13,7 +13,7 @@
       <hr>
       Pyytämäsi listan tulostaminen ei ole mahdollista, koska sessiosi on vanhentunut.
       <form action="index" method="post">
-        <input type="button" value="sulje ikkuna" onClick="window.close()">
+        <input type="button" class="btn btn-danger" value="sulje ikkuna" onClick="window.close()">
       </form>
       </div>
     </center>

@@ -327,7 +327,7 @@
         #else
                     <!-- SULATUS -->
                     <center>
-                    <input type="button" class="button" value="--> $bundle.getString("sulata") <--"
+                    <input type="button" class="btn btn-danger" value="--> $bundle.getString("sulata") <--"
                            onClick="!isModified() && defreezeStudent('${stid}')">
                     </center>
         #end
@@ -336,7 +336,7 @@
       #elseif ($student.isFrozen())
                     <!-- SULATUS -->
                     <center>
-                    <input type="button" class="button" value="--> $bundle.getString("sulata") <--"
+                    <input type="button" class="btn btn-danger" value="--> $bundle.getString("sulata") <--"
                            onClick="defreezeStudent('${stid}')">
                     </center>
       #else 
@@ -350,7 +350,7 @@
 		  <td bgcolor="${bgcolor}" align="left">	
 
       #if (!$student.isFrozen())
-		    <input type="button" class="button" value="$bundle.getString("peru")"
+		    <input type="button" class="btn btn-danger" value="$bundle.getString("peru")"
         #if ( $selectedOffering.MaxScore <= $radioLimit )
 			   onClick="oldScore(document.scores.o${stid}, document.scores.t${stid}, document.scores.r${stid}) && modifyCheck(document.scores.t${stid}.value, document.scores.o${stid}.value, document.scores.smod${stid}, 'img${stid}')">
         #else
@@ -432,7 +432,7 @@
 		     tabindex="32605"
 		     value=">>>" 
 		     onClick="document.suoritevalinta.submit()" 
-	 	     class="submitb">.
+	 	     class="btn btn-primary">.
 	    </form> 
             </b>
             $bundle.getString("sukunimellahaku")

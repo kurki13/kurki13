@@ -262,7 +262,7 @@
 		  <th colspan="3" nowrap>&nbsp;
 		    $bundle.getString("opiskelijatl")
 		    <input type="text" name="filter" tabindex="32600" size="15" value = "$!studentFilter">
-		    <input type="submit" name="makeList" tabindex="32601" value=">>>" class="submitb">
+		    <input type="submit" name="makeList" tabindex="32601" value=">>>" class="btn-primary">
 		  </th>
 	        </tr>
 	      </table>
@@ -305,7 +305,7 @@
 		     tabindex="32605"
 		     value=">>>" 
 		     onClick="document.suoritevalinta.submit()" 
-	 	     class="submitb">.
+	 	     class="btn btn-primary">.
 	    </form> 
   </li>
 </ol>
