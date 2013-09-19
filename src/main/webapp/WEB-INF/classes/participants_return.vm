@@ -16,24 +16,20 @@
 <form action="index" name="return" method="post">
 <table class="normal" border="1" width="100%">
   <caption>
-   Opiskelijoita valittu ${students.size()}
+   $bundle.getString(opvalittu) ${students.size()}
   </caption>
   <tr>
     <th>
-      Nimi (syntymäpäivä)
+     $bundle.getString(nimiSyntpva)
     </th>
     <th>
-#if ($useSNO)
-      OpNro
-#else
-      Hetu
-#end
+     $bundle.getString(camelopnro)
     </th>
     <th>
-      <i>Ryhmä</i>
+      <i>$bundle.getString(ryhma)</i>
     </th>
     <th>
-      Palauta kurssille
+      $bundle.getString(palautaKurssille)
     </th>
   </tr>
   #set ($sid = 0)
@@ -69,14 +65,14 @@
   <tr>
     <th colspan="4">
       <input type="hidden" name="TS" value="${TS}">
-      <center><input type="submit" class="submitb" name="doReturn" value="------> PALAUTA <------"></center>
+      <center><input type="submit" class="submitb" name="doReturn" value="------> $bundle.getString(palautaIso) <------"></center>
     </th>
   </tr>
   #end
 </table>
 </form>
 #else 
-Yksikään opiskelija ei vastannut hakuehtoa.
+$bundle.getString(opeivastannut)
 #end
 	  </td>
         </tr>
