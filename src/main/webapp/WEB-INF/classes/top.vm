@@ -85,7 +85,7 @@ function save() {
 
 function toggleAutosave() {
   if (noas) {
-    alert("Istuntosi on vanhentunut.\nTallennus ei ole mahdollista.");
+    alert("$bundle.getString("istuntovanhentunut")");
   }
   else if (as) {
     as = false;
@@ -99,7 +99,7 @@ function toggleAutosave() {
 
 function disableAutosave() {
     noas = true;
-    alert("Istuntosi on vanhentunut.\nTallennus ei ole mahdollista.");
+    alert("$bundle.getString("istuntovanhentunut")");
     clearInterval(intervalId);
     if (${autosave} != null && ${autosave}.asNotify != null) { ${autosave}.asNotify.value = ""; }
 }
