@@ -104,7 +104,7 @@ $bundle.getString("osasuoritukset")
 #if (!$frozen)
   <tr>
     <th colspan="6">
-      <input type="submit" name="doBasic" value="$bundle.getString("tmuutokset")" class="submitb">
+      <input type="submit" name="doBasic" value="$bundle.getString("tmuutokset")" class="btn btn-success">
     </th>
   </tr>
 #end
@@ -209,7 +209,7 @@ $bundle.getString("osasuoritukset")
   #if (!$frozen)
   <tr>
     <th colspan="2">
-      <input type="submit" name="doScoreDef" value="$bundle.getString("tmuutokset")" class="submitb">
+      <input type="submit" name="doScoreDef" value="$bundle.getString("tmuutokset")" class="btn btn-success">
     </th>
   </tr>
 

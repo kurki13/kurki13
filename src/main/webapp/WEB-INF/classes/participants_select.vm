@@ -108,7 +108,7 @@
   #end
     </td>
     <td bgcolor="${bgcolor}">
-      <center><input type="button" name="submitEditRequest" value="tiedot" class="submitb"
+      <center><input type="button" class="btn btn-primary"" name="submitEditRequest" value="tiedot"
              onClick="doEditRequest('${sid}')"></center>
     </td>
   </tr>    
@@ -118,7 +118,7 @@
   <tr>
     <th colspan="6">
       <input type="hidden" name="doSaveAll" value="ok">
-      <center><input type="submit" class="submitb" value="------> TALLENNA MUUTOKSET <------"></center>
+      <center><input type="submit" class="btn btn-success" value="------> TALLENNA MUUTOKSET <------"></center>
     </th>
   </tr>
   #end

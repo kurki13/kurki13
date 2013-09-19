@@ -69,7 +69,7 @@
   <tr>
     <th colspan="4">
       <input type="hidden" name="TS" value="${TS}">
-      <center><input type="submit" class="submitb" name="doReturn" value="------> PALAUTA <------"></center>
+      <center><input type="submit" class="btn btn-success" name="doReturn" value="------> PALAUTA <------"></center>
     </th>
   </tr>
   #end
