@@ -53,6 +53,7 @@
       <tr>
 	<td colspan="4">
 <div class="instr">
+<br><br>
 <b>$bundle.getString("valitsetyyppi")</b>
 	    <dl>
 	      <dt>$bundle.getString("tyhja")</dt>
