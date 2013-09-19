@@ -66,7 +66,7 @@
                     $bundle.getString("koepsterit")
                   </td>
                   <td>
-                    <input type="text" name="inc_koesepname" size="8" maxlength="8" value="Kokeet">
+                    <input type="text" name="inc_koesepname" size="8" maxlength="8">
                   </td>
                 </tr>
 #end
@@ -79,7 +79,7 @@
                     $bundle.getString("lhtpsum")
                   </td>
                   <td>
-                    <input type="text" name="inc_lhsumname" size="8" maxlength="8" value="LhS">
+                    <input type="text" name="inc_lhsumname" size="8" maxlength="8">
                   </td>
                 </tr>
 #end
@@ -118,7 +118,7 @@
                     $bundle.getString("lhlpst")
                   </td>
                   <td>
-                    <input type="text" name="inc_lhlpname" size="8" maxlength="8" value="LhP">
+                    <input type="text" name="inc_lhlpname" size="8" maxlength="8">
                   </td>
                 </tr>
 #end
