@@ -37,9 +37,9 @@
 #if ($parts)
   #foreach ($part in $parts)
     #if ($selectedPart.value == $part.value)
-		      <option value="$part.value" selected>$part.label</option>
+		      <option value="$part.value" selected>$bundle.getString($part.label)</option>
     #else
-		      <option value="$part.value">$part.label</option>
+		      <option value="$part.value">$bundle.getString($part.label)</option>
     #end
   #end
 #end
@@ -87,7 +87,7 @@
 
 		    <input type="hidden" name="studentFilterDesc" value="$!{studentFilterDesc}">
 
-		    <input type="submit" name="search" tabindex="32601" value=">>>" class="submitb">
+		    <input type="submit" name="search" tabindex="32601" value=">>>" class="btn btn-primary">
 		  </td>
 	        </tr>
 	      </table>
@@ -159,7 +159,7 @@
 		    <input type="hidden" name="studentFilter" value="$!{studentFilter}">
 
 		    <input type="hidden" name="studentFilterDesc" value="$!{studentFilterDesc}">
-		    <input type="submit" name="scoredef" tabindex="32502" class="submitb" value="OK">
+		    <input type="submit" name="scoredef" tabindex="32502" class="btn btn-success" value="OK">
 		  </td>
 		</tr>	      
 	      </table>
@@ -373,7 +373,7 @@
     #end
                     <input type="hidden" name="TS" value="${TS}">
 		    <input type="hidden" name="commit" value="ok">
-	      	    <input type="submit" tabindex="2" class="submitb" value="------> $bundle.getString("tallennaPisteet") <------"
+	      	    <input type="submit" tabindex="2" class="btn btn-success" value="------> $bundle.getString("tallennaPisteet") <------"
                            onClick="this.form.asNotify.value=''">
 	          </th>
 	        </tr>

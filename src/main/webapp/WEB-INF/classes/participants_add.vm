@@ -69,7 +69,7 @@ $error
     <td bgcolor="${bgcolor}">
       <center>
       <form action="index" method="post" class="inline" style="margin:0;display:inline;" onSubmit="return false">
-         <input type="button" value="lisää" class="submitb"
+         <input type="button" value="lisää" class="btn btn-success"
                 onClick="document.addForm${student.Id}.submit()">
       </form>
       </center>

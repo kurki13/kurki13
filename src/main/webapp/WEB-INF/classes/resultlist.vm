@@ -153,7 +153,7 @@
                     <input type="checkbox" name="inc_grade" checked>
                   </td>
                   <td nowrap>
-                    $bundle.getString("arvosana")
+                    $bundle.getString("Arvosana")
                   </td>
                   <td>
                     <input type="text" name="inc_gradename" size="8" maxlength="8">
@@ -165,7 +165,7 @@
                     <input type="checkbox" name="inc_crunits" checked>
                   </td>
                   <td nowrap>
-                    $bundle.getString("opintopstt")
+                    $bundle.getString("Opintopisteet")
                   </td>
                   <td>
                     <input type="text" name="inc_cruname" size="8" maxlength="8">
