@@ -15,31 +15,33 @@
 <form action="index" method="post">
 <input type="hidden" name="TS" value="${TS}">
 <table class="normal" border="1" width="100%" style="max-width:1000px">
+<<<<<<< HEAD
+ <caption>
+    $bundle.getString(opvalittu) ${students.size()}
+=======
   <caption>
     Opiskelijoita valittu ${students.size()}
+>>>>>>> 7059b47dc8d6dc675038730fa55757559cc3c723
   </caption>
   <tr>
     <th>
-      Nimi (syntymäpäivä)
+      $bundle.getString(nimiSyntpva)
     </th>
     <th>
-#if ($useSNO)
-      OpNro
-#else
-      Hetu
-#end
+      $bundle.getString(camelopnro)
+
     </th>
     <th>
-      Ryhmä
+      $bundle.getString(ryhma)
     </th>
     <th>
-      Suor.
+      $bundle.getString(suor)
     </th>
     <th>
-      Poista kurssilta
+      $bundle.getString(poistaKurssilta)
     </th>
     <th>
-      Näytä tiedot
+      $bundle.getString(naytaTiedot)
     </th>
   </tr>
   #set ($sid = 0)
@@ -66,7 +68,7 @@
     #if ($useSNO)
       <center><tt>$!student.SNO</tt></center>
     #else
-      <center><tt>$!student.SSN</tt></center>
+      <center><tt>$!student.SSN</tt></$bundle.getString(naytaTiedot)center>
     #end
     </td>
 
@@ -118,7 +120,7 @@
   <tr>
     <th colspan="6">
       <input type="hidden" name="doSaveAll" value="ok">
-      <center><input type="submit" class="btn btn-success" value="------> TALLENNA MUUTOKSET <------"></center>
+      <center><input type="submit" class="btn btn-success" value="------> $bundle.getString(tallenMuutoksetIso) <------"></center>
     </th>
   </tr>
   #end
@@ -130,7 +132,8 @@
   <input type="hidden" name="doEdit" value="tiedot" class="submitb">
 </form>
 #else 
-Yksikään opiskelija ei vastannut hakuehtoa.
+$bundle.getString(opeivastannut)
+
 #end
 	  </td>
         </tr>

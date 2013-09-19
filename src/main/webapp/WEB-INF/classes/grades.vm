@@ -397,10 +397,10 @@
       </tr>
 -->
       </table>
-      <input type="submit" name="makeAssessment" class="btn btn-primary" value="$bundle.getString("teearv")"><br>
+      <input type="submit" name="makeAssessment" class="btn btn-success" value="$bundle.getString("teearv")"><br>
   #if (!$frozen)
       <input type="submit" name="saveBasic" class="btn btn-success" value="$bundle.getString("tallennam")"><br>
-      <input type="submit" name="modBoundaries" class="submitb" value="$bundle.getString("muutaparajoja")"><br>
+      <input type="submit" name="modBoundaries" class="btn btn-primary" value="$bundle.getString("muutaparajoja")"><br>
   #else
       <input type="submit" name="modBoundaries" class="btn btn-primary" value="$bundle.getString("parajat")"><br>
   #end
