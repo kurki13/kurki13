@@ -190,7 +190,7 @@ KurKi-järjestelmän päivitys kesken. Alä käytä!
   #end
 		    </select>
 #else
-                    <b>EI AVOIMIA KURSSEJA</b>
+                    <b>$bundle.getString("eiavoimia")</b>
 #end
 		  </td>
 		  <td>
