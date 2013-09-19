@@ -74,7 +74,7 @@ $!{student.LName}, $!{student.FName} (${student.SSN} / $!{student.sno})
 </center>
 </h3>
 
-<table class="normal" width="100%">
+<table class="normal" width="100%" style="max-width:1000px">
 #if (${student.PrevLName})
   <tr>
     <th width="20%">Entinen sukunimi
@@ -126,9 +126,7 @@ $!{student.LName}, $!{student.FName} (${student.SSN} / $!{student.sno})
   <input type="hidden" name="TS" value="${TS}">
   <input type="hidden" name="sid" value="$!{sid}">
 
-  <table class="normal"
-         border="1"
-         width="100%">
+  <table class="normal" border="1" width="100%" style="max-width:1000px">
   #foreach ( $part in $parts )
     #set ($pid = $part.Id)
     <tr>

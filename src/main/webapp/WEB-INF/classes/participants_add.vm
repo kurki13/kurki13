@@ -10,7 +10,7 @@ $error
 #end
 
 #if ($students)
-<table class="normal" border="1" width="100%">
+<table class="normal" border="1" width="100%" style="max-width:1000px">
   <caption>
    $bundle.getString("opvalittu") ${students.size()}
   </caption>

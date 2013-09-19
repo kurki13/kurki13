@@ -14,9 +14,7 @@
 
 <form action="index" method="post">
 <input type="hidden" name="TS" value="${TS}">
-<table class="normal" 
-       border="1"
-       width="100%">
+<table class="normal" border="1" width="100%" style="max-width:1000px">
   <caption>
     Opiskelijoita valittu ${students.size()}
   </caption>

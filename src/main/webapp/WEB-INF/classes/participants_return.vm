@@ -14,7 +14,7 @@
 
 #if ($students)
 <form action="index" name="return" method="post">
-<table class="normal" border="1" width="100%">
+<table class="normal" border="1" width="100%" style="max-width:1000px">
   <caption>
    Opiskelijoita valittu ${students.size()}
   </caption>
