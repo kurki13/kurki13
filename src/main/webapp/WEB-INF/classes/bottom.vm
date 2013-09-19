@@ -1,3 +1,4 @@
+#* ylimääräiset logoutit pois -tka
       <tr>
         <td align="left" nowrap>
           <a href="logout">$bundle.getString("logout")</a>
@@ -8,7 +9,7 @@
         <td align="right" nowrap>
           <a href="logout">$bundle.getString("logout")</a>
         </td>
-      </tr>
+      </tr> *#
     </table>
     </center>
     <hr>

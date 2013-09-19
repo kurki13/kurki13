@@ -10,7 +10,7 @@ $error
 #end
 
 #if ($students)
-<table class="normal" border="1" width="100%">
+<table class="normal" border="1" width="100%" style="max-width:1000px">
   <caption>
    $bundle.getString("opvalittu") ${students.size()}
   </caption>
@@ -69,7 +69,7 @@ $error
     <td bgcolor="${bgcolor}">
       <center>
       <form action="index" method="post" class="inline" style="margin:0;display:inline;" onSubmit="return false">
-         <input type="button" value="lisää" class="submitb"
+         <input type="button" value="lisää" class="btn btn-success"
                 onClick="document.addForm${student.Id}.submit()">
       </form>
       </center>

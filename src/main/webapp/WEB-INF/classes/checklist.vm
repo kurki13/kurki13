@@ -43,7 +43,7 @@
 
 		  </td>
 		  <td nowrap>&nbsp;
-		    <input type="submit" name="search" tabindex="32601" value=">>>" class="submitb">
+		    <input type="submit" name="search" tabindex="32601" value=">>>" class="btn btn-primary">
 		  </td>
 	        </tr>
 	      </table>
@@ -53,6 +53,7 @@
       <tr>
 	<td colspan="4">
 <div class="instr">
+<br><br>
 <b>$bundle.getString("valitsetyyppi")</b>
 	    <dl>
 	      <dt>$bundle.getString("tyhja")</dt>
@@ -83,7 +84,7 @@
 		     tabindex="32605"
 		     value=">>>" 
 		     onClick="document.suoritevalinta.submit()" 
-	 	     class="submitb">.
+	 	     class="btn btn-primary">.
 	    </form> 
             </b>
 	    $bundle.getString("sukunimellahaku")

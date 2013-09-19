@@ -1,7 +1,7 @@
 #parse ("top.vm")
 #set ($parts = $selectedCourse.PartsOrdered)
 #set ($partnames = [$bundle.getString("laskuharjoituksia"), $bundle.getString("harjoitustoita"), $bundle.getString("kokeita")])
-#set ($maxEntriesPerLine = 9)
+#set ($maxEntriesPerLine = 10)
         <tr>
           <td colspan="4">
 <h3>$selectedCourse.label - $bundle.getString("perustiedot")</h3>
@@ -22,7 +22,7 @@
 ##
 <form action="index" method="post" name="basic">
   <input type="hidden" name="TS" value="${TS}">
-<table class="normal" border="1" width="100%">
+<table class="normal" border="1" width="100%" style="max-width:1000px">
   <caption>
 $bundle.getString("osasuoritukset")
   </caption>
@@ -104,7 +104,7 @@ $bundle.getString("osasuoritukset")
 #if (!$frozen)
   <tr>
     <th colspan="6">
-      <input type="submit" name="doBasic" value="$bundle.getString("tmuutokset")" class="submitb">
+      <input type="submit" name="doBasic" value="$bundle.getString("tmuutokset")" class="btn btn-success">
     </th>
   </tr>
 #end
@@ -119,7 +119,7 @@ $bundle.getString("osasuoritukset")
 
 <form action="index" method="post">
   <input type="hidden" name="TS" value="${TS}">
-<table class="normal" border="1" width="100%">
+<table class="normal" border="1" width="100%" style="max-width:1000px">
   <caption>
     Pisterajat
   </caption>
@@ -130,28 +130,30 @@ $bundle.getString("osasuoritukset")
   #if ($pid < 3)
     #set ($pname = $partnames.get($pid))
     #set ($offerings = $part.Offerings)
+
   <tr>
-    <th valign="top">
-      <table class="invisible" cellspacing="0" cellpadding="0" border="0">
+    <th style="width:150px">
+
+      <table>
         <tr>
           <th rowspan="2" nowrap>${pname}&nbsp;</th>
-          <th nowrap>
-<div style="height:1em;text-align:bottom;border-width:1pt;border-style:solid;border-color:black;margin:2pt 0pt;background-color:white;color:black;padding:1pt;">
-            <tt>$bundle.getString("max")&nbsp;</tt>
-</div>
+          <th nowrap> 
+<table class="normal" border="1">
+            <th style="width:70px">$bundle.getString("max")&nbsp;</th>
+</table>
           </th>
         </tr>
         <tr>
           <th nowrap>
-<div style="height:1em;text-align:bottom;border-width:1pt;border-style:solid;border-color:black;margin:2pt 0pt;background-color:white;color:black;padding:1pt;">
-            <tt>$bundle.getString("hyv.raja")</tt>
-</div>
+<table class="normal" border="1">
+            <th style="width:70px">$bundle.getString("hyv.raja")</th>
+</table>
           </th>
         </tr>
       </table>
     </th>
     <td>
-      <table class="invisible" cellspacing="0" cellpadding="0" border="0">
+      <table cellspacing="0" cellpadding="0" border="0">
         <tr>
     #foreach ($offering in $offerings)
       #set ( $oid = ${offering.Id}+1 )
@@ -207,13 +209,15 @@ $bundle.getString("osasuoritukset")
   #if (!$frozen)
   <tr>
     <th colspan="2">
-      <input type="submit" name="doScoreDef" value="$bundle.getString("tmuutokset")" class="submitb">
+      <input type="submit" name="doScoreDef" value="$bundle.getString("tmuutokset")" class="btn btn-success">
     </th>
   </tr>
+
   #end
 #else
   <tr><th>$bundle.getString("eiOsasuorituksia")</th></tr>
 #end
+
 </table> 
 </form>
 

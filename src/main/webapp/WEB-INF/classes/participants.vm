@@ -76,6 +76,9 @@
 	    </form>
 	  </td>
 	</tr>
+
+<br>
+<br>
 #if ($view)
   #set ($vmfile = "participants_${view}.vm")
   #parse ( $vmfile )

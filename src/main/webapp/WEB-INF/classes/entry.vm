@@ -37,9 +37,9 @@
 #if ($parts)
   #foreach ($part in $parts)
     #if ($selectedPart.value == $part.value)
-		      <option value="$part.value" selected>$part.label</option>
+		      <option value="$part.value" selected>$bundle.getString($part.label)</option>
     #else
-		      <option value="$part.value">$part.label</option>
+		      <option value="$part.value">$bundle.getString($part.label)</option>
     #end
   #end
 #end
@@ -87,7 +87,7 @@
 
 		    <input type="hidden" name="studentFilterDesc" value="$!{studentFilterDesc}">
 
-		    <input type="submit" name="search" tabindex="32601" value=">>>" class="submitb">
+		    <input type="submit" name="search" tabindex="32601" value=">>>" class="btn btn-primary">
 		  </td>
 	        </tr>
 	      </table>
@@ -96,7 +96,7 @@
 	</tr>
       <tr>
 	<td colspan="4">
-
+<br><br>
 ##
 ## Onko käsiteltävä suorituskerta jo valittu?
 ##
@@ -143,7 +143,7 @@
               
 	      
 
-	      <table class="invisible">
+	      <table>
 	        <tr>
 		  <td><b><b></td>
 		  <td>
@@ -159,7 +159,7 @@
 		    <input type="hidden" name="studentFilter" value="$!{studentFilter}">
 
 		    <input type="hidden" name="studentFilterDesc" value="$!{studentFilterDesc}">
-		    <input type="submit" name="scoredef" tabindex="32502" class="submitb" value="OK">
+		    <input type="submit" name="scoredef" tabindex="32502" class="btn btn-success" value="OK">
 		  </td>
 		</tr>	      
 	      </table>
@@ -327,7 +327,7 @@
         #else
                     <!-- SULATUS -->
                     <center>
-                    <input type="button" class="button" value="--> $bundle.getString("sulata") <--"
+                    <input type="button" class="btn btn-danger" value="--> $bundle.getString("sulata") <--"
                            onClick="!isModified() && defreezeStudent('${stid}')">
                     </center>
         #end
@@ -336,7 +336,7 @@
       #elseif ($student.isFrozen())
                     <!-- SULATUS -->
                     <center>
-                    <input type="button" class="button" value="--> $bundle.getString("sulata") <--"
+                    <input type="button" class="btn btn-danger" value="--> $bundle.getString("sulata") <--"
                            onClick="defreezeStudent('${stid}')">
                     </center>
       #else 
@@ -350,7 +350,7 @@
 		  <td bgcolor="${bgcolor}" align="left">	
 
       #if (!$student.isFrozen())
-		    <input type="button" class="button" value="$bundle.getString("peru")"
+		    <input type="button" class="btn btn-danger" value="$bundle.getString("peru")"
         #if ( $selectedOffering.MaxScore <= $radioLimit )
 			   onClick="oldScore(document.scores.o${stid}, document.scores.t${stid}, document.scores.r${stid}) && modifyCheck(document.scores.t${stid}.value, document.scores.o${stid}.value, document.scores.smod${stid}, 'img${stid}')">
         #else
@@ -373,7 +373,7 @@
     #end
                     <input type="hidden" name="TS" value="${TS}">
 		    <input type="hidden" name="commit" value="ok">
-	      	    <input type="submit" tabindex="2" class="submitb" value="------> $bundle.getString("tallennaPisteet") <------"
+	      	    <input type="submit" tabindex="2" class="btn btn-success" value="------> $bundle.getString("tallennaPisteet") <------"
                            onClick="this.form.asNotify.value=''">
 	          </th>
 	        </tr>
@@ -432,7 +432,7 @@
 		     tabindex="32605"
 		     value=">>>" 
 		     onClick="document.suoritevalinta.submit()" 
-	 	     class="submitb">.
+	 	     class="btn btn-primary">.
 	    </form> 
             </b>
             $bundle.getString("sukunimellahaku")

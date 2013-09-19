@@ -19,11 +19,11 @@ dbPassword=tapaus2
 
 #Niiden henkilöiden käyttäjätunnukset, joilla on oikeus päivittää 
 #henkilo-taulun tktl-käyttäjätunnuksia
-loginManagers=laine, siven, mkctammi
+loginManagers=laine, siven, mkctammi, admin
 
 
 #Henkilöt, joilla oikeus päivittää kaikkia kursseja
-superUsers= siven, laine, mkctammi
+superUsers= siven, laine, mkctammi, admin
 
 #TKTL-verkon /etc/passwd-tiedosto
 #passwdFile=/fs/svc/domain/cs-passwd

@@ -9,21 +9,21 @@
   #set ( $next = $sid + 1 )
         <tr class="navi3">
           <td colspan="4">
-  <table class="invisible" align="center" border="0" cellspacing="0" cellpadding="0">
+  <table align="center" border="0" cellspacing="0" cellpadding="0">
     <tr>
       <td>
         <center>
         <form action="index" method="post" class="inline" style="margin:0;display:inline;">
           <input type="hidden" name="TS" value="${TS}">
           <input type="hidden" name="sid" value="${prev}">
-	  <input type="submit" name="doEdit" value="<- Edellinen" class="submitb">
+	  <input type="submit" class="btn btn-primary" name="doEdit" value="<- Edellinen">
         </form>
         </center>
       </td>
       <td>
         <center>
         <form action="index" method="post" class="inline" style="margin:0;display:inline;">
-	  <input type="submit" name="doList" value="valitse listalta" class="submitb">
+	  <input type="submit" class="btn btn-primary" name="doList" value="valitse listalta">
         </form>
         </center>
       </td>
@@ -32,7 +32,7 @@
         <form action="index" method="post" class="inline" style="margin:0;display:inline;">
           <input type="hidden" name="TS" value="${TS}">
           <input type="hidden" name="sid" value="${next}">
-          <input type="submit" name="doEdit" value="Seurava ->" class="submitb">
+          <input type="submit" class="btn btn-primary" name="doEdit" value="Seurava ->">
         </form>
         </center>
       </td>
@@ -45,7 +45,7 @@
           <td colspan="4">
     <center>
       <form action="index" method="post" class="inline" style="margin:0;display:inline;">
-	<input type="submit" name="doList" value="takaisin" class="submitb">
+	<input type="submit" class="btn btn-primary" name="doList" value="takaisin">
       </form>
     </center>
 	  </td>
@@ -74,7 +74,7 @@ $!{student.LName}, $!{student.FName} (${student.SSN} / $!{student.sno})
 </center>
 </h3>
 
-<table class="normal" width="100%">
+<table class="normal" width="100%" style="max-width:1000px">
 #if (${student.PrevLName})
   <tr>
     <th width="20%">Entinen sukunimi
@@ -126,15 +126,13 @@ $!{student.LName}, $!{student.FName} (${student.SSN} / $!{student.sno})
   <input type="hidden" name="TS" value="${TS}">
   <input type="hidden" name="sid" value="$!{sid}">
 
-  <table class="normal"
-         border="1"
-         width="100%">
+  <table class="normal" border="1" width="100%" style="max-width:1000px">
   #foreach ( $part in $parts )
     #set ($pid = $part.Id)
     <tr>
       <th width="25%">${part.Label}</th>
       <td>
-        <table class="invisible">
+        <table>
           <tr>
     #foreach ( $offering in $part.Offerings )
       #set ( $oid = ${offering.Id}+1 )
@@ -179,13 +177,13 @@ $!{student.LName}, $!{student.FName} (${student.SSN} / $!{student.sno})
         <input type="hidden" name="asNotify" value="">
     #end
         <input type="hidden" name="doSave" value="ok">
-        <input type="submit" tabindex="2" class="submitb" 
+        <input type="submit" class="btn btn-success" tabindex="2" 
     #if ($autosave)
                onClick="this.form.asNotify.value=''"
     #end
                value="------> TALLENNA PISTEET <------">
   #else 
-        <input type="button" class="button" value="--> sulata <--"
+        <input type="button" class="btn btn-warning" value="--> sulata <--"
                onClick="defreezeStudent('${sid}')">
   #end
       </th>
