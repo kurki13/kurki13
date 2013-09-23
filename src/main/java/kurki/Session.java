@@ -122,13 +122,14 @@ public class Session implements java.io.Serializable {
             rb = ResourceBundle.getBundle("localisationBundle", getLanguage());
             ServiceManager.setNoOfRoles(Rooli.NO_OF_ROLES);
             
-            ServiceManager.defineService(ServiceName.ENTRY, Rooli.TUTOR, "Suoritteiden kirjaus", new Entry());
-            ServiceManager.defineService(ServiceName.PARTICIPANTS, Rooli.TUTOR, "Osallistujatietojen muutokset", new Participants());
-            ServiceManager.defineService(ServiceName.COURSE_BASICS, Rooli.TUTOR, "Kurssiin perustietojen muutokset", new CourseBasics());
-            ServiceManager.defineService(ServiceName.CHECKLIST, Rooli.TUTOR, "Listat", new Checklist());
-            ServiceManager.defineService(ServiceName.GRADES, Rooli.TUTOR, "Arvostelu", new Grades());
-            ServiceManager.defineService(ServiceName.RESULT_LIST, Rooli.TUTOR, "Tuloslistat", new ResultList());
-            ServiceManager.defineService(ServiceName.FREEZE, Rooli.TUTOR, "Kurssin jäädytys", new Freeze());
+            //The first argument of the defines much match keys in the localisation bundle
+            ServiceManager.defineService("1entry", Rooli.TUTOR, "Suoritteiden kirjaus", new Entry());
+            ServiceManager.defineService("2participants", Rooli.TUTOR, "Osallistujatietojen muutokset", new Participants());
+            ServiceManager.defineService("3coursebasics", Rooli.TUTOR, "Kurssiin perustietojen muutokset", new CourseBasics());
+            ServiceManager.defineService("4checklist", Rooli.TUTOR, "Listat", new Checklist());
+            ServiceManager.defineService("5grades", Rooli.TUTOR, "Arvostelu", new Grades());
+            ServiceManager.defineService("6resultlist", Rooli.TUTOR, "Tuloslistat", new ResultList());
+            ServiceManager.defineService("7freezing", Rooli.TUTOR, "Kurssin jäädytys", new Freeze());
 
             ServiceManager.lockServices();
         } catch (Exception e) {
