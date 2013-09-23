@@ -61,7 +61,7 @@ $result
 <br>
 #end
 #if ( $error && $error != "" )
-<div class="error">
+<div class="alert alert-danger">
 $error
 </div>
 <br>
@@ -196,7 +196,7 @@ $result
 </div>
 <br>
   #end
-<div class="error">
+<div class="alert alert-danger">
 $bundle.getString("opeiloytynyt")
 </div>
 #elseif (!$parts)

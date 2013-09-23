@@ -12,7 +12,7 @@
         </div>
 #end
 #if ( $error && $error != "" )
-        <div class="error">
+        <div class="alert alert-danger"">
           <ul>
           $error
 	  </ul>

@@ -86,7 +86,7 @@
         <tr>
           <td colspan="4">
   #if ($error && $error != "")
-<div class="error">
+<div class="alert alert-danger">
   $error
 </div>
   #end 
