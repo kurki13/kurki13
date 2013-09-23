@@ -40,12 +40,12 @@ var intervalId = null;
 var isIENN = true;
 
 var asAlert = 
-"<html>\n<head><title>Kurki: automaattinen välitallennus</title></head>\n"
+"<html>\n<head><title>$bundle.getString("KurkiautomValiTallennus")</title></head>\n"
 +"<body bgcolor='white' onLoad=\"setTimeout('self.close()', 14000);\">\n"
-+"<center>\n<h2>Kurki:</h2>\n<h3>Automaattinen välitallennus aktivoituu 15s kuluttua.</h3>\n"
++"<center>\n<h2>Kurki:</h2>\n<h3>$bundle.getString("automValiTallennusAktiv")</h3>\n"
 +"<form action='.' onSubmit='return false;'>\n"
 +"<input type='button' value='  OK  ' onClick='javascript:self.close()' class='button'>\n"
-+"</form>\n(Tämä ikkuna sulkeutuu itsestään.)\n</center>\n</body>\n</html>";
++"</form>\n$bundle.getString("suluisTamaIkkunaSulkeutuu")\n</center>\n</body>\n</html>";
 
 if (navigator.appName == "Konqueror") {
   isIENN = false;
@@ -70,7 +70,7 @@ function delayedSave() {
       aswin.document.writeln(asAlert);
       aswin.document.close();
     } else {
-      window.open("../asNotify.html", "Välitallennus ilmoitus", 
+      window.open("../asNotify.html", $bundle.getString("valitallenIlmo"), 
 	"toolbar=no,menubar=no,location=no,scrollbars=no,resizable=no,width=300,height=200");
     }
   }
@@ -85,7 +85,7 @@ function save() {
 
 function toggleAutosave() {
   if (noas) {
-    alert("$bundle.getString("istuntovanhentunut")");
+    alert($bundle.getString("istuntovanhentunut"));
   }
   else if (as) {
     as = false;
@@ -99,7 +99,7 @@ function toggleAutosave() {
 
 function disableAutosave() {
     noas = true;
-    alert("$bundle.getString("istuntovanhentunut")");
+    alert($bundle.getString("istuntovanhentunut"));
     clearInterval(intervalId);
     if (${autosave} != null && ${autosave}.asNotify != null) { ${autosave}.asNotify.value = ""; }
 }
@@ -150,11 +150,10 @@ function disableAutosave() {
 
 <!--
 <tr><td colspan="4"><div class="warning"><center>
-KurKi päivitetään tänään (pp.kk.) klo hh:mm - hh.mm. 
-Päivityksen aikana KurKi ei toimi.
+$bundle.getString("kurkiPaivitVaroitus")
 </center></div></td></tr>
 <tr><td colspan="4"><div class="warning"><center>
-KurKi-järjestelmän päivitys kesken. Alä käytä!
+$bundle.getString("kurkiPaivitKesken")
 </center></div></td></tr>    
 -->
 	
@@ -173,7 +172,7 @@ KurKi-järjestelmän päivitys kesken. Alä käytä!
 			    onChange="!isModified() && document.navi.submit();"
 			    tabindex="32700">
   #if (!$services)
-		      <option value="">-- valitse kurssi --</a>
+		      <option value="">-- $bundle.getString("valitseKurssi") --</a>
   #end
 
   #foreach ($course in $courseInfos)
@@ -239,7 +238,7 @@ KurKi-järjestelmän päivitys kesken. Alä käytä!
     <input type="checkbox" id="toggle" name="toggle" onClick="toggleAutosave();">
   #end
     <label for="toggle" accesskey="v">
-    <b>Autom. <u>v</u>älitallennus</b>
+    <b>$bundle.getString("automvaliTallen")</b>
     </label>
   </form>
 #else
