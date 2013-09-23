@@ -221,7 +221,7 @@ public class ListMaker extends VelocityServlet implements Log, Serializable {
 
 	    out.println( "<html><head>\n<title>Kurki: virheilmoitus</title>\n"
 			 +"<link rel='stylesheet' href='../kurki.css' title='kurki'>\n</head><body>\n"
-			 +"<div class='error' style='text-align:center;width=500px'>\n"
+			 +"<div class='alert alert-danger' style='text-align:center;width=500px'>\n"
 			 +"<h2>Virheilmoitus</h2>\n<hr>\n<pre align='left'>\n" );
             e.printStackTrace( new PrintStream( out ) );
 	    out.println( "\n</pre>\n</div></body></html>" ); 

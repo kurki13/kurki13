@@ -6,8 +6,9 @@
 #set ($inckoe = $parts.get(2))
 	<tr>
 	  <td colspan="4" align="center">
+          <h3>$bundle.getString("6resultlist")</h3>
 #if ( $result && $result != "" )
-        <div class="result">
+        <div class="alert alert-success">
           $result
         </div>
 #end

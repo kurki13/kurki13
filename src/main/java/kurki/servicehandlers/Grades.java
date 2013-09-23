@@ -216,7 +216,6 @@ public class Grades extends AbstractVelocityServiceProvider
 		error += "<li>Virhe: "+course.getMessage()+"</li>";
 	    }
 	}
-
 	context.put( Index.ERROR, nullIfEmpty( error ) );
 	context.put( Index.RESULT, nullIfEmpty( result ) );
 	return template;

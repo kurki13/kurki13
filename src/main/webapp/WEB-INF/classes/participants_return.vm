@@ -7,7 +7,7 @@
   </div>
 #end 
 #if ( $result && $result != "" )
-  <div class="result">
+  <div class="alert alert-success">
     $result
   </div>
 #end

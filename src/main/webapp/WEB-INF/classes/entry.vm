@@ -17,12 +17,13 @@
 #parse ("top.vm")
 	<tr class="navi2">
 	  <td colspan="4">
+          <h3>$bundle.getString("1entry")</h3>
             <form name="suoritevalinta" action="index" method="post" onSubmit="return !isModified()">
 	      <table border="0" cellspacing="0" cellpadding="0" align="left" style="text-align:left;">
 	        <tr>
 		  <td>
                     <label for="type" accesskey="T">
-		    <b>$bundle.getString("tyyppi")</b>
+		    <b>$bundle.getString("tyyppi"):</b>
                     </label>
 		  </td>
 		  <td>
@@ -47,7 +48,7 @@
 	  	  </td>
 		  <td>&nbsp;
                     <label for="offering" accesskey="K">
-                    <b>$bundle.getString("kerta")</b>
+                    <b>$bundle.getString("kerta"):</b>
                     </label>
                   </td>
 		  <td>
@@ -76,7 +77,7 @@
 ##  Haettavat opiskelijat - joko ryhmän mukaan tai sukunimen mukaan
 ##
                     <label for="find" accesskey="O">
-		    <b>$bundle.getString("opiskelijat")</b>
+		    <b>$bundle.getString("opiskelijat"):</b>
                     </label>
 		  </td>
  		  <td>
@@ -121,7 +122,7 @@
   ##
 
   #if ( $result && $result != "" )
-          <div class="result">
+          <div class="alert alert-success">
 	  $result
 	  </div>
   #end

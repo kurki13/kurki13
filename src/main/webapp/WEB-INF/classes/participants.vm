@@ -1,6 +1,7 @@
 #parse ("top.vm")
 	<tr class="navi2">
 	  <td colspan="4">
+          <h3>$bundle.getString("2participants")</h3>
             <form name="ophaku" action="index" method="post">
 	      <table border="0" cellspacing="0" cellpadding="0" align="left" style="text-align:left;">
 	        <tr>
@@ -91,7 +92,7 @@
 </div>
   #end 
   #if ($result && $result != "")
-<div class="result">
+<div class="alert alert-success">
   $result
 </div>
   #end
