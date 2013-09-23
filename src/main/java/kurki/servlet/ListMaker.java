@@ -7,6 +7,7 @@ import java.io.*;
 import java.util.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
+import kurki.util.LocalisationBundle;
 
 import org.apache.velocity.*;
 import org.apache.velocity.context.*;
@@ -177,7 +178,7 @@ public class ListMaker extends VelocityServlet implements Log, Serializable {
 		    studentFilterDesc = course.getSelectDescription();
 		    context.put( "studentFilterDesc",
 			     ( nullIfEmpty( studentFilterDesc ) == null
-			       ? "kaikki kurssin opiskelijat"
+			       ? LocalisationBundle.getString("kaikkiopiskelijat")
 			       : studentFilterDesc ) );
 		}
 	    } // if ( oldSession && !s.isNew() && tmpSession != null && ltype != null )
@@ -219,10 +220,10 @@ public class ListMaker extends VelocityServlet implements Log, Serializable {
 	    res.setContentType("text/html");
 	    out= res.getOutputStream();
 
-	    out.println( "<html><head>\n<title>Kurki: virheilmoitus</title>\n"
+	    out.println( "<html><head>\n<title>"+LocalisationBundle.getString("kurkivirhe")+"</title>\n"
 			 +"<link rel='stylesheet' href='../kurki.css' title='kurki'>\n</head><body>\n"
-			 +"<div class='error' style='text-align:center;width=500px'>\n"
-			 +"<h2>Virheilmoitus</h2>\n<hr>\n<pre align='left'>\n" );
+			 +"<div class='alert alert-danger' style='text-align:center;width=500px'>\n"
+			 +"<h2>"+LocalisationBundle.getString("virheilmoitus")+"</h2>\n<hr>\n<pre align='left'>\n" );
             e.printStackTrace( new PrintStream( out ) );
 	    out.println( "\n</pre>\n</div></body></html>" ); 
 	    

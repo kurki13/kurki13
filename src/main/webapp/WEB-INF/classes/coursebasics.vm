@@ -7,12 +7,12 @@
 <h3>$selectedCourse.label - $bundle.getString("perustiedot")</h3>
 
 #if ($error && $error != "")
-<div class="error">
+<div class="alert alert-danger">
   $error
 </div>
 #end 
 #if ($result && $result != "")
-<div class="result">
+<div class="alert alert-success">
   $result
 </div>
 #end

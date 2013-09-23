@@ -6,13 +6,14 @@
 #set ($inckoe = $parts.get(2))
 	<tr>
 	  <td colspan="4" align="center">
+          <h3>$bundle.getString("6resultlist")</h3>
 #if ( $result && $result != "" )
-        <div class="result">
+        <div class="alert alert-success">
           $result
         </div>
 #end
 #if ( $error && $error != "" )
-        <div class="error">
+        <div class="alert alert-danger"">
           <ul>
           $error
 	  </ul>
@@ -279,7 +280,7 @@
   <li>$bundle.getString("hakuperusteinfo")
 	    <dl>
 	      <dt>$bundle.getString("tyhja")</dt>
-  	        <dd>$bundle.getString("kaikki")</dd>
+  	        <dd>$bundle.getString("kaikkiopiskelijat")</dd>
 	      <dt>$bundle.getString("num")</dt>
 	        <dd>$bundle.getString("annetunro")</dd>
 	      <dt>$bundle.getString("sukunimi")</dt>
