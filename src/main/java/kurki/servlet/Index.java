@@ -268,10 +268,10 @@ public class Index extends VelocityServlet implements Log, Serializable {
         servletResponse.setContentType("text/html");
         out = servletResponse.getOutputStream();
 
-        out.println("<html><head>\n<title>Kurki: virheilmoitus</title>\n"
+        out.println("<html><head>\n<title>"+LocalisationBundle.getString("kurkivirhe")+"</title>\n"
                 + "<link rel='stylesheet' href='../kurki.css' title='kurki'>\n</head><body>\n"
                 + "<div class='error' style='text-align:center;width=500px'>\n"
-                + "<h2>Virheilmoitus</h2>\n<hr>\n<pre align='left'>\n");
+                + "<h2>"+LocalisationBundle.getString("virheilmoitus")+"</h2>\n<hr>\n<pre align='left'>\n");
         e.printStackTrace(new PrintStream(out));
         out.println("\n</pre>\n<hr>\n<a href=\"mailto:tktl-kurki@cs.Helsinki.FI\">tktl-kurki@cs.Helsinki.FI</a></div></body></html>");
 

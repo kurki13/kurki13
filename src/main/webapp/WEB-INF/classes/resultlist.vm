@@ -280,7 +280,7 @@
   <li>$bundle.getString("hakuperusteinfo")
 	    <dl>
 	      <dt>$bundle.getString("tyhja")</dt>
-  	        <dd>$bundle.getString("kaikki")</dd>
+  	        <dd>$bundle.getString("kaikkiopiskelijat")</dd>
 	      <dt>$bundle.getString("num")</dt>
 	        <dd>$bundle.getString("annetunro")</dd>
 	      <dt>$bundle.getString("sukunimi")</dt>

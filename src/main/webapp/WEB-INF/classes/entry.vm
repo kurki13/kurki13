@@ -112,7 +112,7 @@
   #if ($SelectDescription)
               $SelectDescription
   #else
-         $bundle.getString("kaikkiOppilaat")
+         $bundle.getString("kaikkiopiskelijat")
   #end
 	      
 	  </h3>
