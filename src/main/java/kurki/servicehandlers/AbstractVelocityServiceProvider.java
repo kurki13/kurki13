@@ -1,19 +1,12 @@
-package kurki.servlet;
+package kurki.servicehandlers;
 
 import kurki.*;
-import service.*;
 
 import javax.servlet.http.*;
 import org.apache.velocity.context.*;
 
-public abstract class AbstractVelocityServiceProvider
-    extends ServiceAdapter {
-
-    public AbstractVelocityServiceProvider( Service service ) { 
-	super( service );
-    }
-
-
+public abstract class AbstractVelocityServiceProvider{
+    
     /**
        Käsittelee http-pyynnön kutsumalla handleService-metodia ja
        huolehtimalla Templaten käsittelyyn liittyvistä 

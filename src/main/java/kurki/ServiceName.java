@@ -13,5 +13,5 @@ public class ServiceName {
     public static final String GRADES = ++namehlp + "grades";
     public static final String RESULT_LIST = ++namehlp + "resultlist";
     public static final String FREEZE = ++namehlp + "freezing";
-    public static final String LOGOUT = ++namehlp + "logout";
+//    public static final String LOGOUT = ++namehlp + "logout";
 }
