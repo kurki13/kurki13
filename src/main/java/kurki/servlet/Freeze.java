@@ -37,7 +37,7 @@ public class Freeze extends AbstractVelocityServiceProvider {
 	String error = "";
 	String result = "";
 
-	if ( freeze != null ) { // if ( freeze != null )
+	if ( freeze != null ) {
 	    String examDate = nullIfEmpty( req.getParameter("examDate") );
 
 	    if ( examDate != null ) {
@@ -49,10 +49,10 @@ public class Freeze extends AbstractVelocityServiceProvider {
 		}
 	    }
 	    else if ( course.getExamDate() == null ) {
-		error += "<li>Anna suorituspäivämäärä!</li>";
+		error += "<li>" + LocalisationBundle.getString("annaSuorPvm") + "</li>";
 	    }
 
-	    if ( course.getExamDate() != null ) { // if ( course.getExamDate() != null )
+	    if ( course.getExamDate() != null ) {
 		CourseInfo ci = course.getCourseInfo();
 		boolean isFirstTime = false;
 		String resultList = "";
@@ -133,7 +133,7 @@ public class Freeze extends AbstractVelocityServiceProvider {
 		    message.setText(msg);
 		    Transport.send(message);
 
-		    result = "<center><h3>Kurssi on jäädytetty</h3></center>\n"
+		    result = "<center><h3>" + LocalisationBundle.getString("jaadytysInfo") + "</h3></center>\n"
 			+"<ul>\n";
 
 		    if (isFirstTime ) {
@@ -157,14 +157,14 @@ public class Freeze extends AbstractVelocityServiceProvider {
 		else {
 		    String errMsg = course.getMessage();
 		    if (errMsg == null) {
-			error = "Kurssin jäädyttäminen ei onnistunut. "
-			    +"Asian korjaamiseksi ota yhteyttä KurKi-järjestelmän ylläpitäjään "
+			error = LocalisationBundle.getString("jaadytysEpaonnistui") + ". "
+			    +LocalisationBundle.getString("jaadytysEpaonnistuiInfo") + " "
 			    +KURKIMAIL
                             +"</li>";
 		    }
 		    else {
-			error = "Kurssin jäädyttäminen ei onnistunut ("+errMsg+"). "
-			    +"Asian korjaamiseksi ota yhteyttä KurKi-järjestelmän ylläpitäjään "
+			error = LocalisationBundle.getString("jaadytysEpaonnistui") + " ("+errMsg+"). "
+			    +LocalisationBundle.getString("jaadytysEpaonnistuiInfo") + " "
 			    +KURKIMAIL
                             +"</li>";
 		    }
