@@ -16,6 +16,8 @@ import org.apache.velocity.servlet.*;
 
 public class Index extends VelocityServlet implements Log, Serializable {
 
+    //Nää on jotain http parametrien nimiä millä tää spagetti kommunikoi sisäisesti
+    //(AbstractVelocityServiceProviderit puhuu tälle YyberServletille)
     public static final String RESULT = "result";
     public static final String ERROR = "error";
     public static final String INDEX = "index";
@@ -27,7 +29,6 @@ public class Index extends VelocityServlet implements Log, Serializable {
     public static final String TIMESTAMP = "TS";
     private int session_lenght = 3600;
     public static final String KURKI_SESSION = "session";
-//    public static final Hashtable handlers = new Hashtable();
 
     static {
         Session.initialize();
@@ -36,12 +37,7 @@ public class Index extends VelocityServlet implements Log, Serializable {
     @Override
     public synchronized void init() {
         if (!initialized) {
-            try {
                 init_config();
-            } catch (Exception e) {
-                e.printStackTrace();
-                System.exit(0);
-            }
             initialized = true;
         }
     }
@@ -60,8 +56,7 @@ public class Index extends VelocityServlet implements Log, Serializable {
     protected void doRequest(HttpServletRequest servletRequest,
             HttpServletResponse servletResponse)
             throws ServletException, IOException {
-
-        Vector vec = new Vector();
+        
         String timestamp;
         String error = "";
         String result = "";
