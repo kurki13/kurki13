@@ -246,7 +246,7 @@
                     <input type="checkbox" name="inc_changes" checked>
                   </td>
                   <td nowrap>
-                    bundle.getString("jaadytyksenJalkeiset")
+                    $bundle.getString("jaadytyksenJalkeiset")
                   </td>
                   <td>
                     &nbsp;

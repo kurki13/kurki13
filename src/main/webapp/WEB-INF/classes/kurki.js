@@ -25,7 +25,7 @@ function htesti (kieli,hetu) {
     if (hetutest(hetu.value)) {
 	return true;
     } else {
-	alert('Henkilötunnus virheellinen!');
+	alert('$bundle.getString("henktunVirheel")');
 	hetu.select();
 	hetu.focus();
 	return false;
@@ -106,7 +106,7 @@ function isEmpty (textfield) {
 function isNonEmpty(textfield, name) {
     a=textfield.value;
     if (a=="") {
-	alert("Anna "+name+"!");
+	alert('$bundle.getString("anna")+name+"!"');
 	return false;
     }
     else 
@@ -170,7 +170,7 @@ function numcheck(textField) {
 	    return true 
 	}
 	else {  
-	    str = "'" + textField.value + "' ei ole numero.";  
+	    str = textField.value + '$bundle.getString("eiOleNumero")';  
 	    alert(str);  
 	    textField.select();  
 	    textField.focus();  
@@ -182,7 +182,7 @@ function numcheck(textField) {
  
 function rangecheck(textField, lower, upper) { 
     if (textField.value != "") {
-	var str = "Anna numero lukujen "+lower+" ja "+upper+" väliltä.\n"; 
+	var str = '$bundle.getString("annaNumeroLukujen")'+lower+'$bundle.getString("valiJa")'+upper+'$bundle.getString("valilta")'+"\n"; 
 	if (isNumber(textField)) { 
 	    intValue = Number(textField.value); 
 	    if (isInRange(intValue, lower, upper)) {
@@ -214,7 +214,7 @@ function datecheck(textField) {
 	    return true;
 	}
 	else {
-	    alert('Anna kelvollinen päiväys (pp.kk.vvvv) väliltä 1.1.1901 - 31.12.2099!');
+	    alert('$bundle.getString("annaKelvolPaivays")');
 	    textField.select(); 
 	    textField.focus(); 
 	    return false;
@@ -227,7 +227,7 @@ function presencecheck(textField) {
     if (isNonEmpty(textField)) 
 	return true;
     else {
-	str= "Kenttä "+textField.name+" on pakollinen!";
+	str= '$bundle.getString("kentta")'+textField.name+'$bundle.getString("onPakol")';
 	alert(str);
 	textField.select(); 
 	textField.focus(); 
@@ -294,7 +294,7 @@ function checkRadio(radio, textField) {
       radio[i].checked = true;
     }
     else {
-      alert("Annettua merkki ei ole tunnettu.");
+      alert('$bundle.getString("annetMerkkiEiOleTunnettu")');
     }
   } 
   return true;
@@ -345,7 +345,7 @@ function checkAndSubmitStudentFind(form) {
   if (form.doSearch.selectedIndex == 2) {
     if ( lname == "" && idvalue == "" ) {
       rv = false;
-      msg += "Anna opiskelijoiden hakuperuste: sukunimi, hetu tai opnro.\n";
+      msg += '$bundle.getString("annetHakuPeruste")'+'\n';
     }
   }
   if (!rv) {
@@ -392,7 +392,7 @@ function setValue( textField, newVal ) {
 function isModified() {
   var isMod = document.modifyWatch.modCount.value > "0";
   if (isMod) {
-    alert("Tallenna tai peru ensin kirjaamasi pisteet!");
+    alert('$bundle.getString("TallenTaiPeru")');
   }
   return isMod;
 }
