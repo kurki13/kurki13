@@ -1,5 +1,7 @@
 package kurki.servlet;
 
+import kurki.servicehandlers.AbstractVelocityServiceProvider;
+import kurki.servicehandlers.CourseBasics;
 import kurki.*;
 import service.*;
 
@@ -25,7 +27,7 @@ public class Index extends VelocityServlet implements Log, Serializable {
     public static final String TIMESTAMP = "TS";
     private int session_lenght = 3600;
     public static final String KURKI_SESSION = "session";
-    public static final Hashtable handlers = new Hashtable();
+//    public static final Hashtable handlers = new Hashtable();
 
     static {
         Session.initialize();
@@ -36,32 +38,12 @@ public class Index extends VelocityServlet implements Log, Serializable {
         if (!initialized) {
             try {
                 init_config();
-                init_handlers();
             } catch (Exception e) {
                 e.printStackTrace();
                 System.exit(0);
             }
             initialized = true;
         }
-    }
-
-    //MKCT: Wtf do we need handlers for when we have the ServiceManager singleton?
-    private void init_handlers() {
-        ServiceManager serviceManager = Session.getServiceManager();
-        handlers.put(ServiceName.ENTRY,
-                new Entry(serviceManager.getService(ServiceName.ENTRY)));
-        handlers.put(ServiceName.PARTICIPANTS,
-                new Participants(serviceManager.getService(ServiceName.PARTICIPANTS)));
-        handlers.put(ServiceName.COURSE_BASICS,
-                new CourseBasics(serviceManager.getService(ServiceName.COURSE_BASICS)));
-        handlers.put(ServiceName.CHECKLIST,
-                new Checklist(serviceManager.getService(ServiceName.CHECKLIST)));
-        handlers.put(ServiceName.GRADES,
-                new Grades(serviceManager.getService(ServiceName.GRADES)));
-        handlers.put(ServiceName.RESULT_LIST,
-                new ResultList(serviceManager.getService(ServiceName.RESULT_LIST)));
-        handlers.put(ServiceName.FREEZE,
-                new Freeze(serviceManager.getService(ServiceName.FREEZE)));
     }
 
     private void init_config() {
@@ -199,11 +181,8 @@ public class Index extends VelocityServlet implements Log, Serializable {
             //Kurssi ja palvelu valittu
             else if (session.courseSelected()
                     && session.serviceSelected()) {
-
-                // 
-                serviceProvider =
-                        (AbstractVelocityServiceProvider) getHandlerFor(session.getSelectedService());
-
+                
+                serviceProvider = session.getSelectedService().getHandler();
                 context.put("selectedService", serviceProvider);
 
                 String serviceTemplateName = serviceProvider.handleRequest(session, servletRequest, servletResponse, context);
@@ -306,11 +285,6 @@ public class Index extends VelocityServlet implements Log, Serializable {
             return str;
         }
     }
-
-    public AbstractVelocityServiceProvider getHandlerFor(Service service) {
-        return (AbstractVelocityServiceProvider) handlers.get(service.getId());
-    }
-
     public static String asNotify(String target) {
         Calendar calendar = Calendar.getInstance();
         int minute = calendar.get(Calendar.MINUTE);

@@ -1,4 +1,4 @@
-package kurki.servlet;
+package kurki.servicehandlers;
 
 import kurki.*;
 
@@ -12,16 +12,13 @@ import org.apache.velocity.app.*;
 
 import javax.mail.*; 
 import javax.mail.internet.*;
+import kurki.servlet.Index;
 
 public class Freeze extends AbstractVelocityServiceProvider {
 
 
    public static final String KURKIMAIL = "<a href=\"mailto:tktl-kurki@cs.helsinki.fi\">tktl-kurki@cs.helsinki.fi</a>";
-  
-   public Freeze( service.Service service ) {
- 	super( service );
-    }
-
+   @Override
     public String handleRequest( kurki.Session session, 
 				 HttpServletRequest req, 
 				 HttpServletResponse res, 

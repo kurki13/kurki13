@@ -1,5 +1,6 @@
 package kurki.servlet;
 
+import kurki.servicehandlers.AbstractVelocityServiceProvider;
 import kurki.*;
 
 import java.io.*;

@@ -1,23 +1,12 @@
 package service;
 
-public interface Service extends ComparableOption {
+import kurki.servicehandlers.AbstractVelocityServiceProvider;
 
-    /**
-     **  Rooli määrittelemätön.
-     */
+public interface Service extends ComparableOption {
     static final int UNDEFINED_ROLE = Integer.MIN_VALUE;
 
     String getId();
-
-    /**
-     **  Pienin rooli, jolle tämä palvelu tarjotaan.
-     */
-    int getRole();
-
-
-    /**
-     **  Onko tämä palvelu sallittu käyttäjälle roolissa
-     **  &lt;userInRole&gt;?
-     */
+    int getLowestRole();
     boolean isValidServiceFor( int userInRole );
+    AbstractVelocityServiceProvider getHandler();
 }
