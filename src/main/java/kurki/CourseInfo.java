@@ -39,7 +39,7 @@ public class CourseInfo extends ComparableOptionAdapter {
 	super( ccode+"."+year+"."+term+"."+type+"."+cno, name );
 
 	if ( ccode == null || term == null || type == null || name == null ) {
-	    throw new NullIdException("Null ei kelpaa parametriksi.");
+	    throw new NullIdException(LocalisationBundle.getString("nulleikelpaa"));
 	}
 
 	init();
