@@ -105,7 +105,7 @@
   #end
     </td>
     <td bgcolor="${bgcolor}">
-       <center><input type="button" name="submitEditRequest" value="tiedot" class="submitb"
+      <center><input type="button" class="btn btn-primary"" name="submitEditRequest" value="$bundle.getString("tiedotpelkka")"
              onClick="doEditRequest('${sid}')"></center>
     </td>
   </tr>    
