@@ -183,7 +183,7 @@ public class Index extends VelocityServlet implements Log, Serializable {
                     && session.serviceSelected()) {
                 
                 serviceProvider = session.getSelectedService().getHandler();
-                context.put("selectedService", serviceProvider);
+                context.put("selectedService", session.getSelectedService());
 
                 String serviceTemplateName = serviceProvider.handleRequest(session, servletRequest, servletResponse, context);
 
