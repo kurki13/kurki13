@@ -16,14 +16,14 @@
         <form action="index" method="post" class="inline" style="margin:0;display:inline;">
           <input type="hidden" name="TS" value="${TS}">
           <input type="hidden" name="sid" value="${prev}">
-	  <input type="submit" class="btn btn-primary" name="doEdit" value="<- Edellinen">
+	  <input type="submit" class="btn btn-primary" name="doEdit" value="$bundle.getString("edellinen")">
         </form>
         </center>
       </td>
       <td>
         <center>
         <form action="index" method="post" class="inline" style="margin:0;display:inline;">
-	  <input type="submit" class="btn btn-primary" name="doList" value="valitse listalta">
+	  <input type="submit" class="btn btn-primary" name="doList" value="$bundle.getString("valitselistalta")">
         </form>
         </center>
       </td>
@@ -32,7 +32,7 @@
         <form action="index" method="post" class="inline" style="margin:0;display:inline;">
           <input type="hidden" name="TS" value="${TS}">
           <input type="hidden" name="sid" value="${next}">
-          <input type="submit" class="btn btn-primary" name="doEdit" value="Seurava ->">
+          <input type="submit" class="btn btn-primary" name="doEdit" value="$bundle.getString("seuraava")">
         </form>
         </center>
       </td>
@@ -45,7 +45,7 @@
           <td colspan="4">
     <center>
       <form action="index" method="post" class="inline" style="margin:0;display:inline;">
-	<input type="submit" class="btn btn-primary" name="doList" value="takaisin">
+	<input type="submit" class="btn btn-primary" name="doList" value="$bundle.getString("takaisin")">
       </form>
     </center>
 	  </td>
@@ -77,38 +77,38 @@ $!{student.LName}, $!{student.FName} (${student.SSN} / $!{student.sno})
 <table class="normal" width="100%" style="max-width:1000px">
 #if (${student.PrevLName})
   <tr>
-    <th width="20%">Entinen sukunimi
+    <th width="20%">$bundle.getString("entinensnimi")
     </th>
     <td>$!{student.PrevLName}
     </td>
   </tr>
 #end
   <tr>
-    <th width="20%">Osoite
+    <th width="20%">$bundle.getString("osoite")
     </th>
     <td>$!{student.Address}
     </td>
   </tr>
   <tr>
-    <th>Puhelinnumero
+    <th>$bundle.getString("phonenumber")
     </th>
     <td>$!{student.Phone}
     </td>
   </tr>
   <tr>
-    <th>Sähköpostiosoite
+    <th>$bundle.getString("sposti")
     </th>
     <td><a href="mailto:$!{student.EMail}">$!{student.EMail}</a>
     </td>
   </tr>
   <tr>
-    <th>Pääaine
+    <th>$bundle.getString("pääaine")
     </th>
     <td>$!{student.Major}
     </td>
   </tr>
   <tr>
-    <th>Aloitusvuosi
+    <th>$bundle.getString("aloitusvuosi")
     </th>
     <td>$!{student.StartYear}
     </td>
@@ -181,9 +181,9 @@ $!{student.LName}, $!{student.FName} (${student.SSN} / $!{student.sno})
     #if ($autosave)
                onClick="this.form.asNotify.value=''"
     #end
-               value="------> TALLENNA PISTEET <------">
+               value="$bundle.getString("tallennapisteet")">
   #else 
-        <input type="button" class="btn btn-warning" value="--> sulata <--"
+        <input type="button" class="btn btn-warning" value="$bundle.getString("sulatanuoli")"
                onClick="defreezeStudent('${sid}')">
   #end
       </th>
@@ -197,11 +197,10 @@ $result
 <br>
   #end
 <div class="error">
-Opiskelijaa ei löytynyt kurssilta: joko hän on itse perunut ilmoittautumisensa tai
-toinen ohjaaja on poistanut hänet tältä kurssilta.
+$bundle.getString("opeiloytynyt")
 </div>
 #elseif (!$parts)
-Kurssille ei ole määritelty osasuorituksia (laskareita, harjoitustöitä tai kokeita).
+$bundle.getString("eiosasuorituksia")
 #end
 
 </form>
