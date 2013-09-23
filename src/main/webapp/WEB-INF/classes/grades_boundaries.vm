@@ -17,17 +17,17 @@
   $result
 </div>
 #end
-<h3>${selectedCourse.label} - arvostelu: lisäpiste- ja arvosanarajat</h3>
+<h3>${selectedCourse.label} - $bundle.getString("arvosteluRajaOtsikko")</h3>
 
-#set ($partnames = ["LH - lisäpisterajat:", "HT - lisäpisterajat:", "", "Arvosanarajat:"])
+#set ($partnames = [$bundle.getString("lhlpr"), $bundle.getString("htlpr"), $bundle.getString("ar")])
 <form action="index" name="boundaries" method="post">
   <input type="hidden" name="TS" value="${TS}">
 <table class="normal" border="0">
 #foreach ($part in $parts)
   #set ($pid = $part.Type)
   #set ($maxScoreCount = $part.MaxScoreCount )
-## lisätty && $pid <= 3 muuten tulee indexoutofbounds error -tka
-  #if ( $pid != 2 && $pid <= 3 )
+## Korjattu pid -HH 
+  #if ($pid < 2)
   <tr>
     <th>
     $partnames.get($pid)
@@ -51,7 +51,6 @@
             <center>
       #if ($score > $maxScoreCount)
               <b><font color="red">${xtrLabel}</font></b><br>
-              kodsakodsa
       #else
               <b>${xtrLabel}</b><br>
       #end
@@ -73,7 +72,7 @@
 #*
   <tr>
     <th>
-      Arvosanarajat:
+      $bundle.getString("ar"):
     </th>
      <td>
 #set ($gradeBoundaries = $selectedCourse.GradeBoundaries)
@@ -100,10 +99,10 @@
 *#
   <tr>
     <th colspan="2">
-      <input type="submit" name="cancel" class="btn btn-primary" value=" Palaa takaisin ">
+      <input type="submit" name="cancel" class="btn btn-primary" value= "$bundle.getString("palaa")">
 #if (!$frozen)
-      <input type="submit" name="saveBoundaries" class="btn btn-success" value=" Tallenna pisterajat ">
-      <input type="reset" class="btn btn-primary" value=" Palauta alkuarvot ">
+      <input type="submit" name="saveBoundaries" class="btn btn-success" value= "$bundle.getString("tallennapr")">
+      <input type="reset" class="btn btn-primary" value= "$bundle.getString("palautaar")">
 #end
     </th>
   </tr>
