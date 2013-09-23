@@ -374,9 +374,7 @@
 #end
 #set ( $selectedConvention = $selectedCourse.GradingConvention )
 #foreach ( $convention in $selectedCourse.GradingConventions ) 
-  #set ($bundleConventionHelpString = "conventionHelp" + $convention.Id)
-  #set ($bundleConventionLabelString = "conventionLabel" + $convention.Id)
-  #set ($conventionsDesc = "${conventionsDesc}${selectedCourse.nl()}<dt>$bundle.getString($bundleConventionLabelString)</dt><dd>$bundle.getString($bundleConventionHelpString)</dd>")
+  #set ($conventionsDesc = "${conventionsDesc}${selectedCourse.nl()}<dt>$convention.getLabel()</dt><dd>$convention.getHelp()</dd>")
   #if ( $selectedConvention == $convention.Id )
     #if (!$frozen)
             <option value="${convention.Id}" selected>$convention.Label</option>
@@ -399,10 +397,10 @@
       </tr>
 -->
       </table>
-      <input type="submit" name="makeAssessment" class="btn btn-primary" value="$bundle.getString("teearv")"><br>
+      <input type="submit" name="makeAssessment" class="btn btn-success" value="$bundle.getString("teearv")"><br>
   #if (!$frozen)
       <input type="submit" name="saveBasic" class="btn btn-success" value="$bundle.getString("tallennam")"><br>
-      <input type="submit" name="modBoundaries" class="submitb" value="$bundle.getString("muutaparajoja")"><br>
+      <input type="submit" name="modBoundaries" class="btn btn-primary" value="$bundle.getString("muutaparajoja")"><br>
   #else
       <input type="submit" name="modBoundaries" class="btn btn-primary" value="$bundle.getString("parajat")"><br>
   #end

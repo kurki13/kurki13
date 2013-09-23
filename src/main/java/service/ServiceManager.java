@@ -56,8 +56,15 @@ public class ServiceManager {
     /**
      **  Määrittelee tunnetun toiminnon, joka on identifioitu tietylle
      **  oikeusluokalle (käyttäjäryhmälle) ja tätä ylemmille.
+     * @param id
+     * @param lowest_role_to_allow Pienin roolinumero joka saa käyttää tätä palvelua
+     * @param description
+     * @throws service.exception.NullIdException
+     * @throws service.exception.ServiceAlreadyDefinedException
+     * @throws service.exception.ServicesLockedException
+     * @throws service.exception.UndefinedRoleException
      */
-    public static void defineService( String id, int forRoleAndUp, String description )
+    public static void defineService( String id, int lowest_role_to_allow, String description )
 	throws NullIdException,
 	ServiceAlreadyDefinedException,
 	ServicesLockedException,
@@ -70,7 +77,7 @@ public class ServiceManager {
 	if ( locked )
 	    throw new ServicesLockedException();
 
-	else if ( forRoleAndUp < 0 || forRoleAndUp >= noOfRoles ) 
+	else if ( lowest_role_to_allow < 0 || lowest_role_to_allow >= noOfRoles ) 
 	    throw new UndefinedRoleException();
 
 	else if ( id == null )
@@ -79,22 +86,24 @@ public class ServiceManager {
 	else if ( services.containsKey( id ) )
 	    throw new ServiceAlreadyDefinedException(); 
 
-	ServiceAdapter newService = new ServiceAdapter( id, forRoleAndUp, description );
+	ServiceAdapter newService = new ServiceAdapter( id, lowest_role_to_allow, description );
 
 	services.put( id, newService );
     }
 
     /**
      **  Ainoa ilmentymä.
+     * @return 
+     * @throws service.exception.ServicesNotLockedException
      */
     public static ServiceManager getInstance() throws ServicesNotLockedException {
 	if ( !locked ) throw new ServicesNotLockedException();
-	
 	return instance;
     }
 
     /**
      **  Määriteltyjen Palveluiden lkm.
+     * @return 
      */
     public static int getNoOfServices() {
 	return services.size();
@@ -103,6 +112,8 @@ public class ServiceManager {
     
     /**
      **  Toiminnon <tt>id</tt> perustiedot.
+     * @param id
+     * @return 
      */
     public Service getService( String id ) {
 	
@@ -112,7 +123,9 @@ public class ServiceManager {
     
 
     /**
-     **  Tietyn käyttäjäryhmän päivitysoikeudet.
+     **  Tietylle käyttäjäryhmälle tarjotut palvelut
+     * @param role
+     * @return 
      */
     public Service[] getValidServicesFor( int role ) {
 	
@@ -175,6 +188,9 @@ public class ServiceManager {
 
     /**
      **  Onko palvelu act luvallinen roolille role?
+     * @param act
+     * @param role
+     * @return 
      */
     public boolean isValidServiceFor( Service act, int role ) {
 	
@@ -185,6 +201,11 @@ public class ServiceManager {
     }
 
 
+    /**
+     * Asetetaan roolien yhteislukumäärä
+     * @param nor
+     * @throws ServicesLockedException 
+     */
     public static void setNoOfRoles( int nor )
 	throws ServicesLockedException {
 	
