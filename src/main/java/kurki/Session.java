@@ -9,7 +9,10 @@ import service.*;
 
 import java.util.*;
 import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import kurki.servicehandlers.*;
+import service.exception.ServicesNotLockedException;
 
 public class Session implements java.io.Serializable {
 
@@ -128,8 +131,6 @@ public class Session implements java.io.Serializable {
             ServiceManager.defineService(ServiceName.FREEZE, Rooli.TUTOR, "Kurssin jäädytys", new Freeze());
 
             ServiceManager.lockServices();
-
-            serviceManager = ServiceManager.getInstance();
         } catch (Exception e) {
             e.printStackTrace();
             System.exit(0);
@@ -405,7 +406,6 @@ public class Session implements java.io.Serializable {
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
 
-//	System.out.println(COURSE_INFOS);
         try {
             if (superUsers.indexOf(LOGIN_SEPARATOR + this.ruser + LOGIN_SEPARATOR) >= 0) {
                 preparedStatement = databaseConnection.prepareStatement(SUPER_INFOS);
@@ -503,12 +503,13 @@ public class Session implements java.io.Serializable {
         return this.selectedService;
     }
 
-    public static ServiceManager getServiceManager() {
-        return serviceManager;
-    }
-
     public boolean setService(String serviceId) {
-        Service service = serviceManager.getService(serviceId);
+        Service service = null;
+        try {
+            service = ServiceManager.getInstance().getService(serviceId);
+        } catch (ServicesNotLockedException ex) {
+            Logger.getLogger(Session.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         if (service != null
                 && courseSelected()

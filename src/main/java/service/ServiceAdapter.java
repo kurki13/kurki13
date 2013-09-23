@@ -1,5 +1,6 @@
 package service;
 
+import kurki.util.LocalisationBundle;
 import kurki.servicehandlers.AbstractVelocityServiceProvider;
 import service.exception.NullIdException;
 
@@ -26,6 +27,13 @@ public class ServiceAdapter
 	    }
 	}
     }
+
+    @Override
+    public String getLabel() {
+        return LocalisationBundle.getString(getId());
+    }
+    
+    
     
     public ServiceAdapter( String id, int forRoleAndUp, String description, AbstractVelocityServiceProvider handler )
 	throws NullIdException {
