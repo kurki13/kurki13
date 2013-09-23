@@ -1,5 +1,8 @@
 package kurki.servlet;
 
+import kurki.util.LocalisationBundle;
+import kurki.servicehandlers.AbstractVelocityServiceProvider;
+import kurki.servicehandlers.CourseBasics;
 import kurki.*;
 import service.*;
 
@@ -14,6 +17,8 @@ import org.apache.velocity.servlet.*;
 
 public class Index extends VelocityServlet implements Log, Serializable {
 
+    //Nää on jotain http parametrien nimiä millä tää spagetti kommunikoi sisäisesti
+    //(AbstractVelocityServiceProviderit puhuu tälle YyberServletille)
     public static final String RESULT = "result";
     public static final String ERROR = "error";
     public static final String INDEX = "index";
@@ -25,7 +30,6 @@ public class Index extends VelocityServlet implements Log, Serializable {
     public static final String TIMESTAMP = "TS";
     private int session_lenght = 3600;
     public static final String KURKI_SESSION = "session";
-    public static final Hashtable handlers = new Hashtable();
 
     static {
         Session.initialize();
@@ -34,34 +38,9 @@ public class Index extends VelocityServlet implements Log, Serializable {
     @Override
     public synchronized void init() {
         if (!initialized) {
-            try {
                 init_config();
-                init_handlers();
-            } catch (Exception e) {
-                e.printStackTrace();
-                System.exit(0);
-            }
             initialized = true;
         }
-    }
-
-    //MKCT: Wtf do we need handlers for when we have the ServiceManager singleton?
-    private void init_handlers() {
-        ServiceManager serviceManager = Session.getServiceManager();
-        handlers.put(ServiceName.ENTRY,
-                new Entry(serviceManager.getService(ServiceName.ENTRY)));
-        handlers.put(ServiceName.PARTICIPANTS,
-                new Participants(serviceManager.getService(ServiceName.PARTICIPANTS)));
-        handlers.put(ServiceName.COURSE_BASICS,
-                new CourseBasics(serviceManager.getService(ServiceName.COURSE_BASICS)));
-        handlers.put(ServiceName.CHECKLIST,
-                new Checklist(serviceManager.getService(ServiceName.CHECKLIST)));
-        handlers.put(ServiceName.GRADES,
-                new Grades(serviceManager.getService(ServiceName.GRADES)));
-        handlers.put(ServiceName.RESULT_LIST,
-                new ResultList(serviceManager.getService(ServiceName.RESULT_LIST)));
-        handlers.put(ServiceName.FREEZE,
-                new Freeze(serviceManager.getService(ServiceName.FREEZE)));
     }
 
     private void init_config() {
@@ -78,8 +57,7 @@ public class Index extends VelocityServlet implements Log, Serializable {
     protected void doRequest(HttpServletRequest servletRequest,
             HttpServletResponse servletResponse)
             throws ServletException, IOException {
-
-        Vector vec = new Vector();
+        
         String timestamp;
         String error = "";
         String result = "";
@@ -199,12 +177,9 @@ public class Index extends VelocityServlet implements Log, Serializable {
             //Kurssi ja palvelu valittu
             else if (session.courseSelected()
                     && session.serviceSelected()) {
-
-                // 
-                serviceProvider =
-                        (AbstractVelocityServiceProvider) getHandlerFor(session.getSelectedService());
-
-                context.put("selectedService", serviceProvider);
+                
+                serviceProvider = session.getSelectedService().getHandler();
+                context.put("selectedService", session.getSelectedService());
 
                 String serviceTemplateName = serviceProvider.handleRequest(session, servletRequest, servletResponse, context);
 
@@ -289,10 +264,10 @@ public class Index extends VelocityServlet implements Log, Serializable {
         servletResponse.setContentType("text/html");
         out = servletResponse.getOutputStream();
 
-        out.println("<html><head>\n<title>Kurki: virheilmoitus</title>\n"
+        out.println("<html><head>\n<title>"+LocalisationBundle.getString("kurkivirhe")+"</title>\n"
                 + "<link rel='stylesheet' href='../kurki.css' title='kurki'>\n</head><body>\n"
                 + "<div class='error' style='text-align:center;width=500px'>\n"
-                + "<h2>Virheilmoitus</h2>\n<hr>\n<pre align='left'>\n");
+                + "<h2>"+LocalisationBundle.getString("virheilmoitus")+"</h2>\n<hr>\n<pre align='left'>\n");
         e.printStackTrace(new PrintStream(out));
         out.println("\n</pre>\n<hr>\n<a href=\"mailto:tktl-kurki@cs.Helsinki.FI\">tktl-kurki@cs.Helsinki.FI</a></div></body></html>");
 
@@ -306,11 +281,6 @@ public class Index extends VelocityServlet implements Log, Serializable {
             return str;
         }
     }
-
-    public AbstractVelocityServiceProvider getHandlerFor(Service service) {
-        return (AbstractVelocityServiceProvider) handlers.get(service.getId());
-    }
-
     public static String asNotify(String target) {
         Calendar calendar = Calendar.getInstance();
         int minute = calendar.get(Calendar.MINUTE);

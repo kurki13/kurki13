@@ -1,18 +1,12 @@
-package kurki.servlet;
+package kurki.servicehandlers;
 
 import java.util.ResourceBundle;
 import kurki.*;
-import service.*;
 
 import javax.servlet.http.*;
 import org.apache.velocity.context.*;
 
 public class Checklist extends AbstractVelocityServiceProvider {
-
-    public Checklist( Service service ) {
- 	super( service );
-    }
-
     @Override
     public String handleRequest( Session session, 
 				 HttpServletRequest req, 

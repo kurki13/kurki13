@@ -1,5 +1,6 @@
 package kurki;
 
+import kurki.util.LocalisationBundle;
 import service.*;
 
 public class Convention extends ComparableOptionAdapter{

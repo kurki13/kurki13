@@ -1,12 +1,12 @@
 	<tr>
 	  <td colspan="4">
 #if ( $error && $error != "" )
-  <div class="error">
+  <div class="alert alert-danger">
     $error
   </div>
 #end 
 #if ( $result && $result != "" )
-  <div class="result">
+  <div class="alert alert-success">
     $result
   </div>
 #end
@@ -16,29 +16,27 @@
 <input type="hidden" name="TS" value="${TS}">
 <table class="normal" border="1" width="100%" style="max-width:1000px">
  <caption>
-    $bundle.getString(opvalittu) ${students.size()}
-  <caption>
-    Opiskelijoita valittu ${students.size()}
+    $bundle.getString("opvalittu") ${students.size()}
   </caption>
   <tr>
     <th>
-      $bundle.getString(nimiSyntpva)
+      $bundle.getString("nimiSyntpva")
     </th>
     <th>
-      $bundle.getString(camelopnro)
+      $bundle.getString("camelopnro")
 
     </th>
     <th>
-      $bundle.getString(ryhma)
+      $bundle.getString("ryhma")
     </th>
     <th>
-      $bundle.getString(suor)
+      $bundle.getString("suor")
     </th>
     <th>
-      $bundle.getString(poistaKurssilta)
+      $bundle.getString("poistaKurssilta")
     </th>
     <th>
-      $bundle.getString(naytaTiedot)
+      $bundle.getString("naytaTiedot")
     </th>
   </tr>
   #set ($sid = 0)
@@ -65,7 +63,7 @@
     #if ($useSNO)
       <center><tt>$!student.SNO</tt></center>
     #else
-      <center><tt>$!student.SSN</tt></$bundle.getString(naytaTiedot)center>
+      <center><tt>$!student.SSN</tt></center>
     #end
     </td>
 
@@ -107,7 +105,7 @@
   #end
     </td>
     <td bgcolor="${bgcolor}">
-      <center><input type="button" class="btn btn-primary"" name="submitEditRequest" value="tiedot"
+      <center><input type="button" class="btn btn-primary"" name="submitEditRequest" value="$bundle.getString("tiedotpelkka")"
              onClick="doEditRequest('${sid}')"></center>
     </td>
   </tr>    
@@ -117,7 +115,7 @@
   <tr>
     <th colspan="6">
       <input type="hidden" name="doSaveAll" value="ok">
-      <center><input type="submit" class="btn btn-success" value="------> $bundle.getString(tallenMuutoksetIso) <------"></center>
+      <center><input type="submit" class="btn btn-success" value="------> $bundle.getString("tallenMuutoksetIso") <------"></center>
     </th>
   </tr>
   #end
@@ -129,7 +127,7 @@
   <input type="hidden" name="doEdit" value="tiedot" class="submitb">
 </form>
 #else 
-$bundle.getString(opeivastannut)
+$bundle.getString("opeivastannut")
 
 #end
 	  </td>

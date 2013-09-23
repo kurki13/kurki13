@@ -2,6 +2,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
+ <META charset='utf-8'/>
   <title>$bundle.getString("kurkikirjanpito")</title>
 </head>
 <body bgcolor="white">

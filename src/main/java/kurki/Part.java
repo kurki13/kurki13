@@ -1,5 +1,6 @@
 package kurki;
 
+import kurki.util.LocalisationBundle;
 import service.exception.NullIdException;
 import service.*;
 
@@ -35,8 +36,6 @@ public class Part extends ComparableOptionAdapter
 
     protected static final Vector gradesVec = new Vector( Arrays.asList(grades) ); 
  
-    public final static String[] descriptions = new String[NO_OF_TYPES];
-    public final static String[] abbreviations = new String[NO_OF_TYPES];
 
     protected String[] genericScores = {"+"};
     protected Offering[] offerings = null;
@@ -54,20 +53,6 @@ public class Part extends ComparableOptionAdapter
     protected int firstXtr = 1;
     protected double xtrStep = 1;
     
-    static {
-	descriptions[LASKARI] = "Laskuharjoituspisteet";
-	descriptions[HARJOITUSTYO] = "Harjoitustyöpisteet";
-	descriptions[KOE] = "Koepisteet";
-	descriptions[ARVOSANA] = "Arvosana";
-        descriptions[OPINTOPISTEET] ="Opintopisteet";
-        descriptions[KIELIKOODI]="Suorituskieli";
-	abbreviations[LASKARI] = "LH";
-	abbreviations[HARJOITUSTYO] = "HT";
-	abbreviations[KOE] = "KOE";
-	abbreviations[ARVOSANA] = "Arvosana";
-        abbreviations[OPINTOPISTEET] ="OP";
-        abbreviations[KIELIKOODI] ="Kieli";
-    }
   
     public Part( int type ) throws NullIdException {
 
@@ -76,7 +61,6 @@ public class Part extends ComparableOptionAdapter
 	}
 
 	this.id = new Integer( type );
-	this.desc = descriptions[ type ];
 
 	if ( type == ARVOSANA ) {
 	      this.genericScores = gradeCodes;
@@ -139,10 +123,41 @@ public class Part extends ComparableOptionAdapter
     public int getFirstXtrScore() {
 	return firstXtr;
     }
+    
+//    public static final int LASKARI = 0;
+//    public static final int HARJOITUSTYO = 1;
+//    public static final int KOE = 2;
+//    public static final int ARVOSANA = 3;
+//    public static final int OPINTOPISTEET =4;
+//    public static final int KIELIKOODI = 5;
+//    public static final int MAX_OFFERINGS = 18;
+//    public static final int MAX_XTR_SCORE = 60;
+//    public static final int HI_LIMIT = 999;
+    
+//    	descriptions[LASKARI] = "Laskuharjoituspisteet";
+//	descriptions[HARJOITUSTYO] = "Harjoitustyöpisteet";
+//	descriptions[KOE] = "Koepisteet";
+//	descriptions[ARVOSANA] = "Arvosana";
+//      descriptions[OPINTOPISTEET] ="Opintopisteet";
+//      descriptions[KIELIKOODI]="Suorituskieli";
+    
+//	abbreviations[LASKARI] = "LH";
+//	abbreviations[HARJOITUSTYO] = "HT";
+//	abbreviations[KOE] = "KOE";
+//	abbreviations[ARVOSANA] = "Arvosana";
+//      abbreviations[OPINTOPISTEET] ="OP";
+//      abbreviations[KIELIKOODI] ="Kieli";
 
     public String getAbbreviation() {
-	return abbreviations[ this.getId() ];
+        return LocalisationBundle.getString("part" + this.getId() + "abbreviation");	
     }
+
+    @Override
+    public String getLabel() {
+        return LocalisationBundle.getString("part" + this.getId() + "label");
+    }
+    
+    
 
     public int getXtrScore() {
 	if ( this.getType() == KOE ) {

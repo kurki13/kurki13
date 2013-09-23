@@ -1,20 +1,16 @@
-package kurki.servlet;
+package kurki.servicehandlers;
 
 import kurki.*;
-import service.*;
 
 import java.util.*;
 import javax.servlet.http.*;
+import kurki.servlet.Index;
 import org.apache.velocity.context.*;
 
 public class Entry extends AbstractVelocityServiceProvider {
 
     public static final String RANGE_OP = "..";
-
-    public Entry( Service service ) {
- 	super( service );
-    }
-
+    @Override
     public String handleRequest( Session session, 
 				 HttpServletRequest req, 
 				 HttpServletResponse res, 

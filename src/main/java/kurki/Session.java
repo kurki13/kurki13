@@ -9,6 +9,10 @@ import service.*;
 
 import java.util.*;
 import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import kurki.servicehandlers.*;
+import service.exception.ServicesNotLockedException;
 
 public class Session implements java.io.Serializable {
 
@@ -118,17 +122,16 @@ public class Session implements java.io.Serializable {
             rb = ResourceBundle.getBundle("localisationBundle", getLanguage());
             ServiceManager.setNoOfRoles(Rooli.NO_OF_ROLES);
             
-            ServiceManager.defineService(ServiceName.ENTRY, Rooli.TUTOR, "Suoritteiden kirjaus");
-            ServiceManager.defineService(ServiceName.PARTICIPANTS, Rooli.TUTOR, "Osallistujatietojen muutokset");
-            ServiceManager.defineService(ServiceName.COURSE_BASICS, Rooli.TUTOR, "Kurssiin perustietojen muutokset");
-            ServiceManager.defineService(ServiceName.CHECKLIST, Rooli.TUTOR, "Listat");
-            ServiceManager.defineService(ServiceName.GRADES, Rooli.TUTOR, "Arvostelu");
-            ServiceManager.defineService(ServiceName.RESULT_LIST, Rooli.TUTOR, "Tuloslistat");
-            ServiceManager.defineService(ServiceName.FREEZE, Rooli.TUTOR, "Kurssin jäädytys");
+            //The first argument of the defines much match keys in the localisation bundle
+            ServiceManager.defineService("1entry", Rooli.TUTOR, "Suoritteiden kirjaus", new Entry());
+            ServiceManager.defineService("2participants", Rooli.TUTOR, "Osallistujatietojen muutokset", new Participants());
+            ServiceManager.defineService("3coursebasics", Rooli.TUTOR, "Kurssiin perustietojen muutokset", new CourseBasics());
+            ServiceManager.defineService("4checklist", Rooli.TUTOR, "Listat", new Checklist());
+            ServiceManager.defineService("5grades", Rooli.TUTOR, "Arvostelu", new Grades());
+            ServiceManager.defineService("6resultlist", Rooli.TUTOR, "Tuloslistat", new ResultList());
+            ServiceManager.defineService("7freezing", Rooli.TUTOR, "Kurssin jäädytys", new Freeze());
 
             ServiceManager.lockServices();
-
-            serviceManager = ServiceManager.getInstance();
         } catch (Exception e) {
             e.printStackTrace();
             System.exit(0);
@@ -404,7 +407,6 @@ public class Session implements java.io.Serializable {
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
 
-//	System.out.println(COURSE_INFOS);
         try {
             if (superUsers.indexOf(LOGIN_SEPARATOR + this.ruser + LOGIN_SEPARATOR) >= 0) {
                 preparedStatement = databaseConnection.prepareStatement(SUPER_INFOS);
@@ -502,12 +504,13 @@ public class Session implements java.io.Serializable {
         return this.selectedService;
     }
 
-    public static ServiceManager getServiceManager() {
-        return serviceManager;
-    }
-
     public boolean setService(String serviceId) {
-        Service service = serviceManager.getService(serviceId);
+        Service service = null;
+        try {
+            service = ServiceManager.getInstance().getService(serviceId);
+        } catch (ServicesNotLockedException ex) {
+            Logger.getLogger(Session.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         if (service != null
                 && courseSelected()

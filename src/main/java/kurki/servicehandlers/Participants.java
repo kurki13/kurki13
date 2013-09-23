@@ -1,23 +1,18 @@
-package kurki.servlet;
+package kurki.servicehandlers;
 
 import kurki.*;
-import service.*;
 
 import java.io.*;
 import java.sql.*;
 import java.util.*;
 import javax.servlet.http.*;
+import kurki.servlet.Index;
 import org.apache.velocity.context.*;
 
 public class Participants extends AbstractVelocityServiceProvider 
     implements Serializable {
 
     public static final String STUDENTS = "students";
-
-    public Participants( Service service ) {
- 	super( service );
-    }
-
     @Override
     public String handleRequest( Session session, 
 				 HttpServletRequest req, 

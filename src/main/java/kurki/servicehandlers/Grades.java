@@ -1,20 +1,15 @@
-package kurki.servlet;
+package kurki.servicehandlers;
 
 import kurki.*;
-import service.*;
 
 import java.io.*;
 import java.util.*;
 import javax.servlet.http.*;
+import kurki.servlet.Index;
 import org.apache.velocity.context.*;
 
 public class Grades extends AbstractVelocityServiceProvider 
     implements Serializable {
-
-    public Grades( Service service ) {
- 	super( service );
-    }
-
     @Override
     public String handleRequest( Session session, 
 				 HttpServletRequest req, 
@@ -31,7 +26,7 @@ public class Grades extends AbstractVelocityServiceProvider
 	String result = "";
 	boolean ok = true;
 
-	String[] partNames = {LocalisationBundle.getString("lh2"), LocalisationBundle.getString("ht2"), LocalisationBundle.getString("koe2"), LocalisationBundle.getString("Arvosana")};
+	String[] partNames = {kurki.util.LocalisationBundle.getString("lh2"), kurki.util.LocalisationBundle.getString("ht2"), kurki.util.LocalisationBundle.getString("koe2"), kurki.util.LocalisationBundle.getString("Arvosana")};
 
 	String saveBasic = nullIfEmpty( req.getParameter("saveBasic") );
 	String makeAssessment = nullIfEmpty( req.getParameter("makeAssessment") );
@@ -49,12 +44,12 @@ public class Grades extends AbstractVelocityServiceProvider
 
 	    if ( examDate != null ) {
 		if ( !course.setExamDate( examDate ) ) {
-		    error += "<li>" + LocalisationBundle.getString("suorpvmEiKelpaa") + ": '"
-			+examDate+"'. " + LocalisationBundle.getString("pvm") + " ["+course.getMessage()+"]";
+		    error += "<li>" + kurki.util.LocalisationBundle.getString("suorpvmEiKelpaa") + ": '"
+			+examDate+"'. " + kurki.util.LocalisationBundle.getString("pvm") + " ["+course.getMessage()+"]";
 		}
 	    }
 	    else if ( course.getExamDate() == null ) {
-		error += "<li>" + LocalisationBundle.getString("annaSuorPvm") + "</li>";
+		error += "<li>" + kurki.util.LocalisationBundle.getString("annaSuorPvm") + "</li>";
 		ok = false;
 	    }
 	
@@ -81,7 +76,7 @@ public class Grades extends AbstractVelocityServiceProvider
 		    }
 		    if ( !valOK )
 			error += "<li>"+partNames[ptype]
-			    +": " + LocalisationBundle.getString("osasuorLkmVirhe") + ".</li>";
+			    +": " + kurki.util.LocalisationBundle.getString("osasuorLkmVirhe") + ".</li>";
 		    valOK = true;
 		}
 		val = nullIfEmpty( req.getParameter( "reqs_"+ptype ) );
@@ -94,7 +89,7 @@ public class Grades extends AbstractVelocityServiceProvider
 		    }
 		    if ( !valOK )
 			error += "<li>"+partNames[ptype]
-			    +": " + LocalisationBundle.getString("osuudenHRVirhe") + ".</li>";
+			    +": " + kurki.util.LocalisationBundle.getString("osuudenHRVirhe") + ".</li>";
 		    valOK = true;
 		}
 		val = nullIfEmpty( req.getParameter( "xtr_"+ptype ) );
@@ -106,7 +101,7 @@ public class Grades extends AbstractVelocityServiceProvider
 			valOK = false;
 		    }
 		    if ( !valOK )
-			error += "<li>"+partNames[ptype]+": " + LocalisationBundle.getString("lisapmVirhe") + ".</li>";
+			error += "<li>"+partNames[ptype]+": " + kurki.util.LocalisationBundle.getString("lisapmVirhe") + ".</li>";
 		    valOK = true;
 		}
 		val = nullIfEmpty( req.getParameter( "xtr1st_"+ptype ) );
@@ -119,7 +114,7 @@ public class Grades extends AbstractVelocityServiceProvider
 		    }
 		    if ( !valOK )
 			error += "<li>"+partNames[ptype]
-			    +": " + LocalisationBundle.getString("ensLpRVirhe") + ".</li>";
+			    +": " + kurki.util.LocalisationBundle.getString("ensLpRVirhe") + ".</li>";
 		    valOK = true;
 		}
 		val = nullIfEmpty( req.getParameter( "step_"+ptype ) );
@@ -132,7 +127,7 @@ public class Grades extends AbstractVelocityServiceProvider
 		    }
 		    if ( !valOK )
 			error += "<li>"+partNames[ptype]
-			    +": " + LocalisationBundle.getString("lpKartuntavaliVirhe") + ".</li>";
+			    +": " + kurki.util.LocalisationBundle.getString("lpKartuntavaliVirhe") + ".</li>";
 		    valOK = true;
 		}
 	    }
@@ -176,7 +171,7 @@ public class Grades extends AbstractVelocityServiceProvider
 			}
 			if ( !borderOK )
 			    error += "<li>"+partNames[ptype]
-				+": "+s+". " + LocalisationBundle.getString("PRVirhe") + ": '"
+				+": "+s+". " + kurki.util.LocalisationBundle.getString("PRVirhe") + ": '"
 				+val+"'. (1-"+part.getMaxScoreCount()+")</li>";
 		    }
 		}
@@ -187,7 +182,7 @@ public class Grades extends AbstractVelocityServiceProvider
 		error += course.getMessage();
 	    }
 	    else {
-		result += LocalisationBundle.getString("pJARajatTallennettu");
+		result += kurki.util.LocalisationBundle.getString("pJARajatTallennettu");
 	    }
 	}
 
@@ -200,10 +195,10 @@ public class Grades extends AbstractVelocityServiceProvider
 		Calendar calendar = Calendar.getInstance();
 		int minute = calendar.get(Calendar.MINUTE);
 
-		result = LocalisationBundle.getString("arvosteluSuor")
+		result = kurki.util.LocalisationBundle.getString("arvosteluSuor")
 		    +calendar.get(Calendar.DAY_OF_MONTH)
 		    +"."+(calendar.get(Calendar.MONTH) + 1)
-		    +"."+calendar.get(Calendar.YEAR)+ " " + LocalisationBundle.getString("klo") + " "
+		    +"."+calendar.get(Calendar.YEAR)+ " " + kurki.util.LocalisationBundle.getString("klo") + " "
 		    +calendar.get(Calendar.HOUR_OF_DAY)+":"
 		    +(minute < 10 ? "0"+minute : ""+minute)+".";
 
@@ -218,10 +213,9 @@ public class Grades extends AbstractVelocityServiceProvider
 			     +calendar.get(Calendar.YEAR) );
 	    }
 	    else {
-		error += "<li>" + LocalisationBundle.getString("virhe") + ": "+course.getMessage()+"</li>";
+		error += "<li>" + kurki.util.LocalisationBundle.getString("virhe") + ": "+course.getMessage()+"</li>";
 	    }
 	}
-
 	context.put( Index.ERROR, nullIfEmpty( error ) );
 	context.put( Index.RESULT, nullIfEmpty( result ) );
 	return template;

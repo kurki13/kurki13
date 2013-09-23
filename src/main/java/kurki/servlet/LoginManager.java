@@ -7,6 +7,7 @@ import java.sql.*;
 import java.util.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
+import kurki.util.LocalisationBundle;
 
 import org.apache.velocity.*;
 import org.apache.velocity.context.*;
@@ -50,7 +51,7 @@ public class LoginManager extends VelocityServlet {
                 }
 	    }
 	} catch ( Exception e ) {
-	    throw new ServletException( "Error!<br>"+e.getMessage() );
+	    throw new ServletException(LocalisationBundle.getString("virhetilanne")+"<br>"+e.getMessage() );
 	}
     }
 	
@@ -86,7 +87,7 @@ public class LoginManager extends VelocityServlet {
 			    if ( !ktunnus.equals(oktunnus) ) {
 				if ( stmt.executeUpdate("UPDATE henkilo SET ktunnus='"+ktunnus+"'\n"
 							+"  WHERE htunnus='"+htunnus+"'") != 1 ) {
-				    error+="Ohjaajan "+htunnus+" käyttäjätunnuksen kirjaaminen ei onnistunut.<br>";
+				    error+= LocalisationBundle.getString("ohjaajan") + " " +htunnus+" "+LocalisationBundle.getString("kirjauseionnistu") +".<br>";
 				}
 			    }
 			}
