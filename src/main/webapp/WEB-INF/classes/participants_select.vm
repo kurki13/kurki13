@@ -17,8 +17,6 @@
 <table class="normal" border="1" width="100%" style="max-width:1000px">
  <caption>
     $bundle.getString("opvalittu") ${students.size()}
-  <caption>
-    Opiskelijoita valittu ${students.size()}
   </caption>
   <tr>
     <th>
@@ -65,7 +63,7 @@
     #if ($useSNO)
       <center><tt>$!student.SNO</tt></center>
     #else
-      <center><tt>$!student.SSN</tt></$bundle.getString("naytaTiedot")center>
+      <center><tt>$!student.SSN</tt></center>
     #end
     </td>
 
