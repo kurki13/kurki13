@@ -8,7 +8,7 @@
   
   <body>
     <center> 
-      <div class="error" style="text-align:center;width=500px" align="center">
+      <div class="alert alert-danger" style="text-align:center;width=500px" align="center">
 <h2> $bundle.getString("synkVirhe")</h2>
 <hr>
 $bundle.getString("eiVoiSuorittaa")

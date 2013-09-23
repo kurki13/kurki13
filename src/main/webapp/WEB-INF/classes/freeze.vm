@@ -1,8 +1,9 @@
 #parse ("top.vm")
 	<tr>
 	  <td colspan="4" align="center">
+          <h3>$bundle.getString("7freezing")</h3>
 #if ($error && $error != "")
-<div class="error">
+<div class="alert alert-danger">
 <ul>
   $error
 </ul>
@@ -10,7 +11,7 @@
 <br>
 #end 
 #if ($result && $result != "")
-<div class="result">
+<div class="alert alert-success">
   $result
 </div>
 <br>

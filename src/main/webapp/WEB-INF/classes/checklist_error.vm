@@ -8,12 +8,12 @@
   
   <body>
     <center> 
-      <div class="error" style="text-align:center;width=500px" align="center">
-      <h2>Virhe</h2>
+      <div class="alert alert-danger" style="text-align:center;width=500px" align="center">
+      <h2>$bundle.getString("virhe")</h2>
       <hr>
-      Pyytämäsi listan tulostaminen ei ole mahdollista, koska sessiosi on vanhentunut.
+      $bundle.getString("listanTulostusError")
       <form action="index" method="post">
-        <input type="button" class="btn btn-danger" value="sulje ikkuna" onClick="window.close()">
+        <input type="button" class="btn btn-danger" value="$bundle.getString("suljeIkkuna")" onClick="window.close()">
       </form>
       </div>
     </center>

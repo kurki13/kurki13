@@ -2,6 +2,7 @@
 #set ($parts = $selectedCourse.Parts)
 <html>
 <head>
+ <META charset='utf-8'/>
   <title>$bundle.getString("kurkiOpiskNimi")</title>
 </head>
 <body bgcolor="white">
