@@ -7,73 +7,21 @@ import service.exception.ServicesLockedException;
 import service.exception.ServicesNotLockedException;
 import java.util.*;
 import java.util.Map.Entry;
+import kurki.servicehandlers.AbstractVelocityServiceProvider;
 
 public class ServiceManager {
-
-    /**
-     **  Järjestelmän ainoa tämän luokan ilmentymä.
-     */ 
+    
     private static ServiceManager instance = null;
-
-
-    /**
-     **  Onko kaikki tarjottavat palvelut jo määritelty.
-     */
     private static boolean locked = false;
-
-    /**
-     **  Roolien oletusarvoinen lkm (1).
-     */
     protected static final int DEF_NO_OF_ROLES = 1;
-
-    /**
-     **  Tunnistettujen roolien lkm.
-     */ 
     private static int noOfRoles = DEF_NO_OF_ROLES;
-
-    /**
-     ** Kaikki mahdolliset toiminnot.
-     */
     private static Hashtable<String, ServiceAdapter> services = new Hashtable();
-
-    /**
-     **  Toiminnot jaettuna roolien mukaan.
-     */
     protected static final Vector servicesByRoles = new Vector();
-
-
-    /**
-     **  Luo identifioimattoman toiminnon, jonka avulla voidaan
-     **  esim. hakea tunnettu (ja identifioitu) toiminto.
-     */
-    public static Service createFakeService( String id )
-	throws NullIdException {
-
-	return new ServiceAdapter( id, "match" );
-    }
-
-
-    /**
-     **  Määrittelee tunnetun toiminnon, joka on identifioitu tietylle
-     **  oikeusluokalle (käyttäjäryhmälle) ja tätä ylemmille.
-     * @param id
-     * @param lowest_role_to_allow Pienin roolinumero joka saa käyttää tätä palvelua
-     * @param description
-     * @throws service.exception.NullIdException
-     * @throws service.exception.ServiceAlreadyDefinedException
-     * @throws service.exception.ServicesLockedException
-     * @throws service.exception.UndefinedRoleException
-     */
-    public static void defineService( String id, int lowest_role_to_allow, String description )
+    public static void defineService( String id, int lowest_role_to_allow, String description, AbstractVelocityServiceProvider handler )
 	throws NullIdException,
 	ServiceAlreadyDefinedException,
 	ServicesLockedException,
 	UndefinedRoleException {
-
-
-	/*
-	 *  Tarvittavat tarkistukset...
-	 */
 	if ( locked )
 	    throw new ServicesLockedException();
 
@@ -86,47 +34,23 @@ public class ServiceManager {
 	else if ( services.containsKey( id ) )
 	    throw new ServiceAlreadyDefinedException(); 
 
-	ServiceAdapter newService = new ServiceAdapter( id, lowest_role_to_allow, description );
+	ServiceAdapter newService = new ServiceAdapter( id, lowest_role_to_allow, description, handler );
 
 	services.put( id, newService );
     }
-
-    /**
-     **  Ainoa ilmentymä.
-     * @return 
-     * @throws service.exception.ServicesNotLockedException
-     */
     public static ServiceManager getInstance() throws ServicesNotLockedException {
 	if ( !locked ) throw new ServicesNotLockedException();
 	return instance;
     }
-
-    /**
-     **  Määriteltyjen Palveluiden lkm.
-     * @return 
-     */
     public static int getNoOfServices() {
 	return services.size();
     }
-
-    
-    /**
-     **  Toiminnon <tt>id</tt> perustiedot.
-     * @param id
-     * @return 
-     */
     public Service getService( String id ) {
 	
 	if ( id == null ) return null;
 	else return (ServiceAdapter)services.get( id );
     }
     
-
-    /**
-     **  Tietylle käyttäjäryhmälle tarjotut palvelut
-     * @param role
-     * @return 
-     */
     public Service[] getValidServicesFor( int role ) {
 	
 	if ( role < 0 || role >= noOfRoles ) { return null; }
@@ -134,14 +58,7 @@ public class ServiceManager {
 	    return (ServiceAdapter[])servicesByRoles.get( role );
 	}
     }
-
     
-
-    /**
-     **  Tätä kutsutaan kun kaikki mahdolliset toiminnot on määritelty.
-     **  Tämän jälkeen uusia toimintoja tai korkeinta oikeusluokkaa
-     **  ei voi enää määritellä.
-     */
     public static void lockServices() 
 	throws ServicesLockedException {
 	
@@ -167,7 +84,7 @@ public class ServiceManager {
 
 	    // Lisätään oikeus kaikille, joilla on yhtäkovat
 	    // tai kovemmat oikeudet
-	    for ( int i = act.getRole(); i < noOfRoles; i++ ) {
+	    for ( int i = act.getLowestRole(); i < noOfRoles; i++ ) {
 		((Vector)servicesByRoles.get( i )).add( act );
 	    }
 	}
@@ -185,13 +102,7 @@ public class ServiceManager {
 
 	instance = new ServiceManager();
     }
-
-    /**
-     **  Onko palvelu act luvallinen roolille role?
-     * @param act
-     * @param role
-     * @return 
-     */
+    
     public boolean isValidServiceFor( Service act, int role ) {
 	
 	ServiceAdapter[] serv = (ServiceAdapter[])servicesByRoles.get( role );
@@ -199,13 +110,7 @@ public class ServiceManager {
 	
 	return found >= 0;
     }
-
-
-    /**
-     * Asetetaan roolien yhteislukumäärä
-     * @param nor
-     * @throws ServicesLockedException 
-     */
+    
     public static void setNoOfRoles( int nor )
 	throws ServicesLockedException {
 	

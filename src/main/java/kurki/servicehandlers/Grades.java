@@ -1,20 +1,15 @@
-package kurki.servlet;
+package kurki.servicehandlers;
 
 import kurki.*;
-import service.*;
 
 import java.io.*;
 import java.util.*;
 import javax.servlet.http.*;
+import kurki.servlet.Index;
 import org.apache.velocity.context.*;
 
 public class Grades extends AbstractVelocityServiceProvider 
     implements Serializable {
-
-    public Grades( Service service ) {
- 	super( service );
-    }
-
     @Override
     public String handleRequest( Session session, 
 				 HttpServletRequest req, 

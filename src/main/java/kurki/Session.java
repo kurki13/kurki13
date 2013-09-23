@@ -9,6 +9,7 @@ import service.*;
 
 import java.util.*;
 import java.sql.*;
+import kurki.servicehandlers.*;
 
 public class Session implements java.io.Serializable {
 
@@ -118,13 +119,13 @@ public class Session implements java.io.Serializable {
             rb = ResourceBundle.getBundle("localisationBundle", getLanguage());
             ServiceManager.setNoOfRoles(Rooli.NO_OF_ROLES);
             
-            ServiceManager.defineService(ServiceName.ENTRY, Rooli.TUTOR, "Suoritteiden kirjaus");
-            ServiceManager.defineService(ServiceName.PARTICIPANTS, Rooli.TUTOR, "Osallistujatietojen muutokset");
-            ServiceManager.defineService(ServiceName.COURSE_BASICS, Rooli.TUTOR, "Kurssiin perustietojen muutokset");
-            ServiceManager.defineService(ServiceName.CHECKLIST, Rooli.TUTOR, "Listat");
-            ServiceManager.defineService(ServiceName.GRADES, Rooli.TUTOR, "Arvostelu");
-            ServiceManager.defineService(ServiceName.RESULT_LIST, Rooli.TUTOR, "Tuloslistat");
-            ServiceManager.defineService(ServiceName.FREEZE, Rooli.TUTOR, "Kurssin jäädytys");
+            ServiceManager.defineService(ServiceName.ENTRY, Rooli.TUTOR, "Suoritteiden kirjaus", new Entry());
+            ServiceManager.defineService(ServiceName.PARTICIPANTS, Rooli.TUTOR, "Osallistujatietojen muutokset", new Participants());
+            ServiceManager.defineService(ServiceName.COURSE_BASICS, Rooli.TUTOR, "Kurssiin perustietojen muutokset", new CourseBasics());
+            ServiceManager.defineService(ServiceName.CHECKLIST, Rooli.TUTOR, "Listat", new Checklist());
+            ServiceManager.defineService(ServiceName.GRADES, Rooli.TUTOR, "Arvostelu", new Grades());
+            ServiceManager.defineService(ServiceName.RESULT_LIST, Rooli.TUTOR, "Tuloslistat", new ResultList());
+            ServiceManager.defineService(ServiceName.FREEZE, Rooli.TUTOR, "Kurssin jäädytys", new Freeze());
 
             ServiceManager.lockServices();
 
