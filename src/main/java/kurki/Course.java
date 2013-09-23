@@ -1,5 +1,6 @@
 package kurki;
 
+import kurki.util.LocalisationBundle;
 import kurki.exception.NullParameterException;
 import service.exception.NullIdException;
 

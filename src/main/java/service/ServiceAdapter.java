@@ -1,6 +1,6 @@
 package service;
 
-import kurki.LocalisationBundle;
+import kurki.util.LocalisationBundle;
 import kurki.servicehandlers.AbstractVelocityServiceProvider;
 import service.exception.NullIdException;
 
