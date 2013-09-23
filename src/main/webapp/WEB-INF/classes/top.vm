@@ -204,16 +204,16 @@ KurKi-järjestelmän päivitys kesken. Alä käytä!
 			    onChange="!isModified() && document.navi.submit();"
 			    tabindex="32701">
 
-  #if (!$selectedService.value || !$selectedService.value)
+  #if (!$selectedService.getLabel())
 		      <option value="" selected>-- $bundle.getString("valitse_toiminto") --</option>
   #end
   #set ($serviceNo = 1) 
   #foreach ($service in $services)
 
     #if ($selectedService && $service.value == $selectedService.value)
-		      <option value="$service.value" selected>${serviceNo}. $bundle.getString($service.value)</option>
+		      <option value="$service.value" selected>${serviceNo}. $service.getLabel()</option>
     #else
-		      <option value="$service.value">${serviceNo}. $bundle.getString($service.value)</option>
+		      <option value="$service.value">${serviceNo}. $service.getLabel()</option>
     #end
     #set ($serviceNo = $serviceNo + 1) 
   #end
