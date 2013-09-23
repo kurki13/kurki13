@@ -1839,10 +1839,10 @@ public class Course implements Serializable, Option {
     
     public synchronized boolean makeAssessment(String ruser)
             throws SQLException, ClassNotFoundException {
-// 	if ( isFrozen() ) {
-// 	    this.msg = "Kurssi on jäädytetty.";
-// 	    return false;
-// 	}
+ 	if ( isFrozen() ) {
+ 	    this.msg = "Kurssi on jäädytetty.";
+ 	    return false;
+	}
         if (ruser == null) {
             this.msg = "Arvostelijaa ei tunnistettu.";
             return false;

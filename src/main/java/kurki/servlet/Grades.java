@@ -31,7 +31,7 @@ public class Grades extends AbstractVelocityServiceProvider
 	String result = "";
 	boolean ok = true;
 
-	String[] partNames = {"LH", "HT", "KOE", "Arvosana"};
+	String[] partNames = {LocalisationBundle.getString("lh2"), LocalisationBundle.getString("ht2"), LocalisationBundle.getString("koe2"), LocalisationBundle.getString("Arvosana")};
 
 	String saveBasic = nullIfEmpty( req.getParameter("saveBasic") );
 	String makeAssessment = nullIfEmpty( req.getParameter("makeAssessment") );
@@ -49,12 +49,12 @@ public class Grades extends AbstractVelocityServiceProvider
 
 	    if ( examDate != null ) {
 		if ( !course.setExamDate( examDate ) ) {
-		    error += "<li>Suorituspäivä ei kelpaa: '"
-			+examDate+"'. (pp.kk.vvvv) ["+course.getMessage()+"]";
+		    error += "<li>" + LocalisationBundle.getString("suorpvmEiKelpaa") + ": '"
+			+examDate+"'. " + LocalisationBundle.getString("pvm") + " ["+course.getMessage()+"]";
 		}
 	    }
 	    else if ( course.getExamDate() == null ) {
-		error += "<li>Anna suorituspäivämäärä!</li>";
+		error += "<li>" + LocalisationBundle.getString("annaSuorPvm") + "</li>";
 		ok = false;
 	    }
 	
@@ -81,7 +81,7 @@ public class Grades extends AbstractVelocityServiceProvider
 		    }
 		    if ( !valOK )
 			error += "<li>"+partNames[ptype]
-			    +": pakollisten osasuoritusten lkm annettu virheellisesti.</li>";
+			    +": " + LocalisationBundle.getString("osasuorLkmVirhe") + ".</li>";
 		    valOK = true;
 		}
 		val = nullIfEmpty( req.getParameter( "reqs_"+ptype ) );
@@ -94,7 +94,7 @@ public class Grades extends AbstractVelocityServiceProvider
 		    }
 		    if ( !valOK )
 			error += "<li>"+partNames[ptype]
-			    +": osuuden hyväksymisraja  annettu virheellisesti.</li>";
+			    +": " + LocalisationBundle.getString("osuudenHRVirhe") + ".</li>";
 		    valOK = true;
 		}
 		val = nullIfEmpty( req.getParameter( "xtr_"+ptype ) );
@@ -106,7 +106,7 @@ public class Grades extends AbstractVelocityServiceProvider
 			valOK = false;
 		    }
 		    if ( !valOK )
-			error += "<li>"+partNames[ptype]+": lisäpistemaksimi annettu virheellisesti.</li>";
+			error += "<li>"+partNames[ptype]+": " + LocalisationBundle.getString("lisapmVirhe") + ".</li>";
 		    valOK = true;
 		}
 		val = nullIfEmpty( req.getParameter( "xtr1st_"+ptype ) );
@@ -119,7 +119,7 @@ public class Grades extends AbstractVelocityServiceProvider
 		    }
 		    if ( !valOK )
 			error += "<li>"+partNames[ptype]
-			    +": ensimmäisen lisäpisteen raja annettu virheellisesti.</li>";
+			    +": " + LocalisationBundle.getString("ensLpRVirhe") + ".</li>";
 		    valOK = true;
 		}
 		val = nullIfEmpty( req.getParameter( "step_"+ptype ) );
@@ -132,7 +132,7 @@ public class Grades extends AbstractVelocityServiceProvider
 		    }
 		    if ( !valOK )
 			error += "<li>"+partNames[ptype]
-			    +": lisäpisteiden kartuntaväli annettu virheellisesti.</li>";
+			    +": " + LocalisationBundle.getString("lpKartuntavaliVirhe") + ".</li>";
 		    valOK = true;
 		}
 	    }
@@ -176,7 +176,7 @@ public class Grades extends AbstractVelocityServiceProvider
 			}
 			if ( !borderOK )
 			    error += "<li>"+partNames[ptype]
-				+": "+s+":n pisteen raja annettu virheellisesti: '"
+				+": "+s+". " + LocalisationBundle.getString("PRVirhe") + ": '"
 				+val+"'. (1-"+part.getMaxScoreCount()+")</li>";
 		    }
 		}
@@ -187,7 +187,7 @@ public class Grades extends AbstractVelocityServiceProvider
 		error += course.getMessage();
 	    }
 	    else {
-		result += "Piste- ja arvosanarajat tallennettu. ";
+		result += LocalisationBundle.getString("pJARajatTallennettu");
 	    }
 	}
 
@@ -200,10 +200,10 @@ public class Grades extends AbstractVelocityServiceProvider
 		Calendar calendar = Calendar.getInstance();
 		int minute = calendar.get(Calendar.MINUTE);
 
-		result = "Arvostelu suoritettu "
+		result = LocalisationBundle.getString("arvosteluSuor")
 		    +calendar.get(Calendar.DAY_OF_MONTH)
 		    +"."+(calendar.get(Calendar.MONTH) + 1)
-		    +"."+calendar.get(Calendar.YEAR)+" klo " 
+		    +"."+calendar.get(Calendar.YEAR)+ " " + LocalisationBundle.getString("klo") + " "
 		    +calendar.get(Calendar.HOUR_OF_DAY)+":"
 		    +(minute < 10 ? "0"+minute : ""+minute)+".";
 
@@ -218,7 +218,7 @@ public class Grades extends AbstractVelocityServiceProvider
 			     +calendar.get(Calendar.YEAR) );
 	    }
 	    else {
-		error += "<li>Virhe: "+course.getMessage()+"</li>";
+		error += "<li>" + LocalisationBundle.getString("virhe") + ": "+course.getMessage()+"</li>";
 	    }
 	}
 

@@ -32,10 +32,7 @@
     <th>
       $bundle.getString("isoeiosa") <br><br>
       <form action="index" method="post">
-
-## valuen vaihtaminen tähän???? -tka
-
-        <input type="submit" value="Määrittele kurssin osasuoritukset" class="btn btn-primary">
+        <input type="submit" value="$bundle.getString("maaritteleosa")" class="btn btn-primary">
         <input type="hidden" value="3coursebasics" name="service">
       </form>
     </th>
@@ -424,15 +421,15 @@ $conventionsDesc
 #set ($inc_noheader = "true")
 #set ($inc_ssn = "true")
 #set ($inc_lhsum = "true")
-#set ($inc_lhsumname = "LH-pisteet")
+#set ($inc_lhsumname = $bundle.getString("lhp"))
 #set ($inc_htsum = "true")
-#set ($inc_htsumname = "HT-pisteet")
+#set ($inc_htsumname = $bundle.getString("htp"))
 #set ($inc_koesum = "true")
-#set ($inc_koesumname = "Koepisteet")
+#set ($inc_koesumname = $bundle.getString("Koepisteet"))
 #set ($inc_sum = "true")
-#set ($inc_sumname = "Yhteispisteet")
+#set ($inc_sumname = $bundle.getString("yhtpst"))
 #set ($inc_grade = "true")
-#set ($inc_gradename = "Arvosana")
+#set ($inc_gradename = $bundle.getString("Arvosana"))
 #set ($inc_accepted = "true")
 #set ($inc_failed = "true")
 #if ($selectedCourse.isFrozen())
@@ -444,8 +441,8 @@ $conventionsDesc
 #set ($params = "${params}&inc_changes=on")
 #end
 
-<center><h2>Tulokset</h2>(<a href="checklist?$params" target="_blank">tulostettavaksi</a> 
-- käytä "tuloslistat"-toimintoa, jos haluat itse määritellä tulostettavat tiedot)</center>
+<center><h2>$bundle.getString("tulokset")</h2>(<a href="checklist?$params" target="_blank">$bundle.getString("tulostus")</a> 
+- $bundle.getString("tuloslistanTulostusOhje"))</center>
 <pre>
 #parse ("checklist99.vm")
 </pre>

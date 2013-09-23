@@ -50,7 +50,7 @@ public class LoginManager extends VelocityServlet {
                 }
 	    }
 	} catch ( Exception e ) {
-	    throw new ServletException( "Virhetilanne!<br>"+e.getMessage() );
+	    throw new ServletException( "Error!<br>"+e.getMessage() );
 	}
     }
 	
