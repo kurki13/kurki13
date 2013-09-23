@@ -16,20 +16,20 @@
 <form action="index" name="return" method="post">
 <table class="normal" border="1" width="100%" style="max-width:1000px">
   <caption>
-   $bundle.getString(opvalittu) ${students.size()}
+   $bundle.getString("opvalittu") ${students.size()}
   </caption>
   <tr>
     <th>
-     $bundle.getString(nimiSyntpva)
+     $bundle.getString("nimiSyntpva")
     </th>
     <th>
-     $bundle.getString(camelopnro)
+     $bundle.getString("camelopnro")
     </th>
     <th>
-      <i>$bundle.getString(ryhma)</i>
+      <i>$bundle.getString("ryhma")</i>
     </th>
     <th>
-      $bundle.getString(palautaKurssille)
+      $bundle.getString("palautaKurssille")
     </th>
   </tr>
   #set ($sid = 0)
@@ -65,14 +65,14 @@
   <tr>
     <th colspan="4">
       <input type="hidden" name="TS" value="${TS}">
-      <center><input type="submit" class="submitb" name="doReturn" value="------> $bundle.getString(palautaIso) <------"></center>
+      <center><input type="submit" class="submitb" name="doReturn" value="------> $bundle.getString("palautaIso") <------"></center>
     </th>
   </tr>
   #end
 </table>
 </form>
 #else 
-$bundle.getString(opeivastannut)
+$bundle.getString("opeivastannut")
 #end
 	  </td>
         </tr>
