@@ -2,9 +2,7 @@
 <toolbox>
     <tool scope="application">
         <key>bundle</key>
-        <class>org.apache.velocity.tools.generic.ResourceTool</class>
-        <parameter name="bundle" value="localisationBundle"/>
-        <parameter name="locale" value="fi"/>
+        <class>kurki.util.LocalisationBundle</class>
     </tool>
     
     <tool>
