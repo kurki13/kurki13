@@ -1,13 +1,15 @@
-package kurki;
+package kurki.model;
 
-import kurki.util.LocalisationBundle;
 import kurki.exception.NullParameterException;
 import service.exception.NullIdException;
 
 import java.util.*;
 import java.sql.*;
 import java.io.Serializable;
-import kurki.util.DateParser;
+import kurki.Convention;
+import kurki.util.DBConnectionManager;
+import kurki.util.MultiValueCounter;
+import kurki.util.LocalisationBundle;
 import service.Option;
 
 public class Course implements Serializable, Option {
@@ -183,58 +185,16 @@ public class Course implements Serializable, Option {
     protected boolean conventionMod = false;
     protected Vector conventions = new Vector();       {
     //<editor-fold defaultstate="collapsed" desc="Conventions">
- 
-        conventions.add(new Convention(1,
-                "Normaali",
-                "koe + laskarihyvitys+ harjoitustyöhyvitys "
-                + "(kaikki osat vaikuttavat)."));
-        conventions.add(new Convention(2,
-                "Parempi ht korvaa laskarit",
-                "koe + greatest(laskarihyvitys,harjoitustyöhyvitys) "
-                + "(laskarit voi korvata harjoitustöillä - "
-                + "parempi valitaan)."));
-        conventions.add(new Convention(3,
-                "Tehty ht korvaa laskarit",
-                "koe + if exists harjoitustyohyvitys then "
-                + "harjoitustyöhyvitys else laskarihyvitys "
-                + "(laskarit voi korvata harjoitustöillä, "
-                + "jos harjoitustöitä on tehty ne ajavat laskareiden "
-                + "yli)."));
-        conventions.add(new Convention(4,
-                "Parempi lisäkoe korvaa laskarit",
-                "koe(1..n-1) + greatest(laskarihyvitys, "
-                + "koe(n)) laskarit voi korvata ylimääräisellä "
-                + "koetehtävällä, joka kirjataan omaksi kokeekseen "
-                + "- parempi valitaan."));
-        conventions.add(new Convention(5,
-                "Tehty lisäkoe korvaa laskarit",
-                "koe(1..n-1) + if exists koe(n) then koe(n) "
-                + "else laskarihyvitys laskarit voi korvata "
-                + "ylimääräisellä koetehtävällä, joka kirjataan "
-                + "omaksi kokeekseen - ylimääräinen tehtävä "
-                + "ajaa laskareiden yli"));
-        conventions.add(new Convention(6,
-                "Parempi ht korvaa muut",
-                "greatest(koe+laskarihyvitys,harjoitustyöhyvitys) "
-                + "kokeen ja laskarit voi korvata harjoitustöillä."));
-        conventions.add(new Convention(7,
-                "Tehty ht korvaa muut",
-                "if exists harjoitustyohyvitys then "
-                + "harjoitustyohyvitys else koe+laskarihyvitys."));
-        conventions.add(new Convention(8,
-                "Ylösskaalattu",
-                "greatest(koe+laskarihyvitys+harjoitustyöhyvitys, "
-                + "koe*maksimipistemäärä/koemaksimi) "
-                + "parempi vaihtoehdoista koe+laskarit+ht ja pelkkä koe "
-                + "skaalattuna koe+laskarit+ht maksimipisteisiin."));
-        conventions.add(new Convention(9,
-                "Alaskaalattu",
-                "greatest(koe, alasskaalattu(koe)+laskarihyvitys+"
-                + "harjoitushyvitys) alasskaalattu(koe)= "
-                + "(sairauspoissaolojen vanha kaava)."));
-        
-        
-
+    //Convention names and descriptions no longer set by strings
+        conventions.add(new Convention(1));
+        conventions.add(new Convention(2));
+        conventions.add(new Convention(3));
+        conventions.add(new Convention(4));
+        conventions.add(new Convention(5));
+        conventions.add(new Convention(6));
+        conventions.add(new Convention(7));
+        conventions.add(new Convention(8));
+        conventions.add(new Convention(9));
     //</editor-fold>
     }
     protected int credits = 1;
@@ -829,6 +789,7 @@ public class Course implements Serializable, Option {
         }
     }
 
+// public void findByStudentID( String sid ) {
     public void findBySSN(String ssn) {
         this.ssn.add(ssn);
     }
@@ -1295,7 +1256,42 @@ public class Course implements Serializable, Option {
         
         return from;
     }
+    
+    public static String getStr(int from, int maxlen) {
+        return getStr("" + from, maxlen);
+    }
 
+    /**
+     */
+    public static String getStr(String from, int maxlen) {
+        String rv = "";
+        if (from == null) {
+            for (int i = 0; i < maxlen; i++) {
+                rv += " ";
+            }
+        } else {
+            int len = from.length();
+            if (maxlen > 0) {
+                if (len > maxlen) {
+                    rv = from.substring(0, maxlen);
+                } else if (len < maxlen) {
+                    rv = from;
+                    for (int i = len; i < maxlen; i++) {
+                        rv += " ";
+                    }
+                } else {
+                    rv = from;
+                }
+            } else {
+                while (from.length() + maxlen < 0) {
+                    from += " ";
+                }
+                rv = from;
+            }
+        }
+        return rv;
+    }
+    
     public synchronized Vector getStudents()
             throws SQLException, NullIdException, NullParameterException, ClassNotFoundException {
         
@@ -1424,6 +1420,7 @@ public class Course implements Serializable, Option {
                     + (sfilter != null ? sfilter : "") + "\n"
                     + "  ORDER BY " + ORDER_BY[this.orderBy];
 
+//     	    System.out.println(sql);
             Connection con = DBConnectionManager.createConnection();            
             Statement stmt = null;
             ResultSet rs = null;
@@ -1804,10 +1801,10 @@ public class Course implements Serializable, Option {
     
     public synchronized boolean makeAssessment(String ruser)
             throws SQLException, ClassNotFoundException {
- 	if ( isFrozen() ) {
- 	    this.msg = "Kurssi on jäädytetty.";
- 	    return false;
-	}
+// 	if ( isFrozen() ) {
+// 	    this.msg = "Kurssi on jäädytetty.";
+// 	    return false;
+// 	}
         if (ruser == null) {
             this.msg = "Arvostelijaa ei tunnistettu.";
             return false;
@@ -1851,7 +1848,15 @@ public class Course implements Serializable, Option {
         }
         return rv;
     }
-      
+    
+    public static int multiply(int a, int b) {
+        return a * b;
+    }
+    
+    public static int negation(int val) {
+        return 0 - val;
+    }
+    
     public void newSearch() {
         newSearch(false);
     }
@@ -1867,13 +1872,63 @@ public class Course implements Serializable, Option {
         this.ssn.clear();
         this.lnameFrom = this.lnameTo = null;
     }
-
+    
+    public static String nl() {
+        return "\n";
+    }
+    
     public void orderBy(int by) {
         if (by >= 0 && by < ORDER_BY.length) {
             this.orderBy = by;
         }
     }
- 
+    
+    public static Calendar parseDate(String date) {
+        if (date == null || date.length() < 8) {
+            return null;
+        }
+        Calendar c = Calendar.getInstance();
+        c.clear();
+        
+        String val = null;
+        
+        int i = date.indexOf(".");
+        if (i > 0) {
+            val = date.substring(0, i);
+            date = date.substring(i + 1, date.length());
+            c.set(Calendar.DATE, Integer.parseInt(val));
+        } else {
+            return null;
+        }
+        
+        i = date.indexOf(".");
+        if (i > 0) {
+            val = date.substring(0, i);
+            date = date.substring(i + 1, date.length());
+            c.set(Calendar.MONTH, (Integer.parseInt(val) - 1));
+        } else {
+            return null;
+        }
+        
+        if (date.length() > 0) {
+            val = date;
+            c.set(Calendar.YEAR, Integer.parseInt(val));
+        } else {
+            return null;
+        }
+        
+        return c;
+    }
+    
+    public static int percent(int x, int y) {
+        if (y == 0) {
+            return 100;
+        }
+        double xd = x;
+        double yd = y;
+        return (int) (Math.round((xd / yd) * 100));
+    }
+    
     public synchronized boolean removeStudent(Student student)
             throws SQLException, ClassNotFoundException {
         if (student == null) {
@@ -2015,7 +2070,7 @@ public class Course implements Serializable, Option {
             this.msg = "Kurssi on jäädytetty.";
             return false;
         }
-        Calendar c = DateParser.parseDate(edate);
+        Calendar c = parseDate(edate);
         if (c == null) {
             this.msg = "Suoritupäivämäärä annettu virheellisesti: '"
                     + edate + "'. (pp.kk.vvvv)";
@@ -2070,6 +2125,28 @@ public class Course implements Serializable, Option {
         } else {
             return false;
         }
+    }
+    
+    public synchronized boolean setMinScore(int ms) {
+        if (isFrozen()) {
+            this.msg = "Kurssi on jäädytetty.";
+            return false;
+        }
+        try {
+            Part grade = (Part) this.getPart(Part.ARVOSANA, false);
+            return grade.setFirstXtrScore(ms);
+        } catch (NullIdException nid) {
+            return false;
+        }
+    }
+    
+    public synchronized boolean setParts(Vector parts) {
+        if (isFrozen()) {
+            this.msg = "Kurssi on jäädytetty.";
+            return false;
+        }
+        this.parts = parts;
+        return true;
     }
     
     public synchronized boolean setScale(String scale) {

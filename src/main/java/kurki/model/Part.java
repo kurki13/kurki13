@@ -1,4 +1,4 @@
-package kurki;
+package kurki.model;
 
 import kurki.util.LocalisationBundle;
 import service.exception.NullIdException;
@@ -57,7 +57,8 @@ public class Part extends ComparableOptionAdapter
     public Part( int type ) throws NullIdException {
 
 	if ( type < 0 || type >= NO_OF_TYPES ) {
-	    throw new NullIdException( "Suoritustyyppi "+type+" tuntematon." );
+	    throw new NullIdException( LocalisationBundle.getString("suoritustyyppi")
+                    +type+LocalisationBundle.getString("tuntematon"));
 	}
 
 	this.id = new Integer( type );
@@ -80,7 +81,7 @@ public class Part extends ComparableOptionAdapter
         this(type);
 
 	if ( items < 0 ) {
-	     throw new NullIdException( "Määrä ei voi olla negatiivinen." );
+	     throw new NullIdException( LocalisationBundle.getString("MaaraEiVoiOllaNegat") );
 	}
 	// luodaan items kappaletta osasuorituksia 
 	try {
@@ -424,8 +425,8 @@ public class Part extends ComparableOptionAdapter
 	    return;
 	}
 	else if ( this.scoreBoundaries.size() != xtrScore ) {
-	    System.out.println("Kannasta saatujen piste-/arvosanarajojen määrä "
-			       +"ei vastaa saatavissa olevien pisteiden/arvosanojen määrää!");
+            
+	    System.out.println(LocalisationBundle.getString("kantaEiVastaa"));
 
 	    Vector oldVals = this.scoreBoundaries;
 

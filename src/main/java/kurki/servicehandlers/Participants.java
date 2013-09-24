@@ -1,5 +1,10 @@
 package kurki.servicehandlers;
 
+import kurki.util.Configuration;
+import kurki.util.Log;
+import kurki.model.Student;
+import kurki.model.Course;
+import kurki.model.Offering;
 import kurki.*;
 
 import java.io.*;
@@ -259,7 +264,7 @@ public class Participants extends AbstractVelocityServiceProvider
 		else {
 		    error = result = "";
 		    for ( int i=0; i < parts.size(); i++ ) {
-			kurki.Part part = (kurki.Part)parts.get( i );
+			kurki.model.Part part = (kurki.model.Part)parts.get( i );
 			Offering[] offerings = part.getOfferings();
 			
 			for ( int j=0; j < offerings.length; j++ ) {

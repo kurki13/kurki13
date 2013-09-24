@@ -6,10 +6,10 @@ import service.*;
 public class Convention extends ComparableOptionAdapter{
     protected String helpTxt = "";
     
-    public Convention( int id, String desc, String helpTxt ) {
+    public Convention( int id ) {
 	this.id = new Integer( id );
-	this.desc = desc;
-	this.helpTxt = helpTxt;
+	this.desc = "Not in use";
+	this.helpTxt = "Not in use";
     }
 
     @Override

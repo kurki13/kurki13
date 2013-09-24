@@ -1,7 +1,8 @@
-package kurki;
+package kurki.util;
 
 import java.io.*;
 import java.sql.*;
+import kurki.util.LocalisationBundle;
 
 public class DBConnectionManager 
     implements Serializable {
@@ -13,7 +14,7 @@ public class DBConnectionManager
 						      (String)Configuration.getProperty( "dbUser" ),
 						      (String)Configuration.getProperty( "dbPassword" ) );
 	if ( con == null )
-	    throw new SQLException("Tietokantayhteyden luominen ei onnistunut.");
+	    throw new SQLException(LocalisationBundle.getString("tietokantaVirhe"));
 	else
 	    return con;
     }

@@ -1,4 +1,6 @@
-package kurki;
+package kurki.model;
+
+import kurki.util.LocalisationBundle;
 
 public class Teacher {
     public String htunnus;
@@ -19,10 +21,11 @@ public class Teacher {
 	this.hetu = hetu;
 	this.ktunnus = (ktunnus != null ? ktunnus : "");
     }
+    @Override
     public String toString() {
 	return 
 	    "<tr><td>"+sukunimi+"</td>\n<td>"+etunimet+"</td>\n<td>"+hetu+"</td>\n"
-	    +"<td><input type=\"text\" name=\"htunnus:"+htunnus+":"+ktunnus
+	    +"<td><input type=\"text\" name=\""+LocalisationBundle.getString(htunnus)+":"+htunnus+":"+ktunnus
 	    +"\" value=\""+ktunnus+"\" size=\"12\" maxlength=\"12\"></td>\n</tr>";
     }
 }

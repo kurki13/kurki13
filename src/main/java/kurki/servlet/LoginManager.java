@@ -1,5 +1,8 @@
 package kurki.servlet;
 
+import kurki.util.Configuration;
+import kurki.util.DBConnectionManager;
+import kurki.model.Teacher;
 import kurki.*;
 
 import java.io.*;

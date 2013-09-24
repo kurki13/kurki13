@@ -1,4 +1,4 @@
-package kurki;
+package kurki.model;
 
 import service.exception.NullIdException;
 import service.*;

@@ -1,5 +1,9 @@
 package kurki;
 
+import kurki.util.DBConnectionManager;
+import kurki.model.Student;
+import kurki.model.Course;
+import kurki.model.CourseInfo;
 import kurki.exception.InitFailedException;
 import kurki.exception.NullParameterException;
 import kurki.exception.CourseNotDefinedException;
@@ -12,12 +16,12 @@ import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import kurki.servicehandlers.*;
+import kurki.util.LocalisationBundle;
 import service.exception.ServicesNotLockedException;
 
 public class Session implements java.io.Serializable {
 
     public static Locale locale = new Locale("fi");
-    public static ResourceBundle rb;
     public static final int STUDENT_ON_COURSE = 0;
     public static final int STUDENT_NOT_ON_COURSE = 1;
     public static final int STUDENT_REMOVED = 2;
@@ -118,8 +122,6 @@ public class Session implements java.io.Serializable {
 
         initialized = true;
         try {
-
-            rb = ResourceBundle.getBundle("localisationBundle", getLanguage());
             ServiceManager.setNoOfRoles(Rooli.NO_OF_ROLES);
             
             //The first argument of the defines much match keys in the localisation bundle
@@ -233,11 +235,11 @@ public class Session implements java.io.Serializable {
                 + "  WHERE ";
 
         String courseWhere =
-                "os.kurssikoodi = '" + courseInfo.ccode + "'\n"
-                + "      AND os.lukukausi = '" + courseInfo.term + "'\n"
-                + "      AND os.lukuvuosi = " + courseInfo.year + "\n"
-                + "      AND os.tyyppi = '" + courseInfo.type + "'\n"
-                + "      AND os.kurssi_nro = " + courseInfo.cno + "\n"
+                "os.kurssikoodi = '" + courseInfo.getCCode() + "'\n"
+                + "      AND os.lukukausi = '" + courseInfo.getTerm() + "'\n"
+                + "      AND os.lukuvuosi = " + courseInfo.getYear() + "\n"
+                + "      AND os.tyyppi = '" + courseInfo.getType() + "'\n"
+                + "      AND os.kurssi_nro = " + courseInfo.getCNO() + "\n"
                 + "      AND os.voimassa in (" + sstate + ")";
 
         if (onCourse) {
@@ -529,6 +531,6 @@ public class Session implements java.io.Serializable {
     }
 
     public String toString() {
-        return "\nKäsitelävä kurssi: " + selectedCourse;
+        return "\n"+ LocalisationBundle.getString("kasitKurssi") + selectedCourse;
     }
 }

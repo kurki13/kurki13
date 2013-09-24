@@ -1,5 +1,6 @@
 package service;
 
+import java.io.Serializable;
 import service.exception.UndefinedRoleException;
 import service.exception.ServiceAlreadyDefinedException;
 import service.exception.NullIdException;
@@ -9,7 +10,7 @@ import java.util.*;
 import java.util.Map.Entry;
 import kurki.servicehandlers.AbstractVelocityServiceProvider;
 
-public class ServiceManager {
+public class ServiceManager implements Serializable {
     
     private static ServiceManager instance = null;
     private static boolean locked = false;

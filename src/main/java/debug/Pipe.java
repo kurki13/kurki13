@@ -1,3 +1,5 @@
+package debug;
+
 
 import kurki.Rooli;
 import java.sql.Connection;
@@ -8,8 +10,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import kurki.CourseInfo;
-import kurki.DBConnectionManager;
+import kurki.model.CourseInfo;
+import kurki.util.DBConnectionManager;
 import service.ServiceManager;
 import service.exception.NullIdException;
 import service.exception.ServicesNotLockedException;

@@ -1,5 +1,8 @@
 package kurki.servlet;
 
+import kurki.util.Configuration;
+import kurki.util.Log;
+import kurki.model.CourseInfo;
 import kurki.util.LocalisationBundle;
 import kurki.servicehandlers.AbstractVelocityServiceProvider;
 import kurki.servicehandlers.CourseBasics;

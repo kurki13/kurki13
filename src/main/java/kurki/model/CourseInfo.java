@@ -1,5 +1,6 @@
-package kurki;
+package kurki.model;
 
+import kurki.Rooli;
 import kurki.util.LocalisationBundle;
 import service.exception.NullIdException;
 import service.exception.ServicesNotLockedException;
