@@ -287,7 +287,7 @@ public class Index extends VelocityServlet implements Log, Serializable {
         return target + LocalisationBundle.getString("tallennettuAutom")
                 + calendar.get(Calendar.DAY_OF_MONTH)
                 + "." + (calendar.get(Calendar.MONTH) + 1)
-                + "." + calendar.get(Calendar.YEAR) + " klo "
+                + "." + calendar.get(Calendar.YEAR) + " " + LocalisationBundle.getString("klo") + " "
                 + calendar.get(Calendar.HOUR_OF_DAY) + ":"
                 + (minute < 10 ? "0" + minute : "" + minute) + ".";
     }

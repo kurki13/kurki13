@@ -13,6 +13,7 @@ import org.apache.velocity.app.*;
 import javax.mail.*; 
 import javax.mail.internet.*;
 import kurki.servlet.Index;
+import kurki.util.LocalisationBundle;
 
 public class Freeze extends AbstractVelocityServiceProvider {
 
@@ -134,18 +135,16 @@ public class Freeze extends AbstractVelocityServiceProvider {
 			+"<ul>\n";
 
 		    if (isFirstTime ) {
-			result += "<li>Jos haluat perua jäädytyksen, niin etteivät tulokset siirry Oodiin, "
-			    +"ota pikaisesti yhteyttä: <a href='mailto:"+oodiAddress+"'>"+oodiAddress+"</a> "
-			    +"sekä KurKi-järjestelmän ylläpitäjään "
+			result += "<li>" + LocalisationBundle.getString("jaadytysInfo2")
+			    +": <a href='mailto:"+oodiAddress+"'>"+oodiAddress+"</a> "
+			    + LocalisationBundle.getString("jaadytysInfo2Jatkoa") + " "
 			    +KURKIMAIL
                             +"</li>";
 		    }
-		    result += "<li>Saat jäädytyksestä kuittauksena sähköpostitse tuloslistan.</li>";
+		    result += "<li>" + LocalisationBundle.getString("jaadytysInfo3") + ".</li>";
 
-		    result += "<li>Jos haluat korjata opiskelijan puutteellisia tai virheellisiä pisteitä, "
-			+"voit tehdä sen, sulattamalla ensin kyseisen opiskelijan. Tämän jälkeen "
-			+"kurssi on kuitenkin jäädytettävä uudelleen.</li>"
-			+"</ul>\n";
+		    result += "<li>" + LocalisationBundle.getString("jaadytysInfo4") 
+			+".</li></ul>\n";
 
 // 		    // Heitetään käyttäjä pihalle järjestelmästä
 // 		    req.getSession().invalidate();

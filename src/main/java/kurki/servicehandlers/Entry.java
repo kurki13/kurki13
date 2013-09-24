@@ -5,6 +5,7 @@ import kurki.*;
 import java.util.*;
 import javax.servlet.http.*;
 import kurki.servlet.Index;
+import kurki.util.LocalisationBundle;
 import org.apache.velocity.context.*;
 
 public class Entry extends AbstractVelocityServiceProvider {
@@ -61,16 +62,16 @@ public class Entry extends AbstractVelocityServiceProvider {
 
 	    String err = "";
 	    try {
-		err = "suoritteen tyyppi (ptype)";
+		err = LocalisationBundle.getString("suorTyyppi");
 		course.selectPart( Integer.parseInt( ptype ) );
 
-		err = "suoritteen kerta (offering)";
+		err = LocalisationBundle.getString("suorKerta");
 		course.selectOffering( Integer.parseInt( offering ) );
 
 		err = "";
 	    } catch ( NumberFormatException nfe ) {
 		nfe.printStackTrace();
-		log.log( "Virheellinen http-parametri: "+err, nfe );
+		log.log(LocalisationBundle.getString("virheellinenHttpP") + ": "+err, nfe );
 	    }
 
 	    /*
@@ -147,7 +148,7 @@ public class Entry extends AbstractVelocityServiceProvider {
 // 		course.getSelectedPart().selectOffering( Part.UNDEF );
 		studentFilter = filter;
 	    } catch ( NumberFormatException nfe ) {
-		log.log( "Virheellinen http-parametri: ", nfe );
+		log.log(LocalisationBundle.getString("virheellinenHttpP") + ": ", nfe );
 	    }
 
 	    // Kommentoi pois, jos haluat, ettei opiskelijoita näytetä
@@ -180,8 +181,8 @@ public class Entry extends AbstractVelocityServiceProvider {
 		    context.put( "autosave", "document.scores" );
 		context.put( "students", course.getStudents() );
 	    } catch ( NumberFormatException nfe ) {
-		if ( maxs == -1 ) error += "<li>Osasuorituksen maksimipisteet annettu virheellisesti.</li>";
-		else if ( mins == -1 ) error += "<li>Osasuorituksen hyväksymisraja annettu virheellisesti.</li>";
+		if ( maxs == -1 ) error += "<li>" + LocalisationBundle.getString("osasuorituksenMpAV") + ".</li>";
+		else if ( mins == -1 ) error += "<li>" + LocalisationBundle.getString("osasuorituksenHrAV") + ".</li>";
 	    }
 	    course.commitCourseInfo();
 
@@ -203,15 +204,15 @@ public class Entry extends AbstractVelocityServiceProvider {
                    
 		if ( textPoints != null ) {
                     if (radioPoints != null && !textPoints.equals(radioPoints)) {
-			error += "<li>Oppilaan "+s.getLabel()+" pisteet ristiriitaiset, ei päivitetty \n</li>";
+			error += "<li>" + LocalisationBundle.getString("pisteetRistiriitaiset1") + " " + s.getLabel() + " " + LocalisationBundle.getString("pisteetRistiriitaiset2") + "\n</li>";
                         pointErrors=true;
 		    }
 		    else if ( !s.setScore( course.getSelectedPart(), textPoints.toUpperCase() ) )
-			error += "<li>Oppilaan "+s.getLabel()+" pisteet annettu virheellisesti: "+textPoints+"\n</li>";
+			error += "<li>" + LocalisationBundle.getString("pisteetVirheelliset1") + " " +s.getLabel()+ " " + LocalisationBundle.getString("pisteetVirheelliset2") + ": "+textPoints+"\n</li>";
 		}
 	    }
             if (pointErrors)
-		error += "<li><font color=\"red\">JavaScript ei toimi</font></li>";
+		error += "<li><font color=\"red\">" + LocalisationBundle.getString("jsEiToimi") + "</font></li>";
 	    if ( !course.commitScores( req.getRemoteUser() ) ) {
 		error += course.getMessage();
 	    }
@@ -229,15 +230,15 @@ public class Entry extends AbstractVelocityServiceProvider {
 		int sid = Integer.parseInt( defreeze );
 		Student s = course.getStudent( sid );
 		if ( !course.defreezeStudent( s ) ) {
-		    error += "<li>Sulatus ei onnistunut: "+course.getMessage()+"</li>";
+		    error += "<li>" + LocalisationBundle.getString("sulatusEO") + ": "+course.getMessage()+"</li>";
 		}
 		else {
-		    result += "<li>Opiskelija <i>"+s.getLabel()+"</i> sulatettu. \n"
-			+"<b>Huom!</b> Jotta tehdyt muutokset kirjautuisivat myös Oodiin,\n"
-			+"täytyy kurssi jäädyttää uudelleen.</li>";
+		    result += "<li>" + LocalisationBundle.getString("opiskelija") + "<i>"+s.getLabel()+"</i> " + LocalisationBundle.getString("sulatettu") + ". \n"
+			+ LocalisationBundle.getString("oodiHuom") + ".</li>";
+			
 		}
 	    } catch ( NumberFormatException nfe ) {
-		error += "<li>Jäädytys ei onnistunut: Tuntematon opiskelija.</li>";
+		error += "<li>" + LocalisationBundle.getString("jaadytysEO") + ".</li>";
 	    }
 	    
 	    if ( course.getSelectedPart().maxScoreDefined() )
@@ -256,7 +257,7 @@ public class Entry extends AbstractVelocityServiceProvider {
 	studentFilterDesc = course.getSelectDescription();
 	
 	if ( nullIfEmpty( req.getParameter("asNotify") ) != null ) {
-	    context.put( Index.RESULT, Index.asNotify("Pisteet/arvosanat") );
+	    context.put( Index.RESULT, Index.asNotify(LocalisationBundle.getString("pA")));
 	}
 	
 // 	System.out.println("here");
@@ -271,7 +272,7 @@ public class Entry extends AbstractVelocityServiceProvider {
 		   : studentFilter ) );
 	context.put( "studentFilterDesc",
 		 ( nullIfEmpty( studentFilterDesc ) == null
-		   ? "kaikki kurssin opiskelijat"
+		   ? LocalisationBundle.getString("kaikkiopiskelijat")
 		   : studentFilterDesc ) );
 
 	context.put( Index.ERROR, nullIfEmpty( error ) );
