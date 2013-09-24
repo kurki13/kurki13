@@ -6,6 +6,7 @@ import service.exception.NullIdException;
 import java.util.*;
 import java.sql.*;
 import java.io.Serializable;
+import kurki.util.LocalisationBundle;
 import service.Option;
 
 public class Course implements Serializable, Option {
