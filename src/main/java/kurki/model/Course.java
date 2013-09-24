@@ -1,4 +1,4 @@
-package kurki;
+package kurki.model;
 
 import kurki.exception.NullParameterException;
 import service.exception.NullIdException;
@@ -6,6 +6,9 @@ import service.exception.NullIdException;
 import java.util.*;
 import java.sql.*;
 import java.io.Serializable;
+import kurki.Convention;
+import kurki.util.DBConnectionManager;
+import kurki.util.MultiValueCounter;
 import kurki.util.LocalisationBundle;
 import service.Option;
 

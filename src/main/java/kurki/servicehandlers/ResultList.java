@@ -1,5 +1,7 @@
 package kurki.servicehandlers;
 
+import kurki.util.Configuration;
+import kurki.util.Log;
 import java.util.ResourceBundle;
 import kurki.*;
 

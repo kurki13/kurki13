@@ -1,4 +1,4 @@
-package kurki;
+package kurki.util;
 
 public interface Log {
     public void log(java.lang.String msg);

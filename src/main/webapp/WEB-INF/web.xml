@@ -46,7 +46,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>HelloTest</servlet-name>
-        <servlet-class>HelloTest</servlet-class>
+        <servlet-class>debug.HelloTest</servlet-class>
         <init-param>
             <param-name>org.apache.velocity.properties</param-name>
             <param-value>/WEB-INF/velocity.properties</param-value>
@@ -68,8 +68,6 @@
             <param-value>/WEB-INF/velocity.properties</param-value>
         </init-param>
     </servlet>
-    
-    
     <servlet>
         <servlet-name>logout</servlet-name>
         <servlet-class>kurki.servlet.Logout</servlet-class>
@@ -78,8 +76,6 @@
         <servlet-name>logout</servlet-name>
         <url-pattern>/servlet/logout</url-pattern>
     </servlet-mapping>
-    
-    
     <servlet>
         <servlet-name>LoginManager</servlet-name>
         <servlet-class>kurki.servlet.LoginManager</servlet-class>
@@ -92,7 +88,6 @@
             <param-value>/WEB-INF/velocity.properties</param-value>
         </init-param>
     </servlet>
-   
     <servlet-mapping>
         <servlet-name>index</servlet-name>
         <url-pattern>/servlet/index</url-pattern>
@@ -105,7 +100,6 @@
         <servlet-name>checklist</servlet-name>
         <url-pattern>/servlet/checklist</url-pattern>
     </servlet-mapping>
-    
     <servlet-mapping>
         <servlet-name>Language</servlet-name>
         <url-pattern>/Language</url-pattern>
@@ -115,25 +109,22 @@
             30
         </session-timeout>
     </session-config>
-    
-    	<security-constraint>
-		<web-resource-collection>
-			<web-resource-name>Wildcard means whole app requires authentication</web-resource-name>
-			<url-pattern>/*</url-pattern>
-			<http-method>GET</http-method>
-			<http-method>POST</http-method>
-		</web-resource-collection>
-		<auth-constraint>
-			<role-name>admin</role-name>
-		</auth-constraint>
-
-		<user-data-constraint>
-			<!-- transport-guarantee can be CONFIDENTIAL, INTEGRAL, or NONE -->
-			<transport-guarantee>NONE</transport-guarantee>
-		</user-data-constraint>
-	</security-constraint>
-
-	<login-config>
-		<auth-method>BASIC</auth-method>
-	</login-config>
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Wildcard means whole app requires authentication</web-resource-name>
+            <url-pattern>/*</url-pattern>
+            <http-method>GET</http-method>
+            <http-method>POST</http-method>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>admin</role-name>
+        </auth-constraint>
+        <user-data-constraint>
+            <!-- transport-guarantee can be CONFIDENTIAL, INTEGRAL, or NONE -->
+            <transport-guarantee>NONE</transport-guarantee>
+        </user-data-constraint>
+    </security-constraint>
+    <login-config>
+        <auth-method>BASIC</auth-method>
+    </login-config>
 </web-app>

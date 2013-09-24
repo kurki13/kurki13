@@ -1,4 +1,4 @@
-package kurki;
+package kurki.model;
 
 import kurki.exception.NullParameterException;
 import service.exception.NullIdException;
@@ -415,7 +415,7 @@ public class Student extends ComparableOptionAdapter
 
     public void setStartYear( int startYear ) { this.startYear = startYear; }
 
-    boolean setState( String state ) {
+    public boolean setState( String state ) {
 	if ( state == null || state.equals("J") || state.equals("S") ) {
 	    this.state = state;
 	    return true;

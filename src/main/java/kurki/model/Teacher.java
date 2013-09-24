@@ -1,4 +1,4 @@
-package kurki;
+package kurki.model;
 
 public class Teacher {
     public String htunnus;

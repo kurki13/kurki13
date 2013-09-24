@@ -1,5 +1,9 @@
 package kurki.servicehandlers;
 
+import kurki.util.Configuration;
+import kurki.util.Log;
+import kurki.model.Course;
+import kurki.model.CourseInfo;
 import kurki.*;
 
 import java.io.*;

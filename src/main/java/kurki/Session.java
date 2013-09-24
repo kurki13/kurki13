@@ -1,5 +1,9 @@
 package kurki;
 
+import kurki.util.DBConnectionManager;
+import kurki.model.Student;
+import kurki.model.Course;
+import kurki.model.CourseInfo;
 import kurki.exception.InitFailedException;
 import kurki.exception.NullParameterException;
 import kurki.exception.CourseNotDefinedException;
@@ -233,11 +237,11 @@ public class Session implements java.io.Serializable {
                 + "  WHERE ";
 
         String courseWhere =
-                "os.kurssikoodi = '" + courseInfo.ccode + "'\n"
-                + "      AND os.lukukausi = '" + courseInfo.term + "'\n"
-                + "      AND os.lukuvuosi = " + courseInfo.year + "\n"
-                + "      AND os.tyyppi = '" + courseInfo.type + "'\n"
-                + "      AND os.kurssi_nro = " + courseInfo.cno + "\n"
+                "os.kurssikoodi = '" + courseInfo.getCCode() + "'\n"
+                + "      AND os.lukukausi = '" + courseInfo.getTerm() + "'\n"
+                + "      AND os.lukuvuosi = " + courseInfo.getYear() + "\n"
+                + "      AND os.tyyppi = '" + courseInfo.getType() + "'\n"
+                + "      AND os.kurssi_nro = " + courseInfo.getCNO() + "\n"
                 + "      AND os.voimassa in (" + sstate + ")";
 
         if (onCourse) {

@@ -1,3 +1,5 @@
+package debug;
+
 import java.util.Locale;
 import java.util.ResourceBundle;
 import org.apache.velocity.Template;
