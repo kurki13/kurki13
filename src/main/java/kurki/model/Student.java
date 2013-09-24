@@ -5,7 +5,6 @@ import service.exception.NullIdException;
 import service.*;
 
 import java.util.*;
-import java.sql.*;
 import java.io.Serializable;
 
 
@@ -235,32 +234,8 @@ public class Student extends ComparableOptionAdapter
 	this.scoreUpdate = new LinkedList();
 	return rv;
     }
-/*
-* vanha opnro versio korvattu 08/7
-*    public String getSNO() { return this.sno; }
-* 
-* Tätä ei enää käytetä.
-* Tulee error kun yrittää käyttää ja opiskelijanumero tulee getSSO (eli hetun kohdasta). -tka
-*/
-//    public String getSNO() { 
-//	if ( this.sno.length() < 10 || this.sno.length() > 10 )
-//	    return this.sno;
-//	else 
-//	    return this.sno.substring(0, 6)+"-"+this.sno.substring(6, 10);
-//    }
-
-/*
-* vanha hetu versio korvattu 08/7
-*
-*    public String getSSN() {
-*    
-*	if ( this.ssn.length() < 10 || this.ssn.length() > 10 )
-*	    return this.ssn;
-*	else 
-*	    return this.ssn.substring(0, 6)+"-"+this.ssn.substring(6, 10);
-*    }
-*/
-     public String getSSN() {return this.ssn; }
+    
+    public String getSSN() {return this.ssn; }
     
     public String getSSNID() { return this.ssn; }
 
