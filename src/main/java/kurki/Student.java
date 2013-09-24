@@ -7,6 +7,7 @@ import service.*;
 import java.util.*;
 import java.sql.*;
 import java.io.Serializable;
+import kurki.util.LocalisationBundle;
 
 
 public class Student extends ComparableOptionAdapter 
@@ -41,7 +42,7 @@ public class Student extends ComparableOptionAdapter
     protected LinkedList scoreUpdate = new LinkedList();
 
     public Student( int id, String ssn ) throws NullIdException {
-	this( id, ssn, "Nimi Kannasta" );
+	this( id, ssn, LocalisationBundle.getString("nimiKannasta"));
     }
 
     public Student( int id, String ssn, String name ) throws NullIdException {

@@ -6,6 +6,7 @@ import java.io.*;
 import java.util.*;
 import javax.servlet.http.*;
 import kurki.servlet.Index;
+import kurki.util.LocalisationBundle;
 import org.apache.velocity.context.*;
 
 public class CourseBasics extends AbstractVelocityServiceProvider 
@@ -53,11 +54,11 @@ public class CourseBasics extends AbstractVelocityServiceProvider
 		} catch ( NumberFormatException nfe ) {
 		    String pstring = null;
 		    switch (p) {
-		    case 0: pstring = "Laskuharjoitusten "; break;
-		    case 1: pstring = "Harjoitustöiden "; break;
-		    case 2: pstring = "Kokeiden "; break;
+		    case 0: pstring = LocalisationBundle.getString("laskuharjoitusten"); break;
+		    case 1: pstring = LocalisationBundle.getString("harjoitustoiden"); break;
+		    case 2: pstring = LocalisationBundle.getString("kokeiden"); break;
 		    }
-		    error += "<li>"+pstring+" lkm annettu virheellisesti: \""+par+"\". (0-18)</li>\n";
+		    error += "<li>"+pstring+LocalisationBundle.getString("lkmAnnetVirhe")+par+"\". (0-18)</li>\n";
 		}
 		if ( part != null ) {
 		    try {
@@ -70,11 +71,12 @@ public class CourseBasics extends AbstractVelocityServiceProvider
 		    } catch ( NumberFormatException nfe ) {
 			String pstring = null;
 			switch (p) {
-			case 0: pstring = "Laskuharjoitusten "; break;
-			case 1: pstring = "Harjoitustöiden "; break;
-			case 2: pstring = "Kokeiden "; break;
-			}
-			error += "<li>"+pstring+" pakollisten kertojen lkm annettu virheellisesti: \""+par+"\". (0 - lkm)</li>\n";
+			case 0: pstring = LocalisationBundle.getString("laskuharjoitusten"); break;
+                        case 1: pstring = LocalisationBundle.getString("harjoitustoiden"); break;
+                        case 2: pstring = LocalisationBundle.getString("kokeiden"); break;
+		   }
+			error += "<li>"+pstring+LocalisationBundle.getString("pakolKertojenMaara")+LocalisationBundle.getString("lkmAnnetVirhe")+par
+                                +"\". (0 - "+LocalisationBundle.getString("lkm")+")</li>\n";
 		    }
 
 		    try {
@@ -87,10 +89,10 @@ public class CourseBasics extends AbstractVelocityServiceProvider
 		    } catch ( NumberFormatException nfe ) {
 			String pstring = null;
 			switch (p) {
-			case 0: pstring = "Laskuharjoitusten "; break;
-			case 1: pstring = "Harjoitustöiden "; break;
+                        case 0: pstring = LocalisationBundle.getString("laskuharjoitusten"); break;
+                        case 1: pstring = LocalisationBundle.getString("harjoitustoiden"); break;
 			}
-			error += "<li>"+pstring+" lisäpisteet annettu virheellisesti: \""+par+"\". (0 - 60)</li>\n";
+			error += "<li>"+pstring+LocalisationBundle.getString("lisapAnnetVirheel")+par+"\". (0 - 60)</li>\n";
 		    }
 		}
 	    }
@@ -121,12 +123,12 @@ public class CourseBasics extends AbstractVelocityServiceProvider
 		    } catch ( NumberFormatException nfe ) {
 			String pstring = null;
 			switch (pid) {
-			case 0: pstring = "laskuharjoitukset"; break;
-			case 1: pstring = "harjoitustyö"; break;
-			case 2: pstring = "koe"; break;
+			case 0: pstring = LocalisationBundle.getString("laskuharjoitukset"); break;
+			case 1: pstring = LocalisationBundle.getString("harjtyo"); break;
+			case 2: pstring = LocalisationBundle.getString("koePieni"); break;
 			}
 			error += "<li>"+(oid+1)+". "+pstring
-			    +": maksimipisteet annettu virheellisesti: \""+par+"\". (0-99)</li>\n";
+			    +LocalisationBundle.getString("maksimPisteetVirhe")+par+"\". (0-99)</li>\n";
 		    }
 
 		    try { 		
@@ -138,12 +140,13 @@ public class CourseBasics extends AbstractVelocityServiceProvider
 		    } catch ( NumberFormatException nfe ) {
 			String pstring = null;
 			switch (pid) {
-			case 0: pstring = "laskuharjoitukset"; break;
-			case 1: pstring = "harjoitustyö"; break;
-			case 2: pstring = "koe"; break;
+                        case 0: pstring = LocalisationBundle.getString("laskuharjoitukset"); break;
+			case 1: pstring = LocalisationBundle.getString("harjtyo"); break;
+			case 2: pstring = LocalisationBundle.getString("koePieni"); break;
 			}
 			error += "<li>"+(oid+1)+". "+pstring
-			    +": hyväksymisraja annettu virheellisesti: \""+par+"\". (0-maximi)</li>\n";
+			    +LocalisationBundle.getString("hyvaksRajaVirhe")+par+"\". (0-"
+                                +LocalisationBundle.getString("max")+")</li>\n";
 		    }
 		}
 	    }

@@ -12,12 +12,12 @@ import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import kurki.servicehandlers.*;
+import kurki.util.LocalisationBundle;
 import service.exception.ServicesNotLockedException;
 
 public class Session implements java.io.Serializable {
 
     public static Locale locale = new Locale("fi");
-    public static ResourceBundle rb;
     public static final int STUDENT_ON_COURSE = 0;
     public static final int STUDENT_NOT_ON_COURSE = 1;
     public static final int STUDENT_REMOVED = 2;
@@ -118,8 +118,6 @@ public class Session implements java.io.Serializable {
 
         initialized = true;
         try {
-
-            rb = ResourceBundle.getBundle("localisationBundle", getLanguage());
             ServiceManager.setNoOfRoles(Rooli.NO_OF_ROLES);
             
             //The first argument of the defines much match keys in the localisation bundle
@@ -529,6 +527,6 @@ public class Session implements java.io.Serializable {
     }
 
     public String toString() {
-        return "\nKäsitelävä kurssi: " + selectedCourse;
+        return "\n"+ LocalisationBundle.getString("kasitKurssi") + selectedCourse;
     }
 }
