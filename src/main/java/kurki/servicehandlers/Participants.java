@@ -12,6 +12,7 @@ import java.sql.*;
 import java.util.*;
 import javax.servlet.http.*;
 import kurki.servlet.Index;
+import kurki.util.LocalisationBundle;
 import org.apache.velocity.context.*;
 
 public class Participants extends AbstractVelocityServiceProvider 
@@ -111,8 +112,8 @@ public class Participants extends AbstractVelocityServiceProvider
 		    useSNO = new Boolean( idtype == 1 );
 
 		    if ( resultLimit > 0 && students.size() >= resultLimit ) {
-			error = "Tarkenna hakua! Listassa aakkosjärjestyksessä "
-			    +resultLimit+" ensimmäistä hakukriteerejä vastaavaa opiskelijaa.";
+			error = LocalisationBundle.getString("tarkennaHInfo") + " "
+			    +resultLimit+" " + LocalisationBundle.getString("tarkennaHInfo2") + ".";
 		    }
 		    if ( sstate == Session.STUDENT_ON_COURSE || sstate == Session.STUDENT_REMOVED ) {
 			ses.setAttribute( STUDENTS, students );
@@ -154,8 +155,7 @@ public class Participants extends AbstractVelocityServiceProvider
 // 			ctx.put( "autosave", "document.scores" );
 		    }
 		    else {
-			error = "Pyynnön suorittaminen ei onnistunut. "
-			    +"Suorita opiskelijoiden haku uudelleen.";
+			error = LocalisationBundle.getString("pyynnonSEO");
 		    }
 		}
 	    } catch ( NumberFormatException nfe ) {
@@ -180,15 +180,15 @@ public class Participants extends AbstractVelocityServiceProvider
 			try {
 			    if ( course.removeStudent( student ) ) {
 				students.remove( sid );
-				result = "<li>Opiskelija "+student.getLabel()+" poistettu kurssilta.</li>\n"
+				result = "<li>" + LocalisationBundle.getString("opiskelija") + " " +student.getLabel()+ " " + LocalisationBundle.getString("poistettuK") + ".</li>\n"
 				    +result;
 			    }
 			    else {
-				error = "<li>Opiskelijan poistaminen kurssilta ei onnistunut: "
+				error = "<li>" + LocalisationBundle.getString("kurssiltaPoistoEO") + ": "
 				    +course.getMessage()+"</li>\n"+error;
 			    }
 			} catch ( SQLException e ) {
-			    error = "<li>Opiskelijan poistaminen kurssilta ei onnistunut: "
+			    error = "<li>" + LocalisationBundle.getString("kurssiltaPoistoEO") + ": "
 				+e.getMessage()+"</li>\n"+error;
 			}
 		    }
@@ -207,19 +207,19 @@ public class Participants extends AbstractVelocityServiceProvider
 			if ( group >= 0 && group < 100 ) {
 			    try {
 				if ( !course.chgrpStudent( student, group ) ) {
-				    error = "<li>Opiskelijan "+student.getLabel()
-					+" ryhmän vaihto ei onnistunut: "+course.getMessage()
+				    error = "<li>" + LocalisationBundle.getString("ryhmanVEO") + " " +student.getLabel()
+					+" " + LocalisationBundle.getString("ryhmanVEO2") + ": " +course.getMessage()
 					+error;
 				}
 			    } catch ( SQLException e ) {
 				log.log("", e);
-				error = "<li>Virhetilanne: "
+				error = "<li>" + LocalisationBundle.getString("virhetilanne") + ": "
 				    +e.getMessage()+"</li>\n"
 				    +error;
 			    }
 			} else if ( tmpgrp != null ) {
-			    error = "<li>Opiskelijan "+student.getLabel()
-				+" ryhmän vaihto ei onnistunut: virheellinen ryhmä '"+
+			    error = "<li>" + LocalisationBundle.getString("ryhmanVEO") + " " +student.getLabel()
+				+" " + LocalisationBundle.getString("ryhmanVEO2") + ": " + LocalisationBundle.getString("virheellinenR") + " '"+
 				tmpgrp+"' </li>"+error;
 			}
 		    }
@@ -232,7 +232,7 @@ public class Participants extends AbstractVelocityServiceProvider
 		else result = null;
 	    }
 	    else {
-		error = "Toiminnon suorittaminen ei onnistunut: opiskelijoita ei löytynyt.";
+		error = LocalisationBundle.getString("toiminnonSEO") + ".";
 	    }
 	}
 
@@ -259,7 +259,7 @@ public class Participants extends AbstractVelocityServiceProvider
 		Student student = course.getStudent( 0 );
 		
 		if ( student == null ) {
-		    error = "Opiskelija tuntematon.";
+		    error = LocalisationBundle.getString("opiskelijaTunt") + ".";
 		}
 		else {
 		    error = result = "";
@@ -276,7 +276,7 @@ public class Participants extends AbstractVelocityServiceProvider
 			    if ( score != null && !student.setScore( part, offering, score ) ) {
 				error += "<li>"
 				    +part.getLabel()+" "+(offering.getId()+1)
-				    +" annettu virheellisesti: \""+score+"\".\n</li>";
+				    +" " + LocalisationBundle.getString("annettuV") + ": \""+score+"\".\n</li>";
 			    }
 			}
 		    }
