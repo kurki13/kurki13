@@ -1,4 +1,4 @@
-package kurki;
+package kurki.util;
 
 import java.io.*;
 import java.sql.*;

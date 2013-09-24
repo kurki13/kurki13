@@ -1,4 +1,4 @@
-package kurki;
+package kurki.model;
 
 import kurki.util.LocalisationBundle;
 import service.exception.NullIdException;

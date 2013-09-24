@@ -1,5 +1,10 @@
 package kurki.servicehandlers;
 
+import kurki.util.Configuration;
+import kurki.util.Log;
+import kurki.model.Student;
+import kurki.model.Course;
+import kurki.model.Offering;
 import kurki.*;
 
 import java.util.*;
@@ -138,7 +143,7 @@ public class Entry extends AbstractVelocityServiceProvider {
 		int newPType = Integer.parseInt( ptype );
 		course.selectPart( newPType );
 
-		if ( newPType >= kurki.Part.ARVOSANA ) {
+		if ( newPType >= kurki.model.Part.ARVOSANA ) {
 		    course.getSelectedPart().selectOffering( 0 );
 		}
 		
@@ -245,7 +250,7 @@ public class Entry extends AbstractVelocityServiceProvider {
 	    context.put( "students", course.getStudents() );
 	}
 	else {
-	    course.selectOffering( kurki.Part.UNDEF );
+	    course.selectOffering( kurki.model.Part.UNDEF );
 	}
 
 	String par = nullIfEmpty( req.getParameter("studentFilter") );

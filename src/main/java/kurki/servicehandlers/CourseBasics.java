@@ -1,5 +1,9 @@
 package kurki.servicehandlers;
 
+import kurki.util.Configuration;
+import kurki.util.Log;
+import kurki.model.Course;
+import kurki.model.Offering;
 import kurki.*;
 
 import java.io.*;
@@ -33,9 +37,9 @@ public class CourseBasics extends AbstractVelocityServiceProvider
 	// 	String  = req.getParameter("");
 
 	if ( doBasic != null ) {
-	    kurki.Part part = null;
+	    kurki.model.Part part = null;
 
-	    for ( int p=0; p < kurki.Part.ARVOSANA; p++ ) {
+	    for ( int p=0; p < kurki.model.Part.ARVOSANA; p++ ) {
 		int nbr;
 		int required;
 		int xtr;
@@ -103,7 +107,7 @@ public class CourseBasics extends AbstractVelocityServiceProvider
 	else if ( doScoreDef != null ) {
 	    Vector parts = course.getParts();
 	    for ( int p=0; p < parts.size(); p++ ) {
-		kurki.Part part = (kurki.Part)parts.get( p );
+		kurki.model.Part part = (kurki.model.Part)parts.get( p );
 		int pid = part.getType();
 		Offering[] offerings = part.getOfferings();
 

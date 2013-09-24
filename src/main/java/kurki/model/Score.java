@@ -1,4 +1,4 @@
-package kurki;
+package kurki.model;
 
 import kurki.exception.InvalidScoreException;
 import service.exception.NullIdException;

@@ -1,6 +1,9 @@
 package kurki.servicehandlers;
 
-import kurki.*;
+import kurki.util.Configuration;
+import kurki.util.Log;
+import kurki.model.Course;
+import kurki.model.CourseInfo;
 
 import java.io.*;
 import java.util.*;
@@ -13,6 +16,7 @@ import org.apache.velocity.app.*;
 import javax.mail.*; 
 import javax.mail.internet.*;
 import kurki.servlet.Index;
+import kurki.util.LocalisationBundle;
 
 public class Freeze extends AbstractVelocityServiceProvider {
 
@@ -25,7 +29,7 @@ public class Freeze extends AbstractVelocityServiceProvider {
 				 Context context ) throws Exception {
         
         //lokalisaatiobundlen lisääminen kontekstiin
-        context.put("bundle", ResourceBundle.getBundle("localisationBundle", kurki.Session.locale));
+        context.put("bundle", LocalisationBundle.getBundle());
 
 	Log log         = (Log)Configuration.getProperty( "log" );
 	String template = "freeze.vm";
@@ -46,7 +50,7 @@ public class Freeze extends AbstractVelocityServiceProvider {
 		}
 	    }
 	    else if ( course.getExamDate() == null ) {
-		error += "<li>" + kurki.util.LocalisationBundle.getString("annaSuorPvm") + "</li>";
+		error += "<li>" + LocalisationBundle.getString("annaSuorPvm") + "</li>";
 	    }
 
 	    if ( course.getExamDate() != null ) {
@@ -130,7 +134,7 @@ public class Freeze extends AbstractVelocityServiceProvider {
 		    message.setText(msg);
 		    Transport.send(message);
 
-		    result = "<center><h3>" + kurki.util.LocalisationBundle.getString("jaadytysInfo") + "</h3></center>\n"
+		    result = "<center><h3>" + LocalisationBundle.getString("jaadytysInfo") + "</h3></center>\n"
 			+"<ul>\n";
 
 		    if (isFirstTime ) {
@@ -154,14 +158,14 @@ public class Freeze extends AbstractVelocityServiceProvider {
 		else {
 		    String errMsg = course.getMessage();
 		    if (errMsg == null) {
-			error = kurki.util.LocalisationBundle.getString("jaadytysEpaonnistui") + ". "
-			    +kurki.util.LocalisationBundle.getString("jaadytysEpaonnistuiInfo") + " "
+			error = LocalisationBundle.getString("jaadytysEpaonnistui") + ". "
+			    +LocalisationBundle.getString("jaadytysEpaonnistuiInfo") + " "
 			    +KURKIMAIL
                             +"</li>";
 		    }
 		    else {
-			error = kurki.util.LocalisationBundle.getString("jaadytysEpaonnistui") + " ("+errMsg+"). "
-			    +kurki.util.LocalisationBundle.getString("jaadytysEpaonnistuiInfo") + " "
+			error = LocalisationBundle.getString("jaadytysEpaonnistui") + " ("+errMsg+"). "
+			    +LocalisationBundle.getString("jaadytysEpaonnistuiInfo") + " "
 			    +KURKIMAIL
                             +"</li>";
 		    }
