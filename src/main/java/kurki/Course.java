@@ -182,58 +182,16 @@ public class Course implements Serializable, Option {
     protected boolean conventionMod = false;
     protected Vector conventions = new Vector();       {
     //<editor-fold defaultstate="collapsed" desc="Conventions">
- 
-        conventions.add(new Convention(1,
-                "Normaali",
-                "koe + laskarihyvitys+ harjoitustyöhyvitys "
-                + "(kaikki osat vaikuttavat)."));
-        conventions.add(new Convention(2,
-                "Parempi ht korvaa laskarit",
-                "koe + greatest(laskarihyvitys,harjoitustyöhyvitys) "
-                + "(laskarit voi korvata harjoitustöillä - "
-                + "parempi valitaan)."));
-        conventions.add(new Convention(3,
-                "Tehty ht korvaa laskarit",
-                "koe + if exists harjoitustyohyvitys then "
-                + "harjoitustyöhyvitys else laskarihyvitys "
-                + "(laskarit voi korvata harjoitustöillä, "
-                + "jos harjoitustöitä on tehty ne ajavat laskareiden "
-                + "yli)."));
-        conventions.add(new Convention(4,
-                "Parempi lisäkoe korvaa laskarit",
-                "koe(1..n-1) + greatest(laskarihyvitys, "
-                + "koe(n)) laskarit voi korvata ylimääräisellä "
-                + "koetehtävällä, joka kirjataan omaksi kokeekseen "
-                + "- parempi valitaan."));
-        conventions.add(new Convention(5,
-                "Tehty lisäkoe korvaa laskarit",
-                "koe(1..n-1) + if exists koe(n) then koe(n) "
-                + "else laskarihyvitys laskarit voi korvata "
-                + "ylimääräisellä koetehtävällä, joka kirjataan "
-                + "omaksi kokeekseen - ylimääräinen tehtävä "
-                + "ajaa laskareiden yli"));
-        conventions.add(new Convention(6,
-                "Parempi ht korvaa muut",
-                "greatest(koe+laskarihyvitys,harjoitustyöhyvitys) "
-                + "kokeen ja laskarit voi korvata harjoitustöillä."));
-        conventions.add(new Convention(7,
-                "Tehty ht korvaa muut",
-                "if exists harjoitustyohyvitys then "
-                + "harjoitustyohyvitys else koe+laskarihyvitys."));
-        conventions.add(new Convention(8,
-                "Ylösskaalattu",
-                "greatest(koe+laskarihyvitys+harjoitustyöhyvitys, "
-                + "koe*maksimipistemäärä/koemaksimi) "
-                + "parempi vaihtoehdoista koe+laskarit+ht ja pelkkä koe "
-                + "skaalattuna koe+laskarit+ht maksimipisteisiin."));
-        conventions.add(new Convention(9,
-                "Alaskaalattu",
-                "greatest(koe, alasskaalattu(koe)+laskarihyvitys+"
-                + "harjoitushyvitys) alasskaalattu(koe)= "
-                + "(sairauspoissaolojen vanha kaava)."));
-        
-        
-
+    //Convention names and descriptions no longer set by strings
+        conventions.add(new Convention(1));
+        conventions.add(new Convention(2));
+        conventions.add(new Convention(3));
+        conventions.add(new Convention(4));
+        conventions.add(new Convention(5));
+        conventions.add(new Convention(6));
+        conventions.add(new Convention(7));
+        conventions.add(new Convention(8));
+        conventions.add(new Convention(9));
     //</editor-fold>
     }
     protected int credits = 1;
