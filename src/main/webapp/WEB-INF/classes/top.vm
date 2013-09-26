@@ -14,7 +14,6 @@
       body {
         padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
       }
-
       
     </style>
     <link href="../bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
@@ -131,25 +130,6 @@ function disableAutosave() {
   </div>
 </nav>
 
-#* vanha yläpalkki -tka
-
-    <center>
-      <table class="frame" width="90%" align="center" border="0" cellspacing="0" cellpadding="5">
-      <tr>
-          <td align="left" width="10%" nowrap>
-            <a href="logout">Kirjaudu ulos</a>
-          </td>
-          <td colspan="2" align="center">
-            <h1>KURKI 2.0</h1>
-          </td>
-          <td align="right" width="10%" nowrap>
-            <a href="../Language?kieli=en">In English</a><br>
-            <a href="../Language?kieli=fi">Suomeksi</a>
-          </td>
-        </tr>
-
-*#
-
 <!--
 <tr><td colspan="4"><div class="warning"><center>
 $bundle.getString("kurkiPaivitVaroitus")
@@ -159,15 +139,12 @@ $bundle.getString("kurkiPaivitKesken")
 </center></div></td></tr>    
 -->
 	
-	<tr class="navi1">
-	  <td colspan="2">
+<div>
 	    <form name="navi" action="index" method="post">
-	      <table border="0" cellspacing="0" cellpadding="0" align="left" style="text-align:left;">
-		<tr>
-		  <td>
 ##
 ## Tähän kaikki kurssit, joilla käyttäjä ohjaajana
 ##
+
 #if ($courseInfos)
                     <label for="course" accesskey="C"></label>
 		    <select name="course" id="course" 
@@ -193,8 +170,6 @@ $bundle.getString("kurkiPaivitKesken")
 #else
                     <b>$bundle.getString("eiavoimia")</b>
 #end
-		  </td>
-		  <td>
 
 ##
 ## Tähän kaikki sallitut toiminnot
@@ -218,16 +193,10 @@ $bundle.getString("kurkiPaivitKesken")
     #end
     #set ($serviceNo = $serviceNo + 1) 
   #end
-		    </select>
-#else
-		    &nbsp;
+		    </select>	    
 #end
-		  </td>
-		</tr>
-	      </table>
 	    </form>
-	  </td>
-          <td colspan="2" nowrap>
+
   <form name="modifyWatch" action="index" onSubmit="return false" method="post">
     <input type="hidden" name="modCount" value="0">
   </form>
@@ -243,9 +212,7 @@ $bundle.getString("kurkiPaivitKesken")
     <b>$bundle.getString("automvaliTallen")</b>
     </label>
   </form>
-#else
-   &nbsp;
 #end
-	  </td>
-	</tr>
+    
+</div>
 
