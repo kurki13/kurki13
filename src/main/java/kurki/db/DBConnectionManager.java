@@ -1,7 +1,9 @@
-package kurki.util;
+package kurki.db;
 
 import java.io.*;
 import java.sql.*;
+import kurki.util.Configuration;
+import kurki.util.LocalisationBundle;
 import kurki.util.LocalisationBundle;
 
 public class DBConnectionManager 

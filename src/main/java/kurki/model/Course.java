@@ -7,7 +7,7 @@ import java.util.*;
 import java.sql.*;
 import java.io.Serializable;
 import kurki.Convention;
-import kurki.util.DBConnectionManager;
+import kurki.db.DBConnectionManager;
 import kurki.util.MultiValueCounter;
 import kurki.util.LocalisationBundle;
 import service.Option;
@@ -264,7 +264,6 @@ public class Course implements Serializable, Option {
             stm.executeUpdate();
             String rv = stm.getString(1);
 
-// 	    System.out.println(rv);
             if (!rv.equals("ok")) {
                 if (rv.indexOf("ORA-01400") >= 0 && rv.indexOf("RYHMA_NRO") >= 0) {
                     this.msg = LocalisationBundle.getString("ryhmaa") + group + LocalisationBundle.getString("eioleolem");
