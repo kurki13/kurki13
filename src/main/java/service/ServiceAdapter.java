@@ -9,11 +9,17 @@ public class ServiceAdapter
 
     protected int role = UNDEFINED_ROLE;
     AbstractVelocityServiceProvider handler;
-    @Override
-    public String getId() { return (String)this.id; }
     
     @Override
-    public int getLowestRole() { return this.role; }
+    public String getId() {
+        return (String)this.id;
+    }
+    
+    @Override
+    public int getLowestRole() {
+        return this.role;
+    }
+    
     @Override
     public boolean isValidServiceFor( int userInRole ) {
 	if ( userInRole != UNDEFINED_ROLE ) {
