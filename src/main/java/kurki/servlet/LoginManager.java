@@ -1,7 +1,7 @@
 package kurki.servlet;
 
 import kurki.util.Configuration;
-import kurki.util.DBConnectionManager;
+import kurki.db.DBConnectionManager;
 import kurki.model.Teacher;
 import kurki.*;
 
