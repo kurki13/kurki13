@@ -9,12 +9,14 @@ $bundle.getString("HY")
 $bundle.getString("HY")                                      $bundle.getString("tktlkurki")
 #end
 $bundle.getString("matlu")
+
 $bundle.getString("cslaitos")
 
 $bundle.getString("opintojakso"):    $selectedCourse.CCode, $selectedCourse.Label
 $bundle.getString("laajuus"):        $selectedCourse.NewCredits $bundle.getString("op") ( $selectedCourse.Credits $bundle.getString("ov") )
 $bundle.getString("suoritusaika"):   $selectedCourse.ExamDate
 $bundle.getString("hyvaksyja"):      $selectedCourse.DonName
+
 #end
 #set ($selectDesc = $selectedCourse.SelectDescription)
 #set ($parts = $selectedCourse.PartsOrdered)
@@ -121,7 +123,7 @@ $accepted
 #set ($participated = ${acceptcount} + ${failcount})
 
 
-$bundle.getString("tilastoja")
+  $bundle.getString("tilastoja")
   $bundle.getString("ilmonneita"): ${students.size()}
   $bundle.getString("osallistuneita"):   ${participated}
   $bundle.getString("kokeessa"):         ${participInExam}
@@ -151,7 +153,9 @@ $bundle.getString("arvosanajakauma")
 #end
 #end
 #set ($gradeDistr = "${tmp}${c.nl()}$gradeDistr")
-#end$gradeDistr#end
+#end
+$gradeDistr
+#end
 #if ($inc_feedback)
 
 

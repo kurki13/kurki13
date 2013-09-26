@@ -29,7 +29,7 @@ public class Freeze extends AbstractVelocityServiceProvider {
 				 Context context ) throws Exception {
         
         //lokalisaatiobundlen lisääminen kontekstiin
-        context.put("bundle", LocalisationBundle.getBundle());
+        context.put("bundle", ResourceBundle.getBundle("localisationBundle", kurki.Session.locale));
 
 	Log log         = (Log)Configuration.getProperty( "log" );
 	String template = "freeze.vm";
@@ -76,6 +76,9 @@ public class Freeze extends AbstractVelocityServiceProvider {
 		}
 
 		VelocityContext results = new VelocityContext();
+                
+                //lokalisaatiobundlen lisääminen results kontekstiin
+                results.put("bundle", ResourceBundle.getBundle("localisationBundle", kurki.Session.locale));
 
 		// Kaikki opiskelijat
 		course.newSearch();
@@ -84,6 +87,7 @@ public class Freeze extends AbstractVelocityServiceProvider {
 
 		// Listaan mukaan otettavat tiedot
 		results.put( "inc_ssn", "true" ); // Opiskelijanro (HL08/8/)
+                System.out.println("inc_ssn");
                 results.put( "inc_name", "true"); // Nimi
 // 		results.put( "inc_lhsum", "true" ); // Laskaripisteet
 // 		results.put( "inc_lhsumname", "LH-pisteet" ); //  Laskaripisteiden sarakeotsake
@@ -114,7 +118,7 @@ public class Freeze extends AbstractVelocityServiceProvider {
 			     +calendar.get(Calendar.YEAR) );
 
 		StringWriter w = new StringWriter();
-		Velocity.mergeTemplate("checklist99.vm", results, w );
+                Velocity.mergeTemplate("checklist99.vm", "utf-8", results, w);
 		msg = w.toString();
 
 		// Jäädytys onnistui, lähetetään sähköpostia...
