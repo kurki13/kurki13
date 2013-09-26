@@ -6,7 +6,7 @@ import service.exception.NullIdException;
 import java.util.*;
 import java.sql.*;
 import java.io.Serializable;
-import kurki.Convention;
+import kurki.GradingConvention;
 import kurki.db.DBConnectionManager;
 import kurki.util.MultiValueCounter;
 import kurki.util.LocalisationBundle;
@@ -35,7 +35,6 @@ public class Course implements Serializable, Option {
             + "    AND hetu = ?\n";
             //</editor-fold>
     public static final int MAX_GROUP = 99;
-    protected static final int DEFAULT_CONVENTION = 1;
     protected static final String LOAD_COURSE_SQL =
             "SELECT * FROM kurssi WHERE\n"
             + COURSE_WHERE_SQL;
@@ -181,22 +180,6 @@ public class Course implements Serializable, Option {
     protected Calendar examDate = null;
     protected boolean examDateMod = false;
     protected boolean[] isNull = {false, false, false};
-    protected int convention = DEFAULT_CONVENTION;
-    protected boolean conventionMod = false;
-    protected Vector conventions = new Vector();       {
-    //<editor-fold defaultstate="collapsed" desc="Conventions">
-    //Convention names and descriptions no longer set by strings
-        conventions.add(new Convention(1));
-        conventions.add(new Convention(2));
-        conventions.add(new Convention(3));
-        conventions.add(new Convention(4));
-        conventions.add(new Convention(5));
-        conventions.add(new Convention(6));
-        conventions.add(new Convention(7));
-        conventions.add(new Convention(8));
-        conventions.add(new Convention(9));
-    //</editor-fold>
-    }
     protected int credits = 1;
     protected int creditsMax = 1;         //new 05/08
     protected int newCredits = 1;         //new 05/08
@@ -219,6 +202,9 @@ public class Course implements Serializable, Option {
     protected String scale = "K"; // K = 1-5, E = hyväksytty/hylätty
     protected boolean scaleMod = false;
     protected String specialCondition = null;  // HL.lis 28.8.08
+    
+    protected int convention = GradingConvention.DEFAULT_CONVENTION;
+    protected boolean convention_modified;
     /**
      ** Tällä hetkellä käsittelyssä oleva osasuoritus.
      */
@@ -468,7 +454,7 @@ public class Course implements Serializable, Option {
                 }
                 set += "arvostellaanko = '" + this.scale + "'";
             }
-            if (this.conventionMod) {
+            if (this.convention_modified) {
                 if (set == null) {
                     set = "";
                 } else {
@@ -560,7 +546,7 @@ public class Course implements Serializable, Option {
             if (rv) {
                 this.examDateMod = false;
                 this.scaleMod = false;
-                this.conventionMod = false;
+                this.convention_modified = false;
             }
         } finally {
             if (pstmt != null) {
@@ -983,8 +969,8 @@ public class Course implements Serializable, Option {
         return this.convention;
     }
     
-    public synchronized Vector getGradingConventions() {
-        return this.conventions;        
+    public synchronized ArrayList<GradingConvention> getGradingConventions() {
+        return GradingConvention.getGradingConventions();        
     }
     
     public synchronized Offering getOffering() {
@@ -1589,7 +1575,7 @@ public class Course implements Serializable, Option {
                 
                 this.convention = rs.getInt("laskentakaava");
                 if (rs.wasNull()) {
-                    this.convention = DEFAULT_CONVENTION;
+                    this.convention = GradingConvention.DEFAULT_CONVENTION;
                 }
 
                 /*
@@ -2115,10 +2101,10 @@ public class Course implements Serializable, Option {
             this.msg = "Kurssi on jäädytetty.";
             return false;
         }
-        if (conv > 0 && conv <= this.conventions.size()) {
+        if (conv > 0 && conv <= GradingConvention.CONVENTIONS_COUNT) {
             if (conv != this.convention) {
                 this.convention = conv;
-                this.conventionMod = true;
+                this.convention_modified = true;
             }
             return true;
         } else {
