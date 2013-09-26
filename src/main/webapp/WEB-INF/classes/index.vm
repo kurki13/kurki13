@@ -12,7 +12,7 @@
 </div>
   #end
 <div class="instr">
-<br>$bundle.getString("huom")
+$bundle.getString("huom")
 <ul>
   <li>$bundle.getString("javascript")
   </li>

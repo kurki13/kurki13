@@ -634,10 +634,10 @@ public class Course implements Serializable, Option {
                         pstmt.setString(1, grade);
                         pstmt.setString(2, ruser);
                     }
-          /////// LOCALBUNDLE TEHTY          
+        
                     if (pstmt.executeUpdate() < 1) {
-                        this.msg = "Opiskelijan " + s.getLabel() + " pisteiden tallennus ei onnistunut.\n"
-                                + "Joko hänen ilmoittautumisensa on peruuntunut tai kurssi on jäädytetty.";
+                        this.msg = LocalisationBundle.getString("pisteetRistiriitaiset1") + s.getLabel() + LocalisationBundle.getString("pisteitaEiTallennettu") +" \n"
+                                + LocalisationBundle.getString("ilmoPeruuntunut");
                         rv = false;
                     } else {
                         this.modifyCount++;
@@ -696,19 +696,19 @@ public class Course implements Serializable, Option {
             } else {
                 switch (result) {
                     case -1:
-                        this.msg = "Ryhmää " + newGroup + " ei ole määritelty.";
+                        this.msg = LocalisationBundle.getString("ryhmaa") + newGroup + LocalisationBundle.getString("eiMaaritelty");
                         break;
                     case -2:
-                        this.msg = "Opiskelijan voimassaolevaa ilmoittautumista ei löytynyt.";
+                        this.msg = LocalisationBundle.getString("opiskelijanVoimassaolevaa");
                         break;
                     case -3:
-                        this.msg = "Ryhmän opiskelijalaskurin vähentäminen epäonnistui.";
+                        this.msg = LocalisationBundle.getString("opiskelijalaskuri");
                         break;
                     case -4:
-                        this.msg = "Ryhmän opiskelijalaskurin kasvattaminen epäonnistui.";
+                        this.msg = LocalisationBundle.getString("opiskelijalaskuriKasvattaminen");
                         break;
                     case -5:
-                        this.msg = "Ryhmän vaihdon vahvistaminen epäonnistui.";
+                        this.msg = LocalisationBundle.getString("ryhmanVaihtoEpaonnistui");
                         break;
                 }
                 rv = false;
@@ -728,7 +728,7 @@ public class Course implements Serializable, Option {
     public synchronized boolean defreezeStudent(Student student)
             throws SQLException, ClassNotFoundException {
         if (student == null) {
-            this.msg = "Tuntematon opiskelija.";
+            this.msg = LocalisationBundle.getString("tuntemOpisk");
             return false;
         }
         
@@ -752,7 +752,7 @@ public class Course implements Serializable, Option {
                 this.msg = null;
             } else {
                 rv = false;
-                this.msg = "Opiskelijan sulattaminen ei onnistunut.";
+                this.msg = LocalisationBundle.getString("opiskelijanSulattaminenEi");
             }
         } finally {
             if (pstmt != null) {
@@ -805,18 +805,16 @@ public class Course implements Serializable, Option {
 // 	    return false;
 // 	}
         if (this.examDate == null) {
-            this.msg = "Jäädytystä ei ole mahdollista suorittaa. "
-                    + "Anna suorituspäivä.";
+            this.msg = LocalisationBundle.getString("jaadytysEiMahdollista")
+                    + LocalisationBundle.getString("annaSuorPvm");
             return false;
         }
         if (this.getDonName().equals("TUNTEMATON")) {
-            this.msg = "Jäädytystä ei voi suorittaa koska vastuuhenkilöä "
-                    + "ei ole kunnolla määritelty. Ota yhteyttä opetushallintoon!";
+            this.msg = LocalisationBundle.getString("jaadytystaEiVoiSuorittaa");
             return false;
         } // Onko suorituspäivämäärä < jäädytyspäivämäärää (sysdate)
         else if (this.examDate.after(Calendar.getInstance())) {
-            this.msg = "Jäädytystä ei voi suorittaan ennen kurssin päättymistä. "
-                    + "Tarkista kurssin suorituspäivämäärä.";
+            this.msg = LocalisationBundle.getString("jaadytystaEiVoiSuorittaaPvm");
             return false;
         }
         
@@ -1111,6 +1109,8 @@ public class Course implements Serializable, Option {
         return this.scale;
     }
     
+    
+    //Rikkooko näiden kääntäminen jotain? -topi
     public synchronized String getSelectDescription() {
         String desc = null;
         String[][] names = {{"ryhmä", "ryhmät"}, {"sukunimi", "sukunimet"}, {"opiskelijanumero", "opiskelijanumerot"}};
@@ -1806,7 +1806,7 @@ public class Course implements Serializable, Option {
 // 	    return false;
 // 	}
         if (ruser == null) {
-            this.msg = "Arvostelijaa ei tunnistettu.";
+            this.msg = LocalisationBundle.getString("arvostelijaaEiTunnistettu");
             return false;
         }
         
@@ -1835,7 +1835,7 @@ public class Course implements Serializable, Option {
                 this.msg = null;
             } else {
                 rv = false;
-                this.msg = "Arvostelu ei onnistunut (" + result + ").";
+                this.msg = LocalisationBundle.getString("arvosteluEiOnnistunut") + "(" + result + ").";
             }
         } finally {
             if (stm != null) {
@@ -1932,11 +1932,11 @@ public class Course implements Serializable, Option {
     public synchronized boolean removeStudent(Student student)
             throws SQLException, ClassNotFoundException {
         if (student == null) {
-            this.msg = "Tuntematon opiskelija.";
+            this.msg = LocalisationBundle.getString("tuntemOpisk");
             return false;
         }
         if (isFrozen() && student.isFrozen()) {
-            this.msg = "Kertaalleen jäädytettyä opiskelijaa ei voi poistaa kurssilta.";
+            this.msg = LocalisationBundle.getString("kertaalleenJaadytetty");
             return false;
         }
         
@@ -1966,13 +1966,13 @@ public class Course implements Serializable, Option {
                 rv = false;
                 switch (result) {
                     case 1:
-                        this.msg = "Poistaminen ei onnistunut.";
+                        this.msg = LocalisationBundle.getString("poistaminenEiOnnistunut");
                         break;
                     case 2:
-                        this.msg = "Ryhmän opiskelijalaskurin päivitys epäonnistui.";
+                        this.msg = LocalisationBundle.getString("opiskelijalaskuriEpaonnistui");
                         break;
                     case 3:
-                        this.msg = "Poistamisen vahvistaminen epäonnistui.";
+                        this.msg = LocalisationBundle.getString("poistamisenVahvistaminen");
                         break;
                 }
             }
@@ -2020,13 +2020,13 @@ public class Course implements Serializable, Option {
                 rv = false;
                 switch (result) {
                     case 1:
-                        this.msg = "Palautus ei onnistunut.";
+                        this.msg = LocalisationBundle.getString("palautusEiOnnistunut");
                         break;
                     case 2:
-                        this.msg = "Ryhmän opiskelijalaskurin päivitys epäonnistui.";
+                        this.msg = LocalisationBundle.getString("opiskelijalaskuriEpaonnistui");
                         break;
                     case 3:
-                        this.msg = "Palauttamisen vahvistaminen epäonnistui.";
+                        this.msg = LocalisationBundle.getString("palauttamisenVahvistaminen");
                         break;
                 }
             }
@@ -2067,13 +2067,13 @@ public class Course implements Serializable, Option {
     
     public synchronized boolean setExamDate(String edate) {
         if (isFrozen()) {
-            this.msg = "Kurssi on jäädytetty.";
+            this.msg = LocalisationBundle.getString("kurssiJaadytetty");
             return false;
         }
         Calendar c = parseDate(edate);
         if (c == null) {
-            this.msg = "Suoritupäivämäärä annettu virheellisesti: '"
-                    + edate + "'. (pp.kk.vvvv)";
+            this.msg = LocalisationBundle.getString("suorituspvmVirhe")
+                    + edate + LocalisationBundle.getString("pvmMuoto");
             return false;
         } else {
             Calendar sysdate = new GregorianCalendar();
@@ -2092,13 +2092,13 @@ public class Course implements Serializable, Option {
             lowLimit.add(Calendar.MONTH, -6);
             
             if (c.before(lowLimit) || c.after(hiLimit)) {
-                this.msg = "Suorituspäivämäärän tulee olla välillä "
+                this.msg = LocalisationBundle.getString("suorituspvmValilla")
                         + lowLimit.get(Calendar.DAY_OF_MONTH) + "."
                         + (lowLimit.get(Calendar.MONTH) + 1) + "."
                         + lowLimit.get(Calendar.YEAR) + " - "
                         + hiLimit.get(Calendar.DAY_OF_MONTH) + "."
                         + (hiLimit.get(Calendar.MONTH) + 1) + "."
-                        + hiLimit.get(Calendar.YEAR) + " ja ennen kurssin jäädyttämistä.";
+                        + hiLimit.get(Calendar.YEAR) + LocalisationBundle.getString("ennenJaadyttamista");
                 return false;
             }
             
@@ -2113,7 +2113,7 @@ public class Course implements Serializable, Option {
     
     public synchronized boolean setGradingConvention(int conv) {
         if (isFrozen()) {
-            this.msg = "Kurssi on jäädytetty.";
+            this.msg = LocalisationBundle.getString("kurssiJaadytetty");
             return false;
         }
         if (conv > 0 && conv <= this.conventions.size()) {
@@ -2129,7 +2129,7 @@ public class Course implements Serializable, Option {
     
     public synchronized boolean setMinScore(int ms) {
         if (isFrozen()) {
-            this.msg = "Kurssi on jäädytetty.";
+            this.msg = LocalisationBundle.getString("kurssiJaadytetty");
             return false;
         }
         try {
@@ -2142,7 +2142,7 @@ public class Course implements Serializable, Option {
     
     public synchronized boolean setParts(Vector parts) {
         if (isFrozen()) {
-            this.msg = "Kurssi on jäädytetty.";
+            this.msg = LocalisationBundle.getString("kurssiJaadytetty");
             return false;
         }
         this.parts = parts;
@@ -2151,7 +2151,7 @@ public class Course implements Serializable, Option {
     
     public synchronized boolean setScale(String scale) {
         if (isFrozen()) {
-            this.msg = "Kurssi on jäädytetty.";
+            this.msg = LocalisationBundle.getString("kurssiJaadytetty");
             return false;
         }
         if (scale != null
