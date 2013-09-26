@@ -32,10 +32,17 @@ public class Session implements java.io.Serializable {
     public static final int DEFAULT_RS_MAX_SIZE = 50;
     private static boolean initialized = false;
     protected String ruser = null;
-    private static String superUsers = LOGIN_SEPARATOR;
     protected static ServiceManager serviceManager = null;
-
     private CourseQueryResult courses;
+    
+    /**
+     ** Käsittelyssä oleva kurssi.
+     */
+    protected Course selectedCourse = null;
+    /**
+     ** Valittu palvelu.
+     */
+    protected Service selectedService = null;
     
     static {
         initialize();
@@ -69,30 +76,6 @@ public class Session implements java.io.Serializable {
             System.exit(0);
         }
     }
-
-    /*
-     *  SUPER USERS
-     */
-    public static void setSuperUsers(String susers) {
-        if (susers != null) {
-            StringTokenizer st = new StringTokenizer(susers, ",");
-
-            while (st.hasMoreTokens()) {
-                String login = st.nextToken().trim();
-                if (login.length() > 0) {
-                    superUsers += login + LOGIN_SEPARATOR;
-                }
-            }
-        }
-    }
-    /**
-     ** Käsittelyssä oleva kurssi.
-     */
-    protected Course selectedCourse = null;
-    /**
-     ** Valittu palvelu.
-     */
-    protected Service selectedService = null;
 
     /**
      ** Estetään ilmentymien luonti ulkopuolisilta.
@@ -296,7 +279,6 @@ public class Session implements java.io.Serializable {
         if (cid == null) {
             throw new CourseNotDefinedException();
         }
-
         return (CourseInfo) courses.coursesMap.get(cid);
     }
 
@@ -328,7 +310,7 @@ public class Session implements java.io.Serializable {
      */
     protected void init()
             throws InitFailedException, SQLException, NullIdException, ClassNotFoundException {
-            if (superUsers.indexOf(LOGIN_SEPARATOR + this.ruser + LOGIN_SEPARATOR) >= 0) {
+            if (Configuration.getSuperUsers().contains(this.ruser)) {
                 courses = CoursesQuerier.super_infos();
             } else {
                 courses = CoursesQuerier.course_infos(this.ruser);
