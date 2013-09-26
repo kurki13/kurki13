@@ -112,8 +112,7 @@ public class Session implements java.io.Serializable {
     }
 
     /**
-     ** Toteutettujen toimintojen perustietojen määrittely:
-     ** <toiminnon id>, <kuka saa suorittaa>, <kuvaus>.
+     ** Alustaa istunnon määrittelemällä ohjelmistoon toteutetut palvelut ja niiden käsittelijät.
      */
     public static void initialize() {
         if (initialized) {
@@ -123,16 +122,13 @@ public class Session implements java.io.Serializable {
         initialized = true;
         try {
             ServiceManager.setNoOfRoles(Rooli.NO_OF_ROLES);
-            
-            //The first argument of the defines much match keys in the localisation bundle
-            ServiceManager.defineService("1entry", Rooli.TUTOR, "Suoritteiden kirjaus", new Entry());
-            ServiceManager.defineService("2participants", Rooli.TUTOR, "Osallistujatietojen muutokset", new Participants());
-            ServiceManager.defineService("3coursebasics", Rooli.TUTOR, "Kurssiin perustietojen muutokset", new CourseBasics());
-            ServiceManager.defineService("4checklist", Rooli.TUTOR, "Listat", new Checklist());
-            ServiceManager.defineService("5grades", Rooli.TUTOR, "Arvostelu", new Grades());
-            ServiceManager.defineService("6resultlist", Rooli.TUTOR, "Tuloslistat", new ResultList());
-            ServiceManager.defineService("7freezing", Rooli.TUTOR, "Kurssin jäädytys", new Freeze());
-
+            ServiceManager.defineService("1entry", Rooli.TUTOR, LocalisationBundle.getString("1entry"), new Entry());
+            ServiceManager.defineService("2participants", Rooli.TUTOR, LocalisationBundle.getString("2participants"), new Participants());
+            ServiceManager.defineService("3coursebasics", Rooli.TUTOR, LocalisationBundle.getString("3coursebasics"), new CourseBasics());
+            ServiceManager.defineService("4checklist", Rooli.TUTOR, LocalisationBundle.getString("4checklist"), new Checklist());
+            ServiceManager.defineService("5grades", Rooli.TUTOR, LocalisationBundle.getString("5grades"), new Grades());
+            ServiceManager.defineService("6resultlist", Rooli.TUTOR, LocalisationBundle.getString("6resultlist"), new ResultList());
+            ServiceManager.defineService("7freezing", Rooli.TUTOR, LocalisationBundle.getString("7freezing"), new Freeze());
             ServiceManager.lockServices();
         } catch (Exception e) {
             e.printStackTrace();

@@ -309,7 +309,7 @@ public class Participants extends AbstractVelocityServiceProvider
 
 // 		System.out.println(ssn +"-->"+group);
 		if ( !course.addOnCourse( ssn, group ) ) {
-		    error = "Opiskelijan lisäys kurssille ei onnistunut: "
+		    error = LocalisationBundle.getString("lisaysKEO") + ": "
 			+course.getMessage();
 		}
 		else {
@@ -321,7 +321,7 @@ public class Participants extends AbstractVelocityServiceProvider
 							    -1,
 							    Session.STUDENT_ON_COURSE,
 							    1 );
-		    result = "Opiskelija lisätty kurssille.";
+		    result = LocalisationBundle.getString("lisaysInfo") + ".";
 		    context.put( "students", students );
 
  		    ses.setAttribute( STUDENTS, students );
@@ -351,11 +351,11 @@ public class Participants extends AbstractVelocityServiceProvider
 			// 		System.out.println(ssn +"-->"+group);
 			if ( course.returnStudent( student ) ) {
 			    students.remove(sid);
-			    result = "<li>Opiskelija "+student.getLabel()+" palautettu kurssille.</li>\n"
+			    result = "<li>" + LocalisationBundle.getString("opiskelija") + " "+student.getLabel()+" " + LocalisationBundle.getString("palautettuK") + ".</li>\n"
 				+result;
 			}
 			else {
-			    error = "<li>Opiskelijan palauttaminen kurssille ei onnistunut: "
+			    error = "<li>" + LocalisationBundle.getString("palauttaminenKEO") + ": "
 				+course.getMessage()+"</li>\n"+error;
 			}
 		    }
@@ -379,8 +379,8 @@ public class Participants extends AbstractVelocityServiceProvider
 		Student student = course.getStudent( 0 );
 		
 		if ( !course.defreezeStudent( student ) ) {
-		    error = "<li>Opiskelijan <i>"+student.getLabel()+"</i>"
-			+" sulatus ei onnistunut: "+course.getMessage()+"</li>";
+		    error = "<li>" + LocalisationBundle.getString("oSulatusEO") + " <i>"+student.getLabel()+"</i>"
+			+" " + LocalisationBundle.getString("oSulatusEO2") + ": "+course.getMessage()+"</li>";
 		}
 		else {
 		    Object tmp = ses.getAttribute( STUDENTS );
@@ -389,15 +389,14 @@ public class Participants extends AbstractVelocityServiceProvider
 			Student studentCopy = (Student)students.get( sid );
 			studentCopy.defreeze();
 
-			result = "<li>Opiskelija <i>"+student.getLabel()+"</i> sulatettu. \n"
-			    +"<b>Huom!</b> Jotta tehdyt muutokset kirjautuisivat myös Oodiin,\n"
-			    +"täytyy kurssi jäädyttää uudelleen.</li>";
+			result = "<li>" + LocalisationBundle.getString("opiskelija") + " <i>"+student.getLabel()+"</i> " + LocalisationBundle.getString("sulatettu") + ". \n"
+			    +"<b>" + LocalisationBundle.getString("huom") + "</b> " + LocalisationBundle.getString("sulatusInfo") + ".</li>";
 		    }
 		}
 		if ( sid >= 0 )
 		    context.put( "sid", new Integer( sid ) );
 	    } catch ( NumberFormatException nfe ) {
-		error = "<li>Sulatus ei onnistunut: Tuntematon opiskelija.</li>";
+		error = "<li>" + LocalisationBundle.getString("sulatusEO") + ": " + LocalisationBundle.getString("tuntemOpisk") + "</li>";
 	    }
 	}
 	
