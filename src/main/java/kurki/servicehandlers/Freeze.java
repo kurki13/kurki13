@@ -86,8 +86,7 @@ public class Freeze extends AbstractVelocityServiceProvider {
 		results.put( "selectedCourse", session.getSelectedCourse() );
 
 		// Listaan mukaan otettavat tiedot
-		results.put( "inc_ssn", "true" ); // Opiskelijanro (HL08/8/)
-                System.out.println("inc_ssn");
+		results.put("inc_ssn", "true" ); // Opiskelijanro (HL08/8/)
                 results.put( "inc_name", "true"); // Nimi
 // 		results.put( "inc_lhsum", "true" ); // Laskaripisteet
 // 		results.put( "inc_lhsumname", "LH-pisteet" ); //  Laskaripisteiden sarakeotsake
