@@ -224,7 +224,7 @@
                     <input type="checkbox" name="inc_accepted" checked>
                   </td>
                   <td nowrap>
-                    $bundle.getString("hyv")
+                    $bundle.getString("hyvaksytyt")
                   </td>
                   <td>
                     &nbsp;
@@ -235,7 +235,7 @@
                     <input type="checkbox" name="inc_failed" checked>
                   </td>
                   <td nowrap>
-                    $bundle.getString("hyl")
+                    $bundle.getString("isohylatyt")
                   </td>
                   <td>
                     &nbsp;

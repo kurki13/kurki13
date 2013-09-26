@@ -1,6 +1,6 @@
 package kurki;
 
-import kurki.util.DBConnectionManager;
+import kurki.db.DBConnectionManager;
 import kurki.model.Student;
 import kurki.model.Course;
 import kurki.model.CourseInfo;
@@ -15,7 +15,10 @@ import java.util.*;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import kurki.db.CoursesQuerier;
+import kurki.db.CoursesQuerier.CourseQueryResult;
 import kurki.servicehandlers.*;
+import kurki.util.Configuration;
 import kurki.util.LocalisationBundle;
 import service.exception.ServicesNotLockedException;
 
@@ -26,87 +29,21 @@ public class Session implements java.io.Serializable {
     public static final int STUDENT_NOT_ON_COURSE = 1;
     public static final int STUDENT_REMOVED = 2;
     public static final String LOGIN_SEPARATOR = "*";
-    /**
-     ** Kuinka pitkään kurssin tietoihin saa tehdä muutoksia.
-     */
-    public static final int MONTHS_OPEN = 12;
-    public static final int SUPER_OPEN = 48;
     public static final int DEFAULT_RS_MAX_SIZE = 50;
     private static boolean initialized = false;
     protected String ruser = null;
-    private static String superUsers = LOGIN_SEPARATOR;
     protected static ServiceManager serviceManager = null;
-    protected static final String COURSE_INFOS = //<editor-fold defaultstate="collapsed" desc="courseInfos">
-
-            // LUENTO- (JA LABORATORIOKURSSIT)
-            "SELECT DISTINCT k.kurssikoodi, k.lukuvuosi, k.lukukausi, k.tyyppi, k.tila,\n"
-            + "    k.kurssi_nro, k.nimi AS nimi, k.alkamis_pvm AS alkamis_pvm, k.paattymis_pvm,\n"
-            + "    decode(k.tila, 'J', 'X', 'A') AS orderBy\n"
-            + "  FROM kurssi k, opetus o, opetustehtavan_hoito oh, henkilo h\n"
-            + "  WHERE k.paattymis_pvm > to_date('31.12.2001','DD.MM.YYYY')\n"
-            + "    AND ADD_MONTHS( k.paattymis_pvm, " + MONTHS_OPEN + " ) >= SYSDATE\n"
-            //	+"    AND k.alkamis_pvm <= SYSDATE+30\n"
-            + "    AND k.tila not in ('S', 'O')\n"
-            // 	+"    AND k.tila not in ('S', 'O', 'J')\n" // ei jäädytettyjä kursseja
-            //	+"    AND k.tyyppi in ('K', 'S')\n" // vain luentokurssit ja seminaarit
-            + "    AND k.tyyppi in ('K', 'S', 'A')\n" // luento- ja laboratoriokurssit sekä seminaarit
-            + "    AND o.kurssikoodi = k.kurssikoodi AND oh.kurssikoodi = k.kurssikoodi\n"
-            + "    AND o.lukukausi = k.lukukausi AND oh.lukukausi = k.lukukausi\n"
-            + "    AND o.lukuvuosi = k.lukuvuosi AND oh.lukuvuosi = k.lukuvuosi\n"
-            + "    AND o.tyyppi = k.tyyppi AND oh.tyyppi = k.tyyppi\n"
-            + "    AND o.kurssi_nro = k.kurssi_nro AND oh.kurssi_nro = k.kurssi_nro\n"
-            + "    AND oh.htunnus = h.htunnus\n"
-            + "    AND h.ktunnus = ?\n"
-            // KOKEET
-            + "UNION\n"
-            + "(SELECT DISTINCT ku.kurssikoodi, ku.lukuvuosi, ku.lukukausi, ku.tyyppi, ku.tila,\n"
-            + "    ku.kurssi_nro, ku.nimi || ', koe ' || TO_CHAR(ku.paattymis_pvm, 'DD.MM.YY'),\n"
-            + "    ku.alkamis_pvm, ku.paattymis_pvm, decode(ku.tila, 'J', 'X', 'A') AS orderBy\n"
-            + "  FROM kurssi ku, koe ko, henkilo h\n"
-            + "  WHERE ku.paattymis_pvm > to_date('31.12.2001','DD.MM.YYYY')\n"
-            + "    AND ADD_MONTHS( ku.paattymis_pvm, " + MONTHS_OPEN + " ) >= SYSDATE\n"
-            //	+"    AND ku.paattymis_pvm <= SYSDATE+30\n"
-            + "    AND ku.tyyppi = 'L'\n" // vain kokeet
-            + "    AND ku.tila not in ('S', 'O')\n"
-            // 	+"    AND ku.tila not in ('S', 'O', 'J')\n" // ei jäädytettyjä kursseja
-            + "    AND ko.kurssikoodi = ku.kurssikoodi\n"
-            + "    AND ko.lukukausi = ku.lukukausi\n"
-            + "    AND ko.lukuvuosi = ku.lukuvuosi\n"
-            + "    AND ko.tyyppi = ku.tyyppi\n"
-            + "    AND ko.kurssi_nro = ku.kurssi_nro\n"
-            + "    AND h.htunnus = ko.htunnus\n"
-            + "    AND h.ktunnus = ?)\n"
-            + "ORDER BY orderBy ASC, nimi ASC, alkamis_pvm ASC";
-    //</editor-fold>
-    protected static final String SUPER_INFOS = //<editor-fold defaultstate="collapsed" desc="superInfos">
-
-            "SELECT DISTINCT k.kurssikoodi, k.lukuvuosi, k.lukukausi, k.tyyppi, k.tila,\n"
-            + "    k.kurssi_nro, k.nimi AS nimi, k.alkamis_pvm AS alkamis_pvm, k.paattymis_pvm,\n"
-            + "    decode(k.tila, 'J', 'X', 'A') AS orderBy\n"
-            + "  FROM kurssi k\n"
-            + "  WHERE k.paattymis_pvm > to_date('31.12.2001','DD.MM.YYYY')\n"
-            + "    AND ADD_MONTHS( k.paattymis_pvm, " + SUPER_OPEN + " ) >= SYSDATE\n"
-            //	+"    AND k.alkamis_pvm <= SYSDATE+30\n"
-            //      +"    AND k.tyyppi in ('K', 'S')\n" // vain luentokurssit ja seminaarit
-            + "    AND k.tyyppi in ('K', 'S', 'A')\n" // luento- ja laboratoriokurssit sekä seminaarit
-            + "    AND k.tila not in ('S', 'O')\n"
-            // 	+"    AND k.tila not in ('S', 'O', 'J')\n" // ei jäädytettyjä kursseja
-
-            // KOKEET
-            + "UNION\n"
-            + "(SELECT DISTINCT ku.kurssikoodi, ku.lukuvuosi, ku.lukukausi, ku.tyyppi, ku.tila,\n"
-            + "    ku.kurssi_nro, ku.nimi || ', koe ' || TO_CHAR(ku.paattymis_pvm, ' DD.MM.YY'),\n"
-            + "    ku.alkamis_pvm, ku.paattymis_pvm, decode(ku.tila, 'J', 'X', 'A') AS orderBy\n"
-            + "  FROM kurssi ku\n"
-            + "  WHERE ku.paattymis_pvm > to_date('31.12.2001','DD.MM.YYYY')\n"
-            + "    AND ADD_MONTHS( ku.paattymis_pvm, " + SUPER_OPEN + " ) >= SYSDATE\n"
-            //	+"    AND ku.paattymis_pvm <= SYSDATE+30\n"
-            + "    AND ku.tila not in ('S', 'O')\n"
-            // 	+"    AND ku.tila not in ('S', 'O', 'J')\n" // ei jäädytettyjä kursseja
-            + "    AND ku.tyyppi = 'L')\n" // vain kokeet
-            + "ORDER BY orderBy ASC, nimi ASC, alkamis_pvm ASC";
-    //</editor-fold>
-
+    private CourseQueryResult courses;
+    
+    /**
+     ** Käsittelyssä oleva kurssi.
+     */
+    protected Course selectedCourse = null;
+    /**
+     ** Valittu palvelu.
+     */
+    protected Service selectedService = null;
+    
     static {
         initialize();
     }
@@ -135,35 +72,6 @@ public class Session implements java.io.Serializable {
             System.exit(0);
         }
     }
-
-    /*
-     *  SUPER USERS
-     */
-    public static void setSuperUsers(String susers) {
-        if (susers != null) {
-            StringTokenizer st = new StringTokenizer(susers, ",");
-
-            while (st.hasMoreTokens()) {
-                String login = st.nextToken().trim();
-                if (login.length() > 0) {
-                    superUsers += login + LOGIN_SEPARATOR;
-                }
-            }
-        }
-    }
-    /**
-     ** Käsittelyssä oleva kurssi.
-     */
-    protected Course selectedCourse = null;
-    /**
-     ** Kurssit (CourseInfo), joita käyttäjä on oikeutettu päivittämään.
-     */
-    protected Hashtable courses = new Hashtable();
-    protected Vector coursesList = new Vector();
-    /**
-     ** Valittu palvelu.
-     */
-    protected Service selectedService = null;
 
     /**
      ** Estetään ilmentymien luonti ulkopuolisilta.
@@ -357,7 +265,7 @@ public class Session implements java.io.Serializable {
      ** Kaikkien niiden kurssien perustiedot, joilla käyttäjä ohjaajana.
      */
     public CourseInfo[] getCourseInfos() {
-        return (CourseInfo[]) this.coursesList.toArray(new CourseInfo[this.coursesList.size()]);
+        return courses.coursesList;
     }
 
     /**
@@ -367,8 +275,7 @@ public class Session implements java.io.Serializable {
         if (cid == null) {
             throw new CourseNotDefinedException();
         }
-
-        return (CourseInfo) courses.get(cid);
+        return (CourseInfo) courses.coursesMap.get(cid);
     }
 
     public static Locale getLanguage() {
@@ -399,53 +306,11 @@ public class Session implements java.io.Serializable {
      */
     protected void init()
             throws InitFailedException, SQLException, NullIdException, ClassNotFoundException {
-        CourseInfo cinfo;
-
-        Connection databaseConnection = DBConnectionManager.createConnection();
-        PreparedStatement preparedStatement = null;
-        ResultSet resultSet = null;
-
-        try {
-            if (superUsers.indexOf(LOGIN_SEPARATOR + this.ruser + LOGIN_SEPARATOR) >= 0) {
-                preparedStatement = databaseConnection.prepareStatement(SUPER_INFOS);
+            if (Configuration.getSuperUsers().contains(this.ruser)) {
+                courses = CoursesQuerier.super_infos();
             } else {
-                preparedStatement = databaseConnection.prepareStatement(COURSE_INFOS);
-                preparedStatement.setString(1, this.ruser);
-                preparedStatement.setString(2, this.ruser);
+                courses = CoursesQuerier.course_infos(this.ruser);
             }
-            resultSet = preparedStatement.executeQuery();
-
-            while (resultSet.next()) {
-                int lukuvuosi = resultSet.getInt("lukuvuosi");
-                String lukukausi = resultSet.getString("lukukausi");
-                String tila = resultSet.getString("tila");
-                String nameaux = " [" + lukukausi + ("" + lukuvuosi).substring(2, 4) + "]";
-
-                cinfo = new CourseInfo(resultSet.getString("kurssikoodi"),
-                        lukuvuosi,
-                        lukukausi,
-                        resultSet.getString("tyyppi"),
-                        resultSet.getInt("kurssi_nro"),
-                        resultSet.getString("nimi") + nameaux,
-                        Rooli.SUPER); // kurssin perustiedot
-                if (tila != null && tila.equals("J")) {
-                    cinfo.freeze();
-                }
-                this.courses.put(cinfo.getId(), cinfo);
-                this.coursesList.add(cinfo);
-            }
-        } finally {
-            try {
-                if (resultSet != null) {
-                    resultSet.close();
-                }
-                if (preparedStatement != null) {
-                    preparedStatement.close();
-                }
-            } catch (Exception e) {
-            }
-            DBConnectionManager.closeConnection(databaseConnection);
-        }
     }
 
     /**
@@ -477,7 +342,7 @@ public class Session implements java.io.Serializable {
     public boolean setSelectedCourse(CourseInfo cinfo)
             throws SQLException, NullIdException, ClassNotFoundException, NullPointerException {
         try {
-            this.selectedCourse = new Course((CourseInfo) courses.get(cinfo.getId()));
+            this.selectedCourse = new Course((CourseInfo) courses.coursesMap.get(cinfo.getId()));
         } catch (NullPointerException npe) {
             npe.printStackTrace();
             this.selectedCourse = null;

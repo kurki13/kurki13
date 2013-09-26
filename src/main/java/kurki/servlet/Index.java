@@ -51,9 +51,6 @@ public class Index extends VelocityServlet implements Log, Serializable {
         Configuration.setPropertiesFile(new File(ctx.getRealPath(ctx.getInitParameter("configurationFile"))));
         //Lisätään tieto lokista konfiguraatioon.
         Configuration.setProperty("log", this);
-        if (Configuration.propertySet("superUsers")) {
-            Session.setSuperUsers((String) Configuration.getProperty("superUsers"));
-        }
     }
 
     @Override
