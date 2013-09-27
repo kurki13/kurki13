@@ -8,6 +8,7 @@ import java.sql.*;
 import java.io.Serializable;
 import kurki.GradingConvention;
 import kurki.db.DBConnectionManager;
+import kurki.model.Osasuoritus.OsasuoritusTyyppi;
 import kurki.util.MultiValueCounter;
 import kurki.util.LocalisationBundle;
 import service.Option;
@@ -208,7 +209,7 @@ public class Course implements Serializable, Option {
     /**
      ** Tällä hetkellä käsittelyssä oleva osasuoritus.
      */
-    protected Part selectedPart = null;
+    protected Osasuoritus selectedPart = null;
     protected Vector students = null;
 
     /**
@@ -297,7 +298,7 @@ public class Course implements Serializable, Option {
         try {
             
             for (int p = 0; p < this.parts.size(); p++) {
-                Part part = (Part) this.parts.get(p);
+                Osasuoritus part = (Osasuoritus) this.parts.get(p);
                 int ptype = part.getType();
                 Offering[] offerings = part.getOfferings();
 
@@ -305,11 +306,11 @@ public class Course implements Serializable, Option {
                 // niitä osia, mitkä on muuttunut.
                 LinkedList offeringUpdate = new LinkedList();
                 
-                if (part.partDefMod() && ptype < Part.ARVOSANA) {
+                if (part.partDefMod() && ptype < OsasuoritusTyyppi.ARVOSANA.ID) {
                     set += SEPARATOR + partSQLnames[ptype][0] + "=" + part.getNbrOfOfferings();
                     set += SEPARATOR + partSQLnames[ptype][1] + "=" + part.getRequiredOfferings();
                     
-                    if (ptype != Part.KOE) {
+                    if (ptype != OsasuoritusTyyppi.KOE.ID) {
                         set += SEPARATOR + partSQLnames[ptype][2] + "=" + part.getXtrScore();
                     }
 
@@ -333,7 +334,7 @@ public class Course implements Serializable, Option {
                 // Tämän voisi hoitaa tehokkaamminkin --> keräämällä listaa 
                 // muutoksista suoraan silloin kun muutokset tehdään
                 for (int o = 0; o < offerings.length; o++) {
-                    if (offerings[o].scoreDefMod() && ptype < Part.ARVOSANA) {
+                    if (offerings[o].scoreDefMod() && ptype < OsasuoritusTyyppi.ARVOSANA.ID) {
                         offeringUpdate.add(offerings[o]);
                     }
                 }
@@ -464,7 +465,7 @@ public class Course implements Serializable, Option {
             }
             
             for (int p = 0; p < this.parts.size() - 2; p++) {
-                Part part = (Part) this.parts.get(p);
+                Osasuoritus part = (Osasuoritus) this.parts.get(p);
                 int ptype = part.getType();
                 
                 if (part.partDefMod()) {
@@ -507,8 +508,8 @@ public class Course implements Serializable, Option {
                 }
 
                 // Lisäpiste- ja arvosanarajat
-                if ((ptype == Part.ARVOSANA || ptype == Part.LASKARI
-                        || ptype == Part.HARJOITUSTYO) && part.scoreBoundariesMod()) {
+                if ((ptype == OsasuoritusTyyppi.ARVOSANA.ID || ptype == OsasuoritusTyyppi.LASKARI.ID
+                        || ptype == OsasuoritusTyyppi.HARJOITUSTYO.ID) && part.scoreBoundariesMod()) {
                     String strTable = getStrTable(part.getScoreBoundaries(), "   ");
                     
                     if (strTable != null) {
@@ -600,7 +601,7 @@ public class Course implements Serializable, Option {
                     
                     pstmt.setString(9, s.getSSNID());
                     
-                    if (ptype < Part.ARVOSANA) {
+                    if (ptype < OsasuoritusTyyppi.ARVOSANA.ID) {
                         pstmt.setInt(1, oid);
                         pstmt.setString(2, getStrTableCell(score.getScore()));
                         pstmt.setInt(3, oid);
@@ -610,7 +611,7 @@ public class Course implements Serializable, Option {
                             grade = "";
                             pstmt.setNull(3, java.sql.Types.VARCHAR);
                         } else {
-                            if (ptype == Part.ARVOSANA) {
+                            if (ptype == OsasuoritusTyyppi.ARVOSANA.ID) {
                                 pstmt.setString(3, "MANUAL");
                             } else {
                                 pstmt.setString(3, " M:" + ptype);
@@ -1019,7 +1020,7 @@ public class Course implements Serializable, Option {
     
     public synchronized int getMinScore() {
         try {
-            Part grade = (Part) this.getPart(Part.ARVOSANA, false);
+            Osasuoritus grade = (Osasuoritus) this.getPart(OsasuoritusTyyppi.ARVOSANA.ID, false);
             return grade.getFirstXtrScore();
         } catch (NullIdException nid) {
             return 1;
@@ -1028,7 +1029,7 @@ public class Course implements Serializable, Option {
     
     public synchronized Vector getGradeBoundaries() {
         try {
-            Part grade = (Part) this.getPart(Part.ARVOSANA, false);
+            Osasuoritus grade = (Osasuoritus) this.getPart(OsasuoritusTyyppi.ARVOSANA.ID, false);
             return grade.getScoreBoundaries();
         } catch (NullIdException nid) {
             return null;
@@ -1037,7 +1038,7 @@ public class Course implements Serializable, Option {
     
     public synchronized double getGradeStep() {
         try {
-            Part grade = (Part) this.getPart(Part.ARVOSANA, false);
+            Osasuoritus grade = (Osasuoritus) this.getPart(OsasuoritusTyyppi.ARVOSANA.ID, false);
             return grade.getXtrStep();
         } catch (NullIdException nid) {
             return 1;
@@ -1048,15 +1049,15 @@ public class Course implements Serializable, Option {
         return this.modifyCount;
     }
     
-    public synchronized Part getPart(int type, boolean newIfReq)
+    public synchronized Osasuoritus getPart(int type, boolean newIfReq)
             throws NullIdException {
-        if (type < 0 || type >= Part.NO_OF_TYPES) {
+        if (type < 0 || type >= OsasuoritusTyyppi.TYYPPEJA_YHTEENSA) {
             return null;
         }
         
         int i = 0;
         for (; i < this.parts.size(); i++) {
-            Part part = (Part) this.parts.get(i);
+            Osasuoritus part = (Osasuoritus) this.parts.get(i);
             int pid = part.getType();
             
             if (type == pid) {
@@ -1067,7 +1068,7 @@ public class Course implements Serializable, Option {
         }
         
         if (newIfReq) {
-            Part part = new Part(type, 0);
+            Osasuoritus part = new Osasuoritus(type, 0);
             this.parts.add(i, part);
             return part;
         } else {
@@ -1081,10 +1082,10 @@ public class Course implements Serializable, Option {
     
     public synchronized Vector getPartsOrdered() {
         Vector rv = new Vector();
-        rv.setSize(Part.NO_OF_TYPES);
+        rv.setSize(OsasuoritusTyyppi.TYYPPEJA_YHTEENSA);
         
         for (int i = 0; i < this.parts.size(); i++) {
-            Part p = (Part) this.parts.get(i);            
+            Osasuoritus p = (Osasuoritus) this.parts.get(i);            
             rv.set(p.getId(), p);
         }
         return rv;
@@ -1175,10 +1176,10 @@ public class Course implements Serializable, Option {
         return desc;
     }
     
-    public synchronized Part getSelectedPart() {
+    public synchronized Osasuoritus getSelectedPart() {
         
         if (this.selectedPart == null && this.parts.size() > 0) {
-            this.selectedPart = (Part) this.parts.get(0);
+            this.selectedPart = (Osasuoritus) this.parts.get(0);
         }
         
         return this.selectedPart;
@@ -1429,8 +1430,8 @@ public class Course implements Serializable, Option {
                     s.setGroupID(rs.getInt("ryhma_nro"));
                     s.setSNO(rs.getString("personid"));
                     s.setXtrTotal(rs.getInt("yhteispisteet"));
-                    s.setXtrScore(Part.LASKARI, rs.getInt("laskarihyvitys"));
-                    s.setXtrScore(Part.HARJOITUSTYO, rs.getInt("harjoitustyohyvitys"));
+                    s.setXtrScore(OsasuoritusTyyppi.LASKARI.ID, rs.getInt("laskarihyvitys"));
+                    s.setXtrScore(OsasuoritusTyyppi.HARJOITUSTYO.ID, rs.getInt("harjoitustyohyvitys"));
                     s.setState(rs.getString("jaassa"));
                     s.setAddress(rs.getString("osoite"));
                     s.setPrevLName(rs.getString("entinen_sukunimi"));
@@ -1443,7 +1444,7 @@ public class Course implements Serializable, Option {
                     String[] scoreFields = {"laskarisuoritukset", "harjoitustyopisteet", "koepisteet", "arvosana", "laajuus_op", "kielikoodi"};
                     
                     for (int i = 0; i < this.parts.size(); i++) {
-                        Part p = (Part) this.parts.get(i);
+                        Osasuoritus p = (Osasuoritus) this.parts.get(i);
                         int pid = p.getId();
                         
                         String scores = rs.getString(scoreFields[ pid]);
@@ -1542,7 +1543,7 @@ public class Course implements Serializable, Option {
             rs = pstmt.executeQuery();
             
             if (rs.next()) {
-                Part part = null;
+                Osasuoritus part = null;
                 this.parts = new Vector();
                 
                 String freeze = rs.getString("tila");
@@ -1616,7 +1617,7 @@ public class Course implements Serializable, Option {
                         }
                         offerings[ i].initMinScore(minScore);
                     }
-                    part = new Part(Part.LASKARI, offerings, reqo, xtr);
+                    part = new Osasuoritus(OsasuoritusTyyppi.LASKARI.ID, offerings, reqo, xtr);
                     part.setRequiredScore(reqs);
                     part.setFirstXtrScore(firstXtr);
                     part.setXtrStep(xtrStep);
@@ -1671,7 +1672,7 @@ public class Course implements Serializable, Option {
                         }
                         offerings[ i].initMinScore(minScore);
                     }
-                    part = new Part(Part.HARJOITUSTYO, offerings, reqo, xtr);
+                    part = new Osasuoritus(OsasuoritusTyyppi.HARJOITUSTYO.ID, offerings, reqo, xtr);
                     part.setRequiredScore(reqs);
                     part.setFirstXtrScore(firstXtr);
                     part.setXtrStep(xtrStep);
@@ -1721,7 +1722,7 @@ public class Course implements Serializable, Option {
                         }
                         offerings[ i].initMinScore(minScore);
                     }
-                    part = new Part(Part.KOE, offerings, reqo, 0);
+                    part = new Osasuoritus(OsasuoritusTyyppi.KOE.ID, offerings, reqo, 0);
                     part.setFirstXtrScore(1);
                     part.setRequiredScore(reqs);
                     part.partDefMod();
@@ -1738,8 +1739,8 @@ public class Course implements Serializable, Option {
                 firstXtr = rs.getInt("min_yhteispisteet");
                 xtrStep = rs.getDouble("arvostelun_askelkoko");
                 scoreBoundaries = rs.getString("arvosanarajat");
-                part = new Part(Part.ARVOSANA, 1);
-                part.setXtrScore(Part.grades.length);
+                part = new Osasuoritus(OsasuoritusTyyppi.ARVOSANA.ID, 1);
+                part.setXtrScore(Osasuoritus.grades.length);
                 part.setFirstXtrScore(firstXtr);
                 part.setXtrStep(xtrStep);
                 part.partDefMod();
@@ -1758,17 +1759,17 @@ public class Course implements Serializable, Option {
                 Offering[] points = new Offering[1];
                 points[0] = new Offering(0, this.newCreditsMax);
                 points[0].initMinScore(this.newCredits);
-                part = new Part(Part.OPINTOPISTEET, points);
+                part = new Osasuoritus(OsasuoritusTyyppi.OPINTOPISTEET.ID, points);
                 part.partDefMod();
                 this.parts.add(part);
-                part = new Part(Part.KIELIKOODI, 1);
+                part = new Osasuoritus(OsasuoritusTyyppi.KIELIKOODI.ID, 1);
                 part.partDefMod();
                 this.parts.add(part);
                 
             }
             
             if (this.selectedPart == null && this.parts.size() > 0) {
-                this.selectedPart = (Part) this.parts.get(0);
+                this.selectedPart = (Osasuoritus) this.parts.get(0);
             }
         } finally {
             try {
@@ -2032,17 +2033,17 @@ public class Course implements Serializable, Option {
     }
     
     public synchronized boolean selectPart(int type) {
-        if (type == Part.UNDEF) {
+        if (type == Osasuoritus.UNDEF) {
             this.selectedPart = null;
             return true;
         }
         
         try {
-            int p = parts.indexOf(new Part(type, 0));
+            int p = parts.indexOf(new Osasuoritus(type, 0));
             if (p < 0) {
                 return false;
             } else {
-                this.selectedPart = (Part) parts.get(p);
+                this.selectedPart = (Osasuoritus) parts.get(p);
                 return true;
             }
         } catch (NullIdException nie) {
@@ -2118,7 +2119,7 @@ public class Course implements Serializable, Option {
             return false;
         }
         try {
-            Part grade = (Part) this.getPart(Part.ARVOSANA, false);
+            Osasuoritus grade = (Osasuoritus) this.getPart(OsasuoritusTyyppi.ARVOSANA.ID, false);
             return grade.setFirstXtrScore(ms);
         } catch (NullIdException nid) {
             return false;

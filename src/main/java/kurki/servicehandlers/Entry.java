@@ -144,7 +144,7 @@ public class Entry extends AbstractVelocityServiceProvider {
 		int newPType = Integer.parseInt( ptype );
 		course.selectPart( newPType );
 
-		if ( newPType >= kurki.model.Part.ARVOSANA ) {
+		if ( newPType >= kurki.model.Osasuoritus.ARVOSANA ) {
 		    course.getSelectedPart().selectOffering( 0 );
 		}
 		
@@ -251,7 +251,7 @@ public class Entry extends AbstractVelocityServiceProvider {
 	    context.put( "students", course.getStudents() );
 	}
 	else {
-	    course.selectOffering( kurki.model.Part.UNDEF );
+	    course.selectOffering( kurki.model.Osasuoritus.UNDEF );
 	}
 
 	String par = nullIfEmpty( req.getParameter("studentFilter") );

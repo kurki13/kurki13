@@ -264,7 +264,7 @@ public class Participants extends AbstractVelocityServiceProvider
 		else {
 		    error = result = "";
 		    for ( int i=0; i < parts.size(); i++ ) {
-			kurki.model.Part part = (kurki.model.Part)parts.get( i );
+			kurki.model.Osasuoritus part = (kurki.model.Osasuoritus)parts.get( i );
 			Offering[] offerings = part.getOfferings();
 			
 			for ( int j=0; j < offerings.length; j++ ) {

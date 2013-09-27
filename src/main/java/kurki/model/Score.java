@@ -11,12 +11,12 @@ public class Score extends ComparableOptionAdapter
     public static final int SCORE_LENGTH = 2;
     public static final String UNDEF_SCORE = "??";
 
-    protected Part part = null;
+    protected Osasuoritus part = null;
     protected Offering offering = null;
     protected String score = null;
     protected boolean scoremod = false;
 
-    public Score( Part part, Offering offering, String score ) throws NullIdException {
+    public Score( Osasuoritus part, Offering offering, String score ) throws NullIdException {
 	if ( part == null || offering == null )
 	    throw new NullIdException();
 
@@ -29,7 +29,7 @@ public class Score extends ComparableOptionAdapter
 
     public Offering getOffering() { return this.offering; }
 
-    public Part getPart() { return this.part; }
+    public Osasuoritus getPart() { return this.part; }
 
     public boolean scoreModified() {
 	boolean rv = this.scoremod;

@@ -26,7 +26,7 @@ public class Student extends ComparableOptionAdapter
     protected String major = null;
     protected String phone = null;
     protected String prevlname = null;
-    protected Vector[] scores = new Vector[ Part.NO_OF_TYPES ];
+    protected Vector[] scores = new Vector[ Osasuoritus.NO_OF_TYPES ];
     protected int[] scoreTotal = { 0, 0, 0 }; // Yhteispisteet { lh, ht, koe }
     protected String state = null;
     protected String sno = null;    // 08/7 alkaen HETU - HL
@@ -139,8 +139,8 @@ public class Student extends ComparableOptionAdapter
     public String getGrade() {
 	String grade = null;
 
-	if ( this.scores[Part.ARVOSANA] != null )
-	    grade = ((Score)this.scores[Part.ARVOSANA].get(0)).getScore();
+	if ( this.scores[Osasuoritus.ARVOSANA] != null )
+	    grade = ((Score)this.scores[Osasuoritus.ARVOSANA].get(0)).getScore();
 
 	return grade;
     }
@@ -190,9 +190,9 @@ public class Student extends ComparableOptionAdapter
     public String getPhone() { return this.phone; }
     public String getPrevLName() { return this.prevlname; }
 
-    public String getScore( Part part ) {
+    public String getScore( Osasuoritus part ) {
 	if ( part == null ) { return null; }
-	if ( part.getType() == Part.ARVOSANA ) {
+	if ( part.getType() == Osasuoritus.ARVOSANA ) {
 	    return getScore( part, part.getOffering(0) );
 	}
 	else {
@@ -200,7 +200,7 @@ public class Student extends ComparableOptionAdapter
 	}
     }
 
-    public String getScore( Part part, Offering offering ) {
+    public String getScore( Osasuoritus part, Offering offering ) {
 	if ( part == null || offering == null ) return null;
 
 	int ptype = part.getType();
@@ -261,10 +261,10 @@ public class Student extends ComparableOptionAdapter
 	else return -1;
     }
 
-    public String getXtrScore( Part part ) {
+    public String getXtrScore( Osasuoritus part ) {
 	if ( part == null ) return null;
 	int pid = part.getType();
-	if ( pid == Part.ARVOSANA ) return null;
+	if ( pid == Osasuoritus.ARVOSANA ) return null;
 	return ""+xtrScore[ pid ];
     }
 
@@ -313,12 +313,12 @@ public class Student extends ComparableOptionAdapter
 	this.sno = sno;
     }
 
-    public boolean setScore( Part part, String score )
+    public boolean setScore( Osasuoritus part, String score )
 	throws NullParameterException {
 	return setScore( part, part.getSelectedOffering(), score );
     }
 
-    public boolean setScore( Part part, Offering offering, String score )
+    public boolean setScore( Osasuoritus part, Offering offering, String score )
 	throws NullParameterException {
 	
 	boolean invalidScore = false;

@@ -65,7 +65,7 @@ public class Grades extends AbstractVelocityServiceProvider
 	    } catch ( NumberFormatException nfe ) {}
 
 	    for ( int i=0; i < parts.size()-2; i++ ) {
-		kurki.model.Part part = (kurki.model.Part)parts.get( i );
+		kurki.model.Osasuoritus part = (kurki.model.Osasuoritus)parts.get( i );
 		int ptype = part.getType();
 		String val = null;
 		boolean valOK = true;
@@ -97,7 +97,7 @@ public class Grades extends AbstractVelocityServiceProvider
 		    valOK = true;
 		}
 		val = nullIfEmpty( req.getParameter( "xtr_"+ptype ) );
-		if ( val != null && ptype != kurki.model.Part.KOE ) {
+		if ( val != null && ptype != kurki.model.Osasuoritus.KOE ) {
 		    try {
 			if ( !part.setXtrScore( Integer.parseInt( val ) ) )
 			    valOK = false;
@@ -109,7 +109,7 @@ public class Grades extends AbstractVelocityServiceProvider
 		    valOK = true;
 		}
 		val = nullIfEmpty( req.getParameter( "xtr1st_"+ptype ) );
-		if ( val != null && ptype != kurki.model.Part.KOE ) {
+		if ( val != null && ptype != kurki.model.Osasuoritus.KOE ) {
 		    try {
 			if ( !part.setFirstXtrScore( Integer.parseInt( val ) ) )
 			    valOK = false;
@@ -122,7 +122,7 @@ public class Grades extends AbstractVelocityServiceProvider
 		    valOK = true;
 		}
 		val = nullIfEmpty( req.getParameter( "step_"+ptype ) );
-		if ( val != null && ptype != kurki.model.Part.KOE ) {
+		if ( val != null && ptype != kurki.model.Osasuoritus.KOE ) {
 		    try {
 			if ( !part.setXtrStep( Double.parseDouble( val ) ) )
 			    valOK = false;
@@ -156,7 +156,7 @@ public class Grades extends AbstractVelocityServiceProvider
 	    Vector parts = course.getParts();
 	    
 	    for ( int i=0; i < parts.size(); i++ ) {
-		kurki.model.Part part = (kurki.model.Part)parts.get( i );
+		kurki.model.Osasuoritus part = (kurki.model.Osasuoritus)parts.get( i );
 		int ptype = part.getType();
 		int xtrScore = part.getXtrScore();
 		boolean borderOK = true;

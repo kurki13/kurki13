@@ -7,21 +7,30 @@ import service.*;
 import java.util.*;
 import java.io.Serializable;
 
-public class Part extends ComparableOptionAdapter 
+public class Osasuoritus extends ComparableOptionAdapter 
     implements Serializable {
 
-    public static final int LASKARI = 0;
-    public static final int HARJOITUSTYO = 1;
-    public static final int KOE = 2;
-    public static final int ARVOSANA = 3;
-    public static final int OPINTOPISTEET =4;
-    public static final int KIELIKOODI = 5;
+    public enum OsasuoritusTyyppi {
+        LASKARI(0, "Laskuharjoitus"),
+        HARJOITUSTYO(1,"Harjoitustyö"),
+        KOE(2,"Koe"),
+        ARVOSANA(3,"Arvosana"),
+        OPINTOPISTEET(4,"Opintopisteet"),
+        KIELIKOODI(5,"Kielikoodi");
+        
+        public final int ID;
+        public final String KUVAUS;
+        public static final int TYYPPEJA_YHTEENSA = 6;
+        
+        private OsasuoritusTyyppi(int id, String name) {
+            this.ID = id;
+            this.KUVAUS = name;
+        }
+    }
+    
     public static final int MAX_OFFERINGS = 18;
     public static final int MAX_XTR_SCORE = 60;
     public static final int HI_LIMIT = 999;
-
-    public static final int NO_OF_TYPES = 6;
-    // was 4 should be changed to 6
 
     public static final int UNDEF = Integer.MIN_VALUE;
 
@@ -54,28 +63,28 @@ public class Part extends ComparableOptionAdapter
     protected double xtrStep = 1;
     
   
-    public Part( int type ) throws NullIdException {
+    public Osasuoritus( int type ) throws NullIdException {
 
-	if ( type < 0 || type >= NO_OF_TYPES ) {
+	if ( type < 0 || type >= OsasuoritusTyyppi.TYYPPEJA_YHTEENSA ) {
 	    throw new NullIdException( LocalisationBundle.getString("suoritustyyppi")
                     +type+LocalisationBundle.getString("tuntematon"));
 	}
 
 	this.id = new Integer( type );
 
-	if ( type == ARVOSANA ) {
+	if ( type == OsasuoritusTyyppi.ARVOSANA.ID ) {
 	      this.genericScores = gradeCodes;
         }
-        if ( type == KIELIKOODI ) {
+        if ( type == OsasuoritusTyyppi.KIELIKOODI.ID ) {
               this.genericScores = kielet;
         }
 
-        if (type== OPINTOPISTEET) {
+        if (type== OsasuoritusTyyppi.OPINTOPISTEET.ID) {
           this.genericScores = EMPTY;
       }
     }
 
-    public Part( int type, int items ) throws NullIdException {
+    public Osasuoritus( int type, int items ) throws NullIdException {
 	// Tällä luodaan osatyyppi. 
         // Tyyppi voidaan luoda myös ilman osia items=0.
         this(type);
@@ -95,14 +104,14 @@ public class Part extends ComparableOptionAdapter
           this.setNbrOfOfferings( items );
     }
 
-    public Part( int type, Offering[] offerings ) throws NullIdException {
+    public Osasuoritus( int type, Offering[] offerings ) throws NullIdException {
 	this(type);
 
 	this.offerings = offerings;
 	this.setNbrOfOfferings( offerings.length );
     }
 
-    public Part( int type, Offering[] offerings, int requiredOfferings, int xtrScore ) throws NullIdException {
+    public Osasuoritus( int type, Offering[] offerings, int requiredOfferings, int xtrScore ) throws NullIdException {
 	this(type);
 	
 	this.offerings = offerings;
@@ -112,7 +121,7 @@ public class Part extends ComparableOptionAdapter
 	this.xtrScore = xtrScore;
     }
 
-    public Part( Part another ) {
+    public Osasuoritus( Osasuoritus another ) {
 	this.id            = another.id;
 	this.genericScores = another.genericScores;
 	this.desc          = another.desc;
@@ -137,7 +146,7 @@ public class Part extends ComparableOptionAdapter
     
 
     public int getXtrScore() {
-	if ( this.getType() == KOE ) {
+	if ( this.getType() == OsasuoritusTyyppi.KOE.ID ) {
 	    return getMaxScoreCount();
 	}
 	else {
@@ -173,7 +182,7 @@ public class Part extends ComparableOptionAdapter
     public int getId() { return ((Integer)this.id).intValue(); }
 
     public int getMaxScoreCount() {
-	if ( this.getId() == ARVOSANA ) return HI_LIMIT;
+	if ( this.getId() == OsasuoritusTyyppi.ARVOSANA.ID ) return HI_LIMIT;
 
 	int count = 0;
 
@@ -238,7 +247,7 @@ public class Part extends ComparableOptionAdapter
 	for ( int i=0; i < genericScores.length; i++ )
 	    if ( genericScores[i].equals(score) ) return true;
 	
-	if ( this.getType() == ARVOSANA || this.getType() == KIELIKOODI ) return false;
+	if ( this.getType() == OsasuoritusTyyppi.ARVOSANA.ID || this.getType() == OsasuoritusTyyppi.KIELIKOODI.ID ) return false;
  
 
 	try {
@@ -256,8 +265,8 @@ public class Part extends ComparableOptionAdapter
 
 	if ( this.selectedOffering != null ) {
 	    if ( this.selectedOffering.maxScoreDefined()
-		 || this.getType()==ARVOSANA 
-                 || this.getType()==KIELIKOODI )
+		 || this.getType()==OsasuoritusTyyppi.ARVOSANA.ID 
+                 || this.getType()==OsasuoritusTyyppi.KIELIKOODI.ID )
 		rv = true;
 	}
 	return rv;

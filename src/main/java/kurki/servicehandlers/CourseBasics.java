@@ -37,9 +37,9 @@ public class CourseBasics extends AbstractVelocityServiceProvider
 	// 	String  = req.getParameter("");
 
 	if ( doBasic != null ) {
-	    kurki.model.Part part = null;
+	    kurki.model.Osasuoritus part = null;
 
-	    for ( int p=0; p < kurki.model.Part.ARVOSANA; p++ ) {
+	    for ( int p=0; p < kurki.model.Osasuoritus.ARVOSANA; p++ ) {
 		int nbr;
 		int required;
 		int xtr;
@@ -107,7 +107,7 @@ public class CourseBasics extends AbstractVelocityServiceProvider
 	else if ( doScoreDef != null ) {
 	    Vector parts = course.getParts();
 	    for ( int p=0; p < parts.size(); p++ ) {
-		kurki.model.Part part = (kurki.model.Part)parts.get( p );
+		kurki.model.Osasuoritus part = (kurki.model.Osasuoritus)parts.get( p );
 		int pid = part.getType();
 		Offering[] offerings = part.getOfferings();
 
