@@ -1,0 +1,222 @@
+#parse ("top.vm")
+#set ($parts = $selectedCourse.PartsOrdered)
+#set ($partnames = ["Laskuharjoituksia", "Harjoitustöitä", "Kokeita"])
+#set ($maxEntriesPerLine = 9)
+        <tr>
+          <td colspan="4">
+<h3>$selectedCourse.label - kurssin perustiedot</h3>
+
+#if ($error && $error != "")
+<div class="error">
+  $error
+</div>
+#end 
+#if ($result && $result != "")
+<div class="result">
+  $result
+</div>
+#end
+
+##
+## LUKUMÄÄRÄT
+##
+<form action="index" method="post" name="basic">
+  <input type="hidden" name="TS" value="${TS}">
+<table class="normal" border="1" width="100%">
+  <caption>
+   Osasuorituksien lukumäärät
+  </caption>
+
+#set ($i = 0)
+#foreach ($pname in $partnames)
+  <tr>
+    <th>${pname}:</th>
+
+  #if ($parts.get($i))
+    #set ($part = $parts.get($i)) 
+    <td>
+    #if ($frozen)
+      ${part.NbrOfOfferings}
+    #else 
+      <input type="text" size="2" name="no${i}_nbr" maxlength="2" value="${part.NbrOfOfferings}"
+             onBlur="rangecheck(this,0,18)">
+    #end
+    </td>
+    <th>&nbsp;joista pakollisia:</th>
+    <td>
+    #if ($frozen)
+      ${part.RequiredOfferings}
+    #else 
+      <input type="text" size="2" name="no${i}_req" maxlength="2" value="${part.RequiredOfferings}"
+             onBlur="rangecheck(this,0,this.form.no${i}_nbr.value)">
+    #end
+    </td>
+    #if ($i != 2)
+    <th>&nbsp;lisäpisteitä:</th>
+    <td>
+    #if ($frozen)
+      ${part.XtrScore}
+    #else 
+      <input type="text" size="2" name="no${i}_xtr" maxlength="2" value="${part.XtrScore}"
+             onBlur="rangecheck(this,0,60)">
+    #end
+    </td>
+    #else
+    <td colspan="2">
+    </td>  
+    #end
+  #else
+    <td>
+    #if (!$frozen)
+      <input type="text" size="2" name="no${i}_nbr" maxlength="2" value=""
+             onBlur="rangecheck(this,0,18)">
+    #else
+      0
+    #end
+    </td>
+    <th>&nbsp;joista pakollisia:</th>
+    <td>
+    #if (!$frozen)
+      <input type="text" size="2" name="no${i}_req" maxlength="2" value=""
+             onBlur="rangecheck(this,0,this.form.no${i}_nbr.value)">
+    #else
+      &nbsp; 
+   #end
+    </td>
+    #if ($i != 2)
+    <th>&nbsp;lisäpisteitä:</th>
+    <td>
+      #if (!$frozen)
+      <input type="text" size="2" name="no${i}_xtr" maxlength="2" value=""
+             onBlur="rangecheck(this,0,60)">
+      #else
+      &nbsp; 
+      #end
+    </td>
+    #else
+    <td colspan="2">
+    </td>  
+    #end
+  #end
+  </tr>
+  #set ($i = $i+1)
+#end
+#if (!$frozen)
+  <tr>
+    <th colspan="6">
+      <input type="submit" name="doBasic" value="tallenna muutokset" class="submitb">
+    </th>
+  </tr>
+#end
+</table> 
+</form>
+<br>
+
+##
+## PISTERAJAT
+##
+#set ($partnames = ["LH: ", "HT: ", "KOE:"])
+
+<form action="index" method="post">
+  <input type="hidden" name="TS" value="${TS}">
+<table class="normal" border="1" width="100%">
+  <caption>
+    Pisterajat
+  </caption>
+
+#set ($i = 0)
+#foreach ($part in $selectedCourse.Parts)
+  #set ($pid = $part.Id)
+  #if ($pid < 3)
+    #set ($pname = $partnames.get($pid))
+    #set ($offerings = $part.Offerings)
+  <tr>
+    <th valign="top">
+      <table class="invisible" cellspacing="0" cellpadding="0" border="0">
+        <tr>
+          <th rowspan="2" nowrap>${pname}&nbsp;</th>
+          <th nowrap>
+<div style="height:1em;text-align:bottom;border-width:1pt;border-style:solid;border-color:black;margin:2pt 0pt;background-color:white;color:black;padding:1pt;">
+            <tt>maksimi&nbsp;</tt>
+</div>
+          </th>
+        </tr>
+        <tr>
+          <th nowrap>
+<div style="height:1em;text-align:bottom;border-width:1pt;border-style:solid;border-color:black;margin:2pt 0pt;background-color:white;color:black;padding:1pt;">
+            <tt>hyv.raja </tt>
+</div>
+          </th>
+        </tr>
+      </table>
+    </th>
+    <td>
+      <table class="invisible" cellspacing="0" cellpadding="0" border="0">
+        <tr>
+    #foreach ($offering in $offerings)
+      #set ( $oid = ${offering.Id}+1 )
+      #if ( $oid == $maxEntriesPerLine+1 )
+        </tr>
+        <tr><td colspan="${maxEntriesPerLine}"><hr width="90%"></td></tr>
+        <tr>
+      #end
+          <td>
+            <table class="normal" border="0" style="border-width:0pt;">
+              <tr>
+                <th rowspan="2" nowrap>
+      #if ( $oid < 10 )
+                  &nbsp;
+      #end
+                  <b>$oid:</b>
+                </th>
+                <td width="25">
+      #if ($frozen)
+                  $!{offering.MaxScore}
+      #else
+                  <input type="text" name="no${pid}_${offering.Id}_max" size="2" maxlength="2" tabindex="1" 
+                         value="$!{offering.MaxScore}" onBlur="rangecheck(this, 0, 99)">
+      #end
+                </td>
+              </tr>
+              <tr>
+                <td width="25">
+      #if ($frozen)
+                  $!{offering.MinScore}
+      #else
+                  <input type="text" name="no${pid}_${offering.Id}_min" size="2" maxlength="2" tabindex="1" 
+                         value="$!{offering.MinScore}" onBlur="rangecheck(this, 0, this.form.no${pid}_${offering.Id}_max.value)">
+      #end
+                </td>
+              </tr>
+            </table>
+          </td>
+    #end
+    #set ($remainder = $oid % $maxEntriesPerLine)
+    #if ($oid > $maxEntriesPerLine && $remainder != 0)
+          #set ($remainder = $maxEntriesPerLine - $remainder)
+          <td colspan="${remainder}">&nbsp;</td>
+    #end
+        </tr>
+      </table>
+    </td>
+  </tr>
+    #set ($i = $i+1)
+  #end
+#end
+#if ($i > 0)
+  #if (!$frozen)
+  <tr>
+    <th colspan="2">
+      <input type="submit" name="doScoreDef" value="tallenna muutokset" class="submitb">
+    </th>
+  </tr>
+  #end
+#else
+  <tr><th>EI OSASUORITUKSIA - määrittele osasuorituksien lukumäärät yllä olevalla lomakkeella.</th></tr>
+#end
+</table> 
+</form>
+
+          </td>
+        </tr>
+#parse ("bottom.vm")

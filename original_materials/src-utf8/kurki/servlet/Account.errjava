@@ -1,0 +1,222 @@
+import java.io.*;
+import java.sql.*;
+import java.util.*;
+import javax.servlet.*;
+import javax.servlet.http.*;
+
+public class Account extends HttpServlet {
+
+   protected static String createUser = "create user ? identified by ? "+
+                              "default tablespace users "+
+                              "temporary tablespace temp "+
+                              "quota 1M on users "+
+                              "quota 10M on temp";
+
+   protected static String userGrants = "grant connect, resource to ?";
+
+
+   protected static String htmlStart1 =
+     "<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">\n"+
+     "<html>\n"+
+     "<head>\n"+
+     "<title>User accounts for Oracle</title>\n"+
+     "<link rel=\"stylesheet\" type=\"text/css\" href=\"astyle.css\">\n";
+
+ protected static String htmlStart2 =
+     "</head>\n"+
+     "<body>\n"+
+     "<h1>University of Helsinki, Department of Computer Science</h1>\n"+ 
+     "<h2>User account for the Oracle database</h2>\n";
+  
+   protected static String instructions =
+    "<p>You may get a user account if\n"+ 
+    "you have a user account for the department's Linux-environment.</p>\n"+
+    "<p>Your account name for Oracle will be the same as your username in Linux.\n"+
+    "You should define the password for your new Oracle acoount in the fields below.</p>\n";
+
+     
+   protected static String form =
+    "<form name=\"aform\" method="\get\" action=\"./servlet/Account\" "+ 
+    "onSubmit=\"return validpassword(document.aform.password1.value,document.aform.password2.value);\">\n"+
+    "<table>\n"+
+    "<tr><td>Password: </td>\n"+
+    "<td><input type=\password\" name=\"password1\" size=\"12\"></td></tr>\n"+
+    "<tr><td>>Password verified: </td>\n"+
+    "<td><input type=\password\" name=\"password1\" size=\"12\"></td></tr>\n"+
+    "<tr><td hspan=\"2\">\n"+
+    "<input type=\"submit\" name=\"submit\" value=\"Get Account\">\n";
+    "<input type=\"reset\" value=\"Clear form\">\n"+
+    "</td></tr>"
+
+  protected static String accepted1 =
+    "<p>Oracle account <b> ";
+
+  protected static String accepted2 = 
+    "</b> has been created in the database \n"+
+    "<b>bodbacka/test</b>.</p>\n" +
+    "<p>To use use this database with sqlplus you should: </p>\n"+
+    "<ul>\n"+
+    "<li>Set up the environment with command <b>setup oracle</b>.</li>\n"+
+    "<li>Start sqlplus with: <b>sqlplus /nolog</b></li>\n"+
+    "<li>Connect to the database with: <b>connect _YOUR_ACCOUNT_/_YOUR_PASSWORD_@bodbacka/test</b></li>\n"+
+    "</ul>\n"+
+    "<p>To use use this database with tora you should: </p>\n"+
+    "<ul>\n"+
+    "<li>Start tora: <b>/opt/tora/bin/tora</b></li>\n"+
+    "<li>Select the database: <b>TEST.CS.HELSINKI.FI</b></li>\n"+
+    "</ul>\n"+
+   "<p>To use use this database with jdbc you should: </p>\n"+    
+    "<ul>\n"+
+    "<li>Specify the driver in your programs as: <b>oracle.jdbc.OracleDriver</b></li>\n"+
+    "<li>Specify the connection in your programs as : <b>jdbc:oracle:thin:@bodbacka.cs.helsinki:1521:test</b></li>\n"+
+    "<li>Include the driver package <b>/opt/oracle/jdbc/lib/ojdbc14.jar</b> in your runtime CLASSPATH (= copy the file in the folder .../WEB-INF/lib/</li>\n"+
+   "</ul>\n";
+
+   protected static String end= "</div></body></html>";
+
+   protected static String javascript =
+     "<script type=\"text/javascript\">\n"+
+     "<!--\n"+
+     "function validpassword(p1,p2) {\n"+
+     "  if (p1=='') || (p2=='') {\n"+
+     "    alert('Password cannot be empty!');\n"+
+     "    return false;\n"+
+     "  }\n"+
+     "  if (p1.length<6) {\n"+
+     "    alert('Password must contain at least 6 characters!');\n"+
+     "    return false;\n"+
+     "  }\n"+
+     "  if (p1!=p2) {\n"+
+     "    alert('Password and its verification do not match!');\n"+ 
+     "    return false;\n"+
+     "  }\n"+
+     "  else {\n"+
+     "    return true;\n"+
+     "  }\n"+
+     "}\n"+
+     "//-->\n"+
+     "</script>\n";
+
+   protected static String dbDriver = "oracle.jdbc.OracleDriver;
+   protected static String dbServer = "jdbc:oracle:thin:@bodbacka.cs.helsinki.fi:1521:test";
+   protected static String dbLogin = "laine";
+   protected static String dbPassword = "Qmakah6";
+   protected static boolean driverLoaded=false;
+
+   protected static int NEW =0;
+   protected static int OK=1;
+   protected static int ERROR=2;
+
+   // you may include here other initialization paramerers that 
+   // apply for all servlets
+
+   
+   public void init (ServletConfig config) throws ServletException  {
+      super.init(config);
+      if (!driverLoaded) { 
+            // load the driver class              
+            Class.forName(dbDriver);
+            driverLoaded =true;
+         }
+         catch (Exception f) {
+                f.printStackTrace();
+         }
+      }
+   }
+
+
+   /*****
+   /*   Open database connection
+   */
+   public static Connection getConnection() {
+      // returns a database connection or null if setting up the 
+      // connection fails
+      Connection con=null;
+      try { 
+         con= DriverManager.getConnection(dbServer,dbLogin,dbPassword);
+         // here is a proper place for adjustments
+         // language, data format, commit behaviour, timeout, etc.
+      } 
+      catch (SQLException ignored) {}
+      return con;
+   }   
+  
+   /****
+   /*  Close database connection
+   */
+   public static void closeConnection(Connection con) {
+      try {
+         con.close();
+      } catch (SQLException ignored) {}
+   }
+
+
+  public void doGet ( HttpServletRequest req,
+                      HttpServletResponse res )
+        throws ServletException, IOException {
+
+
+     // hae parametrit
+     String qSubmit = req.getParameter("submit");
+     String qName= req.getParameter("password1");
+     String qYear= req.getParameter("password2");
+     PrintWrirer out=res.getWriter();
+     res.setContentType("text/html");
+     ServletOutputStream out= res.getOutputStream();        
+     
+     // valitse kysely
+     if  (submit==null) { 
+        report(out,NEW,null);
+     }
+     else {
+        if (!password1.equals(password2)) {
+           report(out,ERROR,"Password and its verification are not equal.");
+        }
+        else {
+           user= getRemoteUser();
+           if (user!=null) {
+             try {
+               Connection con = getConnection();
+               if (con != null) {
+                  PreparedStatement pst = con.prepareStatement(createUser);
+                  pst.setString(1,user);
+                  pst.setString(2,password1);
+                  int res= pst.executeUpdate();
+                  pst.close();
+                  PreparedStatement pst2 = con.prepareStatement(userGrants);
+                  pst2.setString(1,user);
+                  int opt= pst2.executeUpdate();
+                  pst2.close();
+                  closeConnection();
+                  report(out,OK,user);
+               }
+              catch (SQLException ex) {
+                 report(out, ERROR, "Creation failed - account may already exuist || ex.getMsg());
+               }
+          }
+          else {
+            report(out, ERROR, "Unable to identify the user.");
+          }
+      }
+ }
+
+
+private void report(ServletOutputStream out, int mType, String msg   )  {
+     out.print(htmlStart1);
+     out.print(javascript);
+     out.print(htmlStart2);
+     switch case mType { 
+     0: out.print(instructions);
+        out.print(form);
+        break;
+     1: out.print(accepted1);
+        out.print(msg);
+        out.print(accepted2);
+        break;
+     2: out.print(instructions);
+        out.print(form);
+        out.print("<div class="message">||msg||"</div>");
+        break;
+     }
+     out.print(end);
+}

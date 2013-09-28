@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!DOCTYPE web-app
+    PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.2//EN"
+    "http://java.sun.com/j2ee/dtds/web-app_2_2.dtd">
+
+<web-app>
+    <context-param>
+        <param-name>webmaster</param-name>
+        <param-value>Harri.Laine@cs.Helsinki.FI</param-value>
+    </context-param>
+    <context-param>
+        <param-name>configurationFile</param-name>
+        <param-value>/home/tkt_kurk/kurki/webapps/kurki/WEB-INF/kurki.cnf</param-value>
+    </context-param>
+<!-- 
+    <context-param>
+    <param-name>properties</param-name>
+    <param-value>/WEB-INF/velocity.properties</param-value>
+    </context-param>
+-->
+    <servlet>
+        <servlet-name>index</servlet-name>
+        <servlet-class>kurki.servlet.Index</servlet-class>
+        <init-param>
+          <param-name>properties</param-name>
+          <param-value>/WEB-INF/velocity.properties</param-value>
+        </init-param>
+    </servlet>
+
+    <servlet>
+        <servlet-name>LoginManager</servlet-name>
+        <servlet-class>kurki.servlet.LoginManager</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>checklist</servlet-name>
+        <servlet-class>kurki.servlet.ListMaker</servlet-class>
+        <init-param>
+          <param-name>properties</param-name>
+          <param-value>/WEB-INF/velocity.properties</param-value>
+        </init-param>
+    </servlet>
+
+    <servlet>
+        <servlet-name>logout</servlet-name>
+        <servlet-class>kurki.servlet.Logout</servlet-class>
+    </servlet>
+
+
+<!--
+lisatty by ville 1.8.2005 ja
+poistettu 14.8.2008 by harri
+
+<servlet-mapping>
+  <servlet-name>invoker</servlet-name>
+  <url-pattern>/servlet/*</url-pattern>
+  </servlet-mapping>
+-->
+
+<!-- lisatty 14.8.2008 by harri -->
+
+<servlet-mapping>
+  <servlet-name>index</servlet-name>
+  <url-pattern>/servlet/index</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+  <servlet-name>LoginManager</servlet-name>
+  <url-pattern>/servlet/LoginManager</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+  <servlet-name>checklist</servlet-name>
+  <url-pattern>/servlet/checklist</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+  <servlet-name>logout</servlet-name>
+  <url-pattern>/servlet/logout</url-pattern>
+</servlet-mapping>
+
+</web-app>
+

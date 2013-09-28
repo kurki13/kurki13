@@ -1,0 +1,33 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <title>KURKI</title>
+    <link rel="stylesheet" href="../kurki.css" title="kurki">
+    <script language='JavaScript' type='text/javascript' src='../kurki.js'></script>
+  </head>
+  
+  <body>
+    <center> 
+      <div class="error" style="text-align:left;width:500px" align="center">
+    <center> 
+<h2>Uloskirjautuminen</h2>
+    </center>
+<hr>
+<ul>
+<li>
+Istunnollesi varatut resurssit on vapautettu.
+</li>
+<li>
+Jos k‰ytit Kurki-j‰rjestelm‰‰ julkiselta koneelta, 
+<b>tyhjenn‰ selaimesi v‰limuisti ja sivuhistoria</b> sek‰ 
+lopuksi <b>sulje selain</b>. N‰in luottamukselliset
+tiedot eiv‰t j‰‰ koneen muistiin.
+</li>
+<li>
+Jos kirjauduit ulos vahingossa, voit <a href="index">aloittaa uuden istunnon</a> t‰st‰.
+</li>
+</ul>
+      </div>
+    <center> 
+  </body>
+</html>

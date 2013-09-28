@@ -1,0 +1,19 @@
+      <tr>
+        <td align="left" nowrap>
+          <a href="logout">Kirjaudu ulos</a>
+        </td>
+        <td colspan="2">
+          &nbsp;
+        </td>
+        <td align="right" nowrap>
+          <a href="logout">Kirjaudu ulos</a>
+        </td>
+      </tr>
+    </table>
+    </center>
+    <hr>
+    <address>
+      <a href="mailto:${webmaster}">${webmaster}</a>
+    </address>
+  </body>
+</html>

@@ -1,0 +1,36 @@
+#parse ("top.vm")
+	<tr>
+	  <td colspan="4">
+  #if ($error && $error != "")
+<div class="error">
+  $error
+</div>
+  #end 
+  #if ($result && $result != "")
+<div class="result">
+  $result
+</div>
+  #end
+<div class="instr">
+Huom!
+<ul>
+  <li>Järjestelmä vaatii toimiakseen <b>JavaScriptiä</b> tukevan selaimen (ja sen on oltava myös käytössä).
+  </li>
+  <li>Järjestelmä vaatii toimiakseen <b>evästeiden</b> (cookie) sallimisen.
+  </li>
+  <li>Järjestelmän käyttö aloitetaan tältä sivulta, valitsemalla kurssi, jonka tietoja halutaan muuttaa
+    sekä haluttu toiminto.
+    Tälle sivulle tultaessa, aloitetaan uusi istunto, jonka kesto on oletusarvoisesti 60 minuuttia
+    viimeisimmästä sivupyynnöstä. Tämän jälkeen aloitetaan uusi istunto ja mahdolliset tallentamattomat
+    muutokset menetetään.
+  </li>
+  <li><b>Ongelmatilanteissa voit lähetää mailia osoitteeseen
+<a href="mailto:tktl-kurki@cs.helsinki.fi">tktl-kurki@cs.helsinki.fi</a>.</b>
+  </li>
+  <li><a href="../paivitykset.html">Tietoa Kurssikirjanpitojärjestelmän päivityksistä</a>.
+  </li>
+</ul>
+</div>
+	  </td>
+	</tr>
+#parse ("bottom.vm")

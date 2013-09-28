@@ -1,0 +1,674 @@
+SQL> set heading off
+SQL> select line, text from user_source where name='JAADYTYS05'
+  2  order by line;
+
+         1                                                                      
+function jaadytys05 (kkdi char, lvuosi integer,                                 
+                                                                                
+         2                                                                      
+    lkausi char, knro integer, ktyyppi char,                                    
+                                                                                
+         3                                                                      
+    rnro integer) return char is                                                
+                                                                                
+         4                                                                      
+                                                                                
+                                                                                
+         5                                                                      
+
+-- huom tassa on tuotantokannan tunnus tk_siirto                                
+                                                                                
+         6                                                                      
+                                                                                
+                                                                                
+         7                                                                      
+  koodi integer;                                                                
+                                                                                
+         8                                                                      
+  cursor ck is                                                                  
+                                                                                
+         9                                                                      
+   select * from kurssi                                                         
+
+                                                                                
+        10                                                                      
+   where kurssikoodi=kkdi and lukuvuosi=lvuosi and                              
+                                                                                
+        11                                                                      
+      lukukausi=lkausi and knro=kurssi_nro and                                  
+                                                                                
+        12                                                                      
+      tyyppi=ktyyppi and                                                        
+                                                                                
+        13                                                                      
+      suoritus_pvm is not null                                                  
+                                                                                
+
+        14                                                                      
+ -- tila <>'J'                                                                  
+                                                                                
+        15                                                                      
+   for update of tila, siirto_pvm;                                              
+                                                                                
+        16                                                                      
+                                                                                
+                                                                                
+        17                                                                      
+  cursor co1 is                                                                 
+                                                                                
+        18                                                                      
+
+   select o.hetu hetu, sukunimi, etunimi,                                       
+                                                                                
+        19                                                                      
+      ilmo_jnro, ryhma_nro,                                                     
+                                                                                
+        20                                                                      
+      LASKARISUORITUKSET, HARJOITUSTYOPISTEET, KOEPISTEET ,                     
+                                                                                
+        21                                                                      
+      LASKARI_LASNAOLO_LKM, LASKARISUORITUKSET_SUMMA, LASKARIHYVITYS,           
+                                                                                
+        22                                                                      
+      HARJOITUSTYO_LASNAOLO_LKM, HARJOITUSTYO_SUMMA, HARJOITUSTYOHYVITYS,       
+
+                                                                                
+        23                                                                      
+      KOEPISTEET_SUMMA, ARVOSANA,                                               
+                                                                                
+        24                                                                      
+      kommentti_1, kommentti_2,jaassa,                                          
+                                                                                
+        25                                                                      
+      viimeinen_kasittely_pvm, opnro,laajuus_ov, laajuus_op                     
+                                                                                
+        26                                                                      
+   from opiskelija o, osallistuminen s                                          
+                                                                                
+
+        27                                                                      
+   where kurssikoodi=kkdi and lukuvuosi=lvuosi and                              
+                                                                                
+        28                                                                      
+         lukukausi=lkausi and knro=kurssi_nro and                               
+                                                                                
+        29                                                                      
+         tyyppi=ktyyppi and o.hetu=s.hetu and                                   
+                                                                                
+        30                                                                      
+         voimassa='K' and                                                       
+                                                                                
+        31                                                                      
+
+         (jaassa is null or jaassa<>'J')                                        
+                                                                                
+        32                                                                      
+   for update of jaassa;                                                        
+                                                                                
+        33                                                                      
+                                                                                
+                                                                                
+        34                                                                      
+  recK    ck%rowtype;                                                           
+                                                                                
+        35                                                                      
+  recOp   co1%rowtype;                                                          
+
+                                                                                
+        36                                                                      
+                                                                                
+                                                                                
+        37                                                                      
+  koko_op number(4,1);                                                          
+                                                                                
+        38                                                                      
+  koko_ov number(4,1);                                                          
+                                                                                
+        39                                                                      
+                                                                                
+                                                                                
+
+        40                                                                      
+begin                                                                           
+                                                                                
+        41                                                                      
+                                                                                
+                                                                                
+        42                                                                      
+  koodi:= (lvuosi-2000)*100000;                                                 
+                                                                                
+        43                                                                      
+  if lkausi='V' then                                                            
+                                                                                
+        44                                                                      
+
+     koodi:= koodi+20000;                                                       
+                                                                                
+        45                                                                      
+  elsif lkausi='S' then                                                         
+                                                                                
+        46                                                                      
+     koodi:= koodi+ 40000;                                                      
+                                                                                
+        47                                                                      
+  end if;                                                                       
+                                                                                
+        48                                                                      
+  koodi:= koodi+ knro*1000;                                                     
+
+                                                                                
+        49                                                                      
+  if ktyyppi='L' then                                                           
+                                                                                
+        50                                                                      
+     koodi:=koodi+500;                                                          
+                                                                                
+        51                                                                      
+  end if;                                                                       
+                                                                                
+        52                                                                      
+  koodi:= koodi+ rnro;                                                          
+                                                                                
+
+        53                                                                      
+                                                                                
+                                                                                
+        54                                                                      
+  open ck;                                                                      
+                                                                                
+        55                                                                      
+  fetch ck into recK;                                                           
+                                                                                
+        56                                                                      
+  if ck%notfound then                                                           
+                                                                                
+        57                                                                      
+
+    close ck;                                                                   
+                                                                                
+        58                                                                      
+    return 'KURSSIA EI LOYDY';                                                  
+                                                                                
+        59                                                                      
+  end if;                                                                       
+                                                                                
+        60                                                                      
+                                                                                
+                                                                                
+        61                                                                      
+                                                                                
+
+                                                                                
+        62                                                                      
+if recK.tila<>'J' then                                                          
+                                                                                
+        63                                                                      
+  -- ei ole viela jaadytetty                                                    
+                                                                                
+        64                                                                      
+    insert into tk_siirto.valmis_ku( kurssiavain, kkoodi,                       
+                                                                                
+        65                                                                      
+      LUKUKAUSI, LUKUVUOSI,  TYYPPI, KURSSI_NRO, KIELIKOODI,                    
+                                                                                
+
+        66                                                                      
+      KNIMI, KOPVIIKOT, VASTUUHLO,                                              
+                                                                                
+        67                                                                      
+      LHLKM, HTLKM, ARLKM,                                                      
+                                                                                
+        68                                                                      
+      LHMIN,  LHMAX,                                                            
+                                                                                
+        69                                                                      
+      ARMIN, ARMAX,                                                             
+                                                                                
+        70                                                                      
+
+      HTMIN, HTMAX,                                                             
+                                                                                
+        71                                                                      
+      LHLPMAX, LPALARAJA,                                                       
+                                                                                
+        72                                                                      
+      ASKELKOKO, LHPAK,                                                         
+                                                                                
+        73                                                                      
+      LPRAJAT, LHHYVRAJA,                                                       
+                                                                                
+        74                                                                      
+      HTLPMAX, HTLPALARAJA,                                                     
+
+                                                                                
+        75                                                                      
+      HTLPASKEL, TMINLKM,                                                       
+                                                                                
+        76                                                                      
+      HTLPRAJAT, HTHYVRAJA,                                                     
+                                                                                
+        77                                                                      
+      KMINLKM, KOEMIN,                                                          
+                                                                                
+        78                                                                      
+      YHTMIN, ARVASKEL,                                                         
+                                                                                
+
+        79                                                                      
+      ARVRAJAT,                                                                 
+                                                                                
+        80                                                                      
+      ARVOSTELLAANKO,                                                           
+                                                                                
+        81                                                                      
+      SUORPVM, ARVPVM,                                                          
+                                                                                
+        82                                                                      
+      SIIRTOPVM, LASTDATE,                                                      
+                                                                                
+        83                                                                      
+
+      laskentakaava,                                                            
+                                                                                
+        84                                                                      
+      opintoviikot_ylaraja,                                                     
+                                                                                
+        85                                                                      
+      opintopisteet_ylaraja,                                                    
+                                                                                
+        86                                                                      
+      opintopisteet)                                                            
+                                                                                
+        87                                                                      
+   values (koodi,kkdi, lkausi, lvuosi, ktyyppi,knro, recK.kielikoodi,           
+
+                                                                                
+        88                                                                      
+      recK.nimi, reck.opintoviikot, recK.omistaja,                              
+                                                                                
+        89                                                                      
+      reck.laskarikerta_lkm, reck.harjoitustyo_lkm, reck.valikokeet_lkm,        
+                                                                                
+        90                                                                      
+      reck.HYVAKSYTTY_LASKARILASNAOLO, reck.laskaritehtava_lkm,                 
+                                                                                
+        91                                                                      
+      reck.MIN_KOEPISTEET, reck.MAX_KOEPISTEET,                                 
+                                                                                
+
+        92                                                                      
+      reck.MIN_HARJOITUSTYOPISTEET, reck.MAX_HARJOITUSTYOPISTEET,               
+                                                                                
+        93                                                                      
+      reck.MAX_LASKARIPISTEET, reck.LISAPISTEALARAJA,                           
+                                                                                
+        94                                                                      
+      reck.LISAPISTEIDEN_ASKELKOKO, reck.PAKOLLISET_LASKARIKERTA_LKM,           
+                                                                                
+        95                                                                      
+      reck.LISAPISTERAJAT, reck.PAKOLLISET_LASKARITEHTAVA_LKM,                  
+                                                                                
+        96                                                                      
+
+      reck.HARJOITUSTYOPISTEET, reck.HT_LISAPISTEALARAJA,                       
+                                                                                
+        97                                                                      
+      reck.HARJOITUSTOIDEN_ASKELKOKO, reck.PAKOLLISET_HARJOITUSTYO_LKM,         
+                                                                                
+        98                                                                      
+      reck.HARJOITUSTYON_PISTERAJAT, reck.MIN_HARJOITUSTYOPISTEET_SUMMA,        
+                                                                                
+        99                                                                      
+      reck.PAKOLLISET_KOE_LKM, reck.MIN_KOEPISTEET_SUMMA,                       
+                                                                                
+       100                                                                      
+      reck.MIN_YHTEISPISTEET, reck.ARVOSTELUN_ASKELKOKO,                        
+
+                                                                                
+       101                                                                      
+      reck.ARVOSANARAJAT, reck.ARVOSTELLAANKO,                                  
+                                                                                
+       102                                                                      
+      reck.SUORITUS_PVM, reck.ARVOSTELU_PVM,                                    
+                                                                                
+       103                                                                      
+      NULL, SYSDATE, reck.laskentakaava,                                        
+                                                                                
+       104                                                                      
+      reck.opintoviikot_ylaraja,                                                
+                                                                                
+
+       105                                                                      
+      reck.opintopisteet_ylaraja,                                               
+                                                                                
+       106                                                                      
+      reck.opintopisteet);                                                      
+                                                                                
+       107                                                                      
+else                                                                            
+                                                                                
+       108                                                                      
+-- on jo jaassa                                                                 
+                                                                                
+       109                                                                      
+
+      update tk_siirto.valmis_ku                                                
+                                                                                
+       110                                                                      
+      set lastdate=sysdate,                                                     
+                                                                                
+       111                                                                      
+          arvpvm=recK.arvostelu_pvm                                             
+                                                                                
+       112                                                                      
+      where kkoodi=kkdi and                                                     
+                                                                                
+       113                                                                      
+       lukukausi=lkausi and                                                     
+
+                                                                                
+       114                                                                      
+       lukuvuosi=lvuosi and                                                     
+                                                                                
+       115                                                                      
+       tyyppi=ktyyppi and                                                       
+                                                                                
+       116                                                                      
+       kurssi_nro=knro;                                                         
+                                                                                
+       117                                                                      
+end if;                                                                         
+                                                                                
+
+       118                                                                      
+                                                                                
+                                                                                
+       119                                                                      
+                                                                                
+                                                                                
+       120                                                                      
+  update kurssi                                                                 
+                                                                                
+       121                                                                      
+    set siirto_pvm=sysdate,                                                     
+                                                                                
+       122                                                                      
+
+       TILA='J'                                                                 
+                                                                                
+       123                                                                      
+    where current of ck;                                                        
+                                                                                
+       124                                                                      
+                                                                                
+                                                                                
+       125                                                                      
+                                                                                
+                                                                                
+       126                                                                      
+  for op in co1 loop                                                            
+
+                                                                                
+       127                                                                      
+  if op.jaassa is null then                                                     
+                                                                                
+       128                                                                      
+    -- ei aiemmin jaadytetty                                                    
+                                                                                
+       129                                                                      
+         -- tarkistetaan laajuus                                                
+                                                                                
+       130                                                                      
+     if op.laajuus_ov is null then                                              
+                                                                                
+
+       131                                                                      
+        koko_ov:=reck.opintoviikot;                                             
+                                                                                
+       132                                                                      
+     else                                                                       
+                                                                                
+       133                                                                      
+        koko_ov:=op.laajuus_ov;                                                 
+                                                                                
+       134                                                                      
+     end if;                                                                    
+                                                                                
+       135                                                                      
+
+     if op.laajuus_op is null then                                              
+                                                                                
+       136                                                                      
+        if reck.opintopisteet is null then                                      
+                                                                                
+       137                                                                      
+           koko_op:= 2*koko_ov;                                                 
+                                                                                
+       138                                                                      
+        else                                                                    
+                                                                                
+       139                                                                      
+           koko_op:= reck.opintopisteet;                                        
+
+                                                                                
+       140                                                                      
+        end if;                                                                 
+                                                                                
+       141                                                                      
+     else                                                                       
+                                                                                
+       142                                                                      
+        koko_op:= op.laajuus_op;                                                
+                                                                                
+       143                                                                      
+     end if;                                                                    
+                                                                                
+
+       144                                                                      
+                                                                                
+                                                                                
+       145                                                                      
+                                                                                
+                                                                                
+       146                                                                      
+                                                                                
+                                                                                
+       147                                                                      
+    insert into tk_siirto.valmis_os (                                           
+                                                                                
+       148                                                                      
+
+     HETU,  KURSSIVIITE,                                                        
+                                                                                
+       149                                                                      
+     KKOODI, LUKUKAUSI,  LUKUVUOSI,                                             
+                                                                                
+       150                                                                      
+     TYYPPI,                                                                    
+                                                                                
+       151                                                                      
+     KURSSI_NRO, LHRYHMA,                                                       
+                                                                                
+       152                                                                      
+     LHPIST , HTSUOR,ARV,                                                       
+
+                                                                                
+       153                                                                      
+     LHLKM, LHSUMMA, LHHYVITYS,                                                 
+                                                                                
+       154                                                                      
+     HTLKM, HTSUMMA, HTHYVITYS,                                                 
+                                                                                
+       155                                                                      
+     ARLKM, ARSUMMA, ARVOSANA,                                                  
+                                                                                
+       156                                                                      
+     ETUNIMI, SUKUNIMI,                                                         
+                                                                                
+
+       157                                                                      
+     KOMMENTTI,LASTDATE, OPNRO, LAAJUUS_OV, LAAJUUS_OP)                         
+                                                                                
+       158                                                                      
+   values (op.hetu, koodi,                                                      
+                                                                                
+       159                                                                      
+     kkdi, lkausi, lvuosi,                                                      
+                                                                                
+       160                                                                      
+     ktyyppi,                                                                   
+                                                                                
+       161                                                                      
+
+     knro, op.ilmo_jnro,                                                        
+                                                                                
+       162                                                                      
+     op.LASKARISUORITUKSET, op.HARJOITUSTYOPISTEET, op.KOEPISTEET ,             
+                                                                                
+       163                                                                      
+     op.LASKARI_LASNAOLO_LKM, op.LASKARISUORITUKSET_SUMMA, op.LASKARIHYVITYS,   
+                                                                                
+       164                                                                      
+     op.HARJOITUSTYO_LASNAOLO_LKM, op.HARJOITUSTYO_SUMMA, op.HARJOITUSTYOHYVITYS
+,                                                                               
+                                                                                
+       165                                                                      
+
+     null, op.KOEPISTEET_SUMMA, op.ARVOSANA,                                    
+                                                                                
+       166                                                                      
+     op.etunimi,op.sukunimi,                                                    
+                                                                                
+       167                                                                      
+     op.kommentti_1||'*2*'||op.kommentti_2,                                     
+                                                                                
+       168                                                                      
+     op.viimeinen_kasittely_pvm, op.opnro, koko_ov, koko_op                     
+                                                                                
+       169                                                                      
+     );                                                                         
+
+                                                                                
+       170                                                                      
+  else                                                                          
+                                                                                
+       171                                                                      
+   -- on sulatettu                                                              
+                                                                                
+       172                                                                      
+   update tk_siirto.valmis_os                                                   
+                                                                                
+       173                                                                      
+     set LHPIST=    op.LASKARISUORITUKSET,                                      
+                                                                                
+
+       174                                                                      
+         HTSUOR=    op.HARJOITUSTYOPISTEET,                                     
+                                                                                
+       175                                                                      
+         ARV=       op.KOEPISTEET ,                                             
+                                                                                
+       176                                                                      
+         LHLKM=     op.LASKARI_LASNAOLO_LKM,                                    
+                                                                                
+       177                                                                      
+         LHSUMMA=   op.LASKARISUORITUKSET_SUMMA,                                
+                                                                                
+       178                                                                      
+
+         LHHYVITYS= op.LASKARIHYVITYS,                                          
+                                                                                
+       179                                                                      
+         HTLKM =    op.HARJOITUSTYO_LASNAOLO_LKM,                               
+                                                                                
+       180                                                                      
+         HTSUMMA=   op.HARJOITUSTYO_SUMMA,                                      
+                                                                                
+       181                                                                      
+         HTHYVITYS= op.HARJOITUSTYOHYVITYS,                                     
+                                                                                
+       182                                                                      
+         ARSUMMA=   op.KOEPISTEET_SUMMA,                                        
+
+                                                                                
+       183                                                                      
+         ARVOSANA=  op.ARVOSANA,                                                
+                                                                                
+       184                                                                      
+         KOMMENTTI= KOMMENTTI||' korj. '|| to_char(sysdate),                    
+                                                                                
+       185                                                                      
+         LAAJUUS_OV= koko_ov,                                                   
+                                                                                
+       186                                                                      
+         LAAJUUS_OP= koko_op                                                    
+                                                                                
+
+       187                                                                      
+    where hetu=op.hetu and kkoodi=kkdi and kurssiviite=koodi;                   
+                                                                                
+       188                                                                      
+  end if;                                                                       
+                                                                                
+       189                                                                      
+  -- paivitetaan osallistuminen                                                 
+                                                                                
+       190                                                                      
+   update osallistuminen                                                        
+                                                                                
+       191                                                                      
+
+     set jaassa='J'                                                             
+                                                                                
+       192                                                                      
+     where kurssikoodi= kkdi and                                                
+                                                                                
+       193                                                                      
+     lukukausi=lkausi and lukuvuosi=lvuosi and                                  
+                                                                                
+       194                                                                      
+     kurssi_nro=knro and tyyppi=ktyyppi and                                     
+                                                                                
+       195                                                                      
+     hetu=op.hetu and ryhma_nro=op.ryhma_nro and                                
+
+                                                                                
+       196                                                                      
+     voimassa='K';                                                              
+                                                                                
+       197                                                                      
+                                                                                
+                                                                                
+       198                                                                      
+  end loop;                                                                     
+                                                                                
+       199                                                                      
+  commit;                                                                       
+                                                                                
+
+       200                                                                      
+  return 'OK';                                                                  
+                                                                                
+       201                                                                      
+                                                                                
+                                                                                
+       202                                                                      
+exception                                                                       
+                                                                                
+       203                                                                      
+  when others then                                                              
+                                                                                
+       204                                                                      
+
+    rollback;                                                                   
+                                                                                
+       205                                                                      
+    return sqlerrm;                                                             
+                                                                                
+       206                                                                      
+  end;                                                                          
+                                                                                
+
+206 rows selected.
+
+SQL> exit

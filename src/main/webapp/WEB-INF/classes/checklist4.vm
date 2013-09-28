@@ -1,0 +1,8 @@
+${selectedCourse.Label}: $!studentFilterDesc
+$bundle.getString("tilanne"): ${sysdate} $bundle.getString("klo"): ${time}
+
+#foreach ($student in $students)
+#set ($name = "$!{student.LName}, $!{student.FName}")
+#set ($to = 40 - $name.length())
+    ${name} #foreach ($i in [1..$to]) #end $bundle.getString("email"): $!{student.EMail}
+#end

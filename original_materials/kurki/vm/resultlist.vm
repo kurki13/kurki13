@@ -1,0 +1,319 @@
+#parse ("top.vm")
+#set ($bgcolor = "#00FFFF") ## joka toisen rivin väri
+#set ($parts = $selectedCourse.PartsOrdered)
+#set ($inclh = $parts.get(0))
+#set ($incht = $parts.get(1))
+#set ($inckoe = $parts.get(2))
+	<tr>
+	  <td colspan="4" align="center">
+#if ( $result && $result != "" )
+        <div class="result">
+          $result
+        </div>
+#end
+#if ( $error && $error != "" )
+        <div class="error">
+          <ul>
+          $error
+	  </ul>
+        </div>
+#end
+            <form name="suoritevalinta" action="checklist" method="post" target="_blank">
+              <input type="hidden" name="ltype" value="99">
+              <input type="hidden" name="ctype" value="text/plain">
+              <input type="hidden" name="useinc" value="true">
+	      <table class="normal" border="1">
+                <tr>
+                  <th>&nbsp;
+                  </th>
+                  <th nowrap>Tulostettava tieto
+                  </th>
+                  <th nowrap>Sarakeotsikko
+                  </th>
+                </tr>
+
+                <tr>
+                  <td>
+                    <input type="checkbox" name="inc_ssn">
+                  </td>
+                  <td nowrap>
+                    Henkilötunnus
+                  </td>
+                  <td>
+                    &nbsp;
+                  </td>
+                </tr>
+
+#if ($incht && $incht.NbrOfOfferings > 1)
+                <tr>
+                  <td>
+                    <input type="checkbox" name="inc_htsep" checked>
+                  </td>
+                  <td nowrap>
+                    Harjoitustöiden pisteet eriteltyinä
+                  </td>
+                  <td>
+                    <input type="text" name="inc_htsepname" size="8" maxlength="8" value="Työt">
+                  </td>
+                </tr>
+#end
+#if ($inckoe && $inckoe.NbrOfOfferings > 1)
+                <tr>
+                  <td>
+                    <input type="checkbox" name="inc_koesep" checked>
+                  </td>
+                  <td nowrap>
+                    Koepisteet eriteltyinä
+                  </td>
+                  <td>
+                    <input type="text" name="inc_koesepname" size="8" maxlength="8" value="Kokeet">
+                  </td>
+                </tr>
+#end
+#if ($inclh)
+                <tr>
+                  <td>
+                    <input type="checkbox" name="inc_lhsum" checked>
+                  </td>
+                  <td nowrap>
+                    Laskuharjoituspisteiden summa
+                  </td>
+                  <td>
+                    <input type="text" name="inc_lhsumname" size="8" maxlength="8" value="LhS">
+                  </td>
+                </tr>
+#end
+#if ($incht)
+                <tr>
+                  <td>
+                    <input type="checkbox" name="inc_htsum" checked>
+                  </td>
+                  <td nowrap>
+                    Harjoitustyöpisteiden summa
+                  </td>
+                  <td>
+                    <input type="text" name="inc_htsumname" size="8" maxlength="8" value="HtS">
+                  </td>
+                </tr>
+#end
+#if ($inckoe)
+                <tr>
+                  <td>
+                    <input type="checkbox" name="inc_koesum" checked>
+                  </td>
+                  <td nowrap>
+                    Koepisteiden summa
+                  </td>
+                  <td>
+                    <input type="text" name="inc_koesumname" size="8" maxlength="8" value="KoeS">
+                  </td>
+                </tr>
+#end
+#if ($inclh)
+                <tr>
+                  <td>
+                    <input type="checkbox" name="inc_lhlp" checked>
+                  </td>
+                  <td nowrap>
+                    Laskuharjoituslisäpisteet
+                  </td>
+                  <td>
+                    <input type="text" name="inc_lhlpname" size="8" maxlength="8" value="LhP">
+                  </td>
+                </tr>
+#end
+#if ($incht)
+                <tr>
+                  <td>
+                    <input type="checkbox" name="inc_htlp" checked>
+                  </td>
+                  <td nowrap>
+                    Harjoitustyölisäpisteet
+                  </td>
+                  <td>
+                    <input type="text" name="inc_htlpname" size="8" maxlength="8" value="HtP">
+                  </td>
+                </tr>
+#end
+
+                <tr>
+                  <td>
+                    <input type="checkbox" name="inc_sum" checked>
+                  </td>
+                  <td nowrap>
+                    Yhteispisteet
+                  </td>
+                  <td>
+                    <input type="text" name="inc_sumname" size="8" maxlength="8" value="Yht">
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>
+                    <input type="checkbox" name="inc_grade" checked>
+                  </td>
+                  <td nowrap>
+                    Arvosana
+                  </td>
+                  <td>
+                    <input type="text" name="inc_gradename" size="8" maxlength="8" value="Arvosana">
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>
+                    <input type="checkbox" name="inc_crunits" checked>
+                  </td>
+                  <td nowrap>
+                    Opintopisteet
+                  </td>
+                  <td>
+                    <input type="text" name="inc_cruname" size="8" maxlength="8" value="Op">
+                  </td>
+                </tr>
+
+
+
+                <tr>
+                  <td>
+                    <input type="checkbox" name="inc_statistics">
+                  </td>
+                  <td nowrap>
+                    Tilastoja
+                  </td>
+                  <td>
+                    &nbsp;
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="checkbox" name="inc_gradeDistr">
+                  </td>
+                  <td nowrap>
+                    Arvosanajakauma
+                  </td>
+                  <td>
+                    &nbsp;
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="checkbox" name="inc_feedback">
+                  </td>
+                  <td nowrap>
+                    Palautetilaisuus
+                  </td>
+                  <td>
+                    &nbsp;
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="checkbox" name="inc_signature">
+                  </td>
+                  <td nowrap>
+                    Allekirjoitus
+                  </td>
+                  <td>
+                    &nbsp;
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="checkbox" name="inc_accepted" checked>
+                  </td>
+                  <td nowrap>
+                    HYVÄKSYTYT
+                  </td>
+                  <td>
+                    &nbsp;
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="checkbox" name="inc_failed" checked>
+                  </td>
+                  <td nowrap>
+                    HYLÄTYT
+                  </td>
+                  <td>
+                    &nbsp;
+                  </td>
+                </tr>
+#if ($frozen)
+                <tr>
+                  <td>
+                    <input type="checkbox" name="inc_changes" checked>
+                  </td>
+                  <td nowrap>
+                    Vain jäädytyksen jälkeiset muutokset
+                  </td>
+                  <td>
+                    &nbsp;
+                  </td>
+                </tr>
+
+#end
+
+##
+##  Haettavat opiskelijat - joko ryhmän mukaan tai sukunimen mukaan
+##
+	        <tr>
+		  <th colspan="3" nowrap>&nbsp;
+		    <b>Opiskelijat:</b>
+		    <input type="text" name="filter" tabindex="32600" size="15" value = "$!studentFilter">
+		    <input type="submit" name="makeList" tabindex="32601" value=">>>" class="submitb">
+		  </th>
+	        </tr>
+	      </table>
+	    </form>
+	  </td>
+	</tr>
+      <tr>
+	<td colspan="4">
+<div class="instr">
+<ol>
+  <li>Valitse listalta tiedot, jotka huomioidaan tuloslistalla ja sopivat sarakeotsikot.</li>
+
+
+  <li>Voit myös antaa listalle otettavien opiskelijoiden hakuperusteen (opiskelijat):
+	    <dl>
+	      <dt>tyhjä</dt>
+  	        <dd>Kaikki kurssin opiskelijat.</dd>
+	      <dt>numero</dt>
+	        <dd>Annetun ryhmän opiskelijat.</dd>
+	      <dt>sukunimi</dt>
+	        <dd>Opiskelijat, joiden sukunimi alkaa merkkijonolla "sukunimi".</dd>
+	      <dt>alku .. loppu</dt>
+	        <dd>opiskelijat, joiden sukunimi sijoittuu aakkosjärjestyksessä
+		  alun ja lopun väliin. Välin voi myös jättää avoimeksi.</dd>
+	      <dt>kriteeri1, kriteeri2, ...</dt>
+	        <dd>Hakukriteereja voidaan antaa kerralla myös useampia pilkulla erotettuina.<br>
+		  Esim. "1, ah, pert" --> ryhmän 1 opiskelijat sekä kaikista kurssilla
+	 	  olevista ne, joiden sukunimi alkaa joko merkkijonolla "ah" tai "pert".</dd>
+	      <dt>mEiKäLäInEn</dt>
+		<dd>= Meikäläinen = meikäläinen, eli pienillä ja isoilla kirjaimilla
+		ei ole merkitystä.</dd>
+            </dl>
+  </li>
+  <li>
+            Lopuksi paina 
+
+	    <!-- 
+		NN ymmärtää tuon tyylin, kun se on kirjoitettu elementin 
+		style-atribuuttiin, mutta ei osaa lukea sitä erillisestä
+		CSS-tiedostosta.
+	    -->
+	    <form class="inline" style="margin:0;display:inline;"> 
+	      <input type="button" 
+		     tabindex="32605"
+		     value=">>>" 
+		     onClick="document.suoritevalinta.submit()" 
+	 	     class="submitb">.
+	    </form> 
+  </li>
+</ol>
+</div>
+	</td>
+      </tr>
+#parse ("bottom.vm")

@@ -1,0 +1,41 @@
+HY/TKTL: ${selectedCourse.CCode}, ${selectedCourse.Label} (${selectedCourse.Credits}ov)
+#set ($selectDesc = $selectedCourse.SelectDescription)
+#set ($parts = $selectedCourse.Parts)
+#set ($row = "")
+#if (!$comment)
+#set ($SEPARATOR = ";")
+#else
+#set ($SEPARATOR = $comment)
+#end
+
+#if ($selectDesc)
+Valitut opiskelijat: ${selectDesc}
+
+#end
+##
+################### OTSAKKEET ###################
+##
+#set ($row = "Etunimi${SEPARATOR}Sukunimi${SEPARATOR}Entinen sukunimi${SEPARATOR}Hetu${SEPARATOR}Opiskelijanumero${SEPARATOR}Aloitusvuosi${SEPARATOR}P‰‰aine${SEPARATOR}Email${SEPARATOR}Puhelinnumero${SEPARATOR}Ryhm‰")
+#foreach ($part in $parts)
+#if ($part.Id != 3)
+#foreach ($offering in $part.Offerings)
+#set ($o = $offering.Id + 1)
+#set ($row = "${row}${SEPARATOR}${part.Abbreviation}#${o}")
+#end
+#else
+#set ($row = "${row}${SEPARATOR}${part.Abbreviation}")
+#end
+#end
+${row}
+##
+################### OPISKELIJAT ###################
+##
+#foreach ($student in $students)
+#set ($row = "$!{student.FName}${SEPARATOR}$!{student.LName}${SEPARATOR}$!{student.PrevLName}${SEPARATOR}$!{student.SSN}${SEPARATOR}$!{student.SNO}${SEPARATOR}$!{student.StartYear}${SEPARATOR}$!{student.Major}${SEPARATOR}$!{student.EMail}${SEPARATOR}$!{student.Phone}${SEPARATOR}$!{student.Group}")
+#foreach ($part in $parts)
+#foreach ($offering in $part.Offerings)
+#set ($row = "${row}$!{SEPARATOR}$!{student.getScore(${part}, ${offering})}")
+#end
+#end
+${row}
+#end
