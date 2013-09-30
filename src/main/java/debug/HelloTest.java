@@ -23,6 +23,7 @@ public class HelloTest extends VelocityServlet {
         try {
             int a=0;
             context.put("name", "" + a++);
+            context.put("piippu", new Pipe());
             template = Velocity.getTemplate("hello.vm");
         } catch( Exception e ) {
           System.err.println("Exception caught: " + e.getMessage());

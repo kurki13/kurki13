@@ -1,7 +1,7 @@
 <html>
 <body>
-$name <br>
-$piippu.course_infos() <br>
-$piippu.service_manager()
+<pre>
+$piippu.test()
+</pre>
 </body>
 <html>

@@ -1,20 +1,11 @@
 package debug;
 
-
-import kurki.Rooli;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import kurki.model.CourseInfo;
-import kurki.db.DBConnectionManager;
-import service.ServiceManager;
-import service.exception.NullIdException;
-import service.exception.ServicesNotLockedException;
+import kurki.util.Configuration;
 
 /*
  * To change this template, choose Tools | Templates
@@ -28,7 +19,6 @@ public class Pipe {
 
     public static final int MONTHS_OPEN = 12;
     public static final int SUPER_OPEN = 48;
-    
     protected static final String COURSE_INFOS =
             //<editor-fold defaultstate="collapsed" desc="courseInfos">
 
@@ -83,7 +73,6 @@ public class Pipe {
             + "    AND ADD_MONTHS( k.paattymis_pvm, " + SUPER_OPEN + " ) >= SYSDATE\n"
             + "    AND k.tyyppi in ('K', 'S', 'A')\n" // luento- ja laboratoriokurssit sekä seminaarit
             + "    AND k.tila not in ('S', 'O')\n"
-
             // KOKEET
             + "UNION\n"
             + "(SELECT DISTINCT ku.kurssikoodi, ku.lukuvuosi, ku.lukukausi, ku.tyyppi, ku.tila,\n"
@@ -96,66 +85,36 @@ public class Pipe {
             + "    AND ku.tyyppi = 'L')\n" // vain kokeet
             + "ORDER BY orderBy ASC, nimi ASC, alkamis_pvm ASC";
     //</editor-fold>
-
+    
     public static String getName() {
         return "Not a pipe";
     }
 
-    public static String course_infos() {
-        HashMap<String, CourseInfo> courses = new HashMap();
-        ArrayList<CourseInfo> coursesList = new ArrayList();
-        String answer = "";
-        
-        PreparedStatement preparedStatement;
-        try {
-            Connection databaseConnection = DBConnectionManager.createConnection();
-            preparedStatement = databaseConnection.prepareStatement(SUPER_INFOS);
-            ResultSet resultSet = preparedStatement.executeQuery();
-            
-            while (resultSet.next()) {
-		int lukuvuosi = resultSet.getInt("lukuvuosi");
-		String lukukausi = resultSet.getString("lukukausi");
-		String tila = resultSet.getString("tila");
-                String tyyppi = resultSet.getString("tyyppi");
-                int kurssiNumero = resultSet.getInt("kurssi_nro");
-                String nimi = resultSet.getString("nimi");
-		String nameaux  = " ["+lukukausi+(""+lukuvuosi).substring(2, 4)+"]";
-
-		CourseInfo cinfo = new CourseInfo( resultSet.getString("kurssikoodi"),
-					lukuvuosi,
-					lukukausi,
-					tyyppi,
-					kurssiNumero,
-					nimi+nameaux,
-					Rooli.SUPER );
-                if (tila != null && tila.equals("J")) 
-                    cinfo.freeze();
-		courses.put( cinfo.getId(), cinfo );
-		coursesList.add( cinfo );
-                
-                answer += cinfo.toString() + "<br>";
-                DBConnectionManager.closeConnection(databaseConnection);
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(Pipe.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        catch (ClassNotFoundException ex) {
-            Logger.getLogger(Pipe.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (NullIdException ex) {
-            Logger.getLogger(Pipe.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        
-        return answer;
+    private static void config() {
+        Configuration.setProperty("dbDriver", "oracle.jdbc.OracleDriver");
+        Configuration.setProperty("dbServer", "jdbc:oracle:thin:@bodbacka.cs.helsinki.fi:1521:test");
+        Configuration.setProperty("dbUser", "tk_testi");
+        Configuration.setProperty("dbPassword", "tapaus2");
     }
     
-    public static String service_manager() {
-        ServiceManager service = null;
-        try {
-            service = ServiceManager.getInstance();
-        } catch (ServicesNotLockedException ex) {
-            Logger.getLogger(Pipe.class.getName()).log(Level.SEVERE, null, ex);
+    private static Connection makeConnection() throws ClassNotFoundException, SQLException {
+        Class.forName("oracle.jdbc.OracleDriver");
+        return DriverManager.getConnection("jdbc:oracle:thin:@bodbacka.cs.helsinki.fi:1521:test", "tk_testi", "tapaus2");
+    }
+
+    public String test() throws SQLException, ClassNotFoundException {
+        String ret = "";
+        Connection conn = makeConnection();
+        PreparedStatement ps = conn.prepareStatement("Select * from kurssi");
+        ResultSet rs = ps.executeQuery();
+        for (int i = 1; i <= rs.getMetaData().getColumnCount(); i++) {
+            ret += i + ". " + rs.getMetaData().getColumnName(i) + " " + rs.getMetaData().getColumnTypeName(i) + "<br>";
         }
-        return service.toString();
+        ret+="<br>";
+        while(rs.next()) {
+            ret += rs.getString(1) + "<br>";
+        }
+        conn.close();
+        return ret;
     }
 }
