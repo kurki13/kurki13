@@ -9,6 +9,7 @@ import kurki.*;
 import java.io.*;
 import java.util.*;
 import javax.servlet.http.*;
+import kurki.model.Osasuoritus.OsasuoritusTyyppi;
 import kurki.servlet.Index;
 import kurki.util.LocalisationBundle;
 import org.apache.velocity.context.*;
@@ -39,7 +40,7 @@ public class CourseBasics extends AbstractVelocityServiceProvider
 	if ( doBasic != null ) {
 	    kurki.model.Osasuoritus part = null;
 
-	    for ( int p=0; p < kurki.model.Osasuoritus.ARVOSANA; p++ ) {
+	    for ( int p=0; p < OsasuoritusTyyppi.ARVOSANA.ID; p++ ) {
 		int nbr;
 		int required;
 		int xtr;

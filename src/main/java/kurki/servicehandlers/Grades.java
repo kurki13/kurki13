@@ -8,6 +8,7 @@ import kurki.*;
 import java.io.*;
 import java.util.*;
 import javax.servlet.http.*;
+import kurki.model.Osasuoritus.OsasuoritusTyyppi;
 import kurki.servlet.Index;
 import kurki.util.LocalisationBundle;
 import org.apache.velocity.context.*;
@@ -97,7 +98,7 @@ public class Grades extends AbstractVelocityServiceProvider
 		    valOK = true;
 		}
 		val = nullIfEmpty( req.getParameter( "xtr_"+ptype ) );
-		if ( val != null && ptype != kurki.model.Osasuoritus.KOE ) {
+		if ( val != null && ptype != OsasuoritusTyyppi.KOE.ID ) {
 		    try {
 			if ( !part.setXtrScore( Integer.parseInt( val ) ) )
 			    valOK = false;
@@ -109,7 +110,7 @@ public class Grades extends AbstractVelocityServiceProvider
 		    valOK = true;
 		}
 		val = nullIfEmpty( req.getParameter( "xtr1st_"+ptype ) );
-		if ( val != null && ptype != kurki.model.Osasuoritus.KOE ) {
+		if ( val != null && ptype != OsasuoritusTyyppi.KOE.ID ) {
 		    try {
 			if ( !part.setFirstXtrScore( Integer.parseInt( val ) ) )
 			    valOK = false;
@@ -122,7 +123,7 @@ public class Grades extends AbstractVelocityServiceProvider
 		    valOK = true;
 		}
 		val = nullIfEmpty( req.getParameter( "step_"+ptype ) );
-		if ( val != null && ptype != kurki.model.Osasuoritus.KOE ) {
+		if ( val != null && ptype != OsasuoritusTyyppi.KOE.ID ) {
 		    try {
 			if ( !part.setXtrStep( Double.parseDouble( val ) ) )
 			    valOK = false;
