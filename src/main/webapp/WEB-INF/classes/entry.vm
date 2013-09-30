@@ -15,21 +15,13 @@
 
 
 #parse ("top.vm")
-	<tr class="navi2">
-	  <td colspan="4">
+	<div>
           <h3>$bundle.getString("1entry")</h3>
-            <form name="suoritevalinta" action="index" method="post" onSubmit="return !isModified()">
-	      <table border="0" cellspacing="0" cellpadding="0" align="left" style="text-align:left;">
-	        <tr>
-		  <td>
-                    <label for="type" accesskey="T">
-		    <b>$bundle.getString("tyyppi"):</b>
-                    </label>
-		  </td>
-		  <td>
-		    <input type="hidden" name="chtype" value ="">
-		    <select name="ptype" id="type" tabindex="32600"
-                            onChange="document.suoritevalinta.chtype.value = 'true' && !isModified() && document.suoritevalinta.submit();">
+            <form name="suoritevalinta" class="form-inline" action="index" method="post" onSubmit="return !isModified()">
+		<b>$bundle.getString("tyyppi"):</b>
+		<input type="hidden" name="chtype" value ="">
+		<select name="ptype" id="type" tabindex="32600"
+                        onChange="document.suoritevalinta.chtype.value = 'true' && !isModified() && document.suoritevalinta.submit();">
 
 ##
 ## Osasuorituksen tyyppi
@@ -45,15 +37,9 @@
   #end
 #end
 		    </select>
-	  	  </td>
-		  <td>&nbsp;
-                    <label for="offering" accesskey="K">
                     <b>$bundle.getString("kerta"):</b>
-                    </label>
-                  </td>
-		  <td>
 
-		    <!-- Tähän numeroita suoritteiden maximimäärän verran -->		    
+		    <!-- Tähän numeroita suoritteiden maksimimäärän verran -->		    
 		    <select name="offering" tabindex="32600" id="offering">
 ##
 ##  Suorituskerta
@@ -70,34 +56,21 @@
 #end
 
 		    </select>
-		  </td>
-		  <td>&nbsp;
 
 ##
 ##  Haettavat opiskelijat - joko ryhmän mukaan tai sukunimen mukaan
 ##
-                    <label for="find" accesskey="O">
 		    <b>$bundle.getString("opiskelijat"):</b>
-                    </label>
-		  </td>
- 		  <td>
-		    <input type="text" name="filter" id="find" tabindex="32600" size="15" value = "$!studentFilter">
-		  </td>
-		  <td>&nbsp;
+		    <input type="text" class="form-control input-sm" style="width:150px" name="filter" id="find" tabindex="32600" size="15" value = "$!studentFilter">
+
 		    <input type="hidden" name="studentFilter" value="$!{studentFilter}">
 
 		    <input type="hidden" name="studentFilterDesc" value="$!{studentFilterDesc}">
 
 		    <input type="submit" name="search" tabindex="32601" value=">>>" class="btn btn-primary">
-		  </td>
-	        </tr>
-	      </table>
+
 	    </form>
-	  </td>
-	</tr>
-      <tr>
-	<td colspan="4">
-<br><br>
+	</div>
 ##
 ## Onko käsiteltävä suorituskerta jo valittu?
 ##
