@@ -27,47 +27,47 @@
 #end
 
 #if (!$lh && !$ht && !$koe)
-<table class="normal" border="0" width="500">
-  <tr>
-    <th>
+<div>
       $bundle.getString("isoeiosa") <br><br>
       <form action="index" method="post">
         <input type="submit" value="$bundle.getString("maaritteleosa")" class="btn btn-primary">
         <input type="hidden" value="3coursebasics" name="service">
       </form>
-    </th>
-  </tr>
-</table>
+</div>
 #else
-<form action="index" name="grades" method="post">
+<form action="index" class="form-inline" name="grades" method="post">
   <input type="hidden" name="TS" value="${TS}">
-<table class="normal" border="0">
+<table class="normal" border="0"> ## taulu menee kahteen osaan vierekkäin
   <tr>
     <td valign="top">
-      <table class="normal" border="1">
+      <table class="normal" border="0">
         <tr>
           <th>$bundle.getString("suorituspvm")</th>
-          <td nowrap> 
+          <td nowrap style="width:250px"> 
   #if (!$frozen)
-           <input type="text" name="examDate" value="$!{selectedCourse.ExamDate}" size="10" maxlength="10"> ($bundle.getString("pvm"))
+           <input type="text" name="examDate" class="form-control input" style="width:100px"
+                value="$!{selectedCourse.ExamDate}" size="10" maxlength="10"> ($bundle.getString("pvm"))
   #else
-           $!{selectedCourse.ExamDate}
+           <input type="text" class="form-control" style="width:100px"
+                value="$!{selectedCourse.ExamDate}" readonly>
   #end
           </td>
 
 #if ($lh)
   #set ($cols = $cols+1)
-          <th width="30">Lh</th>
+          <th style="width:60px">Lh</th> ##käännä
 #end
 #if ($ht)
   #set ($cols = $cols+1)
-          <th width="30">Ht</th>
+          <th style="width:60px">Ht</th> ##käännä
 #end
 #if ($koe)
   #set ($cols = $cols+1)
-          <th width="30">Koe</th>
+          <th style="width:60px">Koe</th> ##käännä
 #end
         </tr>
+
+<tr><td colspan="5"><hr width="90%"></td></tr>
 
 ##
 ## OSASUORITUKSIA
@@ -80,27 +80,34 @@
 #if ($lh)
           <td>
   #if (!$frozen)
-            <input type="hidden" name="nbr_${lh.Id}" value="${lh.NbrOfOfferings}">$lh.NbrOfOfferings
+            <input type="text" class="form-control" style="width:50px"
+                name="nbr_${lh.Id}" value="${lh.NbrOfOfferings}" readonly>
   #else
-            $lh.NbrOfOfferings
+            <input type="text" class="form-control" style="width:50px"
+                value="$lh.NbrOfOfferings" readonly>
   #end
+
           </td>
 #end
 #if ($ht)
           <td>
   #if (!$frozen)
-            <input type="hidden" name="nbr_${ht.Id}" value="${ht.NbrOfOfferings}">$ht.NbrOfOfferings
+            <input type="text" class="form-control" style="width:50px"
+                name="nbr_${ht.Id}" value="${ht.NbrOfOfferings}" readonly>
   #else
-            $ht.NbrOfOfferings
+            <input type="text" class="form-control" style="width:50px"
+                value="$ht.NbrOfOfferings" readonly>
   #end
           </td>
 #end
 #if ($koe)
           <td>
   #if (!$frozen)
-            <input type="hidden" name="nbr_${koe.Id}" value="${koe.NbrOfOfferings}">$koe.NbrOfOfferings
+            <input type="text" class="form-control" style="width:50px"
+                name="nbr_${koe.Id}" value="${koe.NbrOfOfferings}" readonly>
   #else
-            $koe.NbrOfOfferings
+            <input type="text" class="form-control" style="width:50px"
+                value="$koe.NbrOfOfferings" readonly>
   #end
           </td>
 #end 
@@ -110,32 +117,39 @@
 #if ($lh)
           <td>
   #if (!$frozen)
-            <input type="text" name="reqo_${lh.Id}" value="${lh.RequiredOfferings}" size="2" maxlength="2">
+            <input type="text" class="form-control input" style="width:50px"
+                name="reqo_${lh.Id}" value="${lh.RequiredOfferings}" size="2" maxlength="2">
   #else
-            ${lh.RequiredOfferings}
+            <input type="text" class="form-control" style="width:50px"
+                value="${lh.RequiredOfferings}" readonly>
   #end
           </td>
 #end
 #if ($ht)
           <td>
   #if (!$frozen)
-            <input type="text" name="reqo_${ht.Id}" value="${ht.RequiredOfferings}" size="2" maxlength="2">
+            <input type="text" class="form-control input" style="width:50px"
+                name="reqo_${ht.Id}" value="${ht.RequiredOfferings}" size="2" maxlength="2">
   #else
-            ${ht.RequiredOfferings}
+            <input type="text" class="form-control" style="width:50px"
+                value="${ht.RequiredOfferings}" readonly>
   #end
           </td>
 #end
 #if ($koe)
           <td>
   #if (!$frozen)
-            <input type="text" name="reqo_${koe.Id}" value="${koe.RequiredOfferings}" size="2" maxlength="2">
+            <input type="text" class="form-control input" style="width:50px"
+                name="reqo_${koe.Id}" value="${koe.RequiredOfferings}" size="2" maxlength="2">
   #else
-            ${koe.RequiredOfferings}
+            <input type="text" class="form-control" style="width:50px"
+                value="${koe.RequiredOfferings}" readonly>
   #end
           </td>
 #end 
         </tr>
-##        <tr><td colspan="${cols}">&nbsp;</td></tr>
+
+<tr><td colspan="5"><hr width="90%"></td></tr>
 
 ##
 ## SUORITUSPISTEITÄ OSASUORITUKSISTA
@@ -149,9 +163,11 @@
   #set ($maxScore = $lh.MaxScoreCount)
           <td>
   #if (!$frozen)
-            <input type="hidden" name="max_${lh.Id}" value="$maxScore">$maxScore
+            <input type="text" class="form-control" style="width:50px"
+                name="max_${lh.Id}" value="$maxScore" readonly>
   #else
-            $maxScore
+            <input type="text" class="form-control" style="width:50px"
+                value="$maxScore" readonly>
   #end
           </td>
 #end
@@ -159,9 +175,11 @@
   #set ($maxScore = $ht.MaxScoreCount)
           <td>
   #if (!$frozen)
-            <input type="hidden" name="max_${ht.Id}" value="$maxScore">$maxScore
+            <input type="text" class="form-control" style="width:50px"
+                name="max_${ht.Id}" value="$maxScore" readonly>
   #else
-            $maxScore
+            <input type="text" class="form-control" style="width:50px"
+                value="$maxScore" readonly>
   #end
           </td>
 #end
@@ -169,9 +187,11 @@
   #set ($maxScore = $koe.MaxScoreCount)
           <td>
   #if (!$frozen)
-            <input type="hidden" name="max_${koe.Id}" value="$maxScore">$maxScore
+            <input type="text" class="form-control" style="width:50px"
+                name="max_${koe.Id}" value="$maxScore" readonly>
   #else
-            $maxScore
+            <input type="text" class="form-control" style="width:50px"
+                value="$maxScore" readonly>
   #end
           </td>
 #end 
@@ -179,13 +199,22 @@
         <tr>
           <th>$bundle.getString("hyvrajsum")</th>
 #if ($lh)
-          <td>${lh.MinScoreCount}</td>
+          <td>
+            <input type="text" class="form-control" style="width:50px"
+                value="${lh.MinScoreCount} readonly>
+          </td>
 #end
 #if ($ht)
-          <td>${ht.MinScoreCount}</td>
+          <td>
+           <input type="text" class="form-control" style="width:50px"
+                value="${ht.MinScoreCount}" readonly>
+          </td>
 #end
 #if ($koe)
-          <td>${koe.MinScoreCount}</td>
+          <td>
+            <input type="text" class="form-control" style="width:50px"
+                value="${koe.MinScoreCount}" readonly>
+          </td>
 #end 
         </tr>
         <tr>
@@ -193,32 +222,39 @@
 #if ($lh)
           <td>
   #if (!$frozen)
-            <input type="text" name="reqs_${lh.Id}" value="${lh.requiredScore}" size="4" maxlength="4">
+            <input type="text" class="form-control input" style="width:50px"
+                name="reqs_${lh.Id}" value="${lh.requiredScore}" size="4" maxlength="4">
   #else
-            ${lh.requiredScore}
+            <input type="text" class="form-control" style="width:50px"
+                value="${lh.requiredScore}" readonly>
   #end
           </td>
 #end
 #if ($ht)
           <td>
   #if (!$frozen)
-            <input type="text" name="reqs_${ht.Id}" value="${ht.requiredScore}" size="4" maxlength="4">
+            <input type="text" class="form-control input" style="width:50px"
+                name="reqs_${ht.Id}" value="${ht.requiredScore}" size="4" maxlength="4">
   #else
-            ${ht.requiredScore}
+            <input type="text" class="form-control" style="width:50px"
+                value="${ht.requiredScore}" readonly>
   #end
           </td>
 #end
 #if ($koe)
           <td>
   #if (!$frozen)
-            <input type="text" name="reqs_${koe.Id}" value="${koe.requiredScore}" size="4" maxlength="4">
+            <input type="text" class="form-control input" style="width:50px"
+                name="reqs_${koe.Id}" value="${koe.requiredScore}" size="4" maxlength="4">
   #else
-            ${koe.requiredScore}
+            <input type="text" class="form-control" style="width:50px"
+                value="${koe.requiredScore}" readonly>
   #end
           </td>
 #end 
         </tr>
 
+<tr><td colspan="5"><hr width="90%"></td></tr>
 
 ##
 ## ARVOSTELUUN VAIKUTTAVAT LISÄPISTEET
@@ -226,15 +262,17 @@
 
         <tr>
           <th rowspan="3" wrap>$bundle.getString("arvlp")</th>
-          <th>maksimi</th>
+          <th>maksimi</th> ##käännä
 
 #if ($lh)
   #set ($xtrTotal = $xtrTotal + $lh.XtrScore)
           <td>
   #if (!$frozen)
-            <input type="text" name="xtr_${lh.Id}" value="${lh.XtrScore}" size="2" maxlength="2">
+            <input type="text" class="form-control input" style="width:50px"
+                name="xtr_${lh.Id}" value="${lh.XtrScore}" size="2" maxlength="2">
   #else
-            ${lh.XtrScore}
+            <input type="text" class="form-control" style="width:50px"
+                value="${lh.XtrScore}" readonly>
   #end
           </td>
 #end
@@ -242,12 +280,15 @@
   #set ($xtrTotal = $xtrTotal + $ht.XtrScore)
           <td>
   #if (!$frozen)
-            <input type="text" name="xtr_${ht.Id}" value="${ht.XtrScore}" size="2" maxlength="2">
+            <input type="text" class="form-control input" style="width:50px"
+                name="xtr_${ht.Id}" value="${ht.XtrScore}" size="2" maxlength="2">
   #else
-            ${ht.XtrScore}
+            <input type="text" class="form-control" style="width:50px"
+                value="${ht.XtrScore}" readonly>
   #end
           </td>
 #end
+##taru jatka tästä
 #if ($koe)
   #set ($xtrTotal = $xtrTotal + $koe.XtrScore)
           <td><input type="hidden" name="xtr_${koe.Id}" value="${ht.XtrScore}">${koe.XtrScore}</td>
@@ -258,18 +299,22 @@
 #if ($lh)
           <td>
   #if (!$frozen)
-            <input type="text" name="xtr1st_${lh.Id}" value="${lh.getFirstXtrScore()}" size="4" maxlength="4">
+            <input type="text" class="form-control input" style="width:50px"
+                name="xtr1st_${lh.Id}" value="${lh.getFirstXtrScore()}" size="4" maxlength="4">
   #else
-            ${lh.getFirstXtrScore()}
+            <input type="text" class="form-control" style="width:50px"
+                value="${lh.getFirstXtrScore()}" readonly>
   #end
           </td>
 #end
 #if ($ht)
           <td>
   #if (!$frozen)
-            <input type="text" name="xtr1st_${ht.Id}" value="${ht.getFirstXtrScore()}" size="4" maxlength="4">
+            <input type="text" class="form-control input" style="width:50px"
+                name="xtr1st_${ht.Id}" value="${ht.getFirstXtrScore()}" size="4" maxlength="4">
   #else
-            ${ht.getFirstXtrScore()}
+            <input type="text" class="form-control" style="width:50px"
+                value="${ht.getFirstXtrScore()}" readonly>
   #end
           </td>
 #end
@@ -282,18 +327,22 @@
 #if ($lh)
           <td>
   #if (!$frozen)
-            <input type="text" name="step_${lh.Id}" value="${lh.XtrStep}" size="5" maxlength="5">
+            <input type="text" class="form-control input" style="width:50px" 
+                name="step_${lh.Id}" value="${lh.XtrStep}" size="5" maxlength="5">
   #else
-            ${lh.XtrStep}
+            <input type="text" class="form-control" style="width:50px"
+                value="${lh.XtrStep}" readonly>
   #end
           </td>
 #end
 #if ($ht)
           <td>
   #if (!$frozen)
-            <input type="text" name="step_${ht.Id}" value="${ht.XtrStep}" size="5" maxlength="5">
+            <input type="text" class="form-control input" style="width:50px" 
+                name="step_${ht.Id}" value="${ht.XtrStep}" size="5" maxlength="5">
   #else
-            ${ht.XtrStep}
+            <input type="text" class="form-control" style="width:50px"
+                value="${ht.XtrStep}" readonly>
   #end
           </td>
 #end
@@ -304,7 +353,7 @@
       </table>
     </td>
     <td valign="top">
-      <table class="normal" width="100%" border="1">
+      <table class="normal" width="100%" border="0"> ##oikeanpuoleinen taulu
 <!--
         <tr>
           <th colspan="2">
@@ -316,9 +365,11 @@
           <th>$bundle.getString("pstmax")</th>
           <td>
   #if (!$frozen)
-            <input type="text" name="xtrTotal" value="${xtrTotal}" size="3" maxlength="3" readonly>
+            <input type="text" class="form-control input" style="width:50px"
+                name="xtrTotal" value="${xtrTotal}" size="3" maxlength="3" readonly>
   #else
-            ${xtrTotal}
+            <input type="text" class="form-control" style="width:50px"
+                value="${xtrTotal}" readonly>
   #end
           </td>
         </tr>
@@ -326,9 +377,11 @@
         <th>$bundle.getString("hyvar")</th>
         <td>
   #if (!$frozen)
-          <input type="text" name="xtr1st_3" value="${selectedCourse.MinScore}" size="4" maxlength="4">
+          <input type="text" class="form-control input" style="width:50px"
+                name="xtr1st_3" value="${selectedCourse.MinScore}" size="4" maxlength="4">
   #else
-          ${selectedCourse.MinScore}
+          <input type="text" class="form-control" style="width:50px"
+                value="${selectedCourse.MinScore}" readonly>
   #end
         </td>
       </tr>
@@ -336,9 +389,11 @@
         <th>$bundle.getString("asv")</th>
         <td>
   #if (!$frozen) 
-          <input type="text" name="step_3" value="${selectedCourse.GradeStep}" size="5" maxlength="5">
+          <input type="text" class="form-control input" style="width:50px"
+                name="step_3" value="${selectedCourse.GradeStep}" size="5" maxlength="5">
   #else
-          ${selectedCourse.GradeStep}
+          <input type="text" class="form-control" style="width:50px"
+                value="${selectedCourse.GradeStep}" readonly>
   #end
         </td>
       </tr>
@@ -367,7 +422,7 @@
         <th>$bundle.getString("arvtapa")</th>
         <td> 
 #if (!$frozen)
-          <select name="convention">
+          <select name="convention" class="form-control form-inline" style="width:300px">
 #end
 #set ( $selectedConvention = $selectedCourse.GradingConvention )
 #foreach ( $convention in $selectedCourse.GradingConventions ) 
@@ -385,22 +440,22 @@
 #if (!$frozen)
           </select>
 #end
+
         </td>
       </tr>
-<!--
-      <tr>
-        <th  colspan="2">
-        </th>
-      </tr>
--->
-      </table>
-      <input type="submit" name="makeAssessment" class="btn btn-success" value="$bundle.getString("teearv")"><br>
+
+<tr><td colspan="2"><hr width="90%"></td></tr>
+
+        <td colspan="2">
+      <input type="submit" name="makeAssessment" class="btn btn-success" value="$bundle.getString("teearv")">
   #if (!$frozen)
-      <input type="submit" name="saveBasic" class="btn btn-success" value="$bundle.getString("tallennam")"><br>
-      <input type="submit" name="modBoundaries" class="btn btn-primary" value="$bundle.getString("muutaparajoja")"><br>
+      <input type="submit" name="saveBasic" class="btn btn-success" value="$bundle.getString("tallennam")">
+      <input type="submit" name="modBoundaries" class="btn btn-primary" value="$bundle.getString("muutaparajoja")">
   #else
-      <input type="submit" name="modBoundaries" class="btn btn-primary" value="$bundle.getString("parajat")"><br>
+      <input type="submit" name="modBoundaries" class="btn btn-primary" value="$bundle.getString("parajat")">
   #end
+        </td>
+      </table>
     </td>
   </tr>
 </table>

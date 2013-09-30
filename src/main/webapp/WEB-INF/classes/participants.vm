@@ -1,16 +1,16 @@
 #parse ("top.vm")
 	<div>
           <h3>$bundle.getString("2participants")</h3>
-            <form name="ophaku" action="index" method="post">
+            <form name="ophaku" class="form-inline" action="index" method="post">
 		<b>$bundle.getString("isosnimi"):</b>
-		<input type="text" class="form-control input-sm" style="width:150px" id="lname" name="lname" size="10" maxlength="30">
+		<input type="text" class="form-control input" style="width:150px" id="lname" name="lname" size="10" maxlength="30">
 #*
 		<b>Enimi:</b>
 		<input type="text" name="fname" size="10" maxlength="30">
 
 *#
 		    <b>$bundle.getString("ryhma"):</b>
-                    <select name="group">
+                    <select name="group" class="form-control form-inline" style="width:70px">
 #foreach ($group in $selectedCourse.Groups)
 		      <option>$group</option>
 #end
@@ -35,9 +35,9 @@
 
 ## idtype value aina nolla -tka
 <input type="hidden" value="0" name="idtype">
-		    <input type="text" class="form-control input-sm" style="width:150px" id="idvalue" name="idvalue" size="11" maxlength="11">
+		    <input type="text" class="form-control input" style="width:150px" id="idvalue" name="idvalue" size="11" maxlength="11">
 
-		    <select name="doSearch"
+		    <select name="doSearch" class="form-control form-inline" style="width:350px"
                         onChange="checkAndSubmitStudentFind(document.ophaku);">
 		      <option>-- $bundle.getString("valitsetoiminto") --</option>
 		      <option value="0">$bundle.getString("tiedot")</option>

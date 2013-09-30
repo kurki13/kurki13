@@ -20,7 +20,9 @@
             <form name="suoritevalinta" class="form-inline" action="index" method="post" onSubmit="return !isModified()">
 		<b>$bundle.getString("tyyppi"):</b>
 		<input type="hidden" name="chtype" value ="">
-		<select name="ptype" id="type" tabindex="32600"
+
+
+		<select name="ptype" class="form-control form-inline" style="width:200px" id="type" tabindex="32600"
                         onChange="document.suoritevalinta.chtype.value = 'true' && !isModified() && document.suoritevalinta.submit();">
 
 ##
@@ -40,7 +42,7 @@
                     <b>$bundle.getString("kerta"):</b>
 
 		    <!-- Tähän numeroita suoritteiden maksimimäärän verran -->		    
-		    <select name="offering" tabindex="32600" id="offering">
+		    <select name="offering" class="form-control form-inline" style="width:70px" tabindex="32600" id="offering">
 ##
 ##  Suorituskerta
 ##
@@ -61,7 +63,7 @@
 ##  Haettavat opiskelijat - joko ryhmän mukaan tai sukunimen mukaan
 ##
 		    <b>$bundle.getString("opiskelijat"):</b>
-		    <input type="text" class="form-control input-sm" style="width:150px" name="filter" id="find" tabindex="32600" size="15" value = "$!studentFilter">
+		    <input type="text" class="form-control" style="width:150px" name="filter" id="find" tabindex="32600" size="15" value = "$!studentFilter">
 
 		    <input type="hidden" name="studentFilter" value="$!{studentFilter}">
 

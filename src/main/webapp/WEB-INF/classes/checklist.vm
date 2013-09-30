@@ -7,7 +7,7 @@
 ## Tuotettavan listan tyyppi
 ##
 
-		    <select name="ltype" tabindex="32600">
+		    <select name="ltype" tabindex="32600" class="form-control form-inline" style="width:200px">
 		      <!-- <listan numero>_<sisällön mime-tyyppi "text/..."> -->
 		      <option value="1_html">$bundle.getString("kirjanpitolista")</option>
 		      <option value="2_plain">$bundle.getString("opnronimi")</option>
@@ -25,16 +25,16 @@
 ##
 ##  Kommentti
 ##
-                    <input type="text" class="form-control input-sm" style="width:150px" value="" name="comment" size="15">
+                    <input type="text" class="form-control input" style="width:150px" value="" name="comment" size="15">
 
 ##
 ##  Haettavat opiskelijat - joko ryhmän mukaan tai sukunimen mukaan
 ##
 		    <b>$bundle.getString("opiskelijat"):</b>
 
-		    <input type="text" class="form-control input-sm" style="width:150px" name="filter" tabindex="32600" size="15" value = "$!studentFilter">
+		    <input type="text" class="form-control input" style="width:150px" name="filter" tabindex="32600" size="15" value = "$!studentFilter">
 
-		    <input type="submit" name="search" tabindex="32601" value=">>>" class="btn btn-primary btn-sm">
+		    <input type="submit" name="search" tabindex="32601" value=">>>" class="btn btn-primary btn">
 	    </form>
 	</div>
 
@@ -70,7 +70,7 @@
 		     tabindex="32605"
 		     value=">>>" 
 		     onClick="document.suoritevalinta.submit()" 
-	 	     class="btn btn-primary btn-sm">.
+	 	     class="btn btn-primary btn">.
 	    </form> 
             </b>
 	    $bundle.getString("sukunimellahaku")
