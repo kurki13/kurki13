@@ -6,6 +6,7 @@ import service.*;
 
 import java.util.*;
 import java.io.Serializable;
+import kurki.model.Osasuoritus.OsasuoritusTyyppi;
 import kurki.util.LocalisationBundle;
 
 
@@ -26,7 +27,7 @@ public class Student extends ComparableOptionAdapter
     protected String major = null;
     protected String phone = null;
     protected String prevlname = null;
-    protected Vector[] scores = new Vector[ Osasuoritus.NO_OF_TYPES ];
+    protected Vector[] scores = new Vector[ OsasuoritusTyyppi.TYYPPEJA_YHTEENSA ];
     protected int[] scoreTotal = { 0, 0, 0 }; // Yhteispisteet { lh, ht, koe }
     protected String state = null;
     protected String sno = null;    // 08/7 alkaen HETU - HL
@@ -139,8 +140,8 @@ public class Student extends ComparableOptionAdapter
     public String getGrade() {
 	String grade = null;
 
-	if ( this.scores[Osasuoritus.ARVOSANA] != null )
-	    grade = ((Score)this.scores[Osasuoritus.ARVOSANA].get(0)).getScore();
+	if ( this.scores[OsasuoritusTyyppi.ARVOSANA.ID] != null )
+	    grade = ((Score)this.scores[OsasuoritusTyyppi.ARVOSANA.ID].get(0)).getScore();
 
 	return grade;
     }
@@ -192,7 +193,7 @@ public class Student extends ComparableOptionAdapter
 
     public String getScore( Osasuoritus part ) {
 	if ( part == null ) { return null; }
-	if ( part.getType() == Osasuoritus.ARVOSANA ) {
+	if ( part.getType() == OsasuoritusTyyppi.ARVOSANA.ID ) {
 	    return getScore( part, part.getOffering(0) );
 	}
 	else {
@@ -264,7 +265,7 @@ public class Student extends ComparableOptionAdapter
     public String getXtrScore( Osasuoritus part ) {
 	if ( part == null ) return null;
 	int pid = part.getType();
-	if ( pid == Osasuoritus.ARVOSANA ) return null;
+	if ( pid == OsasuoritusTyyppi.ARVOSANA.ID ) return null;
 	return ""+xtrScore[ pid ];
     }
 
