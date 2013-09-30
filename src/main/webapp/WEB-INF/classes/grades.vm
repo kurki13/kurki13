@@ -201,7 +201,7 @@
 #if ($lh)
           <td>
             <input type="text" class="form-control" style="width:50px"
-                value="${lh.MinScoreCount} readonly>
+                value="${lh.MinScoreCount}" readonly>
           </td>
 #end
 #if ($ht)
