@@ -140,7 +140,7 @@ $bundle.getString("kurkiPaivitKesken")
 -->
 	
 <div>
-	    <form name="navi" action="index" method="post">
+	    <form name="navi" class="form-inline" action="index" method="post">
 ##
 ## Tähän kaikki kurssit, joilla käyttäjä ohjaajana
 ##
@@ -149,7 +149,8 @@ $bundle.getString("kurkiPaivitKesken")
                     <label for="course" accesskey="C"></label>
 		    <select name="course" id="course" 
 			    onChange="!isModified() && document.navi.submit();"
-			    tabindex="32700">
+			    tabindex="32700"
+                            class="form-control form-inline" style="width:500px">
   #if (!$services)
 		      <option value="">-- $bundle.getString("valitseKurssi") --</a>
   #end
@@ -178,7 +179,8 @@ $bundle.getString("kurkiPaivitKesken")
                     <label for="service" accesskey="A"></label>
 		    <select name="service" id="service"
 			    onChange="!isModified() && document.navi.submit();"
-			    tabindex="32701">
+			    tabindex="32701"
+                            class="form-control form-inline" style="width:300px">
 
   #if (!$selectedService.getLabel())
 		      <option value="" selected>-- $bundle.getString("valitse_toiminto") --</option>

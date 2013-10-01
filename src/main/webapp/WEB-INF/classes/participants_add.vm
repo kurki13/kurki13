@@ -10,7 +10,7 @@ $error
 #end
 
 #if ($students)
-<table class="normal" border="1" width="100%" style="max-width:1000px">
+<table class="table table-condensed table-bordered" style="max-width:1000px">
   <caption>
    $bundle.getString("opvalittu") ${students.size()}
   </caption>
@@ -54,7 +54,7 @@ $error
     <td bgcolor="${bgcolor}" nowrap>
       <center>
       <form action="index" name="addForm${student.Id}" method="post" class="inline" style="margin:0;display:inline;">
-	<select name="group">
+	<select name="group" class="form-control form-inline" style="width:70px">
 #foreach ($group in $selectedCourse.Groups)
           <option>${group}</option>
 #end
@@ -69,7 +69,7 @@ $error
     <td bgcolor="${bgcolor}">
       <center>
       <form action="index" method="post" class="inline" style="margin:0;display:inline;" onSubmit="return false">
-         <input type="button" value="lisää" class="btn btn-success"
+         <input type="button" value="lisää" class="btn btn-success btn-sm"
                 onClick="document.addForm${student.Id}.submit()">
       </form>
       </center>

@@ -14,7 +14,7 @@
 
 #if ($students)
 <form action="index" name="return" method="post">
-<table class="normal" border="1" width="100%" style="max-width:1000px">
+<table class="table table-condensed table-bordered" style="max-width:1000px">
   <caption>
    $bundle.getString("opvalittu") ${students.size()}
   </caption>
@@ -65,7 +65,7 @@
   <tr>
     <th colspan="4">
       <input type="hidden" name="TS" value="${TS}">
-      <center><input type="submit" class="submitb" name="doReturn" value="------> $bundle.getString("palautaIso") <------"></center>
+      <center><input type="submit" class="btn btn-success" name="doReturn" value="------> $bundle.getString("palautaIso") <------"></center>
     </th>
   </tr>
   #end

@@ -16,14 +16,14 @@
         <form action="index" method="post" class="inline" style="margin:0;display:inline;">
           <input type="hidden" name="TS" value="${TS}">
           <input type="hidden" name="sid" value="${prev}">
-	  <input type="submit" class="btn btn-primary" name="doEdit" value="$bundle.getString("edellinen")">
+	  <input type="submit" class="btn btn-primary" name="doEdit" value="$bundle.getString("edellinen")">&nbsp;
         </form>
         </center>
       </td>
       <td>
         <center>
         <form action="index" method="post" class="inline" style="margin:0;display:inline;">
-	  <input type="submit" class="btn btn-primary" name="doList" value="$bundle.getString("valitselistalta")">
+	  <input type="submit" class="btn btn-primary" name="doList" value="$bundle.getString("valitselistalta")">&nbsp;
         </form>
         </center>
       </td>
@@ -126,7 +126,7 @@ $!{student.LName}, $!{student.FName} (${student.SSN} / $!{student.sno})
   <input type="hidden" name="TS" value="${TS}">
   <input type="hidden" name="sid" value="$!{sid}">
 
-  <table class="normal" border="1" width="100%" style="max-width:1000px">
+  <table class="table table-condensed table-bordered" style="max-width:1000px">
   #foreach ( $part in $parts )
     #set ($pid = $part.Id)
     <tr>
@@ -150,7 +150,8 @@ $!{student.LName}, $!{student.FName} (${student.SSN} / $!{student.sno})
       #if (!$student.isFrozen())
               <br>
               <input type="hidden" name="maxcheck_${pid}_${offering.Id}" value="${offering.MaxScore}">
-              <input type="text" name="s${pid}_${offering.Id}" size="2" maxlength="2" tabindex="1"
+              <input type="text" class="form-control input-sm" style="width:50px" 
+                    name="s${pid}_${offering.Id}" size="2" maxlength="2" tabindex="1"
         #if ($pid < 3)
                      onBlur="this.value=='+' || rangecheck(this, 0, this.form.maxcheck_${pid}_${offering.Id}.value);"
         #end
