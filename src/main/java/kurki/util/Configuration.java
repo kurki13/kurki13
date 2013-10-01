@@ -4,44 +4,36 @@ import java.io.*;
 import java.util.*;
 
 /**
- * Tämä luokka lataa tiedostosta muistiin konfiguraatiotiedoston.
+ * Luokka konfiguraatioden käsittelemiseen muistissa.
  */
 public class Configuration {
 
-    protected static Properties props = new Properties();
-    protected static File pfile = null;
+    /**
+     * Olioon kirjataan konfiguraatiotiedoston ominaisuudet. 
+     */
+    protected static Properties properties = new Properties();
+    protected static File propertiesFile = null;
     protected static long lmod = 0;
     private static ArrayList<String> superUsers = new ArrayList();
 
-    private Configuration() {
-    }
-
-    public static Object getProperty(String name) {
-        if (name == null) {
-            return null;
-        }
-        loadProperties();
-        return props.get(name);
-    }
-
-    public static boolean propertySet(String name) {
+    /**
+     * Tarkastaa onko properties-olioon kirjattuna parametrina annettua avainta.
+     * 
+     * @param name Avaimen nimi
+     * @return Onko kirjattuna
+     */
+    public static boolean isPropertySet(String name) {
         if (name == null) {
             return false;
         }
-        return props.containsKey(name);
+        return properties.containsKey(name);
     }
 
-    public static boolean setProperty(String name, Object value) {
-        if (name == null || value == null) {
-            return false;
-        }
-
-        props.put(name, value);
-        return true;
-    }
-
+    /**
+     * Lisää superUsers ArrayListiin konfiguraatio-tiedostossa määrittellyt superUserit.
+     */
     private static void buildSuperUsersList() {
-        StringTokenizer st = new StringTokenizer(props.getProperty("superUsers"), ",");
+        StringTokenizer st = new StringTokenizer(properties.getProperty("superUsers"), ",");
         while (st.hasMoreTokens()) {
             String login = st.nextToken().trim();
             if (login.length() > 0) {
@@ -50,39 +42,59 @@ public class Configuration {
         }
     }
 
-    public static ArrayList<String> getSuperUsers() {
-        return superUsers;
-    }
-
     /**
-     * Asettaa käytettävän konfiguraatiotiedoston.
-     *
-     * @param file käytettävä tiedosto.
+     * Lataa properties-olioon konfiguraatio-tiedostossa määritellyt ominaisuudet.
      */
-    public static void setPropertiesFile(File file) {
-        if (file != null && file.exists()) {
-            pfile = file;
-            loadProperties();
-        }
-    }
-
     private static void loadProperties() {
-        if (pfile != null) {
-            long lm = pfile.lastModified();
+        if (propertiesFile != null) {
+            long lastModified = propertiesFile.lastModified();
 
-            if (lmod != lm) {
-                lmod = lm;
-                Properties p = new Properties(props); // vanhat defaulttina
+            if (lmod != lastModified) {
+                lmod = lastModified;
+                Properties propertiesTemp = new Properties(properties);
 
                 try {
-                    FileInputStream fis = new FileInputStream(pfile);
-                    p.load(fis);
+                    FileInputStream fis = new FileInputStream(propertiesFile);
+                    propertiesTemp.load(fis);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                props = p;
+                properties = propertiesTemp;
             }
         }
         buildSuperUsersList();
+    }
+    
+    public static Object getProperty(String name) {
+        if (name == null) {
+            return null;
+        }
+        loadProperties();
+        return properties.get(name);
+    }
+    
+    public static ArrayList<String> getSuperUsers() {
+        return superUsers;
+    }
+    
+    public static boolean setProperty(String name, Object value) {
+        if (name == null || value == null) {
+            return false;
+        }
+
+        properties.put(name, value);
+        return true;
+    }
+    
+    /**
+     * Asettaa käytettävän konfiguraatiotiedoston.
+     *
+     * @param file Käytettävä tiedosto
+     */
+    public static void setPropertiesFile(File file) {
+        if (file != null && file.exists()) {
+            propertiesFile = file;
+            loadProperties();
+        }
     }
 }
