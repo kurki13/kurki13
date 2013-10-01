@@ -9,6 +9,7 @@ import kurki.*;
 
 import java.util.*;
 import javax.servlet.http.*;
+import kurki.model.Osasuoritus.OsasuoritusTyyppi;
 import kurki.servlet.Index;
 import kurki.util.LocalisationBundle;
 import org.apache.velocity.context.*;
@@ -144,7 +145,7 @@ public class Entry extends AbstractVelocityServiceProvider {
 		int newPType = Integer.parseInt( ptype );
 		course.selectPart( newPType );
 
-		if ( newPType >= kurki.model.Osasuoritus.ARVOSANA ) {
+		if ( newPType >= OsasuoritusTyyppi.ARVOSANA.ID ) {
 		    course.getSelectedPart().selectOffering( 0 );
 		}
 		

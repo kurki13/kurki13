@@ -1,56 +1,33 @@
 #parse ("top.vm")
-	<tr class="navi2">
-	  <td colspan="4">
+	<div>
           <h3>$bundle.getString("2participants")</h3>
-            <form name="ophaku" action="index" method="post">
-	      <table border="0" cellspacing="0" cellpadding="0" align="left" style="text-align:left;">
-	        <tr>
-		  <td>
-		    <b>$bundle.getString("isosnimi"):</b>
-		  </td>
-		  <td>
-		    <input type="text" id="lname" name="lname" size="10" maxlength="30">
-		  </td>
+            <form name="ophaku" class="form-inline" action="index" method="post">
+		<b>$bundle.getString("isosnimi"):</b>
+		<input type="text" class="form-control input" style="width:150px" id="lname" name="lname" size="10" maxlength="30">
 #*
-		  <td nowrap>&nbsp;
-		    <b>Enimi:</b>
-		  </td>
-		  <td>
-		    <input type="text" name="fname" size="10" maxlength="30">
-		  </td>
+		<b>Enimi:</b>
+		<input type="text" name="fname" size="10" maxlength="30">
+
 *#
-		  <td nowrap>&nbsp;
 		    <b>$bundle.getString("ryhma"):</b>
- 		  </td>
-		  <td>
-                    <select name="group">
-		      <option></option>
+                    <select name="group" class="form-control form-inline" style="width:70px">
 #foreach ($group in $selectedCourse.Groups)
 		      <option>$group</option>
 #end
 		    </select>
 ##		    <input type="text" id="group" name="group" size="2" maxlength="2" onBlur="rangecheck(this, 1, 99);">
-		  </td>
-  		  <td nowrap>&nbsp;
                   <b>$bundle.getString("camelopnro"):</b>
 
 ## hetun ja opnron valinta pois, ja tilalle valinnaksi tulee aina 0 eli opiskelijanumero (vaikka siinä lukee hetu) -tka
 #*
-
  		    <select name="idtype">
-
 #if (!$useSNO)
-
 		      <option value="0" selected>Hetu:</option>
 		      <option value="1">OpNro:</option>
 
-
 #else
-
 		      <option value="0">Hetu:</option>
 		      <option value="1" selected>OpNro:</option>
-
-
 #end
 		    </select>	
 
@@ -58,28 +35,19 @@
 
 ## idtype value aina nolla -tka
 <input type="hidden" value="0" name="idtype">
+		    <input type="text" class="form-control input" style="width:150px" id="idvalue" name="idvalue" size="11" maxlength="11">
 
-		  </td>
-		  <td>
-		    <input type="text" id="idvalue" name="idvalue" size="11" maxlength="11">
-		  </td>
-		  <td nowrap>&nbsp;
-		    <select name="doSearch"
+		    <select name="doSearch" class="form-control form-inline" style="width:350px"
                         onChange="checkAndSubmitStudentFind(document.ophaku);">
 		      <option>-- $bundle.getString("valitsetoiminto") --</option>
 		      <option value="0">$bundle.getString("tiedot")</option>
 		      <option value="1">$bundle.getString("haelisatop")</option>
 		      <option value="2">$bundle.getString("haepalop")</option>
  		    </select>
-		  </td>
-		</tr>
-	      </table>
-	    </form>
-	  </td>
-	</tr>
 
-<br>
-<br>
+
+	    </form>
+        </div>
 #if ($view)
   #set ($vmfile = "participants_${view}.vm")
   #parse ( $vmfile )
