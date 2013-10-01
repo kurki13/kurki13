@@ -44,7 +44,7 @@ public class LoginManager extends VelocityServlet {
 	    /*
 	     *  Henkilöt, joilla päivitysoikeus
 	     */
-	    if ( Configuration.propertySet("loginManagers") ) {
+	    if ( Configuration.isPropertySet("loginManagers") ) {
 		StringTokenizer st = new StringTokenizer( (String)Configuration.getProperty("loginManagers"), "," );
 
 		while ( st.hasMoreTokens() ) {
