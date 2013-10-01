@@ -2,37 +2,42 @@ package kurki.servlet;
 import javax.servlet.http.*;
 
 public class ServletMonitor {
-    private static ServletMonitor mon = new ServletMonitor();
-    private static final String LOCK = "lock";
+    private static ServletMonitor servletMonitor = new ServletMonitor();
 
     private ServletMonitor() {}
 
-    public static ServletMonitor getMonitor() {
-	return mon;
-    }
-
-    public synchronized boolean lock( HttpSession session ) {
+    /**
+     * Lukitsee session-olion, jos istunto on validi.
+     * 
+     * @param session Lukittava istunto
+     * @return Onko istunto validi 
+     */
+    public synchronized boolean lock(HttpSession session) {
 	try {
-	    while ( session.getAttribute( LOCK ) != null ) {
+	    while (session.getAttribute("lock") != null) {
 		try {
 		    wait();
 		} catch (InterruptedException e) {}
 	    }
-	    session.setAttribute( LOCK, "lock" );
+	    session.setAttribute("lock", "lock");
 	    return true;
-	} catch ( IllegalStateException ise ) {
+	} catch (IllegalStateException sessionInvalidated) {
 	    return false;
 	}
     }
 
-    public synchronized boolean unlock( HttpSession session ) {
+    public synchronized boolean unlock(HttpSession session) {
 	try {
-	    session.removeAttribute( LOCK );
+	    session.removeAttribute("lock");
 	    return true;
-	}catch ( IllegalStateException ise ) {
+	} catch (IllegalStateException ise) {
 	    return false;
 	} finally {
 	    notifyAll();
 	}
+    }
+    
+    public static ServletMonitor getMonitor() {
+	return servletMonitor;
     }
 }

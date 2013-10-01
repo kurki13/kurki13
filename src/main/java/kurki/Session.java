@@ -78,7 +78,7 @@ public class Session implements java.io.Serializable {
      */
     protected Session(String ruser)
             throws InitFailedException, SQLException, NullIdException, ClassNotFoundException {
-        if ( ruser == null || ruser.length() == 0 ) throw new InitFailedException("Käyttäjän tunnistus epäonnistui.");
+        if ( ruser == null || ruser.length() == 0 ) throw new InitFailedException(LocalisationBundle.getString("kayttajanTE") + ".");
         this.ruser = ruser;
         init();
     }
