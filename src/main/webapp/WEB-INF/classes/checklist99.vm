@@ -1,3 +1,7 @@
+##
+################### Jäädytetyn kurssin tiedot, jotka lähetetään sähköpostilla eteenpäin ###################
+##
+
 #if (!$inc_noheader)
 #if ($selectedCourse.isFrozen())
 #if ($inc_changes)
