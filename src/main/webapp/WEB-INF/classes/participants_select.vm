@@ -14,7 +14,7 @@
 
 <form action="index" method="post">
 <input type="hidden" name="TS" value="${TS}">
-<table class="normal" border="1" width="100%" style="max-width:1000px">
+<table class="table table-condensed table-bordered" style="max-width:1000px">
  <caption>
     $bundle.getString("opvalittu") ${students.size()}
   </caption>
@@ -71,7 +71,7 @@
     <td bgcolor="${bgcolor}" nowrap>
       <center>
   #if (!$student.isFrozen() && !$student.isDefrost())
-	<select name="grp_${sid}">
+	<select name="grp_${sid}" class="form-control form-inline" style="width:70px">
     #set ($studentsGroup = $student.Group)
     #foreach ($group in $selectedCourse.Groups)
       #if ($group == $studentsGroup)

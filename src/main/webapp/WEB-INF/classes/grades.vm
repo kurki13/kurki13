@@ -55,15 +55,15 @@
 
 #if ($lh)
   #set ($cols = $cols+1)
-          <th style="width:60px">Lh</th> ##käännä
+          <th style="width:60px">$bundle.getString("part0abbreviation")</th> ##LH
 #end
 #if ($ht)
   #set ($cols = $cols+1)
-          <th style="width:60px">Ht</th> ##käännä
+          <th style="width:60px">$bundle.getString("part1abbreviation")</th> ##HT
 #end
 #if ($koe)
   #set ($cols = $cols+1)
-          <th style="width:60px">Koe</th> ##käännä
+          <th style="width:60px">$bundle.getString("part2abbreviation")</th> ##KOE
 #end
         </tr>
 
@@ -262,7 +262,7 @@
 
         <tr>
           <th rowspan="3" wrap>$bundle.getString("arvlp")</th>
-          <th>maksimi</th> ##käännä
+          <th>$bundle.getString("max")</th>
 
 #if ($lh)
   #set ($xtrTotal = $xtrTotal + $lh.XtrScore)
@@ -288,10 +288,14 @@
   #end
           </td>
 #end
-##taru jatka tästä
+
 #if ($koe)
   #set ($xtrTotal = $xtrTotal + $koe.XtrScore)
-          <td><input type="hidden" name="xtr_${koe.Id}" value="${ht.XtrScore}">${koe.XtrScore}</td>
+          <td>
+            <input type="hidden" name="xtr_${koe.Id}" value="${ht.XtrScore}">
+            <input type="text" class="form-control" style="width:50px"
+                value="${koe.XtrScore}" readonly>
+          </td>
 #end 
         </tr>
         <tr>
@@ -319,7 +323,10 @@
           </td>
 #end
 #if ($koe)
-          <td>1</td>
+          <td>
+            <input type="text" class="form-control" style="width:50px"
+                value="1" readonly>
+          </td>
 #end
         </tr>
         <tr>
@@ -347,7 +354,10 @@
           </td>
 #end
 #if ($koe)
-          <td>1</td>
+          <td>
+            <input type="text" class="form-control" style="width:50px"
+                value="1" readonly>
+          </td>
 #end
         </tr>
       </table>

@@ -63,7 +63,8 @@
 ##  Haettavat opiskelijat - joko ryhmän mukaan tai sukunimen mukaan
 ##
 		    <b>$bundle.getString("opiskelijat"):</b>
-		    <input type="text" class="form-control" style="width:150px" name="filter" id="find" tabindex="32600" size="15" value = "$!studentFilter">
+		    <input type="text" class="form-control" style="width:150px"
+                        name="filter" id="find" tabindex="32600" size="15" value = "$!studentFilter">
 
 		    <input type="hidden" name="studentFilter" value="$!{studentFilter}">
 
@@ -123,12 +124,13 @@
 	        <tr>
 		  <td><b><b></td>
 		  <td>
-		    <input type="text" name="maxscore" tabindex="32500" size="2" maxlength="2"
-                           onBlur="rangecheck(this, 0, 99)"> 
+		    <input type="text" name="maxscore" class="form-control input-sm" style="width:50px"
+                        tabindex="32500" size="2" maxlength="2" onBlur="rangecheck(this, 0, 99)"> 
 		  </td>
 		  <td> $bundle.getString("tiedHyvaksymisraja")</td>
 		  <td>
-		    <input type="text" name="minscore" tabindex="32501" size="2" maxlength="2" 
+		    <input type="text" name="minscore" class="form-control input-sm" style="width:50px"
+                        tabindex="32501" size="2" maxlength="2" 
                            onBlur="rangecheck(this, 0, document.sdef.maxscore.value)">
 		  </td>
 		  <td>
@@ -167,8 +169,8 @@
     ##  PISTEIDEN KIRJAUS
     ##
 
-            <form action="index" name="scores" method="post">
-              <table class="normal" border="1" width="100%">
+            <form action="index" class="form-inline" name="scores" method="post">
+              <table class="table table-condensed table-bordered" style="width:1000px">
 
               <caption>$bundle.getString("opiskValittu") $students.size()</caption>
     #set ($rowcount = 0)
@@ -219,12 +221,13 @@
         #if (!$accesskeySet)
 		    <!-- uudet pisteet: tekstikenttä -->
                     <label for="firstStudent" accesskey="P"></label>
-		    <input type="text" size="3" maxlength="3" tabindex="1" name="t${stid}"
-                           id="firstStudent"
+		    <input type="text" class="form-control input-sm" style="width:50px" 
+                        size="3" maxlength="3" tabindex="1" name="t${stid}" id="firstStudent"
           #set ($accesskeySet = "true")
         #else
 		    <!-- uudet pisteet: tekstikenttä -->
-		    <input type="text" size="3" maxlength="3" tabindex="1" name="t${stid}"
+		    <input type="text" class="form-control input-sm" style="width:50px" 
+                        size="3" maxlength="3" tabindex="1" name="t${stid}"
         #end
         #if ( $selectedOffering.MaxScore <= $radioLimit ) 
 			   onBlur="checkScore(this) && checkRadio(document.scores.r${stid}, this) 
@@ -248,8 +251,7 @@
 		  <td bgcolor="${bgcolor}">
       #if ( $selectedOffering.MaxScore <= $radioLimit ) 
         #if (!$student.isFrozen())
-		    <table class="radioscore" border="1"><tr>	  
-	            <td class="undef">
+		    <div>	  
 	  #if ( !$score || $!score == "" )
 		      <input type="radio" class="undef" tabindex="3" name="r${student.id}" value=""
                              onClick="setValue(document.scores.t${student.id}, '') 
@@ -259,12 +261,12 @@
                              onClick="setValue(document.scores.t${student.id}, '') 
                                && modifyCheck(this.value, document.scores.o${stid}.value, document.scores.smod${stid}, 'img${stid}')">
 	  #end
-	            </td>
+	            
 	##
 	## Geneeriset pisteet
 	##
           #foreach ( $p in $genericScores )
-		    <td nowrap>
+		    
 
 	    #if ( $!score == $p )
 		    ${p}<input type="radio" tabindex="3" name="r${stid}" value="${p}" 
@@ -275,17 +277,17 @@
                                onClick="setValue(document.scores.t${stid}, this.value) 
                                  && modifyCheck(this.value, document.scores.o${stid}.value, document.scores.smod${stid}, 'img${stid}')">
             #end
-		    </td>
+		    
           #end ##foreach $p
 
 
 	##
-	## Suorituskerta kohtaiset pisteet
+	## Suorituskertakohtaiset pisteet
 	## 
 
 	  #if ( $selectedOffering.MaxScore > 0 ) 
             #foreach ( $i in [0..$selectedOffering.MaxScore] )
-		    <td nowrap>
+		    
 	      #if ( $!score == $i.toString() )
 		    ${i}<input type="radio" tabindex="3"  name="r${stid}" value="${i}"
                                onClick="setValue(document.scores.t${stid}, this.value) 
@@ -295,15 +297,15 @@
                                onClick="setValue(document.scores.t${stid}, this.value) 
                                  && modifyCheck(this.value, document.scores.o${stid}.value, document.scores.smod${stid}, 'img${stid}')">
    	      #end
-		    </td>
+		    
 
             #end ##foreach 0..$selectedOffering.MaxScore
 	  #end 
-		    </tr></table>
+		    </div>
         #else
                     <!-- SULATUS -->
                     <center>
-                    <input type="button" class="btn btn-danger" value="--> $bundle.getString("sulata") <--"
+                    <input type="button" class="btn btn-danger btn-sm" value="--> $bundle.getString("sulata") <--"
                            onClick="!isModified() && defreezeStudent('${stid}')">
                     </center>
         #end
@@ -312,7 +314,7 @@
       #elseif ($student.isFrozen())
                     <!-- SULATUS -->
                     <center>
-                    <input type="button" class="btn btn-danger" value="--> $bundle.getString("sulata") <--"
+                    <input type="button" class="btn btn-danger btn-sm" value="--> $bundle.getString("sulata") <--"
                            onClick="defreezeStudent('${stid}')">
                     </center>
       #else 
@@ -326,7 +328,7 @@
 		  <td bgcolor="${bgcolor}" align="left">	
 
       #if (!$student.isFrozen())
-		    <input type="button" class="btn btn-danger" value="$bundle.getString("peru")"
+		    <input type="button" class="btn btn-danger btn-sm" value="$bundle.getString("peru")"
         #if ( $selectedOffering.MaxScore <= $radioLimit )
 			   onClick="oldScore(document.scores.o${stid}, document.scores.t${stid}, document.scores.r${stid}) && modifyCheck(document.scores.t${stid}.value, document.scores.o${stid}.value, document.scores.smod${stid}, 'img${stid}')">
         #else

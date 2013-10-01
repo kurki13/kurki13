@@ -33,7 +33,6 @@
 
 *#
 
-## idtype value aina nolla -tka
 <input type="hidden" value="0" name="idtype">
 		    <input type="text" class="form-control input" style="width:150px" id="idvalue" name="idvalue" size="11" maxlength="11">
 

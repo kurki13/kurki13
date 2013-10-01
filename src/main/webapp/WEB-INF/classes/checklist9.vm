@@ -1,3 +1,6 @@
+##
+################### Export ###################
+##
 HY/TKTL: ${selectedCourse.CCode}, ${selectedCourse.Label} (${selectedCourse.Credits}ov)
 #set ($selectDesc = $selectedCourse.SelectDescription)
 #set ($parts = $selectedCourse.Parts)

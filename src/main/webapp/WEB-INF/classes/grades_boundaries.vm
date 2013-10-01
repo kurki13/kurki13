@@ -33,7 +33,6 @@
     $partnames.get($pid)
     </th>
     <td>
-##tablesta class="invisible" poistettu koska bootstrap piilottaa sen muuten -tka
       <table>
         <tr>
     #set ($xtrId = 0)
@@ -55,7 +54,8 @@
               <b>${xtrLabel}</b><br>
       #end
       #if (!$frozen)
-              <input type="text" name="sb_${pid}_${xtrId}" value="${score}" size="3" maxlength="3">
+              <input type="text" class="form-control" style="width:50px"
+                     name="sb_${pid}_${xtrId}" value="${score}" size="3" maxlength="3">
       #else
               ${score}
       #end
@@ -99,10 +99,10 @@
 *#
   <tr>
     <th colspan="2">
-      <input type="submit" name="cancel" class="btn btn-primary" value= "$bundle.getString("palaa")">
+      <input type="submit" name="cancel" class="btn btn-default" value= "$bundle.getString("palaa")">
 #if (!$frozen)
       <input type="submit" name="saveBoundaries" class="btn btn-success" value= "$bundle.getString("tallennapr")">
-      <input type="reset" class="btn btn-primary" value= "$bundle.getString("palautaar")">
+      <input type="reset" class="btn btn-default" value= "$bundle.getString("palautaar")">
 #end
     </th>
   </tr>
