@@ -10,13 +10,16 @@ import kurki.*;
 import service.*;
 
 import java.io.*;
+import java.sql.SQLException;
 import java.util.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
+import kurki.exception.InitFailedException;
 
 import org.apache.velocity.*;
 import org.apache.velocity.context.*;
 import org.apache.velocity.servlet.*;
+import service.exception.NullIdException;
 
 public class Index extends VelocityServlet implements Log, Serializable {
 
@@ -33,6 +36,8 @@ public class Index extends VelocityServlet implements Log, Serializable {
     public static final String TIMESTAMP = "TS";
     private int session_lenght = 3600;
     public static final String KURKI_SESSION = "session";
+    
+    private static String result = null;
 
     static {
         Session.initialize();
@@ -52,6 +57,28 @@ public class Index extends VelocityServlet implements Log, Serializable {
         //Lisätään tieto lokista konfiguraatioon.
         Configuration.setProperty("log", this);
     }
+    
+    /**
+     * Metodi hakee olemassaolevan istunnon tai luo uuden istunnon, 
+     * jos istuntoa ei ole tai istunto on epäkelpo. 
+     * 
+     * @param servletRequest Servlet pyyntö
+     * @return Istunto
+     */
+    private HttpSession getSession(HttpServletRequest servletRequest) {
+        boolean oldSession = servletRequest.getRequestedSessionId() != null;
+        HttpSession httpSession = servletRequest.getSession();
+        httpSession.setMaxInactiveInterval(session_lenght);
+        if (!ServletMonitor.getMonitor().lock(httpSession)) {
+            httpSession = servletRequest.getSession(true);
+            ServletMonitor.getMonitor().lock(httpSession);
+        }
+        
+        if (oldSession && httpSession.isNew()) {
+            Index.result += LocalisationBundle.getString("istuntoVanhentunutError");
+        }
+        return  httpSession;
+    }
 
     @Override
     protected void doRequest(HttpServletRequest servletRequest,
@@ -69,33 +96,11 @@ public class Index extends VelocityServlet implements Log, Serializable {
         HttpSession httpSession = null;
 
         try {
-            // Luodaan template-konteksti 
             context = createContext(servletRequest, servletResponse);
-            //lokalisaatiobundlen lisääminen kontekstiin
             context.put("bundle", LocalisationBundle.getBundle());
-
             setContentType(servletRequest, servletResponse);
-            /*
-             *  Onko kyseessä jo joskus aloitettu, kenties vanhentunut sessio.
-             */
-            boolean oldSession = servletRequest.getRequestedSessionId() != null;
-
-            /*
-             *  Hae voimassaoleva sessio tai aloita uusi
-             */
-            httpSession = servletRequest.getSession();
-            httpSession.setMaxInactiveInterval(session_lenght);
-
-            // Ei käsitellä kahta saman session http-pyyntöä yhtä aikaa
-            if (!ServletMonitor.getMonitor().lock(httpSession)) {
-                httpSession = servletRequest.getSession(true);
-                ServletMonitor.getMonitor().lock(httpSession);
-            }
-
-            if (oldSession && httpSession.isNew()) {
-                result += LocalisationBundle.getString("istuntoVanhentunutError");
-            }
-
+            
+            httpSession = getSession(servletRequest);
             Object tmpSession = httpSession.getAttribute(KURKI_SESSION);
 
             if (tmpSession != null) {
