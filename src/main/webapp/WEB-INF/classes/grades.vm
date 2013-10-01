@@ -9,7 +9,7 @@
         <tr>
           <td colspan="4">
 
-<h3>${selectedCourse.label} - $bundle.getString("arvostelu")</h3>
+<h3>${selectedCourse.label} - $bundle.getString("5grades")</h3>
 
 #if ($error && $error != "")
 <div class="alert alert-danger">

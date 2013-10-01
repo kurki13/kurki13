@@ -288,7 +288,7 @@
 	      <dt>$bundle.getString("al")</dt>
 	        <dd>$bundle.getString("sukunimiInfo2")</dd>
 	      <dt>$bundle.getString("kriteerit")</dt>
-	        <dd>$bundle.getString("hakukriteeriInfo")</dd>
+	        <dd>$bundle.getString("useatkriteerit")</dd>
 	      <dt>$bundle.getString("meikalainen")</dt>
 		<dd>$bundle.getString("pienetjaisot")</dd>
             </dl>

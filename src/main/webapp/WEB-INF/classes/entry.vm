@@ -383,12 +383,12 @@
 	      <dt>$bundle.getString("tyhja")</dt>
   	        <dd>$bundle.getString("kaikkiopiskelijat")</dd>
 	      <dt>$bundle.getString("numero")</dt>
-	        <dd>$bundle.getString("annetunryhman")</dd>
+	        <dd>$bundle.getString("annetunro")</dd>
               <dt>$bundle.getString("hashhenktunnus")</dt>
                 <dd>$bundle.getString("opiskelijathenktunnus")</dd>
 	      <dt>$bundle.getString("sukunimi")</dt>
 	        <dd>$bundle.getString("opsukunimimerkki")</dd>
-	      <dt>$bundle.getString("alkuloppu")</dt>
+	      <dt>$bundle.getString("al")</dt>
 	        <dd>$bundle.getString("sukunimiaakkos")</dd>
 	      <dt>$bundle.getString("kriteerit")</dt>
 	        <dd>$bundle.getString("useatkriteerit")</dd>
