@@ -36,17 +36,17 @@
     #set ($part = $parts.get($i)) 
 
     #if ($frozen)
-      <th>${part.NbrOfOfferings}</th>
+      <th><input type="text" class="form-control" style="width:50px"
+                value="${part.NbrOfOfferings}" readonly></th>
     #else 
        <th><input type="text" class="form-control input-sm" style="width:50px" name="no${i}_nbr" maxlength="2" value="${part.NbrOfOfferings}"
              onBlur="rangecheck(this,0,18)"></th>
     #end
-
-
     <th>&nbsp;$bundle.getString("jpakollisia")</th>
 
     #if ($frozen)
-      <th>${part.RequiredOfferings}</th>
+      <th><input type="text" class="form-control" style="width:50px"
+                value="${part.RequiredOfferings}" readonly></th>
     #else 
       <th><input type="text" class="form-control input-sm" style="width:50px" name="no${i}_req" maxlength="2" value="${part.RequiredOfferings}"
              onBlur="rangecheck(this,0,this.form.no${i}_nbr.value)"></th>
@@ -56,7 +56,8 @@
     <th>&nbsp;$bundle.getString("lisapisteet")</th>
 
     #if ($frozen)
-      <th>${part.XtrScore}</th>
+      <th><input type="text" class="form-control" style="width:50px"
+                value="${part.XtrScore}" readonly></th>
     #else 
       <th><input type="text" class="form-control input-sm" style="width:50px" name="no${i}_xtr" maxlength="2" value="${part.XtrScore}"
              onBlur="rangecheck(this,0,60)"></th>
@@ -68,7 +69,8 @@
       <th><input type="text" class="form-control input-sm" style="width:50px" name="no${i}_nbr" maxlength="2" value=""
              onBlur="rangecheck(this,0,18)"></th>
     #else
-        &nbsp;
+        <th><input type="text" class="form-control" style="width:50px"
+                value="0" readonly></th> ## ettei tule tyhjää tilaa jos jotain osasuoritusta ei ole kurssilla
     #end
 
     <th>&nbsp;$bundle.getString("jpakollisia")</th>
@@ -77,7 +79,8 @@
       <th><input type="text" class="form-control input-sm" style="width:50px" name="no${i}_req" maxlength="2" value=""
              onBlur="rangecheck(this,0,this.form.no${i}_nbr.value)"></th>
     #else
-        &nbsp;
+        <th><input type="text" class="form-control" style="width:50px"
+                value="0" readonly></th> ## ettei tule tyhjää tilaa jos jotain osasuoritusta ei ole kurssilla
    #end
 
     #if ($i != 2)
@@ -86,6 +89,9 @@
       #if (!$frozen)
       <th><input type="text" class="form-control input-sm" style="width:50px" name="no${i}_xtr" maxlength="2" value=""
              onBlur="rangecheck(this,0,60)"></th>
+      #else
+        <th><input type="text" class="form-control" style="width:50px"
+                value="0" readonly></th> ## ettei tule tyhjää tilaa jos jotain osasuoritusta ei ole kurssilla
       #end
     
     #else
@@ -111,7 +117,7 @@
   <input type="hidden" name="TS" value="${TS}">
 <table border="0">
   <caption>
-    <h4>Pisterajat</h4>
+    <h4>$bundle.getString("pisterajat")</h4>
   </caption>
 
 #set ($i = 0)
@@ -163,7 +169,8 @@
                 </th>
                 <td width="25">
       #if ($frozen)
-                  $!{offering.MaxScore}
+                  <input type="text" class="form-control" style="width:50px" 
+                        value="$!{offering.MaxScore}" readonly>
       #else
                   <input type="text" class="form-control input-sm" style="width:50px" name="no${pid}_${offering.Id}_max" maxlength="2" tabindex="1" 
                          value="$!{offering.MaxScore}" onBlur="rangecheck(this, 0, 99)">
@@ -173,7 +180,8 @@
               <tr>
                 <td width="25">
       #if ($frozen)
-                  $!{offering.MinScore}
+                  <input type="text" class="form-control" style="width:50px" 
+                        value="$!{offering.MinScore}" readonly>
       #else
                   <input type="text" class="form-control input-sm" style="width:50px" name="no${pid}_${offering.Id}_min" maxlength="2" tabindex="1" 
                          value="$!{offering.MinScore}" onBlur="rangecheck(this, 0, this.form.no${pid}_${offering.Id}_max.value)">
