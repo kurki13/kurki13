@@ -784,9 +784,41 @@ public class Course implements Serializable, Option {
         this.specialCondition = cn;
     }    
     
-    public synchronized boolean freeze(int group)
+    /**
+     * Metodin avulla jäädytetään kurssi.
+     * 
+     * @param groupNumber
+     * @return Onnistuiko jäädytys
+     * @throws SQLException
+     * @throws ClassNotFoundException 
+     */
+    public synchronized boolean freeze(int groupNumber)
             throws SQLException, ClassNotFoundException {
-// 	if ( isFrozen() ) {
+        if (!checkFreezingConditions()) {
+            return false;
+        }
+        
+        Connection con = DBConnectionManager.createConnection();
+        CallableStatement stm = null;
+        String result = executeFreezing(con, groupNumber, stm);
+        boolean freezingSucceeded = checkFreezingResult(result, groupNumber);
+        if (stm != null) {
+            stm.close();
+        }
+        DBConnectionManager.closeConnection(con);
+        return freezingSucceeded;
+    }
+    
+    /**
+     * Metodi tarkastaa, että tietyt alkuehdot ovat voimassa, 
+     * jotta jäädytystä voidaan yrittää.
+     * 
+     * @return Ovatko ehdot voimassa
+     * @throws SQLException
+     * @throws ClassNotFoundException 
+     */
+    private boolean checkFreezingConditions() throws SQLException, ClassNotFoundException {
+//	if ( isFrozen() ) {
 // 	    this.msg = "Kurssi on jäädytetty.";
 // 	    return false;
 // 	}
@@ -798,56 +830,59 @@ public class Course implements Serializable, Option {
         if (this.getDonName().equals("TUNTEMATON")) {
             this.msg = LocalisationBundle.getString("jaadytystaEiVoiSuorittaa");
             return false;
-        } // Onko suorituspäivämäärä < jäädytyspäivämäärää (sysdate)
-        else if (this.examDate.after(Calendar.getInstance())) {
+        }
+        if (this.examDate.after(Calendar.getInstance())) {
             this.msg = LocalisationBundle.getString("jaadytystaEiVoiSuorittaaPvm");
             return false;
         }
-        
-        boolean rv = true;
-        
-        Connection con = DBConnectionManager.createConnection();
-        CallableStatement stm = null;
-        
-        try {
-            stm = con.prepareCall("{ ? = call jaadytys05 (?, ?, ?, ?, ?, ?) }");
+        return true;
+    }
+    
+    /**
+     * Metodi suorittaa sql-proseduurin jaadytys05.
+     * 
+     * @param con Tietokantayhteys kantaan, joka sisältää proseduurin jaadytys05.
+     * @param groupNumber 
+     * @param stm 
+     * @return Merkkijono "OK", jos jäädytys onnistui.
+     * @throws SQLException 
+     */
+    private String executeFreezing(Connection con, int groupNumber, CallableStatement stm) throws SQLException {
+        stm = con.prepareCall("{ ? = call jaadytys05 (?, ?, ?, ?, ?, ?) }");
+        stm.registerOutParameter(1, java.sql.Types.VARCHAR);
             
-            stm.registerOutParameter(1, java.sql.Types.VARCHAR);
-            
-            stm.setString(2, this.courseInfo.ccode);
-            stm.setInt(3, this.courseInfo.year);
-            stm.setString(4, this.courseInfo.term);
-            stm.setInt(5, this.courseInfo.cno);
-            stm.setString(6, this.courseInfo.type);
-            stm.setInt(7, group);
-            
-            stm.executeUpdate();
-            
-            String result = stm.getString(1);
-            
-            if (!result.equals("OK")) {
-                this.msg = result;
-                rv = false;
-            } else {
-                if (group == 0) {
-                    this.courseInfo.freeze();
-                }
-                // 	    else if ( group > 0 && group < MAX_GROUP ) {
-                // 		this.frozenGrp[ group - 1 ] = true;
-                // 	    }
-                rv = true;
+        stm.setString(2, this.courseInfo.ccode);
+        stm.setInt(3, this.courseInfo.year);
+        stm.setString(4, this.courseInfo.term);
+        stm.setInt(5, this.courseInfo.cno);
+        stm.setString(6, this.courseInfo.type);
+        stm.setInt(7, groupNumber);
+
+        stm.executeUpdate();
+        return stm.getString(1);
+    }
+    
+    /**
+     * Metodi tarkastaa SQL-proseduuri jäädytys05:n tuloksen 
+     * ja jäädyttää kurssin tiedot, jos proseduuri suoritti jäädytyksen onnistuneesti.
+     * 
+     * @param result SQL-proseduurin jäädytys05 tulos.
+     * @param groupNumber
+     * @return Suorittiko proseduuri jäädytyksen onnistuneesti
+     */
+    private boolean checkFreezingResult(String result, int groupNumber) {
+        if (!result.equals("OK")) {
+            this.msg = result;
+            return false;
+        } else {
+            if (groupNumber == 0) {
+                this.courseInfo.freeze();
             }
-        } finally {
-            if (stm != null) {
-                try {
-                    stm.close();
-                } catch (Exception e) {
-                }
-            }
-            DBConnectionManager.closeConnection(con);
+// 	    else if ( group > 0 && group < MAX_GROUP ) {
+// 		this.frozenGrp[ group - 1 ] = true;
+// 	    }
+            return true;
         }
-        
-        return rv;
     }
     
     public int getCNO() {
