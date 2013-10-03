@@ -137,7 +137,7 @@ public class Index extends VelocityServlet implements Log, Serializable {
                 course = session.getSelectedCourseInfo();
             }
 
-            context.put("selectedCourse", session.getSelectedCourse());
+            context.put("selectedCourse", course);
 
             /*
              *  Selvitä mihin toimintoihin käyttäjä on oikeutettu 
