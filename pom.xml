@@ -82,7 +82,7 @@
                         </goals>
                         <configuration>
                             <argument>nopackage</argument>
-                            <executable>${basedir}/mkctammi_install_and_run.sh</executable>
+                            <executable>${basedir}/scripts/mkctammi_install_and_run.sh</executable>
                         </configuration>
                     </execution>
                 </executions>
