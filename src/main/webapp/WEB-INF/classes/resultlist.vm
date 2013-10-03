@@ -19,11 +19,11 @@
 	  </ul>
         </div>
 #end
-            <form name="suoritevalinta" action="checklist" method="post" target="_blank">
+            <form name="suoritevalinta" class="form-inline" action="checklist" method="post" target="_blank">
               <input type="hidden" name="ltype" value="99">
               <input type="hidden" name="ctype" value="text/plain">
               <input type="hidden" name="useinc" value="true">
-	      <table class="normal" border="1">
+	      <table class="table table-striped table-condensed table-bordered" style="width:400px">
                 <tr>
                   <th>&nbsp;
                   </th>
@@ -54,7 +54,8 @@
                     $bundle.getString("htpsterit")
                   </td>
                   <td>
-                    <input type="text" name="inc_htsepname" size="8" maxlength="8" value="Työt">
+                    <input type="text" class="form-control input-sm" style="width:80px" 
+                        name="inc_htsepname" size="8" maxlength="8" value="Työt">
                   </td>
                 </tr>
 #end
@@ -67,7 +68,8 @@
                     $bundle.getString("koepsterit")
                   </td>
                   <td>
-                    <input type="text" name="inc_koesepname" size="8" maxlength="8">
+                    <input type="text" class="form-control input-sm" style="width:80px"
+                        name="inc_koesepname" size="8" maxlength="8">
                   </td>
                 </tr>
 #end
@@ -80,7 +82,8 @@
                     $bundle.getString("lhtpsum")
                   </td>
                   <td>
-                    <input type="text" name="inc_lhsumname" size="8" maxlength="8">
+                    <input type="text" class="form-control input-sm" style="width:80px" 
+                        name="inc_lhsumname" size="8" maxlength="8">
                   </td>
                 </tr>
 #end
@@ -93,7 +96,8 @@
                     $bundle.getString("htpstsum")
                   </td>
                   <td>
-                    <input type="text" name="inc_htsumname" size="8" maxlength="8" value="HtS">
+                    <input type="text" class="form-control input-sm" style="width:80px" 
+                        name="inc_htsumname" size="8" maxlength="8" value="HtS">
                   </td>
                 </tr>
 #end
@@ -106,7 +110,8 @@
                     $bundle.getString("koepstsum")
                   </td>
                   <td>
-                    <input type="text" name="inc_koesumname" size="8" maxlength="8">
+                    <input type="text" class="form-control input-sm" style="width:80px" 
+                        name="inc_koesumname" size="8" maxlength="8">
                   </td>
                 </tr>
 #end
@@ -119,7 +124,8 @@
                     $bundle.getString("lhlpst")
                   </td>
                   <td>
-                    <input type="text" name="inc_lhlpname" size="8" maxlength="8">
+                    <input type="text" class="form-control input-sm" style="width:80px"
+                        name="inc_lhlpname" size="8" maxlength="8">
                   </td>
                 </tr>
 #end
@@ -132,7 +138,8 @@
                     $bundle.getString("htlpst")
                   </td>
                   <td>
-                    <input type="text" name="inc_htlpname" size="8" maxlength="8" value="HtP">
+                    <input type="text" class="form-control input-sm" style="width:80px" 
+                        name="inc_htlpname" size="8" maxlength="8" value="HtP">
                   </td>
                 </tr>
 #end
@@ -145,7 +152,8 @@
                     $bundle.getString("yhtpst")
                   </td>
                   <td>
-                    <input type="text" name="inc_sumname" size="8" maxlength="8">
+                    <input type="text" class="form-control input-sm" style="width:80px" 
+                        name="inc_sumname" size="8" maxlength="8">
                   </td>
                 </tr>
 
@@ -157,7 +165,8 @@
                     $bundle.getString("Arvosana")
                   </td>
                   <td>
-                    <input type="text" name="inc_gradename" size="8" maxlength="8">
+                    <input type="text" class="form-control input-sm" style="width:80px" 
+                        name="inc_gradename" size="8" maxlength="8">
                   </td>
                 </tr>
 
@@ -169,7 +178,8 @@
                     $bundle.getString("Opintopisteet")
                   </td>
                   <td>
-                    <input type="text" name="inc_cruname" size="8" maxlength="8">
+                    <input type="text" class="form-control input-sm" style="width:80px" 
+                        name="inc_cruname" size="8" maxlength="8">
                   </td>
                 </tr>
 
@@ -262,8 +272,9 @@
 	        <tr>
 		  <th colspan="3" nowrap>&nbsp;
 		    $bundle.getString("opiskelijatl")
-		    <input type="text" name="filter" tabindex="32600" size="15" value = "$!studentFilter">
-		    <input type="submit" name="makeList" tabindex="32601" value=">>>" class="btn-primary">
+		    <input type="text" class="form-control input-sm" style="width:200px" 
+                        name="filter" tabindex="32600" size="15" value = "$!studentFilter">
+		    <input type="submit" name="makeList" tabindex="32601" value=">>>" class="btn btn-primary">
 		  </th>
 	        </tr>
 	      </table>
@@ -288,7 +299,7 @@
 	      <dt>$bundle.getString("al")</dt>
 	        <dd>$bundle.getString("sukunimiInfo2")</dd>
 	      <dt>$bundle.getString("kriteerit")</dt>
-	        <dd>$bundle.getString("hakukriteeriInfo")</dd>
+	        <dd>$bundle.getString("useatkriteerit")</dd>
 	      <dt>$bundle.getString("meikalainen")</dt>
 		<dd>$bundle.getString("pienetjaisot")</dd>
             </dl>
@@ -296,11 +307,6 @@
   <li>
             $bundle.getString("lopuksiPaina")
 
-	    <!-- 
-		NN ymmärtää tuon tyylin, kun se on kirjoitettu elementin 
-		style-atribuuttiin, mutta ei osaa lukea sitä erillisestä
-		CSS-tiedostosta.
-	    -->
 	    <form class="inline" style="margin:0;display:inline;"> 
 	      <input type="button" 
 		     tabindex="32605"

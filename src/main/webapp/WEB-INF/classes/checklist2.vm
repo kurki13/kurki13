@@ -1,3 +1,6 @@
+##
+################### Opiskelijanumero ja nimi ###################
+##
 ${selectedCourse.Label}: $!studentFilterDesc
 $bundle.getString("tilanne"): ${sysdate} $bundle.getString("klo"): ${time}
 

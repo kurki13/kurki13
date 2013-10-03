@@ -1,3 +1,6 @@
+##
+################### Email ###################
+##
 ${selectedCourse.Label}: $!studentFilterDesc
 $bundle.getString("tilanne"): ${sysdate} $bundle.getString("klo"): ${time}
 

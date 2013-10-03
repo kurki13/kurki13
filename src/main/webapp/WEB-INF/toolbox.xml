@@ -7,6 +7,6 @@
     
     <tool>
         <key>piippu</key>
-        <class>Pipe</class>
+        <class>debug.Pipe</class>
     </tool>
 </toolbox>
