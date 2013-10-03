@@ -20,15 +20,16 @@ public class Kurssi {
     int kurssi_nro;
     String nimi;
 
-    ArrayList<Osallistuminen> osallistumiset;
-
-    public Kurssi(String kurssikoodi, String lukukausi, int lukuvuosi, String tyyppi, int kurssi_nro, String nimi) throws ClassNotFoundException, SQLException {
+    public Kurssi(String kurssikoodi, String lukukausi, int lukuvuosi, String tyyppi, int kurssi_nro, String nimi) throws SQLException {
         this.kurssikoodi = kurssikoodi;
         this.lukukausi = lukukausi;
         this.lukuvuosi = lukuvuosi;
         this.tyyppi = tyyppi;
         this.kurssi_nro = kurssi_nro;
         this.nimi = nimi;
-        osallistumiset = Pipe.osallistumisetKurssilla(this);
+    }
+    
+    public ArrayList<Osallistuminen> getOsallistumiset() throws SQLException {
+        return Pipe.osallistumisetKurssilla(this);
     }
 }

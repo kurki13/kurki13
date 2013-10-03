@@ -5,6 +5,7 @@
 package debug;
 
 import java.sql.Date;
+import java.sql.SQLException;
 
 /**
  *
@@ -26,6 +27,9 @@ public class Osallistuminen {
         this.ilmoittautumis_pvm = ilmoittautumis_pvm;
         this.kurssi_nro = kurssi_nro;
         this.ryhma_nro = ryhma_nro;
+    }
+    public Opiskelija getOpiskelija() throws SQLException {
+        return Pipe.opiskelijaHetulla(hetu);
     }
     
 }

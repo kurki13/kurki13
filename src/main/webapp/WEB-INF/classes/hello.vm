@@ -1,6 +1,10 @@
 <html>
 <body>
 <pre>
+#set($params = $queryparser.splitQuery($request.getQueryString()))
+$params.hashCode()
+$params.get('foo')
+$request.getQueryString() 
 $piippu.test()
 </pre>
 </body>

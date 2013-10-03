@@ -8,5 +8,10 @@
     <tool>
         <key>piippu</key>
         <class>debug.Pipe</class>
+    </tool>    
+    
+    <tool>
+        <key>queryparser</key>
+        <class>kurki.util.QuerystringParser</class>
     </tool>
 </toolbox>

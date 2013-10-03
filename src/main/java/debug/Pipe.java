@@ -10,6 +10,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /*
  * To change this template, choose Tools | Templates
@@ -21,17 +23,20 @@ import java.util.ArrayList;
  */
 public class Pipe {
 
-    public static Connection makeConnection() throws ClassNotFoundException, SQLException {
-        Class.forName("oracle.jdbc.OracleDriver");
+    public static Connection makeConnection() throws SQLException {
+        try {
+            Class.forName("oracle.jdbc.OracleDriver");
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Pipe.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return DriverManager.getConnection("jdbc:oracle:thin:@bodbacka.cs.helsinki.fi:1521:test", "tk_testi", "tapaus2");
     }
 
-    public static String test() throws SQLException, ClassNotFoundException {
+    public static String test() throws SQLException{
         String ret = "";
         try {
             for (Kurssi kurssi : lataaKurssitKannasta()) {
-                ret += "Nimi: " + kurssi.nimi + ", ";
-                ret += "Osallistujia: " + kurssi.osallistumiset.size() + "<br>";
+                ret += "Nimi: " + kurssi.nimi + "<br>";
             }
         } catch (Exception e) {
             StringWriter sw = new StringWriter();
@@ -42,10 +47,10 @@ public class Pipe {
         return ret;
     }
 
-    private static ArrayList<Kurssi> lataaKurssitKannasta() throws SQLException, ClassNotFoundException {
+    private static ArrayList<Kurssi> lataaKurssitKannasta() throws SQLException{
         ArrayList<Kurssi> kaikki = new ArrayList();
         Connection conn = makeConnection();
-        PreparedStatement ps = conn.prepareStatement("Select * from kurssi where kurssikoodi = '58132'");
+        PreparedStatement ps = conn.prepareStatement("Select * from kurssi");
         ResultSet rs = ps.executeQuery();
         while (rs.next()) {
             kaikki.add(tulosRiviKurssiksi(rs));
@@ -54,7 +59,7 @@ public class Pipe {
         return kaikki;
     }
 
-    private static ArrayList<Opiskelija> lataaOpiskelijatKannasta() throws SQLException, ClassNotFoundException {
+    private static ArrayList<Opiskelija> lataaOpiskelijatKannasta() throws SQLException{
         ArrayList<Opiskelija> kaikki = new ArrayList();
         Connection conn = makeConnection();
         PreparedStatement ps = conn.prepareStatement("Select * from opiskelija");
@@ -66,7 +71,7 @@ public class Pipe {
         return kaikki;
     }
 
-    private static Kurssi tulosRiviKurssiksi(ResultSet rs) throws SQLException, ClassNotFoundException {
+    private static Kurssi tulosRiviKurssiksi(ResultSet rs) throws SQLException{
         String kurssikoodi = rs.getString("kurssikoodi");
         String lukukausi = rs.getString("lukukausi");
         int lukuvuosi = rs.getInt("lukuvuosi");
@@ -95,7 +100,7 @@ public class Pipe {
         return new Opiskelija(hetu, personid, etunimi, sukunimi, entinen_sukunimi, osoite, puhelin, sahkopostiosoite, paa_aine, aloitusvuosi, kaytto_pvm, opnro, lupa, vinkki, varmenne);
     }
 
-    public static ArrayList<Osallistuminen> osallistumisetKurssilla(Kurssi kurssi) throws ClassNotFoundException, SQLException {
+    public static ArrayList<Osallistuminen> osallistumisetKurssilla(Kurssi kurssi) throws SQLException {
         ArrayList<Osallistuminen> osallistumiset = new ArrayList();
         Connection conn = Pipe.makeConnection();
         PreparedStatement ps = conn.prepareStatement("Select * from osallistuminen where "
@@ -115,7 +120,7 @@ public class Pipe {
         return osallistumiset;
     }
 
-    private static Osallistuminen tulosRiviOsallistumiseksi(ResultSet rs) throws SQLException, ClassNotFoundException {
+    private static Osallistuminen tulosRiviOsallistumiseksi(ResultSet rs) throws SQLException{
         String hetu = rs.getString("hetu");
         int ilmo_jnro = rs.getInt("ilmo_jnro");
         Date ilmoittautumis_pvm = rs.getDate("ilmoittautumis_pvm");
@@ -124,7 +129,7 @@ public class Pipe {
         return new Osallistuminen(hetu, ilmo_jnro, ilmoittautumis_pvm, kurssi_nro, ryhma_nro);
     }
 
-    private static Opiskelija opiskelijaHetulla(String hetu) throws SQLException, ClassNotFoundException {
+    public static Opiskelija opiskelijaHetulla(String hetu) throws SQLException {
         Connection conn = Pipe.makeConnection();
         Opiskelija opiskelija = null;
         PreparedStatement ps = conn.prepareStatement("Select * from opiskelija where hetu = ?");
