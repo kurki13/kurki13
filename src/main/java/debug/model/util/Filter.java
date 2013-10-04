@@ -4,7 +4,7 @@
  */
 package debug.model.util;
 
-import debug.model.util.Column;
+import debug.model.column.Column;
 
 /**
  *

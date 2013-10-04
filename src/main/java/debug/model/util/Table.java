@@ -4,41 +4,51 @@
  */
 package debug.model.util;
 
+import debug.model.column.Column;
+import debug.model.column.StringColumn;
+import debug.model.Kurssi;
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author mkctammi
  */
-public interface Table {
+public abstract class Table {
 
-    public String getTableName();
+    public abstract String getTableName();
 
-    public Column[] getColumns();
-
-    public <T extends Table> T getNewInstance();
-
-    public <T> T get(Column sarake, Class<T> type);
-
-    public void set(Column sarake, Object value);
-
-    public static class Helper {
-        public static void checkGetType(Table caller, Column sarake, Class providedType) {
-            if (sarake.getType() != providedType) {
-                throw new IllegalArgumentException("Taulun " + caller.getTableName()
-                        + " Sarakkeen " + sarake.getColumnName()
-                        + " Tyypiksi on määritelty " + sarake.getType().getCanonicalName()
-                        + ". Argumenttina saatiin " + providedType.getCanonicalName());
+    public final List<Column> getColumns() {
+        Field[] fields = this.getClass().getFields();
+        ArrayList<Column> columns = new ArrayList();
+        for (Field field : fields) {
+            if (Column.class.isAssignableFrom(field.getType())) {
+                try {
+                    Column column = (Column) field.get(new StringColumn(""));
+                    columns.add(column);
+                } catch (IllegalArgumentException ex) {
+                    Logger.getLogger(Kurssi.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IllegalAccessException ex) {
+                    Logger.getLogger(Kurssi.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         }
-        public static void checkSetType(Table caller, Column sarake, Object providedValue) {
-            if (providedValue == null)
-                return;
-            if (sarake.getType() != providedValue.getClass()) {
-                throw new IllegalArgumentException("Taulun " + caller.getTableName()
-                        + " Sarakkeen " + sarake.getColumnName()
-                        + " Tyypiksi on määritelty " + sarake.getType().getCanonicalName()
-                        + ". Argumenttina saatiin muuttuja, jonka tyyppi oli" + 
-                        providedValue.getClass().getCanonicalName());
-            }
-        }
+        return columns;
+    }
+
+    public abstract <T extends Table> T getNewInstance();
+    
+    private final HashMap<Column,Object> values = new HashMap();
+
+    public final <T> T get(Column<T> sarake) {
+        return (T) values.get(sarake);
+    }
+
+    public final <T> void set(Column<T> sarake, T value) {
+        values.put(sarake, value);
     }
 }

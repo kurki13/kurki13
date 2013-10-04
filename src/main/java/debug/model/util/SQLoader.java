@@ -4,6 +4,7 @@
  */
 package debug.model.util;
 
+import debug.model.column.Column;
 import static debug.Pipe.makeConnection;
 import java.sql.Connection;
 import java.sql.Date;
@@ -70,10 +71,12 @@ public class SQLoader {
         return loadTable(tabletype, null);
     }
 
-    private static void resultRowToTable(ResultSet rs, Table table) throws SQLException {
+    private static void resultRowToTable(ResultSet rs, Table table) {
         for (Column column : table.getColumns()) {
             String columnName = column.getColumnName();
             Class columnType = column.getType();
+            try{
+            
             if (columnType == String.class) {
                 table.set(column, rs.getString(columnName));
             } else if (columnType == Integer.class) {
@@ -82,6 +85,10 @@ public class SQLoader {
                 table.set(column, rs.getTimestamp(columnName));
             } else if (columnType == Date.class) {
                 table.set(column, rs.getDate(columnName));
+            }
+            
+            } catch (SQLException e) {
+                throw new IllegalArgumentException("Errorii pukkaa " + columnName);
             }
         }
     }

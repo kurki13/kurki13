@@ -1,6 +1,7 @@
 package debug;
 
 import debug.model.Kurssi;
+import debug.model.Opiskelija;
 import debug.model.util.Filter;
 import debug.model.util.SQLoader;
 import java.io.PrintWriter;
@@ -36,20 +37,20 @@ public class Pipe {
         String ret = "";
         try {
             ArrayList<Filter> filters = new ArrayList();
-            Filter f1 = new Filter(Kurssi.Sarake.nimi, "Java-ohjelmointi");
-            Filter f2 = new Filter(Kurssi.Sarake.lukuvuosi, 2000);
+            Filter f1 = new Filter(Kurssi.nimi, "Java-ohjelmointi");
+            Filter f2 = new Filter(Kurssi.lukuvuosi, 2000);
             filters.add(f1);
             filters.add(f2);
             
             List<Kurssi> k = SQLoader.loadTable(new Kurssi(), filters);
             for (Kurssi kurssig : k) {
-                ret += kurssig.get(Kurssi.Sarake.nimi, Kurssi.Sarake.nimi.getType()) + "<br>";
-                ret += kurssig.get(Kurssi.Sarake.lukuvuosi, Kurssi.Sarake.lukuvuosi.getType()) + "<br>";
+                ret += kurssig.get(Kurssi.nimi) + "<br>";
+                ret += kurssig.get(Kurssi.lukuvuosi) + "<br>";
             }
-//            List<Opiskelija> o = SQLoader.loadTable(new Opiskelija());
-//            for (Opiskelija opiskelijag : o) {
-//                ret += opiskelijag.get(Opiskelija.Sarake.hetu, String.class) + "<br>";
-//            }
+            List<Opiskelija> o = SQLoader.loadTable(new Opiskelija());
+            for (Opiskelija opiskelijag : o) {
+                ret += opiskelijag.get(Opiskelija.hetu) + "<br>";
+            }
 //            List<Osallistuminen> p = SQLoader.loadTable(new Osallistuminen());
 //            for (Osallistuminen osallistuminen : p) {
 //                ret += osallistuminen.get(Osallistuminen.Sarake.hetu, String.class) + "<br>";
