@@ -15,13 +15,7 @@ public class Filter {
     public final Column column;
     public final Object expectation;
 
-    public Filter(Column column, Object expectation) {
-        if (column.getType() != expectation.getClass()) {
-            throw new IllegalArgumentException("Filter for column "
-                    + column.getColumnName() + " need a expectation object of type"
-                    + column.getType().getCanonicalName()
-                    + ". Received argument had type " + expectation.getClass().getCanonicalName());
-        }
+    public <T> Filter(Column<T> column, T expectation) {
         this.column = column;
         this.expectation = expectation;
     }
