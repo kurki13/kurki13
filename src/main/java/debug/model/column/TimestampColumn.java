@@ -11,19 +11,12 @@ import java.sql.Timestamp;
  *
  * @author mikko
  */
-public class TimestampColumn implements Column<String> {
-
-    String columnName;
+public class TimestampColumn extends Column<Timestamp> {
 
     public TimestampColumn(String columnName) {
-        this.columnName = columnName;
+        super(columnName);
     }
     
-    @Override
-    public String getColumnName() {
-        return columnName;
-    }
-
     @Override
     public Class getType() {
         return Timestamp.class;

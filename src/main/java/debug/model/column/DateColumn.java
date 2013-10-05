@@ -11,17 +11,10 @@ import java.sql.Date;
  *
  * @author mikko
  */
-public class DateColumn implements Column<String> {
-
-    String columnName;
+public class DateColumn extends Column<Date> {
 
     public DateColumn(String columnName) {
-        this.columnName = columnName;
-    }
-    
-    @Override
-    public String getColumnName() {
-        return columnName;
+        super(columnName);
     }
 
     @Override

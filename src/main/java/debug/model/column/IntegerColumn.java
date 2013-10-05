@@ -9,19 +9,11 @@ package debug.model.column;
  *
  * @author mikko
  */
-public class IntegerColumn implements Column<Integer> {
-
-    String columnName;
+public class IntegerColumn extends Column<Integer> {
 
     public IntegerColumn(String columnName) {
-        this.columnName = columnName;
+        super(columnName);
     }
-    
-    @Override
-    public String getColumnName() {
-        return columnName;
-    }
-
     @Override
     public Class getType() {
         return Integer.class;

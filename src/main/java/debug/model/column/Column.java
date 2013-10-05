@@ -7,8 +7,19 @@ package debug.model.column;
 /**
  *
  * @author mkctammi
+ * @param <T>
  */
-public interface Column<T> {
-    public String getColumnName();
-    public Class getType();
+public abstract class Column<T> {
+    
+    final String columnName;
+
+    public Column(String columnName) {
+        this.columnName = columnName;
+    }
+    
+    public final String getColumnName() {
+        return this.columnName;
+    }
+    
+    public abstract Class getType();
 }

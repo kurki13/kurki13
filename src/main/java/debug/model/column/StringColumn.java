@@ -9,19 +9,11 @@ package debug.model.column;
  *
  * @author mikko
  */
-public class StringColumn implements Column<String> {
-
-    String columnName;
+public class StringColumn extends Column<String> {
 
     public StringColumn(String columnName) {
-        this.columnName = columnName;
+        super(columnName);
     }
-    
-    @Override
-    public String getColumnName() {
-        return columnName;
-    }
-
     @Override
     public Class getType() {
         return String.class;
