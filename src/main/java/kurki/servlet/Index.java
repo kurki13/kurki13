@@ -53,7 +53,13 @@ public class Index extends VelocityServlet implements Log, Serializable {
 
     private void init_config() {
         ServletContext ctx = getServletContext();
-        Configuration.setPropertiesFile(new File(ctx.getRealPath(ctx.getInitParameter("configurationFile"))));
+        
+        
+        File configurationFile = new File(ctx.getRealPath(ctx.getInitParameter("configurationFile")));
+        if (!configurationFile.exists()) {
+            throw new IllegalArgumentException("The file " + configurationFile.getAbsolutePath() + " does not exist!");
+        }
+        Configuration.setPropertiesFile(configurationFile);
         //Lisätään tieto lokista konfiguraatioon.
         Configuration.setProperty("log", this);
     }

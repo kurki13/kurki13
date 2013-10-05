@@ -1,6 +1,7 @@
 #!/bin/bash
 cd ~/kurki13
-mvn install
+mvn clean
+mvn package
 rm -rf ~/tomcat/webapps/kurki13-1.0-SNAPSHOT
 rm -f ~/tomcat/webapps/kurki13-1.0-SNAPSHOT.war
 cp ~/kurki13/target/kurki13-1.0-SNAPSHOT.war ~/tomcat/webapps
