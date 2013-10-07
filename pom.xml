@@ -69,12 +69,12 @@
 
     <build>
         <plugins>
-            <plugin>
+<!--            <plugin>
                 <artifactId>exec-maven-plugin</artifactId>
                 <groupId>org.codehaus.mojo</groupId>
                 <version>1.2.1</version>
                 <executions>
-                    <execution><!-- Asennetaan sivusto palvelimelle -->
+                    <execution> Asennetaan sivusto palvelimelle 
                         <id>Upload to Users and run</id>
                         <phase>install</phase>
                         <goals>
@@ -86,7 +86,7 @@
                         </configuration>
                     </execution>
                 </executions>
-            </plugin>
+            </plugin>-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>

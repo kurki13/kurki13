@@ -1,7 +1,12 @@
 <html>
 <body>
-$name <br>
-$piippu.course_infos() <br>
-$piippu.service_manager()
+<pre>
+#set($qs = $request.getQueryString())
+#if($qs)
+    #set($params = $queryparser.split($qs))
+#end
+$params.get('foo')
+$piippu.test()
+</pre>
 </body>
 <html>

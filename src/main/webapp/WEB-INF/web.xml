@@ -49,22 +49,6 @@
         <url-pattern>*.html</url-pattern>
     </servlet-mapping>
     <servlet>
-        <servlet-name>HelloTest</servlet-name>
-        <servlet-class>debug.HelloTest</servlet-class>
-        <init-param>
-            <param-name>org.apache.velocity.properties</param-name>
-            <param-value>/WEB-INF/velocity.properties</param-value>
-        </init-param>
-        <init-param>
-            <param-name>org.apache.velocity.toolbox</param-name>
-            <param-value>/WEB-INF/toolbox.xml</param-value>
-        </init-param>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>HelloTest</servlet-name>
-        <url-pattern>/HelloTest</url-pattern>
-    </servlet-mapping>
-    <servlet>
         <servlet-name>index</servlet-name>
         <servlet-class>kurki.servlet.Index</servlet-class>
         <init-param>

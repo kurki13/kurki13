@@ -4,6 +4,7 @@
  */
 package kurki.db;
 
+import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -18,7 +19,7 @@ import service.exception.NullIdException;
  *
  * @author mkctammi
  */
-public class CoursesQuerier {
+public class CoursesQuerier implements Serializable {
 
     //Kuinka monta kuukautta kursseja saa muokata
     private static final int MONTHS_OPEN = 12;
@@ -93,7 +94,7 @@ public class CoursesQuerier {
             + "    AND ku.tyyppi = 'L')\n" // vain kokeet
             + "ORDER BY orderBy ASC, nimi ASC, alkamis_pvm ASC";
     //</editor-fold>
-    public static class CourseQueryResult {
+    public static class CourseQueryResult implements Serializable{
         public HashMap<String, CourseInfo> coursesMap;
         public CourseInfo[] coursesList;
 
