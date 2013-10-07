@@ -35,7 +35,21 @@ public class SQLoader {
         conn.close();
         return kaikki;
     }
-    
+
+    public static <T extends Table> List<T> loadTablesFromRawQuery(T tableType, String sQLQueryString) throws SQLException {
+        ArrayList<T> kaikki = new ArrayList();
+        Connection conn = makeConnection();
+        PreparedStatement ps = conn.prepareStatement(sQLQueryString);
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            T add = tableType.getNewInstance();
+            resultRowToTable(rs, add);
+            kaikki.add(add);
+        }
+        conn.close();
+        return kaikki;
+    }
+
     public static <T extends Table> List<T> loadTable(T tableType, Filter filter) throws SQLException {
         ArrayList<Filter> list = new ArrayList();
         list.add(filter);
@@ -81,18 +95,18 @@ public class SQLoader {
         for (Column column : table.getColumns()) {
             String columnName = column.getColumnName();
             Class columnType = column.getType();
-            try{
-            
-            if (columnType == String.class) {
-                table.setValue(column, rs.getString(columnName));
-            } else if (columnType == Integer.class) {
-                table.setValue(column, rs.getInt(columnName));
-            } else if (columnType == Timestamp.class) {
-                table.setValue(column, rs.getTimestamp(columnName));
-            } else if (columnType == Date.class) {
-                table.setValue(column, rs.getDate(columnName));
-            }
-            
+            try {
+
+                if (columnType == String.class) {
+                    table.setValue(column, rs.getString(columnName));
+                } else if (columnType == Integer.class) {
+                    table.setValue(column, rs.getInt(columnName));
+                } else if (columnType == Timestamp.class) {
+                    table.setValue(column, rs.getTimestamp(columnName));
+                } else if (columnType == Date.class) {
+                    table.setValue(column, rs.getDate(columnName));
+                }
+
             } catch (SQLException e) {
                 throw new IllegalArgumentException("Errorii pukkaa " + columnName);
             }
