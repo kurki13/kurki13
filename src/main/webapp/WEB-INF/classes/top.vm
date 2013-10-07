@@ -1,5 +1,5 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-#set ($bgcolorDef = "#EEEEEE") ## isojen taulukkojen joka toisen rivin taustaväri
+#set ($bgcolorDef = "#EEEEEE") ## isojen taulukoiden joka toisen rivin taustaväri
 #if ($selectedCourse)
   #set ($frozen = $selectedCourse.isFrozen())
 #end
@@ -7,7 +7,6 @@
   <head>
     <META charset='utf-8'/>
     <title>KURKI</title>
-##    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link href="../bootstrap/css/bootstrap.css" rel="stylesheet">
     <style>

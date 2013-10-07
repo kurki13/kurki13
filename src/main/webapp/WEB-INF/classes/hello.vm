@@ -6,7 +6,11 @@
     #set($params = $queryparser.split($qs))
 #end
 $params.get('foo')
-$piippu.test()
+
+$piippu.kurssiTest()
+$piippu.opiskelijaTest()
+$piippu.henkiloTest()
+
 </pre>
 </body>
 <html>
