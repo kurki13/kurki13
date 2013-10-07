@@ -7,7 +7,12 @@ package debug.model;
 import debug.model.column.DateColumn;
 import debug.model.column.IntegerColumn;
 import debug.model.column.StringColumn;
+import debug.model.util.Filter;
+import debug.model.util.SQLoader;
 import debug.model.util.Table;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -339,6 +344,19 @@ public class Kurssi extends Table {
 
     //</editor-fold>
 
+    public Kurssi kurssitIDlla(String kKoodi, String lKausi,
+            int lVuosi, String tyyppi, int kNro) throws SQLException {
+        
+        List filters = new ArrayList<Filter>();
+        filters.add(new Filter(Kurssi.kurssikoodi,kKoodi));
+        filters.add(new Filter(Kurssi.lukukausi,lKausi));
+        filters.add(new Filter(Kurssi.lukuvuosi,lVuosi));
+        filters.add(new Filter(Kurssi.tyyppi,tyyppi));
+        filters.add(new Filter(Kurssi.kurssi_nro,kNro));
+        List<Kurssi> kurssit = SQLoader.loadTable(new Kurssi(), filters);
+        return kurssit.get(0);
+    }
+    
     @Override
     public String getTableName() {
         return "kurssi";

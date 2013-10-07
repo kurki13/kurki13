@@ -1,0 +1,32 @@
+<html>
+<body>
+<pre>
+#set($qs = $request.getQueryString())
+#if($qs)
+    #set($params = $queryparser.split($qs))
+#end
+
+<form action="kurssi.vm" method="get">
+  Kurssikoodi: <input type="text" name="fname"><br>
+  Lukukausi: <input type="text" name="lname"><br>
+  <input type="submit" value="Submit">
+</form>
+
+#set($kk = ($params.get('kKoodi')))
+#set($lk = ($params.get('lKausi')))
+#set($lv = ($params.get('lVuosi')))
+#set($t = ($params.get('tyyppi')))
+#set($k = ($params.get('kNro')))
+
+#set ($kur = $kurssi.kurssitIDlla(kk,lk,lt,t,k))
+
+#if($kur)
+    $kurssi.getValue($kur.getNimi()) <br>
+    $kurssi.getValue($kur.getLukukausi()) <br>
+    $kurssi.getValue($kur.getLukuvuosi()) <br>
+    $kurssi.getValue($kur.getTyyppi()) <br>
+#end
+
+</pre>
+</body>
+<html>
