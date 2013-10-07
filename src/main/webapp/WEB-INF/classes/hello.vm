@@ -5,12 +5,11 @@
 #if($qs)
     #set($params = $queryparser.split($qs))
 #end
+$session
+$session.getAttribute('keke')
 $params.get('foo')
 
-$piippu.kurssiTest()
-$piippu.opiskelijaTest()
-$piippu.henkiloTest()
-$piippu.opetusTest()
+$userAccessor.getGroups($action.remoteUser)
 
 </pre>
 </body>
