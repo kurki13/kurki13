@@ -46,8 +46,8 @@ public class Pipe {
             
             List<Kurssi> k = SQLoader.loadTable(new Kurssi(), filters);
             for (Kurssi kurssig : k) {
-                ret += kurssig.get(Kurssi.nimi) + "<br>";
-                ret += kurssig.get(Kurssi.lukuvuosi) + "<br>";
+                ret += kurssig.getValue(Kurssi.nimi) + "<br>";
+                ret += kurssig.getValue(Kurssi.lukuvuosi) + "<br>";
             }
             
         } catch (Exception e) {
@@ -72,9 +72,9 @@ public class Pipe {
             
             List<Opiskelija> o = SQLoader.loadTable(new Opiskelija(), filters);
             for (Opiskelija opiskelijag : o) {
-                ret += opiskelijag.get(Opiskelija.aloitusvuosi) + ", ";
-                ret += opiskelijag.get(Opiskelija.paa_aine) + ", ";
-                ret += opiskelijag.get(Opiskelija.hetu) + "<br>";
+                ret += opiskelijag.getValue(Opiskelija.aloitusvuosi) + ", ";
+                ret += opiskelijag.getValue(Opiskelija.paa_aine) + ", ";
+                ret += opiskelijag.getValue(Opiskelija.hetu) + "<br>";
             }
 
         } catch (Exception e) {
@@ -97,8 +97,8 @@ public class Pipe {
             
             List<Henkilo> h = SQLoader.loadTable(new Henkilo(), filters);
             for (Henkilo hlog : h) {
-                ret += hlog.get(Henkilo.hetu) + ", ";
-                ret += hlog.get(Henkilo.postinro) + "<br>";
+                ret += hlog.getValue(Henkilo.hetu) + ", ";
+                ret += hlog.getValue(Henkilo.postinro) + "<br>";
             }
 
         } catch (Exception e) {
@@ -125,9 +125,9 @@ public class Pipe {
             
             List<Opetus> h = SQLoader.loadTable(new Opetus(), filters);
             for (Opetus opeg : h) {
-                ret += opeg.get(Opetus.lukuvuosi) + ", ";
-                ret += opeg.get(Opetus.lukukausi) + ", ";
-                ret += opeg.get(Opetus.ryhma_nro) + "<br>";
+                ret += opeg.getValue(Opetus.lukuvuosi) + ", ";
+                ret += opeg.getValue(Opetus.lukukausi) + ", ";
+                ret += opeg.getValue(Opetus.ryhma_nro) + "<br>";
             }
 
         } catch (Exception e) {
