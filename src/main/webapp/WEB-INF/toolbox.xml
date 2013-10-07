@@ -11,6 +11,16 @@
     </tool>    
     
     <tool>
+        <key>opiskelija</key>
+        <class>debug.model.Opiskelija</class>
+    </tool>        
+    
+    <tool>
+        <key>kurssi</key>
+        <class>debug.model.Kurssi</class>
+    </tool>    
+    
+    <tool>
         <key>queryparser</key>
         <class>kurki.util.QuerystringParser</class>
     </tool>
