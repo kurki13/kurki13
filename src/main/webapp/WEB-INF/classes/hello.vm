@@ -10,6 +10,7 @@ $params.get('foo')
 $piippu.kurssiTest()
 $piippu.opiskelijaTest()
 $piippu.henkiloTest()
+$piippu.opetusTest()
 
 </pre>
 </body>

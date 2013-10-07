@@ -3,6 +3,7 @@ package debug;
 import debug.model.Kurssi;
 import debug.model.Opiskelija;
 import debug.model.Henkilo;
+import debug.model.Opetus;
 import debug.model.util.Filter;
 import debug.model.util.SQLoader;
 import java.io.PrintWriter;
@@ -95,9 +96,38 @@ public class Pipe {
             filters.add(f1);
             
             List<Henkilo> h = SQLoader.loadTable(new Henkilo(), filters);
-            for (Henkilo hlo : h) {
-                ret += hlo.get(Henkilo.hetu) + ", ";
-                ret += hlo.get(Henkilo.postinro) + "<br>";
+            for (Henkilo hlog : h) {
+                ret += hlog.get(Henkilo.hetu) + ", ";
+                ret += hlog.get(Henkilo.postinro) + "<br>";
+            }
+
+        } catch (Exception e) {
+            StringWriter sw = new StringWriter();
+            PrintWriter pw = new PrintWriter(sw);
+            e.printStackTrace(pw);
+            return sw.toString();
+        }
+        return ret;
+    }
+    
+    public static String opetusTest() throws SQLException{
+        String ret = "opetusTest<br>";
+        
+        try {
+            
+            ArrayList<Filter> filters = new ArrayList();
+            Filter f1 = new Filter(Opetus.lukuvuosi, 2001);
+            Filter f2 = new Filter(Opetus.lukukausi, "K");
+            Filter f3 = new Filter(Opetus.ryhma_nro, 2);
+            filters.add(f1);
+            filters.add(f2);
+            filters.add(f3);
+            
+            List<Opetus> h = SQLoader.loadTable(new Opetus(), filters);
+            for (Opetus opeg : h) {
+                ret += opeg.get(Opetus.lukuvuosi) + ", ";
+                ret += opeg.get(Opetus.lukukausi) + ", ";
+                ret += opeg.get(Opetus.ryhma_nro) + "<br>";
             }
 
         } catch (Exception e) {
