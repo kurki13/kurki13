@@ -10,6 +10,7 @@ import debug.model.column.StringColumn;
 import debug.model.util.Filter;
 import debug.model.util.SQLoader;
 import debug.model.util.Table;
+import java.sql.Array;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -343,20 +344,39 @@ public class Kurssi extends Table {
     }
 
     //</editor-fold>
-
-    public Kurssi kurssitIDlla(String kKoodi, String lKausi,
-            int lVuosi, String tyyppi, int kNro) throws SQLException {
+    public List<Kurssi> kurssitIDlla(String kKoodi, String lKausi,
+            String lVuosi, String tyyppi, String kNro) throws SQLException {
+        System.out.println(kKoodi);
+        System.out.println(lKausi);
+        System.out.println(lVuosi);
+        System.out.println(tyyppi);
+        System.out.println(kNro+"\n--------");
         
-        List filters = new ArrayList<Filter>();
-        filters.add(new Filter(Kurssi.kurssikoodi,kKoodi));
-        filters.add(new Filter(Kurssi.lukukausi,lKausi));
-        filters.add(new Filter(Kurssi.lukuvuosi,lVuosi));
-        filters.add(new Filter(Kurssi.tyyppi,tyyppi));
-        filters.add(new Filter(Kurssi.kurssi_nro,kNro));
-        List<Kurssi> kurssit = SQLoader.loadTable(new Kurssi(), filters);
-        return kurssit.get(0);
+        List<Filter> f = new ArrayList();
+        if (!kKoodi.equals("")) {
+            f.add(new Filter(Kurssi.kurssikoodi, kKoodi));
+        }
+        if (!lKausi.equals("")) {
+            f.add(new Filter(Kurssi.lukukausi, lKausi));
+        }
+        if (!lVuosi.equals("")) {
+            try {
+                f.add(new Filter(Kurssi.lukuvuosi, Integer.parseInt(lVuosi)));
+            } catch (NumberFormatException e) {
+            }
+        }
+        if (!tyyppi.equals("")) {
+            f.add(new Filter(Kurssi.tyyppi, tyyppi));
+        }
+        if (!kNro.equals("")) {
+            try {
+                f.add(new Filter(Kurssi.kurssi_nro, Integer.parseInt(kNro)));
+            } catch (NumberFormatException e) {
+            }
+        }
+        return SQLoader.loadTable(new Kurssi(), f);
     }
-    
+
     @Override
     public String getTableName() {
         return "kurssi";
