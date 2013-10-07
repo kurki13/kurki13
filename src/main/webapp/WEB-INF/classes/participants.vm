@@ -15,24 +15,9 @@
 		      <option>$group</option>
 #end
 		    </select>
-##		    <input type="text" id="group" name="group" size="2" maxlength="2" onBlur="rangecheck(this, 1, 99);">
                   <b>$bundle.getString("camelopnro"):</b>
 
 ## hetun ja opnron valinta pois, ja tilalle valinnaksi tulee aina 0 eli opiskelijanumero (vaikka siinä lukee hetu) -tka
-#*
- 		    <select name="idtype">
-#if (!$useSNO)
-		      <option value="0" selected>Hetu:</option>
-		      <option value="1">OpNro:</option>
-
-#else
-		      <option value="0">Hetu:</option>
-		      <option value="1" selected>OpNro:</option>
-#end
-		    </select>	
-
-*#
-
 <input type="hidden" value="0" name="idtype">
 		    <input type="text" class="form-control input" style="width:150px" id="idvalue" name="idvalue" size="11" maxlength="11">
 
