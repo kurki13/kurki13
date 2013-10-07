@@ -2,6 +2,8 @@ package debug;
 
 import debug.model.Kurssi;
 import debug.model.Opiskelija;
+import debug.model.Henkilo;
+import debug.model.Opetus;
 import debug.model.util.Filter;
 import debug.model.util.SQLoader;
 import java.io.PrintWriter;
@@ -33,8 +35,8 @@ public class Pipe {
         return DriverManager.getConnection("jdbc:oracle:thin:@bodbacka.cs.helsinki.fi:1521:test", "tk_testi", "tapaus2");
     }
 
-    public static String test() throws SQLException{
-        String ret = "";
+    public static String kurssiTest() throws SQLException{
+        String ret = "kurssiTest<br>";
         try {
             ArrayList<Filter> filters = new ArrayList();
             Filter f1 = new Filter(Kurssi.nimi, "Java-ohjelmointi");
@@ -47,14 +49,87 @@ public class Pipe {
                 ret += kurssig.get(Kurssi.nimi) + "<br>";
                 ret += kurssig.get(Kurssi.lukuvuosi) + "<br>";
             }
-            List<Opiskelija> o = SQLoader.loadTable(new Opiskelija());
+            
+        } catch (Exception e) {
+            StringWriter sw = new StringWriter();
+            PrintWriter pw = new PrintWriter(sw);
+            e.printStackTrace(pw);
+            return sw.toString();
+        }
+        return ret;
+    }
+    
+    public static String opiskelijaTest() throws SQLException{
+        String ret = "opiskelijaTest<br>";
+        
+        try {
+            
+            ArrayList<Filter> filters = new ArrayList();
+            Filter f1 = new Filter(Opiskelija.aloitusvuosi, 1991);
+            Filter f2 = new Filter(Opiskelija.paa_aine, "TKT");
+            filters.add(f1);
+            filters.add(f2);
+            
+            List<Opiskelija> o = SQLoader.loadTable(new Opiskelija(), filters);
             for (Opiskelija opiskelijag : o) {
+                ret += opiskelijag.get(Opiskelija.aloitusvuosi) + ", ";
+                ret += opiskelijag.get(Opiskelija.paa_aine) + ", ";
                 ret += opiskelijag.get(Opiskelija.hetu) + "<br>";
             }
-//            List<Osallistuminen> p = SQLoader.loadTable(new Osallistuminen());
-//            for (Osallistuminen osallistuminen : p) {
-//                ret += osallistuminen.get(Osallistuminen.Sarake.hetu, String.class) + "<br>";
-//            }
+
+        } catch (Exception e) {
+            StringWriter sw = new StringWriter();
+            PrintWriter pw = new PrintWriter(sw);
+            e.printStackTrace(pw);
+            return sw.toString();
+        }
+        return ret;
+    }
+    
+    public static String henkiloTest() throws SQLException{
+        String ret = "henkiloTest<br>";
+        
+        try {
+            
+            ArrayList<Filter> filters = new ArrayList();
+            Filter f1 = new Filter(Henkilo.postinro, "00500");
+            filters.add(f1);
+            
+            List<Henkilo> h = SQLoader.loadTable(new Henkilo(), filters);
+            for (Henkilo hlog : h) {
+                ret += hlog.get(Henkilo.hetu) + ", ";
+                ret += hlog.get(Henkilo.postinro) + "<br>";
+            }
+
+        } catch (Exception e) {
+            StringWriter sw = new StringWriter();
+            PrintWriter pw = new PrintWriter(sw);
+            e.printStackTrace(pw);
+            return sw.toString();
+        }
+        return ret;
+    }
+    
+    public static String opetusTest() throws SQLException{
+        String ret = "opetusTest<br>";
+        
+        try {
+            
+            ArrayList<Filter> filters = new ArrayList();
+            Filter f1 = new Filter(Opetus.lukuvuosi, 2001);
+            Filter f2 = new Filter(Opetus.lukukausi, "K");
+            Filter f3 = new Filter(Opetus.ryhma_nro, 2);
+            filters.add(f1);
+            filters.add(f2);
+            filters.add(f3);
+            
+            List<Opetus> h = SQLoader.loadTable(new Opetus(), filters);
+            for (Opetus opeg : h) {
+                ret += opeg.get(Opetus.lukuvuosi) + ", ";
+                ret += opeg.get(Opetus.lukukausi) + ", ";
+                ret += opeg.get(Opetus.ryhma_nro) + "<br>";
+            }
+
         } catch (Exception e) {
             StringWriter sw = new StringWriter();
             PrintWriter pw = new PrintWriter(sw);
