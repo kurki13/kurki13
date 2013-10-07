@@ -4,6 +4,7 @@ import debug.model.Kurssi;
 import debug.model.Opiskelija;
 import debug.model.Henkilo;
 import debug.model.Opetus;
+import debug.model.Osallistuminen;
 import debug.model.util.Filter;
 import debug.model.util.SQLoader;
 import java.io.PrintWriter;
@@ -129,7 +130,6 @@ public class Pipe {
                 ret += opeg.getValue(Opetus.lukukausi) + ", ";
                 ret += opeg.getValue(Opetus.ryhma_nro) + "<br>";
             }
-
         } catch (Exception e) {
             StringWriter sw = new StringWriter();
             PrintWriter pw = new PrintWriter(sw);
