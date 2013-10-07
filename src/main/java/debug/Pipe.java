@@ -2,6 +2,7 @@ package debug;
 
 import debug.model.Kurssi;
 import debug.model.Opiskelija;
+import debug.model.Osallistuminen;
 import debug.model.util.Filter;
 import debug.model.util.SQLoader;
 import java.io.PrintWriter;
@@ -51,10 +52,13 @@ public class Pipe {
             for (Opiskelija opiskelijag : o) {
                 ret += opiskelijag.get(Opiskelija.hetu) + "<br>";
             }
-//            List<Osallistuminen> p = SQLoader.loadTable(new Osallistuminen());
-//            for (Osallistuminen osallistuminen : p) {
-//                ret += osallistuminen.get(Osallistuminen.Sarake.hetu, String.class) + "<br>";
-//            }
+            
+            filters = new ArrayList();
+            filters.add(new Filter(Osallistuminen.getArvosana(), "2"));
+            List<Osallistuminen> p = SQLoader.loadTable(new Osallistuminen(), filters);
+            for (Osallistuminen osallistuminen : p) {
+                ret += osallistuminen.get(Osallistuminen.getHetu()) + "<br>";
+            }
         } catch (Exception e) {
             StringWriter sw = new StringWriter();
             PrintWriter pw = new PrintWriter(sw);
