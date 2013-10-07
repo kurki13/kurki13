@@ -20,8 +20,16 @@ import java.util.logging.Logger;
  */
 public abstract class Table {
 
+    /**
+     * Palauttaa tämän taulun nimen kannassa
+     * @return 
+     */
     public abstract String getTableName();
 
+    /**
+     * Listaa kaikki tämän Table -olennon Column -tyyppiset kentät ja palauttaa ne.
+     * @return 
+     */
     public final List<Column> getColumns() {
         Field[] fields = this.getClass().getFields();
         ArrayList<Column> columns = new ArrayList();
@@ -40,14 +48,34 @@ public abstract class Table {
         return columns;
     }
 
+    /**
+     * Tämän funktion tulee palauttaa Table -luokkaa perivän luokan uuden instanssin.
+     * @param <T>
+     * @return 
+     */
     public abstract <T extends Table> T getNewInstance();
     
+    /**
+     * Tässä hajautustaulussa säilytetään sarakkeiden arvot
+     */
     private final HashMap<Column,Object> values = new HashMap();
 
+    /**
+     * Palauttaa tämän tauluolion tietyn sarakkeen arvon.
+     * @param <T>
+     * @param sarake
+     * @return 
+     */
     public final <T> T get(Column<T> sarake) {
         return (T) values.get(sarake);
     }
 
+    /**
+     * Asettaa jonkin sarakkeen arvon.
+     * @param <T>
+     * @param sarake
+     * @param value 
+     */
     public final <T> void set(Column<T> sarake, T value) {
         values.put(sarake, value);
     }
