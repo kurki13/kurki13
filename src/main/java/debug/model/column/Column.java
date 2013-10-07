@@ -11,15 +11,30 @@ package debug.model.column;
  */
 public abstract class Column<T> {
     
+    /**
+     * Sarakkeen nimi kanssassa
+     */
     final String columnName;
 
+    /**
+     * Luo uuden sarakkeen, jonka parametrina annettu merkkijono kertoo sarakkeen nimen kannassa.
+     * @param columnName 
+     */
     public Column(String columnName) {
         this.columnName = columnName;
     }
     
+    /**
+     * Palauttaa sarakkeen nimen kannassa.
+     * @return 
+     */
     public final String getColumnName() {
         return this.columnName;
     }
     
+    /**
+     * Palauttaa sen luokan, jonka tyyppinen arvo tähän sarakkeeseen laitetaan.
+     * @return 
+     */
     public abstract Class getType();
 }

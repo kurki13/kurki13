@@ -35,6 +35,12 @@ public class SQLoader {
         conn.close();
         return kaikki;
     }
+    
+    public static <T extends Table> List<T> loadTable(T tableType, Filter filter) throws SQLException {
+        ArrayList<Filter> list = new ArrayList();
+        list.add(filter);
+        return loadTable(tableType, list);
+    }
 
     private static void applyFiltersToStatement(PreparedStatement ps, List<Filter> filters) throws SQLException {
         if (filters == null) {
@@ -68,7 +74,7 @@ public class SQLoader {
     }
 
     public static <T extends Table> List<T> loadTable(T tabletype) throws SQLException {
-        return loadTable(tabletype, null);
+        return loadTable(tabletype, new ArrayList<Filter>()); //TODO: tehotonta
     }
 
     private static void resultRowToTable(ResultSet rs, Table table) {
@@ -78,13 +84,13 @@ public class SQLoader {
             try{
             
             if (columnType == String.class) {
-                table.set(column, rs.getString(columnName));
+                table.setValue(column, rs.getString(columnName));
             } else if (columnType == Integer.class) {
-                table.set(column, rs.getInt(columnName));
+                table.setValue(column, rs.getInt(columnName));
             } else if (columnType == Timestamp.class) {
-                table.set(column, rs.getTimestamp(columnName));
+                table.setValue(column, rs.getTimestamp(columnName));
             } else if (columnType == Date.class) {
-                table.set(column, rs.getDate(columnName));
+                table.setValue(column, rs.getDate(columnName));
             }
             
             } catch (SQLException e) {
