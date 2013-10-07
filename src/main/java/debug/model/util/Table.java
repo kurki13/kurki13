@@ -66,7 +66,7 @@ public abstract class Table {
      * @param sarake
      * @return 
      */
-    public final <T> T get(Column<T> sarake) {
+    public final <T> T getValue(Column<T> sarake) {
         return (T) values.get(sarake);
     }
 
@@ -76,7 +76,7 @@ public abstract class Table {
      * @param sarake
      * @param value 
      */
-    public final <T> void set(Column<T> sarake, T value) {
+    public final <T> void setValue(Column<T> sarake, T value) {
         values.put(sarake, value);
     }
 }
