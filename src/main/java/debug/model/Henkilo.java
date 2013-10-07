@@ -6,15 +6,18 @@ package debug.model;
 
 import debug.model.column.IntegerColumn;
 import debug.model.column.StringColumn;
-import debug.model.column.TimestampColumn;
+import debug.model.util.Filter;
+import debug.model.util.SQLoader;
 import debug.model.util.Table;
+import java.sql.SQLException;
+import java.util.List;
 
 /**
  *
  * @author tkairola
  */
 public class Henkilo extends Table {
-    
+
     public static final StringColumn htunnus = new StringColumn("htunnus");
     public static final StringColumn etunimet = new StringColumn("etunimet");
     public static final StringColumn sukunimi = new StringColumn("sukunimi");
@@ -38,15 +41,187 @@ public class Henkilo extends Table {
     public static final StringColumn postilokerohuone = new StringColumn("postilokerohuone");
     public static final StringColumn hy_tyosuhde = new StringColumn("hy_tyosuhde");
     public static final StringColumn hy_puhelinluettelossa = new StringColumn("hy_puhelinluettelossa");
-    
-    
+
     @Override
     public String getTableName() {
         return "henkilo";
     }
-    
+
     @Override
     public Table getNewInstance() {
         return new Henkilo();
     }
+
+    public List<Henkilo> henkilotHtunnuksella(String htunnus) throws SQLException {
+        Filter f = new Filter(Henkilo.getHtunnus(), htunnus);
+        return SQLoader.loadTable(new Henkilo(), f);
+    }
+    
+    public List<Henkilo> henkilotAktiivisuudenMukaan(String aktiivisuus) throws SQLException {
+        Filter f = new Filter(Henkilo.getAktiivisuus(), aktiivisuus);
+        return SQLoader.loadTable(new Henkilo(), f);
+    }
+
+    //<editor-fold defaultstate="collapsed" desc="getterit">
+    /**
+     * @return the htunnus
+     */
+    public static StringColumn getHtunnus() {
+        return htunnus;
+    }
+
+    /**
+     * @return the etunimet
+     */
+    public static StringColumn getEtunimet() {
+        return etunimet;
+    }
+
+    /**
+     * @return the sukunimi
+     */
+    public static StringColumn getSukunimi() {
+        return sukunimi;
+    }
+
+    /**
+     * @return the kutsumanimi
+     */
+    public static StringColumn getKutsumanimi() {
+        return kutsumanimi;
+    }
+
+    /**
+     * @return the aktiivisuus
+     */
+    public static StringColumn getAktiivisuus() {
+        return aktiivisuus;
+    }
+
+    /**
+     * @return the huone_nro
+     */
+    public static StringColumn getHuone_nro() {
+        return huone_nro;
+    }
+
+    /**
+     * @return the hetu
+     */
+    public static StringColumn getHetu() {
+        return hetu;
+    }
+
+    /**
+     * @return the oppiarvo
+     */
+    public static StringColumn getOppiarvo() {
+        return oppiarvo;
+    }
+
+    /**
+     * @return the titteli
+     */
+    public static StringColumn getTitteli() {
+        return titteli;
+    }
+
+    /**
+     * @return the puhelin_tyo
+     */
+    public static StringColumn getPuhelin_tyo() {
+        return puhelin_tyo;
+    }
+
+    /**
+     * @return the kannykka
+     */
+    public static StringColumn getKannykka() {
+        return kannykka;
+    }
+
+    /**
+     * @return the katuosoite
+     */
+    public static StringColumn getKatuosoite() {
+        return katuosoite;
+    }
+
+    /**
+     * @return the postinro
+     */
+    public static StringColumn getPostinro() {
+        return postinro;
+    }
+
+    /**
+     * @return the postitoimipaikka
+     */
+    public static StringColumn getPostitoimipaikka() {
+        return postitoimipaikka;
+    }
+
+    /**
+     * @return the valvontasaldo
+     */
+    public static IntegerColumn getValvontasaldo() {
+        return valvontasaldo;
+    }
+
+    /**
+     * @return the sahkopostiosoite
+     */
+    public static StringColumn getSahkopostiosoite() {
+        return sahkopostiosoite;
+    }
+
+    /**
+     * @return the hallinnollinen_kommentti
+     */
+    public static StringColumn getHallinnollinen_kommentti() {
+        return hallinnollinen_kommentti;
+    }
+
+    /**
+     * @return the opiskelija_kommentti
+     */
+    public static StringColumn getOpiskelija_kommentti() {
+        return opiskelija_kommentti;
+    }
+
+    /**
+     * @return the ktunnus
+     */
+    public static StringColumn getKtunnus() {
+        return ktunnus;
+    }
+
+    /**
+     * @return the puhelin_koti
+     */
+    public static StringColumn getPuhelin_koti() {
+        return puhelin_koti;
+    }
+
+    /**
+     * @return the postilokerohuone
+     */
+    public static StringColumn getPostilokerohuone() {
+        return postilokerohuone;
+    }
+
+    /**
+     * @return the hy_tyosuhde
+     */
+    public static StringColumn getHy_tyosuhde() {
+        return hy_tyosuhde;
+    }
+
+    /**
+     * @return the hy_puhelinluettelossa
+     */
+    public static StringColumn getHy_puhelinluettelossa() {
+        return hy_puhelinluettelossa;
+    }
+    //</editor-fold>
 }

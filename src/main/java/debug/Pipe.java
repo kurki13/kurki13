@@ -93,13 +93,13 @@ public class Pipe {
         try {
             
             ArrayList<Filter> filters = new ArrayList();
-            Filter f1 = new Filter(Henkilo.postinro, "00500");
+            Filter f1 = new Filter(Henkilo.getPostinro(), "00500");
             filters.add(f1);
             
             List<Henkilo> h = SQLoader.loadTable(new Henkilo(), filters);
             for (Henkilo hlog : h) {
-                ret += hlog.getValue(Henkilo.hetu) + ", ";
-                ret += hlog.getValue(Henkilo.postinro) + "<br>";
+                ret += hlog.getValue(Henkilo.getHetu()) + ", ";
+                ret += hlog.getValue(Henkilo.getPostinro()) + "<br>";
             }
 
         } catch (Exception e) {
