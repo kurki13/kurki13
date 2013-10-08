@@ -19,4 +19,11 @@ public class Filter {
         this.column = column;
         this.expectation = expectation;
     }
+
+    @Override
+    public String toString() {
+        return column.getColumnName()+":"+expectation;
+    }
+    
+   
 }

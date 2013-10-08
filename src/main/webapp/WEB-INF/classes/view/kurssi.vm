@@ -22,11 +22,10 @@
   <input type="submit" value="Submit">
 </form>
 
-$session.getAttribute('selected_course_id')
 #if($session.getAttribute('selected_course_id'))
     #set($kur = $kurssi.kurssitIDlla($session.getAttribute('selected_course_id')))
-    $kur
     $kur.getValue($kurssi.getNimi()) $kur.getValue($kurssi.getLukuvuosi())$kur.getValue($kurssi.getLukukausi()) ($kur.getValue($kurssi.getTyyppi())) 
+    $kur.getValue($kurssi.getKurssi_nro())
 #else
     #if($kk || $lk || $lv || $t || $k)
         #set ($i=0)

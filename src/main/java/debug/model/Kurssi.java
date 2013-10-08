@@ -353,11 +353,6 @@ public class Kurssi extends Table {
     
 public List<Kurssi> kurssitIDlla(String kKoodi, String lKausi,
             String lVuosi, String tyyppi, String kNro) throws SQLException {
-        System.out.println(kKoodi);
-        System.out.println(lKausi);
-        System.out.println(lVuosi);
-        System.out.println(tyyppi);
-        System.out.println(kNro + "\n--------");
 
         List<Filter> f = new ArrayList();
         if (!kKoodi.equals("")) {

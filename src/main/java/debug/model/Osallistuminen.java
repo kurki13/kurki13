@@ -21,12 +21,12 @@ import java.util.List;
  */
 public class Osallistuminen extends Table {
         public static final StringColumn personid = new StringColumn("personid");
-        public static final StringColumn kurssikoodi = new StringColumn("kurssikoodi");
-        public static final StringColumn lukukausi = new StringColumn("lukukausi");
-        public static final IntegerColumn lukuvuosi = new IntegerColumn("lukuvuosi");
-        public static final StringColumn tyyppi = new StringColumn("tyyppi");
-        public static final IntegerColumn kurssi_nro = new IntegerColumn("kurssi_nro");
-        public static final IntegerColumn ryhma_nro = new IntegerColumn("ryhma_nro");
+        public static final StringColumn kurssikoodi = new StringColumn("kurssikoodi"); //Foreign Key Kurssi
+        public static final StringColumn lukukausi = new StringColumn("lukukausi"); //Foreign Key Kurssi
+        public static final IntegerColumn lukuvuosi = new IntegerColumn("lukuvuosi"); //Foreign Key Kurssi
+        public static final StringColumn tyyppi = new StringColumn("tyyppi"); //Foreign Key Kurssi
+        public static final IntegerColumn kurssi_nro = new IntegerColumn("kurssi_nro"); //Foreign Key Kurssi
+        public static final IntegerColumn ryhma_nro = new IntegerColumn("ryhma_nro"); //Tääki on joku avain?
         public static final StringColumn kommentti_1 = new StringColumn("kommentti_1");
         public static final StringColumn kommentti_2 = new StringColumn("kommentti_2");
         public static final IntegerColumn laskari_lasnaolo_lkm = new IntegerColumn("laskari_lasnaolo_lkm");
@@ -48,7 +48,7 @@ public class Osallistuminen extends Table {
         public static final StringColumn jaassa = new StringColumn("jaassa");
         public static final IntegerColumn laajuus_ov = new IntegerColumn("laajuus_ov");
         public static final IntegerColumn laajuus_op = new IntegerColumn("laajuus_op");
-        public static final StringColumn hetu = new StringColumn("hetu");
+        public static final StringColumn hetu = new StringColumn("hetu"); //Foreign Key Oppilas
         public static final TimestampColumn kypsyys_pvm = new TimestampColumn("kypsyys_pvm");
         public static final StringColumn tenttija = new StringColumn("tenttija");
         public static final StringColumn kielikoodi = new StringColumn("kielikoodi");
@@ -68,14 +68,14 @@ public class Osallistuminen extends Table {
         Filter f2 = new Filter(Osallistuminen.lukukausi, kurssi.getValue(Kurssi.lukukausi));
         Filter f3 = new Filter(Osallistuminen.lukuvuosi, kurssi.getValue(Kurssi.lukuvuosi));
         Filter f4 = new Filter(Osallistuminen.tyyppi, kurssi.getValue(Kurssi.tyyppi));
-        Filter f5 = new Filter(Osallistuminen.kurssi_nro, kurssi.getValue(kurssi_nro));
+        Filter f5 = new Filter(Osallistuminen.kurssi_nro, kurssi.getValue(Kurssi.kurssi_nro));
         ArrayList<Filter> filters = new ArrayList<Filter>();
         filters.add(f1);
         filters.add(f2);
         filters.add(f3);
         filters.add(f4);
         filters.add(f5);
-        
+        System.out.println(filters);
         return SQLoader.loadTable(new Osallistuminen(), filters);
     }
 
