@@ -117,18 +117,18 @@ public class Pipe {
         try {
             
             ArrayList<Filter> filters = new ArrayList();
-            Filter f1 = new Filter(Opetus.lukuvuosi, 2001);
-            Filter f2 = new Filter(Opetus.lukukausi, "K");
-            Filter f3 = new Filter(Opetus.ryhma_nro, 2);
+            Filter f1 = new Filter(Opetus.getLukuvuosi(), 2001);
+            Filter f2 = new Filter(Opetus.getLukukausi(), "K");
+            Filter f3 = new Filter(Opetus.getRyhma_nro(), 2);
             filters.add(f1);
             filters.add(f2);
             filters.add(f3);
             
             List<Opetus> h = SQLoader.loadTable(new Opetus(), filters);
             for (Opetus opeg : h) {
-                ret += opeg.getValue(Opetus.lukuvuosi) + ", ";
-                ret += opeg.getValue(Opetus.lukukausi) + ", ";
-                ret += opeg.getValue(Opetus.ryhma_nro) + "<br>";
+                ret += opeg.getValue(Opetus.getLukuvuosi()) + ", ";
+                ret += opeg.getValue(Opetus.getLukukausi()) + ", ";
+                ret += opeg.getValue(Opetus.getRyhma_nro()) + "<br>";
             }
         } catch (Exception e) {
             StringWriter sw = new StringWriter();

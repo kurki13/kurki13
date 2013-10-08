@@ -42,4 +42,123 @@ public class Opetus extends Table{
     public Table getNewInstance() {
         return new Opetus();
     }
+
+    /**
+     * @return the kurssikoodi
+     */
+    public static StringColumn getKurssikoodi() {
+        return kurssikoodi;
+    }
+
+    /**
+     * @return the lukukausi
+     */
+    public static StringColumn getLukukausi() {
+        return lukukausi;
+    }
+
+    /**
+     * @return the lukuvuosi
+     */
+    public static IntegerColumn getLukuvuosi() {
+        return lukuvuosi;
+    }
+
+    /**
+     * @return the tyyppi
+     */
+    public static StringColumn getTyyppi() {
+        return tyyppi;
+    }
+
+    /**
+     * @return the kurssi_nro
+     */
+    public static IntegerColumn getKurssi_nro() {
+        return kurssi_nro;
+    }
+
+    /**
+     * @return the ryhma_nro
+     */
+    public static IntegerColumn getRyhma_nro() {
+        return ryhma_nro;
+    }
+
+    /**
+     * @return the ilmo_jnro
+     */
+    public static IntegerColumn getIlmo_jnro() {
+        return ilmo_jnro;
+    }
+
+    /**
+     * @return the ilmo
+     */
+    public static StringColumn getIlmo() {
+        return ilmo;
+    }
+
+    /**
+     * @return the opetustehtava
+     */
+    public static StringColumn getOpetustehtava() {
+        return opetustehtava;
+    }
+
+    /**
+     * @return the alkamisaika
+     */
+    public static TimestampColumn getAlkamisaika() {
+        return alkamisaika;
+    }
+
+    /**
+     * @return the paattymisaika
+     */
+    public static TimestampColumn getPaattymisaika() {
+        return paattymisaika;
+    }
+
+    /**
+     * @return the alkamis_pvm
+     */
+    public static TimestampColumn getAlkamis_pvm() {
+        return alkamis_pvm;
+    }
+
+    /**
+     * @return the paattymis_pvm
+     */
+    public static TimestampColumn getPaattymis_pvm() {
+        return paattymis_pvm;
+    }
+
+    /**
+     * @return the max_osallistuja_lkm
+     */
+    public static IntegerColumn getMax_osallistuja_lkm() {
+        return max_osallistuja_lkm;
+    }
+
+    /**
+     * @return the ilmoittautuneuden_lkm
+     */
+    public static IntegerColumn getIlmoittautuneuden_lkm() {
+        return ilmoittautuneuden_lkm;
+    }
+
+    /**
+     * @return the kuvaustieto
+     */
+    public static StringColumn getKuvaustieto() {
+        return kuvaustieto;
+    }
+
+    /**
+     * @return the kieli
+     */
+    public static StringColumn getKieli() {
+        return kieli;
+    }
 }
