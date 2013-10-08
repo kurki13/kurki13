@@ -4,7 +4,7 @@
     #set($params = $queryparser.split($qs))
 #end
 #if($params.get('courseId'))
-    $session.setAttribute('selected_course', $params.get('courseId'))
+    $session.setAttribute('selected_course_id', $params.get('courseId'))
 #end
 
 <html>
@@ -12,7 +12,7 @@
 <form action="" method=get>
 <select name="courseId">
 #foreach($k in $session.getAttribute('user_courses'))
-    #if($session.getAttribute('selected_course') == $k.idString())
+    #if($session.getAttribute('selected_course_id') == $k.idString())
     <option value=$k.idString() selected>$k.listaString()</option>
     #else
     <option value=$k.idString()>$k.listaString()</option>

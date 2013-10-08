@@ -37,7 +37,7 @@ public class Indeksi extends HttpServlet {
         PrintWriter out = response.getWriter();
         HttpSession session = request.getSession();
         session.setAttribute("remote_user", request.getRemoteUser());
-        session.setAttribute("selected_course", null);
+        session.setAttribute("selected_course_id", null);
         try {
             session.setAttribute("user_courses", KurssiKyselyt.kurssitYllapitajalle());
         } catch (SQLException sq) {

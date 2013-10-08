@@ -22,16 +22,23 @@
   <input type="submit" value="Submit">
 </form>
 
-#set ($i=0)
-
-#foreach($kur in $kurssi.kurssitIDlla($kk,$lk,$lv,$t,$k))
+$session.getAttribute('selected_course_id')
+#if($session.getAttribute('selected_course_id'))
+    #set($kur = $kurssi.kurssitIDlla($session.getAttribute('selected_course_id')))
+    $kur
     $kur.getValue($kurssi.getNimi()) $kur.getValue($kurssi.getLukuvuosi())$kur.getValue($kurssi.getLukukausi()) ($kur.getValue($kurssi.getTyyppi())) 
-    
-    <br>
-#set ($i=$i+1)
-#end
-Results: $i
+#else
+    #if($kk || $lk || $lv || $t || $k)
+        #set ($i=0)
+        #foreach($kur in $kurssi.kurssitIDlla($kk,$lk,$lv,$t,$k))
+            $kur.getValue($kurssi.getNimi()) $kur.getValue($kurssi.getLukuvuosi())$kur.getValue($kurssi.getLukukausi()) ($kur.getValue($kurssi.getTyyppi())) 
 
+            <br>
+            #set ($i=$i+1)
+        #end
+        Results: $i
+    #end
+#end
 </pre>
 </body>
 <html>

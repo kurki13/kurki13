@@ -13,6 +13,7 @@ import debug.model.util.Table;
 import java.sql.Array;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -344,7 +345,13 @@ public class Kurssi extends Table {
     }
 
     //</editor-fold>
-    public List<Kurssi> kurssitIDlla(String kKoodi, String lKausi,
+    //582481.K.2010.L.1
+    public Kurssi kurssitIDlla(String s) throws SQLException {
+        String[] sd = s.split("\\.");
+        return kurssitIDlla(sd[0],sd[1],sd[2],sd[3],sd[4]).get(0);
+    }
+    
+public List<Kurssi> kurssitIDlla(String kKoodi, String lKausi,
             String lVuosi, String tyyppi, String kNro) throws SQLException {
         System.out.println(kKoodi);
         System.out.println(lKausi);

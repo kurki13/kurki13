@@ -88,7 +88,6 @@ public class KurssiKyselyt {
     //</editor-fold>
     
         public static List<Kurssi> kurssitYllapitajalle() throws SQLException {
-            System.out.println(COURSE_INFOS);
         Connection databaseConnection = DatabaseConnection.makeConnection();
         PreparedStatement preparedStatement = databaseConnection.prepareStatement(SUPER_INFOS);
         return SQLoader.loadTablesFromPreparedStatement(new Kurssi(), preparedStatement, databaseConnection);
