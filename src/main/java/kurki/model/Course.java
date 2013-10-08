@@ -50,7 +50,6 @@ public class Course implements Serializable, Option {
             " and kurssikoodi in (select kurssikoodi from esitiedot) "
             + " and (hetu, kurssikoodi) not in "
             + " (select (hetu,kurssikoodi) from ilmo_oikeus) ";
-    public static final int ORDER_BY_NAME = 0;
     public static final int ORDER_BY_ENROLMENT_TIME = 1;
     public static final int ORDER_BY_GROUP_AND_NAME = 2;
     public static final int ORDER_BY_STNUMBER = 3;
@@ -198,7 +197,7 @@ public class Course implements Serializable, Option {
     protected String lastStudentFilter = null;
     protected int modifyCount = 0;
     protected String msg = null;
-    protected int orderBy = ORDER_BY_NAME;
+    protected int orderBy = 0;
     protected Vector parts = null;
     protected String scale = "K"; // K = 1-5, E = hyväksytty/hylätty
     protected boolean scaleMod = false;
@@ -1887,7 +1886,7 @@ public class Course implements Serializable, Option {
         if (force) {
             this.students = null;
         }
-        this.orderBy = ORDER_BY_NAME;
+        this.orderBy = 0;
         this.group.clear();        
         this.lname.clear();
         this.ssn.clear();
@@ -1908,8 +1907,8 @@ public class Course implements Serializable, Option {
         if (date == null || date.length() < 8) {
             return null;
         }
-        Calendar c = Calendar.getInstance();
-        c.clear();
+        Calendar calendar = Calendar.getInstance();
+        calendar.clear();
         
         String val = null;
         
@@ -1917,7 +1916,7 @@ public class Course implements Serializable, Option {
         if (i > 0) {
             val = date.substring(0, i);
             date = date.substring(i + 1, date.length());
-            c.set(Calendar.DATE, Integer.parseInt(val));
+            calendar.set(Calendar.DATE, Integer.parseInt(val));
         } else {
             return null;
         }
@@ -1926,19 +1925,19 @@ public class Course implements Serializable, Option {
         if (i > 0) {
             val = date.substring(0, i);
             date = date.substring(i + 1, date.length());
-            c.set(Calendar.MONTH, (Integer.parseInt(val) - 1));
+            calendar.set(Calendar.MONTH, (Integer.parseInt(val) - 1));
         } else {
             return null;
         }
         
         if (date.length() > 0) {
             val = date;
-            c.set(Calendar.YEAR, Integer.parseInt(val));
+            calendar.set(Calendar.YEAR, Integer.parseInt(val));
         } else {
             return null;
         }
         
-        return c;
+        return calendar;
     }
     
     public static int percent(int x, int y) {
@@ -2086,50 +2085,75 @@ public class Course implements Serializable, Option {
         }
     }
     
-    public synchronized boolean setExamDate(String edate) {
+    /**
+     * Metodi asettaa kurssille suorituspäivämäärän.
+     * 
+     * @param examDate Suorituspäivämäärä
+     * @return Onnistuiko päivämäärän asetus
+     */
+    public synchronized boolean setExamDate(String examDate) {
         if (isFrozen()) {
             this.msg = LocalisationBundle.getString("kurssiJaadytetty");
             return false;
         }
-        Calendar c = parseDate(edate);
-        if (c == null) {
+        Calendar calendar = parseDate(examDate);
+        if (calendar == null) {
             this.msg = LocalisationBundle.getString("suorituspvmVirhe")
-                    + edate + LocalisationBundle.getString("pvmMuoto");
+                    + examDate + LocalisationBundle.getString("pvmMuoto");
             return false;
         } else {
-            Calendar sysdate = new GregorianCalendar();
-            Calendar lowLimit = sysdate;
-            Calendar hiLimit = null;
-
-            // Suorituspäivämäärä < max(sysdate, päättymis_pvm) + 2kk (Satu Eloranta)
-            if (sysdate.before(this.endDate)) {
-                hiLimit = (Calendar) this.endDate.clone();
-            } else {
-                hiLimit = (Calendar) sysdate.clone();
-            }
-            hiLimit.add(Calendar.MONTH, 2);
-
+            Calendar systemDate = new GregorianCalendar();
+            Calendar lowLimit = systemDate;
+            Calendar highLimit = setExamDateHighLimit(systemDate);
             // Suorituspäivämäärä > sysdate - 6kk (Satu Eloranta)
             lowLimit.add(Calendar.MONTH, -6);
-            
-            if (c.before(lowLimit) || c.after(hiLimit)) {
-                this.msg = LocalisationBundle.getString("suorituspvmValilla")
-                        + lowLimit.get(Calendar.DAY_OF_MONTH) + "."
-                        + (lowLimit.get(Calendar.MONTH) + 1) + "."
-                        + lowLimit.get(Calendar.YEAR) + " - "
-                        + hiLimit.get(Calendar.DAY_OF_MONTH) + "."
-                        + (hiLimit.get(Calendar.MONTH) + 1) + "."
-                        + hiLimit.get(Calendar.YEAR) + LocalisationBundle.getString("ennenJaadyttamista");
-                return false;
-            }
-            
-            if (this.examDate == null
-                    || !this.examDate.equals(c)) {
-                this.examDateMod = true;
-                this.examDate = c;
-            }           
-            return true;
+            return checkExamDate(calendar, lowLimit, highLimit);
         }
+    }
+    
+    /**
+     * Metodi asettaa suorituspäivämäärälle ylärajan
+     * 
+     * @param systemDate System current date
+     * @return Suorituspäivämäärän yläraja
+     */
+    private Calendar setExamDateHighLimit(Calendar systemDate) {
+        Calendar highLimit;
+        // Suorituspäivämäärä < max(sysdate, päättymis_pvm) + 2kk (Satu Eloranta)
+        if (systemDate.before(this.endDate)) {
+            highLimit = (Calendar) this.endDate.clone();
+        } else {
+            highLimit = (Calendar) systemDate.clone();
+        }
+        highLimit.add(Calendar.MONTH, 2);
+        return highLimit;
+    }
+    
+    /**
+     * Metodi tarkastaa, että kurssin suorituspäivämäärä on kelvollisella välillä.
+     * 
+     * @param calendar suorituspäivämäärä
+     * @param lowLimit alaraja suorituspäivämäärälle
+     * @param hiLimit yläraja suorituspäivämäärälle
+     * @return Onko suorituspäivämäärä kelvollisella välillä
+     */
+    private boolean checkExamDate(Calendar calendar, Calendar lowLimit, Calendar hiLimit) {
+        if (calendar.before(lowLimit) || calendar.after(hiLimit)) {
+            this.msg = LocalisationBundle.getString("suorituspvmValilla")
+                    + lowLimit.get(Calendar.DAY_OF_MONTH) + "."
+                    + (lowLimit.get(Calendar.MONTH) + 1) + "."
+                    + lowLimit.get(Calendar.YEAR) + " - "
+                    + hiLimit.get(Calendar.DAY_OF_MONTH) + "."
+                    + (hiLimit.get(Calendar.MONTH) + 1) + "."
+                    + hiLimit.get(Calendar.YEAR) + LocalisationBundle.getString("ennenJaadyttamista");
+            return false;
+        }
+        if (this.examDate == null
+                || !this.examDate.equals(calendar)) {
+            this.examDateMod = true;
+            this.examDate = calendar;
+        }
+        return true;
     }
     
     public synchronized boolean setGradingConvention(int conv) {
