@@ -16,13 +16,13 @@ import org.apache.velocity.context.*;
 public class Grades extends AbstractVelocityServiceProvider 
     implements Serializable {
     @Override
-    public String handleRequest( Session session, 
+    public String handleRequest( Session_ session, 
 				 HttpServletRequest req, 
 				 HttpServletResponse res, 
 				 Context context ) throws Exception {
         
         //lokalisaatiobundlen lisääminen kontekstiin
-        context.put("bundle", ResourceBundle.getBundle("localisationBundle", Session.locale));
+        context.put("bundle", ResourceBundle.getBundle("localisationBundle", Session_.locale));
 
 	Log log         = (Log)Configuration.getProperty( "log" );
 	String template = "grades.vm";

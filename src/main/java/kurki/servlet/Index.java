@@ -40,7 +40,7 @@ public class Index extends VelocityServlet implements Log, Serializable {
     private static String result = null;
 
     static {
-        Session.initialize();
+        Session_.initialize();
     }
 
     @Override
@@ -95,7 +95,7 @@ public class Index extends VelocityServlet implements Log, Serializable {
         String error = "";
         String result = "";
         CourseInfo course;
-        Session session = null;
+        Session_ session = null;
         Context context = null;
         AbstractVelocityServiceProvider serviceProvider;
         Template template = null;
@@ -110,9 +110,9 @@ public class Index extends VelocityServlet implements Log, Serializable {
             Object tmpSession = httpSession.getAttribute(KURKI_SESSION);
 
             if (tmpSession != null) {
-                session = (Session) tmpSession;
+                session = (Session_) tmpSession;
             } else {
-                session = Session.getInstance(servletRequest.getRemoteUser());
+                session = Session_.getInstance(servletRequest.getRemoteUser());
                 httpSession.setAttribute(KURKI_SESSION, session);
             }
 

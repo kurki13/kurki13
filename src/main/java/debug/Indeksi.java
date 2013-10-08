@@ -4,8 +4,11 @@
  */
 package debug;
 
+import debug.model.SQLkyselyt.KurssiKyselyt;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -32,22 +35,28 @@ public class Indeksi extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        request.getRemoteUser();
         HttpSession session = request.getSession();
-        session.setAttribute("keke", "Sessiomuuttuja ma oon");
+        session.setAttribute("remote_user", request.getRemoteUser());
+        session.setAttribute("selected_course", null);
+        try {
+            session.setAttribute("user_courses", KurssiKyselyt.kurssitYllapitajalle());
+        } catch (SQLException sq) {
+            session.setAttribute("user_courses", sq.getLocalizedMessage());
+        }
         try {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Indekshi</title>");            
+            out.println("<title>(╯°□°）╯︵ ┻━┻</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet Indeksi at " + request.getContextPath() + "</h1>");
-            out.println(session.getAttribute("keke"));
+            out.println("<h1>(╯°□°）╯︵ ┻━┻</h1>");
+            out.println("Remote user: " + session.getAttribute("remote_user") + "<br>");
+            out.println("Courses listed: " + ((List) session.getAttribute("user_courses")).size() + "<br>");
             out.println("</body>");
             out.println("</html>");
-        } finally {            
+        } finally {
             out.close();
         }
     }

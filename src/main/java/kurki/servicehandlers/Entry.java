@@ -18,13 +18,13 @@ public class Entry extends AbstractVelocityServiceProvider {
 
     public static final String RANGE_OP = "..";
     @Override
-    public String handleRequest( Session session, 
+    public String handleRequest( Session_ session, 
 				 HttpServletRequest req, 
 				 HttpServletResponse res, 
 				 Context context ) throws Exception {
         
         //lokalisaatiobundlen lisääminen kontekstiin
-        context.put("bundle", ResourceBundle.getBundle("localisationBundle", Session.locale));
+        context.put("bundle", ResourceBundle.getBundle("localisationBundle", Session_.locale));
 
 	Log log         = (Log)Configuration.getProperty( "log" );
 	String template = "entry.vm";
@@ -225,7 +225,7 @@ public class Entry extends AbstractVelocityServiceProvider {
 	    if ( course.getSelectedPart().maxScoreDefined() )
 		context.put( "autosave", "document.scores" );
 	    context.put( "students", course.getStudents() );
-             context.put("bundle", ResourceBundle.getBundle("localisationBundle", Session.locale));
+             context.put("bundle", ResourceBundle.getBundle("localisationBundle", Session_.locale));
 	    studentFilter = null;
 	}
 	/*

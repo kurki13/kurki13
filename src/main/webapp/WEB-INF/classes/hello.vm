@@ -1,16 +1,25 @@
-<html>
-<body>
-<pre>
+##Asetetaan ensin 
 #set($qs = $request.getQueryString())
 #if($qs)
     #set($params = $queryparser.split($qs))
 #end
-$session
-$session.getAttribute('keke')
-$params.get('foo')
+#if($params.get('courseId'))
+    $session.setAttribute('selected_course', $params.get('courseId'))
+#end
 
-$userAccessor.getGroups($action.remoteUser)
-
-</pre>
+<html>
+<body>
+<form action="" method=get>
+<select name="courseId">
+#foreach($k in $session.getAttribute('user_courses'))
+    #if($session.getAttribute('selected_course') == $k.idString())
+    <option value=$k.idString() selected>$k.listaString()</option>
+    #else
+    <option value=$k.idString()>$k.listaString()</option>
+    #end
+#end
+</select>
+<input type=submit value=select>
+</form>
 </body>
 <html>

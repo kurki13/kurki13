@@ -350,8 +350,8 @@ public class Kurssi extends Table {
         System.out.println(lKausi);
         System.out.println(lVuosi);
         System.out.println(tyyppi);
-        System.out.println(kNro+"\n--------");
-        
+        System.out.println(kNro + "\n--------");
+
         List<Filter> f = new ArrayList();
         if (!kKoodi.equals("")) {
             f.add(new Filter(Kurssi.kurssikoodi, kKoodi));
@@ -385,5 +385,28 @@ public class Kurssi extends Table {
     @Override
     public Table getNewInstance() {
         return new Kurssi();
+    }
+
+    /**
+     * Palauttaa Stringin jota näytetään käyttäjälle kurssilistauksessa
+     *
+     * @return
+     */
+    public String listaString() {
+        return getValue(Kurssi.nimi) + " [" + getValue(Kurssi.alkamis_pvm) + "] " + getValue(Kurssi.tyyppi);
+    }
+
+    /**
+     * Palauttaa Stringin joka koostetaan taulun ensisijaisista avaimista, se on
+     * siis uniikki jokaiselle Kurssi -oliolle.
+     *
+     * @return
+     */
+    public String idString() {
+        return          getValue(Kurssi.kurssikoodi) 
+                + "." + getValue(Kurssi.lukukausi) 
+                + "." + getValue(Kurssi.lukuvuosi) 
+                + "." + getValue(Kurssi.tyyppi) 
+                + "." + getValue(Kurssi.kurssi_nro);
     }
 }

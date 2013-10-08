@@ -7,7 +7,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.*;
 import javax.servlet.http.*;
-import kurki.Session;
+import kurki.Session_;
 import org.apache.velocity.Template;
 import org.apache.velocity.context.Context;
 import org.apache.velocity.exception.MethodInvocationException;
@@ -24,7 +24,7 @@ public class Logout extends VelocityServlet {
         
 	s.invalidate();
         Context context = createContext(req, res);
-	context.put("bundle", ResourceBundle.getBundle("localisationBundle", Session.locale));
+	context.put("bundle", ResourceBundle.getBundle("localisationBundle", Session_.locale));
         Template template = null;
         try {
             template = getTemplate("logout.vm");

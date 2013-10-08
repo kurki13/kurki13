@@ -130,7 +130,7 @@ public class LoginManager extends VelocityServlet {
 	}
         
         //lokalisaatiobundlen lisääminen kontekstiin
-        context.put("bundle", ResourceBundle.getBundle("localisationBundle", Session.locale));
+        context.put("bundle", ResourceBundle.getBundle("localisationBundle", Session_.locale));
         
 	return template;
     }

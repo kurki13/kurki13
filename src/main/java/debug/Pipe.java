@@ -27,15 +27,6 @@ import java.util.logging.Logger;
  */
 public class Pipe {
 
-    public static Connection makeConnection() throws SQLException {
-        try {
-            Class.forName("oracle.jdbc.OracleDriver");
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Pipe.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return DriverManager.getConnection("jdbc:oracle:thin:@bodbacka.cs.helsinki.fi:1521:test", "tk_testi", "tapaus2");
-    }
-
     public static String kurssiTest() throws SQLException{
         String ret = "kurssiTest<br>";
         try {

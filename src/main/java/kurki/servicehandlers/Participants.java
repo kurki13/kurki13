@@ -20,13 +20,13 @@ public class Participants extends AbstractVelocityServiceProvider
 
     public static final String STUDENTS = "students";
     @Override
-    public String handleRequest( Session session, 
+    public String handleRequest( Session_ session, 
 				 HttpServletRequest req, 
 				 HttpServletResponse res, 
 				 Context context ) throws Exception {
         
         //lokalisaatiobundlen lisääminen kontekstiin
-        context.put("bundle", ResourceBundle.getBundle("localisationBundle", Session.locale));
+        context.put("bundle", ResourceBundle.getBundle("localisationBundle", Session_.locale));
 
 	Log log         = (Log)Configuration.getProperty( "log" );
 	String template = "participants.vm";
@@ -66,8 +66,8 @@ public class Participants extends AbstractVelocityServiceProvider
 	    int resultLimit = -1;
 	    try {
 		if ( doSearch.equals("1") ) {
-		    resultLimit = Session.DEFAULT_RS_MAX_SIZE;
-		    sstate = Session.STUDENT_NOT_ON_COURSE;
+		    resultLimit = Session_.DEFAULT_RS_MAX_SIZE;
+		    sstate = Session_.STUDENT_NOT_ON_COURSE;
 		    if ( lname == null && fname == null && idvalue == null ) {
 			ok = false;
 		    }
@@ -76,11 +76,11 @@ public class Participants extends AbstractVelocityServiceProvider
 		    }
 		}
 		else if ( doSearch.equals("2") ) {
-		    sstate = Session.STUDENT_REMOVED;
+		    sstate = Session_.STUDENT_REMOVED;
 		    view = "return";
 		}
 		else {
-		    sstate = Session.STUDENT_ON_COURSE;
+		    sstate = Session_.STUDENT_ON_COURSE;
 		    view = "select";
 		}
 
@@ -115,7 +115,7 @@ public class Participants extends AbstractVelocityServiceProvider
 			error = LocalisationBundle.getString("tarkennaHInfo") + " "
 			    +resultLimit+" " + LocalisationBundle.getString("tarkennaHInfo2") + ".";
 		    }
-		    if ( sstate == Session.STUDENT_ON_COURSE || sstate == Session.STUDENT_REMOVED ) {
+		    if ( sstate == Session_.STUDENT_ON_COURSE || sstate == Session_.STUDENT_REMOVED ) {
 			ses.setAttribute( STUDENTS, students );
 			ses.setAttribute( "useSNO", useSNO );
 		    }
@@ -319,7 +319,7 @@ public class Participants extends AbstractVelocityServiceProvider
 							    0,
 							    ssn,
 							    -1,
-							    Session.STUDENT_ON_COURSE,
+							    Session_.STUDENT_ON_COURSE,
 							    1 );
 		    result = LocalisationBundle.getString("lisaysInfo") + ".";
 		    context.put( "students", students );

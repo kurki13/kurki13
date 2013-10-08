@@ -6,7 +6,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import kurki.Session;
+import kurki.Session_;
 import java.util.*;
 
 /**
@@ -45,7 +45,7 @@ public class Language extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        Session.setLanguage(new Locale(request.getParameter("kieli")));
+        Session_.setLanguage(new Locale(request.getParameter("kieli")));
         
         processRequest(request, response);
         response.sendRedirect(request.getHeader("referer"));

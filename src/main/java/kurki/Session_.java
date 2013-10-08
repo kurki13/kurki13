@@ -22,7 +22,7 @@ import kurki.util.Configuration;
 import kurki.util.LocalisationBundle;
 import service.exception.ServicesNotLockedException;
 
-public class Session implements java.io.Serializable {
+public class Session_ implements java.io.Serializable {
 
     public static Locale locale = new Locale("fi");
     public static final int STUDENT_ON_COURSE = 0;
@@ -76,7 +76,7 @@ public class Session implements java.io.Serializable {
     /**
      ** Estetään ilmentymien luonti ulkopuolisilta.
      */
-    protected Session(String ruser)
+    protected Session_(String ruser)
             throws InitFailedException, SQLException, NullIdException, ClassNotFoundException {
         if ( ruser == null || ruser.length() == 0 ) throw new InitFailedException(LocalisationBundle.getString("kayttajanTE") + ".");
         this.ruser = ruser;
@@ -241,9 +241,9 @@ public class Session implements java.io.Serializable {
      ** Suorittaa tarvittavat alustukset ja palauttaa uuden ilmentymän * tästä
      * luokasta.
      */
-    public static Session getInstance(String ruser)
+    public static Session_ getInstance(String ruser)
             throws InitFailedException, SQLException, NullIdException, ClassNotFoundException {
-        return new Session(ruser);
+        return new Session_(ruser);
     }
 
     /**
@@ -372,7 +372,7 @@ public class Session implements java.io.Serializable {
         try {
             service = ServiceManager.getInstance().getService(serviceId);
         } catch (ServicesNotLockedException ex) {
-            Logger.getLogger(Session.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Session_.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         if (service != null

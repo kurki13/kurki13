@@ -39,6 +39,7 @@ public class ServiceManager implements Serializable {
      */
     public static void defineService(String id, int lowest_role_to_allow, String description, AbstractVelocityServiceProvider handler)
 	throws NullIdException, ServiceAlreadyDefinedException, ServicesLockedException, UndefinedRoleException {
+        return;
 	if (locked)
 	    throw new ServicesLockedException();
 
@@ -65,6 +66,7 @@ public class ServiceManager implements Serializable {
      */
     public static void lockServices() 
 	throws ServicesLockedException {
+        return;
 	if (locked) throw new ServicesLockedException();
 	
 	locked = true;

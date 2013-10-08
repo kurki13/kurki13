@@ -26,7 +26,7 @@ public class ListMaker extends VelocityServlet implements Log, Serializable {
 	
 
 	String ts;
-	Session session;
+	Session_ session;
 	Context context;
 	AbstractVelocityServiceProvider serviceProvider = null;
 	Template template;
@@ -51,7 +51,7 @@ public class ListMaker extends VelocityServlet implements Log, Serializable {
             context = createContext( req, res );
             
             //lokalisaatiobundlen lisääminen kontekstiin
-            context.put("bundle", ResourceBundle.getBundle("localisationBundle", Session.locale));
+            context.put("bundle", ResourceBundle.getBundle("localisationBundle", Session_.locale));
 
 	    int mime = ltype.indexOf("_");
 	    if (mime > 0) {
@@ -84,7 +84,7 @@ public class ListMaker extends VelocityServlet implements Log, Serializable {
 	    }
 
 	    if ( oldSession && !s.isNew() && tmpSession != null && ltype != null ) {
-		session = (Session)tmpSession;
+		session = (Session_)tmpSession;
 
 		Course course = session.getSelectedCourse();
 		

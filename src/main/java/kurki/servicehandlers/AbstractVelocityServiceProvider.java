@@ -12,7 +12,7 @@ public abstract class AbstractVelocityServiceProvider{
        huolehtimalla Templaten käsittelyyn liittyvistä 
        virhetilanteista.
     */
-    public abstract String handleRequest( Session session, 
+    public abstract String handleRequest( Session_ session, 
 				   HttpServletRequest req, 
 				   HttpServletResponse res, 
 				   Context ctx ) throws Exception;

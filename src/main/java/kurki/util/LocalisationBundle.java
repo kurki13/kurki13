@@ -5,7 +5,7 @@
 package kurki.util;
 
 import java.util.ResourceBundle;
-import kurki.Session;
+import kurki.Session_;
 
 /**
  *
@@ -13,9 +13,9 @@ import kurki.Session;
  */
 public class LocalisationBundle {
     public static String getString(String request) {
-        return ResourceBundle.getBundle("localisationBundle", Session.locale).getString(request);
+        return ResourceBundle.getBundle("localisationBundle", Session_.locale).getString(request);
     }
     public static ResourceBundle getBundle() {
-        return ResourceBundle.getBundle("localisationBundle", Session.locale);
+        return ResourceBundle.getBundle("localisationBundle", Session_.locale);
     }
 }

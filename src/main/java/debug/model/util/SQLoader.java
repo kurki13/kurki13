@@ -4,8 +4,8 @@
  */
 package debug.model.util;
 
+import debug.DatabaseConnection;
 import debug.model.column.Column;
-import static debug.Pipe.makeConnection;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -23,7 +23,7 @@ public class SQLoader {
 
     public static <T extends Table> List<T> loadTable(T tableType, List<Filter> filters) throws SQLException {
         ArrayList<T> kaikki = new ArrayList();
-        Connection conn = makeConnection();
+        Connection conn = DatabaseConnection.makeConnection();
         PreparedStatement ps = conn.prepareStatement(statementString(tableType, filters));
         applyFiltersToStatement(ps, filters);
         ResultSet rs = ps.executeQuery();
@@ -38,8 +38,20 @@ public class SQLoader {
 
     public static <T extends Table> List<T> loadTablesFromRawQuery(T tableType, String sQLQueryString) throws SQLException {
         ArrayList<T> kaikki = new ArrayList();
-        Connection conn = makeConnection();
+        Connection conn = DatabaseConnection.makeConnection();
         PreparedStatement ps = conn.prepareStatement(sQLQueryString);
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            T add = tableType.getNewInstance();
+            resultRowToTable(rs, add);
+            kaikki.add(add);
+        }
+        conn.close();
+        return kaikki;
+    }
+    
+    public static <T extends Table> List<T> loadTablesFromPreparedStatement(T tableType, PreparedStatement ps, Connection conn) throws SQLException {
+        ArrayList<T> kaikki = new ArrayList();
         ResultSet rs = ps.executeQuery();
         while (rs.next()) {
             T add = tableType.getNewInstance();
@@ -108,7 +120,7 @@ public class SQLoader {
                 }
 
             } catch (SQLException e) {
-                throw new IllegalArgumentException("Errorii pukkaa " + columnName);
+                throw new IllegalArgumentException("Errorii pukkaa @ column " + columnName + ": "+ e.getLocalizedMessage());
             }
         }
     }

@@ -17,6 +17,8 @@ import java.util.Map;
  */
 public class QuerystringParser {
     public static Map<String,String> split(String query) throws UnsupportedEncodingException, MalformedURLException {
+        if (query.equals("?"))
+            return null;
         Map<String, String> query_pairs = new LinkedHashMap<String, String>();
         String[] pairs = query.split("&");
         for (String pair : pairs) {

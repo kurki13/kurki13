@@ -23,13 +23,13 @@ public class Freeze extends AbstractVelocityServiceProvider {
 
    public static final String KURKIMAIL = "<a href=\"mailto:tktl-kurki@cs.helsinki.fi\">tktl-kurki@cs.helsinki.fi</a>";
    @Override
-    public String handleRequest( kurki.Session session, 
+    public String handleRequest( kurki.Session_ session, 
 				 HttpServletRequest req, 
 				 HttpServletResponse res, 
 				 Context context ) throws Exception {
         
         //lokalisaatiobundlen lisääminen kontekstiin
-        context.put("bundle", ResourceBundle.getBundle("localisationBundle", kurki.Session.locale));
+        context.put("bundle", ResourceBundle.getBundle("localisationBundle", kurki.Session_.locale));
 
 	Log log         = (Log)Configuration.getProperty( "log" );
 	String template = "freeze.vm";
@@ -78,7 +78,7 @@ public class Freeze extends AbstractVelocityServiceProvider {
 		VelocityContext results = new VelocityContext();
                 
                 //lokalisaatiobundlen lisääminen results kontekstiin
-                results.put("bundle", ResourceBundle.getBundle("localisationBundle", kurki.Session.locale));
+                results.put("bundle", ResourceBundle.getBundle("localisationBundle", kurki.Session_.locale));
 
 		// Kaikki opiskelijat
 		course.newSearch();
