@@ -17,12 +17,18 @@ public abstract class AbstractVelocityServiceProvider{
 				   HttpServletResponse res, 
 				   Context ctx ) throws Exception;
 
-    protected String nullIfEmpty(String str) {
-	if ( str == null ) return null;
+    /**
+     * Metodi tarkastaa onko parametrina annettu String-olio null tai tyhjä.
+     * 
+     * @param toBeChecked tarkastettava String-olio
+     * @return Null, jos tarkastettava String-olio on null tai tyhjä. Muuten tarkastettava String-olio trimmattuna.
+     */
+    protected String nullIfEmpty(String toBeChecked) {
+	if (toBeChecked == null) return null;
 	else {
-	    str = str.trim();
-	    if ( str.equals("") ) return null;
-	    else return str;
+	    toBeChecked = toBeChecked.trim();
+	    if (toBeChecked.equals("")) return null;
+	    else return toBeChecked;
 	}
     }
 }

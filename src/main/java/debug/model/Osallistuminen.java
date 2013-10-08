@@ -68,7 +68,7 @@ public class Osallistuminen extends Table {
         Filter f2 = new Filter(Osallistuminen.lukukausi, kurssi.getValue(Kurssi.lukukausi));
         Filter f3 = new Filter(Osallistuminen.lukuvuosi, kurssi.getValue(Kurssi.lukuvuosi));
         Filter f4 = new Filter(Osallistuminen.tyyppi, kurssi.getValue(Kurssi.tyyppi));
-        Filter f5 = new Filter(Osallistuminen.kurssi_nro, kurssi.getValue(kurssi_nro));
+        Filter f5 = new Filter(Osallistuminen.kurssi_nro, kurssi.getValue(Kurssi.kurssi_nro));
         ArrayList<Filter> filters = new ArrayList<Filter>();
         filters.add(f1);
         filters.add(f2);
