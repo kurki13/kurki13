@@ -1,24 +1,31 @@
-##Asetetaan ensin 
+##Ensin tarkastetaan että kurssit on ladattu sessiomuuttujaan
+$sessioapuri.auta($request)
+##Sitten asetetaan parametrit 
 #set($qs = $request.getQueryString())
 #if($qs)
     #set($params = $queryparser.split($qs))
 #end
+
 #if($params.get('courseId'))
     $session.setAttribute('selected_course_id', $params.get('courseId'))
 #end
 
+
 <html>
 <body>
+
+<h4>Logged in as: $request.getRemoteUser()</h4>
+
 <form action="" method=get>
-<select name="courseId">
-#foreach($k in $session.getAttribute('user_courses'))
-    #if($session.getAttribute('selected_course_id') == $k.idString())
-    <option value=$k.idString() selected>$k.listaString()</option>
-    #else
-    <option value=$k.idString()>$k.listaString()</option>
+    <select name="courseId">
+    #foreach($k in $session.getAttribute('user_courses'))
+        #if($session.getAttribute('selected_course_id') == $k.idString())
+        <option value=$k.idString() selected>$k.listaString()</option>
+        #else
+        <option value=$k.idString()>$k.listaString()</option>
+        #end
     #end
-#end
-</select>
+    </select>
 <input type=submit value=select>
 </form>
 </body>

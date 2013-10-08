@@ -24,4 +24,9 @@
         <key>queryparser</key>
         <class>kurki.util.QuerystringParser</class>
     </tool>
+    
+    <tool>
+        <key>sessioapuri</key>
+        <class>debug.SessioApuri</class>
+    </tool>
 </toolbox>
