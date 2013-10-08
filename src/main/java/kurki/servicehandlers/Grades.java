@@ -6,6 +6,8 @@ import kurki.model.Course;
 import kurki.*;
 
 import java.io.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import javax.servlet.http.*;
 import kurki.model.Osasuoritus.OsasuoritusTyyppi;
@@ -52,7 +54,7 @@ public class Grades extends AbstractVelocityServiceProvider
                 String examDate = nullIfEmpty(req.getParameter("examDate"));
                 if (!course.setExamDate(examDate)) {
                     error += "<li>" + LocalisationBundle.getString("suorpvmEiKelpaa") + ": '"
-                            + examDate + "'. " + LocalisationBundle.getString("pvm") + " [" + course.getMessage() + "]";
+                            + examDate + "'. " + LocalisationBundle.getString("pvm") + " [" + course.getMessage() + "]</li>";
                 }
             } else if (course.getExamDate() == null) {
                 error += "<li>" + LocalisationBundle.getString("annaSuorPvm") + "</li>";
@@ -70,7 +72,7 @@ public class Grades extends AbstractVelocityServiceProvider
             for (int i = 0; i < parts.size() - 2; i++) {
                 kurki.model.Osasuoritus part = (kurki.model.Osasuoritus) parts.get(i);
                 int ptype = part.getType();
-                String val = null;
+                String val;
                 boolean valOK = true;
 
                 val = nullIfEmpty(req.getParameter("reqo_" + ptype));
@@ -169,8 +171,8 @@ public class Grades extends AbstractVelocityServiceProvider
                 kurki.model.Osasuoritus part = (kurki.model.Osasuoritus) parts.get(i);
                 int ptype = part.getType();
                 int xtrScore = part.getXtrScore();
-                boolean borderOK = true;
-                String val = null;
+                boolean borderOK;
+                String val;
 
                 for (int s = 0; s < xtrScore; s++) {
                     borderOK = true;
@@ -203,15 +205,11 @@ public class Grades extends AbstractVelocityServiceProvider
          *  Arvostelu
          */ else if (makeAssessment != null && ok) {
             if (course.makeAssessment(req.getRemoteUser())) {
+                DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm");
                 Calendar calendar = Calendar.getInstance();
-                int minute = calendar.get(Calendar.MINUTE);
 
                 result = LocalisationBundle.getString("arvosteluSuor")
-                        + calendar.get(Calendar.DAY_OF_MONTH)
-                        + "." + (calendar.get(Calendar.MONTH) + 1)
-                        + "." + calendar.get(Calendar.YEAR) + " " + LocalisationBundle.getString("klo") + " "
-                        + calendar.get(Calendar.HOUR_OF_DAY) + ":"
-                        + (minute < 10 ? "0" + minute : "" + minute) + ".";
+                        + dateFormat.format(calendar.getTime()) + ".";
 
                 // Kaikki opiskelijat
                 course.newSearch(true);
