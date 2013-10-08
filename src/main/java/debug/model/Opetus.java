@@ -14,10 +14,6 @@ import debug.model.util.Table;
  * @author tkairola
  */
 public class Opetus extends Table{
-    
-//    public static final StringColumn  = new StringColumn("");
-//    public static final TimestampColumn  = new TimestampColumn("");
-//    public static final IntegerColumn  = new IntegerColumn("");
 
     public static final StringColumn kurssikoodi = new StringColumn("kurssikoodi");
     public static final StringColumn lukukausi = new StringColumn("lukukausi");

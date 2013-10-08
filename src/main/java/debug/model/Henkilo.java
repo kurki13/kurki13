@@ -52,12 +52,20 @@ public class Henkilo extends Table {
         return new Henkilo();
     }
 
-    public List<Henkilo> henkilotHtunnuksella(String htunnus) throws SQLException {
+    /**
+    * Hae henkilöt htunnuksen mukaan
+    * @return Arraylist jossa on henkilöt, joiden htunnus on annettu parametrina
+    */
+    public static List<Henkilo> henkilotHtunnuksella(String htunnus) throws SQLException {
         Filter f = new Filter(Henkilo.getHtunnus(), htunnus);
         return SQLoader.loadTable(new Henkilo(), f);
     }
     
-    public List<Henkilo> henkilotAktiivisuudenMukaan(String aktiivisuus) throws SQLException {
+    /**
+    * Hae henkilöt aktiivisuuden mukaan
+    * @return Arraylist jossa on henkilöt, joiden aktiivisuus on annettu parametrina
+    */
+    public static List<Henkilo> henkilotAktiivisuudenMukaan(String aktiivisuus) throws SQLException {
         Filter f = new Filter(Henkilo.getAktiivisuus(), aktiivisuus);
         return SQLoader.loadTable(new Henkilo(), f);
     }
