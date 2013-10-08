@@ -27,6 +27,8 @@ $sessioapuri.auta($request)
     #end
     </select>
 <input type=submit value=select>
+<a href="view/osallistujat.vm">os</a> 
+<a href="view/kurssi.vm">ku</a> 
 </form>
 </body>
 <html>

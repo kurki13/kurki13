@@ -14,6 +14,10 @@
         <key>opiskelija</key>
         <class>debug.model.Opiskelija</class>
     </tool>        
+    <tool>
+        <key>osallistuminen</key>
+        <class>debug.model.Osallistuminen</class>
+    </tool>        
     
     <tool>
         <key>kurssi</key>

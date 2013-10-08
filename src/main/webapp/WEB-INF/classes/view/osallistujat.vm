@@ -1,0 +1,26 @@
+<html>
+<body>
+#set($qs = $request.getQueryString())
+#if($qs)
+    #set($params = $queryparser.split($qs))
+#end
+
+#if($session.getAttribute('selected_course_id'))
+    #set($kur = $kurssi.kurssitIDlla($session.getAttribute('selected_course_id')))
+    Valittu kurssi: $kur.listaString() <br>
+    Kurssin osallistujat: <br>
+    <ul>
+    #if($kur)
+        #set ($i=0)
+        #foreach($os in $osallistuminen.ListaKurssinOsallistumisista($kur))
+            #set($oppilaanhetu = $os.getValue($osallistuminen.getHetu()))
+            #set($op = $opiskelija.opiskelijaHetulla($oppilaanhetu))
+            <li>$op.getValue($opiskelija.getEtunimi()) $op.getValue($opiskelija.getSukunimi())
+            #set ($i=$i+1)
+        #end
+    #end
+    </ul>
+    Results: $i
+#end
+</body>
+<html>
