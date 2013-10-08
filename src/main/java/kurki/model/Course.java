@@ -2127,7 +2127,7 @@ public class Course implements Serializable, Option {
                     || !this.examDate.equals(c)) {
                 this.examDateMod = true;
                 this.examDate = c;
-            }
+            }           
             return true;
         }
     }
