@@ -12,6 +12,7 @@ import kurki.model.Osasuoritus.OsasuoritusTyyppi;
 import kurki.util.MultiValueCounter;
 import kurki.util.LocalisationBundle;
 import service.Option;
+import debug.model.Henkilo;
 
 public class Course implements Serializable, Option {
     
@@ -939,6 +940,18 @@ public class Course implements Serializable, Option {
                 }
                 DBConnectionManager.closeConnection(con);
             }
+//            
+//            List<Henkilo> hlo = Henkilo.henkilotHtunnuksella(this.don);
+//            if (!hlo.isEmpty()) {
+//                for (Henkilo h : hlo) {
+//                    this.donFName = h.getValue(Henkilo.kutsumanimi);
+//                    this.donLName = h.getValue(Henkilo.sukunimi);
+//                }
+//            } else {
+//                this.donFName = "";
+//                this.donLName = "";
+//            }
+            
         }
         if (this.donLName == null && this.donFName == null) {
             return "TUNTEMATON";
