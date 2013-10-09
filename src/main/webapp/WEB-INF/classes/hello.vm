@@ -6,15 +6,39 @@ $sessioapuri.auta($request)
     #set($params = $queryparser.split($qs))
 #end
 
+##jos on jo valittu kurssi
 #if($params.get('courseId'))
     $session.setAttribute('selected_course_id', $params.get('courseId'))
 #end
 
+##jos on jo valittu kurssille haluttu toiminto
+#if($params.get('serviceId'))
+    $session.setAttribute('selected_service_id', $params.get('serviceId'))
+#end
 
 <html>
+
+<head>
+    <META charset='utf-8'/>
+    <title>KURKI</title>
+
+    <link href="../bootstrap/css/bootstrap.css" rel="stylesheet">
+    <style>
+      body {
+        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+      }
+      
+    </style>
+    <link href="../bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+
+    <script language='JavaScript' type='text/javascript' src='../kurki.js'></script>
+</head>
+
 <body>
 
 <h4>Logged in as: $request.getRemoteUser()</h4>
+
+<div>
 
 <form action="" method=get>
     <select name="courseId">
@@ -27,8 +51,32 @@ $sessioapuri.auta($request)
     #end
     </select>
 <input type=submit value=select>
-<a href="view/osallistujat.vm">os</a> 
-<a href="view/kurssi.vm">ku</a> 
+
+##Lisätään key:ksi sivun osoite
+#set ($services = {1 : "Suoritteiden kirjaus" , "osallistujat.vm" : "Osallistujatietojen muutokset" ,
+3 : "Kurssin perustietojen muutokset" , 4 : "Listat" , 5 : "Arvostelu" ,
+6 : "Tuloslistat" , 7 : "Kurssin jäädytys"})
+
+##ei vielä siirry mihinkään toiselle sivulle
+#if ($session.getAttribute('selected_course_id'))
+<form action="" method=get>
+    <select name="serviceId">
+    #foreach ($s in $services.entrySet())
+        #if($session.getAttribute('selected_service_id') == $s.key)
+            <option value=$s.key selected>$s.value</option>
+        #else
+            <option value=$s.key>$s.value</option>
+        #end
+    #end
+    </select>
+<input type=submit value=select>
+#end
 </form>
+
+<a href="view/osallistujat.vm">osallistujat</a> 
+<a href="view/kurssi.vm">kurssi</a> 
+</form>
+</div>
+
 </body>
 <html>

@@ -4,11 +4,9 @@
  */
 package debug;
 
-import debug.model.Kurssi;
 import debug.model.SQLkyselyt.KurssiKyselyt;
 import java.sql.SQLException;
-import java.util.List;
-import java.util.Locale;
+import java.util.HashMap;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -26,6 +24,8 @@ public class SessioApuri {
             try {
                 session.setAttribute("user_courses", KurssiKyselyt.kurssitYllapitajalle());
                 session.setAttribute("selected_course_id", null);
+                session.setAttribute("selected_service_id", null);
+                
             } catch (SQLException sq) {
                 session.setAttribute("Error", sq.getLocalizedMessage());
             }
