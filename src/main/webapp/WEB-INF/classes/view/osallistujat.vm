@@ -7,8 +7,7 @@
     <ul>
     #if($kur)
         #set ($i=0)
-        #foreach($os in $OsallistuminenKyselyt.listaKurssinOsallistumisista($kur))
-            #set($op = $OpiskelijaKyselyt.opiskelijaHetulla($os.hetu))
+        #foreach($op in $OpiskelijaKyselyt.kurssinOpiskelijat($kur))
             <li>$op.etunimi $op.sukunimi
             #set ($i=$i+1)
         #end
