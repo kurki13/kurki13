@@ -1,10 +1,4 @@
-<html>
-<body>
-<pre>
-#set($qs = $request.getQueryString())
-#if($qs)
-    #set($params = $queryparser.split($qs))
-#end
+#parse ("hello.vm")
 
 #set($kk = $params.get('kKoodi'))
 #set($lk = $params.get('lKausi'))
@@ -37,6 +31,5 @@
         Results: $i
     #end
 #end
-</pre>
 </body>
 <html>

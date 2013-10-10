@@ -1,9 +1,4 @@
-<html>
-<body>
-#set($qs = $request.getQueryString())
-#if($qs)
-    #set($params = $queryparser.split($qs))
-#end
+#parse ("hello.vm")
 
 #if($session.getAttribute('selected_course_id'))
     #set($kur = $kurssi.kurssitIDlla($session.getAttribute('selected_course_id')))

@@ -1,10 +1,5 @@
-<html>
-<body>
-<pre>
-#set($qs = $request.getQueryString())
-#if($qs)
-    #set($params = $queryparser.split($qs))
-#end
+#parse ("hello.vm")
+
 $params.get('hetu') <br>
 #foreach($opiskelija in $opiskelija.opiskelijatHetulla($params.get('hetu')))
     $opiskelija.getValue($opiskelija.getHetu())
@@ -12,6 +7,6 @@ $params.get('hetu') <br>
     $opiskelija.getValue($opiskelija.getSukunimi())
     $opiskelija.getValue($opiskelija.getOsoite())
 #end
-</pre>
+
 </body>
 <html>
