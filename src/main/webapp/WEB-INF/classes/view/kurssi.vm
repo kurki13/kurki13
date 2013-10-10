@@ -23,7 +23,7 @@
 </form>
 
 #if($session.getAttribute('selected_course_id'))
-    #set($kur = $kurssi.kurssitIDlla($session.getAttribute('selected_course_id')))
+    #set($kur = $kurssi.kurssiIDlla($session.getAttribute('selected_course_id')))
     $kur.nimi $kur.lukuvuosi $kur.lukukausi ($kur.tyyppi) 
 #else
     #if($kk || $lk || $lv || $t || $k)

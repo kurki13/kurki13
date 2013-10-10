@@ -93,7 +93,7 @@ public class KurssiKyselyt {
         return SQLoader.loadTablesFromPreparedStatement(new Kurssi(), preparedStatement, databaseConnection);
     }
 
-    public static List<Kurssi> course_infos(String ruser) throws SQLException {
+    public static List<Kurssi> kurssitKayttajalle(String ruser) throws SQLException {
         Connection databaseConnection = DatabaseConnection.makeConnection();
         PreparedStatement preparedStatement = databaseConnection.prepareStatement(COURSE_INFOS);
         preparedStatement.setString(1, ruser);

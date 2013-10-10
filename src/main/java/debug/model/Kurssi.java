@@ -345,7 +345,7 @@ public class Kurssi extends Table {
 
     //</editor-fold>
     //582481.K.2010.L.1
-    public Kurssi kurssitIDlla(String s) throws SQLException {
+    public Kurssi kurssiIDlla(String s) throws SQLException {
         String[] sd = s.split("\\.");
         return kurssitIDlla(sd[0], sd[1], sd[2], sd[3], sd[4]).get(0);
     }

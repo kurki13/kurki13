@@ -6,7 +6,7 @@
 #end
 
 #if($session.getAttribute('selected_course_id'))
-    #set($kur = $kurssi.kurssitIDlla($session.getAttribute('selected_course_id')))
+    #set($kur = $kurssi.kurssiIDlla($session.getAttribute('selected_course_id')))
     Valittu kurssi: $kur.listaString() <br>
     Kurssin osallistujat: <br>
     <ul>
