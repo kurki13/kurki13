@@ -1,11 +1,11 @@
 #parse ("hello.vm")
 
 #if($session.getAttribute('selected_course_id'))
-    #set($kur = $KurssiKyselyt.kurssiIDlla($session.getAttribute('selected_course_id')))
-    Valittu kurssi: $kur.listaString() <br>
+    
+    Valittu kurssi: $valittuKurssi.listaString() <br>
     Kurssin osallistujat: <br>
     <ul>
-    #if($kur)
+    #if($valittuKurssi)
         #set ($i=0)
         #foreach($op in $OpiskelijaKyselyt.kurssinOpiskelijat($kur))
             <li>$op.etunimi $op.sukunimi

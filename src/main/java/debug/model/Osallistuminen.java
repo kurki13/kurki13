@@ -15,39 +15,42 @@ import java.sql.Timestamp;
  * @author mkctammi
  */
 public class Osallistuminen extends Table {
-        public static final StringColumn personid = new StringColumn("personid");
-        public static final StringColumn kurssikoodi = new StringColumn("kurssikoodi"); //Foreign Key Kurssi
-        public static final StringColumn lukukausi = new StringColumn("lukukausi"); //Foreign Key Kurssi
-        public static final IntegerColumn lukuvuosi = new IntegerColumn("lukuvuosi"); //Foreign Key Kurssi
-        public static final StringColumn tyyppi = new StringColumn("tyyppi"); //Foreign Key Kurssi
-        public static final IntegerColumn kurssi_nro = new IntegerColumn("kurssi_nro"); //Foreign Key Kurssi
-        public static final IntegerColumn ryhma_nro = new IntegerColumn("ryhma_nro"); //Tääki on joku avain?
-        public static final StringColumn kommentti_1 = new StringColumn("kommentti_1");
-        public static final StringColumn kommentti_2 = new StringColumn("kommentti_2");
-        public static final IntegerColumn laskari_lasnaolo_lkm = new IntegerColumn("laskari_lasnaolo_lkm");
-        public static final StringColumn laskarisuoritukset = new StringColumn("laskarisuoritukset");
-        public static final IntegerColumn laskarisuoritukset_summa = new IntegerColumn("laskarisuoritukset_summa");
-        public static final IntegerColumn laskarihyvitys = new IntegerColumn("laskarihyvitys");
-        public static final IntegerColumn harjoitustyo_lasnaolo_lkm = new IntegerColumn("harjoitustyo_lasnaolo_lkm");
-        public static final StringColumn harjoitustyopisteet = new StringColumn("harjoitustyopisteet");
-        public static final IntegerColumn harjoitustyo_summa = new IntegerColumn("harjoitustyo_summa");
-        public static final IntegerColumn harjoitustyohyvitys = new IntegerColumn("harjoitustyohyvitys");
-        public static final StringColumn koepisteet = new StringColumn("koepisteet");
-        public static final IntegerColumn koepisteet_summa = new IntegerColumn("koepisteet_summa");
-        public static final IntegerColumn yhteispisteet = new IntegerColumn("yhteispisteet");
-        public static final StringColumn arvosana = new StringColumn("arvosana");
-        public static final TimestampColumn ilmoittautumis_pvm = new TimestampColumn("ilmoittautumis_pvm");
-        public static final StringColumn voimassa = new StringColumn("voimassa");
-        public static final TimestampColumn viimeinen_kasittely_pvm = new TimestampColumn("viimeinen_kasittely_pvm");
-        public static final IntegerColumn ilmo_jnro = new IntegerColumn("ilmo_jnro");
-        public static final StringColumn jaassa = new StringColumn("jaassa");
-        public static final IntegerColumn laajuus_ov = new IntegerColumn("laajuus_ov");
-        public static final IntegerColumn laajuus_op = new IntegerColumn("laajuus_op");
-        public static final StringColumn hetu = new StringColumn("hetu"); //Foreign Key Oppilas
-        public static final TimestampColumn kypsyys_pvm = new TimestampColumn("kypsyys_pvm");
-        public static final StringColumn tenttija = new StringColumn("tenttija");
-        public static final StringColumn kielikoodi = new StringColumn("kielikoodi");
-        
+
+    private Kurssi kurssi; //kurssi johon tämä osallistuminen kuuluu
+    private Laskarit laskarit;
+    public static final StringColumn personid = new StringColumn("personid");
+    public static final StringColumn kurssikoodi = new StringColumn("kurssikoodi"); //Foreign Key Kurssi
+    public static final StringColumn lukukausi = new StringColumn("lukukausi"); //Foreign Key Kurssi
+    public static final IntegerColumn lukuvuosi = new IntegerColumn("lukuvuosi"); //Foreign Key Kurssi
+    public static final StringColumn tyyppi = new StringColumn("tyyppi"); //Foreign Key Kurssi
+    public static final IntegerColumn kurssi_nro = new IntegerColumn("kurssi_nro"); //Foreign Key Kurssi
+    public static final IntegerColumn ryhma_nro = new IntegerColumn("ryhma_nro"); //Tääki on joku avain?
+    public static final StringColumn kommentti_1 = new StringColumn("kommentti_1");
+    public static final StringColumn kommentti_2 = new StringColumn("kommentti_2");
+    public static final IntegerColumn laskari_lasnaolo_lkm = new IntegerColumn("laskari_lasnaolo_lkm");
+    public static final StringColumn laskarisuoritukset = new StringColumn("laskarisuoritukset");
+    public static final IntegerColumn laskarisuoritukset_summa = new IntegerColumn("laskarisuoritukset_summa");
+    public static final IntegerColumn laskarihyvitys = new IntegerColumn("laskarihyvitys");
+    public static final IntegerColumn harjoitustyo_lasnaolo_lkm = new IntegerColumn("harjoitustyo_lasnaolo_lkm");
+    public static final StringColumn harjoitustyopisteet = new StringColumn("harjoitustyopisteet");
+    public static final IntegerColumn harjoitustyo_summa = new IntegerColumn("harjoitustyo_summa");
+    public static final IntegerColumn harjoitustyohyvitys = new IntegerColumn("harjoitustyohyvitys");
+    public static final StringColumn koepisteet = new StringColumn("koepisteet");
+    public static final IntegerColumn koepisteet_summa = new IntegerColumn("koepisteet_summa");
+    public static final IntegerColumn yhteispisteet = new IntegerColumn("yhteispisteet");
+    public static final StringColumn arvosana = new StringColumn("arvosana");
+    public static final TimestampColumn ilmoittautumis_pvm = new TimestampColumn("ilmoittautumis_pvm");
+    public static final StringColumn voimassa = new StringColumn("voimassa");
+    public static final TimestampColumn viimeinen_kasittely_pvm = new TimestampColumn("viimeinen_kasittely_pvm");
+    public static final IntegerColumn ilmo_jnro = new IntegerColumn("ilmo_jnro");
+    public static final StringColumn jaassa = new StringColumn("jaassa");
+    public static final IntegerColumn laajuus_ov = new IntegerColumn("laajuus_ov");
+    public static final IntegerColumn laajuus_op = new IntegerColumn("laajuus_op");
+    public static final StringColumn hetu = new StringColumn("hetu"); //Foreign Key Oppilas
+    public static final TimestampColumn kypsyys_pvm = new TimestampColumn("kypsyys_pvm");
+    public static final StringColumn tenttija = new StringColumn("tenttija");
+    public static final StringColumn kielikoodi = new StringColumn("kielikoodi");
+
     @Override
     public String getTableName() {
         return "osallistuminen";
@@ -57,9 +60,13 @@ public class Osallistuminen extends Table {
     public Table getNewInstance() {
         return new Osallistuminen();
     }
-
+    
+    public void setKurssi(Kurssi kurssi){
+        this.kurssi=kurssi;
+    }
+    
+    
     //<editor-fold defaultstate="collapsed" desc="getterit">
-
     public String getPersonid() {
         return getValue(Osallistuminen.personid);
     }

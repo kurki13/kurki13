@@ -30,7 +30,10 @@ public class OsallistuminenKyselyt {
         filters.add(f3);
         filters.add(f4);
         filters.add(f5);
-        System.out.println(filters);
-        return SQLoader.loadTable(new Osallistuminen(), filters);
+        List<Osallistuminen> osallistumiset = SQLoader.loadTable(new Osallistuminen(), filters);
+        for (Osallistuminen osallistuminen : osallistumiset) {
+            osallistuminen.setKurssi(kurssi);
+        }
+        return osallistumiset;
     }
 }
