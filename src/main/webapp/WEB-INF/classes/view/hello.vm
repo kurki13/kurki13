@@ -1,6 +1,7 @@
 ##Ensin tarkastetaan että kurssit on ladattu sessiomuuttujaan
 $sessioapuri.auta($request)
-##Sitten asetetaan parametrit 
+
+##Asetetaan parametrit 
 #set($qs = $request.getQueryString())
 #if($qs)
     #set($params = $queryparser.split($qs))
@@ -9,8 +10,11 @@ $sessioapuri.auta($request)
 
 ##jos on jo valittu kurssi
 #if($params.get('courseId'))
-    $session.setAttribute('selected_course_id', $params.get('courseId'))
-    #set($valittuKurssi = $KurssiKyselyt.kurssiIDlla($session.getAttribute('selected_course_id')))
+    #if ($session.getAttribute('selected_course_id') != $params.get('courseId'))
+        kurssi vaihdettu<br>
+        $session.setAttribute('selected_course_id', $params.get('courseId'))
+        $session.setAttribute('selected_course_students', $OpiskelijaKyselyt.kurssinOpiskelijat($KurssiKyselyt.kurssiIDlla($session.getAttribute('selected_course_id'))))
+    #end
 #end
 
 ##jos on jo valittu kurssille haluttu toiminto
@@ -60,7 +64,7 @@ $sessioapuri.auta($request)
 3 : "Kurssin perustietojen muutokset" , "kurssi.vm" : "Listat" , 5 : "Arvostelu" ,
 6 : "Tuloslistat" , 7 : "Kurssin jäädytys"})
 
-##if ($session.getAttribute('selected_course_id'))
+#if ($session.getAttribute('selected_course_id'))
 <form action="" method=get>
     <select name="serviceId" onChange="this.form.submit()">
     #foreach ($s in $services.entrySet())
@@ -72,9 +76,9 @@ $sessioapuri.auta($request)
     #end
     </select>
     #set ($link = $session.getAttribute('selected_service_id'))
-##end
-##$link
 <input type=button value=select onClick="parent.location='$link'">
+##$link
+#end
 </form>
 </form>
 

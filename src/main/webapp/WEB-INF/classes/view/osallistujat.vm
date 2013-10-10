@@ -7,13 +7,15 @@
     <ul>
     #if($valittuKurssi)
         #set ($i=0)
-        #foreach($op in $OpiskelijaKyselyt.kurssinOpiskelijat($kur))
+        #set ($opiskelijat = $session.getAttribute('selected_course_students'))
+        #foreach($op in $opiskelijat)
             <li>$op.etunimi $op.sukunimi
             #set ($i=$i+1)
         #end
     #end
     </ul>
     Results: $i
+
 #end
 </body>
 <html>
