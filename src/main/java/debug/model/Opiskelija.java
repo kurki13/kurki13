@@ -47,18 +47,6 @@ public class Opiskelija extends Table {
         return new Opiskelija();
     }
 
-    public Opiskelija opiskelijaHetulla(String hetu) throws SQLException {
-        Filter f = new Filter(Opiskelija.hetu, hetu);
-        return SQLoader.loadTable(new Opiskelija(), f).get(0);
-    }
-    
-    
-    //not this
-    public Opiskelija opiskelijaIDlla(String id) throws SQLException {
-        Filter f = new Filter(Opiskelija.personid, id);
-        return SQLoader.loadTable(new Opiskelija(), f).get(0);
-    }
-
     //<editor-fold defaultstate="collapsed" desc="Getters for columns (Stupid velocity)">
     /**
      * @return the hetu

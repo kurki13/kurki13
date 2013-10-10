@@ -52,16 +52,6 @@ public class Henkilo extends Table {
         return new Henkilo();
     }
 
-    public List<Henkilo> henkilotHtunnuksella(String htunnus) throws SQLException {
-        Filter f = new Filter(Henkilo.getHtunnus(), htunnus);
-        return SQLoader.loadTable(new Henkilo(), f);
-    }
-    
-    public List<Henkilo> henkilotAktiivisuudenMukaan(String aktiivisuus) throws SQLException {
-        Filter f = new Filter(Henkilo.getAktiivisuus(), aktiivisuus);
-        return SQLoader.loadTable(new Henkilo(), f);
-    }
-
     //<editor-fold defaultstate="collapsed" desc="getterit">
     /**
      * @return the htunnus

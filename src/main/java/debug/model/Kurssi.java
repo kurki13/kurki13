@@ -344,39 +344,6 @@ public class Kurssi extends Table {
     }
 
     //</editor-fold>
-    //582481.K.2010.L.1
-    public Kurssi kurssitIDlla(String s) throws SQLException {
-        String[] sd = s.split("\\.");
-        return kurssitIDlla(sd[0], sd[1], sd[2], sd[3], sd[4]).get(0);
-    }
-
-    public List<Kurssi> kurssitIDlla(String kKoodi, String lKausi,
-            String lVuosi, String tyyppi, String kNro) throws SQLException {
-
-        List<Filter> f = new ArrayList();
-        if (!kKoodi.equals("")) {
-            f.add(new Filter(Kurssi.kurssikoodi, kKoodi));
-        }
-        if (!lKausi.equals("")) {
-            f.add(new Filter(Kurssi.lukukausi, lKausi));
-        }
-        if (!lVuosi.equals("")) {
-            try {
-                f.add(new Filter(Kurssi.lukuvuosi, Integer.parseInt(lVuosi)));
-            } catch (NumberFormatException e) {
-            }
-        }
-        if (!tyyppi.equals("")) {
-            f.add(new Filter(Kurssi.tyyppi, tyyppi));
-        }
-        if (!kNro.equals("")) {
-            try {
-                f.add(new Filter(Kurssi.kurssi_nro, Integer.parseInt(kNro)));
-            } catch (NumberFormatException e) {
-            }
-        }
-        return SQLoader.loadTable(new Kurssi(), f);
-    }
 
     @Override
     public String getTableName() {
