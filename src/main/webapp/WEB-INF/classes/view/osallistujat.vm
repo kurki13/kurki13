@@ -6,14 +6,14 @@
 #end
 
 #if($session.getAttribute('selected_course_id'))
-    #set($kur = $kurssi.kurssitIDlla($session.getAttribute('selected_course_id')))
+    #set($kur = $KurssiKyselyt.kurssiIDlla($session.getAttribute('selected_course_id')))
     Valittu kurssi: $kur.listaString() <br>
     Kurssin osallistujat: <br>
     <ul>
     #if($kur)
         #set ($i=0)
-        #foreach($os in $osallistuminen.ListaKurssinOsallistumisista($kur))
-            #set($op = $opiskelija.opiskelijaHetulla($os.hetu))
+        #foreach($os in $OsallistuminenKyselyt.listaKurssinOsallistumisista($kur))
+            #set($op = $OpiskelijaKyselyt.opiskelijaHetulla($os.hetu))
             <li>$op.etunimi $op.sukunimi
             #set ($i=$i+1)
         #end

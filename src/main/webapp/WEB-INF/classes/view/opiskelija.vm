@@ -6,11 +6,13 @@
     #set($params = $queryparser.split($qs))
 #end
 $params.get('hetu') <br>
-#foreach($opiskelija in $opiskelija.opiskelijatHetulla($params.get('hetu')))
+
+#foreach($opiskelija in $OpiskelijaKyselyt.opiskelijatHetulla($params.get('hetu')))
     $opiskelija.hetu
     $opiskelija.etunimi
     $opiskelija.sukunimi
     $opiskelija.osoite
+
 #end
 </pre>
 </body>

@@ -7,12 +7,8 @@ package debug.model;
 import debug.model.column.IntegerColumn;
 import debug.model.column.StringColumn;
 import debug.model.column.TimestampColumn;
-import debug.model.util.Filter;
-import debug.model.util.SQLoader;
 import debug.model.util.Table;
-import java.sql.SQLException;
 import java.sql.Timestamp;
-import java.util.List;
 
 /**
  *
@@ -46,14 +42,6 @@ public class Opiskelija extends Table {
         return new Opiskelija();
     }
 
-    public Opiskelija opiskelijaHetulla(String hetu) throws SQLException {
-        Filter f = new Filter(Opiskelija.hetu, hetu);
-        List<Opiskelija> list = SQLoader.loadTable(new Opiskelija(), f);
-        if (list.isEmpty()) return null;
-        else{
-            return list.get(0);
-        }
-    }
 
     //<editor-fold defaultstate="collapsed" desc="Getters for columns (Stupid velocity)">
 

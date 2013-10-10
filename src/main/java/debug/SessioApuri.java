@@ -19,13 +19,17 @@ public class SessioApuri {
     public static void auta(HttpServletRequest request) {
         HttpSession session = request.getSession();
         session.setAttribute("remote_user", request.getRemoteUser());
-        
+
         if (session.getAttribute("courses_loaded") == null) {
             try {
-                session.setAttribute("user_courses", KurssiKyselyt.kurssitYllapitajalle());
+                if (request.getRemoteUser().equals("admin")) {
+                    session.setAttribute("user_courses", KurssiKyselyt.kurssitYllapitajalle());
+                } else {
+                    session.setAttribute("user_courses", KurssiKyselyt.kurssitKayttajalle(request.getRemoteUser()));
+                }
                 session.setAttribute("selected_course_id", null);
                 session.setAttribute("selected_service_id", null);
-                
+
             } catch (SQLException sq) {
                 session.setAttribute("Error", sq.getLocalizedMessage());
             }

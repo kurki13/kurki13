@@ -6,10 +6,12 @@ package debug.model.SQLkyselyt;
 
 import debug.DatabaseConnection;
 import debug.model.Kurssi;
+import debug.model.util.Filter;
 import debug.model.util.SQLoader;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -17,7 +19,7 @@ import java.util.List;
  * @author mkctammi
  */
 public class KurssiKyselyt {
-    
+
     private static final int MONTHS_OPEN = 12;
     private static final int SUPER_OPEN = 48;
     private static final String COURSE_INFOS = //<editor-fold defaultstate="collapsed" desc="courseInfos">
@@ -61,8 +63,7 @@ public class KurssiKyselyt {
             + "    AND h.ktunnus = ?)\n"
             + "ORDER BY orderBy ASC, nimiOrder ASC, alkamis_pvmOrder ASC";
     //</editor-fold>
-    
-    private static final String SUPER_INFOS = 
+    private static final String SUPER_INFOS =
             //<editor-fold defaultstate="collapsed" desc="superInfos">
             "SELECT DISTINCT "
             + "     k.*, "
@@ -86,18 +87,51 @@ public class KurssiKyselyt {
             + "     AND ku.tyyppi = 'L')" // vain kokeet
             + "ORDER BY orderBy ASC, nimiOrder ASC, alkamis_pvmOrder ASC";
     //</editor-fold>
-    
-        public static List<Kurssi> kurssitYllapitajalle() throws SQLException {
+
+    public static List<Kurssi> kurssitYllapitajalle() throws SQLException {
         Connection databaseConnection = DatabaseConnection.makeConnection();
         PreparedStatement preparedStatement = databaseConnection.prepareStatement(SUPER_INFOS);
         return SQLoader.loadTablesFromPreparedStatement(new Kurssi(), preparedStatement, databaseConnection);
     }
 
-    public static List<Kurssi> course_infos(String ruser) throws SQLException {
+    public static List<Kurssi> kurssitKayttajalle(String ruser) throws SQLException {
         Connection databaseConnection = DatabaseConnection.makeConnection();
         PreparedStatement preparedStatement = databaseConnection.prepareStatement(COURSE_INFOS);
         preparedStatement.setString(1, ruser);
         preparedStatement.setString(2, ruser);
         return SQLoader.loadTablesFromPreparedStatement(new Kurssi(), preparedStatement, databaseConnection);
+    }
+
+    public static Kurssi kurssiIDlla(String s) throws SQLException {
+        String[] sd = s.split("\\.");
+        return kurssitIDlla(sd[0], sd[1], sd[2], sd[3], sd[4]).get(0);
+    }
+
+    public static List<Kurssi> kurssitIDlla(String kKoodi, String lKausi,
+            String lVuosi, String tyyppi, String kNro) throws SQLException {
+
+        List<Filter> f = new ArrayList();
+        if (!kKoodi.equals("")) {
+            f.add(new Filter(Kurssi.kurssikoodi, kKoodi));
+        }
+        if (!lKausi.equals("")) {
+            f.add(new Filter(Kurssi.lukukausi, lKausi));
+        }
+        if (!lVuosi.equals("")) {
+            try {
+                f.add(new Filter(Kurssi.lukuvuosi, Integer.parseInt(lVuosi)));
+            } catch (NumberFormatException e) {
+            }
+        }
+        if (!tyyppi.equals("")) {
+            f.add(new Filter(Kurssi.tyyppi, tyyppi));
+        }
+        if (!kNro.equals("")) {
+            try {
+                f.add(new Filter(Kurssi.kurssi_nro, Integer.parseInt(kNro)));
+            } catch (NumberFormatException e) {
+            }
+        }
+        return SQLoader.loadTable(new Kurssi(), f);
     }
 }

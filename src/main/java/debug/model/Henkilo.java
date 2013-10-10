@@ -6,11 +6,7 @@ package debug.model;
 
 import debug.model.column.IntegerColumn;
 import debug.model.column.StringColumn;
-import debug.model.util.Filter;
-import debug.model.util.SQLoader;
 import debug.model.util.Table;
-import java.sql.SQLException;
-import java.util.List;
 
 /**
  *
@@ -50,16 +46,6 @@ public class Henkilo extends Table {
     @Override
     public Table getNewInstance() {
         return new Henkilo();
-    }
-
-    public List<Henkilo> henkilotHtunnuksella(String htunnus) throws SQLException {
-        Filter f = new Filter(Henkilo.htunnus, htunnus);
-        return SQLoader.loadTable(new Henkilo(), f);
-    }
-    
-    public List<Henkilo> henkilotAktiivisuudenMukaan(String aktiivisuus) throws SQLException {
-        Filter f = new Filter(Henkilo.aktiivisuus, aktiivisuus);
-        return SQLoader.loadTable(new Henkilo(), f);
     }
 
     //<editor-fold defaultstate="collapsed" desc="getters">
