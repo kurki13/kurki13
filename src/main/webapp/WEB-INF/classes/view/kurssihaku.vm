@@ -1,0 +1,37 @@
+<html>
+<body>
+<pre>
+#set($qs = $request.getQueryString())
+#if($qs)
+    #set($params = $queryparser.split($qs))
+#end
+
+#set($kk = $params.get('kKoodi'))
+#set($lk = $params.get('lKausi'))
+#set($lv = $params.get('lVuosi'))
+#set($t = $params.get('tyyppi'))
+#set($k = $params.get('kNro'))
+
+
+<form action="kurssi.vm" method="get">
+  Kurssikoodi: <input type="text" name="kKoodi" value=#if($kk)$kk#{else}""#end><br>
+  Lukukausi: <input type="text" name="lKausi" value=#if($lk)$lk#{else}""#end><br>
+  Lukuvuosi: <input type="text" name="lVuosi" value=#if($lv)$lv#{else}""#end><br>
+  tyyppi: <input type="text" name="tyyppi" value=#if($t)$t#{else}""#end><br>
+  Kurssinumero: <input type="text" name="kNro" value=#if($k)$k#{else}""#end> <br>
+  <input type="submit" value="Submit">
+</form>
+
+#if($kk || $lk || $lv || $t || $k)
+    #set ($i=0)
+    #foreach($kur in $kurssi.kurssitIDlla($kk,$lk,$lv,$t,$k))
+        $kur.nimi $kur.lukuvuosi $kur.lukukausi ($kur.tyyppi) 
+
+        <br>
+        #set ($i=$i+1)
+    #end
+    Results: $i
+#end
+</pre>
+</body>
+<html>
