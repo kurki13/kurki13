@@ -13,9 +13,8 @@
     #if($kur)
         #set ($i=0)
         #foreach($os in $osallistuminen.ListaKurssinOsallistumisista($kur))
-            #set($oppilaanhetu = $os.getValue($osallistuminen.getHetu()))
-            #set($op = $opiskelija.opiskelijaHetulla($oppilaanhetu))
-            <li>$op.getValue($opiskelija.getEtunimi()) $op.getValue($opiskelija.getSukunimi())
+            #set($op = $opiskelija.opiskelijaHetulla($os.hetu))
+            <li>$op.etunimi $op.sukunimi
             #set ($i=$i+1)
         #end
     #end

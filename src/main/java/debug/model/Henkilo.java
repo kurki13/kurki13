@@ -53,175 +53,107 @@ public class Henkilo extends Table {
     }
 
     public List<Henkilo> henkilotHtunnuksella(String htunnus) throws SQLException {
-        Filter f = new Filter(Henkilo.getHtunnus(), htunnus);
+        Filter f = new Filter(Henkilo.htunnus, htunnus);
         return SQLoader.loadTable(new Henkilo(), f);
     }
     
     public List<Henkilo> henkilotAktiivisuudenMukaan(String aktiivisuus) throws SQLException {
-        Filter f = new Filter(Henkilo.getAktiivisuus(), aktiivisuus);
+        Filter f = new Filter(Henkilo.aktiivisuus, aktiivisuus);
         return SQLoader.loadTable(new Henkilo(), f);
     }
 
-    //<editor-fold defaultstate="collapsed" desc="getterit">
-    /**
-     * @return the htunnus
-     */
-    public static StringColumn getHtunnus() {
-        return htunnus;
+    //<editor-fold defaultstate="collapsed" desc="getters">
+    
+    public String getHtunnus() {
+        return getValue(Henkilo.htunnus);
     }
 
-    /**
-     * @return the etunimet
-     */
-    public static StringColumn getEtunimet() {
-        return etunimet;
+    public String getEtunimet() {
+        return getValue(Henkilo.etunimet);
     }
 
-    /**
-     * @return the sukunimi
-     */
-    public static StringColumn getSukunimi() {
-        return sukunimi;
+    public String getSukunimi() {
+        return getValue(Henkilo.sukunimi);
     }
 
-    /**
-     * @return the kutsumanimi
-     */
-    public static StringColumn getKutsumanimi() {
-        return kutsumanimi;
+    public String getKutsumanimi() {
+        return getValue(Henkilo.kutsumanimi);
     }
 
-    /**
-     * @return the aktiivisuus
-     */
-    public static StringColumn getAktiivisuus() {
-        return aktiivisuus;
+    public String getAktiivisuus() {
+        return getValue(Henkilo.aktiivisuus);
     }
 
-    /**
-     * @return the huone_nro
-     */
-    public static StringColumn getHuone_nro() {
-        return huone_nro;
+    public String getHuone_nro() {
+        return getValue(Henkilo.huone_nro);
     }
 
-    /**
-     * @return the hetu
-     */
-    public static StringColumn getHetu() {
-        return hetu;
+    public String getHetu() {
+        return getValue(Henkilo.hetu);
     }
 
-    /**
-     * @return the oppiarvo
-     */
-    public static StringColumn getOppiarvo() {
-        return oppiarvo;
+    public String getOppiarvo() {
+        return getValue(Henkilo.oppiarvo);
     }
 
-    /**
-     * @return the titteli
-     */
-    public static StringColumn getTitteli() {
-        return titteli;
+    public String getTitteli() {
+        return getValue(Henkilo.titteli);
     }
 
-    /**
-     * @return the puhelin_tyo
-     */
-    public static StringColumn getPuhelin_tyo() {
-        return puhelin_tyo;
+    public String getPuhelin_tyo() {
+        return getValue(Henkilo.puhelin_tyo);
     }
 
-    /**
-     * @return the kannykka
-     */
-    public static StringColumn getKannykka() {
-        return kannykka;
+    public String getKannykka() {
+        return getValue(Henkilo.kannykka);
     }
 
-    /**
-     * @return the katuosoite
-     */
-    public static StringColumn getKatuosoite() {
-        return katuosoite;
+    public String getKatuosoite() {
+        return getValue(Henkilo.katuosoite);
     }
 
-    /**
-     * @return the postinro
-     */
-    public static StringColumn getPostinro() {
-        return postinro;
+    public String getPostinro() {
+        return getValue(Henkilo.postinro);
+    }
+    
+    public String getPostitoimipaikka() {
+        return getValue(Henkilo.postitoimipaikka);
     }
 
-    /**
-     * @return the postitoimipaikka
-     */
-    public static StringColumn getPostitoimipaikka() {
-        return postitoimipaikka;
+    public Integer getValvontasaldo() {
+        return getValue(Henkilo.valvontasaldo);
     }
 
-    /**
-     * @return the valvontasaldo
-     */
-    public static IntegerColumn getValvontasaldo() {
-        return valvontasaldo;
+    public String getSahkopostiosoite() {
+        return getValue(Henkilo.sahkopostiosoite);
     }
 
-    /**
-     * @return the sahkopostiosoite
-     */
-    public static StringColumn getSahkopostiosoite() {
-        return sahkopostiosoite;
+    public String getHallinnollinen_kommentti() {
+        return getValue(Henkilo.hallinnollinen_kommentti);
     }
 
-    /**
-     * @return the hallinnollinen_kommentti
-     */
-    public static StringColumn getHallinnollinen_kommentti() {
-        return hallinnollinen_kommentti;
+    public String getOpiskelija_kommentti() {
+        return getValue(Henkilo.opiskelija_kommentti);
     }
 
-    /**
-     * @return the opiskelija_kommentti
-     */
-    public static StringColumn getOpiskelija_kommentti() {
-        return opiskelija_kommentti;
+    public String getKtunnus() {
+        return getValue(Henkilo.ktunnus);
     }
 
-    /**
-     * @return the ktunnus
-     */
-    public static StringColumn getKtunnus() {
-        return ktunnus;
+    public String getPuhelin_koti() {
+        return getValue(Henkilo.puhelin_koti);
     }
 
-    /**
-     * @return the puhelin_koti
-     */
-    public static StringColumn getPuhelin_koti() {
-        return puhelin_koti;
+    public String getPostilokerohuone() {
+        return getValue(Henkilo.postilokerohuone);
     }
 
-    /**
-     * @return the postilokerohuone
-     */
-    public static StringColumn getPostilokerohuone() {
-        return postilokerohuone;
+    public String getHy_tyosuhde() {
+        return getValue(Henkilo.hy_tyosuhde);
     }
 
-    /**
-     * @return the hy_tyosuhde
-     */
-    public static StringColumn getHy_tyosuhde() {
-        return hy_tyosuhde;
-    }
-
-    /**
-     * @return the hy_puhelinluettelossa
-     */
-    public static StringColumn getHy_puhelinluettelossa() {
-        return hy_puhelinluettelossa;
+    public String getHy_puhelinluettelossa() {
+        return getValue(Henkilo.hy_puhelinluettelossa);
     }
     //</editor-fold>
 }

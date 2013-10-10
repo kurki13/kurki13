@@ -4,7 +4,6 @@
  */
 package debug.model;
 
-import debug.model.column.DateColumn;
 import debug.model.column.IntegerColumn;
 import debug.model.column.StringColumn;
 import debug.model.column.TimestampColumn;
@@ -12,6 +11,7 @@ import debug.model.util.Filter;
 import debug.model.util.SQLoader;
 import debug.model.util.Table;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -75,233 +75,137 @@ public class Osallistuminen extends Table {
         filters.add(f3);
         filters.add(f4);
         filters.add(f5);
-        System.out.println(filters);
         return SQLoader.loadTable(new Osallistuminen(), filters);
     }
 
     //<editor-fold defaultstate="collapsed" desc="getterit">
-    /**
-     * @return the personid
-     */
-    public static StringColumn getPersonid() {
-        return personid;
+
+    public String getPersonid() {
+        return getValue(Osallistuminen.personid);
     }
 
-    /**
-     * @return the kurssikoodi
-     */
-    public static StringColumn getKurssikoodi() {
-        return kurssikoodi;
+    public String getKurssikoodi() {
+        return getValue(Osallistuminen.kurssikoodi);
     }
 
-    /**
-     * @return the lukukausi
-     */
-    public static StringColumn getLukukausi() {
-        return lukukausi;
+    public String getLukukausi() {
+        return getValue(Osallistuminen.lukukausi);
     }
 
-    /**
-     * @return the lukuvuosi
-     */
-    public static IntegerColumn getLukuvuosi() {
-        return lukuvuosi;
+    public Integer getLukuvuosi() {
+        return getValue(Osallistuminen.lukuvuosi);
     }
 
-    /**
-     * @return the tyyppi
-     */
-    public static StringColumn getTyyppi() {
-        return tyyppi;
+    public String getTyyppi() {
+        return getValue(Osallistuminen.tyyppi);
     }
 
-    /**
-     * @return the kurssi_nro
-     */
-    public static IntegerColumn getKurssi_nro() {
-        return kurssi_nro;
+    public Integer getKurssi_nro() {
+        return getValue(Osallistuminen.kurssi_nro);
     }
 
-    /**
-     * @return the ryhma_nro
-     */
-    public static IntegerColumn getRyhma_nro() {
-        return ryhma_nro;
+    public Integer getRyhma_nro() {
+        return getValue(Osallistuminen.ryhma_nro);
     }
 
-    /**
-     * @return the kommentti_1
-     */
-    public static StringColumn getKommentti_1() {
-        return kommentti_1;
+    public String getKommentti_1() {
+        return getValue(Osallistuminen.kommentti_1);
     }
 
-    /**
-     * @return the kommentti_2
-     */
-    public static StringColumn getKommentti_2() {
-        return kommentti_2;
+    public String getKommentti_2() {
+        return getValue(Osallistuminen.kommentti_2);
     }
 
-    /**
-     * @return the laskari_lasnaolo_lkm
-     */
-    public static IntegerColumn getLaskari_lasnaolo_lkm() {
-        return laskari_lasnaolo_lkm;
+    public Integer getLaskari_lasnaolo_lkm() {
+        return getValue(Osallistuminen.laskari_lasnaolo_lkm);
     }
 
-    /**
-     * @return the laskarisuoritukset
-     */
-    public static StringColumn getLaskarisuoritukset() {
-        return laskarisuoritukset;
+    public String getLaskarisuoritukset() {
+        return getValue(Osallistuminen.laskarisuoritukset);
     }
 
-    /**
-     * @return the laskarisuoritukset_summa
-     */
-    public static IntegerColumn getLaskarisuoritukset_summa() {
-        return laskarisuoritukset_summa;
+    public Integer getLaskarisuoritukset_summa() {
+        return getValue(Osallistuminen.laskarisuoritukset_summa);
     }
 
-    /**
-     * @return the laskarihyvitys
-     */
-    public static IntegerColumn getLaskarihyvitys() {
-        return laskarihyvitys;
+    public Integer getLaskarihyvitys() {
+        return getValue(Osallistuminen.laskarihyvitys);
     }
 
-    /**
-     * @return the harjoitustyo_lasnaolo_lkm
-     */
-    public static IntegerColumn getHarjoitustyo_lasnaolo_lkm() {
-        return harjoitustyo_lasnaolo_lkm;
+    public Integer getHarjoitustyo_lasnaolo_lkm() {
+        return getValue(Osallistuminen.harjoitustyo_lasnaolo_lkm);
     }
 
-    /**
-     * @return the harjoitustyopisteet
-     */
-    public static StringColumn getHarjoitustyopisteet() {
-        return harjoitustyopisteet;
+    public String getHarjoitustyopisteet() {
+        return getValue(Osallistuminen.harjoitustyopisteet);
     }
 
-    /**
-     * @return the harjoitustyo_summa
-     */
-    public static IntegerColumn getHarjoitustyo_summa() {
-        return harjoitustyo_summa;
+    public Integer getHarjoitustyo_summa() {
+        return getValue(Osallistuminen.harjoitustyo_summa);
     }
 
-    /**
-     * @return the harjoitustyohyvitys
-     */
-    public static IntegerColumn getHarjoitustyohyvitys() {
-        return harjoitustyohyvitys;
+    public Integer getHarjoitustyohyvitys() {
+        return getValue(Osallistuminen.harjoitustyohyvitys);
     }
 
-    /**
-     * @return the koepisteet
-     */
-    public static StringColumn getKoepisteet() {
-        return koepisteet;
+    public String getKoepisteet() {
+        return getValue(Osallistuminen.koepisteet);
     }
 
-    /**
-     * @return the koepisteet_summa
-     */
-    public static IntegerColumn getKoepisteet_summa() {
-        return koepisteet_summa;
+    public Integer getKoepisteet_summa() {
+        return getValue(Osallistuminen.koepisteet_summa);
     }
 
-    /**
-     * @return the yhteispisteet
-     */
-    public static IntegerColumn getYhteispisteet() {
-        return yhteispisteet;
+    public Integer getYhteispisteet() {
+        return getValue(Osallistuminen.yhteispisteet);
     }
 
-    /**
-     * @return the arvosana
-     */
-    public static StringColumn getArvosana() {
-        return arvosana;
+    public String getArvosana() {
+        return getValue(Osallistuminen.arvosana);
     }
 
-    /**
-     * @return the ilmoittautumis_pvm
-     */
-    public static TimestampColumn getIlmoittautumis_pvm() {
-        return ilmoittautumis_pvm;
+    public Timestamp getIlmoittautumis_pvm() {
+        return getValue(Osallistuminen.ilmoittautumis_pvm);
     }
 
-    /**
-     * @return the voimassa
-     */
-    public static StringColumn getVoimassa() {
-        return voimassa;
+    public String getVoimassa() {
+        return getValue(Osallistuminen.voimassa);
     }
 
-    /**
-     * @return the viimeinen_kasittely_pvm
-     */
-    public static TimestampColumn getViimeinen_kasittely_pvm() {
-        return viimeinen_kasittely_pvm;
+    public Timestamp getViimeinen_kasittely_pvm() {
+        return getValue(Osallistuminen.viimeinen_kasittely_pvm);
     }
 
-    /**
-     * @return the ilmo_jnro
-     */
-    public static IntegerColumn getIlmo_jnro() {
-        return ilmo_jnro;
+    public Integer getIlmo_jnro() {
+        return getValue(Osallistuminen.ilmo_jnro);
     }
 
-    /**
-     * @return the jaassa
-     */
-    public static StringColumn getJaassa() {
-        return jaassa;
+    public String getJaassa() {
+        return getValue(Osallistuminen.jaassa);
     }
 
-    /**
-     * @return the laajuus_ov
-     */
-    public static IntegerColumn getLaajuus_ov() {
-        return laajuus_ov;
+    public Integer getLaajuus_ov() {
+        return getValue(Osallistuminen.laajuus_ov);
     }
 
-    /**
-     * @return the laajuus_op
-     */
-    public static IntegerColumn getLaajuus_op() {
-        return laajuus_op;
+    public Integer getLaajuus_op() {
+        return getValue(Osallistuminen.laajuus_op);
     }
 
-    /**
-     * @return the hetu
-     */
-    public static StringColumn getHetu() {
-        return hetu;
+    public String getHetu() {
+        return getValue(Osallistuminen.hetu);
     }
 
-    /**
-     * @return the kypsyys_pvm
-     */
-    public static TimestampColumn getKypsyys_pvm() {
-        return kypsyys_pvm;
+    public Timestamp getKypsyys_pvm() {
+        return getValue(Osallistuminen.kypsyys_pvm);
     }
 
-    /**
-     * @return the tenttija
-     */
-    public static StringColumn getTenttija() {
-        return tenttija;
+    public String getTenttija() {
+        return getValue(Osallistuminen.tenttija);
     }
 
-    /**
-     * @return the kielikoodi
-     */
-    public static StringColumn getKielikoodi() {
-        return kielikoodi;
+    public String getKielikoodi() {
+        return getValue(Osallistuminen.kielikoodi);
     }
     //</editor-fold>
 }

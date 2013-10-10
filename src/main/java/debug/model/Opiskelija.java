@@ -4,7 +4,6 @@
  */
 package debug.model;
 
-import debug.model.column.Column;
 import debug.model.column.IntegerColumn;
 import debug.model.column.StringColumn;
 import debug.model.column.TimestampColumn;
@@ -12,7 +11,7 @@ import debug.model.util.Filter;
 import debug.model.util.SQLoader;
 import debug.model.util.Table;
 import java.sql.SQLException;
-import java.util.HashMap;
+import java.sql.Timestamp;
 import java.util.List;
 
 /**
@@ -49,120 +48,74 @@ public class Opiskelija extends Table {
 
     public Opiskelija opiskelijaHetulla(String hetu) throws SQLException {
         Filter f = new Filter(Opiskelija.hetu, hetu);
-        return SQLoader.loadTable(new Opiskelija(), f).get(0);
-    }
-    
-    
-    //not this
-    public Opiskelija opiskelijaIDlla(String id) throws SQLException {
-        Filter f = new Filter(Opiskelija.personid, id);
-        return SQLoader.loadTable(new Opiskelija(), f).get(0);
+        List<Opiskelija> list = SQLoader.loadTable(new Opiskelija(), f);
+        if (list.isEmpty()) return null;
+        else{
+            return list.get(0);
+        }
     }
 
     //<editor-fold defaultstate="collapsed" desc="Getters for columns (Stupid velocity)">
-    /**
-     * @return the hetu
-     */
-    public static StringColumn getHetu() {
-        return hetu;
+
+    public String getHetu() {
+        return getValue(Opiskelija.hetu);
+    }
+    
+    public String getPersonid() {
+        return getValue(Opiskelija.personid);
     }
 
-    /**
-     * @return the personid
-     */
-    public static StringColumn getPersonid() {
-        return personid;
+    public String getEtunimi() {
+        return getValue(Opiskelija.etunimi);
     }
 
-    /**
-     * @return the etunimi
-     */
-    public static StringColumn getEtunimi() {
-        return etunimi;
+    public String getSukunimi() {
+        return getValue(Opiskelija.sukunimi);
     }
 
-    /**
-     * @return the sukunimi
-     */
-    public static StringColumn getSukunimi() {
-        return sukunimi;
+    public String getEntinen_sukunimi() {
+        return getValue(Opiskelija.entinen_sukunimi);
+    }
+    
+    public String getOsoite() {
+        return getValue(Opiskelija.osoite);
     }
 
-    /**
-     * @return the entinen_sukunimi
-     */
-    public static StringColumn getEntinen_sukunimi() {
-        return entinen_sukunimi;
+    public String getPuhelin() {
+        return getValue(Opiskelija.puhelin);
     }
 
-    /**
-     * @return the osoite
-     */
-    public static StringColumn getOsoite() {
-        return osoite;
+    public String getSahkopostiosoite() {
+        return getValue(Opiskelija.sahkopostiosoite);
     }
 
-    /**
-     * @return the puhelin
-     */
-    public static StringColumn getPuhelin() {
-        return puhelin;
+    public String getPaa_aine() {
+        return getValue(Opiskelija.paa_aine);
     }
 
-    /**
-     * @return the sahkopostiosoite
-     */
-    public static StringColumn getSahkopostiosoite() {
-        return sahkopostiosoite;
+    public Integer getAloitusvuosi() {
+        return getValue(Opiskelija.aloitusvuosi);
     }
 
-    /**
-     * @return the paa_aine
-     */
-    public static StringColumn getPaa_aine() {
-        return paa_aine;
+    public Timestamp getKaytto_pvm() {
+        return getValue(Opiskelija.kaytto_pvm);
     }
 
-    /**
-     * @return the aloitusvuosi
-     */
-    public static IntegerColumn getAloitusvuosi() {
-        return aloitusvuosi;
+    public String getOpnro() {
+        return getValue(Opiskelija.opnro);
     }
 
-    /**
-     * @return the kaytto_pvm
-     */
-    public static TimestampColumn getKaytto_pvm() {
-        return kaytto_pvm;
+    public String getLupa() {
+        return getValue(Opiskelija.lupa);
     }
 
-    /**
-     * @return the opnro
-     */
-    public static StringColumn getOpnro() {
-        return opnro;
+    public String getVinkki() {
+        return getValue(Opiskelija.vinkki);
     }
 
-    /**
-     * @return the lupa
-     */
-    public static StringColumn getLupa() {
-        return lupa;
+    public String getVarmenne() {
+        return getValue(Opiskelija.varmenne);
     }
-
-    /**
-     * @return the vinkki
-     */
-    public static StringColumn getVinkki() {
-        return vinkki;
-    }
-
-    /**
-     * @return the varmenne
-     */
-    public static StringColumn getVarmenne() {
-        return varmenne;
-    }
+    
     //</editor-fold>
 }

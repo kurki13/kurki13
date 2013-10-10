@@ -8,16 +8,13 @@ import debug.model.column.IntegerColumn;
 import debug.model.column.StringColumn;
 import debug.model.column.TimestampColumn;
 import debug.model.util.Table;
+import java.sql.Timestamp;
 
 /**
  *
  * @author tkairola
  */
-public class Opetus extends Table{
-    
-//    public static final StringColumn  = new StringColumn("");
-//    public static final TimestampColumn  = new TimestampColumn("");
-//    public static final IntegerColumn  = new IntegerColumn("");
+public class Opetus extends Table {
 
     public static final StringColumn kurssikoodi = new StringColumn("kurssikoodi");
     public static final StringColumn lukukausi = new StringColumn("lukukausi");
@@ -46,4 +43,74 @@ public class Opetus extends Table{
     public Table getNewInstance() {
         return new Opetus();
     }
+
+    //<editor-fold defaultstate="collapsed" desc="getters">
+    public String getKurssikoodi() {
+        return getValue(Opetus.kurssikoodi);
+    }
+
+    public String getLukukausi() {
+        return getValue(Opetus.lukukausi);
+    }
+
+    public Integer getLukuvuosi() {
+        return getValue(Opetus.lukuvuosi);
+    }
+
+    public String getTyyppi() {
+        return getValue(Opetus.tyyppi);
+    }
+
+    public Integer getKurssi_nro() {
+        return getValue(Opetus.kurssi_nro);
+    }
+
+    public Integer getRyhma_nro() {
+        return getValue(Opetus.ryhma_nro);
+    }
+
+    public Integer getIlmo_jnro() {
+        return getValue(Opetus.ilmo_jnro);
+    }
+
+    public String getIlmo() {
+        return getValue(Opetus.ilmo);
+    }
+
+    public String getOpetustehtava() {
+        return getValue(Opetus.opetustehtava);
+    }
+
+    public Timestamp getAlkamisaika() {
+        return getValue(Opetus.alkamisaika);
+    }
+
+    public Timestamp getPaattymisaika() {
+        return getValue(Opetus.paattymisaika);
+    }
+
+    public Timestamp getAlkamis_pvm() {
+        return getValue(Opetus.alkamis_pvm);
+    }
+
+    public Timestamp getPaattymis_pvm() {
+        return getValue(Opetus.paattymis_pvm);
+    }
+
+    public Integer getMax_osallistuja_lkm() {
+        return getValue(Opetus.max_osallistuja_lkm);
+    }
+
+    public Integer getIlmoittautuneuden_lkm() {
+        return getValue(Opetus.ilmoittautuneuden_lkm);
+    }
+
+    public String getKuvaustieto() {
+        return getValue(Opetus.kuvaustieto);
+    }
+
+    public String getKieli() {
+        return getValue(Opetus.kieli);
+    }
+    //</editor-fold>
 }
