@@ -41,7 +41,7 @@ $sessioapuri.auta($request)
 <div>
 
 <form action="" method=get>
-    <select name="courseId">
+    <select name="courseId" onChange="this.form.submit()">
     #foreach($k in $session.getAttribute('user_courses'))
         #if($session.getAttribute('selected_course_id') == $k.idString())
         <option value=$k.idString() selected>$k.listaString()</option>
@@ -50,17 +50,15 @@ $sessioapuri.auta($request)
         #end
     #end
     </select>
-<input type=submit value=select>
 
-##Lisätään key:ksi sivun osoite
+##Lisätään key:ksi sivun osoite, sivut joilla on vain numero key:nä ei vie vielä mihinkään!
 #set ($services = {1 : "Suoritteiden kirjaus" , "osallistujat.vm" : "Osallistujatietojen muutokset" ,
 3 : "Kurssin perustietojen muutokset" , 4 : "Listat" , 5 : "Arvostelu" ,
 6 : "Tuloslistat" , 7 : "Kurssin jäädytys"})
 
-##ei vielä siirry mihinkään toiselle sivulle
-#if ($session.getAttribute('selected_course_id'))
+##if ($session.getAttribute('selected_course_id'))
 <form action="" method=get>
-    <select name="serviceId">
+    <select name="serviceId" onChange="this.form.submit()">
     #foreach ($s in $services.entrySet())
         #if($session.getAttribute('selected_service_id') == $s.key)
             <option value=$s.key selected>$s.value</option>
@@ -69,14 +67,14 @@ $sessioapuri.auta($request)
         #end
     #end
     </select>
-<input type=submit value=select>
-#end
+    #set ($link = $session.getAttribute('selected_service_id'))
+##end
+##$link
+<input type=button value=select onClick="parent.location='$link'">
+</form>
 </form>
 
-<a href="view/osallistujat.vm">osallistujat</a> 
-<a href="view/kurssi.vm">kurssi</a> 
-</form>
 </div>
 
-</body>
-<html>
+##</body>
+##<html>

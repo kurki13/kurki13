@@ -1,10 +1,4 @@
-<html>
-<body>
-<pre>
-#if($session.getAttribute('selected_course_id'))
-    #set($kur = $KurssiKyselyt.kurssiIDlla($session.getAttribute('selected_course_id')))
-    $kur.nimi $kur.lukuvuosi $kur.lukukausi ($kur.tyyppi)
-#end
+#parse ("hello.vm")
 
 Laskaritehtävien lukumäärä: $kur.laskaritehtava_lkm
 Pakolliset laskaritehtävät lkm: $kur.pakolliset_laskaritehtava_lkm
@@ -14,6 +8,5 @@ hyvaksytty_laskarilasnaolo: $kur.hyvaksytty_laskarilasnaolo
 #foreach($os in $OsallistuminenKyselyt.listaKurssinOsallistumisista($kur))
     Laskarisuoritukset: $os.laskarisuoritukset
 #end
-</pre>
 </body>
 <html>

@@ -1,10 +1,5 @@
-<html>
-<body>
-<pre>
-#set($qs = $request.getQueryString())
-#if($qs)
-    #set($params = $queryparser.split($qs))
-#end
+#parse ("hello.vm")
+
 $params.get('hetu') <br>
 
 #foreach($opiskelija in $OpiskelijaKyselyt.opiskelijatHetulla($params.get('hetu')))
@@ -14,6 +9,6 @@ $params.get('hetu') <br>
     $opiskelija.osoite
 
 #end
-</pre>
+
 </body>
 <html>
