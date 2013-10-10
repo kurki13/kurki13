@@ -2,7 +2,7 @@
 <body>
 <pre>
 #if($session.getAttribute('selected_course_id'))
-    #set($kur = $kurssi.kurssiIDlla($session.getAttribute('selected_course_id')))
+    #set($kur = $KurssiKyselyt.kurssiIDlla($session.getAttribute('selected_course_id')))
     $kur.nimi $kur.lukuvuosi $kur.lukukausi ($kur.tyyppi)
 #end
 
@@ -11,7 +11,7 @@ Pakolliset laskaritehtävät lkm: $kur.pakolliset_laskaritehtava_lkm
 max_laskaripisteet: $kur.max_laskaripisteet
 hyvaksytty_laskarilasnaolo: $kur.hyvaksytty_laskarilasnaolo
 
-#foreach($os in $osallistuminen.ListaKurssinOsallistumisista($kur))
+#foreach($os in $OsallistuminenKyselyt.listaKurssinOsallistumisista($kur))
     Laskarisuoritukset: $os.laskarisuoritukset
 #end
 </pre>

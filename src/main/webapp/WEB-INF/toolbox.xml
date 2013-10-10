@@ -11,17 +11,22 @@
     </tool>    
     
     <tool>
-        <key>opiskelija</key>
-        <class>debug.model.Opiskelija</class>
+        <key>OpiskelijaKyselyt</key>
+        <class>debug.model.SQLkyselyt.OpiskelijaKyselyt</class>
     </tool>        
     <tool>
-        <key>osallistuminen</key>
-        <class>debug.model.Osallistuminen</class>
+        <key>OsallistuminenKyselyt</key>
+        <class>debug.model.SQLkyselyt.OsallistuminenKyselyt</class>
     </tool>        
     
     <tool>
-        <key>kurssi</key>
-        <class>debug.model.Kurssi</class>
+        <key>KurssiKyselyt</key>
+        <class>debug.model.SQLkyselyt.KurssiKyselyt</class>
+    </tool>    
+        
+    <tool>
+        <key>HenkiloKyselyt</key>
+        <class>debug.model.SQLkyselyt.HenkiloKyselyt</class>
     </tool>    
     
     <tool>
