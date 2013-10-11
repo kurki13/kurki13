@@ -1,0 +1,6 @@
+#parse ("hello.vm")
+
+<h3>$bundle.getString("2participants")</h3>
+
+</body>
+<html>

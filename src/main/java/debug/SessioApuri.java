@@ -7,7 +7,6 @@ package debug;
 import debug.model.SQLkyselyt.KurssiKyselyt;
 import debug.model.SQLkyselyt.OsallistuminenKyselyt;
 import java.sql.SQLException;
-import java.util.HashMap;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -16,7 +15,7 @@ import javax.servlet.http.HttpSession;
  * @author mkctammi
  */
 public class SessioApuri {
-
+    
     public static void auta(HttpServletRequest request) {
         HttpSession session = request.getSession();
         session.setAttribute("remote_user", request.getRemoteUser());

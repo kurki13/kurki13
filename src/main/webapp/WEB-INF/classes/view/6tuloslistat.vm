@@ -1,0 +1,6 @@
+#parse ("hello.vm")
+
+<h3>$bundle.getString("6resultlist")</h3>
+
+</body>
+<html>

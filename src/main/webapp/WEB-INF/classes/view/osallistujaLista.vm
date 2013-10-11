@@ -1,9 +1,9 @@
 #parse ("hello.vm")
 
 #if($session.getAttribute('selected_course_id'))
-    
+    #set ($valittuKurssi = $KurssiKyselyt.kurssiIDlla($session.getAttribute('selected_course_id')))
     Valittu kurssi: $valittuKurssi.listaString() <br>
-    Kurssin osallistujat: <br>
+    Kurssin osallistujat:
     <ul>
     #if($valittuKurssi)
         #set ($i=0)

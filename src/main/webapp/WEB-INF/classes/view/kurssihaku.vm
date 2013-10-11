@@ -1,6 +1,5 @@
-<html>
-<body>
-<pre>
+#parse ("hello.vm")
+
 #set($qs = $request.getQueryString())
 #if($qs)
     #set($params = $queryparser.split($qs))
@@ -32,6 +31,6 @@
     #end
     Results: $i
 #end
-</pre>
+
 </body>
 <html>

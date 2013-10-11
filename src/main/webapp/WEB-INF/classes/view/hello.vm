@@ -30,16 +30,15 @@ $sessioapuri.auta($request)
     <META charset='utf-8'/>
     <title>KURKI</title>
 
-    <link href="../bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
     <style>
       body {
         padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
       }
       
     </style>
-    <link href="../bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
 
-    <script language='JavaScript' type='text/javascript' src='../kurki.js'></script>
 </head>
 
 <body>
@@ -47,9 +46,8 @@ $sessioapuri.auta($request)
 <h4>Logged in as: $request.getRemoteUser()</h4>
 
 <div>
-
-<form action="" method=get>
-    <select name="courseId" onChange="this.form.submit()">
+<form action="" method=get class="form-inline">
+    <select name="courseId" onChange="this.form.submit()" class="form-control form-inline" style="width:700px">
     #foreach($k in $session.getAttribute('user_courses'))
         #if($session.getAttribute('selected_course_id') == $k.idString())
         <option value=$k.idString() selected>$k.listaString()</option>
@@ -60,29 +58,40 @@ $sessioapuri.auta($request)
     </select>
 
 ##Lisätään key:ksi sivun osoite, sivut joilla on vain numero key:nä ei vie vielä mihinkään!
-#set ($services = {1 : "Suoritteiden kirjaus" , "osallistujat.vm" : "Osallistujatietojen muutokset" ,
-3 : "Kurssin perustietojen muutokset" , "kurssi.vm" : "Listat" , 5 : "Arvostelu" ,
-6 : "Tuloslistat" , 7 : "Kurssin jäädytys"})
+#set ($services = {"1suoritteidenKirjaus.vm" : "Suoritteiden kirjaus" , "2osallistujatiedot.vm" : "Osallistujatietojen muutokset" ,
+"3kurssinPerustiedot.vm" : "Kurssin perustietojen muutokset" , "4listat.vm" : "Listat" , "5arvostelu.vm" : "Arvostelu" ,
+"6tuloslistat.vm" : "Tuloslistat" , "7jaadytys.vm" : "Kurssin jäädytys"})
 
-#if ($session.getAttribute('selected_course_id'))
-<form action="" method=get>
-    <select name="serviceId" onChange="this.form.submit()">
-    #foreach ($s in $services.entrySet())
-        #if($session.getAttribute('selected_service_id') == $s.key)
-            <option value=$s.key selected>$s.value</option>
-        #else
-            <option value=$s.key>$s.value</option>
+    #if ($session.getAttribute('selected_course_id'))
+    <form action="" method=get class="form-inline">
+        <select name="serviceId" onChange="this.form.submit()" class="form-control form-inline" style="width:300px">
+        #if (!$session.getAttribute('selected_service_id'))
+            <option value="" selected>-- $bundle.getString("valitse_toiminto") --</option>
         #end
+        #foreach ($s in $services.entrySet())
+            #if($session.getAttribute('selected_service_id') == $s.key)
+                <option value=$s.key selected>$s.value</option>
+            #else
+                <option value=$s.key>$s.value</option>
+            #end
+        #end
+        </select>
+        #set ($link = $session.getAttribute('selected_service_id'))
+    <input type=button class="btn" value=select onClick="parent.location='$link'">
+    ##$link
     #end
-    </select>
-    #set ($link = $session.getAttribute('selected_service_id'))
-<input type=button value=select onClick="parent.location='$link'">
-##$link
-#end
+    </form>
 </form>
-</form>
+
+<div>
+Apulinkit testaukseen:
+<input type=button class="btn" value=hello onClick="parent.location='hello.vm'">
+<input type=button class="btn" value=kurssihaku onClick="parent.location='kurssihaku.vm'">
+<input type=button class="btn" value=laskarit onClick="parent.location='laskarit.vm'">
+<input type=button class="btn" value=opiskelija onClick="parent.location='opiskelija.vm'">
+<input type=button class="btn" value=osallistujaLista onClick="parent.location='osallistujaLista.vm'">
+</div>
 
 </div>
-<pre>
-##</body>
-##<html>
+
+

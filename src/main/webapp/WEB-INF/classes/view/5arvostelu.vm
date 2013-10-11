@@ -1,0 +1,6 @@
+#parse ("hello.vm")
+
+<h3>$bundle.getString("5grades")</h3>
+
+</body>
+<html>
