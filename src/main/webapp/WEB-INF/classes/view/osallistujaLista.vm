@@ -7,9 +7,9 @@
     <ul>
     #if($valittuKurssi)
         #set ($i=0)
-        #set ($opiskelijat = $session.getAttribute('selected_course_students'))
-        #foreach($op in $opiskelijat)
-            <li>$op.etunimi $op.sukunimi
+        #set ($osallistumiset = $OsallistuminenKyselyt.osallistumisetKurssilla($valittuKurssi))
+        #foreach($os in $osallistumiset)
+            <li>$os.nimi, $os.laskarisuoritukset
             #set ($i=$i+1)
         #end
     #end

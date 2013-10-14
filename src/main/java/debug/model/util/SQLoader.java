@@ -103,7 +103,7 @@ public class SQLoader {
         return loadTable(tabletype, new ArrayList<Filter>()); //TODO: tehotonta
     }
 
-    private static void resultRowToTable(ResultSet rs, Table table) {
+    public static void resultRowToTable(ResultSet rs, Table table) {
         for (Column column : table.getColumns()) {
             String columnName = column.getColumnName();
             Class columnType = column.getType();

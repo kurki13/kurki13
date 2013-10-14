@@ -50,6 +50,16 @@ public class Osallistuminen extends Table {
     public static final TimestampColumn kypsyys_pvm = new TimestampColumn("kypsyys_pvm");
     public static final StringColumn tenttija = new StringColumn("tenttija");
     public static final StringColumn kielikoodi = new StringColumn("kielikoodi");
+    
+    private String nimi;
+
+    public void setNimi(String nimi) {
+        this.nimi = nimi;
+    }
+
+    public String getNimi() {
+        return nimi;
+    }
 
     @Override
     public String getTableName() {
