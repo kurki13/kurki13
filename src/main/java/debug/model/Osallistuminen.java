@@ -4,6 +4,8 @@
  */
 package debug.model;
 
+import debug.model.osasuoritukset.Laskarit;
+import debug.ApplicationException;
 import debug.model.column.IntegerColumn;
 import debug.model.column.StringColumn;
 import debug.model.column.TimestampColumn;
@@ -73,6 +75,16 @@ public class Osallistuminen extends Table {
     
     public void setKurssi(Kurssi kurssi){
         this.kurssi=kurssi;
+    }
+    
+    public Laskarit getLaskarit() {
+        if (kurssi == null) {
+            throw new ApplicationException("Kurssi täytyy asettaa osallistumiselle sen luonnin jälkeen");
+        }
+        if (laskarit == null) {
+            laskarit = new Laskarit(this.kurssi, this);
+        }
+        return laskarit;
     }
     
     

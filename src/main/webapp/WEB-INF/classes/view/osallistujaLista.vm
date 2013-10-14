@@ -16,6 +16,17 @@
     </ul>
     Results: $i
 
+    
+    #if($valittuKurssi)
+        #set ($osallistumiset = $OsallistuminenKyselyt.osallistumisetKurssilla($valittuKurssi))
+        #foreach ($osallistuminen in $osallistumiset)
+            <li> $osallistuminen.hetu 
+            #foreach ($laskari in $osallistuminen.laskarit)
+                $laskari.pisteet, 
+            #end
+        #end
+    #end
+    </ul>
 #end
 </body>
 <html>

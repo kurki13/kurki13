@@ -1,19 +1,23 @@
 #parse ("hello.vm")
 
+<pre>
+
  #set($valittuKurssi = $KurssiKyselyt.kurssiIDlla($session.getAttribute('selected_course_id')))
 
-Laskaritehtävien lukumäärä: $valittuKurssi.laskaritehtava_lkm
+Laskaritehtävien lukumäärä: $valittuKurssi.laskarikerta_lkm
+Laskaritehtävien maksimipisteet: $valittuKurssi.laskaritehtava_lkm
 Pakolliset laskaritehtävät lkm: $valittuKurssi.pakolliset_laskaritehtava_lkm
 max_laskaripisteet: $valittuKurssi.max_laskaripisteet
 hyvaksytty_laskarilasnaolo: $valittuKurssi.hyvaksytty_laskarilasnaolo
 
 #foreach($os in $OsallistuminenKyselyt.listaKurssinOsallistumisista($valittuKurssi))
-     $os.hetu: $os.laskarisuoritukset
-                $os.laskari_lasnaolo_lkm
-                $os.laskarisuoritukset
-                $os.laskarisuoritukset_summa 
-                $os.laskarihyvitys
+     $os.hetu: 
+        laskarisuoritukset:       $os.laskarisuoritukset
+        laskari_lasnaolo_lkm:     $os.laskari_lasnaolo_lkm
+        laskarisuoritukset:       $os.laskarisuoritukset
+        laskarisuoritukset_summa: $os.laskarisuoritukset_summa 
+        laskarihyvitys:           $os.laskarihyvitys
 #end
-
+</pre>
 </body>
 </html>
