@@ -1,5 +1,3 @@
-#parse ("hello.vm")
-
 ##Lisätään key:ksi sivun osoite, sivut joilla on vain numero key:nä ei vie vielä mihinkään!
 ##Korvaa numero sivun nimellä.
 #set ($tyypit = {1 : "Harjoitustyöpisteet" , 2 : "Koepisteet" ,

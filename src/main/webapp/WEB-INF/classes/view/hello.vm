@@ -76,8 +76,8 @@ $sessioapuri.auta($request)
             #end
         #end
         </select>
-        #set ($link = $session.getAttribute('selected_service_id'))
-    <input type=button class="btn" value=select onClick="parent.location='$link'">
+##        #set ($link = $session.getAttribute('selected_service_id'))
+##    <input type=button class="btn" value=select onClick="parent.location='$link'">
     ##$link
     #end
     </form>
@@ -94,4 +94,6 @@ Apulinkit testaukseen:
 
 </div>
 
+##avataan valittu sivu
+#parse ($session.getAttribute('selected_service_id'))
 
