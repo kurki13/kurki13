@@ -4,6 +4,7 @@
  */
 package debug;
 
+import debug.model.Osallistuminen;
 import debug.model.SQLkyselyt.KurssiKyselyt;
 import debug.model.SQLkyselyt.OsallistuminenKyselyt;
 import java.sql.SQLException;
@@ -29,8 +30,10 @@ public class SessioApuri {
                 }
                
                 session.setAttribute("selected_course_id", null);
+                session.setAttribute("selected_course", null);
                 session.setAttribute("selected_course_students", null);
                 session.setAttribute("selected_service_id", null);
+                session.setAttribute("selected_course_parts", null);
 
             } catch (SQLException sq) {
                 session.setAttribute("Error", sq.getLocalizedMessage());

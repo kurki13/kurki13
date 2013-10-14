@@ -1,4 +1,54 @@
 <h3>$bundle.getString("2participants")</h3>
 
+<form name="osallistujatiedot" action="" method=get class="form-inline">
+
+    <b>$bundle.getString("isosnimi"):</b>
+    <input type="text" class="form-control form-inline" style="width:150px" name="filterSukunimi">
+
+##Alustetaan mappi joka pitää sisällään laskarikerrat
+    #set ($ryhmat = {"" : ""})
+
+##tähän ryhmien haku ja lisäys kerta-mappiin !!!
+##foreach($r in $ryhmat)
+##    #set ($ryhma = {ryhma : ryhma})
+##testitulosta
+##end
+
+    <b>$bundle.getString("ryhma"):</b>
+    <select name="ryhma" onChange="this.form.submit()" class="form-control form-inline" style="width:100px">
+    #foreach($r in $ryhmat.entrySet())
+        #if($r.key == $params.get('ryhma'))
+        <option value=$r.key selected>$r.value</option>
+        #else
+        <option value=$r.key>$r.value</option>
+        #end
+    #end
+    </select>
+
+    <b>$bundle.getString("camelopnro"):</b>
+    <input type="text" class="form-control form-inline" style="width:150px" name="filterOpnro">
+
+##Korvaa numero halutulla key:llä
+    #set ($tyypit = {1 : $bundle.getString("tiedot") , 2 : $bundle.getString("haelisatop") ,
+    3 : $bundle.getString("haepalop")})
+
+    <select name="toiminto" onChange="this.form.submit()" class="form-control form-inline" style="width:350px">
+    #if (!$params.get('toiminto'))
+        <option value="" selected>-- $bundle.getString("valitse_toiminto") --</option>
+    #end
+    #foreach($t in $tyypit.entrySet())
+        #if($t.key == $params.get('toiminto'))
+        <option value=$t.key selected>$t.value</option>
+        #else
+        <option value=$t.key>$t.value</option>
+        #end
+    #end
+    </select>
+
+    <input type=submit class="btn" value=">>>" onClick="this.form.submit()">
+</form>
+
+##valittu $params.get('lisääTähänNimi')
+
 </body>
 <html>

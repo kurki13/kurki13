@@ -1,26 +1,25 @@
-##Lisätään key:ksi sivun osoite, sivut joilla on vain numero key:nä ei vie vielä mihinkään!
-##Korvaa numero sivun nimellä.
-#set ($tyypit = {1 : "Harjoitustyöpisteet" , 2 : "Koepisteet" ,
-3 : "Arvosana" , 4 : "Opintopisteet" , 5 : "Suorituskieli"})
+##Korvaa numero halutulla key:llä
+#set ($tyypit = {1 : $bundle.getString("Harjoitustyöpisteet") , 2 : $bundle.getString("Koepisteet") ,
+3 : $bundle.getString("Arvosana") , 4 : $bundle.getString("Opintopisteet") , 5 : $bundle.getString("Suorituskieli")})
 
 <h3>$bundle.getString("1entry")</h3>
 
-<div>
-    <form name="tyyppi" action="" method=get class="form-inline">
-        <b>Tyyppi:</b>
-        <select name="type" onChange="this.form.submit()" class="form-control form-inline" style="width:250px">
-        #foreach($t in $tyypit.entrySet())
-            #if($t.key == $params.get('type'))
-            <option value=$t.key selected>$t.value</option>
-            #else
-            <option value=$t.key>$t.value</option>
-            #end
+<form name="suoritteidenKirjaus" action="" method=get class="form-inline">
+
+    <b>$bundle.getString("tyyppi"):</b>
+    <select name="type" onChange="this.form.submit()" class="form-control form-inline" style="width:250px">
+    #foreach($t in $tyypit.entrySet())
+        #if($t.key == $params.get('type'))
+        <option value=$t.key selected>$t.value</option>
+        #else
+        <option value=$t.key>$t.value</option>
         #end
-        </select>
-    ##valittu $params.get('type')
+    #end
+    </select>
+##valittu $params.get('type')
 
 ##Alustetaan mappi joka pitää sisällään laskarikerrat
-#set ($kerta = {"" : ""})
+    #set ($kerta = {"" : ""})
 
 ##tähän laskarikertojen haku ja lisäys kerta-mappiin !!!
 ##foreach($l in laskarikerrat)
@@ -29,27 +28,26 @@
 ##end
 
 
-        <form name="kerta" action="" method=get class="form-inline">
-            <b>Kerta:</b>
-            <select name="kerta" onChange="this.form.submit()" class="form-control form-inline" style="width:100px">
-            #foreach($k in $kerta.entrySet())
-                #if($k.key == $params.get('kerta'))
-                <option value=$k.key selected>$k.value</option>
-                #else
-                <option value=$k.key>$k.value</option>
-                #end
-            #end
-            </select>
-        ##valittu $params.get('type')
+    <b>$bundle.getString("kerta"):</b>
+    <select name="kerta" onChange="this.form.submit()" class="form-control form-inline" style="width:100px">
+    #foreach($k in $kerta.entrySet())
+        #if($k.key == $params.get('kerta'))
+        <option value=$k.key selected>$k.value</option>
+        #else
+        <option value=$k.key>$k.value</option>
+        #end
+    #end
+    </select>
+##valittu $params.get('type')
 
-##lisää filterin käyttö muualle
-        <b>Opiskelijat:</b>
-	<input type="text" class="form-control form-inline" style="width:150px" name="filter">
-##$link = linkki sivulle jonka yläpuolella "#parse ("1suoritteidenKirjaus.vm")" ja listattuna filterillä haetut opiskelijat
-        <input type=submit class="btn" value=">>>" onClick="parent.location='$link'">
-        </form>
-    </form>
-</div>
+    <b>$bundle.getString("opiskelijat"):</b>
+    <input type="text" class="form-control form-inline" style="width:150px" name="filter">
+
+    <input type=submit class="btn" value=">>>" onClick=this.form.submit()">
+
+</form>
+
+##valittu $params.get('lisääTähänNimi')
 
 </body>
 <html>

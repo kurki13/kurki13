@@ -1,4 +1,92 @@
+#set($valittuKurssi = $session.getAttribute('selected_course'))
+
 <h3>$bundle.getString("3coursebasics")</h3>
+
+<form name="kurssinPerustiedot" action="" method=get class="form-inline">
+<table border="1">
+
+<tr>
+    <th>$bundle.getString("laskuharjoituksia")</th>
+
+    #if ($valittuKurssi.getTila() == "J")
+      <th><input type="text" class="form-control" style="width:50px"
+                value="$valittuKurssi.getHarjoitustunnit()" readonly></th>
+    #else 
+       <th><input type="text" class="form-control" style="width:50px" name="lh_lkm" maxlength="2"
+            value="$valittuKurssi.getHarjoitustunnit()"
+            onBlur="rangecheck(this,0,18)"></th>
+    #end
+
+    <th>$bundle.getString("jpakollisia")</th>
+
+    #if ($valittuKurssi.getTila() == "J")
+      <th><input type="text" class="form-control" style="width:50px"
+                value="$valittuKurssi.getPakolliset_laskaritehtava_lkm()" readonly></th>
+    #else 
+       <th><input type="text" class="form-control" style="width:50px" name="lh_pakollisia" maxlength="2"
+            value="$valittuKurssi.getPakolliset_laskaritehtava_lkm()"
+            onBlur="rangecheck(this,0,18)"></th>
+    #end
+
+    <th>$bundle.getString("lisapisteet")</th>
+
+    #if ($valittuKurssi.getTila() == "J")
+      <th><input type="text" class="form-control" style="width:50px"
+                value="99" readonly></th>
+    #else 
+       <th><input type="text" class="form-control" style="width:50px" name="lh_lisa" maxlength="2"
+            value="99"
+            onBlur="rangecheck(this,0,18)"></th>
+    #end
+
+</tr>
+
+<tr>
+    <th>$bundle.getString("harjoitustoita")</th>
+
+    #if ($valittuKurssi.getTila() == "J")
+      <th><input type="text" class="form-control" style="width:50px"
+                value="99" readonly></th>
+    #else 
+       <th><input type="text" class="form-control" style="width:50px" name="ht_lkm" maxlength="2"
+            value="99"
+            onBlur="rangecheck(this,0,18)"></th>
+    #end
+
+    <th>$bundle.getString("jpakollisia")</th>
+
+    <th>nro</th>
+
+    <th>$bundle.getString("lisapisteet")</th>
+
+    <th>nro</th>
+
+</tr>
+
+<tr>
+    <th>$bundle.getString("kokeita")</th>
+
+    #if ($valittuKurssi.getTila() == "J")
+      <th><input type="text" class="form-control" style="width:50px"
+                value="99" readonly></th>
+    #else 
+       <th><input type="text" class="form-control" style="width:50px" name="koe_lkm" maxlength="2"
+            value="99"
+            onBlur="rangecheck(this,0,18)"></th>
+    #end
+
+    <th>$bundle.getString("jpakollisia")</th>
+
+    <th>nro</th>
+
+    <th>$bundle.getString("lisapisteet")</th>
+
+    <th>nro</th>
+
+</tr>
+
+</table>
+</form>
 
 </body>
 <html>
