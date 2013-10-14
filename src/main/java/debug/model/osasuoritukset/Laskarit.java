@@ -57,6 +57,12 @@ public class Laskarit implements Iterable<Laskari> {
         public Laskari(int pisteet, int maxPisteet) {
             this.pisteet = pisteet;
             this.maxPisteet = maxPisteet;
+            if (pisteet > maxPisteet) {
+                pisteet = maxPisteet;
+            }
+            if (pisteet < 0) {
+                pisteet = Muotoilija.EMPTY;
+            }
         }
 
         public int getPisteet() {
