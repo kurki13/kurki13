@@ -6,7 +6,6 @@ package debug.model.osasuoritukset;
 
 import debug.model.Kurssi;
 import debug.model.Osallistuminen;
-import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -77,9 +76,8 @@ public class MuotoilijaTest {
         Osallistuminen os = new Osallistuminen();
         os.setKurssi(k);
         os.setValue(Osallistuminen.laskarisuoritukset, done);
-        List<Laskarit.Laskari> laskarit = os.getLaskarit().laskarit;
         String expResult = done;
-        String result = Muotoilija.tietokantaString(laskarit);
+        String result = Muotoilija.tietokantaString(os.getLaskarit());
         assertEquals(expResult, result);
     }
 }

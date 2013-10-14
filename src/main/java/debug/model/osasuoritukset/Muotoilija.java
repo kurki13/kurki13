@@ -56,10 +56,12 @@ public class Muotoilija {
         return ret;
     }
 
-    public static String tietokantaString(List<Laskari> laskarit) {
+    public static String tietokantaString(Laskarit laskarit) {
         int[] ints = Muotoilija.tyhjaTaulu();
-        for (int i = 0; i < laskarit.size(); i++) {
-            ints[i] = laskarit.get(i).pisteet;
+        int i=0;
+        for (Laskari laskari : laskarit) {
+            ints[i] = laskari.getPisteet();
+            i++;
         }
         return Muotoilija.intArrayToString(ints);
     }

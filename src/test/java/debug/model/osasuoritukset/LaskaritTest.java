@@ -38,16 +38,6 @@ public class LaskaritTest {
     }
 
     @Test
-    public void testLaskari() {
-        System.out.println("laskari");
-        int laskariNumero = 0;
-        Laskarit instance = null;
-        Laskarit.Laskari expResult = null;
-        Laskarit.Laskari result = instance.laskari(laskariNumero);
-        assertEquals(expResult, result);
-    }
-
-    @Test
     public void testTietokantaString() {
         System.out.println("tietokantaString");
         Laskarit instance = null;

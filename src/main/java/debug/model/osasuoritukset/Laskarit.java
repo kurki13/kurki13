@@ -46,7 +46,7 @@ public class Laskarit implements Iterable<Laskari> {
     }
 
     String tietokantaString() {
-        return Muotoilija.tietokantaString(laskarit);
+        return Muotoilija.tietokantaString(this);
     }
 
     public class Laskari {
@@ -108,7 +108,7 @@ public class Laskarit implements Iterable<Laskari> {
                     System.out.print(laskari.pisteet + "\t");
                 }
                 System.out.println("");
-                System.out.println(Muotoilija.tietokantaString(osallistuminen.getLaskarit().laskarit));
+                System.out.println(Muotoilija.tietokantaString(osallistuminen.getLaskarit()));
             }
 
         } catch (SQLException ex) {
