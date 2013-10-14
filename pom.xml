@@ -38,8 +38,13 @@
             <scope>system</scope>
             <systemPath>${basedir}/lib/ojdbc14.jar</systemPath>
         </dependency>-->
-        
-        
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.11</version>
+            <scope>test</scope>
+            <type>jar</type>
+        </dependency>
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-web-api</artifactId>
@@ -62,6 +67,13 @@
             <artifactId>mail</artifactId>
             <version>1.4</version>
         </dependency>
+        
+         <dependency>
+            <groupId>net.sourceforge.jwebunit</groupId>
+            <artifactId>jwebunit-htmlunit-plugin</artifactId>
+            <version>3.1</version>
+            <scope>test</scope>
+        </dependency>
             
     </dependencies>
     
@@ -69,7 +81,7 @@
 
     <build>
         <plugins>
-<!--            <plugin>
+            <!--            <plugin>
                 <artifactId>exec-maven-plugin</artifactId>
                 <groupId>org.codehaus.mojo</groupId>
                 <version>1.2.1</version>
