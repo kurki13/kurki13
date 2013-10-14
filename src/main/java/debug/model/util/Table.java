@@ -79,4 +79,17 @@ public abstract class Table {
     public final <T> void setValue(Column<T> sarake, T value) {
         values.put(sarake, value);
     }
+
+    @Override
+    public String toString() {
+        String ret = "";
+        
+        for (Column column : getColumns()) {
+            ret += column.getColumnName() + " : " + this.getValue(column) + "<br>";
+        }
+        
+        return ret;
+    }
+    
+    
 }
