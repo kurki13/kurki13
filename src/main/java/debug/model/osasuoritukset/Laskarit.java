@@ -16,14 +16,33 @@ import java.util.logging.Logger;
 
 public class Laskarit implements Iterable<Laskari> {
 
-    Kurssi kurssi;
-    Osallistuminen osallistuminen;
-    List<Laskari> laskarit;
-    int koko;
+    private List<Laskari> laskarit;
+    private int koko;
 
     @Override
     public Iterator<Laskari> iterator() {
-        return laskarit.iterator();
+        class LaskariIterator implements Iterator<Laskari> {
+
+            int index = 0;
+
+            @Override
+            public boolean hasNext() {
+                //Ei anneta käyttäjälle kuin aktiivinen osa laskareista käsiteltäväksi
+                return index < koko;
+            }
+
+            @Override
+            public Laskari next() {
+                index++;
+                return laskarit.get(index - 1);
+            }
+
+            @Override
+            public void remove() {
+                throw new UnsupportedOperationException("Osasuorituksia ei voi poistaa, vain muuttaa tyhjiksi");
+            }
+        }
+        return new LaskariIterator();
     }
 
     String tietokantaString() {
@@ -68,19 +87,11 @@ public class Laskarit implements Iterable<Laskari> {
         laskarit = new ArrayList();
         int[] maxPisteet = Muotoilija.stringToIntArray(max);
         int[] pisteet = Muotoilija.stringToIntArray(pi);
-        for (int i = 0; i < koko; i++) {
+
+        //Luodaan jokaiselle mahdolliselle laskarille yksi olio
+        for (int i = 0; i < Muotoilija.MAX_KOKO; i++) {
             laskarit.add(new Laskari(pisteet[i], maxPisteet[i]));
         }
-    }
-
-    /**
-     * Laskarikerran laskariNumero laskarit
-     *
-     * @param laskariNumero
-     * @return
-     */
-    public Laskari laskari(int laskariNumero) {
-        return laskarit.get(laskariNumero);
     }
 
     public static void main(String[] args) {
