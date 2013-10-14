@@ -34,4 +34,12 @@ public class testitesti {
         tester.assertButtonPresentWithText("opiskelija");
         tester.assertButtonPresentWithText("osallistujaLista");
     }
+
+    @Test
+    public void kurssinVaihtaminen() {
+        tester.beginAt("kurki13/hello.vm");
+        tester.assertFormElementPresent("courseId");
+        tester.selectOption("courseId", "Data Mining [2010-03-15] K");        
+        tester.assertTextPresent("kurssi vaihdettu");
+    }
 }
