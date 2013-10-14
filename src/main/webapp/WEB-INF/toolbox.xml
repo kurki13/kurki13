@@ -31,7 +31,7 @@
     
     <tool>
         <key>queryparser</key>
-        <class>kurki.util.QuerystringParser</class>
+        <class>debug.util.QuerystringParser</class>
     </tool>
     
     <tool>
