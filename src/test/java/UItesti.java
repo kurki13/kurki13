@@ -4,7 +4,7 @@ import net.sourceforge.jwebunit.util.*;
 import org.junit.Before;
 import org.junit.Test;
 
-public class testitesti {
+public class UItesti {
 
     private WebTester tester;
     private TestContext context;
@@ -39,7 +39,17 @@ public class testitesti {
     public void kurssinVaihtaminen() {
         tester.beginAt("kurki13/hello.vm");
         tester.assertFormElementPresent("courseId");
-        tester.selectOption("courseId", "Data Mining [2010-03-15] K");        
-        tester.assertTextPresent("kurssi vaihdettu");
+        tester.selectOption("courseId", "Data Mining [2010-03-15] K");
+        tester.assertTextPresent("Data Mining [2010-03-15] K");
+        tester.assertTextNotPresent("AI for Games II [2010-05-10] K");        
+    }
+
+    @Test
+    public void palvelunVaihtaminen() {
+        tester.beginAt("kurki13/hello.vm");
+        tester.assertFormElementPresent("courseId");
+        tester.selectOption("courseId", "Data Mining [2010-03-15] K");
+        tester.assertFormElementPresent("serviceId");
+        tester.selectOption("serviceId", "Suoritteiden kirjaus");
     }
 }
