@@ -4,25 +4,16 @@
     #set ($valittuKurssi = $KurssiKyselyt.kurssiIDlla($session.getAttribute('selected_course_id')))
     Valittu kurssi: $valittuKurssi.listaString() <br>
     Kurssin osallistujat:
-    <ul>
-    #if($valittuKurssi)
-        #set ($i=0)
-        #set ($osallistumiset = $OsallistuminenKyselyt.osallistumisetKurssilla($valittuKurssi))
-        #foreach($os in $osallistumiset)
-            <li>$os.nimi, $os.laskarisuoritukset
-            #set ($i=$i+1)
-        #end
-    #end
-    </ul>
-    Results: $i
-
-    
+    <ul>  
     #if($valittuKurssi)
         #set ($osallistumiset = $OsallistuminenKyselyt.osallistumisetKurssilla($valittuKurssi))
         #foreach ($osallistuminen in $osallistumiset)
-            <li> $osallistuminen.hetu 
+            <li> $osallistuminen.hetu $osallistuminen.nimi: 
             #foreach ($laskari in $osallistuminen.laskarit)
-                $laskari.pisteet, 
+                #if($laskari.pisteet == -1)
+                    X,
+                #else $laskari.pisteet,
+                #end
             #end
         #end
     #end

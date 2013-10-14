@@ -7,7 +7,6 @@ package debug.model.SQLkyselyt;
 import debug.DatabaseConnection;
 import debug.model.Kurssi;
 import debug.model.Osallistuminen;
-import debug.model.util.Filter;
 import debug.model.util.SQLoader;
 import java.sql.Connection;
 import java.sql.PreparedStatement;

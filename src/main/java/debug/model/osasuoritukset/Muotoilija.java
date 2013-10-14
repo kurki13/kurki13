@@ -4,7 +4,9 @@
  */
 package debug.model.osasuoritukset;
 
+import debug.model.osasuoritukset.Laskarit.Laskari;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  *
@@ -35,7 +37,7 @@ public class Muotoilija {
         }
         return ints;
     }
-   
+
     public static String intArrayToString(int[] ints) {
         String ret = "";
         for (int i = 0; i < ints.length; i++) {
@@ -53,8 +55,16 @@ public class Muotoilija {
         }
         return ret;
     }
-    
-    public static int[] tyhjaTaulu(){
+
+    public static String tietokantaString(List<Laskari> laskarit) {
+        int[] ints = Muotoilija.tyhjaTaulu();
+        for (int i = 0; i < laskarit.size(); i++) {
+            ints[i] = laskarit.get(i).pisteet;
+        }
+        return Muotoilija.intArrayToString(ints);
+    }
+
+    public static int[] tyhjaTaulu() {
         int[] ints = new int[MAX_KOKO];
         Arrays.fill(ints, EMPTY);
         return ints;

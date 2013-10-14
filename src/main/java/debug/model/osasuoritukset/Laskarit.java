@@ -26,6 +26,10 @@ public class Laskarit implements Iterable<Laskari> {
         return laskarit.iterator();
     }
 
+    String tietokantaString() {
+        return Muotoilija.tietokantaString(laskarit);
+    }
+
     public class Laskari {
 
         public int pisteet;
@@ -79,14 +83,6 @@ public class Laskarit implements Iterable<Laskari> {
         return laskarit.get(laskariNumero);
     }
 
-    public String tietokantaString() {
-        int[] ints = Muotoilija.tyhjaTaulu();
-        for (int i = 0; i < laskarit.size(); i++) {
-            ints[i] = laskarit.get(i).pisteet;
-        }
-        return Muotoilija.intArrayToString(ints);
-    }
-
     public static void main(String[] args) {
         try {
             List<Filter> filters = new ArrayList();
@@ -101,7 +97,7 @@ public class Laskarit implements Iterable<Laskari> {
                     System.out.print(laskari.pisteet + "\t");
                 }
                 System.out.println("");
-                System.out.println(osallistuminen.getLaskarit().tietokantaString());
+                System.out.println(Muotoilija.tietokantaString(osallistuminen.getLaskarit().laskarit));
             }
 
         } catch (SQLException ex) {
