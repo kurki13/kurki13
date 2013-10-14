@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package kurki.util;
+package debug.util;
 
 import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
