@@ -2,7 +2,7 @@
 <toolbox>
     <tool scope="application">
         <key>bundle</key>
-        <class>kurki.util.LocalisationBundle</class>
+        <class>debug.util.LocalisationBundle</class>
     </tool>
     
     <tool>
