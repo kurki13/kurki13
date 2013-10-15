@@ -7,14 +7,18 @@ package debug.model;
 import debug.model.column.DateColumn;
 import debug.model.column.IntegerColumn;
 import debug.model.column.StringColumn;
+import debug.model.osasuoritukset.Muotoilija;
 import debug.model.util.Table;
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
  * @author mkctammi
  */
 public class Kurssi extends Table {
+
 
     public static final StringColumn kurssikoodi = new StringColumn("kurssikoodi"); //ID
     public static final StringColumn lukukausi = new StringColumn("lukukausi"); //ID
@@ -80,7 +84,12 @@ public class Kurssi extends Table {
     public static final IntegerColumn periodi = new IntegerColumn("periodi");
     public static final StringColumn kotisivu = new StringColumn("kotisivu");
     public static final IntegerColumn periodi2 = new IntegerColumn("periodi2");
+    
 
+    OsasuoritusRajat laskariRajat;
+    OsasuoritusRajat harjoitustyoRajat;
+    OsasuoritusRajat koeRajat;
+    
     @Override
     public String getTableName() {
         return "kurssi";
@@ -89,6 +98,13 @@ public class Kurssi extends Table {
     @Override
     public Table getNewInstance() {
         return new Kurssi();
+    }
+
+    public OsasuoritusRajat getLaskariRajat() {
+        List<OsasuoritusRajat> osasuorit = new ArrayList();
+        if (laskariRajat == null)
+            laskariRajat = new OsasuoritusRajat(getHyvaksytty_laskarilasnaolo(),getLaskaritehtava_lkm(), getLaskarikerta_lkm());
+        return laskariRajat;
     }
 
     /**

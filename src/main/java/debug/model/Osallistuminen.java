@@ -9,6 +9,8 @@ import debug.ApplicationException;
 import debug.model.column.IntegerColumn;
 import debug.model.column.StringColumn;
 import debug.model.column.TimestampColumn;
+import debug.model.osasuoritukset.Harjoitustyot;
+import debug.model.osasuoritukset.Kokeet;
 import debug.model.util.Table;
 import java.sql.Timestamp;
 
@@ -20,6 +22,9 @@ public class Osallistuminen extends Table {
 
     private Kurssi kurssi; //kurssi johon tämä osallistuminen kuuluu
     private Laskarit laskarit;
+    private Kokeet kokeet;
+    
+    private Harjoitustyot harjoitustyot;
     public static final StringColumn personid = new StringColumn("personid");
     public static final StringColumn kurssikoodi = new StringColumn("kurssikoodi"); //Foreign Key Kurssi
     public static final StringColumn lukukausi = new StringColumn("lukukausi"); //Foreign Key Kurssi
@@ -85,6 +90,26 @@ public class Osallistuminen extends Table {
             laskarit = new Laskarit(this.kurssi, this);
         }
         return laskarit;
+    }
+    
+    public Harjoitustyot getHarjoitustyot() {
+        if (kurssi == null) {
+            throw new ApplicationException("Kurssi täytyy asettaa osallistumiselle sen luonnin jälkeen");
+        }
+        if (harjoitustyot == null) {
+            harjoitustyot = new Harjoitustyot(this.kurssi, this);
+        }
+        return harjoitustyot;
+    }
+    
+    public Kokeet getKokeet() {
+        if (kurssi == null) {
+            throw new ApplicationException("Kurssi täytyy asettaa osallistumiselle sen luonnin jälkeen");
+        }
+        if (kokeet == null) {
+            kokeet = new Kokeet(this.kurssi, this);
+        }
+        return kokeet;
     }
     
     

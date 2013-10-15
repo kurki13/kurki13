@@ -1,0 +1,18 @@
+#parse ("hello.vm")
+
+<pre>
+
+ #set($valittuKurssi = $KurssiKyselyt.kurssiIDlla($session.getAttribute('selected_course_id')))
+
+$valittuKurssi
+
+OSALLIstuMINEN
+
+#foreach($os in $OsallistuminenKyselyt.osallistumisetKurssilla($valittuKurssi))
+     $os
+#end
+
+
+</pre>
+</body>
+</html>

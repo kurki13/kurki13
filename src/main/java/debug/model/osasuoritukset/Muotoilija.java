@@ -13,9 +13,9 @@ import java.util.List;
  */
 public class Muotoilija {
 
-    final static int MAX_KOKO = 18;
-    final static int MAX_PISTE = 99;
-    final static int EMPTY = -1;
+    public final static int MAX_KOKO = 18;
+    public final static int MAX_PISTE = 99;
+    public final static int EMPTY = -1;
 
     public static int[] stringToIntArray(String s) {
         if (s == null) {

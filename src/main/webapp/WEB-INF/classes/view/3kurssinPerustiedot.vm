@@ -115,5 +115,36 @@
 </table>
 </form>
 
+<form name="kurssinPisteet" action="" method=get class="form-inline">
+<table border="0">
+
+<tr>
+    <th>LH:</th>
+    #set ($i = 1) ##Laskija
+    #foreach($raja in $valittuKurssi.LaskariRajat)
+    <th>
+       $i:
+       <th>
+        <input type="text" class="form-control" style="width:50px" name="" maxlength="2"
+        value="$raja.max" ##Maksimipisteet
+        onBlur="rangecheck(this,0,18)"><br>
+        <input type="text" class="form-control" style="width:50px" name="" maxlength="2"
+        value="$raja.min" ##Hyväksymisraja
+        onBlur="rangecheck(this,0,18)">
+       </th>
+    </th>
+    #set($i = $i+1)
+    #if($i==10)<tr><th>#end ##Rivitys
+    #end
+</tr>
+
+<th>
+<input type=button class="btn" value=$bundle.getString("tmuutokset") onClick="">
+</th>
+
+</table>
+</form>
+
+
 </body>
 <html>
