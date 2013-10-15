@@ -32,14 +32,6 @@
         </init-param>
     </servlet>
     <!-- Map *.vm files to Velocity -->
-    <servlet>
-        <servlet-name>Language</servlet-name>
-        <servlet-class>kurki.servlet.Language</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>Indeksi</servlet-name>
-        <servlet-class>debug.Indeksi</servlet-class>
-    </servlet>
     <servlet-mapping>
         <servlet-name>velocity</servlet-name>
         <url-pattern>*.vm</url-pattern>
@@ -60,46 +52,6 @@
             <param-value>/WEB-INF/velocity.properties</param-value>
         </init-param>
     </servlet>
-    <servlet>
-        <servlet-name>logout</servlet-name>
-        <servlet-class>kurki.servlet.Logout</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>logout</servlet-name>
-        <url-pattern>/servlet/logout</url-pattern>
-    </servlet-mapping>
-    <servlet>
-        <servlet-name>LoginManager</servlet-name>
-        <servlet-class>kurki.servlet.LoginManager</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>checklist</servlet-name>
-        <servlet-class>kurki.servlet.ListMaker</servlet-class>
-        <init-param>
-            <param-name>properties</param-name>
-            <param-value>/WEB-INF/velocity.properties</param-value>
-        </init-param>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>index</servlet-name>
-        <url-pattern>/servlet/index</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>LoginManager</servlet-name>
-        <url-pattern>/servlet/LoginManager</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>checklist</servlet-name>
-        <url-pattern>/servlet/checklist</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>Language</servlet-name>
-        <url-pattern>/Language</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>Indeksi</servlet-name>
-        <url-pattern>/Indeksi</url-pattern>
-    </servlet-mapping>
     <session-config>
         <session-timeout>
             30

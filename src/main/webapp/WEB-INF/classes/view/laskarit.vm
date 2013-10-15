@@ -18,6 +18,8 @@ hyvaksytty_laskarilasnaolo: $valittuKurssi.hyvaksytty_laskarilasnaolo
         laskarisuoritukset_summa: $os.laskarisuoritukset_summa 
         laskarihyvitys:           $os.laskarihyvitys
 #end
+
+$valittuKurssi
 </pre>
 </body>
 </html>

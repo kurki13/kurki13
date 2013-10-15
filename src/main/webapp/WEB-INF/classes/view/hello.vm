@@ -50,6 +50,8 @@ $sessioapuri.lataa_kurssit($request)
 <body>
 
 <h4>Logged in as: $request.getRemoteUser()</h4>
+<a href="?locale=en"><img src="kuvia/gb.png"></a>
+<a href="?locale=fi"><img src="kuvia/fi.png"></a>
 
 <div>
 <form action="" method=get class="form-inline">
