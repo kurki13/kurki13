@@ -93,15 +93,23 @@
     #set ($lomake_tunnus = $rajaTyyppi.get(2))
     <h3>$rajanNimi:</h3>
     #foreach($raja in $rajat)
-       $i:
-        <input type="text" class="form-control" style="width:50px" maxlength="2"
-            name="${lomake_tunnus}_${i}_max" 
-            value="$raja.max" ##Maksimipisteet
-            onBlur="rangecheck(this,0,18)">
-        <input type="text" class="form-control" style="width:50px" maxlength="2"
-            name="${lomake_tunnus}_${i}_min" 
-            value="$raja.min" ##Hyväksymisraja
-            onBlur="rangecheck(this,0,18)">
+        <div style="display:inline">
+           <span style="height:100px;vertical-align:middle;display:inline-block">$i:</span>
+           <div style="width:55px;display:inline-block">
+                <center>
+                    <small>max</small>
+                    <input type="text" class="form-control" style="width:50px" maxlength="2"
+                        name="${lomake_tunnus}_${i}_max" 
+                        value="$raja.max" ##Maksimipisteet
+                        onBlur="rangecheck(this,0,18)">
+                    <input type="text" class="form-control" style="width:50px" maxlength="2"
+                        name="${lomake_tunnus}_${i}_min" 
+                        value="$raja.min" ##Hyväksymisraja
+                        onBlur="rangecheck(this,0,18)">
+                    <small>min</small>
+                </center>
+           </div>
+       </div>
     #set($i = $i+1)
     #end
 #end
