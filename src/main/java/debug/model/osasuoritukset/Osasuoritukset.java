@@ -1,7 +1,5 @@
 package debug.model.osasuoritukset;
 
-import debug.model.Kurssi;
-import debug.model.Osallistuminen;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
