@@ -12,7 +12,7 @@ package debug.model.column;
 public abstract class Column<T> {
     
     /**
-     * Sarakkeen nimi kanssassa
+     * Sarakkeen nimi kannassa
      */
     final String columnName;
 

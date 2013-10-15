@@ -1,15 +1,14 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package debug.model.osasuoritukset;
 
 import java.util.Arrays;
 import java.util.List;
 
 /**
- *
- * @author esaaksvu
+ * Tämä luokka muotoilee tietokannassa käytettävän formaatin numerotaulukoiksi.
+ * Kannan muoto sisältää 18 pilkulla tai väliviivalla erotettua arvoa.
+ * Esimerkiksi: 1,2,3,4,5-6,??,8,9,10-11,12,13,14,15,16,17,99
+ * Asettamaton arvo voidaan esittää kysymysmerkein.
+ * @author ahathoor
  */
 public class Muotoilija {
 

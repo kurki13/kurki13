@@ -4,13 +4,11 @@
  */
 package debug.model;
 
-import debug.model.osasuoritukset.Laskarit;
+import debug.model.osasuoritukset.Osasuoritukset;
 import debug.ApplicationException;
 import debug.model.column.IntegerColumn;
 import debug.model.column.StringColumn;
 import debug.model.column.TimestampColumn;
-import debug.model.osasuoritukset.Harjoitustyot;
-import debug.model.osasuoritukset.Kokeet;
 import debug.model.util.Table;
 import java.sql.Timestamp;
 
@@ -21,10 +19,9 @@ import java.sql.Timestamp;
 public class Osallistuminen extends Table {
 
     private Kurssi kurssi; //kurssi johon tämä osallistuminen kuuluu
-    private Laskarit laskarit;
-    private Kokeet kokeet;
-    
-    private Harjoitustyot harjoitustyot;
+    private Osasuoritukset laskarit;
+    private Osasuoritukset kokeet;
+    private Osasuoritukset harjoitustyot;
     public static final StringColumn personid = new StringColumn("personid");
     public static final StringColumn kurssikoodi = new StringColumn("kurssikoodi"); //Foreign Key Kurssi
     public static final StringColumn lukukausi = new StringColumn("lukukausi"); //Foreign Key Kurssi
@@ -57,7 +54,6 @@ public class Osallistuminen extends Table {
     public static final TimestampColumn kypsyys_pvm = new TimestampColumn("kypsyys_pvm");
     public static final StringColumn tenttija = new StringColumn("tenttija");
     public static final StringColumn kielikoodi = new StringColumn("kielikoodi");
-    
     private String nimi;
 
     public void setNimi(String nimi) {
@@ -77,42 +73,41 @@ public class Osallistuminen extends Table {
     public Table getNewInstance() {
         return new Osallistuminen();
     }
-    
-    public void setKurssi(Kurssi kurssi){
-        this.kurssi=kurssi;
+
+    public void setKurssi(Kurssi kurssi) {
+        this.kurssi = kurssi;
     }
-    
-    public Laskarit getLaskarit() {
+
+    public Osasuoritukset getLaskarit() {
         if (kurssi == null) {
             throw new ApplicationException("Kurssi täytyy asettaa osallistumiselle sen luonnin jälkeen");
         }
         if (laskarit == null) {
-            laskarit = new Laskarit(this.kurssi, this);
+            laskarit = new Osasuoritukset(kurssi.getLaskaritehtava_lkm(), getLaskarisuoritukset(), kurssi.getLaskarikerta_lkm());
         }
         return laskarit;
     }
-    
-    public Harjoitustyot getHarjoitustyot() {
+
+    public Osasuoritukset getHarjoitustyot() {
         if (kurssi == null) {
             throw new ApplicationException("Kurssi täytyy asettaa osallistumiselle sen luonnin jälkeen");
         }
         if (harjoitustyot == null) {
-            harjoitustyot = new Harjoitustyot(this.kurssi, this);
+            harjoitustyot = new Osasuoritukset(kurssi.getMax_harjoitustyopisteet(), getHarjoitustyopisteet(), kurssi.getHarjoitustyo_lkm());
         }
         return harjoitustyot;
     }
-    
-    public Kokeet getKokeet() {
+
+    public Osasuoritukset getKokeet() {
         if (kurssi == null) {
             throw new ApplicationException("Kurssi täytyy asettaa osallistumiselle sen luonnin jälkeen");
         }
         if (kokeet == null) {
-            kokeet = new Kokeet(this.kurssi, this);
+            kokeet = new Osasuoritukset(kurssi.getMax_koepisteet(), getKoepisteet(), kurssi.getValikokeet_lkm());
         }
         return kokeet;
     }
-    
-    
+
     //<editor-fold defaultstate="collapsed" desc="getterit">
     public String getPersonid() {
         return getValue(Osallistuminen.personid);

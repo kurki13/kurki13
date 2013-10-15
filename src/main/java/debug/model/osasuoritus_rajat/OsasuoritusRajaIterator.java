@@ -1,4 +1,4 @@
-package debug.model;
+package debug.model.osasuoritus_rajat;
 
 import java.util.Iterator;
 import java.util.List;

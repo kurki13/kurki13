@@ -7,7 +7,8 @@ package debug.model.osasuoritukset;
 import debug.ApplicationException;
 
 /**
- *
+ * Tämä luokka näyttää Osallistuminen -olion yhden osasuorituksen. 
+ * Sitä käytetään Osasuoritukset -olion avulla.
  * @author mkctammi
  */
 public class Osasuoritus {

@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package debug.model;
+package debug.model.osasuoritus_rajat;
 
 import debug.model.osasuoritukset.Muotoilija;
 import java.util.ArrayList;

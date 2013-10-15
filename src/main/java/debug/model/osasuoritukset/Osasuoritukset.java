@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class Laskarit implements Iterable<Osasuoritus> {
+public class Osasuoritukset implements Iterable<Osasuoritus> {
 
     private List<Osasuoritus> laskarit;
     private int koko;
@@ -18,13 +18,11 @@ public class Laskarit implements Iterable<Osasuoritus> {
         return new OsasuoritusIterator(laskarit, koko);
     }
 
-    public Laskarit(Kurssi kurssi, Osallistuminen osallistuminen) {
-        koko = kurssi.getLaskarikerta_lkm();
-        String dbMax = kurssi.getLaskaritehtava_lkm();
-        String dbPisteet = osallistuminen.getLaskarisuoritukset();
+    public Osasuoritukset(String dbmax_pisteet, String dbpisteet, int aktiivisia) {
+        koko = aktiivisia;
         laskarit = new ArrayList();
-        int[] maxPisteet = Muotoilija.stringToIntArray(dbMax);
-        int[] pisteet = Muotoilija.stringToIntArray(dbPisteet);
+        int[] maxPisteet = Muotoilija.stringToIntArray(dbmax_pisteet);
+        int[] pisteet = Muotoilija.stringToIntArray(dbpisteet);
 
         //Luodaan jokaiselle mahdolliselle laskarille yksi olio
         for (int i = 0; i < Muotoilija.MAX_KOKO; i++) {

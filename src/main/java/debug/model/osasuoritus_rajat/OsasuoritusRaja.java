@@ -1,4 +1,4 @@
-package debug.model;
+package debug.model.osasuoritus_rajat;
 
 public class OsasuoritusRaja {
 

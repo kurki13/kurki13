@@ -4,10 +4,10 @@
  */
 package debug.model;
 
+import debug.model.osasuoritus_rajat.OsasuoritusRajat;
 import debug.model.column.DateColumn;
 import debug.model.column.IntegerColumn;
 import debug.model.column.StringColumn;
-import debug.model.osasuoritukset.Muotoilija;
 import debug.model.util.Table;
 import java.sql.Date;
 import java.util.ArrayList;
@@ -100,6 +100,10 @@ public class Kurssi extends Table {
         return new Kurssi();
     }
 
+    /**
+     * Palauttaa iteroituvan olion joka sisältää kurssin laskareiden pisterajat.
+     * @return 
+     */
     public OsasuoritusRajat getLaskariRajat() {
         List<OsasuoritusRajat> osasuorit = new ArrayList();
         if (laskariRajat == null)
