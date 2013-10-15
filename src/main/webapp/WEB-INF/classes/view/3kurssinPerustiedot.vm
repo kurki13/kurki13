@@ -8,120 +8,53 @@
 
 <h3>$bundle.getString("3coursebasics")</h3>
 
+#set($basics = {
+    $bundle.getString("laskuharjoituksia") : 
+        {"" : $valittuKurssi.harjoitustunnit, 
+         $bundle.getString("jpakollisia") : $valittuKurssi.pakolliset_laskaritehtava_lkm, 
+         $bundle.getString("lisapisteet") : $valittuKurssi.max_laskaripisteet
+        },
+    $bundle.getString("harjoitustoita") : 
+        {"" : $valittuKurssi.harjoitustyo_lkm, 
+         $bundle.getString("jpakollisia") : $valittuKurssi.pakolliset_harjoitustyo_lkm, 
+         $bundle.getString("lisapisteet") : $valittuKurssi.harjoitustyopisteet
+        },
+    $bundle.getString("kokeita") : 
+        {"" : $valittuKurssi.valikokeet_lkm, 
+         $bundle.getString("jpakollisia") : $valittuKurssi.pakolliset_koe_lkm
+        }
+    }
+)
+
 <form name="kurssinPerustiedot" action="" method=get class="form-inline">
-<table border="0">
-
-<tr>
-    <th>$bundle.getString("laskuharjoituksia"):</th>
-
-    #if ($jaassa)
-      <th><input type="text" class="form-control" style="width:50px"
-                value="$valittuKurssi.harjoitustunnit" readonly></th>
-    #else 
-       <th><input type="text" class="form-control" style="width:50px" name="lh_lkm" maxlength="2"
-            value="$valittuKurssi.harjoitustunnit"
-            onBlur="rangecheck(this,0,18)"></th>
+    #foreach($otsikko in $basics.keySet())
+        $otsikko:
+        #set($alaotsikot = $basics.get($otsikko))
+        #foreach($alaotsikko in $alaotsikot.keySet())
+                $alaotsikko
+                  <input type="text" class="form-control" style="width:50px"
+                      value="$alaotsikot.get($alaotsikko)" #if($jaassa) readonly #end></th>
+        #end
+        <br>
     #end
-
-    <th>$bundle.getString("jpakollisia")</th>
-
-    #if ($valittuKurssi.getTila() == "J")
-      <th><input type="text" class="form-control" style="width:50px"
-                value="$valittuKurssi.pakolliset_laskaritehtava_lkm" readonly></th>
-    #else 
-       <th><input type="text" class="form-control" style="width:50px" name="lh_pakollisia" maxlength="2"
-            value="$valittuKurssi.pakolliset_laskaritehtava_lkm"
-            onBlur="rangecheck(this,0,18)"></th>
-    #end
-
-    <th>$bundle.getString("lisapisteet")</th>
-
-    #if ($jaassa)
-      <th><input type="text" class="form-control" style="width:50px"
-                value="$valittuKurssi.max_laskaripisteet" readonly></th>
-    #else 
-       <th><input type="text" class="form-control" style="width:50px" name="lh_lisa" maxlength="2"
-            value="$valittuKurssi.max_laskaripisteet"
-            onBlur="rangecheck(this,0,18)"></th>
-    #end
-
-</tr>
-
-<tr>
-    <th>$bundle.getString("harjoitustoita"):</th>
-
-    #if ($jaassa)
-      <th><input type="text" class="form-control" style="width:50px"
-                value="$valittuKurssi.harjoitustyo_lkm" readonly></th>
-    #else 
-       <th><input type="text" class="form-control" style="width:50px" name="ht_lkm" maxlength="2"
-            value="$valittuKurssi.harjoitustyo_lkm"
-            onBlur="rangecheck(this,0,18)"></th>
-    #end
-
-    <th>$bundle.getString("jpakollisia")</th>
-
-    #if ($jaassa)
-      <th><input type="text" class="form-control" style="width:50px"
-                value="$valittuKurssi.pakolliset_harjoitustyo_lkm" readonly></th>
-    #else 
-       <th><input type="text" class="form-control" style="width:50px" name="koe_lkm" maxlength="2"
-            value="$valittuKurssi.pakolliset_harjoitustyo_lkm"
-            onBlur="rangecheck(this,0,18)"></th>
-    #end
-
-    <th>$bundle.getString("lisapisteet")</th>
-
-    #if ($jaassa)
-      <th><input type="text" class="form-control" style="width:50px"
-                value="$valittuKurssi.harjoitustyopisteet" readonly></th>
-    #else 
-       <th><input type="text" class="form-control" style="width:50px" name="koe_lkm" maxlength="2"
-            value="$valittuKurssi.harjoitustyopisteet"
-            onBlur="rangecheck(this,0,18)"></th>
-    #end
-
-</tr>
-
-<tr>
-    <th>$bundle.getString("kokeita"):</th>
-
-    #if ($jaassa)
-      <th><input type="text" class="form-control" style="width:50px"
-                value="$valittuKurssi.valikokeet_lkm" readonly></th>
-    #else 
-       <th><input type="text" class="form-control" style="width:50px" name="koe_lkm" maxlength="2"
-            value="$valittuKurssi.valikokeet_lkm"
-            onBlur="rangecheck(this,0,18)"></th>
-    #end
-
-    <th>$bundle.getString("jpakollisia")</th>
-
-    #if ($jaassa)
-      <th><input type="text" class="form-control" style="width:50px"
-                value="$valittuKurssi.pakolliset_koe_lkm" readonly></th>
-    #else 
-       <th><input type="text" class="form-control" style="width:50px" name="koe_lkm" maxlength="2"
-            value="$valittuKurssi.pakolliset_koe_lkm"
-            onBlur="rangecheck(this,0,18)"></th>
-    #end
-
-</tr>
-
-<th>
-<input type=button class="btn" value=$bundle.getString("tmuutokset") onClick="">
-</th>
-
-</table>
+    <input type=button class="btn" value=$bundle.getString("tmuutokset") onClick="">
 </form>
 
 <form name="kurssinPisteet" action="" method=get class="form-inline">
-<table border="0">
 
+#set($osasuoritusRajat = {
+    $bundle.getString("laskuharjoituksia") : $valittuKurssi.LaskariRajat,
+    $bundle.getString("harjoitustoita") : $valittuKurssi.HarjoitustyoRajat,
+    $bundle.getString("kokeita") : $valittuKurssi.KoeRajat
+    }
+)
+<table border="0">
+#foreach($rajatyyppi in $osasuoritusRajat.keySet())
 <tr>
-    <th>LH:</th>
+    <th>$rajatyyppi:</th>
     #set ($i = 1) ##Laskija
-    #foreach($raja in $valittuKurssi.LaskariRajat)
+    #set ($rajat = $osasuoritusRajat.get($rajatyyppi))
+    #foreach($raja in $rajat)
     <th>
        $i:
        <th>
@@ -137,6 +70,7 @@
     #if($i==10)<tr><th>#end ##Rivitys
     #end
 </tr>
+#end
 
 <th>
 <input type=button class="btn" value=$bundle.getString("tmuutokset") onClick="">

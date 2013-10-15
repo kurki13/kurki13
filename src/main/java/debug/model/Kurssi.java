@@ -19,7 +19,6 @@ import java.util.List;
  */
 public class Kurssi extends Table {
 
-
     public static final StringColumn kurssikoodi = new StringColumn("kurssikoodi"); //ID
     public static final StringColumn lukukausi = new StringColumn("lukukausi"); //ID
     public static final IntegerColumn lukuvuosi = new IntegerColumn("lukuvuosi"); //ID
@@ -56,7 +55,7 @@ public class Kurssi extends Table {
     public static final IntegerColumn min_harjoitustyopisteet_summa = new IntegerColumn("min_harjoitustyopisteet_summa");
     public static final StringColumn harjoitustyon_pisterajat = new StringColumn("harjoitustyon_pisterajat");
     public static final IntegerColumn harjoitustoiden_askelkoko = new IntegerColumn("harjoitustoiden_askelkoko");
-    public static final IntegerColumn valikokeet_lkm = new IntegerColumn("valikokeet_lkm");
+    public static final IntegerColumn valikokeet_lkm = new IntegerColumn("valikokeet_lkm"); //Välikokeet tässä tarkoittaa siis kaikkia kokeita yhteensä
     public static final IntegerColumn pakolliset_koe_lkm = new IntegerColumn("pakolliset_koe_lkm");
     public static final StringColumn max_koepisteet = new StringColumn("max_koepisteet");
     public static final StringColumn min_koepisteet = new StringColumn("min_koepisteet");
@@ -84,12 +83,10 @@ public class Kurssi extends Table {
     public static final IntegerColumn periodi = new IntegerColumn("periodi");
     public static final StringColumn kotisivu = new StringColumn("kotisivu");
     public static final IntegerColumn periodi2 = new IntegerColumn("periodi2");
-    
-
     OsasuoritusRajat laskariRajat;
     OsasuoritusRajat harjoitustyoRajat;
     OsasuoritusRajat koeRajat;
-    
+
     @Override
     public String getTableName() {
         return "kurssi";
@@ -102,13 +99,31 @@ public class Kurssi extends Table {
 
     /**
      * Palauttaa iteroituvan olion joka sisältää kurssin laskareiden pisterajat.
-     * @return 
+     *
+     * @return
      */
     public OsasuoritusRajat getLaskariRajat() {
         List<OsasuoritusRajat> osasuorit = new ArrayList();
-        if (laskariRajat == null)
-            laskariRajat = new OsasuoritusRajat(getHyvaksytty_laskarilasnaolo(),getLaskaritehtava_lkm(), getLaskarikerta_lkm());
+        if (laskariRajat == null) {
+            laskariRajat = new OsasuoritusRajat(getHyvaksytty_laskarilasnaolo(), getLaskaritehtava_lkm(), getLaskarikerta_lkm());
+        }
         return laskariRajat;
+    }
+
+    public OsasuoritusRajat getHarjoitustyoRajat() {
+        List<OsasuoritusRajat> osasuorit = new ArrayList();
+        if (harjoitustyoRajat == null) {
+            harjoitustyoRajat = new OsasuoritusRajat(getMin_harjoitustyopisteet (), getMax_harjoitustyopisteet(), getHarjoitustyo_lkm());
+        }
+        return harjoitustyoRajat;
+    }
+
+    public OsasuoritusRajat getKoeRajat() {
+        List<OsasuoritusRajat> osasuorit = new ArrayList();
+        if (koeRajat == null) {
+            koeRajat = new OsasuoritusRajat(getMin_koepisteet(), getMax_koepisteet(), getValikokeet_lkm());
+        }
+        return koeRajat;
     }
 
     /**
