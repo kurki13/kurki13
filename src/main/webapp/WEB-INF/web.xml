@@ -36,22 +36,6 @@
         <servlet-name>velocity</servlet-name>
         <url-pattern>*.vm</url-pattern>
     </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>velocity</servlet-name>
-        <url-pattern>*.js</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>velocity</servlet-name>
-        <url-pattern>*.html</url-pattern>
-    </servlet-mapping>
-    <servlet>
-        <servlet-name>index</servlet-name>
-        <servlet-class>kurki.servlet.Index</servlet-class>
-        <init-param>
-            <param-name>properties</param-name>
-            <param-value>/WEB-INF/velocity.properties</param-value>
-        </init-param>
-    </servlet>
     <session-config>
         <session-timeout>
             30

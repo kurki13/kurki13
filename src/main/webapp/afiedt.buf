@@ -1,2 +1,0 @@
-select kielikoodi from osallistuminen where kurssikoodi='581328' and lukuvuosi=2011 and lukukausi='S' and tyyppi='L'
-/
