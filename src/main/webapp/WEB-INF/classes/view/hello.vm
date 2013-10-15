@@ -106,6 +106,8 @@ Apulinkit testaukseen:
 
 </div>
 
-##avataan valittu sivu
-#parse ($session.getAttribute('selected_service_id'))
+##avataan valittu sivu jos palvelun id kelpaa
+#if($services.keySet().contains($session.getAttribute('selected_service_id')))
+    #parse ($session.getAttribute('selected_service_id'))
+#end
 
