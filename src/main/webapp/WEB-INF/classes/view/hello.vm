@@ -1,12 +1,16 @@
 ##Ensin tarkastetaan että kurssit on ladattu sessiomuuttujaan
-$sessioapuri.auta($request)
-
+$sessioapuri.lataa_kurssit($request)
 ##Asetetaan parametrit 
 #set($qs = $request.getQueryString())
 #if($qs)
     #set($params = $queryparser.split($qs))
 #end
-
+##Jos lokaali löytyy get-parametrista, vaihdetaan
+#if($params.get('locale'))
+    $session.setAttribute('selected_locale',$params.get('locale'))
+#end
+##Lokalisaatiobundlen asetus
+#set($bundle = $sessioapuri.bundle($request))
 
 ##jos on jo valittu kurssi
 #if($params.get('courseId'))

@@ -1,9 +1,5 @@
 <?xml version="1.0"?>
 <toolbox>
-    <tool scope="application">
-        <key>bundle</key>
-        <class>debug.util.LocalisationBundle</class>
-    </tool>
     
     <tool>
         <key>piippu</key>

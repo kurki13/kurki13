@@ -12,10 +12,18 @@ import java.util.ResourceBundle;
  * @author mkctammi
  */
 public class LocalisationBundle {
-    public static String getString(String request) {
-        return ResourceBundle.getBundle("localisationBundle", new Locale("fi")).getString(request);
+
+    private Locale locale = new Locale("fi");
+
+    public LocalisationBundle(Locale locale) {
+        this.locale = locale;
     }
-    public static ResourceBundle getBundle() {
-        return ResourceBundle.getBundle("localisationBundle", new Locale("fi"));
+
+    public String getString(String request) {
+        return ResourceBundle.getBundle("localisationBundle", locale).getString(request);
+    }
+
+    public ResourceBundle getBundle() {
+        return ResourceBundle.getBundle("localisationBundle", locale);
     }
 }

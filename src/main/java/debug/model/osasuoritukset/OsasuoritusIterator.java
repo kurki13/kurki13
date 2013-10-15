@@ -14,18 +14,18 @@ import java.util.List;
 public class OsasuoritusIterator implements Iterator<Osasuoritus> {
 
     int index = 0;
-    int koko;
+    int aktiivisia;
     List<Osasuoritus> osasuoritukset;
 
     public OsasuoritusIterator(List<Osasuoritus> osasuoritukset, int koko) {
         this.osasuoritukset = osasuoritukset;
-        this.koko = koko;
+        this.aktiivisia = koko;
     }
 
     @Override
     public boolean hasNext() {
         //Ei anneta käyttäjälle kuin aktiivinen osa laskareista käsiteltäväksi
-        return index < koko;
+        return index < aktiivisia;
     }
 
     @Override
