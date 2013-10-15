@@ -23,7 +23,12 @@
     <tool>
         <key>HenkiloKyselyt</key>
         <class>debug.model.SQLkyselyt.HenkiloKyselyt</class>
-    </tool>    
+    </tool>
+    
+    <tool>
+        <key>OpetusKyselyt</key>
+        <class>debug.model.SQLkyselyt.OpetusKyselyt</class>
+    </tool>      
     
     <tool>
         <key>queryparser</key>

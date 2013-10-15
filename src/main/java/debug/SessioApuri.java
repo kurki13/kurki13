@@ -13,6 +13,14 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
+ * Käytetyt session-muuttujat:
+ * selected_course_id = valitun kurssin id
+ * selected_course = valittu Kurssi
+ * selected_course_students = valitun kurssin opiskelijat
+ * selected_course_parts = valitun kurssin osasuoritukset
+ * selected_service_id = valittu toiminto
+ * filters = filtterit
+ * 
  * @author mkctammi
  */
 public class SessioApuri {

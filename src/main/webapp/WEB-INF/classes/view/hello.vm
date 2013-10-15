@@ -14,13 +14,13 @@ $sessioapuri.lataa_kurssit($request)
 
 ##jos on jo valittu kurssi
 #if($params.get('courseId'))
-    #if ($session.getAttribute('selected_course_id') != $params.get('courseId'))
-        kurssi vaihdettu<br>
+##    #if ($session.getAttribute('selected_course_id') != $params.get('courseId'))
+##        kurssi vaihdettu<br>
         $session.setAttribute('selected_course_id', $params.get('courseId'))
         $session.setAttribute('selected_course', $KurssiKyselyt.kurssiIDlla($session.getAttribute('selected_course_id')))
         $session.setAttribute('selected_course_students', $OpiskelijaKyselyt.kurssinOpiskelijat($session.getAttribute('selected_course')))
         $session.setAttribute('selected_course_parts', $OsallistuminenKyselyt.listaKurssinOsallistumisista($session.getAttribute('selected_course')))
-    #end
+##    #end
 #end
 
 ##jos on jo valittu kurssille haluttu toiminto
@@ -57,7 +57,7 @@ $sessioapuri.lataa_kurssit($request)
 <form action="" method=get class="form-inline">
     <select name="courseId" onChange="this.form.submit()" class="form-control form-inline" style="width:700px">
     #foreach($k in $session.getAttribute('user_courses'))
-        #if($session.getAttribute('selected_course_id') == $k.idString())
+        #if($session.getAttribute('selected_course_id') && $session.getAttribute('selected_course_id') == $k.idString())
             #if($k.getTila() == "J")
                 <option value=$k.idString() selected>* $k.listaString() *</option>
             #else
@@ -84,16 +84,13 @@ $sessioapuri.lataa_kurssit($request)
             <option value="" selected>-- $bundle.getString("valitse_toiminto") --</option>
         #end
         #foreach ($s in $services.entrySet())
-            #if($session.getAttribute('selected_service_id') == $s.key)
+            #if($session.getAttribute('selected_service_id') && $session.getAttribute('selected_service_id') == $s.key)
                 <option value=$s.key selected>$s.value</option>
             #else
                 <option value=$s.key>$s.value</option>
             #end
         #end
         </select>
-##        #set ($link = $session.getAttribute('selected_service_id'))
-##    <input type=button class="btn" value=select onClick="parent.location='$link'">
-    ##$link
     #end
 </form>
 

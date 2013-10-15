@@ -5,7 +5,7 @@
     <b>$bundle.getString("isosnimi"):</b>
     <input type="text" class="form-control form-inline" style="width:150px" name="filterSukunimi">
 
-##Alustetaan mappi joka pitää sisällään laskarikerrat
+##Alustetaan mappi joka pitää sisällään ryhmät
     #set ($ryhmat = {"" : ""})
 
 ##tähän ryhmien haku ja lisäys kerta-mappiin !!!

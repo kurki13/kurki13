@@ -1,13 +1,18 @@
-##Korvaa numero halutulla key:llä
-#set ($tyypit = {1 : $bundle.getString("Harjoitustyöpisteet") , 2 : $bundle.getString("Koepisteet") ,
+ #set($valittuKurssi = $KurssiKyselyt.kurssiIDlla($session.getAttribute('selected_course_id')))
+
+##Korvaa numero halutulla osoittella
+#set ($tyypit = {"laskarit.vm" : $bundle.getString("Laskuharjoituspisteet"), 1 : $bundle.getString("Harjoitustyöpisteet") , 2 : $bundle.getString("Koepisteet") ,
 3 : $bundle.getString("Arvosana") , 4 : $bundle.getString("Opintopisteet") , 5 : $bundle.getString("Suorituskieli")})
+
+#set ($kerrat = {"laskarit" : $valittuKurssi.laskarikerta_lkm, "harjoitustyot" : $valittuKurssi.harjoitustyo_lkm ,
+"kokeet" : $valittuKurssi.valikokeet_lkm})
 
 <h3>$bundle.getString("1entry")</h3>
 
 <form name="suoritteidenKirjaus" action="" method=get class="form-inline">
 
     <b>$bundle.getString("tyyppi"):</b>
-    <select name="type" onChange="this.form.submit()" class="form-control form-inline" style="width:250px">
+    <select name="type"  class="form-control form-inline" style="width:250px">
     #foreach($t in $tyypit.entrySet())
         #if($t.key == $params.get('type'))
         <option value=$t.key selected>$t.value</option>
@@ -15,37 +20,52 @@
         <option value=$t.key>$t.value</option>
         #end
     #end
+
     </select>
 ##valittu $params.get('type')
 
-##Alustetaan mappi joka pitää sisällään laskarikerrat
-    #set ($kerta = {"" : ""})
 
-##tähän laskarikertojen haku ja lisäys kerta-mappiin !!!
-##foreach($l in laskarikerrat)
-##    #set ($kerta = {laskarikerta : laskarikerta})
-##testitulosta
-##end
-
+#set($start = 1)
+#set($end = $valittuKurssi.laskarikerta_lkm)
+#set($laskarikerrat = [$start..$end])
 
     <b>$bundle.getString("kerta"):</b>
-    <select name="kerta" onChange="this.form.submit()" class="form-control form-inline" style="width:100px">
-    #foreach($k in $kerta.entrySet())
-        #if($k.key == $params.get('kerta'))
-        <option value=$k.key selected>$k.value</option>
+    <select name="kerta" class="form-control form-inline" style="width:100px">
+    #foreach($k in $laskarikerrat)
+        #if($k == $params.get('kerta'))
+        <option value=$k selected>$k</option>
         #else
-        <option value=$k.key>$k.value</option>
+        <option value=$k>$k</option>
         #end
     #end
     </select>
-##valittu $params.get('type')
+
+##nolla pois! -tka
+    <b>$bundle.getString("ryhma"):</b>
+    <select name="ryhma" class="form-control form-inline" style="width:100px">
+    #foreach($r in $OpetusKyselyt.opetusTiedot($valittuKurssi))
+        #if($r.ilmo_jnro == $params.get('ryhma'))
+        <option value=$r.ilmo_jnro selected>$r.ilmo_jnro</option>
+        #else
+        <option value=$r.ilmo_jnro>$r.ilmo_jnro</option>
+        #end
+    #end
+    </select>
+
 
     <b>$bundle.getString("opiskelijat"):</b>
-    <input type="text" class="form-control form-inline" style="width:150px" name="filter">
+    <input type="text" class="form-control form-inline" style="width:150px" name="opiskelijat">
 
-    <input type=submit class="btn" value=">>>" onClick=this.form.submit()">
-
+    <input type=submit class="btn" value=">>>">
 </form>
+
+#set ($filterit = [$params.get('type'), $params.get('kerta'), $params.get('ryhma'), $params.get('opiskelijat')])
+##$params.get('type') $params.get('kerta') $params.get('opiskelijat')
+
+$session.setAttribute("filters", $filterit)
+$session.getAttribute("filters")
+
+#parse ($params.get('type'))
 
 ##valittu $params.get('lisääTähänNimi')
 

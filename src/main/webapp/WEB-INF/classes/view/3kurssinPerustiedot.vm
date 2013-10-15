@@ -16,10 +16,10 @@
 
     #if ($jaassa)
       <th><input type="text" class="form-control" style="width:50px"
-                value="$valittuKurssi.getHarjoitustunnit()" readonly></th>
+                value="$valittuKurssi.harjoitustunnit" readonly></th>
     #else 
        <th><input type="text" class="form-control" style="width:50px" name="lh_lkm" maxlength="2"
-            value="$valittuKurssi.getHarjoitustunnit()"
+            value="$valittuKurssi.harjoitustunnit"
             onBlur="rangecheck(this,0,18)"></th>
     #end
 
@@ -27,10 +27,10 @@
 
     #if ($valittuKurssi.getTila() == "J")
       <th><input type="text" class="form-control" style="width:50px"
-                value="$valittuKurssi.getPakolliset_laskaritehtava_lkm()" readonly></th>
+                value="$valittuKurssi.pakolliset_laskaritehtava_lkm" readonly></th>
     #else 
        <th><input type="text" class="form-control" style="width:50px" name="lh_pakollisia" maxlength="2"
-            value="$valittuKurssi.getPakolliset_laskaritehtava_lkm()"
+            value="$valittuKurssi.pakolliset_laskaritehtava_lkm"
             onBlur="rangecheck(this,0,18)"></th>
     #end
 
@@ -38,10 +38,10 @@
 
     #if ($jaassa)
       <th><input type="text" class="form-control" style="width:50px"
-                value="$valittuKurssi.getMax_laskaripisteet()" readonly></th>
+                value="$valittuKurssi.max_laskaripisteet" readonly></th>
     #else 
        <th><input type="text" class="form-control" style="width:50px" name="lh_lisa" maxlength="2"
-            value="$valittuKurssi.getMax_laskaripisteet()"
+            value="$valittuKurssi.max_laskaripisteet"
             onBlur="rangecheck(this,0,18)"></th>
     #end
 
@@ -52,10 +52,10 @@
 
     #if ($jaassa)
       <th><input type="text" class="form-control" style="width:50px"
-                value="$valittuKurssi.getHarjoitustyo_lkm()" readonly></th>
+                value="$valittuKurssi.harjoitustyo_lkm" readonly></th>
     #else 
        <th><input type="text" class="form-control" style="width:50px" name="ht_lkm" maxlength="2"
-            value="$valittuKurssi.getHarjoitustyo_lkm()"
+            value="$valittuKurssi.harjoitustyo_lkm"
             onBlur="rangecheck(this,0,18)"></th>
     #end
 
@@ -63,10 +63,10 @@
 
     #if ($jaassa)
       <th><input type="text" class="form-control" style="width:50px"
-                value="$valittuKurssi.getPakolliset_harjoitustyo_lkm()" readonly></th>
+                value="$valittuKurssi.pakolliset_harjoitustyo_lkm" readonly></th>
     #else 
        <th><input type="text" class="form-control" style="width:50px" name="koe_lkm" maxlength="2"
-            value="$valittuKurssi.getPakolliset_harjoitustyo_lkm()"
+            value="$valittuKurssi.pakolliset_harjoitustyo_lkm"
             onBlur="rangecheck(this,0,18)"></th>
     #end
 
@@ -74,10 +74,10 @@
 
     #if ($jaassa)
       <th><input type="text" class="form-control" style="width:50px"
-                value="$valittuKurssi.getHarjoitustyopisteet()" readonly></th>
+                value="$valittuKurssi.harjoitustyopisteet" readonly></th>
     #else 
        <th><input type="text" class="form-control" style="width:50px" name="koe_lkm" maxlength="2"
-            value="$valittuKurssi.getHarjoitustyopisteet()"
+            value="$valittuKurssi.harjoitustyopisteet"
             onBlur="rangecheck(this,0,18)"></th>
     #end
 
@@ -88,10 +88,10 @@
 
     #if ($jaassa)
       <th><input type="text" class="form-control" style="width:50px"
-                value="$valittuKurssi.getValikokeet_lkm()" readonly></th>
+                value="$valittuKurssi.valikokeet_lkm" readonly></th>
     #else 
        <th><input type="text" class="form-control" style="width:50px" name="koe_lkm" maxlength="2"
-            value="$valittuKurssi.getValikokeet_lkm()"
+            value="$valittuKurssi.valikokeet_lkm"
             onBlur="rangecheck(this,0,18)"></th>
     #end
 
@@ -99,10 +99,10 @@
 
     #if ($jaassa)
       <th><input type="text" class="form-control" style="width:50px"
-                value="$valittuKurssi.getPakolliset_koe_lkm()" readonly></th>
+                value="$valittuKurssi.pakolliset_koe_lkm" readonly></th>
     #else 
        <th><input type="text" class="form-control" style="width:50px" name="koe_lkm" maxlength="2"
-            value="$valittuKurssi.getPakolliset_koe_lkm()"
+            value="$valittuKurssi.pakolliset_koe_lkm"
             onBlur="rangecheck(this,0,18)"></th>
     #end
 
