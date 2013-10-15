@@ -18,18 +18,40 @@ public class OsasuoritusRaja {
         return min;
     }
 
-    public void setMin(int min) {
+    public boolean setMin(int min) {
+        if (this.min == min) {
+            return false;
+        }
         this.min = min;
+        return true;
     }
 
-    public void setMax(int max) {
+    public boolean setMax(int max) {
+        if (this.max == max) {
+            return false;
+        }
         this.max = max;
+        return true;
+    }
+
+    public boolean setMin(String min) {
+        try {
+            return setMin(Integer.parseInt(min));
+        } catch (NumberFormatException ne) {
+            return false;
+        }
+    }
+
+    public boolean setMax(String max) {
+        try {
+            return setMax(Integer.parseInt(max));
+        } catch (NumberFormatException ne) {
+            return false;
+        }
     }
 
     @Override
     public String toString() {
         return "OsasuoritusRaja: min=" + min + ", max=" + max;
     }
-    
-    
 }

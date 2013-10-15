@@ -7,18 +7,40 @@
 #end
 
 <h3>$bundle.getString("3coursebasics")</h3>
-<pre>
-#foreach($i in [1..18])
-    #set($lhmax = "lh_${i}_max")
-    #set($lhmin = "lh_${i}_min")
-    #if($params.get($lhmax))
-        Laskareiden $i maksimiarvo lomakkeessa: $params.get($lhmax)
-    #end
-    #if($params.get($lhmin))
-        Laskareiden $i minimiarvo lomakkeessa: $params.get($lhmin)
+
+##Osasuoritustyyppien tiedot. Lista jonka alkioina on osasuoritustyypin nimi, 
+##lista sen osasuorituksista, ja lyhenne GET-parametria varten
+#set($osasuoritusTyypit = [
+    ["Laskuharjoitus", $valittuKurssi.laskariRajat, "lh"],
+    ["Harjoitustyö", $valittuKurssi.harjoitustyoRajat, "ht"],
+    ["Koe", $valittuKurssi.koeRajat, "koe"]
+]
+)
+
+##Tämä looppi käy läpi kaikki get-parametrit joilla voi vaihtaa kurssin osasuoritusten rajoja
+#foreach($rajaTyyppi in $osasuoritusTyypit)
+    #set ($rajanNimi = $rajaTyyppi.get(0))
+    #set ($rajat = $rajaTyyppi.get(1))
+    #set ($lomake_tunnus = $rajaTyyppi.get(2))
+    #set($i = 1)
+    #foreach($raja in $rajat)
+        #set($minParam = "${lomake_tunnus}_${i}_min")
+        #set($maxParam = "${lomake_tunnus}_${i}_max")
+        #set($min = $params.get($minParam))
+        #set($max = $params.get($maxParam))
+        #if($min)
+            #if($raja.setMin($min))
+            <pre>$rajanNimi nro $i:n minimiarvoksi asetettu $min</pre>
+            #end
+        #end
+        #if($max)
+            #if($raja.setMax($max))
+            <pre>$rajanNimi nro $i:n maksimimiarvoksis asetettu $max</pre>
+            #end
+        #end
+        #set($i = $i+1)
     #end
 #end
-</pre>
 
 ##Tässä määritellään säädettäville kentille otsikot, niiden arvot tietokantaoliosta, ja get -parametrien arvo
 #set($basics = {
@@ -57,49 +79,35 @@
         #end
         <br>
     #end
+    <br>    
     <input type=submit class="btn" value=$bundle.getString("tmuutokset") onClick="">
 </form>
 
 <form name="kurssinPisteet" action="" method=get class="form-inline">
 
-#set($osasuoritusRajat = {
-    $bundle.getString("laskuharjoituksia") : [$valittuKurssi.LaskariRajat, "lh"],
-    $bundle.getString("harjoitustoita") : [$valittuKurssi.HarjoitustyoRajat, "ht"],
-    $bundle.getString("kokeita") : [$valittuKurssi.KoeRajat, "koe"]
-    }
-)
-<table border="0">
-#foreach($rajatyyppi in $osasuoritusRajat.keySet())
-<tr>
-    <th>$rajatyyppi:</th>
+#foreach($rajaTyyppi in $osasuoritusTyypit)
+    
     #set ($i = 1) ##Laskija
-    #set ($rajat = $osasuoritusRajat.get($rajatyyppi).get(0))
-    #set ($lomake_tunnus = $osasuoritusRajat.get($rajatyyppi).get(1))
+    #set ($rajanNimi = $rajaTyyppi.get(0))
+    #set ($rajat = $rajaTyyppi.get(1))
+    #set ($lomake_tunnus = $rajaTyyppi.get(2))
+    <h3>$rajanNimi:</h3>
     #foreach($raja in $rajat)
-    <th>
        $i:
-       <th>
         <input type="text" class="form-control" style="width:50px" maxlength="2"
             name="${lomake_tunnus}_${i}_max" 
             value="$raja.max" ##Maksimipisteet
-            onBlur="rangecheck(this,0,18)"><br>
+            onBlur="rangecheck(this,0,18)">
         <input type="text" class="form-control" style="width:50px" maxlength="2"
             name="${lomake_tunnus}_${i}_min" 
             value="$raja.min" ##Hyväksymisraja
             onBlur="rangecheck(this,0,18)">
-       </th>
-    </th>
     #set($i = $i+1)
-    #if($i==10)<tr><th>#end ##Rivitys
     #end
-</tr>
 #end
-
-<th>
+<br><br>
 <input type=submit class="btn" value=$bundle.getString("tmuutokset") onClick="">
-</th>
 
-</table>
 </form>
 
 
