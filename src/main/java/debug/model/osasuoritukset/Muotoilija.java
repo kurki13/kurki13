@@ -4,7 +4,6 @@
  */
 package debug.model.osasuoritukset;
 
-import debug.model.osasuoritukset.Laskarit.Laskari;
 import java.util.Arrays;
 import java.util.List;
 
@@ -56,11 +55,11 @@ public class Muotoilija {
         return ret;
     }
 
-    public static String tietokantaString(Laskarit laskarit) {
+    public static String tietokantaString(Iterable<Osasuoritus> osasuoritukset) {
         int[] ints = Muotoilija.tyhjaTaulu();
         int i=0;
-        for (Laskari laskari : laskarit) {
-            ints[i] = laskari.getPisteet();
+        for (Osasuoritus osasuoritus : osasuoritukset) {
+            ints[i] = osasuoritus.getPisteet();
             i++;
         }
         return Muotoilija.intArrayToString(ints);
