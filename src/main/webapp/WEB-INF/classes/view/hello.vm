@@ -5,7 +5,7 @@ $sessioapuri.lataa_kurssit($request)
 #if($qs)
     #set($params = $queryparser.split($qs))
 #end
-$params
+##$params
 ##Jos lokaali löytyy get-parametrista, vaihdetaan
 #if($params.get('locale'))
     $session.setAttribute('selected_locale',$params.get('locale'))

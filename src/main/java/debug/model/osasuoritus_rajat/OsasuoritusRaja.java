@@ -1,5 +1,7 @@
 package debug.model.osasuoritus_rajat;
 
+import debug.model.osasuoritukset.Muotoilija;
+
 public class OsasuoritusRaja {
 
     int max;
@@ -19,7 +21,7 @@ public class OsasuoritusRaja {
     }
 
     public boolean setMin(int min) {
-        if (this.min == min) {
+        if (this.min == min || this.max < min) {
             return false;
         }
         this.min = min;
@@ -27,7 +29,7 @@ public class OsasuoritusRaja {
     }
 
     public boolean setMax(int max) {
-        if (this.max == max) {
+        if (this.max == max || max > Muotoilija.MAX_PISTE) {
             return false;
         }
         this.max = max;

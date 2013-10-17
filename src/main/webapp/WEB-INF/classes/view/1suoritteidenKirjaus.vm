@@ -1,11 +1,14 @@
 #set($valittuKurssi = $KurssiKyselyt.kurssiIDlla($session.getAttribute('selected_course_id')))
 
-##Tässä määritellään pudotusvalikon valinnat ja sivujen osoitteet, joihin ohjataan käyttäjä
-#set ($tyypit = {"laskarit.vm" : $bundle.getString("Laskuharjoituspisteet"), 1 : $bundle.getString("Harjoitustyöpisteet") , 2 : $bundle.getString("Koepisteet") ,
-3 : $bundle.getString("Arvosana") , 4 : $bundle.getString("Opintopisteet") , 5 : $bundle.getString("Suorituskieli")})
+#set ($kerrat = {"laskarit" : $valittuKurssi.laskarikerta_lkm, "ht" : $valittuKurssi.harjoitustyo_lkm ,
+"koe" : $valittuKurssi.valikokeet_lkm})
 
-#set ($kerrat = {"laskarit" : $valittuKurssi.laskarikerta_lkm, "harjoitustyot" : $valittuKurssi.harjoitustyo_lkm ,
-"kokeet" : $valittuKurssi.valikokeet_lkm})
+$kerrat.entrySet()
+
+##Tässä määritellään pudotusvalikon valinnat
+##karsi pois vielä ne joita ei käytetä, jos kurssilla ei ole esim laskareita -tka
+#set ($tyypit = {"laskarit" : $bundle.getString("Laskuharjoituspisteet"), "ht" : $bundle.getString("Harjoitustyöpisteet") , "koe" : $bundle.getString("Koepisteet") ,
+"arvosana" : $bundle.getString("Arvosana") , "op" : $bundle.getString("Opintopisteet") , "kieli" : $bundle.getString("Suorituskieli")})
 
 <h3>$bundle.getString("1entry")</h3>
 
@@ -40,7 +43,7 @@
     </select>
 
 ##haetaan kurssin ryhmät, ja jätetään pois mystinen ryhmä "0"
-#set ($ryhmat = [])
+#set ($ryhmat = ["kaikki"])
 #foreach($r in $OpetusKyselyt.opetusTiedot($valittuKurssi))
     #if ($r.ilmo_jnro != 0)
 ##lisätään tulostus muuttujaan 'var' jota ei käytetä missään, muuten velocity haluaa tulostaa "true" kun listaan lisäys on onnistunut
@@ -69,13 +72,9 @@
 
 ##lisätään formin lähettämät filteröintiehdot 'filterit' listaan
 #set ($filterit = [$params.get('type'), $params.get('kerta'), $params.get('ryhma'), $params.get('opiskelijat')])
+$filterit
 
-##lisätään filteröintiehdot session-muuttujaan, jotta ne pysyvät muistissa
-$session.setAttribute("filters", $filterit)
-
-filterit: $session.getAttribute("filters")
-
-#parse ($params.get('type'))
+#parse ($params.get('suoritteet'))
 
 ##valittu $params.get('lisääTähänNimi')
 

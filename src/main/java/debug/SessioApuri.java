@@ -19,7 +19,6 @@ import javax.servlet.http.HttpSession;
  * selected_course_students = valitun kurssin opiskelijat
  * selected_course_parts = valitun kurssin osasuoritukset
  * selected_service_id = valittu toiminto
- * filters = filtterit
  * 
  * @author mkctammi
  */
