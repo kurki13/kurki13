@@ -21,7 +21,6 @@ public class OsasuoritusTest {
         assertEquals(pisteet, instance.getPisteet());
     }
     
-    @Test(expected=debug.ApplicationException.class)
     public void testSetSuurempiKuinMax() {
         int pisteet = 100;
         Osasuoritus instance = new Osasuoritus(0, 10);
@@ -29,7 +28,6 @@ public class OsasuoritusTest {
         assertEquals(0, instance.getPisteet());
     }
 
-    @Test(expected=debug.ApplicationException.class)
     public void testSetNegat() {
         int pisteet = -1;
         Osasuoritus instance = new Osasuoritus(0, 10);

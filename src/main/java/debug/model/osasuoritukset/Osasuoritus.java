@@ -31,12 +31,12 @@ public class Osasuoritus {
         return pisteet;
     }
 
-    public void setPisteet(int pisteet) {
-        if (pisteet > maxPisteet || pisteet < 0) {
-            throw new ApplicationException("Pisteiden täytyy olla välillä 0-" + maxPisteet
-                    + " saatiin " + pisteet);
+    public boolean setPisteet(int pisteet) {
+        if (pisteet > maxPisteet || pisteet < 0 || pisteet > Muotoilija.MAX_PISTE) {
+            return false;
         }
         this.pisteet = pisteet;
+        return true;
     }
 
     public void poistaPisteet() {
