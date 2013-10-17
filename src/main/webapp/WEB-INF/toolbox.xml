@@ -39,4 +39,14 @@
         <key>sessioapuri</key>
         <class>debug.SessioApuri</class>
     </tool>
+    
+    <tool>
+        <key>jaadytys</key>
+        <class>debug.toiminnot.Jaadytys</class>
+    </tool>
+    
+    <tool>
+        <key>SQLProseduurit</key>
+        <class>debug.model.SQLkyselyt.SQLProseduurit</class>
+    </tool>
 </toolbox>

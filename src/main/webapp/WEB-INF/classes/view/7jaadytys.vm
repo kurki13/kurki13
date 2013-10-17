@@ -1,4 +1,31 @@
 <h3>$bundle.getString("7freezing")</h3>
 
+##set ($kurkimail = "<a href=\"mailto:tktl-kurki@cs.helsinki.fi\">tktl-kurki@cs.helsinki.fi</a>")
+
+#if ($params.get('info')) 
+$params.get('info')
+#end
+
+<form name="jaadytys" method=get>
+
+#if (!$jaadytys.tarkastaSuoritusPvm($selected_course))
+    <input type="hidden" name="info" value="$bundle.getString("jaadytystaEiVoiSuorittaaPvm")">
+
+#elseif (!$selected_course.Omistaja)
+    <input type="hidden" name="info" value="$bundle.getString("jaadytystaEiVoiSuorittaa")">
+
+#elseif ($SQLProseduurit.suoritaJaadytys($selected_course) == "OK")
+    <input type="hidden" name="info" value="$bundle.getString("jaadytysInfo")">
+
+#else 
+    ##$kurkimail
+    #set ($ilmoitus = "$bundle.getString('jaadytysEpaonnistui'). $bundle.getString('jaadytysEpaonnistuiInfo') ")
+    <input type="hidden" name="info" value="$ilmoitus">
+    
+#end
+
+<input type="submit" value="$bundle.getString("jaadyta")" class="btn">
+</form>
+
 </body>
 <html>
