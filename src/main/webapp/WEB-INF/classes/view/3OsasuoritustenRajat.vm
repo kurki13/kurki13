@@ -1,3 +1,4 @@
+#parse("hello.vm")
 #set($valittuKurssi = $session.getAttribute('selected_course'))
 
 #if ($valittuKurssi.getTila() == "J")
@@ -5,8 +6,6 @@
 #else
     #set ($jaassa = false)
 #end
-
-<h3>$bundle.getString("3coursebasics")</h3>
 
 ##Osasuoritustyyppien tiedot. Lista jonka alkioina on osasuoritustyypin nimi, 
 ##lista sen osasuorituksista, ja lyhenne GET-parametria varten
@@ -42,47 +41,6 @@
     #end
 #end
 
-##Tässä määritellään säädettäville kentille otsikot, niiden arvot tietokantaoliosta, ja get -parametrien arvo
-#set($basics = {
-    $bundle.getString("laskuharjoituksia") : 
-        {""                               : [$valittuKurssi.harjoitustunnit, "lh"], 
-         $bundle.getString("jpakollisia") : [$valittuKurssi.pakolliset_laskaritehtava_lkm, "lh_p"], 
-         $bundle.getString("lisapisteet") : [$valittuKurssi.max_laskaripisteet, "lh_lp"]
-        },
-    $bundle.getString("harjoitustoita") : 
-        {""                               : [$valittuKurssi.harjoitustyo_lkm, "ht"], 
-         $bundle.getString("jpakollisia") : [$valittuKurssi.pakolliset_harjoitustyo_lkm, "ht_p" ], 
-         $bundle.getString("lisapisteet") : [$valittuKurssi.harjoitustyopisteet, "ht_lp"]
-        },
-    $bundle.getString("kokeita") : 
-        {""                               : [$valittuKurssi.valikokeet_lkm, "koe"], 
-         $bundle.getString("jpakollisia") : [$valittuKurssi.pakolliset_koe_lkm, "koe_p"]
-        }
-    }
-)
-
-#set($i = 0)
-<form name="kurssinPerustiedot" action="" method=get class="form-inline">
-    #foreach($otsikko in $basics.keySet()) ##Otsikko tässä joko Laskuharjoitukset, Harjoitustyöt tai Kokeet
-        $otsikko:
-        #set($alaotsikot = $basics.get($otsikko)) ##Alaotsikot tarkoittavat eri alikenttiä, esimerkiksi harjoitustöiden määrä ja pakollisten määrä
-        #foreach($alaotsikko in $alaotsikot.keySet())
-                $alaotsikko
-                #set($lomakeNimi = $alaotsikot.get($alaotsikko).get(1))
-                #set($perustietoArvo = $alaotsikot.get($alaotsikko).get(0))
-                    <input type="text" 
-                    class="form-control" 
-                    style="width:50px"
-                    name="$lomakeNimi" ##get-parametria varten, "lh", "lh_p" jne...
-                    value="$perustietoArvo" ##arvo valitun kurssin oliolta
-                    #if($jaassa) readonly #end></th>
-        #end
-        <br>
-    #end
-    <br>    
-    <input type=submit class="btn" value=$bundle.getString("tmuutokset") onClick="">
-</form>
-
 <form name="kurssinPisteet" action="" method=get class="form-inline">
 
 #foreach($rajaTyyppi in $osasuoritusTyypit)
@@ -93,8 +51,8 @@
     #set ($lomake_tunnus = $rajaTyyppi.get(2))
     <h3>$rajanNimi:</h3>
     #foreach($raja in $rajat)
-        <div style="display:inline">
-           <span style="height:100px;vertical-align:middle;display:inline-block">$i:</span>
+        <div style="display:inline-block">
+           <b style="position:relative;top:-43px;">$i:</b>
            <div style="width:55px;display:inline-block">
                 <center>
                     <small>max</small>
@@ -115,9 +73,6 @@
 #end
 <br><br>
 <input type=submit class="btn" value=$bundle.getString("tmuutokset") onClick="">
-
 </form>
-
-
 </body>
 <html>
