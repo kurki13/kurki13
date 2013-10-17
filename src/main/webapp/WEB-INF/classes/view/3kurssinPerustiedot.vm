@@ -7,6 +7,56 @@
     #set ($jaassa = false)
 #end
 
+#set($Integer = 0)
+
+<pre>
+##Laskareiden get-parametrit
+    #set($lh = $params.get('lh'))
+    #set($lh_p = $params.get('lh_p'))
+    #set($lh_lp = $params.get('lh_lp'))
+    #if($lh)
+        $valittuKurssi.setHarjoitustunnit($Integer.parseInt($lh))
+        Laskuharjoitusten määräksi asetettu $lh
+    #end
+    #if($lh_p)
+        $valittuKurssi.setPakolliset_laskaritehtava_lkm($Integer.parseInt($lh_p))
+        Laskuharjoitusten pakollisten laskareiden arvoksi asetettu $lh_p
+    #end
+    #if($lh_lp)
+        $valittuKurssi.setMax_laskaripisteet($Integer.parseInt($lh_lp))
+        Laskuharjoitusten maksimipisteiden arvoksi asetettu $lh_lp
+    #end
+
+##Harjoitustöiden get-parametrit
+    #set($ht = $params.get('ht'))
+    #set($ht_p = $params.get('ht_p'))
+    #set($ht_lp = $params.get('ht_lp'))
+    #if($ht)
+        $valittuKurssi.setHarjoitustyo_lkm($Integer.parseInt($ht))
+        Harjoitustöiden määräksi asetettu $ht
+    #end
+    #if($ht_p)
+        $valittuKurssi.setPakolliset_harjoitustyo_lkm($Integer.parseInt($ht_p))
+        Harjoitustöiden pakollisten töiden arvoksi asetettu $ht_p
+    #end
+    #if($ht_lp)
+        $valittuKurssi.setHarjoitustyopisteet($Integer.parseInt($ht_lp))
+        Harjoitustöiden maksimipisteiden arvoksi asetettu $ht_lp
+    #end
+
+##Kokeiden get-parametrit
+    #set($koe = $params.get('koe'))
+    #set($koe_p = $params.get('koe_p'))
+    #if($koe)
+        $valittuKurssi.setValikokeet_lkm($Integer.parseInt($koe))
+        Kokeiden määräksi asetettu $koe
+    #end
+    #if($koe_p)
+        $valittuKurssi.setPakolliset_koe_lkm($Integer.parseInt($koe_p))
+        Pakollisten kokeiden määräksi asetettu $koe_p
+    #end
+</pre>
+
 ##Tässä määritellään säädettäville kentille otsikot, niiden arvot tietokantaoliosta, ja get -parametrien arvo
 #set($basics = {
     $bundle.getString("laskuharjoituksia") : [

@@ -83,6 +83,46 @@ public class Kurssi extends Table {
     public static final IntegerColumn periodi = new IntegerColumn("periodi");
     public static final StringColumn kotisivu = new StringColumn("kotisivu");
     public static final IntegerColumn periodi2 = new IntegerColumn("periodi2");
+
+
+    //<editor-fold defaultstate="collapsed" desc="setters">
+    
+    public  void setHarjoitustunnit(Integer harjoitustunnit) {
+        this.setValue(Kurssi.harjoitustunnit, harjoitustunnit);
+    }
+
+    public  void setPakolliset_laskaritehtava_lkm(Integer pakolliset_laskaritehtava_lkm) {
+         this.setValue(Kurssi.pakolliset_laskaritehtava_lkm, pakolliset_laskaritehtava_lkm);
+    }
+
+
+    public  void setMax_laskaripisteet(Integer max_laskaripisteet) {
+         this.setValue(Kurssi.max_laskaripisteet, max_laskaripisteet);
+    }
+
+
+    public  void setHarjoitustyo_lkm(Integer aHarjoitustyo_lkm) {
+         this.setValue(Kurssi.harjoitustyo_lkm,aHarjoitustyo_lkm);
+    }
+
+    public  void setPakolliset_harjoitustyo_lkm(Integer aPakolliset_harjoitustyo_lkm) {
+         this.setValue(Kurssi.pakolliset_harjoitustyo_lkm,aPakolliset_harjoitustyo_lkm);
+    }
+
+    public  void setHarjoitustyopisteet(Integer aHarjoitustyopisteet) {
+         this.setValue(Kurssi.harjoitustyopisteet,aHarjoitustyopisteet);
+    }
+
+
+    public  void setValikokeet_lkm(Integer aValikokeet_lkm) {
+         this.setValue(Kurssi.valikokeet_lkm,aValikokeet_lkm);
+    }
+
+    public  void setPakolliset_koe_lkm(Integer aPakolliset_koe_lkm) {
+         this.setValue(Kurssi.pakolliset_koe_lkm,aPakolliset_koe_lkm);
+    }
+    //</editor-fold>
+    
     OsasuoritusRajat laskariRajat;
     OsasuoritusRajat harjoitustyoRajat;
     OsasuoritusRajat koeRajat;
@@ -113,7 +153,7 @@ public class Kurssi extends Table {
     public OsasuoritusRajat getHarjoitustyoRajat() {
         List<OsasuoritusRajat> osasuorit = new ArrayList();
         if (harjoitustyoRajat == null) {
-            harjoitustyoRajat = new OsasuoritusRajat(getMin_harjoitustyopisteet (), getMax_harjoitustyopisteet(), getHarjoitustyo_lkm());
+            harjoitustyoRajat = new OsasuoritusRajat(getMin_harjoitustyopisteet(), getMax_harjoitustyopisteet(), getHarjoitustyo_lkm());
         }
         return harjoitustyoRajat;
     }

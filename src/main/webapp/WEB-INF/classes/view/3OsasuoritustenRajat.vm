@@ -59,11 +59,15 @@
                     <input type="text" class="form-control" style="width:50px" maxlength="2"
                         name="${lomake_tunnus}_${i}_max" 
                         value="$raja.max" ##Maksimipisteet
-                        onBlur="rangecheck(this,0,18)">
+                        onBlur="rangecheck(this,0,18)"
+                        #if($jaassa)readonly#end
+                        >
                     <input type="text" class="form-control" style="width:50px" maxlength="2"
                         name="${lomake_tunnus}_${i}_min" 
                         value="$raja.min" ##Hyväksymisraja
-                        onBlur="rangecheck(this,0,18)">
+                        onBlur="rangecheck(this,0,18)"
+                        #if($jaassa)readonly#end
+                        >
                     <small>min</small>
                 </center>
            </div>
