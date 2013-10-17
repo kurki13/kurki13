@@ -1,3 +1,5 @@
+#set($valittuKurssi = $KurssiKyselyt.kurssiIDlla($session.getAttribute('selected_course_id')))
+
 <h3>$bundle.getString("2participants")</h3>
 
 <form name="osallistujatiedot" action="" method=get class="form-inline">
@@ -5,22 +7,22 @@
     <b>$bundle.getString("isosnimi"):</b>
     <input type="text" class="form-control form-inline" style="width:150px" name="filterSukunimi">
 
-##Alustetaan mappi joka pitää sisällään ryhmät
-    #set ($ryhmat = {"" : ""})
-
-##tähän ryhmien haku ja lisäys kerta-mappiin !!!
-##foreach($r in $ryhmat)
-##    #set ($ryhma = {ryhma : ryhma})
-##testitulosta
-##end
+##haetaan kurssin ryhmät, ja jätetään pois mystinen ryhmä "0"
+#set ($ryhmat = [])
+#foreach($r in $OpetusKyselyt.opetusTiedot($valittuKurssi))
+    #if ($r.ilmo_jnro != 0)
+##lisätään tulostus muuttujaan 'var' jota ei käytetä missään, muuten velocity haluaa tulostaa "true" kun listaan lisäys on onnistunut
+        #set ($var = $ryhmat.add($r.ilmo_jnro))
+    #end
+#end
 
     <b>$bundle.getString("ryhma"):</b>
-    <select name="ryhma" onChange="this.form.submit()" class="form-control form-inline" style="width:100px">
-    #foreach($r in $ryhmat.entrySet())
-        #if($r.key == $params.get('ryhma'))
-        <option value=$r.key selected>$r.value</option>
+    <select name="ryhma" class="form-control form-inline" style="width:100px">
+    #foreach($r in $ryhmat)
+        #if($r == $params.get('ryhma'))
+        <option value=$r selected>$r</option>
         #else
-        <option value=$r.key>$r.value</option>
+        <option value=$r>$r</option>
         #end
     #end
     </select>
@@ -32,7 +34,7 @@
     #set ($tyypit = {1 : $bundle.getString("tiedot") , 2 : $bundle.getString("haelisatop") ,
     3 : $bundle.getString("haepalop")})
 
-    <select name="toiminto" onChange="this.form.submit()" class="form-control form-inline" style="width:350px">
+    <select name="toiminto" class="form-control form-inline" style="width:350px">
     #if (!$params.get('toiminto'))
         <option value="" selected>-- $bundle.getString("valitse_toiminto") --</option>
     #end
@@ -45,7 +47,7 @@
     #end
     </select>
 
-    <input type=submit class="btn" value=">>>" onClick="this.form.submit()">
+    <input type=submit class="btn" value=">>>">
 </form>
 
 ##valittu $params.get('lisääTähänNimi')

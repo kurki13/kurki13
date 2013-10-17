@@ -1,6 +1,6 @@
- #set($valittuKurssi = $KurssiKyselyt.kurssiIDlla($session.getAttribute('selected_course_id')))
+#set($valittuKurssi = $KurssiKyselyt.kurssiIDlla($session.getAttribute('selected_course_id')))
 
-##Korvaa numero halutulla osoittella
+##Tässä määritellään pudotusvalikon valinnat ja sivujen osoitteet, joihin ohjataan käyttäjä
 #set ($tyypit = {"laskarit.vm" : $bundle.getString("Laskuharjoituspisteet"), 1 : $bundle.getString("Harjoitustyöpisteet") , 2 : $bundle.getString("Koepisteet") ,
 3 : $bundle.getString("Arvosana") , 4 : $bundle.getString("Opintopisteet") , 5 : $bundle.getString("Suorituskieli")})
 
@@ -22,9 +22,8 @@
     #end
 
     </select>
-##valittu $params.get('type')
 
-
+##tallennetaan listaan kuinka monta laskarikertaa kurssilla on
 #set($start = 1)
 #set($end = $valittuKurssi.laskarikerta_lkm)
 #set($laskarikerrat = [$start..$end])
@@ -40,14 +39,22 @@
     #end
     </select>
 
-##nolla pois! -tka
+##haetaan kurssin ryhmät, ja jätetään pois mystinen ryhmä "0"
+#set ($ryhmat = [])
+#foreach($r in $OpetusKyselyt.opetusTiedot($valittuKurssi))
+    #if ($r.ilmo_jnro != 0)
+##lisätään tulostus muuttujaan 'var' jota ei käytetä missään, muuten velocity haluaa tulostaa "true" kun listaan lisäys on onnistunut
+        #set ($var = $ryhmat.add($r.ilmo_jnro))
+    #end
+#end
+
     <b>$bundle.getString("ryhma"):</b>
     <select name="ryhma" class="form-control form-inline" style="width:100px">
-    #foreach($r in $OpetusKyselyt.opetusTiedot($valittuKurssi))
-        #if($r.ilmo_jnro == $params.get('ryhma'))
-        <option value=$r.ilmo_jnro selected>$r.ilmo_jnro</option>
+    #foreach($r in $ryhmat)
+        #if($r == $params.get('ryhma'))
+        <option value=$r selected>$r</option>
         #else
-        <option value=$r.ilmo_jnro>$r.ilmo_jnro</option>
+        <option value=$r>$r</option>
         #end
     #end
     </select>
@@ -57,13 +64,16 @@
     <input type="text" class="form-control form-inline" style="width:150px" name="opiskelijat">
 
     <input type=submit class="btn" value=">>>">
+
 </form>
 
+##lisätään formin lähettämät filteröintiehdot 'filterit' listaan
 #set ($filterit = [$params.get('type'), $params.get('kerta'), $params.get('ryhma'), $params.get('opiskelijat')])
-##$params.get('type') $params.get('kerta') $params.get('opiskelijat')
 
+##lisätään filteröintiehdot session-muuttujaan, jotta ne pysyvät muistissa
 $session.setAttribute("filters", $filterit)
-$session.getAttribute("filters")
+
+filterit: $session.getAttribute("filters")
 
 #parse ($params.get('type'))
 
