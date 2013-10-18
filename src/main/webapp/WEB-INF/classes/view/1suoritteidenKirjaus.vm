@@ -3,44 +3,80 @@
 #set ($kerrat = {"laskarit" : $valittuKurssi.laskarikerta_lkm, "ht" : $valittuKurssi.harjoitustyo_lkm ,
 "koe" : $valittuKurssi.valikokeet_lkm})
 
-$kerrat.entrySet()
-
 ##Tässä määritellään pudotusvalikon valinnat
-##karsi pois vielä ne joita ei käytetä, jos kurssilla ei ole esim laskareita -tka
 #set ($tyypit = {"laskarit" : $bundle.getString("Laskuharjoituspisteet"), "ht" : $bundle.getString("Harjoitustyöpisteet") , "koe" : $bundle.getString("Koepisteet") ,
 "arvosana" : $bundle.getString("Arvosana") , "op" : $bundle.getString("Opintopisteet") , "kieli" : $bundle.getString("Suorituskieli")})
+
+##poistetaan kurssilla käyttämättömät osasuoritukset mapista
+#if ($kerrat.get("laskarit") == 0)
+    #set ($v = $tyypit.remove("laskarit"))
+#end
+#if ($kerrat.get("ht") == 0)
+    #set ($v = $tyypit.remove("ht"))
+#end
+#if ($kerrat.get("koe") == 0)
+    #set ($v = $tyypit.remove("koe"))
+#end
 
 <h3>$bundle.getString("1entry")</h3>
 
 <form name="suoritteidenKirjaus" action="" method=get class="form-inline">
 
     <b>$bundle.getString("tyyppi"):</b>
-    <select name="type"  class="form-control form-inline" style="width:250px">
+    <select name="type" onChange="osasuorituskerrat(this.selectedIndex)"  class="form-control form-inline" style="width:250px">
+        <option value="" selected>--- Valitse ---</option>
     #foreach($t in $tyypit.entrySet())
-        #if($t.key == $params.get('type'))
-        <option value=$t.key selected>$t.value</option>
-        #else
         <option value=$t.key>$t.value</option>
-        #end
     #end
 
     </select>
-
-##tallennetaan listaan kuinka monta laskarikertaa kurssilla on
-#set($start = 1)
-#set($end = $valittuKurssi.laskarikerta_lkm)
-#set($laskarikerrat = [$start..$end])
 
     <b>$bundle.getString("kerta"):</b>
-    <select name="kerta" class="form-control form-inline" style="width:100px">
-    #foreach($k in $laskarikerrat)
-        #if($k == $params.get('kerta'))
-        <option value=$k selected>$k</option>
-        #else
-        <option value=$k>$k</option>
-        #end
-    #end
+    <select name="kerta" onClick="this.options[this.options.selectedIndex].value" class="form-control form-inline" style="width:100px">
     </select>
+
+##vaihdetaan kerta-valikkoa lennosta, kun tyyppiä on vaihdettu
+##tätä voisi vielä kehittää eteenpäin niin, että "kerta"-select valikko ei ole näkyvissä
+##kun arvosanat, opintopisteet tai suorituskieli-valinta on valittu
+<script type="text/javascript">
+    var kerratlista=document.suoritteidenKirjaus.kerta
+
+    var laskarit = "${kerrat.get("laskarit")}"
+    var ht = "${kerrat.get("ht")}"
+    var koe = "${kerrat.get("koe")}"
+
+    var osaSuor=new Array()
+    osaSuor[0] = [laskarit]
+    osaSuor[1] = [ht]
+    osaSuor[2] = [koe]
+
+    var apuInt = 1;
+    var apuArray = new Array()
+    var koko = "${tyypit.size()}"
+
+    var kerrat=new Array()
+    kerrat[0]=""
+    for (i=0; i<koko; i++){
+        if (osaSuor[i] != 0) {
+            for (a=0; a<osaSuor[i]; a++){
+                apuArray[a] = a+1
+            }
+            kerrat[apuInt]=apuArray
+            apuInt++
+            var apuArray = new Array()
+        }
+    }
+
+    apuArray[1] = [99]
+
+    function osasuorituskerrat(tyyppi){
+        kerratlista.options.length=0
+        if (tyyppi>0){
+            for (i=0; i<kerrat[tyyppi].length; i++)
+                kerratlista.options[kerratlista.options.length]=new Option(kerrat[tyyppi][i])
+            }
+        }
+</script>
 
 ##haetaan kurssin ryhmät, ja jätetään pois mystinen ryhmä "0"
 #set ($ryhmat = ["kaikki"])
