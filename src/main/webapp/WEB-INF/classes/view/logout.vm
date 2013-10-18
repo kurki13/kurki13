@@ -1,0 +1,3 @@
+$session.invalidate()
+Session has been reset
+<a href="hello.vm">Start anew</a>

@@ -2,7 +2,13 @@
 $sessioapuri.auta($request)
 ##Lokalisaatiobundlen asetus
 #set($bundle = $sessioapuri.bundle($request))
-
+##Parametrit käytettäviksi
+#set($qs = $request.getQueryString())
+#if($qs)
+    #set($params = $queryparser.split($qs))
+#end
+##Tähän voi asettaa yleishyödyllistä matskua
+#set($valittuKurssi = $session.getAttribute('selected_course'))
 
 <html>
 
@@ -22,10 +28,16 @@ $sessioapuri.auta($request)
 </head>
 
 <body>
-<pre>$session.getAttribute("error")</pre>
+
+##Mahdollisen virheen tulostus
+#if($session.getAttribute("error"))
+    <pre>$session.getAttribute("error")</pre>
+#end
+
 <h4>Logged in as: $request.getRemoteUser()</h4>
 <a href="?locale=en"><img src="images/liput/gb.png"></a>
 <a href="?locale=fi"><img src="images/liput/fi.png"></a>
+<a href="logout.vm">Logout</a>
 
 <div>
 <form action="" method=get class="form-inline">
@@ -52,7 +64,7 @@ $sessioapuri.auta($request)
 "3kurssinPerustiedot.vm" : "Kurssin perustietojen muutokset" , "4listat.vm" : "Listat" , "5arvostelu.vm" : "Arvostelu" ,
 "6tuloslistat.vm" : "Tuloslistat" , "7jaadytys.vm" : "Kurssin jäädytys"})
 
-    #if ($session.getAttribute('selected_course_id'))
+    #if ($session.getAttribute('selected_course'))
         <select name="serviceId" onChange="this.form.submit()" class="form-control form-inline" style="width:300px">
         #if (!$session.getAttribute('selected_service_id'))
             <option value="" selected>-- $bundle.getString("valitse_toiminto") --</option>

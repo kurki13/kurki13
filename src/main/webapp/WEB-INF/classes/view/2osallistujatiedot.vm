@@ -1,5 +1,3 @@
-#set($valittuKurssi = $KurssiKyselyt.kurssiIDlla($session.getAttribute('selected_course_id')))
-
 <h3>$bundle.getString("2participants")</h3>
 
 <form name="osallistujatiedot" action="" method=get class="form-inline">

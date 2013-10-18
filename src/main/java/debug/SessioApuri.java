@@ -14,6 +14,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -24,17 +25,19 @@ import javax.servlet.http.HttpSession;
 
 public class SessioApuri {
 
-    final static String KurssiLista = "user_courses";
-    final static String ValittuKurssi = "selected_course";
-    final static String Toiminto = "selected_service_id";
-    final static String LokaaliTunnus = "selected_locale";
-    final static String KurssinOpiskelijat = "selected_course_students";
-    final static String KurssinOsallistumiset = "selected_course_parts";
-    final static String Virhe = "error";
+    //Sessiomuuttujien avaimet
+    public final static String KurssiLista = "user_courses";
+    public final static String ValittuKurssi = "selected_course";
+    public final static String ValitunKurssinId = "selected_course_id";
+    public final static String Toiminto = "selected_service_id";
+    public final static String LokaaliTunnus = "selected_locale";
+    public final static String KurssinOpiskelijat = "selected_course_students";
+    public final static String KurssinOsallistumiset = "selected_course_parts";
+    public final static String Virhe = "error";
     //GET -Parametrien avaimet
-    final static String KurssiGet = "courseId";
-    final static String LokaaliGet = "locale";
-    final static String ToimintoGet = "serviceId";
+    public final static String KurssiGet = "courseId";
+    public final static String LokaaliGet = "locale";
+    public final static String ToimintoGet = "serviceId";
 
     /**
      * Ladataan kurssilistat sessiomuuttujaan courses_loaded, jos ei ole jo
@@ -79,7 +82,6 @@ public class SessioApuri {
             lataaKurssinOpiskelijat(session, valittuKurssi);
             lataaKurssinOsallistumiset(session, valittuKurssi);
         }
-
     }
 
     private static void lataaKurssinOpiskelijat(HttpSession session, Kurssi valittuKurssi) {
@@ -125,6 +127,7 @@ public class SessioApuri {
             session.setAttribute(LokaaliTunnus, params.get(LokaaliGet));
         }
         if (params.containsKey(KurssiGet)) {
+            session.setAttribute(ValitunKurssinId, params.get(KurssiGet));
             session.setAttribute(ValittuKurssi,
                     etsiKurssiListasta((List<Kurssi>) session.getAttribute(KurssiLista),
                     params.get(KurssiGet), session));

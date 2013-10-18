@@ -1,5 +1,3 @@
-#set($valittuKurssi = $session.getAttribute('selected_course'))
-#parse("hello.vm")
 
 #if ($valittuKurssi.getTila() == "J")
     #set ($jaassa = true)
