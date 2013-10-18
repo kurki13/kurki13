@@ -1,34 +1,7 @@
 ##Ensin tarkastetaan että kurssit on ladattu sessiomuuttujaan
-$sessioapuri.lataa_kurssit($request)
-##Asetetaan parametrit 
-#set($qs = $request.getQueryString())
-#if($qs)
-    #set($params = $queryparser.split($qs))
-#end
-##$params
-##Jos lokaali löytyy get-parametrista, vaihdetaan
-#if($params.get('locale'))
-    $session.setAttribute('selected_locale',$params.get('locale'))
-#end
+$sessioapuri.auta($request)
 ##Lokalisaatiobundlen asetus
 #set($bundle = $sessioapuri.bundle($request))
-
-##jos on jo valittu kurssi
-#if($params.get('courseId'))
-##    #if ($session.getAttribute('selected_course_id') != $params.get('courseId'))
-##        kurssi vaihdettu<br>
-        $session.setAttribute('selected_course_id', $params.get('courseId'))
-        $session.setAttribute('selected_course', $KurssiKyselyt.kurssiIDlla($session.getAttribute('selected_course_id')))
-        $session.setAttribute('selected_course_students', $OpiskelijaKyselyt.kurssinOpiskelijat($session.getAttribute('selected_course')))
-        $session.setAttribute('selected_course_parts', $OsallistuminenKyselyt.listaKurssinOsallistumisista($session.getAttribute('selected_course')))
-##    #end
-#end
-
-##jos on jo valittu kurssille haluttu toiminto
-#if($params.get('serviceId'))
-    $session.setAttribute('selected_service_id', $params.get('serviceId'))
-#end
-
 
 
 <html>
@@ -49,7 +22,7 @@ $sessioapuri.lataa_kurssit($request)
 </head>
 
 <body>
-
+<pre>$session.getAttribute("error")</pre>
 <h4>Logged in as: $request.getRemoteUser()</h4>
 <a href="?locale=en"><img src="images/liput/gb.png"></a>
 <a href="?locale=fi"><img src="images/liput/fi.png"></a>
