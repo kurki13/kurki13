@@ -1,7 +1,9 @@
 /nbproject/private/
 /target/
+derby.log
 /apache-tomcat-7.0.42/logs/
 /apache-tomcat-7.0.42/work/
+/testikanta/
 apache-tomcat-7.0.42/conf/Catalina/localhost/kurki13.xml
 apache-tomcat-7.0.42/conf/.*
 
