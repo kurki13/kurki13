@@ -139,7 +139,6 @@ public class SessioApuri {
     private static Kurssi etsiKurssiListasta(List<Kurssi> kurssit, String id, HttpSession session) {
         String kurssikoodi, tyyppi, lukukausi;
         int lukuvuosi, kurssi_nro;
-        System.out.println("ZZZZZZZZZZZZZZZZZZZZZZZZ");
         try {
             kurssikoodi = id.split("\\.")[0];
             lukukausi = id.split("\\.")[1];
