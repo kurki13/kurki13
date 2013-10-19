@@ -55,6 +55,8 @@
     #end
 </pre>
 
+<pre>$valittuKurssi</pre>
+
 ##Tässä määritellään säädettäville kentille otsikot, niiden arvot tietokantaoliosta, ja get -parametrien arvo
 #set($basics = {
     $bundle.getString("laskuharjoituksia") : [

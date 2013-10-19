@@ -13,18 +13,18 @@ import debug.ApplicationException;
  */
 public class Osasuoritus {
 
-    public int pisteet;
-    public int maxPisteet;
+    private int pisteet;
+    private int maxPisteet;
 
     public Osasuoritus(int pisteet, int maxPisteet) {
-        this.pisteet = pisteet;
-        this.maxPisteet = maxPisteet;
         if (pisteet > maxPisteet) {
             pisteet = maxPisteet;
         }
         if (pisteet < 0) {
             pisteet = Muotoilija.EMPTY;
         }
+        this.pisteet = pisteet;
+        this.maxPisteet = maxPisteet;
     }
 
     public int getPisteet() {

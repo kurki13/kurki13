@@ -17,19 +17,43 @@ public class OsasuoritusRajat implements Iterable<OsasuoritusRaja> {
 
     private List<OsasuoritusRaja> osasuoritusrajat = new ArrayList();
     private int aktiivisia;
-    
+
     @Override
     public Iterator<OsasuoritusRaja> iterator() {
         return new OsasuoritusRajaIterator(osasuoritusrajat, aktiivisia);
     }
-    
+
+    public String maxArvotTietokantamuodossa() {
+        int[] maxs = Muotoilija.tyhjaTaulu();
+        int i = 0;
+        for (OsasuoritusRaja osasuoritusRaja : osasuoritusrajat) {
+            maxs[i] = osasuoritusRaja.getMax();
+            i++;
+        }
+        return Muotoilija.intArrayToString(maxs);
+    }
+
+    public String minArvotTietokantamuodossa() {
+        int[] mins = Muotoilija.tyhjaTaulu();
+        int i = 0;
+        for (OsasuoritusRaja osasuoritusRaja : osasuoritusrajat) {
+            mins[i] = osasuoritusRaja.getMin();
+            i++;
+        }
+        return Muotoilija.intArrayToString(mins);
+    }
+
+    //TODO: Is prepared for nulls?
     public OsasuoritusRajat(String minstring, String maxstring, int aktiivisia) {
         this.aktiivisia = aktiivisia;
         int[] mins = Muotoilija.stringToIntArray(minstring);
         int[] max = Muotoilija.stringToIntArray(maxstring);
         for (int i = 0; i < Muotoilija.MAX_KOKO; i++) {
-            osasuoritusrajat.add(new OsasuoritusRaja(mins[i], max[i]));
+            try {
+                osasuoritusrajat.add(new OsasuoritusRaja(mins[i], max[i]));
+            } catch (IndexOutOfBoundsException ie) {
+                osasuoritusrajat.add(new OsasuoritusRaja(Muotoilija.EMPTY, Muotoilija.EMPTY));
+            }
         }
     }
-
 }

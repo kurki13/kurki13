@@ -6,25 +6,35 @@ import java.util.List;
 
 public class Osasuoritukset implements Iterable<Osasuoritus> {
 
-    private List<Osasuoritus> laskarit;
+    private List<Osasuoritus> osasuoritukset;
     private int koko;
     
 
 
     @Override
     public Iterator<Osasuoritus> iterator() {
-        return new OsasuoritusIterator(laskarit, koko);
+        return new OsasuoritusIterator(osasuoritukset, koko);
+    }
+    
+    public String pisteetTietokantamuodossa() {
+        int[] suoritukset = Muotoilija.tyhjaTaulu();
+        int i=0;
+        for (Osasuoritus osasuoritus : osasuoritukset) {
+            suoritukset[i] = osasuoritus.getPisteet();
+            i++;
+        }
+        return Muotoilija.intArrayToString(suoritukset);
     }
 
     public Osasuoritukset(String dbmax_pisteet, String dbpisteet, int aktiivisia) {
         koko = aktiivisia;
-        laskarit = new ArrayList();
+        osasuoritukset = new ArrayList();
         int[] maxPisteet = Muotoilija.stringToIntArray(dbmax_pisteet);
         int[] pisteet = Muotoilija.stringToIntArray(dbpisteet);
 
         //Luodaan jokaiselle mahdolliselle laskarille yksi olio
         for (int i = 0; i < Muotoilija.MAX_KOKO; i++) {
-            laskarit.add(new Osasuoritus(pisteet[i], maxPisteet[i]));
+            osasuoritukset.add(new Osasuoritus(pisteet[i], maxPisteet[i]));
         }
     }
     

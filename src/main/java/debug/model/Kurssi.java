@@ -8,6 +8,8 @@ import debug.model.osasuoritus_rajat.OsasuoritusRajat;
 import debug.model.column.DateColumn;
 import debug.model.column.IntegerColumn;
 import debug.model.column.StringColumn;
+import debug.model.osasuoritukset.Muotoilija;
+import debug.model.osasuoritus_rajat.OsasuoritusRaja;
 import debug.model.util.Table;
 import java.sql.Date;
 import java.util.ArrayList;
@@ -137,13 +139,7 @@ public class Kurssi extends Table {
         return new Kurssi();
     }
 
-    /**
-     * Palauttaa iteroituvan olion joka sisältää kurssin laskareiden pisterajat.
-     *
-     * @return
-     */
     public OsasuoritusRajat getLaskariRajat() {
-        List<OsasuoritusRajat> osasuorit = new ArrayList();
         if (laskariRajat == null) {
             laskariRajat = new OsasuoritusRajat(getHyvaksytty_laskarilasnaolo(), getLaskaritehtava_lkm(), getLaskarikerta_lkm());
         }
@@ -151,7 +147,6 @@ public class Kurssi extends Table {
     }
 
     public OsasuoritusRajat getHarjoitustyoRajat() {
-        List<OsasuoritusRajat> osasuorit = new ArrayList();
         if (harjoitustyoRajat == null) {
             harjoitustyoRajat = new OsasuoritusRajat(getMin_harjoitustyopisteet(), getMax_harjoitustyopisteet(), getHarjoitustyo_lkm());
         }
@@ -159,11 +154,26 @@ public class Kurssi extends Table {
     }
 
     public OsasuoritusRajat getKoeRajat() {
-        List<OsasuoritusRajat> osasuorit = new ArrayList();
         if (koeRajat == null) {
             koeRajat = new OsasuoritusRajat(getMin_koepisteet(), getMax_koepisteet(), getValikokeet_lkm());
         }
         return koeRajat;
+    }
+    
+    /**
+     * Valmistaa kurssin tallennusta varten. Kurssin osasuoritusten rajat on tulkittu apuolioiksi, joten ne
+     * täytyy ennen tallennusta muuttaa takaisin tietokannassa olevaan muotoon.
+     */
+    public void update() {
+        //laskarirajat muutetaan
+        this.setValue(Kurssi.hyvaksytty_laskarilasnaolo, laskariRajat.minArvotTietokantamuodossa());
+        this.setValue(Kurssi.laskaritehtava_lkm, laskariRajat.maxArvotTietokantamuodossa());
+        //htrajat vastaavasti
+        this.setValue(Kurssi.min_harjoitustyopisteet, harjoitustyoRajat.minArvotTietokantamuodossa());
+        this.setValue(Kurssi.max_harjoitustyopisteet, harjoitustyoRajat.maxArvotTietokantamuodossa());
+        //koerajat vastaavasti
+        this.setValue(Kurssi.min_koepisteet, koeRajat.minArvotTietokantamuodossa());
+        this.setValue(Kurssi.max_koepisteet, koeRajat.maxArvotTietokantamuodossa());
     }
 
     /**

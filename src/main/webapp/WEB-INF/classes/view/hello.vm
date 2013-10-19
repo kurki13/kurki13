@@ -61,7 +61,7 @@ $sessioapuri.auta($request)
 
 ##Lisätään key:ksi sivun osoite, sivut joilla on vain numero key:nä ei vie vielä mihinkään!
 #set ($services = {"1suoritteidenKirjaus.vm" : "Suoritteiden kirjaus" , "2osallistujatiedot.vm" : "Osallistujatietojen muutokset" ,
-"3kurssinPerustiedot.vm" : "Kurssin perustietojen muutokset" , "4listat.vm" : "Listat" , "5arvostelu.vm" : "Arvostelu" ,
+"3kurssinPerustiedot.vm" : "Kurssin perustietojen muutokset" , "3OsasuoritustenRajat.vm" : "Osasuoritusten rajojen muutokset" , "4listat.vm" : "Listat" , "5arvostelu.vm" : "Arvostelu" ,
 "6tuloslistat.vm" : "Tuloslistat" , "7jaadytys.vm" : "Kurssin jäädytys"})
 
     #if ($session.getAttribute('selected_course'))

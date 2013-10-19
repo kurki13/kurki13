@@ -64,21 +64,4 @@ public class MuotoilijaTest {
         int[] result = Muotoilija.tyhjaTaulu();
         assertArrayEquals(expResult, result);
     }
-
-    @Test
-    public void testTietokantaString() {
-        String max = "10,??,??,??,??-??,??,??,??,??-??,??,??,??,??-??,??,??";
-        String done = "5,??,??,??,??-??,??,??,??,??-??,??,??,??,??-??,??,??";
-        
-        
-        Kurssi k = new Kurssi();
-        k.setValue(Kurssi.laskarikerta_lkm, 10);
-        k.setValue(Kurssi.laskaritehtava_lkm, max);
-        Osallistuminen os = new Osallistuminen();
-        os.setKurssi(k);
-        os.setValue(Osallistuminen.laskarisuoritukset, done);
-        String expResult = done;
-        String result = Muotoilija.tietokantaString(os.getLaskarit());
-        assertEquals(expResult, result);
-    }
 }

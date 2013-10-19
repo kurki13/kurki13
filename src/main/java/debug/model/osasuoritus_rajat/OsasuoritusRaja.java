@@ -4,8 +4,8 @@ import debug.model.osasuoritukset.Muotoilija;
 
 public class OsasuoritusRaja {
 
-    int max;
-    int min;
+    private int max;
+    private int min;
 
     public OsasuoritusRaja(int min, int max) {
         this.min = min;

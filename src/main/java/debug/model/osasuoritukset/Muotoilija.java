@@ -54,16 +54,6 @@ public class Muotoilija {
         return ret;
     }
 
-    public static String tietokantaString(Iterable<Osasuoritus> osasuoritukset) {
-        int[] ints = Muotoilija.tyhjaTaulu();
-        int i=0;
-        for (Osasuoritus osasuoritus : osasuoritukset) {
-            ints[i] = osasuoritus.getPisteet();
-            i++;
-        }
-        return Muotoilija.intArrayToString(ints);
-    }
-
     public static int[] tyhjaTaulu() {
         int[] ints = new int[MAX_KOKO];
         Arrays.fill(ints, EMPTY);
