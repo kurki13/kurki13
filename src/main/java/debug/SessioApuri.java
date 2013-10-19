@@ -151,6 +151,7 @@ public class SessioApuri {
         }
         for (Kurssi kurssi : kurssit) {
             if (kurssi.getKurssikoodi().equals(kurssikoodi)
+                    && kurssi.getLukukausi().equals(lukukausi)
                     && kurssi.getLukuvuosi() == lukuvuosi
                     && kurssi.getTyyppi().equals(tyyppi)
                     && kurssi.getKurssi_nro() == kurssi_nro) {
