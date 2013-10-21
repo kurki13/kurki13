@@ -29,8 +29,8 @@
     <input type="text" class="form-control form-inline" style="width:150px" name="filterOpnro">
 
 ##Korvaa numero halutulla key:llä
-    #set ($tyypit = {1 : $bundle.getString("tiedot") , 2 : $bundle.getString("haelisatop") ,
-    3 : $bundle.getString("haepalop")})
+    #set ($tyypit = {"listaus" : $bundle.getString("tiedot") , "lisaa" : $bundle.getString("haelisatop") ,
+    "palaut" : $bundle.getString("haepalop")})
 
     <select name="toiminto" class="form-control form-inline" style="width:350px">
     #if (!$params.get('toiminto'))
@@ -48,7 +48,12 @@
     <input type=submit class="btn" value=">>>">
 </form>
 
-##valittu $params.get('lisääTähänNimi')
+
+
+#if($params.get('toiminto')) ##tiedot
+    #set($vmfile = "osallistujat_${params.get('toiminto')}.vm")
+    #parse ($vmfile)
+#end
 
 </body>
 <html>

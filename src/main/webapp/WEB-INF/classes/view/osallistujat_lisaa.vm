@@ -1,0 +1,42 @@
+<table class="table table-condensed table-bordered" style="max-width:1000px">
+  <caption>
+   Opiskelijoita valittu 50
+  </caption>
+  <tr>
+    <th> Nimi (syntymäpäivä) </th>
+    <th> OpNro </th>
+    <th> Ryhmä </th>
+    <th> Ilmoita kurssille </th>
+  </tr>     
+
+   <tr>
+    <td>
+      <b><a href="mailto:EMAIL">NIMI</a></b>
+    </td>
+    <td>
+      <center><tt>HETU</tt></center>
+    </td>
+    <td>
+      <center>
+      <form action="index" name="addForm49" method="post" class="inline" style="margin:0;display:inline;">
+	<select name="group" class="form-control form-inline" style="width:70px">
+          <option>99</option>
+          <option>98</option>
+          <option>1</option>
+        </select>
+         <input type="hidden" name="TS" value="1382353286431">
+         <input type="hidden" name="ssn" value="013573003">
+         <input type="hidden" name="doAdd" value="013573003">
+      </form>
+      </center>
+    </td>
+    <td>
+      <center>
+      <form action="index" method="post" class="inline" style="margin:0;display:inline;" onSubmit="return false">
+         <input type="button" value="lisää" class="btn btn-success btn-sm"
+                onClick="document.addForm49.submit()">
+      </form>
+      </center>
+    </td>
+  </tr>    
+  </table>

@@ -1,0 +1,35 @@
+
+<table class="table table-condensed table-bordered" style="max-width:1000px">
+  <caption>
+   Opiskelijoita valittu $i
+  </caption>
+  <tr>
+    <th> Nimi (syntymäpäivä) </th>
+    <th> OpNro </th>
+    <th> Ryhmä </th>
+    <th> Palauta kurssille </th>
+  </tr>
+ 
+  
+  <tr>
+    <td>
+      <b><a href="mailto:">NIMI</a></b>
+    </td>
+    <td>
+      <center><tt>HETU</tt>
+    </td>
+    <td >
+      <center>99</center>
+    </td>
+    <td>
+      <center><input type="checkbox" name="rtn_0"></center>
+    </td>
+  </tr>    
+  <tr>
+    <th colspan="4">
+      <input type="hidden" name="TS" value="RANDOMVALUE?">
+      <center><input type="submit" class="btn btn-success" name="doReturn" value="PALAUTA"></center>
+    </th>
+  </tr>
+  </table>
+</form>

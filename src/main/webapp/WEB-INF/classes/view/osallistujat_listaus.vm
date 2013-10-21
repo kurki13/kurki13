@@ -1,0 +1,72 @@
+#if($valittuKurssi)
+    #set($osallistumiset = $OsallistuminenKyselyt.osallistumisetKurssilla($valittuKurssi))
+#end
+
+<table class="table table-condensed table-bordered" style="max-width:1000px">
+
+  <tr>
+    <th> Nimi (syntymäpäivä) </th>
+    <th> OpNro </th>
+    <th> Ryhmä </th>
+    <th> Suor. </th>
+    <th> Poista kurssilta </th>
+    <th> Näytä tiedot </th>
+  </tr>
+
+#set($i = 0)
+#foreach($osallis in $osallistumiset)
+  <tr>
+    <td>
+      <b><a href="mailto:"EMAL"">$osallis.nimi</a></b>
+    </td>
+
+    <td>
+       <center><tt>$osallis.hetu</tt></center>
+    </td>
+
+    <td>
+      <center>
+  	<select name="grp_0" class="form-control form-inline" style="width:70px">
+              	  <option selected>$osallis.ryhma_nro</option>
+                	  <option>__</option>
+                	  <option>__</option>
+                  </select>
+        </center>
+    </td>
+
+    <td>
+        <center> "S" </center>
+    </td>
+
+    <td>
+        <center><input type="checkbox" name="rmv_0"></center>
+    </td>
+    <td>
+      <center><input type="button" class="btn btn-primary"" name="submitEditRequest" value="tiedot"
+             onClick="doEditRequest('0')"></center>
+    </td>
+  </tr>
+#set($i = $i +1)
+#end
+
+#if($i == 0)
+$bundle.getString("opeivastannut")
+#else
+<p> Opiskelijoita: $i </p>
+
+  <tr>
+    <th colspan="6">
+      <input type="hidden" name="doSaveAll" value="ok">
+      <center><input type="submit" class="btn btn-success" value="$bundle.getString("tallenMuutoksetIso")"></center>
+    </th>
+  </tr>
+
+</table>
+</form>
+<form action="index" name="doEditReq" method="get" onSubmit="return false;">
+  <input type="hidden" name="TS" value="${TS}">
+  <input type="hidden" name="sid" value="">
+  <input type="hidden" name="doEdit" value="tiedot" class="submitb">
+</form>
+ 
+#end
