@@ -22,7 +22,7 @@ import java.util.List;
 public class OsallistuminenKyselyt {
 
     public static List<Osallistuminen> osallistumisetKurssilla(Kurssi kurssi) throws SQLException {
-        String query = "SELECT os.*, op.etunimi, op.sukunimi \n"
+        String query = "SELECT os.*, op.etunimi, op.sukunimi, op.sahkopostiosoite \n"
                 + "FROM osallistuminen os, opiskelija op \n"
                 + "WHERE os.hetu = op.hetu \n"
                 + "AND os.kurssikoodi = ? \n"
@@ -50,6 +50,7 @@ public class OsallistuminenKyselyt {
             String etunimi = rs.getString("etunimi");
             String sukunimi = rs.getString("sukunimi");
             add.setNimi(etunimi + " " + sukunimi);
+            add.setEmail(rs.getString("sahkopostiosoite"));
         }
         
         for (Osallistuminen osallistuminen : osallistumiset) {

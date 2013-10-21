@@ -8,7 +8,7 @@
     #if($valittuKurssi)
         #set ($osallistumiset = $OsallistuminenKyselyt.osallistumisetKurssilla($valittuKurssi))
         #foreach ($osallistuminen in $osallistumiset)
-            <li> $osallistuminen.hetu $osallistuminen.nimi: 
+            <li> $osallistuminen.hetu $osallistuminen.nimi:
             #foreach ($laskari in $osallistuminen.laskarit)
                 #if($laskari.pisteet == -1)
                     X,

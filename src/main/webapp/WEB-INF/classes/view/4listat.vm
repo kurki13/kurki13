@@ -1,4 +1,17 @@
 <h3>$bundle.getString("4checklist")</h3>
 
+#if($session.getAttribute('selected_course_id'))
+    #set ($valittuKurssi = $KurssiKyselyt.kurssiIDlla($session.getAttribute('selected_course_id')))
+    Valittu kurssi: $valittuKurssi.listaString() <br>
+    <ul>  
+    #if($valittuKurssi)
+        #set ($osallistumiset = $OsallistuminenKyselyt.osallistumisetKurssilla($valittuKurssi))
+        #foreach ($osallistuminen in $osallistumiset)
+            <li> $osallistuminen.nimi $osallistuminen.email
+        #end
+    #end
+    </ul>
+#end
+
 </body>
-<html>
+</html>
