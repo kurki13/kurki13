@@ -42,6 +42,9 @@ $sessioapuri.auta($request)
 <div>
 <form action="" method=get class="form-inline">
     <select name="courseId" onChange="this.form.submit()" class="form-control form-inline" style="width:700px">
+    #if (!$session.getAttribute('selected_course_id'))
+            <option value="" selected>-- $bundle.getString("valitseKurssi") --</option>
+    #end
     #foreach($k in $session.getAttribute('user_courses'))
         #if($session.getAttribute('selected_course_id') && $session.getAttribute('selected_course_id') == $k.idString())
             #if($k.getTila() == "J")
