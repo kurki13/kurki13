@@ -20,24 +20,26 @@ import java.util.logging.Logger;
  */
 public abstract class Table {
 
+    private final List<Column> columns;
+    private final List<Column> idColumns;
+    
     /**
      * Palauttaa tämän taulun nimen kannassa
      * @return 
      */
     public abstract String getTableName();
 
-    /**
-     * Listaa kaikki tämän Table -olennon Column -tyyppiset kentät ja palauttaa ne.
-     * @return 
-     */
-    public final List<Column> getColumns() {
+    public Table() {
         Field[] fields = this.getClass().getFields();
-        ArrayList<Column> columns = new ArrayList();
+        columns = new ArrayList();
+        idColumns = new ArrayList();
         for (Field field : fields) {
             if (Column.class.isAssignableFrom(field.getType())) {
                 try {
                     Column column = (Column) field.get(new StringColumn(""));
                     columns.add(column);
+                    if (column.isId())
+                        idColumns.add(column);
                 } catch (IllegalArgumentException ex) {
                     Logger.getLogger(Kurssi.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (IllegalAccessException ex) {
@@ -45,8 +47,24 @@ public abstract class Table {
                 }
             }
         }
+    }
+
+    /**
+     * Palauttaa tämän taulun kaikki sarakkeet.
+     * @return 
+     */
+    public final List<Column> getColumns() {
         return columns;
     }
+
+    /**
+     * Palauttaa tämän taulun kaikki IDsarakkeet.
+     * @return 
+     */
+    public List<Column> getIdColumns() {
+        return idColumns;
+    }
+    
 
     /**
      * Tämän funktion tulee palauttaa Table -luokkaa perivän luokan uuden instanssin.

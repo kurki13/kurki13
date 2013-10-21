@@ -14,6 +14,10 @@ public class StringColumn extends Column<String> {
     public StringColumn(String columnName) {
         super(columnName);
     }
+
+    public StringColumn(String columnName, boolean isId) {
+        super(columnName, isId);
+    }
     @Override
     public Class getType() {
         return String.class;

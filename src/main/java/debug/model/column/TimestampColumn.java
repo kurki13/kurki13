@@ -16,6 +16,10 @@ public class TimestampColumn extends Column<Timestamp> {
     public TimestampColumn(String columnName) {
         super(columnName);
     }
+
+    public TimestampColumn(String columnName, boolean isId) {
+        super(columnName, isId);
+    }
     
     @Override
     public Class getType() {

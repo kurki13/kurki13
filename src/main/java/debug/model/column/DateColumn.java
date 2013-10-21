@@ -17,6 +17,12 @@ public class DateColumn extends Column<Date> {
         super(columnName);
     }
 
+    public DateColumn(String columnName, boolean isId) {
+        super(columnName, isId);
+    }
+    
+    
+
     @Override
     public Class getType() {
         return Date.class;

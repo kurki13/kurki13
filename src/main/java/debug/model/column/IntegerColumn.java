@@ -14,6 +14,10 @@ public class IntegerColumn extends Column<Integer> {
     public IntegerColumn(String columnName) {
         super(columnName);
     }
+
+    public IntegerColumn(String columnName, boolean isId) {
+        super(columnName, isId);
+    }
     @Override
     public Class getType() {
         return Integer.class;
