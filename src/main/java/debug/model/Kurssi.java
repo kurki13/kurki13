@@ -21,11 +21,11 @@ import java.util.List;
  */
 public class Kurssi extends Table {
 
-    public static final StringColumn kurssikoodi = new StringColumn("kurssikoodi"); //ID
-    public static final StringColumn lukukausi = new StringColumn("lukukausi"); //ID
-    public static final IntegerColumn lukuvuosi = new IntegerColumn("lukuvuosi"); //ID
-    public static final StringColumn tyyppi = new StringColumn("tyyppi"); //ID
-    public static final IntegerColumn kurssi_nro = new IntegerColumn("kurssi_nro"); //ID
+    public static final StringColumn kurssikoodi = new StringColumn("kurssikoodi", true); //ID
+    public static final StringColumn lukukausi = new StringColumn("lukukausi", true); //ID
+    public static final IntegerColumn lukuvuosi = new IntegerColumn("lukuvuosi", true); //ID
+    public static final StringColumn tyyppi = new StringColumn("tyyppi", true); //ID
+    public static final IntegerColumn kurssi_nro = new IntegerColumn("kurssi_nro", true); //ID
     public static final StringColumn kielikoodi = new StringColumn("kielikoodi");
     public static final StringColumn nimi = new StringColumn("nimi");
     public static final IntegerColumn opintoviikot = new IntegerColumn("opintoviikot");

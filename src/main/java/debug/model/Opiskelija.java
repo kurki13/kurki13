@@ -16,7 +16,7 @@ import java.sql.Timestamp;
  */
 public class Opiskelija extends Table {
 
-    public static final StringColumn hetu = new StringColumn("hetu");
+    public static final StringColumn hetu = new StringColumn("hetu", true);
     public static final StringColumn personid = new StringColumn("personid");
     public static final StringColumn etunimi = new StringColumn("etunimi");
     public static final StringColumn sukunimi = new StringColumn("sukunimi");
