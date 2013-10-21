@@ -4,10 +4,12 @@
  */
 package debug;
 
+import debug.dbconnection.Testikanta;
 import debug.model.Kurssi;
 import debug.model.SQLkyselyt.KurssiKyselyt;
 import debug.model.SQLkyselyt.OpiskelijaKyselyt;
 import debug.model.SQLkyselyt.OsallistuminenKyselyt;
+import debug.model.util.Table;
 import debug.util.LocalisationBundle;
 import debug.util.QuerystringParser;
 import java.io.UnsupportedEncodingException;
@@ -167,5 +169,9 @@ public class SessioApuri {
         String ret = "";
         ret += "Valittu kurssi: " + sesh.getAttribute(ValittuKurssi);
         return ret;
+    }
+    
+    public String lisaysLause(Table taulu) {
+        return Testikanta.taulunLisaysLause(taulu).replaceAll("(\r\n|\n\r|\r|\n)", "<br />");
     }
 }

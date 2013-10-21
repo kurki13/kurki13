@@ -69,7 +69,7 @@ public class Testikanta {
         System.out.println(f.getParent());
         Connection c = DatabaseConnection.makeConnection();
         Kurssi k = KurssiKyselyt.kurssiIDlla("582634.K.2010.K.1");
-        tulostaTaulunTietokantaLisäysLause(k);
+        System.out.println(taulunLisaysLause(k));
         List<Kurssi> ks = KurssiKyselyt.kurssitYllapitajalle();
         for (Kurssi kurssi : ks) {
             System.out.println(kurssi);
@@ -92,45 +92,51 @@ public class Testikanta {
      *
      * @param taulu
      */
-    private static void tulostaTaulunTietokantaLisäysLause(Table taulu) {
-        System.out.println("Insert into " + taulu.getTableName());
-        tulostaTaulunSarakkeet(taulu);
-        System.out.println("values");
-        tulostaTaulunArvot(taulu);
+    public static String taulunLisaysLause(Table taulu) {
+        String str = "";
+        str += "Insert into " + taulu.getTableName() + "\n";
+        str += tulostaTaulunSarakkeet(taulu) + "\n";
+        str += "values" + "\n";
+        str += tulostaTaulunArvot(taulu) + "\n";
+        return str;
     }
 
-    private static void tulostaTaulunSarakkeet(Table taulu) {
-        System.out.println("(");
+    private static String tulostaTaulunSarakkeet(Table taulu) {
+        String str = "";
+        str += "(" + "\n";
         int i = 0;
         for (Column column : taulu.getColumns()) {
-            System.out.println(column.getColumnName());
+            str += column.getColumnName() + "\n";
 
             if (i != taulu.getColumns().size() - 1) {
-                System.out.print(",");
+                str+= ",";
             }
             i++;
         }
-        System.out.println(")");
+        str += ")";
+        return str;
     }
 
-    private static void tulostaTaulunArvot(Table taulu) {
-        System.out.println("(");
+    private static String tulostaTaulunArvot(Table taulu) {
+        String str = "";
+        str += "(" + "\n";
         int i = 0;
         for (Column column : taulu.getColumns()) {
             Object value = taulu.getValue(column);
             if (value == null) {
-                System.out.println("null");
+                str += "null" + "\n";
             } else if (value.getClass().isInstance("") || value.getClass() == Date.class) {
-                System.out.println("'" + value + "'");
+                str += "'" + value + "'" + "\n";
             } else {
-                System.out.println(value);
+                str += value + "\n";
             }
             if (i != taulu.getColumns().size() - 1) {
-                System.out.print(",");
+                str += ",";
             }
             i++;
         }
-        System.out.println(")");
+        str += ")";
+        return str;
     }
 
     private static String[] scriptToStringArray(String filename) throws IOException {

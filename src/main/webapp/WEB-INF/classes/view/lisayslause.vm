@@ -1,0 +1,7 @@
+#parse ("hello.vm")
+
+<pre>
+$sessioapuri.lisaysLause($valittuKurssi)
+</pre>
+</body>
+<html>
