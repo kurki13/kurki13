@@ -25,12 +25,31 @@ public class UItesti {
     }
 
     @Test
-    public void nappulat() {
+    public void kurssivalikkoAluksi() {
         tester.beginAt("kurki13/hello.vm");
-        tester.assertButtonPresentWithText("kurssihaku");
-        tester.assertButtonPresentWithText("laskarit");
-        tester.assertButtonPresentWithText("opiskelija");
-        tester.assertButtonPresentWithText("osallistujaLista");
+        tester.assertFormElementPresent("courseId");
+        tester.assertSelectOptionPresent("courseId", "-- valitse kurssi --");
+        tester.assertSelectOptionPresent("courseId", "Data Mining [2010-03-15] K");
+        tester.selectOption("courseId", "Data Mining [2010-03-15] K");
+        tester.assertSelectOptionNotPresent("courseId", "-- valitse kurssi --");
+    }
+
+    @Test
+    public void toimintovalikkoAluksi() {
+        tester.beginAt("kurki13/hello.vm");
+        tester.assertFormElementPresent("courseId");
+        tester.assertFormElementNotPresent("serviceId");        
+        tester.assertSelectOptionPresent("courseId", "Data Mining [2010-03-15] K");
+        tester.selectOption("courseId", "Data Mining [2010-03-15] K");
+        tester.assertFormElementPresent("serviceId");   
+    }
+
+    @Test
+    public void logout() {
+        tester.beginAt("kurki13/hello.vm");
+        tester.assertLinkPresentWithText("Logout");
+        tester.clickLinkWithText("Logout");
+        tester.assertTextPresent("Session has been reset");
     }
 
     @Test
@@ -81,7 +100,6 @@ public class UItesti {
         tester.assertFormElementPresent("serviceId");
         tester.selectOption("serviceId", "Kurssin perustietojen muutokset");
         tester.assertFormPresent("kurssinPerustiedot");
-        tester.assertFormPresent("kurssinPisteet");
         tester.assertSubmitButtonPresent();
     }
 }
