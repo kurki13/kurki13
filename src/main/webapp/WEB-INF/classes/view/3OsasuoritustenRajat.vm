@@ -5,7 +5,6 @@
     #set ($jaassa = false)
 #end
 
-<pre>$valittuKurssi</pre>
 $valittuKurssi.update()
 
 ##Osasuoritustyyppien tiedot. Lista jonka alkioina on osasuoritustyypin nimi, 

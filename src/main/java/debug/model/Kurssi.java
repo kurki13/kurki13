@@ -166,14 +166,14 @@ public class Kurssi extends Table {
      */
     public void update() {
         //laskarirajat muutetaan
-        this.setValue(Kurssi.hyvaksytty_laskarilasnaolo, laskariRajat.minArvotTietokantamuodossa());
-        this.setValue(Kurssi.laskaritehtava_lkm, laskariRajat.maxArvotTietokantamuodossa());
+        this.setValue(Kurssi.hyvaksytty_laskarilasnaolo, getLaskariRajat().minArvotTietokantamuodossa());
+        this.setValue(Kurssi.laskaritehtava_lkm, getLaskariRajat().maxArvotTietokantamuodossa());
         //htrajat vastaavasti
-        this.setValue(Kurssi.min_harjoitustyopisteet, harjoitustyoRajat.minArvotTietokantamuodossa());
-        this.setValue(Kurssi.max_harjoitustyopisteet, harjoitustyoRajat.maxArvotTietokantamuodossa());
+        this.setValue(Kurssi.min_harjoitustyopisteet, getHarjoitustyoRajat().minArvotTietokantamuodossa());
+        this.setValue(Kurssi.max_harjoitustyopisteet, getHarjoitustyoRajat().maxArvotTietokantamuodossa());
         //koerajat vastaavasti
-        this.setValue(Kurssi.min_koepisteet, koeRajat.minArvotTietokantamuodossa());
-        this.setValue(Kurssi.max_koepisteet, koeRajat.maxArvotTietokantamuodossa());
+        this.setValue(Kurssi.min_koepisteet, getKoeRajat().minArvotTietokantamuodossa());
+        this.setValue(Kurssi.max_koepisteet, getKoeRajat().maxArvotTietokantamuodossa());
     }
 
     /**
