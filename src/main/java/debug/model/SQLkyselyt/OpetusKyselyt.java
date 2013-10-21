@@ -4,7 +4,7 @@
  */
 package debug.model.SQLkyselyt;
 
-import debug.DatabaseConnection;
+import debug.dbconnection.DatabaseConnection;
 import debug.model.Kurssi;
 import debug.model.Opetus;
 import debug.model.util.SQLoader;

@@ -4,7 +4,7 @@
  */
 package debug.model.util;
 
-import debug.DatabaseConnection;
+import debug.dbconnection.DatabaseConnection;
 import debug.model.column.Column;
 import java.sql.Connection;
 import java.sql.Date;

@@ -4,15 +4,22 @@
  */
 package debug.model.SQLkyselyt;
 
-import debug.DatabaseConnection;
+import debug.dbconnection.DatabaseConnection;
 import debug.model.Kurssi;
 import debug.model.util.Filter;
 import debug.model.util.SQLoader;
 import java.sql.Connection;
+import java.util.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -29,10 +36,9 @@ public class KurssiKyselyt {
             + "     k.*, \n"
             + "     k.nimi AS nimiOrder, \n"
             + "     k.alkamis_pvm AS alkamis_pvmOrder,\n"
-            + "     decode(k.tila, 'J', 'X', 'A') AS orderBy\n"
+            + "     k.tila AS orderBy\n"
             + "  FROM kurssi k, opetus o, opetustehtavan_hoito oh, henkilo h\n"
-            + "  WHERE k.paattymis_pvm > to_date('31.12.2001','DD.MM.YYYY')\n"
-            + "    AND ADD_MONTHS( k.paattymis_pvm, " + MONTHS_OPEN + " ) >= SYSDATE\n"
+            + "  WHERE k.paattymis_pvm > cast('2001-12-31' as date)\n"
             + "    AND k.tila not in ('S', 'O')\n"
             + "    AND k.tyyppi in ('K', 'S', 'A')\n" // luento- ja laboratoriokurssit sekä seminaarit
             + "    AND o.kurssikoodi = k.kurssikoodi AND oh.kurssikoodi = k.kurssikoodi\n"
@@ -46,12 +52,11 @@ public class KurssiKyselyt {
             + "UNION\n"
             + "(SELECT DISTINCT "
             + "     ku.*, \n"
-            + "     ku.nimi AS nimiOrder2, \n"
-            + "     ku.alkamis_pvm as alkamis_pvmOrder2, \n"
-            + "     decode(ku.tila, 'J', 'X', 'A') AS orderBy\n"
+            + "     ku.nimi AS nimiOrder, \n"
+            + "     ku.alkamis_pvm as alkamis_pvmOrder, \n"
+            + "     ku.tila AS orderBy\n"
             + "  FROM kurssi ku, koe ko, henkilo h\n"
-            + "  WHERE ku.paattymis_pvm > to_date('31.12.2001','DD.MM.YYYY')\n"
-            + "    AND ADD_MONTHS( ku.paattymis_pvm, " + MONTHS_OPEN + " ) >= SYSDATE\n"
+            + "  WHERE ku.paattymis_pvm > cast('2001-12-31' as date)\n"
             + "    AND ku.tyyppi = 'L'\n" // vain kokeet
             + "    AND ku.tila not in ('S', 'O')\n"
             + "    AND ko.kurssikoodi = ku.kurssikoodi\n"
@@ -69,21 +74,17 @@ public class KurssiKyselyt {
             + "     k.*, "
             + "     k.nimi AS nimiOrder, "
             + "     k.alkamis_pvm AS alkamis_pvmOrder,"
-            + "     decode(k.tila, 'J', 'X', 'A') AS orderBy"
+            + "     k.tila AS orderBy"
             + "  FROM kurssi k"
-            + "  WHERE k.paattymis_pvm > to_date('31.12.2001','DD.MM.YYYY')"
-            + "    AND ADD_MONTHS( k.paattymis_pvm, " + SUPER_OPEN + " ) >= SYSDATE"
-            + "    AND k.tila not in ('S', 'O')"
+            + "  WHERE k.tila not in ('S', 'O')"
             // KOKEET
             + "UNION\n"
             + "(SELECT DISTINCT "
-            + "     ku.*, ku.nimi AS nimiOrder2, "
-            + "     ku.alkamis_pvm AS alkamis_pvmOrder2,"
-            + "     decode(ku.tila, 'J', 'X', 'A') AS orderBy"
+            + "     ku.*, ku.nimi AS nimiOrder, "
+            + "     ku.alkamis_pvm AS alkamis_pvmOrder,"
+            + "     ku.tila AS orderBy"
             + "  FROM kurssi ku"
-            + "  WHERE ku.paattymis_pvm > to_date('31.12.2001','DD.MM.YYYY')"
-            + "     AND ADD_MONTHS( ku.paattymis_pvm, " + SUPER_OPEN + " ) >= SYSDATE"
-            + "     AND ku.tila not in ('S', 'O')"
+            + "  WHERE ku.tila not in ('S', 'O')"
             + "     AND ku.tyyppi = 'L')" // vain kokeet
             + "ORDER BY orderBy ASC, nimiOrder ASC, alkamis_pvmOrder ASC";
     //</editor-fold>
@@ -91,7 +92,40 @@ public class KurssiKyselyt {
     public static List<Kurssi> kurssitYllapitajalle() throws SQLException {
         Connection databaseConnection = DatabaseConnection.makeConnection();
         PreparedStatement preparedStatement = databaseConnection.prepareStatement(SUPER_INFOS);
-        return SQLoader.loadTablesFromPreparedStatement(new Kurssi(), preparedStatement, databaseConnection);
+        List<Kurssi> kurssit = SQLoader.loadTablesFromPreparedStatement(new Kurssi(), preparedStatement, databaseConnection);
+        return filtteroiVanhatKurssitPois(kurssit, SUPER_OPEN);
+    }
+
+    /**
+     * palauttaa uuden listan josta on filtteröity annetusta kurssilistasta pois
+     * kaikki kk -vanhemmat kurssit pois
+     *
+     * @param kurssit
+     * @param kuukautta
+     * @return
+     */
+    protected static List<Kurssi> filtteroiVanhatKurssitPois(List<Kurssi> kurssit, int kk) {
+        List<Kurssi> kurssit_return = new ArrayList();
+        DateFormat df = new SimpleDateFormat("yyyy-mm-dd");
+        for (Kurssi kurssi : kurssit) {
+            try {
+                String date = kurssi.getPaattymis_pvm().toString();
+                Date ppvm = df.parse(date);
+
+                Calendar c = Calendar.getInstance();
+                c.add(Calendar.MONTH, -kk);
+                Date superOpenKuukauttaSitten = c.getTime();
+                if (ppvm.after(superOpenKuukauttaSitten)) {
+                    kurssit_return.add(kurssi);
+                }
+            } catch (NullPointerException ne) {
+                //Jos ei asetettu kannassa päättymispäivämäärää
+                kurssit_return.add(kurssi);
+            } catch (ParseException ex) {
+                //Jos kannassa vääränlainen päättymispvm (?ei mahdollista kai)
+            }
+        }
+        return kurssit_return;
     }
 
     public static List<Kurssi> kurssitKayttajalle(String ruser) throws SQLException {
@@ -104,10 +138,10 @@ public class KurssiKyselyt {
 
     public static Kurssi kurssiIDlla(String s) throws SQLException {
         String[] sd = s.split("\\.");
-        return kurssitIDlla(sd[0], sd[1], sd[2], sd[3], sd[4]).get(0);
+        return kurssiIDlla(sd[0], sd[1], sd[2], sd[3], sd[4]);
     }
 
-    public static List<Kurssi> kurssitIDlla(String kKoodi, String lKausi,
+    public static Kurssi kurssiIDlla(String kKoodi, String lKausi,
             String lVuosi, String tyyppi, String kNro) throws SQLException {
 
         List<Filter> f = new ArrayList();
@@ -132,6 +166,6 @@ public class KurssiKyselyt {
             } catch (NumberFormatException e) {
             }
         }
-        return SQLoader.loadTable(new Kurssi(), f);
+        return SQLoader.loadTable(new Kurssi(), f).get(0);
     }
 }

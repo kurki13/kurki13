@@ -57,7 +57,7 @@ public class SessioApuri {
                 }
 
             } catch (SQLException sq) {
-                session.setAttribute(Virhe, "Kurssien lataaminen kannasta epäonnistui!");
+                session.setAttribute(Virhe, "Kurssien lataaminen kannasta epäonnistui!" + sq.getLocalizedMessage());
                 session.setAttribute(KurssiLista, new ArrayList());
             }
         }

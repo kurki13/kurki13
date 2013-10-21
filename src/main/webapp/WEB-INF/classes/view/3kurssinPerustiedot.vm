@@ -55,6 +55,7 @@
     #end
 </pre>
 
+<pre>$valittuKurssi.idString()</pre>
 <pre>$valittuKurssi</pre>
 
 ##Tässä määritellään säädettäville kentille otsikot, niiden arvot tietokantaoliosta, ja get -parametrien arvo

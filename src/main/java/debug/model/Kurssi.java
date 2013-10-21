@@ -43,7 +43,7 @@ public class Kurssi extends Table {
     public static final IntegerColumn max_osallistuja_lkm = new IntegerColumn("max_osallistuja_lkm");
     public static final StringColumn laskaritehtava_lkm = new StringColumn("laskaritehtava_lkm");
     public static final IntegerColumn pakolliset_laskarikerta_lkm = new IntegerColumn("pakolliset_laskarikerta_lkm");
-    public static final IntegerColumn pakolliset_laskaritehtava_lkm = new IntegerColumn("pakolliset_laskarikerta_lkm");
+    public static final IntegerColumn pakolliset_laskaritehtava_lkm = new IntegerColumn("pakolliset_laskaritehtava_lkm");
     public static final IntegerColumn max_laskaripisteet = new IntegerColumn("max_laskaripisteet");
     public static final StringColumn hyvaksytty_laskarilasnaolo = new StringColumn("hyvaksytty_laskarilasnaolo");
     public static final IntegerColumn lisapistealaraja = new IntegerColumn("lisapistealaraja");
