@@ -137,8 +137,14 @@ public class KurssiKyselyt {
     }
 
     public static Kurssi kurssiIDlla(String s) throws SQLException {
+        try {
         String[] sd = s.split("\\.");
-        return kurssiIDlla(sd[0], sd[1], sd[2], sd[3], sd[4]);
+            return kurssiIDlla(sd[0], sd[1], sd[2], sd[3], sd[4]);
+        } catch (NullPointerException ne) {
+            return null;
+        } catch (ArrayIndexOutOfBoundsException ae) {
+            return null;
+        }
     }
 
     public static Kurssi kurssiIDlla(String kKoodi, String lKausi,
@@ -166,6 +172,10 @@ public class KurssiKyselyt {
             } catch (NumberFormatException e) {
             }
         }
-        return SQLoader.loadTable(new Kurssi(), f).get(0);
+        List<Kurssi> kurssit =  SQLoader.loadTable(new Kurssi(), f);
+        if (kurssit.size() > 0)
+            return kurssit.get(0);
+        else
+            return null;
     }
 }

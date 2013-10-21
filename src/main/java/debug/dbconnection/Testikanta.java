@@ -26,20 +26,25 @@ import java.util.List;
 public class Testikanta {
 
     private static boolean initialized = false;
-    
     //Lisää tähän oma projektikansiosi
     public static String[] project_folder_locations = {
-        "/cs/fs2/home/mkctammi/ohtuprog/kurki13"
-    };    
+        "/cs/fs2/home/mkctammi/ohtuprog/kurki13",
+        "/cs/fs2/home/tkairola/KURKI13/kurki13",
+        "/cs/fs2/home/esaaksvu/koulu/kurki13",
+        "/cs/fs2/home/heikkiha/NetBeansProjects/kurki13",
+        "/cs/fs2/home/topisark/Documents/kurki13"
+    };
     public static String project_folder_location;
+
     public static Connection makeConnection()
             throws SQLException, IOException, ClassNotFoundException {
-        
+
         for (String string : project_folder_locations) {
-            if (new File(string).exists())
+            if (new File(string).exists()) {
                 project_folder_location = string;
+            }
         }
-        
+
         String driver = "org.apache.derby.jdbc.EmbeddedDriver";
         Class.forName(driver);
         File dbFolder = new File(project_folder_location + "/testikanta/testikanta");
@@ -51,7 +56,7 @@ public class Testikanta {
         }
         return c;
     }
-    
+
     private static void initialize(Connection c) throws IOException, SQLException {
         runScript(c, project_folder_location + "/testikanta/taulut.sql");
         runScript(c, project_folder_location + "/testikanta/testidata.sql");
@@ -79,11 +84,11 @@ public class Testikanta {
         }
     }
 
-    
     /**
-     * Tällä metodilla voi tulostaa jonkun table olion, ja sitten sen lisätä scriptiin jolla syötetään
-     * testidataa testikantaan.
-     * @param taulu 
+     * Tällä metodilla voi tulostaa jonkun table olion, ja sitten sen lisätä
+     * scriptiin jolla syötetään testidataa testikantaan.
+     *
+     * @param taulu
      */
     private static void tulostaTaulunTietokantaLisäysLause(Table taulu) {
         System.out.println("Insert into " + taulu.getTableName());
@@ -97,8 +102,8 @@ public class Testikanta {
         int i = 0;
         for (Column column : taulu.getColumns()) {
             System.out.println(column.getColumnName());
-            
-            if (i != taulu.getColumns().size()-1) {
+
+            if (i != taulu.getColumns().size() - 1) {
                 System.out.print(",");
             }
             i++;
@@ -118,7 +123,7 @@ public class Testikanta {
             } else {
                 System.out.println(value);
             }
-            if (i != taulu.getColumns().size()-1) {
+            if (i != taulu.getColumns().size() - 1) {
                 System.out.print(",");
             }
             i++;
