@@ -55,4 +55,9 @@
          <class>org.apache.velocity.tools.generic.DateTool</class>
     </tool>
     
+        <tool>
+         <key>OsallistuminenSorter</key>         
+         <class>debug.model.sorters.OsallistuminenSorter</class>
+    </tool>
+    
 </toolbox>
