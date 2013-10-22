@@ -43,4 +43,16 @@ public class OpiskelijaKyselyt {
         ps.setInt(5, kurssi.getKurssi_nro());
         return SQLoader.loadTablesFromPreparedStatement(new Opiskelija(), ps, connection);
     }
+    
+    public static List<Opiskelija> 
+            haeOpiskelijat(String hetuLike, String sukunimi) throws SQLException{
+        String query = "SELECT * FROM opiskelija op \n"
+                + "WHERE op.hetu LIKE ? \n"
+                + "AND op.sukunimi LIKE ?";
+        Connection connection = DatabaseConnection.makeConnection();
+        PreparedStatement ps = connection.prepareStatement(query);
+        ps.setString(1, "%"+hetuLike+"%");
+        ps.setString(2, "%"+sukunimi+"%");
+        return SQLoader.loadTablesFromPreparedStatement(new Opiskelija(), ps, connection);
+    }
 }

@@ -22,7 +22,7 @@ public class OpetusKyselyt {
             + "AND tyyppi = ? \n"
             + "AND kurssi_nro = ? \n";
 
-    public static List<Opetus> opetusTiedot(Kurssi kurssi) throws SQLException {
+    public static List<Opetus> opetuksetKurssilla(Kurssi kurssi) throws SQLException {
         Connection databaseConnection = DatabaseConnection.makeConnection();
         PreparedStatement preparedStatement = databaseConnection.prepareStatement(LATAA_RYHMAT);
         preparedStatement.setString(1, kurssi.getKurssikoodi());

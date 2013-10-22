@@ -1,32 +1,34 @@
+#set($sukunimi = $params.get('filterSukunimi'))
+#set($hetu = $params.get('filterOpnro'))
+#set($ryhm = $params.get('ryhma'))
+
 <table class="table table-condensed table-bordered" style="max-width:1000px">
-  <caption>
-   Opiskelijoita valittu 50
-  </caption>
   <tr>
     <th> Nimi (syntymäpäivä) </th>
     <th> OpNro </th>
     <th> Ryhmä </th>
     <th> Ilmoita kurssille </th>
   </tr>     
-
+   #set($i = 0)
+   #foreach($opiskelija in $OpiskelijaKyselyt.haeOpiskelijat($hetu, $sukunimi))
    <tr>
     <td>
-      <b><a href="mailto:EMAIL">NIMI</a></b>
+      <b><a href="mailto:$opiskelija.sahkopostiosoite">$opiskelija.etunimi, $opiskelija.sukunimi</a></b>
     </td>
     <td>
-      <center><tt>HETU</tt></center>
+      <center><tt>$opiskelija.hetu</tt></center>
     </td>
     <td>
       <center>
       <form action="index" name="addForm49" method="post" class="inline" style="margin:0;display:inline;">
 	<select name="group" class="form-control form-inline" style="width:70px">
-          <option>99</option>
-          <option>98</option>
-          <option>1</option>
+        #foreach($ryhma in $ryhmat)
+            <option #if($ryhm==$ryhma)selected#end>$ryhma</option>
+        #end
         </select>
-         <input type="hidden" name="TS" value="1382353286431">
-         <input type="hidden" name="ssn" value="013573003">
-         <input type="hidden" name="doAdd" value="013573003">
+         <input type="hidden" name="TS" value="??????????"> ##MIKÄ ON TS?!
+         <input type="hidden" name="ssn" value=$opiskelija.hetu>
+         <input type="hidden" name="doAdd" value=$opiskelija.hetu>
       </form>
       </center>
     </td>
@@ -38,5 +40,8 @@
       </form>
       </center>
     </td>
-  </tr>    
+  </tr>
+  #set($i=$i+1)
+  #end
   </table>
+   Opiskelijoita valittu $i

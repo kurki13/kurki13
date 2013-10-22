@@ -7,13 +7,12 @@
 
 ##haetaan kurssin ryhmät, ja jätetään pois mystinen ryhmä "0"
 #set ($ryhmat = [])
-#foreach($r in $OpetusKyselyt.opetusTiedot($valittuKurssi))
+#foreach($r in $OpetusKyselyt.opetuksetKurssilla($valittuKurssi))
     #if ($r.ilmo_jnro != 0)
 ##lisätään tulostus muuttujaan 'var' jota ei käytetä missään, muuten velocity haluaa tulostaa "true" kun listaan lisäys on onnistunut
         #set ($var = $ryhmat.add($r.ilmo_jnro))
     #end
 #end
-
     <b>$bundle.getString("ryhma"):</b>
     <select name="ryhma" class="form-control form-inline" style="width:100px">
     #foreach($r in $ryhmat)

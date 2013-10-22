@@ -27,15 +27,15 @@
     <td>
       <center>
   	<select name="grp_0" class="form-control form-inline" style="width:70px">
-              	  <option selected>$osallis.ryhma_nro</option>
-                	  <option>__</option>
-                	  <option>__</option>
-                  </select>
+              	#foreach($ryhma in $ryhmat)
+                <option #if($osallis.ilmo_jnro==$ryhma)selected#end>$ryhma</option>
+                #end
+        </select>
         </center>
     </td>
 
     <td>
-        <center> "S" </center>
+        <center> #if($osallis.arvosana.equals("+"))X#end</center>
     </td>
 
     <td>
