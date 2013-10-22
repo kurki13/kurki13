@@ -18,7 +18,7 @@ import java.util.logging.Logger;
  */
 public class DatabaseConnection {
 
-    public static boolean testing = true;
+    public static boolean testing = false;
 
     public static Connection makeConnection() throws SQLException {
         if (testing) {
