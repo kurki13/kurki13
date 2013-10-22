@@ -7,6 +7,7 @@ package debug.model.SQLkyselyt;
 import debug.dbconnection.DatabaseConnection;
 import debug.model.Kurssi;
 import debug.model.Osallistuminen;
+import debug.model.util.Filter;
 import debug.model.util.SQLoader;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -61,5 +62,5 @@ public class OsallistuminenKyselyt {
         
         conn.close();
         return osallistumiset;
-    }
+    }  
 }

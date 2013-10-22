@@ -24,6 +24,7 @@ $sessioapuri.auta($request)
       
     </style>
     <link href="bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
 
 </head>
 
@@ -70,7 +71,7 @@ $sessioapuri.auta($request)
     #if ($session.getAttribute('selected_course'))
         <select name="serviceId" onChange="this.form.submit()" class="form-control form-inline" style="width:300px">
         #if (!$session.getAttribute('selected_service_id') || $session.getAttribute('selected_service_id') == "")
-            <option value="" selected>-- $bundle.getString("valitse_toiminto") --</option>
+            <option value="" selected>-- $bundle.getString("valitsetoiminto") --</option>
         #end
         #foreach ($s in $services.entrySet())
             #if($session.getAttribute('selected_service_id') && $session.getAttribute('selected_service_id') == $s.key)

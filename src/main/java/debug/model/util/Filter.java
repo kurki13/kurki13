@@ -5,6 +5,7 @@
 package debug.model.util;
 
 import debug.model.column.Column;
+import debug.model.column.StringColumn;
 
 /**
  *
@@ -18,6 +19,10 @@ public class Filter {
     public <T> Filter(Column<T> column, T expectation) {
         this.column = column;
         this.expectation = expectation;
+    }
+
+    public Filter(StringColumn tenttija, Filter get) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override

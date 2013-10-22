@@ -9,8 +9,6 @@ public class Osasuoritukset implements Iterable<Osasuoritus> {
     private List<Osasuoritus> osasuoritukset;
     private int koko;
     
-
-
     @Override
     public Iterator<Osasuoritus> iterator() {
         return new OsasuoritusIterator(osasuoritukset, koko);
@@ -38,5 +36,28 @@ public class Osasuoritukset implements Iterable<Osasuoritus> {
         }
     }
     
+    /*
+     * Osien indeksit alkavat nollasta, eli kun haetaan esimerkiksi ensimmäisen
+     * osan pisteitä, niin täytyykin hakea nollannen osan pisteitä jne.
+     * Siksi miinustetaan yksi numerosta.
+     */
+    public Osasuoritus osa(int numero) {
+        numero--;
+        if (numero >= osasuoritukset.size() || numero < 0) {
+            return null;
+        } else {
+            return osasuoritukset.get(numero);
+        }
+    }
+    
+    public Osasuoritus osa(String numero) {
+        int nro = 0;
+        try {
+        nro = Integer.parseInt(numero);
+        } catch (NumberFormatException nume) { return null; }
+          catch (NullPointerException nulle) { return null; }
+        
+        return osa(nro);
+    }
     
 }

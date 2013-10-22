@@ -20,9 +20,6 @@ public class Osasuoritus {
         if (pisteet > maxPisteet) {
             pisteet = maxPisteet;
         }
-        if (pisteet < 0) {
-            pisteet = Muotoilija.EMPTY;
-        }
         this.pisteet = pisteet;
         this.maxPisteet = maxPisteet;
     }
@@ -42,8 +39,26 @@ public class Osasuoritus {
     public void poistaPisteet() {
         this.pisteet = Muotoilija.EMPTY;
     }
+    
+    public void opiskelijaLasna() {
+        this.pisteet = Muotoilija.LASNA;
+    }
 
     public int getMaxPisteet() {
         return maxPisteet;
     }
+
+    @Override
+    public String toString() {
+        if (pisteet == Muotoilija.EMPTY) {
+            return "";
+        }
+        if (pisteet == Muotoilija.LASNA) {
+            return "+";
+        } else {
+            return this.pisteet+"";
+        }
+    }
+    
+    
 }

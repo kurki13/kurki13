@@ -1,26 +1,108 @@
-<pre>
+##lisää tarkistukset onko jäässä!!
+#set($valittuKurssi = $KurssiKyselyt.kurssiIDlla($session.getAttribute('selected_course_id')))
+#set($kurssinOsallistumiset = $OsallistuminenKyselyt.osallistumisetKurssilla($valittuKurssi))
 
- #set($valittuKurssi = $KurssiKyselyt.kurssiIDlla($session.getAttribute('selected_course_id')))
+##filterit
+#set ($tyyppi = $params.get('type'))
+#set ($kerta = $params.get('kerta'))
+#set ($ryhma = $params.get('ryhma'))
+#set ($opiskelijat = $params.get('opiskelijat'))
+#set ($filteroidytOsallistumiset = [])
 
-Laskaritehtävien lukumäärä: $valittuKurssi.laskarikerta_lkm
-Laskaritehtävien maksimipisteet: $valittuKurssi.laskaritehtava_lkm
-Pakolliset laskaritehtävät lkm: $valittuKurssi.pakolliset_laskaritehtava_lkm
-max_laskaripisteet: $valittuKurssi.max_laskaripisteet
-hyvaksytty_laskarilasnaolo: $valittuKurssi.hyvaksytty_laskarilasnaolo
-
-#foreach($os in $OsallistuminenKyselyt.osallistumisetKurssilla($valittuKurssi))
-     $os.hetu: 
-        laskarisuoritukset:       $os.laskarisuoritukset
-        laskari_lasnaolo_lkm:     $os.laskari_lasnaolo_lkm
-        laskarisuoritukset:       $os.laskarisuoritukset
-        laskarisuoritukset_summa: $os.laskarisuoritukset_summa 
-        laskarihyvitys:           $os.laskarihyvitys
-        #foreach ($laskari in $os.laskarit)
-            $laskari.pisteet / $laskari.maxPisteet
+##
+#foreach ($o in $kurssinOsallistumiset)
+    #set ($lisataanko = false)
+    #if($ryhma == "" && $opiskelijat)
+        #if ($o.hetu.contains($opiskelijat) || $o.getNimi().toLowerCase().contains($opiskelijat.toLowerCase()))
+            #set ($lisataanko = true)
         #end
+    #else
+        #if ($o.ilmo_jnro == $ryhma && ($o.hetu.contains($opiskelijat) || $o.getNimi().toLowerCase().contains($opiskelijat.toLowerCase())))
+            #set ($lisataanko = true)
+        #end
+    #end
+    #if ($lisataanko) 
+        #set ($var = $filteroidytOsallistumiset.add($o))
+    #end
 #end
 
-$valittuKurssi
-</pre>
-</body>
-</html>
+<div>
+<p align=center>$bundle.getString("opvalittu") $filteroidytOsallistumiset.size()</p>
+<form name="pisteet" action="" method=get class="form-inline">
+
+<input value="$tyyppi" type="hidden" name="type">
+<input value="$kerta" type="hidden" name="kerta">
+<input value="$ryhma" type="hidden" name="ryhma">
+<input value="$opiskelijat" type="hidden" name="opiskelijat">
+
+    <table class="table table-striped table-nonfluid table-condensed">
+        <tr>
+            <td>$bundle.getString("opiskelija")</td>
+            <td>$bundle.getString("ryhma")</td>
+            <td colspan="2" align="center">$tyypit.get($params.get('type'))</td>
+        </tr>
+        #foreach ($os in $filteroidytOsallistumiset)
+            <tr>
+                <td>$os.nimi, $os.hetu</td>
+                <td>$os.ilmo_jnro</td>
+
+
+            ##laskaripisteet, lisää ehto
+                ##$kerta
+                <td><input value="$os.laskarit.osa($kerta)" type="text" class="form-control input-sm"
+                        style="width:50px" maxlength="3" name="pisteet${os.hetu}"
+                        onblur="if(this.value != '$os.laskarit.osa($kerta)') { this.style.color='red';}"></td>
+
+                #set ($pisteet = [$bundle.getString('tyhja'), '+'])
+                #set($start = 0)
+                #set($end = $valittuKurssi.laskariRajat.osa($kerta).max)
+                #set($range = [$start..$end])
+                #foreach($r in $range)
+                    #if ($pisteet.add($r)) #end
+                #end
+
+                <td>
+                #foreach($i in $pisteet)
+                    #if ($i == $os.laskarit.osa($kerta) || ($i == $bundle.getString('tyhja') && $os.laskarit.osa($kerta) == ""))
+                        <input type="radio" name="laskaripisteet${os.hetu}" value="$i" checked="checked">$i
+                    #else
+                        <input type="radio" name="laskaripisteet${os.hetu}" value="$i">$i
+                    #end
+                #end
+                </td>
+
+            </tr>
+        #end
+    </table>
+<input type=submit class="btn" value=$bundle.getString("tmuutokset") onClick="">
+
+#foreach ($os in $filteroidytOsallistumiset)
+#set ($var = "pisteet${os.hetu}")
+$params.get($var)
+#end
+
+</form>
+</div>
+
+
+
+##Laskaritehtävien lukumäärä: $valittuKurssi.laskarikerta_lkm
+##Laskaritehtävien maksimipisteet: $valittuKurssi.laskaritehtava_lkm
+##Pakolliset laskaritehtävät lkm: $valittuKurssi.pakolliset_laskaritehtava_lkm
+##max_laskaripisteet: $valittuKurssi.max_laskaripisteet
+##hyvaksytty_laskarilasnaolo: $valittuKurssi.hyvaksytty_laskarilasnaolo
+
+###foreach($os in $OsallistuminenKyselyt.osallistumisetKurssilla($valittuKurssi))
+##     $os.hetu: 
+##        laskarisuoritukset:       $os.laskarisuoritukset
+##        laskari_lasnaolo_lkm:     $os.laskari_lasnaolo_lkm
+##        laskarisuoritukset:       $os.laskarisuoritukset
+##        laskarisuoritukset_summa: $os.laskarisuoritukset_summa 
+##        laskarihyvitys:           $os.laskarihyvitys
+##        #foreach ($laskari in $os.laskarit)
+##            $laskari.pisteet / $laskari.maxPisteet
+##        #end
+###end
+
+##$valittuKurssi
+

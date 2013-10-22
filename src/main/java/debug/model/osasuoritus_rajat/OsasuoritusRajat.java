@@ -56,4 +56,28 @@ public class OsasuoritusRajat implements Iterable<OsasuoritusRaja> {
             }
         }
     }
+    
+    /*
+     * Osien indeksit alkavat nollasta, eli kun haetaan esimerkiksi ensimmäisen
+     * osan pisteitä, niin täytyykin hakea nollannen osan pisteitä jne.
+     * Siksi miinustetaan yksi numerosta.
+     */
+    public OsasuoritusRaja osa(int numero) {
+        numero--;
+        if (numero >= osasuoritusrajat.size() || numero < 0) {
+            return null;
+        } else {
+            return osasuoritusrajat.get(numero);
+        }
+    }
+    
+    public OsasuoritusRaja osa(String numero) {
+        int nro = 0;
+        try {
+        nro = Integer.parseInt(numero);
+        } catch (NumberFormatException nume) { return null; }
+          catch (NullPointerException nulle) { return null; }
+        
+        return osa(nro);
+    }
 }

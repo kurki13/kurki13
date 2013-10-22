@@ -15,6 +15,7 @@ public class Muotoilija {
     public final static int MAX_KOKO = 18;
     public final static int MAX_PISTE = 99;
     public final static int EMPTY = -1;
+    public final static int LASNA = -2;
 
     public static int[] stringToIntArray(String s) {
         if (s == null) {
@@ -29,7 +30,11 @@ public class Muotoilija {
             try {
                 ints[i] = Integer.valueOf(string.trim());
             } catch (NumberFormatException e) {
-                ints[i] = EMPTY;
+                if (string.trim().equals("+")) {
+                    ints[i] = LASNA;
+                } else {
+                    ints[i] = EMPTY;
+                }
             }
             i++;
         }
