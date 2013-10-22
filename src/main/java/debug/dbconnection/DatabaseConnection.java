@@ -18,9 +18,9 @@ import java.util.logging.Logger;
  * @author mkctammi
  */
 public class DatabaseConnection {
-
-    public static boolean testing = false;
-
+    
+    public static boolean testing = Konfiguraatio.testing();
+    
     public static Connection makeConnection() throws SQLException {
         if (testing) {
             try {
@@ -32,11 +32,11 @@ public class DatabaseConnection {
             }
         } else {
             try {
-                Class.forName(Konfiguraatio.getString("dbDriver"));
+                Class.forName(Konfiguraatio.getProperty("dbDriver"));
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(Pipe.class.getName()).log(Level.SEVERE, null, ex);
             }
-            return DriverManager.getConnection(Konfiguraatio.getString("dbServer"), Konfiguraatio.getString("dbUser"), Konfiguraatio.getString("dbPassword"));
+            return DriverManager.getConnection(Konfiguraatio.getProperty("dbServer"), Konfiguraatio.getProperty("dbUser"), Konfiguraatio.getProperty("dbPassword"));
         }
         return null;
     }
