@@ -9,6 +9,7 @@ import debug.model.Kurssi;
 import debug.model.util.Filter;
 import debug.model.util.SQLoader;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -22,6 +23,14 @@ public class KurssiKyselyt {
 
     private static final int MONTHS_OPEN = 12;
     private static final int SUPER_OPEN = 48;
+    private static final String asetaSuorituspvm = //<editor-fold defaultstate="collapsed" desc="asetaSuorituspvm">
+            "UPDATE kurssi SET suoritus_pvm = ?\n"
+                + " WHERE kurssikoodi = ?\n"
+                + " AND lukukausi = ?\n"
+                + " AND lukuvuosi = ?\n"
+                + " AND tyyppi = ?\n"
+                + " AND kurssi_nro = ?\n";
+            //</editor-fold>
     private static final String COURSE_INFOS = //<editor-fold defaultstate="collapsed" desc="courseInfos">
 
             // LUENTO- (JA LABORATORIOKURSSIT)
@@ -133,5 +142,19 @@ public class KurssiKyselyt {
             }
         }
         return SQLoader.loadTable(new Kurssi(), f);
+    }
+    
+    public static void asetaSuorituspvm(Kurssi kurssi, String suorituspvm) throws SQLException {
+        Connection tietokantayhteys = DatabaseConnection.makeConnection();
+        PreparedStatement valmisteltuLause = tietokantayhteys.prepareStatement(asetaSuorituspvm);
+        valmisteltuLause.setDate(1, Date.valueOf(suorituspvm));
+        valmisteltuLause.setString(2, kurssi.getKurssikoodi());
+        valmisteltuLause.setString(3, kurssi.getLukukausi());
+        valmisteltuLause.setInt(4, kurssi.getLukuvuosi());
+        valmisteltuLause.setString(5, kurssi.getTyyppi());
+        valmisteltuLause.setInt(6, kurssi.getKurssi_nro());
+        valmisteltuLause.executeUpdate();
+        valmisteltuLause.close();
+        tietokantayhteys.close();
     }
 }
