@@ -97,7 +97,7 @@ public class Testikanta {
         str += "Insert into " + taulu.getTableName() + "\n";
         str += tulostaTaulunSarakkeet(taulu) + "\n";
         str += "values" + "\n";
-        str += tulostaTaulunArvot(taulu) + "\n";
+        str += tulostaTaulunArvot(taulu) + ";\n";
         return str;
     }
 
@@ -106,7 +106,7 @@ public class Testikanta {
         str += "(" + "\n";
         int i = 0;
         for (Column column : taulu.getColumns()) {
-            str += column.getColumnName() + "\n";
+            str += column.getColumnName();
 
             if (i != taulu.getColumns().size() - 1) {
                 str+= ",";
@@ -124,12 +124,13 @@ public class Testikanta {
         for (Column column : taulu.getColumns()) {
             Object value = taulu.getValue(column);
             if (value == null) {
-                str += "null" + "\n";
+                str += "null";
             } else if (value.getClass().isInstance("") || value.getClass() == Date.class) {
-                str += "'" + value + "'" + "\n";
+                str += "'" + value + "'";
             } else {
-                str += value + "\n";
+                str += value;
             }
+            str += " -- " + column.getColumnName() + "\n";
             if (i != taulu.getColumns().size() - 1) {
                 str += ",";
             }
