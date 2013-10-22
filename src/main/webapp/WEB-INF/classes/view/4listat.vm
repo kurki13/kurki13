@@ -2,16 +2,25 @@
 
 #if($session.getAttribute('selected_course_id'))
     #set ($valittuKurssi = $KurssiKyselyt.kurssiIDlla($session.getAttribute('selected_course_id')))
-    Valittu kurssi: $valittuKurssi.listaString() <br>
-    <ul>  
-    #if($valittuKurssi)
-        #set ($osallistumiset = $OsallistuminenKyselyt.osallistumisetKurssilla($valittuKurssi))
-        #foreach ($osallistuminen in $osallistumiset)
-            <li> $osallistuminen.nimi $osallistuminen.email
-        #end
-    #end
-    </ul>
+   <p>Valittu kurssi: $valittuKurssi.listaString() </p>
 #end
+
+<div>    
+    <form name="suoritevalinta" class="form-inline" action="listapohja.vm" method="get" target="_blank">
+    	<select name="listtype" tabindex="32600" class="form-control form-inline" style="width:200px">
+            <option value="1">$bundle.getString("kirjanpitolista")</option>
+            <option value="2">$bundle.getString("opnronimi")</option>
+            <option value="3">$bundle.getString("nimi")</option>
+            <option value="4">$bundle.getString("nimiemail")</option>
+            <option value="5">$bundle.getString("email")</option>
+            <option value="6">$bundle.getString("ilmjarjestys")</option>
+            <option value="7">$bundle.getString("tarkistuslista")</option>
+            <option value="8">$bundle.getString("nimikirjoitus")</option>
+            <option value="9">$bundle.getString("export")</option>
+	</select>
+        <input type="submit" tabindex="32601" value=">>>" class="btn btn-primary btn">
+    </form>
+</div>
 
 </body>
 </html>

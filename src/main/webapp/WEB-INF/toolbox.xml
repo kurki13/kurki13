@@ -48,5 +48,11 @@
     <tool>
         <key>SQLProseduurit</key>
         <class>debug.model.SQLkyselyt.SQLProseduurit</class>
+    </tool>        	
+
+    <tool>
+         <key>date</key>         
+         <class>org.apache.velocity.tools.generic.DateTool</class>
     </tool>
+    
 </toolbox>

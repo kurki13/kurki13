@@ -50,6 +50,8 @@ public class OsallistuminenKyselyt {
             String etunimi = rs.getString("etunimi");
             String sukunimi = rs.getString("sukunimi");
             add.setNimi(etunimi + " " + sukunimi);
+            add.setEtunimi(etunimi);
+            add.setSukunimi(sukunimi);
             add.setEmail(rs.getString("sahkopostiosoite"));
         }
         

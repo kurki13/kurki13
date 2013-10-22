@@ -55,6 +55,8 @@ public class Osallistuminen extends Table {
     public static final StringColumn tenttija = new StringColumn("tenttija");
     public static final StringColumn kielikoodi = new StringColumn("kielikoodi");
     private String nimi;
+    private String etunimi;
+    private String sukunimi;
     private String email;
 
     public void setNimi(String nimi) {
@@ -65,9 +67,25 @@ public class Osallistuminen extends Table {
         return nimi;
     }
 
-    public void setEmail(String email) {        
-        if (email == null) {            
-            this.email = "Undefined";
+    public void setEtunimi(String etunimi) {
+        this.etunimi = etunimi;
+    }
+
+    public String getEtunimi() {
+        return etunimi;
+    }
+
+    public void setSukunimi(String sukunimi) {
+        this.sukunimi = sukunimi;
+    }
+
+    public String getSukunimi() {
+        return sukunimi;
+    }
+
+    public void setEmail(String email) {
+        if (email == null) {
+            this.email = "";
         } else {
             this.email = email;
         }

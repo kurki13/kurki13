@@ -1,0 +1,32 @@
+#set($qs = $request.getQueryString())
+
+#if($qs)
+    #set($params = $queryparser.split($qs))
+#end
+
+#set($bundle = $sessioapuri.bundle($request))
+
+#if($session.getAttribute('selected_course_id'))
+    #set ($valittuKurssi = $KurssiKyselyt.kurssiIDlla($session.getAttribute('selected_course_id')))
+#end
+
+#if ($params.get("listtype") == 3)
+$valittuKurssi.listaString(): $bundle.getString("kaikkiopiskelijat")<br>
+$bundle.getString("tilanne"): $date.get('d.M.yyyy H:m')
+
+#end
+
+#if($session.getAttribute('selected_course_id'))
+    #set ($valittuKurssi = $KurssiKyselyt.kurssiIDlla($session.getAttribute('selected_course_id')))
+    <ul>  
+        #if($valittuKurssi)
+            #set ($osallistumiset = $OsallistuminenKyselyt.osallistumisetKurssilla($valittuKurssi))
+                #foreach ($osallistuminen in $osallistumiset)
+                    <li> $osallistuminen.sukunimi, $osallistuminen.etunimi </li>
+            #end
+        #end
+    </ul>
+#end
+
+</body>
+</html>
