@@ -85,7 +85,7 @@ public class Osallistuminen extends Table {
 
     public void setEmail(String email) {
         if (email == null) {
-            this.email = "";
+            this.email = "undefined";
         } else {
             this.email = email;
         }

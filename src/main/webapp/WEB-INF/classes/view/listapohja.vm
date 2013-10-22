@@ -1,3 +1,14 @@
+<html>
+<head>
+    <META charset='utf-8'/>
+    <title>KURKI</title>
+
+    <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+
+</head>
+<body>
+
 #set($qs = $request.getQueryString())
 
 #if($qs)
@@ -10,19 +21,51 @@
     #set ($valittuKurssi = $KurssiKyselyt.kurssiIDlla($session.getAttribute('selected_course_id')))
 #end
 
-#if ($params.get("listtype") == 3)
-    $valittuKurssi.listaString(): $bundle.getString("kaikkiopiskelijat")<br>
-    $bundle.getString("tilanne"): $date.get('d.M.yyyy H:m')
-    #set ($valittuKurssi = $KurssiKyselyt.kurssiIDlla($session.getAttribute('selected_course_id')))
-    <ul>  
-        #if($valittuKurssi)
-            #set ($osallistumiset = $OsallistuminenKyselyt.osallistumisetKurssilla($valittuKurssi))
-            $OsallistuminenSorter.sorttaaSukunimenMukaan($osallistumiset)
-            #foreach ($osallistuminen in $osallistumiset)
-                <li> $osallistuminen.sukunimi, $osallistuminen.etunimi </li>
-            #end
-        #end
-    </ul>
+$valittuKurssi.listaString(): $bundle.getString("kaikkiopiskelijat")<br>
+$bundle.getString("tilanne"): $date.get('d.M.yyyy HH:mm')<br><br>
+#set ($valittuKurssi = $KurssiKyselyt.kurssiIDlla($session.getAttribute('selected_course_id')))     
+#if($valittuKurssi)
+    #set ($osallistumiset = $OsallistuminenKyselyt.osallistumisetKurssilla($valittuKurssi))
+#end  
+
+#if ($params.get("listtype") == 3)       
+    $OsallistuminenSorter.sorttaaSukunimenMukaan($osallistumiset)
+    <table class="table table-bordered table-condensed" style="width: auto">            
+    <th>$bundle.getString("isonimi")</th>
+    #foreach ($osallistuminen in $osallistumiset)
+     <tr>
+       <td>$osallistuminen.sukunimi, $osallistuminen.etunimi</td>
+     </tr>
+    #end            
+    </table>        
+#end
+
+#if ($params.get("listtype") == 4) 
+    $OsallistuminenSorter.sorttaaSukunimenMukaan($osallistumiset)
+    <table class="table table-bordered table-condensed" style="width: auto">  
+    <th>$bundle.getString("isonimi")</th>
+    <th>Email</th>
+    #foreach ($osallistuminen in $osallistumiset)
+        <tr>
+            <td> $osallistuminen.sukunimi, $osallistuminen.etunimi</td> <td>$osallistuminen.email</td>
+         </tr>
+    #end
+    </table>        
+#end
+
+#if ($params.get("listtype") == 5)   
+    <table class="table table-bordered table-condensed" style="width: auto"> 
+    #foreach ($osallistuminen in $osallistumiset)
+        <td>$osallistuminen.email</td>
+    #end
+    </table> 
+#end
+
+#if ($params.get("listtype") == 6)    
+    $OsallistuminenSorter.sorttaaIlmjarjestyksenMukaan($osallistumiset)         
+    #foreach ($osallistuminen in $osallistumiset)
+        <li>$osallistuminen.sukunimi, $osallistuminen.etunimi &nbsp;&nbsp;&nbsp;&nbsp; $date.format('d.M.yyyy HH:mm', $osallistuminen.ilmoittautumis_pvm)</li>
+    #end
 #end
 
 </body>
