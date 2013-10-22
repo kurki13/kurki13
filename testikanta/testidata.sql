@@ -1,136 +1,72 @@
-insert into kurssi 
+Insert into kurssi
 (
-kurssikoodi,
-lukukausi,
-lukuvuosi,
-tyyppi,
-kurssi_nro,
-kielikoodi,
-nimi,
-opintoviikot,
-luentotunnit,
-luentokerta_lkm,
-harjoitustunnit,
-laskarikerta_lkm,
-lyhenne,
-salasana,
-suoritus_pvm,
-tila,
-alkamis_pvm,
-paattymis_pvm,
-paivitys_pvm,
-max_osallistuja_lkm,
-laskaritehtava_lkm,
-pakolliset_laskarikerta_lkm,
-pakolliset_laskaritehtava_lkm,
-max_laskaripisteet,
-hyvaksytty_laskarilasnaolo,
-lisapistealaraja,
-lisapisterajat,
-lisapisteiden_askelkoko,
-harjoitustyo_lkm,
-pakolliset_harjoitustyo_lkm,
-harjoitustyopisteet,
-max_harjoitustyopisteet,
-min_harjoitustyopisteet,
-min_harjoitustyopisteet_summa,
-harjoitustyon_pisterajat,
-harjoitustoiden_askelkoko,
-valikokeet_lkm,
-pakolliset_koe_lkm,
-max_koepisteet,
-min_koepisteet,
-min_koepisteet_summa,
-min_yhteispisteet,
-arvostelun_askelkoko,
-arvosanarajat,
-arvostellaanko,
-kokonaistiedot,
-kuvaustieto1,
-kuvaustieto2,
-kuvaustieto3,
-hakukysymykset,
-suunnittelukommentti,
-omistaja,
-peruttavissa,
-laskentakaava,
-arvostelu_pvm,
-siirto_pvm,
-ht_lisapistealaraja,
-arvostelija,
-opintoviikot_ylaraja,
-opintopisteet_ylaraja,
-opintopisteet,
-periodi,
-kotisivu,
-periodi2
-) 
-values 
+kurssikoodi,lukukausi,lukuvuosi,tyyppi,kurssi_nro,kielikoodi,nimi,opintoviikot,luentotunnit,luentokerta_lkm,harjoitustunnit,laskarikerta_lkm,lyhenne,salasana,suoritus_pvm,tila,alkamis_pvm,paattymis_pvm,paivitys_pvm,max_osallistuja_lkm,laskaritehtava_lkm,pakolliset_laskarikerta_lkm,pakolliset_laskaritehtava_lkm,max_laskaripisteet,hyvaksytty_laskarilasnaolo,lisapistealaraja,lisapisterajat,lisapisteiden_askelkoko,harjoitustyo_lkm,pakolliset_harjoitustyo_lkm,harjoitustyopisteet,max_harjoitustyopisteet,min_harjoitustyopisteet,min_harjoitustyopisteet_summa,harjoitustyon_pisterajat,harjoitustoiden_askelkoko,valikokeet_lkm,pakolliset_koe_lkm,max_koepisteet,min_koepisteet,min_koepisteet_summa,min_yhteispisteet,arvostelun_askelkoko,arvosanarajat,arvostellaanko,kokonaistiedot,kuvaustieto1,kuvaustieto2,kuvaustieto3,hakukysymykset,suunnittelukommentti,omistaja,peruttavissa,laskentakaava,arvostelu_pvm,siirto_pvm,ht_lisapistealaraja,arvostelija,opintoviikot_ylaraja,opintopisteet_ylaraja,opintopisteet,periodi,kotisivu,periodi2)
+values
 (
-'582337',
-'K',
-2010,
-'K',
-1,
-'S',
-'AI for Games II',
-0,
-2,
-1,
-10,
-13,
-null,
-null,
-'2013-06-15',
-'I',
-'2010-05-10',
-'2010-05-21',
-'2013-10-17',
-0,
-'99, 4, 4, 4, 4-00,00,00,00,00-00,00,00,00,00-00,00,00',
-0,
-1,
-15,
-'99, 2, 2, 2, 2-00,00,00,00,00-00,00,00,00,00-00,00,00',
-5,
-'  5,105,205,305,405,505,605,705,805,905,100,110,120,130,140',
-100,
-18,
-1,
-15,
-'99,99,55,00,00-00,00,00,00,00-00,00,00,00,00-00,00,00',
-' 2, 2, 2,00,00-00,00,00,00,00-00,00,00,00,00-00,00,00',
-0,
-'  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14, 15',
-1,
-18,
-1,
-'00,00,00,00,00-00,00,00,00,00-00,00,00,00,00-00,00,00',
-'00,00,00,00,00-00,00,00,00,00-00,00,00,00,00-00,00,00',
-0,
-0,
-0,
-'  1,  2,  3,  4,  5',
-'K',
-null,
-null,
-null,
-null,
-null,
-null,
-'MYLLYMAKI_P',
-'K',
-3,
-'2013-10-17',
-null,
-1,
-'admin',
-0,
-3,
-3,
-0,
-null,
-0
+'582337' -- kurssikoodi
+,'K' -- lukukausi
+,2010 -- lukuvuosi
+,'K' -- tyyppi
+,1 -- kurssi_nro
+,'S' -- kielikoodi
+,'AI for Games II' -- nimi
+,0 -- opintoviikot
+,2 -- luentotunnit
+,1 -- luentokerta_lkm
+,10 -- harjoitustunnit
+,13 -- laskarikerta_lkm
+,null -- lyhenne
+,null -- salasana
+,'2013-06-15' -- suoritus_pvm
+,'I' -- tila
+,'2010-05-10' -- alkamis_pvm
+,'2010-05-21' -- paattymis_pvm
+,'2013-10-17' -- paivitys_pvm
+,0 -- max_osallistuja_lkm
+,'99, 4, 4, 4, 4-00,00,00,00,00-00,00,00,00,00-00,00,00' -- laskaritehtava_lkm
+,0 -- pakolliset_laskarikerta_lkm
+,1 -- pakolliset_laskaritehtava_lkm
+,15 -- max_laskaripisteet
+,'99, 2, 2, 2, 2-00,00,00,00,00-00,00,00,00,00-00,00,00' -- hyvaksytty_laskarilasnaolo
+,5 -- lisapistealaraja
+,'  5,105,205,305,405,505,605,705,805,905,100,110,120,130,140' -- lisapisterajat
+,100 -- lisapisteiden_askelkoko
+,18 -- harjoitustyo_lkm
+,1 -- pakolliset_harjoitustyo_lkm
+,15 -- harjoitustyopisteet
+,'99,99,55,00,00-00,00,00,00,00-00,00,00,00,00-00,00,00' -- max_harjoitustyopisteet
+,' 2, 2, 2,00,00-00,00,00,00,00-00,00,00,00,00-00,00,00' -- min_harjoitustyopisteet
+,0 -- min_harjoitustyopisteet_summa
+,'  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14, 15' -- harjoitustyon_pisterajat
+,1 -- harjoitustoiden_askelkoko
+,18 -- valikokeet_lkm
+,1 -- pakolliset_koe_lkm
+,'00,00,00,00,00-00,00,00,00,00-00,00,00,00,00-00,00,00' -- max_koepisteet
+,'00,00,00,00,00-00,00,00,00,00-00,00,00,00,00-00,00,00' -- min_koepisteet
+,0 -- min_koepisteet_summa
+,0 -- min_yhteispisteet
+,0 -- arvostelun_askelkoko
+,'  1,  2,  3,  4,  5' -- arvosanarajat
+,'K' -- arvostellaanko
+,null -- kokonaistiedot
+,null -- kuvaustieto1
+,null -- kuvaustieto2
+,null -- kuvaustieto3
+,null -- hakukysymykset
+,null -- suunnittelukommentti
+,'MYLLYMAKI_P' -- omistaja
+,'K' -- peruttavissa
+,3 -- laskentakaava
+,'2013-10-17' -- arvostelu_pvm
+,null -- siirto_pvm
+,1 -- ht_lisapistealaraja
+,'admin' -- arvostelija
+,0 -- opintoviikot_ylaraja
+,3 -- opintopisteet_ylaraja
+,3 -- opintopisteet
+,0 -- periodi
+,null -- kotisivu
+,0 -- periodi2
 );
 Insert into kurssi
 (

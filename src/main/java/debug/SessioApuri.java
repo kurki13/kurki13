@@ -172,6 +172,8 @@ public class SessioApuri {
     }
     
     public String lisaysLause(Table taulu) {
+        if (taulu == null)
+            return "";
         return Testikanta.taulunLisaysLause(taulu).replaceAll("(\r\n|\n\r|\r|\n)", "<br />");
     }
 }
