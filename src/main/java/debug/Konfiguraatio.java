@@ -12,10 +12,9 @@ import java.util.ResourceBundle;
  */
 public class Konfiguraatio {
 
-    private static ResourceBundle prop;
+    private static ResourceBundle prop = ResourceBundle.getBundle("kurki");
     
-    public static void test() {
-        prop = ResourceBundle.getBundle("kurki");
-        System.out.println(prop.getString("webmaster"));
+    public String getString(String property) {
+        return prop.getString(property);
     }
 }

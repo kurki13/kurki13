@@ -139,7 +139,8 @@ public class KurssiKyselyt {
         PreparedStatement preparedStatement = databaseConnection.prepareStatement(COURSE_INFOS);
         preparedStatement.setString(1, ruser);
         preparedStatement.setString(2, ruser);
-        return SQLoader.loadTablesFromPreparedStatement(new Kurssi(), preparedStatement, databaseConnection);
+        List<Kurssi> kurssit = SQLoader.loadTablesFromPreparedStatement(new Kurssi(), preparedStatement, databaseConnection);
+        return filtteroiVanhatKurssitPois(kurssit, MONTHS_OPEN);
     }
 
     public static Kurssi kurssiIDlla(String s) throws SQLException {
