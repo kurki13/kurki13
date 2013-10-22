@@ -14,7 +14,7 @@ public class Konfiguraatio {
 
     private static ResourceBundle prop = ResourceBundle.getBundle("kurki");
     
-    public String getString(String property) {
+    public static String getString(String property) {
         return prop.getString(property);
     }
 }

@@ -4,6 +4,7 @@
  */
 package debug.dbconnection;
 
+import debug.Konfiguraatio;
 import debug.Pipe;
 import java.io.IOException;
 import java.sql.Connection;
@@ -31,11 +32,11 @@ public class DatabaseConnection {
             }
         } else {
             try {
-                Class.forName("oracle.jdbc.OracleDriver");
+                Class.forName(Konfiguraatio.getString("dbDriver"));
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(Pipe.class.getName()).log(Level.SEVERE, null, ex);
             }
-            return DriverManager.getConnection("jdbc:oracle:thin:@bodbacka.cs.helsinki.fi:1521:test", "tk_testi", "tapaus2");
+            return DriverManager.getConnection(Konfiguraatio.getString("dbServer"), Konfiguraatio.getString("dbUser"), Konfiguraatio.getString("dbPassword"));
         }
         return null;
     }
