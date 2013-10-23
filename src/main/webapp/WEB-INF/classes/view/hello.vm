@@ -39,7 +39,6 @@ $sessioapuri.auta($request)
 <a href="?locale=en"><img src="images/liput/gb.png"></a>
 <a href="?locale=fi"><img src="images/liput/fi.png"></a>
 <a href="logout.vm">Logout</a>
-
 <div>
 <form action="" method=get class="form-inline">
     <select name="courseId" onChange="this.form.submit()" class="form-control form-inline" style="width:700px">

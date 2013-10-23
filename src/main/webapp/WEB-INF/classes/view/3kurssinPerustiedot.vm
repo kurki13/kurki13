@@ -54,6 +54,8 @@
         Pakollisten kokeiden määräksi asetettu $koe_p
     #end
 </pre>
+##Tallennetaan kurssi kantaan
+$KurssiKyselyt.tallennaKantaan($valittuKurssi)
 
 <pre>$valittuKurssi.idString()</pre>
 <pre>$valittuKurssi</pre>

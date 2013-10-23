@@ -28,6 +28,7 @@ public class Testikanta {
     private static boolean initialized = false;
     //Lisää tähän oma projektikansiosi
     public static String[] project_folder_locations = {
+	    "/home/yeahthesun/kurki13",
         "/cs/fs2/home/mkctammi/ohtuprog/kurki13",
         "/cs/fs2/home/tkairola/KURKI13/kurki13",
         "/cs/fs2/home/esaaksvu/koulu/kurki13",
