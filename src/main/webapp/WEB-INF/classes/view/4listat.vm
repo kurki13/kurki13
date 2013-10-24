@@ -18,6 +18,9 @@
             <option value="8">$bundle.getString("nimikirjoitus")</option>
             <option value="9">$bundle.getString("export")</option>
 	</select>
+         <div class="form-group">
+        <input type="text" class="form-control" name="kommentti" placeholder="$bundle.getString("kommentti")">
+        </div>
         <input type="submit" tabindex="32601" value=">>>" class="btn btn-primary btn">
     </form>
 </div>

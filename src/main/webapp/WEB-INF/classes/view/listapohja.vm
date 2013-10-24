@@ -21,11 +21,16 @@
 #end
 
 $valittuKurssi.listaString(): $bundle.getString("kaikkiopiskelijat")<br>
-$bundle.getString("tilanne"): $date.get('d.M.yyyy HH:mm')<br><br>
+$bundle.getString("tilanne"): $date.get('d.M.yyyy HH:mm')<br>
 #set ($valittuKurssi = $KurssiKyselyt.kurssiIDlla($session.getAttribute('selected_course_id')))     
 #if($valittuKurssi)
     #set ($osallistumiset = $OsallistuminenKyselyt.osallistumisetKurssilla($valittuKurssi))
 #end  
+
+#if (!$params.get("kommentti").equals(""))
+    $bundle.getString("kommentti"): $params.get("kommentti")<br>
+#end
+<br>
 
 #if ($params.get("listtype") == 1)  
     $OsallistuminenSorter.sorttaaSukunimenMukaan($osallistumiset)
