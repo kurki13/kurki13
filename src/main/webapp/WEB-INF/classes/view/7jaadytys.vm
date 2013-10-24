@@ -25,10 +25,11 @@
             #set ($ylaraja = $jaadytys.asetaSuorituspvmlleYlaraja($selected_course))
             <form method=get>
                 <input type="date" name="suoritusPvm" min="$alaraja" max="$ylaraja">
-                <input type="submit" value="Aseta suorituspäivämäärä" class="btn">
+                <input type="submit" value="$bundle.getString("asetaSuorpvm")" class="btn">
             </form>
         #else
             <form method=get>
+                #set ($kurssinTila = $selected_course.getTila())
                 #if (!$jaadytys.tarkastaSuorituspvm($selected_course))
                     <input type="hidden" name="virhe" value="$bundle.getString("jaadytystaEiVoiSuorittaaPvm")">
 
@@ -36,6 +37,7 @@
                     <input type="hidden" name="virhe" value="$bundle.getString("jaadytystaEiVoiSuorittaa")">
 
                 #elseif ($SQLProseduurit.suoritaJaadytys($selected_course) == "OK")
+                    ##$jaadytys.lahetaPostia($selected_course.listaString(), $kurssinTila, $request.getRemoteUser())
                     #set ($ilmoitus = "$bundle.getString('jaadytysInfo'). $bundle.getString('jaadytysInfo3') $bundle.getString('jaadytysInfo4')")
                     <input type="hidden" name="onnistui" value="$ilmoitus">
 
