@@ -35,13 +35,15 @@ $bundle.getString("tilanne"): $date.get('d.M.yyyy HH:mm')<br><br>
         <th width="55">$i</th>    
     #end    
     #foreach ($osallistuminen in $osallistumiset)
+    #if ($osallistuminen.voimassa.equals("K"))
      <tr>        
        <td>$osallistuminen.sukunimi, $osallistuminen.etunimi</td>
        #foreach ( $i in [1..10] )
        <td>&nbsp</td>
        #end
      </tr>
-    #end            
+    #end   
+    #end
     </table> 
 #end
 
@@ -51,10 +53,12 @@ $bundle.getString("tilanne"): $date.get('d.M.yyyy HH:mm')<br><br>
     <th>$bundle.getString("isonimi")</th>
     <th>$bundle.getString("opnro")</th>
     #foreach ($osallistuminen in $osallistumiset)
+    #if ($osallistuminen.voimassa.equals("K"))
      <tr>
        <td>$osallistuminen.sukunimi, $osallistuminen.etunimi</td> <td>$osallistuminen.hetu</td>
      </tr>
     #end            
+    #end
     </table>        
 #end
 
@@ -63,10 +67,12 @@ $bundle.getString("tilanne"): $date.get('d.M.yyyy HH:mm')<br><br>
     <table class="table table-bordered table-condensed" style="width: auto">            
     <th>$bundle.getString("isonimi")</th>
     #foreach ($osallistuminen in $osallistumiset)
+    #if ($osallistuminen.voimassa.equals("K"))
      <tr>
        <td>$osallistuminen.sukunimi, $osallistuminen.etunimi</td>
      </tr>
-    #end            
+    #end        
+    #end
     </table>        
 #end
 
@@ -76,9 +82,11 @@ $bundle.getString("tilanne"): $date.get('d.M.yyyy HH:mm')<br><br>
     <th>$bundle.getString("isonimi")</th>
     <th>Email</th>
     #foreach ($osallistuminen in $osallistumiset)
+    #if ($osallistuminen.voimassa.equals("K"))
         <tr>
             <td> $osallistuminen.sukunimi, $osallistuminen.etunimi</td> <td>$osallistuminen.email</td>
          </tr>
+    #end
     #end
     </table>        
 #end
@@ -89,10 +97,12 @@ $bundle.getString("tilanne"): $date.get('d.M.yyyy HH:mm')<br><br>
     <table class="table table-bordered table-condensed" style="width: auto"> 
     <th>Email</th>
     #foreach ($osallistuminen in $osallistumiset)
+    #if ($osallistuminen.voimassa.equals("K"))
         <tr>
             <td>$osallistuminen.email</td>
         </tr>
-    #end    
+    #end  
+    #end
     </table> 
 #end
 
@@ -103,12 +113,80 @@ $bundle.getString("tilanne"): $date.get('d.M.yyyy HH:mm')<br><br>
     <th>$bundle.getString("isonimi")</th>
     <th>$bundle.getString("ilmoaika")</th>
     #foreach ($osallistuminen in $osallistumiset)
+    #if ($osallistuminen.voimassa.equals("K"))
         <tr>
         <td>$foreach.count</td>
-        <td>$osallistuminen.sukunimi, $osallistuminen.etunimi</td> <td>$date.format('d.M.yyyy HH:mm', $osallistuminen.ilmoittautumis_pvm)</td>
+        <td>$osallistuminen.sukunimi, $osallistuminen.etunimi</td> <td>$date.format('d.M.yyyy HH:mm:ss', $osallistuminen.ilmoittautumis_pvm)</td>
         </tr>
     #end
+    #end
     </table> 
+#end
+
+#if ($params.get("listtype") == 7)       
+    $OsallistuminenSorter.sorttaaSukunimenMukaan($osallistumiset)
+    <table class="table table-bordered table-condensed" style="width: auto">            
+    <th>$bundle.getString("isonimi")</th>  
+    <th>$bundle.getString("lh")</th>     
+    #if ($valittuKurssi.laskarikerta_lkm > 0)        
+        #foreach ( $i in [1..$valittuKurssi.laskarikerta_lkm] )
+           <th>$i</th>       
+        #end
+    #end 
+
+      <th>$bundle.getString("ht")</th> 
+       #if ($valittuKurssi.harjoitustyo_lkm > 0)        
+        #foreach ( $i in [1..$valittuKurssi.harjoitustyo_lkm] )
+           <th>$i</th>       
+        #end
+    #end
+
+    <th>$bundle.getString("koe")</th> 
+       #if ($valittuKurssi.valikokeet_lkm > 0)        
+        #foreach ( $i in [1..$valittuKurssi.valikokeet_lkm] )
+           <th>$i</th>       
+        #end
+    #end  
+ 
+    #foreach ($osallistuminen in $osallistumiset)
+    #if ($osallistuminen.voimassa.equals("K"))
+     <tr>
+       <td>$osallistuminen.sukunimi, $osallistuminen.etunimi</td>
+       #if ($valittuKurssi.laskarikerta_lkm > 0)
+       <td align="center">$osallistuminen.laskarisuoritukset_summa</td>
+       #foreach ( $i in [1..$valittuKurssi.laskarikerta_lkm] )       
+        <td>#if($osallistuminen.laskarit.osa($i)) $osallistuminen.laskarit.osa($i)#end</td>
+       #end
+       <td align="center">$osallistuminen.harjoitustyo_summa</td>
+       #foreach ( $i in [1..$valittuKurssi.harjoitustyo_lkm] )       
+        <td>#if($osallistuminen.harjoitustyot.osa($i)) $osallistuminen.harjoitustyot.osa($i)#end</td>
+       #end
+       <td align="center">$osallistuminen.koepisteet_summa</td>
+       #foreach ( $i in [1..$valittuKurssi.valikokeet_lkm] )       
+        <td>#if($osallistuminen.kokeet.osa($i)) $osallistuminen.kokeet.osa($i)#end</td>
+       #end
+       #end
+     </tr>
+    #end  
+    #end
+    </table>  
+    $bundle.getString("hyvpisteitta")
+#end
+
+#if ($params.get("listtype") == 8)       
+    $OsallistuminenSorter.sorttaaSukunimenMukaan($osallistumiset)
+    <table class="table table-bordered table-condensed" style="width: auto">            
+    <td><b>$bundle.getString("isonimi")</b></td>
+    <td width="600" align="center"><b>$bundle.getString("isonimikirjoitus")</b></td>
+    #foreach ($osallistuminen in $osallistumiset)
+    #if ($osallistuminen.voimassa.equals("K"))
+     <tr>
+       <td>$osallistuminen.sukunimi, $osallistuminen.etunimi</td>
+       <td>&nbsp</td>
+     </tr>  
+    #end  
+    #end
+    </table>        
 #end
 
 </body>
