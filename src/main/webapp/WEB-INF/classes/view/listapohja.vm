@@ -5,7 +5,6 @@
 
     <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
     <link href="bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
-
 </head>
 <body>
 
@@ -27,6 +26,37 @@ $bundle.getString("tilanne"): $date.get('d.M.yyyy HH:mm')<br><br>
 #if($valittuKurssi)
     #set ($osallistumiset = $OsallistuminenKyselyt.osallistumisetKurssilla($valittuKurssi))
 #end  
+
+#if ($params.get("listtype") == 1)  
+    $OsallistuminenSorter.sorttaaSukunimenMukaan($osallistumiset)
+    <table border="1">            
+    <th width="350">$bundle.getString("isonimi")</th>
+    #foreach ( $i in [1..10] )
+        <th width="55">$i</th>    
+    #end    
+    #foreach ($osallistuminen in $osallistumiset)
+     <tr>        
+       <td>$osallistuminen.sukunimi, $osallistuminen.etunimi</td>
+       #foreach ( $i in [1..10] )
+       <td>&nbsp</td>
+       #end
+     </tr>
+    #end            
+    </table> 
+#end
+
+#if ($params.get("listtype") == 2)       
+    $OsallistuminenSorter.sorttaaSukunimenMukaan($osallistumiset)
+    <table class="table table-bordered table-condensed" style="width: auto">            
+    <th>$bundle.getString("isonimi")</th>
+    <th>$bundle.getString("opnro")</th>
+    #foreach ($osallistuminen in $osallistumiset)
+     <tr>
+       <td>$osallistuminen.sukunimi, $osallistuminen.etunimi</td> <td>$osallistuminen.hetu</td>
+     </tr>
+    #end            
+    </table>        
+#end
 
 #if ($params.get("listtype") == 3)       
     $OsallistuminenSorter.sorttaaSukunimenMukaan($osallistumiset)
@@ -53,7 +83,7 @@ $bundle.getString("tilanne"): $date.get('d.M.yyyy HH:mm')<br><br>
     </table>        
 #end
 
-#if ($params.get("listtype") == 5)   
+#if ($params.get("listtype") == 5)       
     $bundle.getString("emailkopiointi")<br>
     <input value="#foreach ($osallistuminen in $osallistumiset)#if(!$osallistuminen.email.equals("undefined"))$osallistuminen.email,#end#end"></input><br><br>
     <table class="table table-bordered table-condensed" style="width: auto"> 
