@@ -51,7 +51,7 @@ public class Testikanta {
         String driver = "org.apache.derby.jdbc.EmbeddedDriver";
         Class.forName(driver);
         File dbFolder = new File(project_folder_location + "/testikanta/testikanta");
-        String url = "jdbc:derby:" + dbFolder.getCanonicalPath() + ";create=true";
+        String url = "jdbc:derby:memory:testikanta;create=true";
         Connection c = DriverManager.getConnection(url);
         if (!initialized) {
             initialize(c);
