@@ -59,7 +59,7 @@ public class Osallistuminen extends Table {
     private String sukunimi;
     private String email;
 
-    public void setNimi(String nimi) {
+    public void setNimi(String nimi) {       
         this.nimi = nimi;
     }
 

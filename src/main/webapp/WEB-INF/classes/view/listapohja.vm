@@ -54,18 +54,31 @@ $bundle.getString("tilanne"): $date.get('d.M.yyyy HH:mm')<br><br>
 #end
 
 #if ($params.get("listtype") == 5)   
+    $bundle.getString("emailkopiointi")<br>
+    <input value="#foreach ($osallistuminen in $osallistumiset)#if(!$osallistuminen.email.equals("undefined"))$osallistuminen.email,#end#end"></input><br><br>
     <table class="table table-bordered table-condensed" style="width: auto"> 
+    <th>Email</th>
     #foreach ($osallistuminen in $osallistumiset)
-        <td>$osallistuminen.email</td>
-    #end
+        <tr>
+            <td>$osallistuminen.email</td>
+        </tr>
+    #end    
     </table> 
 #end
 
 #if ($params.get("listtype") == 6)    
-    $OsallistuminenSorter.sorttaaIlmjarjestyksenMukaan($osallistumiset)         
+    $OsallistuminenSorter.sorttaaIlmjarjestyksenMukaan($osallistumiset)    
+    <table class="table table-bordered table-condensed" style="width: auto"> 
+    <th>#</th>
+    <th>$bundle.getString("isonimi")</th>
+    <th>$bundle.getString("ilmoaika")</th>
     #foreach ($osallistuminen in $osallistumiset)
-        <li>$osallistuminen.sukunimi, $osallistuminen.etunimi &nbsp;&nbsp;&nbsp;&nbsp; $date.format('d.M.yyyy HH:mm', $osallistuminen.ilmoittautumis_pvm)</li>
+        <tr>
+        <td>$foreach.count</td>
+        <td>$osallistuminen.sukunimi, $osallistuminen.etunimi</td> <td>$date.format('d.M.yyyy HH:mm', $osallistuminen.ilmoittautumis_pvm)</td>
+        </tr>
     #end
+    </table> 
 #end
 
 </body>
