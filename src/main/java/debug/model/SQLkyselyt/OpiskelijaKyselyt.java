@@ -44,15 +44,19 @@ public class OpiskelijaKyselyt {
         return SQLoader.loadTablesFromPreparedStatement(new Opiskelija(), ps, connection);
     }
     
+    //!!Ei palauta aakkosjärjestyksessä!!
     public static List<Opiskelija> 
             haeOpiskelijat(String hetuLike, String sukunimi) throws SQLException{
         String query = "SELECT * FROM opiskelija op \n"
-                + "WHERE op.hetu LIKE ? \n"
-                + "AND op.sukunimi LIKE ?";
+                + "WHERE op.sukunimi like ? \n"
+                + "AND op.hetu like ? \n"
+                + "AND ROWNUM <= 50 \n"
+                + "ORDER BY op.sukunimi ASC, op.etunimi ASC, op.hetu ASC";
+        
         Connection connection = DatabaseConnection.makeConnection();
         PreparedStatement ps = connection.prepareStatement(query);
-        ps.setString(1, "%"+hetuLike+"%");
-        ps.setString(2, "%"+sukunimi+"%");
+        ps.setString(2, "%"+hetuLike+"%");
+        ps.setString(1, "%"+sukunimi+"%");
         return SQLoader.loadTablesFromPreparedStatement(new Opiskelija(), ps, connection);
     }
 }

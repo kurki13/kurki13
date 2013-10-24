@@ -1,16 +1,20 @@
 #set($sukunimi = $params.get('filterSukunimi'))
 #set($hetu = $params.get('filterOpnro'))
 #set($ryhm = $params.get('ryhma'))
+#set($haetut = $OpiskelijaKyselyt.haeOpiskelijat($hetu, $sukunimi))
 
 <table class="table table-condensed table-bordered" style="max-width:1000px">
+  <caption>
+   Opiskelijoita valittu $haetut.size()
+  </caption>
   <tr>
     <th> Nimi (syntymäpäivä) </th>
     <th> OpNro </th>
     <th> Ryhmä </th>
     <th> Ilmoita kurssille </th>
   </tr>     
-   #set($i = 0)
-   #foreach($opiskelija in $OpiskelijaKyselyt.haeOpiskelijat($hetu, $sukunimi))
+
+   #foreach($opiskelija in $haetut)
    <tr>
     <td>
       <b><a href="mailto:$opiskelija.sahkopostiosoite">$opiskelija.etunimi, $opiskelija.sukunimi</a></b>
@@ -41,7 +45,5 @@
       </center>
     </td>
   </tr>
-  #set($i=$i+1)
   #end
   </table>
-   Opiskelijoita valittu $i

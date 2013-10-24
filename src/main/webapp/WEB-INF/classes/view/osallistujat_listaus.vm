@@ -3,7 +3,9 @@
 #end
 
 <table class="table table-condensed table-bordered" style="max-width:1000px">
-
+  <caption>
+   Opiskelijoita valittu $osallistumiset.size()
+  </caption>
   <tr>
     <th> Nimi (syntymäpäivä) </th>
     <th> OpNro </th>
@@ -13,11 +15,10 @@
     <th> Näytä tiedot </th>
   </tr>
 
-#set($i = 0)
 #foreach($osallis in $osallistumiset)
   <tr>
     <td>
-      <b><a href="mailto:"EMAL"">$osallis.nimi</a></b>
+      <b><a href="mailto:"EMAL"">$osallis.sukunimi, $osallis.etunimi</a></b>
     </td>
 
     <td>
@@ -46,14 +47,11 @@
              onClick="doEditRequest('0')"></center>
     </td>
   </tr>
-#set($i = $i +1)
 #end
 
-#if($i == 0)
+#if($osallistumiset.size() == 0)
 $bundle.getString("opeivastannut")
 #else
-<p> Opiskelijoita: $i </p>
-
   <tr>
     <th colspan="6">
       <input type="hidden" name="doSaveAll" value="ok">
