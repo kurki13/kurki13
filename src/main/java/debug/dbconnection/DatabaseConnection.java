@@ -19,7 +19,8 @@ import java.util.logging.Logger;
  */
 public class DatabaseConnection {
     
-    public static boolean testing = Konfiguraatio.testing();
+//    public static boolean testing = Konfiguraatio.testing();
+    public static boolean testing = false;
     
     public static Connection makeConnection() throws SQLException {
         if (testing) {

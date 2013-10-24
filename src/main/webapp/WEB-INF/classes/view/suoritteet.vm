@@ -1,4 +1,7 @@
 ##lisää tarkistukset onko jäässä!!
+##javascriptit eri tiedostoon ja
+##<head>:iin <script language='JavaScript' type='text/javascript' src='tiedostonimi.js'></script>
+##tarkista onko osallistuminen voimassa 'e'=ei?? 'k'=kyllä p='poistettu'
 #set($valittuKurssi = $KurssiKyselyt.kurssiIDlla($session.getAttribute('selected_course_id')))
 #set($kurssinOsallistumiset = $OsallistuminenKyselyt.osallistumisetKurssilla($valittuKurssi))
 
@@ -37,22 +40,37 @@
 
     <table class="table table-striped table-nonfluid table-condensed">
         <tr>
-            <td>$bundle.getString("opiskelija")</td>
-            <td>$bundle.getString("ryhma")</td>
-            <td colspan="2" align="center">$tyypit.get($params.get('type'))</td>
+            <td><b>$bundle.getString("opiskelija")</b></td>
+            <td><b>$bundle.getString("ryhma")</b></td>
+            <td colspan="2" align="center"><b>$tyypit.get($params.get('type'))</b></td>
         </tr>
         #foreach ($os in $filteroidytOsallistumiset)
             <tr>
                 <td>$os.nimi, $os.hetu</td>
                 <td>$os.ilmo_jnro</td>
 
+            #set ($max = $valittuKurssi.laskariRajat.osa($kerta).max)
 
-            ##laskaripisteet, lisää ehto
-                ##$kerta
+            ##laskaripisteet, lisää ehto ht ja koe
+                
+                ##lisää undo jos value liian iso tai pieni
                 <td><input value="$os.laskarit.osa($kerta)" type="text" class="form-control input-sm"
                         style="width:50px" maxlength="3" name="pisteet${os.hetu}"
-                        onblur="if(this.value != '$os.laskarit.osa($kerta)') { this.style.color='red';}"></td>
+                        onblur="if(this.value>$max || this.value<0) {alert('luku tulee olla väliltä 0-${max}') }"
+                        onChange="if(this.value != '$os.laskarit.osa($kerta)') { this.style.color='red'}
+                        else {this.style.color='black'};
+                        setChecked('id${os.hetu}', this.value)"></td>
 
+<script type="text/javascript">
+
+function setChecked(hetu, thisvalue){
+    var id = hetu+'_'+thisvalue
+    document.getElementById(id).checked = true
+}
+
+</script>
+
+                ##listataan pistemäärät tyhjästä plussaan ja siitä maksimipistemäärään
                 #set ($pisteet = [$bundle.getString('tyhja'), '+'])
                 #set($start = 0)
                 #set($end = $valittuKurssi.laskariRajat.osa($kerta).max)
@@ -62,11 +80,18 @@
                 #end
 
                 <td>
+
                 #foreach($i in $pisteet)
                     #if ($i == $os.laskarit.osa($kerta) || ($i == $bundle.getString('tyhja') && $os.laskarit.osa($kerta) == ""))
-                        <input type="radio" name="laskaripisteet${os.hetu}" value="$i" checked="checked">$i
+                        <input type="radio" name="laskaripisteet${os.hetu}" #if($i == $bundle.getString('tyhja')) value="" id="id${os.hetu}_" #else value=$i id="id${os.hetu}_$i" #end
+                            onChange="pisteet${os.hetu}.value=this.value;
+                            pisteet${os.hetu}.style.color='black'"
+                            checked>$i
                     #else
-                        <input type="radio" name="laskaripisteet${os.hetu}" value="$i">$i
+                        <input type="radio" name="laskaripisteet${os.hetu}" #if($i == $bundle.getString('tyhja')) value="" id="id${os.hetu}_" #else value=$i id="id${os.hetu}_$i" #end
+                            onChange="pisteet${os.hetu}.value=this.value;
+                            if(laskaripisteet${os.hetu}.value != '$os.laskarit.osa($kerta)')
+                            { pisteet${os.hetu}.style.color='red'}">$i
                     #end
                 #end
                 </td>
@@ -74,6 +99,7 @@
             </tr>
         #end
     </table>
+<input type=hidden value=pressed name=button>
 <input type=submit class="btn" value=$bundle.getString("tmuutokset") onClick="">
 
 #foreach ($os in $filteroidytOsallistumiset)
