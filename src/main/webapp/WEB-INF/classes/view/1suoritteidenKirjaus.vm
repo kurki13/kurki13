@@ -23,7 +23,7 @@
 <form name="suoritteidenKirjaus" action="" method=get class="form-inline">
 
     <b>$bundle.getString("tyyppi"):</b>
-    <select name="type" onChange="osasuorituskerrat(this.selectedIndex)"  class="form-control form-inline" style="width:250px">
+    <select name="type" onChange="osasuorituskerrat(this.selectedIndex)" class="form-control form-inline" style="width:250px">
 ##        <option value="" selected>--- Valitse ---</option>
     #foreach($t in $tyypit.entrySet())
         #if($params.get("type") == $t.key)
@@ -54,7 +54,7 @@
     osaSuor[1] = [ht]
     osaSuor[2] = [koe]
 
-    var apuInt = 0;
+    var apuInt = 0
     var apuArray = new Array()
     var koko = "${tyypit.size()}"
 
@@ -66,7 +66,7 @@
             }
             kerrat[apuInt]=apuArray
             var apuArray = new Array()
-            apuInt++;
+            apuInt++
         }
     }
 
@@ -77,13 +77,13 @@
         for (i=0; i<kerrat[tyyppi].length; i++) {
             kerratlista.options[kerratlista.options.length]=new Option(kerrat[tyyppi][i]) 
         }
-        kerratlista.disabled=false;
+        kerratlista.disabled=false
         if (kerrat[tyyppi].length == 0) {
-            kerratlista.disabled=true;
+            kerratlista.disabled=true
         }
         kerratlista.selectedIndex=#if($params.get("kerta"))$params.get("kerta")-1#{else}0#end
     }
-    window.onload = osasuorituskerrat(document.suoritteidenKirjaus.type.selectedIndex);
+    window.onload = osasuorituskerrat(document.suoritteidenKirjaus.type.selectedIndex)
 </script>
 
 ##haetaan kurssin ryhmät, ja jätetään pois mystinen ryhmä "0"
@@ -111,11 +111,15 @@
     <input value="#if($params.get("opiskelijat"))$params.get("opiskelijat")#end"
         type="text" class="form-control form-inline" style="width:150px" name="opiskelijat">
 
+    <input type=hidden value=pressed name=button>
+    
     <input type=submit class="btn" value=">>>">
 
 </form>
 
-#parse ('suoritteet.vm')
+#if ($params.get("button"))
+    #parse ('suoritteet.vm')
+#end
 
 ##valittu $params.get('lisääTähänNimi')
 
