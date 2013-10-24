@@ -138,6 +138,16 @@ public class Osallistuminen extends Table {
         }
         return kokeet;
     }
+    
+    /**
+     * Päivittää aputaulujen (laskarit, harjoitustyöt, kokeet) arvot takaisin tekstimuotoisiin kenttiin,
+     * jotta olion tiedot voidaan tallentaa kantaan.
+     */
+    public void update() {
+	    this.setValue(Osallistuminen.laskarisuoritukset, laskarit.pisteetTietokantamuodossa());
+	    this.setValue(Osallistuminen.harjoitustyopisteet, harjoitustyot.pisteetTietokantamuodossa());
+	    this.setValue(Osallistuminen.koepisteet, kokeet.pisteetTietokantamuodossa());
+    }
 
     //<editor-fold defaultstate="collapsed" desc="getterit">
     public String getPersonid() {

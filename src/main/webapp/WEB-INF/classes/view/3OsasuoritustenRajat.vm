@@ -5,8 +5,6 @@
     #set ($jaassa = false)
 #end
 
-$valittuKurssi.update()
-
 ##Osasuoritustyyppien tiedot. Lista jonka alkioina on osasuoritustyypin nimi, 
 ##lista sen osasuorituksista, ja lyhenne GET-parametria varten
 #set($osasuoritusTyypit = [
@@ -40,6 +38,9 @@ $valittuKurssi.update()
         #set($i = $i+1)
     #end
 #end
+
+##Tallennetaan kurssi kantaan
+$KurssiKyselyt.tallennaKantaan($valittuKurssi)
 
 <form name="kurssinPisteet" action="" method=get class="form-inline">
 

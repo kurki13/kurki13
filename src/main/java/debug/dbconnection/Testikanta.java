@@ -41,16 +41,16 @@ public class Testikanta {
     public static Connection makeConnection()
             throws SQLException, IOException, ClassNotFoundException {
 
-        for (String string : project_folder_locations) {
-            if (new File(string).exists() && new File(string).canWrite()) {
-                project_folder_location = string;
-                System.out.println("Testikannan poluksi valittiin " + string);
+	if(project_folder_location == null) {
+            for (String string : project_folder_locations) {
+                if (new File(string).exists() && new File(string).canWrite()) {
+                    project_folder_location = string;
+                }
             }
-        }
-
+	}
+	    
         String driver = "org.apache.derby.jdbc.EmbeddedDriver";
         Class.forName(driver);
-        File dbFolder = new File(project_folder_location + "/testikanta/testikanta");
         String url = "jdbc:derby:memory:testikanta;create=true";
         Connection c = DriverManager.getConnection(url);
         if (!initialized) {
