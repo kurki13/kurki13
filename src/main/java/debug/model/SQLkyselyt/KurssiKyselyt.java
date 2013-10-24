@@ -205,50 +205,6 @@ public class KurssiKyselyt {
 
 	public static void tallennaKantaan(Kurssi kurssi) throws SQLException {
 		kurssi.update();
-		Connection c = DatabaseConnection.makeConnection();
-		StringBuilder sb = new StringBuilder();
-
-		sb.append("UPDATE kurssi SET");
-		List<Column> cols = kurssi.getColumns();
-		List<Column> idCols = kurssi.getIdColumns();
-		for (Column column : cols) {
-			sb.append(" ").append(column.getColumnName()).append("=?,");
-		}
-		sb.deleteCharAt(sb.length() - 1); // pilkku pois
-		sb.append(" WHERE ");
-		for (Column column : idCols) {
-			sb.append(" ").append(column.getColumnName()).append("=? AND");
-		}
-		sb.deleteCharAt(sb.length() - 1); //AND pois
-		sb.deleteCharAt(sb.length() - 1); //AND pois
-		sb.deleteCharAt(sb.length() - 1); //AND pois
-		PreparedStatement ps = c.prepareStatement(sb.toString());
-		int i = 1;
-		for (Column column : cols) {
-			if (column.getType() == String.class) {
-				ps.setString(i, (String) kurssi.getValue(column));
-			} else if (column.getType() == Integer.class) {
-				ps.setInt(i, (Integer) kurssi.getValue(column));
-			} else if (column.getType() == Date.class) {
-				ps.setDate(i, (Date) kurssi.getValue(column));
-			} else if (column.getType() == Timestamp.class) {
-				ps.setTimestamp(i, (Timestamp) kurssi.getValue(column));
-			}
-			i++;
-		}
-		for (Column column : idCols) {
-			if (column.getType() == String.class) {
-				ps.setString(i, (String) kurssi.getValue(column));
-			} else if (column.getType() == Integer.class) {
-				ps.setInt(i, (Integer) kurssi.getValue(column));
-			} else if (column.getType() == Date.class) {
-				ps.setDate(i, (Date) kurssi.getValue(column));
-			} else if (column.getType() == Timestamp.class) {
-				ps.setTimestamp(i, (Timestamp) kurssi.getValue(column));
-			}
-			i++;
-		}
-		ps.execute();
-		c.close();
+		SQLoader.tallennaKantaan(kurssi);
 	}
 }
