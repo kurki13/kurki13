@@ -7,6 +7,12 @@
 </head>
 <body>
 
+#set ($lol = "sark")
+#set ($regex = ".*")
+#set ($testi = "sarkkinen")
+
+$testi.matches("$lol$regex")
+
 #set($qs = $request.getQueryString())
 
 #if($qs)
@@ -21,10 +27,23 @@
 
 $valittuKurssi.listaString(): $bundle.getString("kaikkiopiskelijat")<br>
 $bundle.getString("tilanne"): $date.get('d.M.yyyy HH:mm')<br>
+
 #set ($valittuKurssi = $KurssiKyselyt.kurssiIDlla($session.getAttribute('selected_course_id')))     
 #if($valittuKurssi)
     #set ($osallistumiset = $OsallistuminenKyselyt.osallistumisetKurssilla($valittuKurssi))
 #end  
+
+#if (!$params.get("filter").equals(""))
+    filteröidään
+    #set ($filter = $params.get("filter"))   
+    #set ($testi = $osallistumiset)
+    #foreach ($osallistuminen in $osallistumiset)
+        #if ($osallistuminen.sukunimi.equalsIgnoreCase("Noname000"))
+            $testi.remove($osallistuminen)
+        #end
+    #end
+    #set ($osallistumiset = $testi)
+#end
 
 #if (!$params.get("kommentti").equals(""))
     $bundle.getString("kommentti"): $params.get("kommentti")<br>
