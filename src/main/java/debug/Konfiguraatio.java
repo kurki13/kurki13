@@ -15,7 +15,7 @@ public class Konfiguraatio {
     private static Properties prop = new Properties();
 
     static {
-        prop.setProperty("use_local_test_database", "false");
+        prop.setProperty("use_local_test_database", "true");
         prop.setProperty("webmaster", "taru.airola@helsinki.fi");
         prop.setProperty("oodi", "taru.airola@helsinki.fi");
         prop.setProperty("dbDriver", "oracle.jdbc.OracleDriver");

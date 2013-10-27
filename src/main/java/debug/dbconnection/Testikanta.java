@@ -28,6 +28,7 @@ public class Testikanta {
     private static boolean initialized = false;
     //Lisää tähän oma projektikansiosi
     public static String[] project_folder_locations = {
+        "/home/mothi/github/kurki13",
 	    "/home/yeahthesun/kurki13",
         "/cs/fs2/home/mkctammi/ohtuprog/kurki13",
         "/cs/fs2/home/tkairola/KURKI13/kurki13",
@@ -45,6 +46,7 @@ public class Testikanta {
             for (String string : project_folder_locations) {
                 if (new File(string).exists() && new File(string).canWrite()) {
                     project_folder_location = string;
+                    System.out.println("Testikanta: Projektikansioksi valittiin " + project_folder_location);
                 }
             }
 	}
