@@ -35,7 +35,8 @@ public class Testikanta {
         "/cs/fs2/home/esaaksvu/koulu/kurki13",
         "/cs/fs2/home/heikkiha/NetBeansProjects/kurki13",
         "/cs/fs2/home/topisark/Documents/kurki13",
-        "C:/Users/ahathoor/Documents/GitHub/kurki13"
+        "C:/Users/ahathoor/Documents/GitHub/kurki13",
+        "C:/Users/taru/Documents/GitHub/kurki13"
     };
     public static String project_folder_location;
 
