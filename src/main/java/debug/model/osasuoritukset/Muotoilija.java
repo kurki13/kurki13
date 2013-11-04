@@ -5,8 +5,9 @@ import java.util.List;
 
 /**
  * Tämä luokka muotoilee tietokannassa käytettävän formaatin numerotaulukoiksi.
- * Kannan muoto sisältää 18 pilkulla tai väliviivalla erotettua arvoa.
- * Esimerkiksi: 1,2,3,4,5-6,??,8,9,10-11,12,13,14,15,16,17,99 Asettamaton arvo
+ * Kannan muoto sisältää 18 pilkulla tai väliviivalla erotettua arvoa. (NÄILLÄ EI KAI OLE MITÄÄN MERKITYSTÄ!)
+ * Arvo ON AINA KAHDEN MERKIN MITTAINEN!
+ * Esimerkiksi:  1, 2, 3, 4, 5- 6,??,8,9,10-11,12,13,14,15,16,17,99 Asettamaton arvo
  * voidaan esittää kysymysmerkein.
  *
  * @author ahathoor
