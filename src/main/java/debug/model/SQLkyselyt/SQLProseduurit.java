@@ -4,11 +4,16 @@
  */
 package debug.model.SQLkyselyt;
 
+import debug.SessioApuri;
 import debug.dbconnection.DatabaseConnection;
 import debug.model.Kurssi;
+import debug.model.Opiskelija;
+import debug.util.LocalisationBundle;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.SQLException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 /**
  * Luokka SQL-Proseduurien suorittamiseen.
@@ -99,6 +104,26 @@ public class SQLProseduurit {
         return palautus;
     }
     
+    public static boolean poistaOpiskelija(Kurssi kurssi, int ryhmanNumero, String opiskelijanumero, HttpServletRequest request) {
+        HttpSession istunto = request.getSession();
+        LocalisationBundle bundle = SessioApuri.bundle(request);
+        int tulos;
+        try {
+            tulos = poistaOpiskelija(kurssi, ryhmanNumero, opiskelijanumero);
+        } catch (SQLException poikkeus) {
+            istunto.setAttribute(SessioApuri.Virhe, bundle.getString("tkvirhe") + ": " + poikkeus.getLocalizedMessage());
+            return false;
+        }
+        if (tulos == 1) {
+            istunto.setAttribute(SessioApuri.Virhe, bundle.getString("kurssiltaPoistoEO") + ": " + bundle.getString("poistaminenEiOnnistunut"));
+            return false;
+        } else if (tulos == 2) {
+            istunto.setAttribute(SessioApuri.Virhe, bundle.getString("kurssiltaPoistoEO") + ": " + bundle.getString("opiskelijalaskuriEpaonnistui"));
+            return false;
+        }
+        return true;
+    }
+    
     /**
      * Metodi suorittaa SQL-Proseduurin poistaopiskelija.
      * 
@@ -108,7 +133,7 @@ public class SQLProseduurit {
      * @return Kokonaisluku 0, jos poistaminen onnistui
      * @throws SQLException Tietokantavirhe
      */
-    public static int poistaOpiskelija(Kurssi kurssi, int ryhmanNumero ,String opiskelijanumero) throws SQLException {
+    private static int poistaOpiskelija(Kurssi kurssi, int ryhmanNumero, String opiskelijanumero) throws SQLException {
         Connection tietokantayhteys = DatabaseConnection.makeConnection();
         CallableStatement kutsuttavaLause = tietokantayhteys.prepareCall("{ ? = call poistaopiskelija (?, ?, ?, ?, ?, ?, ?) }");
         kutsuttavaLause.registerOutParameter(1, java.sql.Types.INTEGER);
@@ -129,6 +154,26 @@ public class SQLProseduurit {
         return palautus;
     }
     
+    public static boolean lisaaOpiskelija(Kurssi kurssi, int ryhmanNumero, String opiskelijanumero, HttpServletRequest request) {
+        HttpSession istunto = request.getSession();
+        LocalisationBundle bundle = SessioApuri.bundle(request);
+        String tulos;
+        try {
+            tulos = lisaaOpiskelija(kurssi, ryhmanNumero, opiskelijanumero);
+        } catch (SQLException poikkeus) {
+            istunto.setAttribute(SessioApuri.Virhe, bundle.getString("tkvirhe") + ": " + poikkeus.getLocalizedMessage());
+            return false;
+        }
+        if (tulos.equals("ok")) {
+            return true;
+        } else if (tulos.equals("virhe: opiskelija on jo ilmoittautunut kurssille.")) {
+            istunto.setAttribute(SessioApuri.Virhe, bundle.getString("lisaysKEO") + ": " + bundle.getString("opiskelijaojik") + ".");
+            return false;
+        } else {
+            istunto.setAttribute(SessioApuri.Virhe, bundle.getString("lisaysKEO") + ": " + bundle.getString("tkvirhe"));
+            return false;
+        }
+    }
     /**
      * Metodi suorittaa SQL-Proseduurin kurkiilmo.
      * 
@@ -138,7 +183,7 @@ public class SQLProseduurit {
      * @return Merkkijono ok, jos lisääminen onnistui
      * @throws SQLException Tietokantavirhe
      */
-    public static String lisaaOpiskelija(Kurssi kurssi, int ryhmanNumero, String opiskelijanumero) throws SQLException {
+    private static String lisaaOpiskelija(Kurssi kurssi, int ryhmanNumero, String opiskelijanumero) throws SQLException {
         Connection tietokantayhteys = DatabaseConnection.makeConnection();
         CallableStatement kutsuttavaLause = tietokantayhteys.prepareCall("{ ? = call kurkiilmo (?, ?, ?, ?, ?, ?, ?) }");
         kutsuttavaLause.registerOutParameter(1, java.sql.Types.VARCHAR);
@@ -157,6 +202,30 @@ public class SQLProseduurit {
         kutsuttavaLause.close();
         tietokantayhteys.close();
         return palautus;
+    }
+    
+    public static void vaihdaOpiskelijanRyhmaa(int uusiRyhma, Kurssi kurssi, int ryhmanNumero, String opiskelijanumero, HttpServletRequest request) {
+        HttpSession istunto = request.getSession();
+        LocalisationBundle bundle = SessioApuri.bundle(request);
+        int tulos;
+        String virheilmoituksenAlku;
+        try {
+            tulos = vaihdaOpiskelijanRyhmaa(uusiRyhma, kurssi, ryhmanNumero, opiskelijanumero);
+            virheilmoituksenAlku = bundle.getString("ryhmanVeo") + " " + palautaOpiskelijanNimi(opiskelijanumero)  + " " + bundle.getString("ryhmanVEO2") + ": ";
+        } catch (SQLException poikkeus) {
+            istunto.setAttribute(SessioApuri.Virhe, bundle.getString("tkvirhe") + ": " + poikkeus.getLocalizedMessage());
+            return;
+        }
+        if (tulos == -1) {
+            istunto.setAttribute(SessioApuri.Virhe, virheilmoituksenAlku + bundle.getString("ryhmaa") + uusiRyhma + bundle.getString("eiMaaritelty"));
+        } else if (tulos == -2) {
+            istunto.setAttribute(SessioApuri.Virhe, virheilmoituksenAlku + bundle.getString("opiskelijanVoimassaolevaa"));
+        } else if (tulos == -3) {
+            istunto.setAttribute(SessioApuri.Virhe, virheilmoituksenAlku + bundle.getString("opiskelijalaskuri"));
+        } else if (tulos == -4) {
+            istunto.setAttribute(SessioApuri.Virhe, virheilmoituksenAlku + bundle.getString("opiskelijalaskuriKasvattaminen"));
+        } else {
+        }
     }
     
     /**
@@ -190,5 +259,10 @@ public class SQLProseduurit {
         kutsuttavaLause.close();
         tietokantayhteys.close();
         return palautus;
+    }
+    
+    private static String palautaOpiskelijanNimi(String opiskelijanumero) throws SQLException {
+        Opiskelija palautettava = OpiskelijaKyselyt.opiskelijaHetulla(opiskelijanumero);
+        return palautettava.getEtunimi() + " " + palautettava.getSukunimi();
     }
 }

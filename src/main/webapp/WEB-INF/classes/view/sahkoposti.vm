@@ -1,13 +1,10 @@
 #*
 #if ($selectedCourse.isFrozen())
-    #if ($inc_changes)
-        $bundle.getString("HY")                                      $bundle.getString("korjauksia")
-    #else
-        $bundle.getString("HY")
-    #end
+    $bundle.getString("HY")                                      $bundle.getString("korjauksia")
 #else
-$bundle.getString("HY")                                      $bundle.getString("tktlkurki")
+    $bundle.getString("HY")
 #end
+
 $bundle.getString("matlu")
 $bundle.getString("cslaitos")
 
@@ -17,38 +14,21 @@ $bundle.getString("suoritusaika"): $selected_course.getSuoritus_pvm()
 $bundle.getString("hyvaksyja"): $HenkiloKyselyt.haeNimet(selected_course.getOmistaja())
 
 #set ($selectDesc = $selectedCourse.SelectDescription)
-#set ($parts = $selectedCourse.PartsOrdered)
-#set ($partlh = $parts.get(0))
-#set ($partht = $parts.get(1))
-#set ($partkoe = $parts.get(2))
 #set ($grades = ["1", "2", "3", "4", "5"])
 #set ($counter = $selectedCourse.getCounter())
 #set ($c = $selectedCourse)
 #set ($nl = 25)
 #set ($ssnl = 12) 
-#set ($accepted = "")
-#set ($acceptcount = 0)
 #set ($failed = "")
-#set ($failcount = 0)
-#set ($participInExam = 0)
+#set ($accepted = "$inc_gradename ")
+
 #if ($selectDesc)
 
 $bundle.getString("valitutop"): ${selectDesc}
 #end
-##
-################### OTSAKKEET ###################
-##
-#if ($inc_htsep && $partht)#set ($inc_htsepname = $c.getStr($inc_htsepname, $c.multiply($c.negation($partht.NbrOfOfferings), 3)))#set ($accepted = "${accepted}${inc_htsepname} ")#end
-#if ($inc_koesep && $partkoe)#set ($inc_koesepname = $c.getStr($inc_koesepname, $c.multiply($c.negation($partkoe.NbrOfOfferings), 3)))#set ($accepted = "${accepted}${inc_koesepname} ")#end
-#if ($inc_lhsum && $partlh)#set ($inc_lhsumname = ${c.getStr(${inc_lhsumname}, -3)})#set ($accepted = "${accepted}${inc_lhsumname} ")#end
-#if ($inc_htsum && $partht)#set ($inc_htsumname = ${c.getStr(${inc_htsumname}, -3)})#set ($accepted = "${accepted}${inc_htsumname} ")#end
-#if ($inc_koesum && $partkoe)#set ($inc_koesumname = ${c.getStr(${inc_koesumname}, -3)})#set ($accepted = "${accepted}${inc_koesumname} ")#end
-#if ($inc_lhlp && $partlh)#set ($inc_lhlpname = ${c.getStr(${inc_lhlpname}, -2)})#set ($accepted = "${accepted}${inc_lhlpname} ")#end
-#if ($inc_htlp && $partht)#set ($inc_htlpname = ${c.getStr(${inc_htlpname}, -2)})#set ($accepted = "${accepted}${inc_htlpname} ")#end
-#if ($inc_sum)#set($inc_sumname = ${c.getStr(${inc_sumname}, -4)})#set ($accepted = "${accepted}${inc_sumname} ")#end
-#set ($failed = $accepted)
-#if ($inc_grade)#set ($inc_gradename = ${c.getStr(${inc_gradename}, -2)})#set ($accepted = "${accepted}${inc_gradename} ")#end
-#if ($inc_crunits)#set ($inc_cruname = ${c.getStr(${inc_cruname},-2)})#set ($accepted = "${accepted}${inc_cruname} ")#end
+
+
+
 ##
 ################### OPISKELIJAT ###################
 ##
@@ -100,7 +80,6 @@ $bundle.getString("valitutop"): ${selectDesc}
 #end
 #end
 #if($student.getValidScoreCount(2) > 0)
-#set($participInExam = $participInExam + 1)
 #end
 #elseif ($student.isDefrost())##--------- POISTETTU? ------##
 #if ($inc_ssn)#set ($row = "${row}${c.getStr($student.SSN, $ssnl)} ")#end
@@ -115,8 +94,8 @@ $accepted
 
 
 #set ($participated = ${acceptcount} + ${failcount})
-
 *#
+
 #set ($osallistumisetKurssilla = $OsallistuminenKyselyt.osallistumisetKurssilla($selected_course))
 #set ($ilmoittautuneet = $osallistumisetKurssilla.size())
 #set ($hyvaksytyt = 0)
@@ -139,62 +118,22 @@ $accepted
 
 $bundle.getString("tilastoja")
 $bundle.getString("ilmonneita"): $ilmoittautuneet
-$bundle.getString("kokeessa"): $kokeessa
 $bundle.getString("osallistuneita"): $osallistuneet
+$bundle.getString("kokeessa"): $kokeessa
 $bundle.getString("hyvaksyttyja"): $hyvaksytyt
 #if ($osallistuneet > 0) 
     ($jaadytys.prosenttiLasku($hyvaksytyt, $osallistuneet)% $bundle.getString("osallistuneista")
 #end
+#if ($kokeessa > 0) 
+    ($jaadytys.prosenttiLasku($hyvaksytyt, $kokeessa)% $bundle.getString("kokeessaolleista")
+#end
 $bundle.getString("hylattyja"): $hylatyt
-#*
-    (#if (${participated} > 0) ${c.percent(${acceptcount}, ${participated})}% $bundle.getString("osallistuneista"),#end 
-     #if (${participInExam} > 0) ${c.percent(${acceptcount}, ${participInExam})}% $bundle.getString("kokeessaolleista")#end)
-
-
-#if ($inc_gradeDistr)
-
-
-$bundle.getString("arvosanajakauma")
-#set ($gradeDistr = "") 
-#foreach ($grade in $grades)
-#set ($gcount = $counter.getCount($grade))
-#set ($tmp = "") 
-#set ($tmp = "  $c.getStr(${grade}, 2): $c.getStr($gcount, 3) ")
-#if ($gcount > 0)
-#if ($gcount > 60)
-#set ($gcount = 60)
-#end
-#foreach ($i in [1..$gcount])
-#set ($tmp = "${tmp}*")
-#end
-#if ($gcount == 60)
-#set ($tmp = "${tmp}...")
-#end
-#end
-#set ($gradeDistr = "${tmp}${c.nl()}$gradeDistr")
-#end
-$gradeDistr
-#end
-#if ($inc_feedback)
-
-
-$bundle.getString("palautetilaisuus") __.__ $bundle.getString("klo") __:__ - __:__ $bundle.getString("huoneessa") ____.
-#end
-#if ($inc_signature) 
-
-
-
-
-$bundle.getString("helsingissa") ${sysdate}
-                       ___________________________
-                        ${c.DonFName} ${c.DonLName}
-#end
-#if ($inc_failed)
-
 
 $bundle.getString("isohylatyt")
+
+#*
 $failed
-#end
+
 #if ($inc_changes && $removed)
 
 
@@ -202,3 +141,4 @@ $bundle.getString("isopoistetut")
 ${removed}
 #end
 *#
+
