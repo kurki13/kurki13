@@ -6,8 +6,9 @@ import java.util.List;
 /**
  * Tämä luokka muotoilee tietokannassa käytettävän formaatin numerotaulukoiksi.
  * Kannan muoto sisältää 18 pilkulla tai väliviivalla erotettua arvoa.
- * Esimerkiksi: 1,2,3,4,5-6,??,8,9,10-11,12,13,14,15,16,17,99
- * Asettamaton arvo voidaan esittää kysymysmerkein.
+ * Esimerkiksi: 1,2,3,4,5-6,??,8,9,10-11,12,13,14,15,16,17,99 Asettamaton arvo
+ * voidaan esittää kysymysmerkein.
+ *
  * @author ahathoor
  */
 public class Muotoilija {
@@ -29,6 +30,9 @@ public class Muotoilija {
         for (String string : intAr) {
             try {
                 ints[i] = Integer.valueOf(string.trim());
+                if (ints[i] > 99) {
+                    ints[i] = 99;
+                }
             } catch (NumberFormatException e) {
                 if (string.trim().equals("+")) {
                     ints[i] = LASNA;
@@ -47,7 +51,13 @@ public class Muotoilija {
             int piste = ints[i];
             if (piste == EMPTY) {
                 ret += "??";
+            }
+            else if (piste == LASNA) {
+                ret += " +";
             } else {
+                if (piste < 10) {
+                    ret += " ";
+                }
                 ret += piste;
             }
             if (i == 4 || i == 9 || i == 14) {

@@ -42,6 +42,10 @@ public class OsasuoritusRajat implements Iterable<OsasuoritusRaja> {
         }
         return Muotoilija.intArrayToString(mins);
     }
+    
+    public void setAktiivisia(int aktiivisia){
+	this.aktiivisia = aktiivisia;
+    }
 
     //TODO: Is prepared for nulls?
     public OsasuoritusRajat(String minstring, String maxstring, int aktiivisia) {
@@ -80,4 +84,11 @@ public class OsasuoritusRajat implements Iterable<OsasuoritusRaja> {
         
         return osa(nro);
     }
+
+    @Override
+    public String toString() {
+        return osasuoritusrajat.toString();
+    }
+    
+    
 }

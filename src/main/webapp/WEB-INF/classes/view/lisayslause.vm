@@ -24,5 +24,11 @@ $SessioApuri.lisaysLause($valittuKurssi)
 </pre>
 
 #end
+
+<pre>
+$valittuKurssi.update
+$valittuKurssi
+$valittuKurssi.laskariRajat
+</pre>
 </body>
 <html>
