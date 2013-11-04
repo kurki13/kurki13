@@ -1,0 +1,10 @@
+#if($session.getAttribute("error"))
+    <pre>
+        #foreach($virhe in $SessioApuri.haeVirheet($request))
+$virhe
+        #end
+    </pre>
+    $session.setAttribute("error", null)
+#end
+</body>
+</html>

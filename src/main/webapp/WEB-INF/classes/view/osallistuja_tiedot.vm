@@ -1,30 +1,34 @@
+#set($Integer = 0) ## ParseInt-metodia varten
 #set($osasuoritusTiedot = $OsallistuminenKyselyt.osallistuminenKurssilla($valittuKurssi,$opiskelijaTiedot.hetu))
 
-#set ($suoritusTiedot = [
-        [$bundle.getString("Suorituskieli"), $osasuoritusTiedot.kielikoodi,  'kiel'],
-        [$bundle.getString("Arvosana"), $osasuoritusTiedot.arvosana,  'arv'],
-        [$bundle.getString("Opintopisteet"), $osasuoritusTiedot.laajuus_op,  'op']])
+#set ($osasuoritukset = {
+        'lh' : $osasuoritusTiedot.Laskarit,
+        'ht' : $osasuoritusTiedot.Harjoitustyot,
+        'koe' : $osasuoritusTiedot.Kokeet})
 
-#set ($osasuoritukset = [
-        [$bundle.getString("Laskuharjoituspisteet"), $osasuoritusTiedot.Laskarit, 'lh'],
-        [$bundle.getString("Harjoitustyöpisteet"), $osasuoritusTiedot.Harjoitustyot, 'ht'],
-        [$bundle.getString("Koepisteet"), $osasuoritusTiedot.Kokeet, 'koe']])
-
-<pre>
 #foreach($osasuoritus in $osasuoritukset)
-    #set($arvot = $osasuoritus.get(1))
-    #set($param = $request.getParameterValues($osasuoritus.get(2))) ##tulleet parametrit
+    #set($arvot = $osasuoritus.value)
+    #set($param = $request.getParameterValues($osasuoritus.key)) ##tulleet parametrit
     #set($i = 0)
     #foreach($arvo in $arvot)
-        #if($param.get($i))
-          $arvo.setpisteet($param.get($i))
+        #if($param.get($i) && !$param.get($i).equals(""))
+            #if(!$arvo.setPisteet($Integer.parseInt($param.get($i))))
+               <div class="alert alert-danger">
+                    Tapahtui virhe
+               </div>
+            #end
         #end
         #set($i = $i + 1)
     #end
 #end
-</pre>
 
-##$OsallistuminenKyselyt.tallennaKantaan($osasuoritusTiedot)
+#set($kiel = $request.getParameter('kiel'))
+#set($arv = $request.getParameter('arv'))
+#set($op = $request.getParameter('op'))
+$osasuoritusTiedot.suoritusTiedotUpdate($kiel, $arv, $op, $request)
+
+$osasuoritusTiedot.update()
+$OsallistuminenKyselyt.tallennaKantaan($osasuoritusTiedot)
 
 <h3>
   <center>
@@ -53,6 +57,11 @@
 </table>
 <br>
 
+#set ($osasuoritukset = [
+        [$bundle.getString("Laskuharjoituspisteet"), $osasuoritusTiedot.Laskarit, 'lh'],
+        [$bundle.getString("Harjoitustyöpisteet"), $osasuoritusTiedot.Harjoitustyot, 'ht'],
+        [$bundle.getString("Koepisteet"), $osasuoritusTiedot.Kokeet, 'koe']])
+
 ##OSASUORITUKSET
 <form name=OsallistujaTiedot action="" method="post" >
 <table class="table table-condensed table-bordered" style="max-width:1000px">
@@ -70,7 +79,6 @@
             <td nowrap>
               <b>$i:</b>
               <br>
-              ##Tarvitsee kunnollisen tarkituksen max arvoille, JS?
               <input type="text" name=$param
                 class="form-control input-sm" size="2" maxlength="2" style="width:50px"
                 placeholder=$arvo.maxPisteet
@@ -83,6 +91,11 @@
       </td>
     </tr>
   #end 
+
+#set ($suoritusTiedot = [
+        [$bundle.getString("Suorituskieli"), $osasuoritusTiedot.kielikoodi,  'kiel'],
+        [$bundle.getString("Arvosana"), $osasuoritusTiedot.arvosana,  'arv'],
+        [$bundle.getString("Opintopisteet"), $osasuoritusTiedot.laajuus_op,  'op']])
 
 ##SUORITUSTIEDOT
   #foreach($tieto in $suoritusTiedot)
@@ -103,3 +116,5 @@
 <input type="submit" class="btn btn-success" value="$bundle.getString("tallennapisteet")">
   
 </form>
+
+#parse("bottom.vm")

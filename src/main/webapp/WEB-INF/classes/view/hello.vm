@@ -1,7 +1,7 @@
 ##Ensin tarkastetaan että kurssit on ladattu sessiomuuttujaan
-$sessioapuri.auta($request)
+$SessioApuri.auta($request)
 ##Lokalisaatiobundlen asetus
-#set($bundle = $sessioapuri.bundle($request))
+#set($bundle = $SessioApuri.bundle($request))
 ##Parametrit käytettäviksi
 #set($qs = $request.getQueryString())
 #if($qs)
@@ -29,11 +29,6 @@ $sessioapuri.auta($request)
 </head>
 
 <body>
-
-##Mahdollisen virheen tulostus
-#if($session.getAttribute("error"))
-    <pre>$session.getAttribute("error")</pre>
-#end
 
 <h4>Logged in as: $request.getRemoteUser()</h4>
 <a href="?locale=en"><img src="images/liput/gb.png"></a>

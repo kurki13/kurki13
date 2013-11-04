@@ -1,5 +1,8 @@
 
+#set($Integer = 0)
 #set($haetut = $OpiskelijaKyselyt.haeOpiskelijat($hetuFilter, $sukuFilter))
+#set($lisattava = $request.getParameter("lisattava"))
+##set($ryhma = $Integer.parseInt($request.getParameter("ryhmanro")))
 
 #if($haetut.size() == 50)
   <div class="alert alert-danger">
@@ -13,7 +16,8 @@
  #if($request.getParameter("lisattava"))
     <div class="alert alert-success">
       <ul>
-        Opiskelija ($request.getParameter("lisattava")) lisätty kurssille $valittuKurssi.nimi ryhmään  $request.getParameter("ryhmanro").
+        $SQLProseduurit.lisaaOpiskelija($valittuKurssi, $ryhma, $lisattava)
+        Opiskelija ($lisattava) lisätty kurssille $valittuKurssi.nimi ryhmään $ryhma.
          <form action="" name="tee" method=post > 
             <input type="hidden" name="hetu" value=$request.getParameter("lisattava")>
             <input name="tee" type="submit" value="Tiedot" class="btn btn-primary">
