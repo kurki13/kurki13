@@ -180,7 +180,6 @@ public class Osallistuminen extends Table {
                 if (arv.equals("-") || arv.equals("+")) {
                     this.setArvosana(arv);
                 } else {
-                    System.out.println(bundle(rqst).getString("arvosanaVirheellinen"));
                     annaVirhe(session, bundle(rqst).getString("arvosanaVirheellinen"));
                 }
             }

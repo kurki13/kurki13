@@ -13,9 +13,7 @@
     #foreach($arvo in $arvot)
         #if($param.get($i) && !$param.get($i).equals(""))
             #if(!$arvo.setPisteet($Integer.parseInt($param.get($i))))
-               <div class="alert alert-danger">
-                    Tapahtui virhe
-               </div>
+               $SessioApuri.annaVirhe($request, $bundle.getString("pisteVirheellinen"))
             #end
         #end
         #set($i = $i + 1)

@@ -2,7 +2,9 @@
 #set($Integer = 0)
 #set($haetut = $OpiskelijaKyselyt.haeOpiskelijat($hetuFilter, $sukuFilter))
 #set($lisattava = $request.getParameter("lisattava"))
-##set($ryhma = $Integer.parseInt($request.getParameter("ryhmanro")))
+#if ($ryhma && !$ryhma.equals(""))
+    #set($ryhma = $Integer.parseInt($request.getParameter("ryhmanro")))
+#end
 
 #if($haetut.size() == 50)
   <div class="alert alert-danger">
@@ -17,6 +19,7 @@
     <div class="alert alert-success">
       <ul>
         $SQLProseduurit.lisaaOpiskelija($valittuKurssi, $ryhma, $lisattava)
+        <br>
         Opiskelija ($lisattava) lisätty kurssille $valittuKurssi.nimi ryhmään $ryhma.
          <form action="" name="tee" method=post > 
             <input type="hidden" name="hetu" value=$request.getParameter("lisattava")>
@@ -35,7 +38,7 @@
     <th> $bundle.getString("nimiSyntpva") </th>
     <th> $bundle.getString("camelopnro") </th>
     <th> $bundle.getString("ryhma") </th>
-    <th> Ilmoita kurssille </th>
+    <th> $bundle.getString("ilmoitakurssille") </th>
   </tr>     
 
    #foreach($opiskelija in $haetut)
