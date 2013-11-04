@@ -6,12 +6,7 @@
     <link href="bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
 </head>
 <body>
-
-#set ($lol = "sark")
 #set ($regex = ".*")
-#set ($testi = "sarkkinen")
-
-$testi.matches("$lol$regex")
 
 #set($qs = $request.getQueryString())
 
@@ -34,15 +29,15 @@ $bundle.getString("tilanne"): $date.get('d.M.yyyy HH:mm')<br>
 #end  
 
 #if (!$params.get("filter").equals(""))
-    filteröidään
     #set ($filter = $params.get("filter"))   
-    #set ($testi = $osallistumiset)
-    #foreach ($osallistuminen in $osallistumiset)
-        #if ($osallistuminen.sukunimi.equalsIgnoreCase("Noname000"))
-            $testi.remove($osallistuminen)
+    #set ($filter = $filter.toUpperCase())
+    #set ($testi = $osallistumiset.clone())
+    #foreach ($osallistuminen in $osallistumiset)        
+        #if ($osallistuminen.sukunimi.toUpperCase().matches("$filter$regex"))            
+            #if($testi.remove($osallistuminen))#end
         #end
     #end
-    #set ($osallistumiset = $testi)
+    #set ($osallistumiset = $testi.clone())
 #end
 
 #if (!$params.get("kommentti").equals(""))
