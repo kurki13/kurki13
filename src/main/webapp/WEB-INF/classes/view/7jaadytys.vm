@@ -1,3 +1,4 @@
+#parse("hello.vm")
 <html>
     <h3>$bundle.getString("7freezing")</h3>
     <body>

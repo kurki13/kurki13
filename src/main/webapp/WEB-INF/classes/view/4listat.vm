@@ -1,3 +1,4 @@
+#parse("hello.vm")
 <h3>$bundle.getString("4checklist")</h3>
 
 #if($session.getAttribute('selected_course_id'))

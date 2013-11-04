@@ -1,3 +1,4 @@
+#parse("hello.vm")
 
 #if ($valittuKurssi.getTila() == "J")
     #set ($jaassa = true)

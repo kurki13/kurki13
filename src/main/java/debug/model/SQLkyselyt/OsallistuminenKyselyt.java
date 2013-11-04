@@ -30,7 +30,8 @@ public class OsallistuminenKyselyt {
                 + "AND os.lukukausi = ? \n"
                 + "AND os.lukuvuosi = ? \n"
                 + "AND os.tyyppi = ? \n"
-                + "AND os.kurssi_nro = ?";
+                + "AND os.kurssi_nro = ?\n"
+		+ "ORDER BY op.etunimi";
         
         Connection conn = DatabaseConnection.makeConnection();
         PreparedStatement ps = conn.prepareStatement(query);

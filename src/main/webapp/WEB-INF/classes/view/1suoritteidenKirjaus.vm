@@ -1,3 +1,4 @@
+#parse("hello.vm")
 #set($valittuKurssi = $KurssiKyselyt.kurssiIDlla($session.getAttribute('selected_course_id')))
 
 #set ($kerrat = {"laskarit" : $valittuKurssi.laskarikerta_lkm, "ht" : $valittuKurssi.harjoitustyo_lkm ,
