@@ -1,70 +1,69 @@
-#if($valittuKurssi)
-    #set($osallistumiset = $OsallistuminenKyselyt.osallistumisetKurssilla($valittuKurssi))
-#end
+#if($osallistumiset.size() == 0)
+  $bundle.getString("opeivastannut")
 
+#else
 <table class="table table-condensed table-bordered" style="max-width:1000px">
   <caption>
-   Opiskelijoita valittu $osallistumiset.size()
+   $bundle.getString("opvalittu") $osallistumiset.size()
   </caption>
   <tr>
-    <th> Nimi (syntymäpäivä) </th>
-    <th> OpNro </th>
-    <th> Ryhmä </th>
-    <th> Suor. </th>
-    <th> Poista kurssilta </th>
-    <th> Näytä tiedot </th>
+    <th> $bundle.getString("nimiSyntpva") </th>
+    <th> $bundle.getString("camelopnro") </th>
+    <th> $bundle.getString("ryhma") </th>
+    <th> $bundle.getString("suor") </th>
+    <th> $bundle.getString("poistaKurssilta") </th>
+    <th> $bundle.getString("naytaTiedot") </th>
   </tr>
 
-#foreach($osallis in $osallistumiset)
+<form action="" name=poista>
+#foreach($osallinen in $osallistumiset)
   <tr>
     <td>
-      <b><a href="mailto:"EMAL"">$osallis.sukunimi, $osallis.etunimi</a></b>
+      <b><a href="mailto:">$osallinen.sukunimi, $osallinen.etunimi</a></b>
     </td>
-
-    <td>
-       <center><tt>$osallis.hetu</tt></center>
-    </td>
-
     <td>
       <center>
-  	<select name="grp_0" class="form-control form-inline" style="width:70px">
-              	#foreach($ryhma in $ryhmat)
-                <option #if($osallis.ilmo_jnro==$ryhma)selected#end>$ryhma</option>
-                #end
+        <tt>$osallinen.hetu</tt>
+      </center>
+    </td>
+    <td>
+      <center>
+        <select name="grp" class="form-control form-inline" style="width:70px">
+        #foreach($ryhma in $ryhmat)
+          <option #if($osallinen.ilmo_jnro==$ryhma)selected#end>$ryhma</option>
+        #end
         </select>
-        </center>
-    </td>
-
-    <td>
-        <center> #if($osallis.arvosana.equals("+"))X#end</center>
-    </td>
-
-    <td>
-        <center><input type="checkbox" name="rmv_0"></center>
+      </center>
     </td>
     <td>
-      <center><input type="button" class="btn btn-primary"" name="submitEditRequest" value="tiedot"
-             onClick="doEditRequest('0')"></center>
+      <center> #if($osallinen.arvosana.equals("+"))X#end</center>
+    </td>
+    <td>
+      <center>
+        <input type="checkbox" name="poistettavat">
+      </center>
+    </td>
+    <td>
+      <center>
+        <form action="" name="tiedot" method="get">    
+          <input type="hidden" name="hetuParam" value=$osallinen.hetu>
+          <input name="tiedot" type="submit" value="Tiedot" class="btn btn-primary">
+        </form>
+      </center>
     </td>
   </tr>
 #end
 
-#if($osallistumiset.size() == 0)
-$bundle.getString("opeivastannut")
-#else
   <tr>
     <th colspan="6">
       <input type="hidden" name="doSaveAll" value="ok">
-      <center><input type="submit" class="btn btn-success" value="$bundle.getString("tallenMuutoksetIso")"></center>
+      <center>
+        <input type="submit" class="btn btn-success" value="$bundle.getString("tallenMuutoksetIso")">
+      </center>
     </th>
   </tr>
-
 </table>
-</form>
-<form action="index" name="doEditReq" method="get" onSubmit="return false;">
-  <input type="hidden" name="TS" value="${TS}">
-  <input type="hidden" name="sid" value="">
-  <input type="hidden" name="doEdit" value="tiedot" class="submitb">
+
 </form>
  
 #end

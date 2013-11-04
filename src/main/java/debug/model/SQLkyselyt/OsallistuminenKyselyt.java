@@ -6,6 +6,7 @@ package debug.model.SQLkyselyt;
 
 import debug.dbconnection.DatabaseConnection;
 import debug.model.Kurssi;
+import debug.model.Opiskelija;
 import debug.model.Osallistuminen;
 import debug.model.util.SQLoader;
 import java.sql.Connection;
@@ -62,6 +63,36 @@ public class OsallistuminenKyselyt {
         conn.close();
         return osallistumiset;
     }  
+    
+    
+    public static Osallistuminen osallistuminenKurssilla(Kurssi kurssi,
+            String hetu) throws SQLException {
+        String query = "SELECT os.* \n"
+                + "FROM osallistuminen os \n"
+                + "WHERE os.hetu = ? \n"
+                + "AND os.kurssikoodi = ? \n"
+                + "AND os.lukukausi = ? \n"
+                + "AND os.lukuvuosi = ? \n"
+                + "AND os.tyyppi = ? \n"
+                + "AND os.kurssi_nro = ?";
+        
+        Connection conn = DatabaseConnection.makeConnection();
+        PreparedStatement ps = conn.prepareStatement(query);
+        ps.setString(1, hetu);
+        ps.setString(2, kurssi.getKurssikoodi());
+        ps.setString(3, kurssi.getLukukausi());
+        ps.setInt(4, kurssi.getLukuvuosi());
+        ps.setString(5, kurssi.getTyyppi());
+        ps.setInt(6, kurssi.getKurssi_nro());
+        
+        List<Osallistuminen> osallistumiset = SQLoader.loadTablesFromPreparedStatement(new Osallistuminen(), ps, conn);
+        if(osallistumiset.isEmpty()) return null;
+        else {
+            osallistumiset.get(0).setKurssi(kurssi);
+            return osallistumiset.get(0);
+        }
+    }
+    
     
     public static void tallennaKantaan(Osallistuminen os) throws SQLException {
 	    SQLoader.tallennaKantaan(os);

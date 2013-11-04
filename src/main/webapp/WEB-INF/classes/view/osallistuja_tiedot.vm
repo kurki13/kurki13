@@ -1,0 +1,105 @@
+#set($osasuoritusTiedot = $OsallistuminenKyselyt.osallistuminenKurssilla($valittuKurssi,$opiskelijaTiedot.hetu))
+
+#set ($suoritusTiedot = [
+        [$bundle.getString("Suorituskieli"), $osasuoritusTiedot.kielikoodi,  'kiel'],
+        [$bundle.getString("Arvosana"), $osasuoritusTiedot.arvosana,  'arv'],
+        [$bundle.getString("Opintopisteet"), $osasuoritusTiedot.laajuus_op,  'op']])
+
+#set ($osasuoritukset = [
+        [$bundle.getString("Laskuharjoituspisteet"), $osasuoritusTiedot.Laskarit, 'lh'],
+        [$bundle.getString("Harjoitustyöpisteet"), $osasuoritusTiedot.Harjoitustyot, 'ht'],
+        [$bundle.getString("Koepisteet"), $osasuoritusTiedot.Kokeet, 'koe']])
+
+<pre>
+#foreach($osasuoritus in $osasuoritukset)
+    #set($arvot = $osasuoritus.get(1))
+    #set($param = $request.getParameterValues($osasuoritus.get(2))) ##tulleet parametrit
+    #set($i = 0)
+    #foreach($arvo in $arvot)
+        #if($param.get($i))
+          $arvo.setpisteet($param.get($i))
+        #end
+        #set($i = $i + 1)
+    #end
+#end
+</pre>
+
+##$OsallistuminenKyselyt.tallennaKantaan($osasuoritusTiedot)
+
+<h3>
+  <center>
+    $opiskelijaTiedot.sukunimi, $opiskelijaTiedot.etunimi ($opiskelijaTiedot.hetu / )
+   </center>
+</h3>
+
+#set ($tiedot = {
+        $bundle.getString("osoite") : $opiskelijaTiedot.osoite,
+        $bundle.getString("phonenumber") : $opiskelijaTiedot.puhelin,
+        $bundle.getString("sposti") : $opiskelijaTiedot.sahkopostiosoite,
+        $bundle.getString("pääaine") : $opiskelijaTiedot.paa_aine,
+        $bundle.getString("aloitusvuosi") : $opiskelijaTiedot.aloitusvuosi})
+
+<table class="normal" width="100%" style="max-width:1000px">
+  #foreach($t in $tiedot.entrySet())
+    <tr>
+      <th>$t.key</th>
+      #if($t.key.equals($bundle.getString("sposti")))
+        #if($t.value)<td><a href="mailto:"></a>#end
+      #else
+        <td>$t.value</td>
+      #end
+    </tr>  
+  #end
+</table>
+<br>
+
+##OSASUORITUKSET
+<form name=OsallistujaTiedot action="" method="post" >
+<table class="table table-condensed table-bordered" style="max-width:1000px">
+  #foreach($osat in $osasuoritukset)
+    #set($arvot = $osat.get(1))
+    #set($param = $osat.get(2))
+    <tr>
+      <th width="25%">$osat.get(0)</th> ##Otsikko
+      <td>
+        <table>
+          <tr>
+          #set ($i = 1)
+          #foreach($arvo in $arvot)
+            #if($i == 10) </tr> <tr> #end  ##Ei kaikkia samalle riville
+            <td nowrap>
+              <b>$i:</b>
+              <br>
+              ##Tarvitsee kunnollisen tarkituksen max arvoille, JS?
+              <input type="text" name=$param
+                class="form-control input-sm" size="2" maxlength="2" style="width:50px"
+                placeholder=$arvo.maxPisteet
+                #if($arvo.pisteet!=-1)value=$arvo.pisteet#end >  ##-1 vastaa tyhjää
+            </td>
+            #set($i = $i+1)
+          #end
+          </tr>
+        </table>
+      </td>
+    </tr>
+  #end 
+
+##SUORITUSTIEDOT
+  #foreach($tieto in $suoritusTiedot)
+    #set($arvo = $tieto.get(1)) 
+    #set($parametri = $tieto.get(2))
+    <tr>
+      <th width="25%">$tieto.get(0)</th> ##Otsikko
+      <td>
+        <input type="text" name=$parametri
+          class="form-control input-sm" size="2" maxlength="2" style="width:50px" 
+          #if($arvo && !$arvo.equals("-"))value=$arvo#end >
+      </td>
+    </tr>
+  #end
+
+</table>
+
+<input type="submit" class="btn btn-success" value="$bundle.getString("tallennapisteet")">
+  
+</form>

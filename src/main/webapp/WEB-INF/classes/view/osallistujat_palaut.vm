@@ -1,5 +1,5 @@
 #if($valittuKurssi)
-    #set($osallistumiset = $OsallistuminenKyselyt.osallistumisetKurssilla($valittuKurssi))
+    #set($osallistumiset = $OsallistuminenKyselyt.osallistumisetKurssilla($valittuKurssi))  
 #end
 
 #set ($poistetut = [])
@@ -10,15 +10,15 @@
     #end
 #end
 
-
+<form action="" method=get>
 <table class="table table-condensed table-bordered" style="max-width:1000px">
   <caption>
    Opiskelijoita valittu $poistetut.size()
   </caption>
   <tr>
-    <th> Nimi (syntymäpäivä) </th>
-    <th> OpNro </th>
-    <th> Ryhmä </th>
+    <th> $bundle.getString("nimiSyntpva") </th>
+    <th> $bundle.getString("camelopnro") </th>
+    <th> $bundle.getString("ryhma") </th>
     <th> Palauta kurssille </th>
   </tr>
 
@@ -41,8 +41,9 @@
   <tr>
     <th colspan="4">
       <input type="hidden" name="TS" value="RANDOMVALUE?">
-      <center><input type="submit" class="btn btn-success" name="doReturn" value="PALAUTA"></center>
     </th>
   </tr>
-  </table>
 #end
+</table>
+</form>
+<center><input type="submit" class="btn btn-success" name="doReturn" value="PALAUTA"></center>

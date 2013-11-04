@@ -1,49 +1,65 @@
-#set($sukunimi = $params.get('filterSukunimi'))
-#set($hetu = $params.get('filterOpnro'))
-#set($ryhm = $params.get('ryhma'))
-#set($haetut = $OpiskelijaKyselyt.haeOpiskelijat($hetu, $sukunimi))
+
+#set($haetut = $OpiskelijaKyselyt.haeOpiskelijat($hetuFilter, $sukuFilter))
+
+#if($haetut.size() == 50)
+  <div class="alert alert-danger">
+    <ul>
+      Tarkenna hakua! Listassa aakkosjärjestyksessä 50 ensimmäistä hakukriteerejä vastaavaa opiskelijaa.
+    </ul>
+  </div>
+#end
+
+
+ #if($request.getParameter("lisattava"))
+    <div class="alert alert-success">
+      <ul>
+        Opiskelija ($request.getParameter("lisattava")) lisätty kurssille $valittuKurssi.nimi ryhmään  $request.getParameter("ryhmanro").
+         <form action="" name="tee" method=post > 
+            <input type="hidden" name="hetu" value=$request.getParameter("lisattava")>
+            <input name="tee" type="submit" value="Tiedot" class="btn btn-primary">
+            <input name="tee" type="submit" value="Peruuta" class="btn btn-danger">
+         </form>
+       </ul>
+    </div>
+#end
 
 <table class="table table-condensed table-bordered" style="max-width:1000px">
   <caption>
-   Opiskelijoita valittu $haetut.size()
+    $bundle.getString("opvalittu") $haetut.size()
   </caption>
   <tr>
-    <th> Nimi (syntymäpäivä) </th>
-    <th> OpNro </th>
-    <th> Ryhmä </th>
+    <th> $bundle.getString("nimiSyntpva") </th>
+    <th> $bundle.getString("camelopnro") </th>
+    <th> $bundle.getString("ryhma") </th>
     <th> Ilmoita kurssille </th>
   </tr>     
 
    #foreach($opiskelija in $haetut)
+   <form action="" method="post" class="inline" style="margin:0;display:inline;" >
    <tr>
     <td>
-      <b><a href="mailto:$opiskelija.sahkopostiosoite">$opiskelija.etunimi, $opiskelija.sukunimi</a></b>
+      <b><a href="mailto:MAIL">$opiskelija.etunimi, $opiskelija.sukunimi</a></b>
     </td>
     <td>
       <center><tt>$opiskelija.hetu</tt></center>
     </td>
     <td>
       <center>
-      <form action="index" name="addForm49" method="post" class="inline" style="margin:0;display:inline;">
-	<select name="group" class="form-control form-inline" style="width:70px">
-        #foreach($ryhma in $ryhmat)
-            <option #if($ryhm==$ryhma)selected#end>$ryhma</option>
-        #end
-        </select>
-         <input type="hidden" name="TS" value="??????????"> ##MIKÄ ON TS?!
-         <input type="hidden" name="ssn" value=$opiskelija.hetu>
-         <input type="hidden" name="doAdd" value=$opiskelija.hetu>
-      </form>
+      <select name="ryhmanro">
+      #foreach($ryhma in $ryhmat)
+            <option #if($ryhma==$ryhmaFilter)selected#end value=$ryhma>$ryhma</option>
+      #end
+      </select>
+      <input type="hidden" name="lisattava" value=$opiskelija.hetu>
       </center>
     </td>
     <td>
       <center>
-      <form action="index" method="post" class="inline" style="margin:0;display:inline;" onSubmit="return false">
-         <input type="button" value="lisää" class="btn btn-success btn-sm"
-                onClick="document.addForm49.submit()">
-      </form>
-      </center>
+      <input type="submit" value="lisää" class="btn btn-success btn-sm"> 
+      </center>  
     </td>
   </tr>
+  </form>
   #end
-  </table>
+
+</table>
