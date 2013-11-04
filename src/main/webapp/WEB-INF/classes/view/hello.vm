@@ -88,6 +88,3 @@ Apulinkit testaukseen:
 <input type=button class="btn" value=harjoitustyö onClick="parent.location='harjoitustyo.vm'">
 </div>
 
-</div>
-
-

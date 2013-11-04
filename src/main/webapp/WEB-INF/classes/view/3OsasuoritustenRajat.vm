@@ -1,5 +1,7 @@
 #parse("hello.vm")
 
+<h3>$bundle.getString("3courselimits")</h3>
+
 #if ($valittuKurssi.getTila() == "J")
     #set ($jaassa = true)
 #else

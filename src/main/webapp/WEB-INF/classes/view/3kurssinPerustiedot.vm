@@ -1,5 +1,7 @@
 #parse("hello.vm")
 
+<h3>$bundle.getString("3coursebasics")</h3>
+
 #if ($valittuKurssi.getTila() == "J")
     #set ($jaassa = true)
 #else
@@ -8,7 +10,7 @@
 
 #set($Integer = 0)
 
-<pre>
+<input type=hidden>
 ##Laskareiden get-parametrit
     #set($lh = $params.get('lh'))
     #set($lh_p = $params.get('lh_p'))
@@ -54,12 +56,9 @@
         $valittuKurssi.setPakolliset_koe_lkm($Integer.parseInt($koe_p))
         Pakollisten kokeiden määräksi asetettu $koe_p
     #end
-</pre>
+</input>
 ##Tallennetaan kurssi kantaan
 $KurssiKyselyt.tallennaKantaan($valittuKurssi)
-
-<pre>$valittuKurssi.idString()</pre>
-<pre>$valittuKurssi</pre>
 
 ##Tässä määritellään säädettäville kentille otsikot, niiden arvot tietokantaoliosta, ja get -parametrien arvo
 #set($basics = {
