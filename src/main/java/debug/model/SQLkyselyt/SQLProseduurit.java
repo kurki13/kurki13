@@ -21,10 +21,31 @@ import javax.servlet.http.HttpSession;
 public class SQLProseduurit {
     
     /**
+     * Metodin avulla suoritetaan kurssin jäädytys.
+     * Jos jäädytys onnistui, niin istuntoon asetetaan onnistumisviesti.
+     * Jos jäädytys epäonnistui, niin istuntoon asetetaan virheilmoitus.
+     * 
+     * @param kurssi Jäädytettävä kurssi
+     * @param request 
+     */
+    public static void suoritaJaadytys(Kurssi kurssi, HttpServletRequest request) {
+        HttpSession istunto = request.getSession();
+        LocalisationBundle bundle = SessioApuri.bundle(request);
+        
+        try {
+            String tulos = suoritaJaadytys(kurssi);
+            tarkastaJaadytyksenTulos(tulos, istunto, bundle);
+        } catch (SQLException poikkeus) {
+            String virhe = bundle.getString("tkvirhe") + ": " + poikkeus.getLocalizedMessage();
+            SessioApuri.annaVirhe(istunto, virhe);
+        }
+    }
+    
+    /**
      * Metodi suorittaa SQL-Proseduurin jaadytys05.
      * 
      * @param kurssi Jäädytettävä kurssi
-     * @return Merkkijono "OK" jos jäädytys onnistui.
+     * @return Merkkijono "OK" jos jäädytys onnistui
      * @throws SQLException Tietokantavirhe
      */
     public static String suoritaJaadytys(Kurssi kurssi) throws SQLException {
@@ -46,6 +67,35 @@ public class SQLProseduurit {
         return palautus;
     }
     
+    /**
+     * Metodi tarkastaa SQL-Proseduurin jaadytys05 palautusarvon 
+     * ja asettaa onnistumisviestin tai virheilmoituksen asianmukaisesti.
+     * 
+     * @param tulos Tarkastettava palautusarvo
+     * @param istunto Käyttäjän istunto
+     * @param bundle Lokalisaatio työkalu
+     */
+    private static void tarkastaJaadytyksenTulos(String tulos, HttpSession istunto, LocalisationBundle bundle) {
+        if (tulos.equals("OK")) {
+            String viesti = bundle.getString("jaadytysInfo") + ". " + bundle.getString("jaadytysInfo3") + " " 
+                    + bundle.getString("jaadytysInfo4");
+            SessioApuri.annaViesti(istunto, viesti);
+        } else {
+            String virhe = bundle.getString("jaadytysEpaonnistui") + ". " + bundle.getString("jaadytysEpaonnistuiInfo") 
+                    + " " + "<a href=\"mailto:tktl-kurki@cs.helsinki.fi\">tktl-kurki@cs.helsinki.fi</a>";
+            SessioApuri.annaVirhe(istunto, virhe);
+        }
+    }
+    
+    /**
+     * Metodin avulla suoritetaan kurssin arvostelu.
+     * Jos arvostelu onnistui, niin istuntoon asetetaan onnistumisviesti.
+     * Jos arvostelu epäonnistui, niin istuntoon asetetaan virheilmoitus.
+     * 
+     * @param kurssi Arvosteltava kurssi
+     * @param arvostelija Arvosteltavan kurssin arvostelija
+     * @param request 
+     */
     public static void suoritaArvostelu(Kurssi kurssi, String arvostelija, HttpServletRequest request) {
         HttpSession istunto = request.getSession();
         LocalisationBundle bundle = SessioApuri.bundle(request);
@@ -136,7 +186,7 @@ public class SQLProseduurit {
      * @return Kokonaisluku 0, jos palautus onnistui
      * @throws SQLException Tietokantavirhe
      */
-    public static int palautaOpiskelija(Kurssi kurssi, int ryhmanNumero, String opiskelijanumero) 
+    private static int palautaOpiskelija(Kurssi kurssi, int ryhmanNumero, String opiskelijanumero) 
             throws SQLException {
         Connection tietokantayhteys = DatabaseConnection.makeConnection();
         CallableStatement kutsuttavaLause = tietokantayhteys.prepareCall("{ ? = call palautaopiskelija (?, ?, ?, ?, ?, ?, ?) }");
@@ -375,7 +425,7 @@ public class SQLProseduurit {
      * @return Vaihdetun ryhmän numero, jos ryhmänvaihto onnistui
      * @throws SQLException Tietokantavirhe
      */
-    public static int vaihdaOpiskelijanRyhmaa(int uusiRyhma, Kurssi kurssi, int ryhmanNumero, String opiskelijanumero) throws SQLException {
+    private static int vaihdaOpiskelijanRyhmaa(int uusiRyhma, Kurssi kurssi, int ryhmanNumero, String opiskelijanumero) throws SQLException {
         Connection tietokantayhteys = DatabaseConnection.makeConnection();
         CallableStatement kutsuttavaLause = tietokantayhteys.prepareCall("{ ? = call ryhmavaihto (?, ?, ?, ?, ?, ?, ?, ?, ?) }");
         kutsuttavaLause.registerOutParameter(1, java.sql.Types.INTEGER);
