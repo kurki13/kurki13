@@ -74,7 +74,30 @@ public class SQLProseduurit {
     }
     
     /**
-     * Metodi suorittaa SQL-Proseduurin palautaopiskelija
+     * Metodin avulla palautetaan opiskelija kurssille.
+     * Jos palautus onnistui, niin istuntoon asetetaan onnistumisviesti.
+     * Jos palautus epäonnistui, niin istuntoon asetetaan virheilmoitus.
+     * 
+     * @param kurssi Kurssi, jolle opiskelija palautetaan
+     * @param ryhmanNumero Ryhmä, johon opiskelija palautetaan
+     * @param opiskelijanumero Palautettavan opiskelijan opiskelijanumero
+     * @param request
+     */
+    public static void palautaOpiskelija(Kurssi kurssi, int ryhmanNumero, String opiskelijanumero, HttpServletRequest request) {
+        HttpSession istunto = request.getSession();
+        LocalisationBundle bundle = SessioApuri.bundle(request);
+        
+        try {
+            int tulos = palautaOpiskelija(kurssi, ryhmanNumero, opiskelijanumero);
+            tarkastaPalautuksenTulos(tulos, istunto, bundle, opiskelijanumero);
+        } catch (SQLException poikkeus) {
+            String virhe = bundle.getString("tkvirhe") + ": " + poikkeus.getLocalizedMessage();
+            SessioApuri.annaVirhe(istunto, virhe);
+        }
+    }
+    
+    /**
+     * Metodi suorittaa SQL-Proseduurin palautaopiskelija.
      * 
      * @param kurssi Kurssi, jolle opiskelija palautetaan
      * @param ryhmanNumero Ryhmä, johon opiskelija palautetaan
@@ -104,24 +127,53 @@ public class SQLProseduurit {
         return palautus;
     }
     
-    public static boolean poistaOpiskelija(Kurssi kurssi, int ryhmanNumero, String opiskelijanumero, HttpServletRequest request) {
+    /**
+     * Metodi tarkastaa SQL-Proseduurin palautaopiskelija palautusarvon 
+     * ja asettaa onnistumisviestin tai virheilmoituksen asianmukaisesti.
+     * 
+     * @param tulos Tarkastettava palautusarvo
+     * @param istunto Käyttäjän istunto
+     * @param bundle Lokalisaatio työkalu
+     * @param opiskelijanumero Palautettavan opiskelijan opiskelijanumero
+     * @throws SQLException Tietokantavirhe
+     */
+    private static void tarkastaPalautuksenTulos(int tulos, HttpSession istunto, LocalisationBundle bundle, String opiskelijanumero) throws SQLException {
+        String virhe;
+        String virheilmoituksenAlku = bundle.getString("palauttaminenKEO") + ": ";
+        
+        if (tulos == 1) {
+            virhe = virheilmoituksenAlku + bundle.getString("palautusEiOnnistunut");
+            SessioApuri.annaVirhe(istunto, virhe);
+        } if (tulos == 2) {
+            virhe = virheilmoituksenAlku + bundle.getString("opiskelijalaskuriEpaonnistui");
+            SessioApuri.annaVirhe(istunto, virhe);
+        } else {
+            String viesti = bundle.getString("opiskelija") + " " + palautaOpiskelijanNimi(opiskelijanumero) + " " + bundle.getString("palautettuK") + ".";
+            SessioApuri.annaViesti(istunto, viesti);
+        }
+    }
+    
+    /**
+     * Metodin avulla poistetaan opiskelija kurssilta.
+     * Jos poistaminen onnistui, niin istuntoon asetetaan onnistumisviesti.
+     * Jos poistaminen epäonnistui, niin istuntoon asetetaan virheilmoitus.
+     * 
+     * @param kurssi Kurssi, jolta opiskelija poistetaan
+     * @param ryhmanNumero Ryhmä, jolta opiskelija poistetaan
+     * @param opiskelijanumero Poistettavan opiskelijan opiskelijanumero
+     * @param request
+     */
+    public static void poistaOpiskelija(Kurssi kurssi, int ryhmanNumero, String opiskelijanumero, HttpServletRequest request) {
         HttpSession istunto = request.getSession();
         LocalisationBundle bundle = SessioApuri.bundle(request);
-        int tulos;
+        
         try {
-            tulos = poistaOpiskelija(kurssi, ryhmanNumero, opiskelijanumero);
+            int tulos = poistaOpiskelija(kurssi, ryhmanNumero, opiskelijanumero);
+            tarkastaPoistonTulos(tulos, istunto, bundle, opiskelijanumero);
         } catch (SQLException poikkeus) {
-            istunto.setAttribute(SessioApuri.Virhe, bundle.getString("tkvirhe") + ": " + poikkeus.getLocalizedMessage());
-            return false;
+            String virhe = bundle.getString("tkvirhe") + ": " + poikkeus.getLocalizedMessage();
+            SessioApuri.annaVirhe(istunto, virhe);
         }
-        if (tulos == 1) {
-            istunto.setAttribute(SessioApuri.Virhe, bundle.getString("kurssiltaPoistoEO") + ": " + bundle.getString("poistaminenEiOnnistunut"));
-            return false;
-        } else if (tulos == 2) {
-            istunto.setAttribute(SessioApuri.Virhe, bundle.getString("kurssiltaPoistoEO") + ": " + bundle.getString("opiskelijalaskuriEpaonnistui"));
-            return false;
-        }
-        return true;
     }
     
     /**
@@ -154,24 +206,52 @@ public class SQLProseduurit {
         return palautus;
     }
     
-    public static boolean lisaaOpiskelija(Kurssi kurssi, int ryhmanNumero, String opiskelijanumero, HttpServletRequest request) {
+    /**
+     * Metodi tarkastaa SQL-Proseduurin poistaopiskelija palautusarvon 
+     * ja asettaa onnistumisviestin tai virheilmoituksen asianmukaisesti.
+     * 
+     * @param tulos Tarkastettava palautusarvo
+     * @param istunto Käyttäjän istunto
+     * @param bundle Lokalisaatio työkalu
+     * @param opiskelijanumero Poistettavan opiskelijan opiskelijanumero
+     * @throws SQLException Tietokantavirhe
+     */
+    private static void tarkastaPoistonTulos(int tulos, HttpSession istunto, LocalisationBundle bundle, String opiskelijanumero) throws SQLException {
+        String virhe;
+        String virheilmoituksenAlku = bundle.getString("kurssiltaPoistoEO") + ": ";
+        
+        if (tulos == 1) {
+            virhe = virheilmoituksenAlku + bundle.getString("poistaminenEiOnnistunut");
+            SessioApuri.annaVirhe(istunto, virhe);
+        } else if (tulos == 2) {
+            virhe = virheilmoituksenAlku + bundle.getString("opiskelijalaskuriEpaonnistui");
+            SessioApuri.annaVirhe(istunto, virhe);
+        } else {
+            String viesti = bundle.getString("opiskelija") + " " + palautaOpiskelijanNimi(opiskelijanumero) + " " + bundle.getString("poistettuK") + ".";
+            SessioApuri.annaViesti(istunto, viesti);
+        }
+    }
+    
+    /**
+     * Metodin avulla lisätään opiskelija kurssille.
+     * Jos lisääminen onnistui, niin istuntoon asetetaan onnistumisviesti.
+     * Jos lisääminen epäonnistui, niin istuntoon asetetaan virheilmoitus.
+     * 
+     * @param kurssi Kurssi, jolle opiskelija lisätään
+     * @param ryhmanNumero Ryhmä, jolle opiskelija lisätään
+     * @param opiskelijanumero Lisättävän opiskelijan opiskelijanumero
+     * @param request 
+     */
+    public static void lisaaOpiskelija(Kurssi kurssi, int ryhmanNumero, String opiskelijanumero, HttpServletRequest request) {
         HttpSession istunto = request.getSession();
         LocalisationBundle bundle = SessioApuri.bundle(request);
-        String tulos;
+        
         try {
-            tulos = lisaaOpiskelija(kurssi, ryhmanNumero, opiskelijanumero);
+            String tulos = lisaaOpiskelija(kurssi, ryhmanNumero, opiskelijanumero);
+            tarkastaLisayksenTulos(tulos, istunto, bundle);
         } catch (SQLException poikkeus) {
-            istunto.setAttribute(SessioApuri.Virhe, bundle.getString("tkvirhe") + ": " + poikkeus.getLocalizedMessage());
-            return false;
-        }
-        if (tulos.equals("ok")) {
-            return true;
-        } else if (tulos.equals("virhe: opiskelija on jo ilmoittautunut kurssille.")) {
-            istunto.setAttribute(SessioApuri.Virhe, bundle.getString("lisaysKEO") + ": " + bundle.getString("opiskelijaojik") + ".");
-            return false;
-        } else {
-            istunto.setAttribute(SessioApuri.Virhe, bundle.getString("lisaysKEO") + ": " + bundle.getString("tkvirhe"));
-            return false;
+            String virhe = bundle.getString("tkvirhe") + ": " + poikkeus.getLocalizedMessage();
+            SessioApuri.annaVirhe(istunto, virhe);
         }
     }
     /**
@@ -204,28 +284,54 @@ public class SQLProseduurit {
         return palautus;
     }
     
+    /**
+     * Metodi tarkastaa SQL-Proseduurin kurkiilmo palautusarvon 
+     * ja asettaa onnistumisviestin tai virheilmoituksen asianmukaisesti.
+     * 
+     * @param tulos Tarkastettava palautusarvo
+     * @param istunto Käyttäjän istunto
+     * @param bundle Lokalisaatio työkalu
+     */
+    private static void tarkastaLisayksenTulos(String tulos, HttpSession istunto, LocalisationBundle bundle) {
+        String virhe;
+        String virheilmoituksenAlku = bundle.getString("lisaysKEO") + ": ";
+        
+        if (tulos.equals("ok")) {
+            String viesti = bundle.getString("lisaysInfo") + ".";
+            SessioApuri.annaViesti(istunto, viesti);
+        } else if (tulos.equals("virhe: opiskelija on jo ilmoittautunut kurssille.")) {
+            virhe = virheilmoituksenAlku + bundle.getString("opiskelijaojik") + ".";
+            SessioApuri.annaVirhe(istunto, virhe);
+        } else {
+            virhe = virheilmoituksenAlku + bundle.getString("tkvirhe");
+            SessioApuri.annaVirhe(istunto, virhe);
+        }
+    }
+    
+    /**
+     * Metodin avulla vaihdetaan opiskelijan ryhmää kurssilla.
+     * Jos ryhmänvaihto onnistui, niin istuntoon asetetaan onnistumisviesti.
+     * Jos ryhmänvaihto epäonnistui, niin istuntoon asetetaan virheilmoitus.
+     * 
+     * @param uusiRyhma Ryhmä, johon vaihdetaan
+     * @param kurssi Kurssi, jossa ryhmää vaihdetaan
+     * @param ryhmanNumero Vanha ryhmä
+     * @param opiskelijanumero Ryhmää vaihtavan opiskelijan opiskelijanumero
+     * @param request 
+     */
     public static void vaihdaOpiskelijanRyhmaa(int uusiRyhma, Kurssi kurssi, int ryhmanNumero, String opiskelijanumero, HttpServletRequest request) {
         HttpSession istunto = request.getSession();
         LocalisationBundle bundle = SessioApuri.bundle(request);
-        int tulos;
-        String virheilmoituksenAlku;
+        
         try {
-            tulos = vaihdaOpiskelijanRyhmaa(uusiRyhma, kurssi, ryhmanNumero, opiskelijanumero);
-            virheilmoituksenAlku = bundle.getString("ryhmanVeo") + " " + palautaOpiskelijanNimi(opiskelijanumero)  + " " + bundle.getString("ryhmanVEO2") + ": ";
+            String virheilmoituksenAlku = bundle.getString("ryhmanVeo") + " " + palautaOpiskelijanNimi(opiskelijanumero)  + " " + bundle.getString("ryhmanVEO2") + ": ";
+            int tulos = vaihdaOpiskelijanRyhmaa(uusiRyhma, kurssi, ryhmanNumero, opiskelijanumero);
+            tarkastaVaihdonTulos(tulos, istunto, bundle, uusiRyhma, opiskelijanumero);
         } catch (SQLException poikkeus) {
-            istunto.setAttribute(SessioApuri.Virhe, bundle.getString("tkvirhe") + ": " + poikkeus.getLocalizedMessage());
-            return;
+            String virhe = bundle.getString("tkvirhe") + ": " + poikkeus.getLocalizedMessage();
+            SessioApuri.annaVirhe(istunto, virhe);
         }
-        if (tulos == -1) {
-            istunto.setAttribute(SessioApuri.Virhe, virheilmoituksenAlku + bundle.getString("ryhmaa") + uusiRyhma + bundle.getString("eiMaaritelty"));
-        } else if (tulos == -2) {
-            istunto.setAttribute(SessioApuri.Virhe, virheilmoituksenAlku + bundle.getString("opiskelijanVoimassaolevaa"));
-        } else if (tulos == -3) {
-            istunto.setAttribute(SessioApuri.Virhe, virheilmoituksenAlku + bundle.getString("opiskelijalaskuri"));
-        } else if (tulos == -4) {
-            istunto.setAttribute(SessioApuri.Virhe, virheilmoituksenAlku + bundle.getString("opiskelijalaskuriKasvattaminen"));
-        } else {
-        }
+        
     }
     
     /**
@@ -261,6 +367,45 @@ public class SQLProseduurit {
         return palautus;
     }
     
+    /**
+     * Metodi tarkastaa SQL-Proseduurin ryhmavaihto palautusarvon 
+     * ja asettaa onnistumisviestin tai virheilmoituksen asianmukaisesti.
+     * 
+     * @param tulos Tarkastettava palautusarvo
+     * @param istunto Käyttäjän istunto
+     * @param bundle Lokalisaatio työkalu
+     * @param uusiRyhma Ryhmä, johon opiskelija vaihdetaan SQL-Proseduurissa
+     * @param opiskelijanumero SQL-Proseduurissa ryhmää vaihtavan opiskelijan opiskelijanumero
+     * @throws SQLException Tietokantavirhe
+     */
+    private static void tarkastaVaihdonTulos(int tulos, HttpSession istunto, LocalisationBundle bundle, int uusiRyhma, String opiskelijanumero) throws SQLException {
+        String virhe;
+        String virheilmoituksenAlku = bundle.getString("ryhmanVeo") + " " + palautaOpiskelijanNimi(opiskelijanumero)  + " " + bundle.getString("ryhmanVEO2") + ": ";
+        
+        if (tulos == -1) {
+            virhe = virheilmoituksenAlku + bundle.getString("ryhmaa") + uusiRyhma + bundle.getString("eiMaaritelty");
+        } else if (tulos == -2) {
+            virhe = virheilmoituksenAlku + bundle.getString("opiskelijanVoimassaolevaa");
+        } else if (tulos == -3) {
+            virhe = virheilmoituksenAlku + bundle.getString("opiskelijalaskuri");
+        } else if (tulos == -4) {
+            virhe = virheilmoituksenAlku + bundle.getString("opiskelijalaskuriKasvattaminen");
+        } else {
+            String viesti = bundle.getString("ryhmanVO") + " " + palautaOpiskelijanNimi(opiskelijanumero) + " " + bundle.getString("ryhmanVO2");
+            SessioApuri.annaViesti(istunto, viesti);
+            return;
+        }
+        
+        SessioApuri.annaVirhe(istunto, virhe);
+    }
+    
+    /**
+     * Metodi palauttaa opiskelijanumeroa vastaavan opiskelijan etu- ja sukunimen.
+     * 
+     * @param opiskelijanumero Palautettavan opiskelijan opiskelijanumero
+     * @return Palautettavan opiskelijan etunimi ja sukunimi
+     * @throws SQLException Tietokantavirhe
+     */
     private static String palautaOpiskelijanNimi(String opiskelijanumero) throws SQLException {
         Opiskelija palautettava = OpiskelijaKyselyt.opiskelijaHetulla(opiskelijanumero);
         return palautettava.getEtunimi() + " " + palautettava.getSukunimi();
