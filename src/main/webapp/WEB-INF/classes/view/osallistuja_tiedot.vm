@@ -115,4 +115,3 @@ $OsallistuminenKyselyt.tallennaKantaan($osasuoritusTiedot)
   
 </form>
 
-#parse("bottom.vm")

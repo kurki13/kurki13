@@ -4,10 +4,11 @@
  */
 package debug.model.SQLkyselyt;
 
+import debug.SessioApuri;
 import debug.dbconnection.DatabaseConnection;
 import debug.model.Kurssi;
-import debug.model.Opiskelija;
 import debug.model.Osallistuminen;
+import debug.model.osasuoritukset.Muotoilija;
 import debug.model.util.SQLoader;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,6 +16,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -31,8 +34,8 @@ public class OsallistuminenKyselyt {
                 + "AND os.lukuvuosi = ? \n"
                 + "AND os.tyyppi = ? \n"
                 + "AND os.kurssi_nro = ?\n"
-		+ "ORDER BY op.etunimi";
-        
+                + "ORDER BY op.etunimi";
+
         Connection conn = DatabaseConnection.makeConnection();
         PreparedStatement ps = conn.prepareStatement(query);
         ps.setString(1, kurssi.getKurssikoodi());
@@ -40,11 +43,11 @@ public class OsallistuminenKyselyt {
         ps.setInt(3, kurssi.getLukuvuosi());
         ps.setString(4, kurssi.getTyyppi());
         ps.setInt(5, kurssi.getKurssi_nro());
-        
+
         ResultSet rs = ps.executeQuery();
-        
+
         List<Osallistuminen> osallistumiset = new ArrayList();
-        
+
         while (rs.next()) {
             Osallistuminen add = new Osallistuminen();
             SQLoader.resultRowToTable(rs, add);
@@ -56,16 +59,15 @@ public class OsallistuminenKyselyt {
             add.setSukunimi(sukunimi);
             add.setEmail(rs.getString("sahkopostiosoite"));
         }
-        
+
         for (Osallistuminen osallistuminen : osallistumiset) {
             osallistuminen.setKurssi(kurssi);
         }
-        
+
         conn.close();
         return osallistumiset;
-    }  
-    
-    
+    }
+
     public static Osallistuminen osallistuminenKurssilla(Kurssi kurssi,
             String hetu) throws SQLException {
         String query = "SELECT os.* \n"
@@ -76,7 +78,7 @@ public class OsallistuminenKyselyt {
                 + "AND os.lukuvuosi = ? \n"
                 + "AND os.tyyppi = ? \n"
                 + "AND os.kurssi_nro = ?";
-        
+
         Connection conn = DatabaseConnection.makeConnection();
         PreparedStatement ps = conn.prepareStatement(query);
         ps.setString(1, hetu);
@@ -85,17 +87,36 @@ public class OsallistuminenKyselyt {
         ps.setInt(4, kurssi.getLukuvuosi());
         ps.setString(5, kurssi.getTyyppi());
         ps.setInt(6, kurssi.getKurssi_nro());
-        
+
         List<Osallistuminen> osallistumiset = SQLoader.loadTablesFromPreparedStatement(new Osallistuminen(), ps, conn);
-        if(osallistumiset.isEmpty()) return null;
-        else {
+        if (osallistumiset.isEmpty()) {
+            return null;
+        } else {
             osallistumiset.get(0).setKurssi(kurssi);
             return osallistumiset.get(0);
         }
     }
-    
-    
+
     public static void tallennaKantaan(Osallistuminen os) throws SQLException {
-	    SQLoader.tallennaKantaan(os);
+        SQLoader.tallennaKantaan(os);
+    }
+
+    public static void luoUusiOsallistuminen(String hetu, String ryhma,
+            Kurssi kurssi, HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        if (kurssi==null){
+            SessioApuri.annaVirhe(session, "Kurssia ei ole valittu");
+            return;
+        }
+        if (!Muotoilija.hetuTarkastus(hetu)) {
+            SessioApuri.annaVirhe(session, "Anna kelvollinen opiskelijanumero");
+            return;
+        }
+        try {
+            int rhm = Integer.parseInt(ryhma);
+            SQLProseduurit.lisaaOpiskelija(kurssi, rhm, hetu, request);
+        } catch (NumberFormatException e) {
+            SessioApuri.annaVirhe(session, "Anna kunnollinen ryhmä");
+        }
     }
 }

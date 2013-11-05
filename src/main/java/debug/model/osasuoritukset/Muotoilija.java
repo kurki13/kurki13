@@ -5,10 +5,10 @@ import java.util.List;
 
 /**
  * Tämä luokka muotoilee tietokannassa käytettävän formaatin numerotaulukoiksi.
- * Kannan muoto sisältää 18 pilkulla tai väliviivalla erotettua arvoa. (NÄILLÄ EI KAI OLE MITÄÄN MERKITYSTÄ!)
- * Arvo ON AINA KAHDEN MERKIN MITTAINEN!
- * Esimerkiksi:  1, 2, 3, 4, 5- 6,??,8,9,10-11,12,13,14,15,16,17,99 Asettamaton arvo
- * voidaan esittää kysymysmerkein.
+ * Kannan muoto sisältää 18 pilkulla tai väliviivalla erotettua arvoa. (NÄILLÄ
+ * EI KAI OLE MITÄÄN MERKITYSTÄ!) Arvo ON AINA KAHDEN MERKIN MITTAINEN!
+ * Esimerkiksi: 1, 2, 3, 4, 5- 6,??,8,9,10-11,12,13,14,15,16,17,99 Asettamaton
+ * arvo voidaan esittää kysymysmerkein.
  *
  * @author ahathoor
  */
@@ -52,8 +52,7 @@ public class Muotoilija {
             int piste = ints[i];
             if (piste == EMPTY) {
                 ret += "??";
-            }
-            else if (piste == LASNA) {
+            } else if (piste == LASNA) {
                 ret += " +";
             } else {
                 if (piste < 10) {
@@ -74,5 +73,11 @@ public class Muotoilija {
         int[] ints = new int[MAX_KOKO];
         Arrays.fill(ints, EMPTY);
         return ints;
+    }
+
+    public static boolean hetuTarkastus(String numero) {
+        if (numero.matches("01[0-9]{7}"))
+            return true;
+        return false;
     }
 }

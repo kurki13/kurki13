@@ -1,24 +1,21 @@
 
 #set($Integer = 0)
 #set($haetut = $OpiskelijaKyselyt.haeOpiskelijat($hetuFilter, $sukuFilter))
-#set($lisattava = $request.getParameter("lisattava"))
-#if ($ryhma && !$ryhma.equals(""))
+#set($lisattava = $request.getParameter("lisattava")) ##lisättävän opn hetu
+#if ($request.getParameter("ryhmanro") && !$request.getParameter("ryhmanro").equals(""))
     #set($ryhma = $Integer.parseInt($request.getParameter("ryhmanro")))
 #end
 
 #if($haetut.size() == 50)
-  <div class="alert alert-danger">
-    <ul>
-      Tarkenna hakua! Listassa aakkosjärjestyksessä 50 ensimmäistä hakukriteerejä vastaavaa opiskelijaa.
-    </ul>
-  </div>
+  $SessioApuri.annaVirhe($request.session,
+    $bundle.getString("tarkennaHInfo").concat(" 50 ").concat($bundle.getString("tarkennaHInfo2")))
 #end
 
 
  #if($request.getParameter("lisattava"))
     <div class="alert alert-success">
       <ul>
-        $SQLProseduurit.lisaaOpiskelija($valittuKurssi, $ryhma, $lisattava)
+        $OsallistuminenKyselyt.luoUusiOsallistuminen($lisattava, $ryhma, $valittuKurssi, $request)
         <br>
         Opiskelija ($lisattava) lisätty kurssille $valittuKurssi.nimi ryhmään $ryhma.
          <form action="" name="tee" method=post > 
@@ -39,11 +36,11 @@
     <th> $bundle.getString("camelopnro") </th>
     <th> $bundle.getString("ryhma") </th>
     <th> $bundle.getString("ilmoitakurssille") </th>
-  </tr>     
-
-   #foreach($opiskelija in $haetut)
-   <form action="" method="post" class="inline" style="margin:0;display:inline;" >
-   <tr>
+  </tr> 
+    
+  #foreach($opiskelija in $haetut)
+  <form action="" method="post" class="inline" style="margin:0;display:inline;" >
+  <tr>
     <td>
       <b><a href="mailto:MAIL">$opiskelija.etunimi, $opiskelija.sukunimi</a></b>
     </td>

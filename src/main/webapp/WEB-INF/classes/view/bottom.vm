@@ -1,10 +1,20 @@
+#if($session.getAttribute("message"))
+    <div class="alert alert-success">
+    #foreach($viesti in $SessioApuri.haeViestit($request))
+      <ul>$viesti</ul>
+    #end
+    </div>
+    $session.setAttribute("message", null)
+#end
+
 #if($session.getAttribute("error"))
-    <pre>
-        #foreach($virhe in $SessioApuri.haeVirheet($request))
-$virhe
-        #end
-    </pre>
+    <div class="alert alert-danger">
+    #foreach($virhe in $SessioApuri.haeVirheet($request))
+      <ul>$virhe</ul>
+    #end
+    </div>
     $session.setAttribute("error", null)
 #end
+
 </body>
 </html>

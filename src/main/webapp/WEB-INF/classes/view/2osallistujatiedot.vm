@@ -1,5 +1,4 @@
 #parse("hello.vm")
-<h3>$bundle.getString("2participants")</h3>
 
 ##Filterit/parametrit
 #set($sukuFilter = $params.get('filterSukunimi'))
@@ -73,6 +72,7 @@
     #parse ($toiminto)
 #end
 
+#parse("bottom.vm")
 
 </body>
 <html>

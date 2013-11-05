@@ -35,6 +35,7 @@ public class SessioApuri {
     public final static String KurssinOpiskelijat = "selected_course_students";
     public final static String KurssinOsallistumiset = "selected_course_parts";
     public final static String Virhe = "error";
+    public final static String Viesti = "message";
     //GET -Parametrien avaimet
     public final static String KurssiGet = "courseId";
     public final static String LokaaliGet = "locale";
@@ -64,7 +65,7 @@ public class SessioApuri {
             }
         }
     }
-
+    
     public static void annaVirhe(HttpSession session, String virhe) {
         if (session.getAttribute(Virhe) == null) {
             session.setAttribute(Virhe, new ArrayList());
@@ -75,6 +76,18 @@ public class SessioApuri {
 
     public static List<String> haeVirheet(HttpServletRequest request){
         return (List) request.getSession().getAttribute(Virhe);
+    }
+    
+    public static void annaViesti(HttpSession session, String virhe) {
+        if (session.getAttribute(Viesti) == null) {
+            session.setAttribute(Viesti, new ArrayList());
+        }
+        List<String> viestit = (List) session.getAttribute(Viesti);
+        viestit.add(virhe);
+    }
+
+    public static List<String> haeViestit(HttpServletRequest request){
+        return (List) request.getSession().getAttribute(Viesti);
     }
     
     public static LocalisationBundle bundle(HttpServletRequest request) {
