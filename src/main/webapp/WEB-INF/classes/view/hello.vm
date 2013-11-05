@@ -56,6 +56,7 @@ $SessioApuri.auta($request)
         #end
     #end
     </select>
+</form>
 
 ##Lisätään key:ksi sivun osoite, sivut joilla on vain numero key:nä ei vie vielä mihinkään!
 #set ($services = {"1suoritteidenKirjaus.vm" : "Suoritteiden kirjaus" ,
@@ -65,7 +66,7 @@ $SessioApuri.auta($request)
 		 "6tuloslistat.vm" : "Tuloslistat" ,
 		 "7jaadytys.vm" : "Kurssin jäädytys"})
 
-<br><br>
+<br>
 <div>
 #foreach ($s in $services.entrySet())
 	<a href=$s.key><input type=button class="btn" value="$s.value"></a>
