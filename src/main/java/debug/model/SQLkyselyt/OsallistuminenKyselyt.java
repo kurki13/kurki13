@@ -104,19 +104,41 @@ public class OsallistuminenKyselyt {
 
     public static void luoUusiOsallistuminen(String hetu, int ryhma,
             Kurssi kurssi, HttpServletRequest request) {
+        if (tarkistaParametrit(kurssi,ryhma, hetu, request)) {
+            SQLProseduurit.lisaaOpiskelija(kurssi, ryhma, hetu, request);
+        }
+    }
+
+    public static void palautaKurssille(String hetu_ryhma,
+            Kurssi kurssi, HttpServletRequest request) {
+        try {
+            String[] info = hetu_ryhma.split("_");
+            String hetu = info[0];
+            int ryhma = Integer.parseInt(info[1]);
+            if (tarkistaParametrit(kurssi,ryhma, hetu, request)) {
+                SQLProseduurit.palautaOpiskelija(kurssi,ryhma, hetu, request);
+            }
+        } catch (NumberFormatException e) {
+        } catch (ArrayIndexOutOfBoundsException e) {
+        }
+    }
+
+    public static boolean tarkistaParametrit(Kurssi kurssi,int ryhma, 
+            String hetu, HttpServletRequest request) {
+        
         HttpSession session = request.getSession();
         if (kurssi == null) {
             SessioApuri.annaVirhe(session, "Kurssia ei ole valittu");
-            return;
+            return false;
         }
         if (!Muotoilija.hetuTarkastus(hetu)) {
             SessioApuri.annaVirhe(session, "Anna kelvollinen opiskelijanumero");
-            return;
+            return false;
         }
         if (ryhma > 99 && ryhma < 1) {
             SessioApuri.annaVirhe(session, "Anna kunnollinen ryhmä");
-            return;
+            return false;
         }
-        SQLProseduurit.lisaaOpiskelija(kurssi, ryhma, hetu, request);
+        return true;
     }
 }

@@ -175,7 +175,7 @@ public class SQLProseduurit {
         if (tulos == 1) {
             virhe = virheilmoituksenAlku + bundle.getString("palautusEiOnnistunut");
             SessioApuri.annaVirhe(istunto, virhe);
-        } if (tulos == 2) {
+        } else if (tulos == 2) {
             virhe = virheilmoituksenAlku + bundle.getString("opiskelijalaskuriEpaonnistui");
             SessioApuri.annaVirhe(istunto, virhe);
         } else {

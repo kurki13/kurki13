@@ -1,16 +1,21 @@
+#set($i=0)
+#foreach($palautettu in $request.getParameterValues("palautettavat"))
+    $OsallistuminenKyselyt.palautaKurssille($palautettu, $valittuKurssi, $request)
+#end
+
+
 #if($valittuKurssi)
     #set($osallistumiset = $OsallistuminenKyselyt.osallistumisetKurssilla($valittuKurssi))  
 #end
 
-#set ($poistetut = [])
-
+#set ($poistetut = [])  
 #foreach($osallis in $osallistumiset)
     #if ($osallis.voimassa.equals("P"))
         #set ($var = $poistetut.add($osallis))
     #end
 #end
 
-<form action="" method=get>
+<form name=palautaOpiskelijat action="" method=post>
 <table class="table table-condensed table-bordered" style="max-width:1000px">
   <caption>
    Opiskelijoita valittu $poistetut.size()
@@ -19,7 +24,7 @@
     <th> $bundle.getString("nimiSyntpva") </th>
     <th> $bundle.getString("camelopnro") </th>
     <th> $bundle.getString("ryhma") </th>
-    <th> Palauta kurssille </th>
+    <th> $bundle.getString("palautaKurssille") </th>
   </tr>
 
 
@@ -35,15 +40,13 @@
       <center>$poistet.ilmo_jnro</center>
     </td>
     <td>
-      <center><input type="checkbox" name="rtn_0"></center>
-    </td>
-  </tr>    
-  <tr>
-    <th colspan="4">
-      <input type="hidden" name="TS" value="RANDOMVALUE?">
-    </th>
+      <center>
+        <input type="checkbox" name="palautettavat" value="${poistet.hetu}_${poistet.ilmo_jnro}">
+      </center>
+    </td>   
   </tr>
 #end
 </table>
+
+<input type="submit" class="btn btn-success" value="PALAUTA">
 </form>
-<center><input type="submit" class="btn btn-success" name="doReturn" value="PALAUTA"></center>

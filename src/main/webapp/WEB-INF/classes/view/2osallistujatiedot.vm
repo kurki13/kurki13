@@ -8,10 +8,6 @@
 
 ##Osallistumiset
 #set($osallistumiset = $OsallistuminenKyselyt.osallistumisetKurssilla($valittuKurssi))
-#if($request.getParameter("hetuParam")) 
-    #set($opiskelijaTiedot = $OpiskelijaKyselyt.opiskelijaHetulla($request.getParameter("hetuParam")))
-#end
-
 
 ##haetaan kurssin ryhmät, ja jätetään pois mystinen ryhmä "0"
 ##lisätään tulostus muuttujaan 'var' jota ei käytetä missään, muuten velocity haluaa tulostaa "true" kun listaan lisäys on onnistunut

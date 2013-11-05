@@ -1,4 +1,7 @@
 #set($Integer = 0) ## ParseInt-metodia varten
+#if($request.getParameter("hetuParam")) 
+    #set($opiskelijaTiedot = $OpiskelijaKyselyt.opiskelijaHetulla($request.getParameter("hetuParam")))
+#end
 #set($osasuoritusTiedot = $OsallistuminenKyselyt.osallistuminenKurssilla($valittuKurssi,$opiskelijaTiedot.hetu))
 
 #set ($osasuoritukset = {
