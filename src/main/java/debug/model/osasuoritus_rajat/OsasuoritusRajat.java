@@ -42,9 +42,9 @@ public class OsasuoritusRajat implements Iterable<OsasuoritusRaja> {
         }
         return Muotoilija.intArrayToString(mins);
     }
-    
-    public void setAktiivisia(int aktiivisia){
-	this.aktiivisia = aktiivisia;
+
+    public void setAktiivisia(int aktiivisia) {
+        this.aktiivisia = aktiivisia;
     }
 
     //TODO: Is prepared for nulls?
@@ -60,7 +60,7 @@ public class OsasuoritusRajat implements Iterable<OsasuoritusRaja> {
             }
         }
     }
-    
+
     /*
      * Osien indeksit alkavat nollasta, eli kun haetaan esimerkiksi ensimmäisen
      * osan pisteitä, niin täytyykin hakea nollannen osan pisteitä jne.
@@ -74,21 +74,46 @@ public class OsasuoritusRajat implements Iterable<OsasuoritusRaja> {
             return osasuoritusrajat.get(numero);
         }
     }
-    
+
     public OsasuoritusRaja osa(String numero) {
         int nro = 0;
         try {
-        nro = Integer.parseInt(numero);
-        } catch (NumberFormatException nume) { return null; }
-          catch (NullPointerException nulle) { return null; }
-        
+            nro = Integer.parseInt(numero);
+        } catch (NumberFormatException nume) {
+            return null;
+        } catch (NullPointerException nulle) {
+            return null;
+        }
+
         return osa(nro);
+    }
+
+    public int getMaxPisteetYhteensa() {
+        int ret = 0;
+        for (OsasuoritusRaja raja : this) {
+            if (raja.getMax() > 0) {
+                ret += raja.getMax();
+            }
+        }
+        return ret;
+    }
+
+    public int getMinPisteetYhteensa() {
+        int ret = 0;
+        for (OsasuoritusRaja raja : this) {
+            if (raja.getMin() > 0) {
+                ret += raja.getMin();
+            }
+        }
+        return ret;
     }
 
     @Override
     public String toString() {
-        return osasuoritusrajat.toString();
+        String ret = "";
+        for (OsasuoritusRaja raja : this) {
+            ret += raja + "<br>";
+        }
+        return ret;
     }
-    
-    
 }

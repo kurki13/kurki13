@@ -13,35 +13,52 @@
                         }
 )
 
+<form name="arvostelu" action="" method=get class="form-inline">
+
 <pre>
 OSASUORITUKSIA:
 
 LH_YHT: $valittuKurssi.laskarikerta_lkm
-LH_PAK: $valittuKurssi.pakolliset_laskarikerta_lkm
+LH_PAK: <input name=lh_pak value=$valittuKurssi.pakolliset_laskarikerta_lkm>
 
 HT_YHT: $valittuKurssi.harjoitustyo_lkm
-HT_PAK: $valittuKurssi.pakolliset_harjoitustyo_lkm
+HT_PAK: <input name=ht_pak value=$valittuKurssi.pakolliset_harjoitustyo_lkm>
 
 KOE_YHT: $valittuKurssi.valikokeet_lkm
-KOE_PAK: $valittuKurssi.pakolliset_koe_lkm
+KOE_PAK: <input name=koe_pak value=$valittuKurssi.pakolliset_koe_lkm>
 
 SUORITUSPISTEITÄ OSASUORITUKSISTA:
 
-HT_Maksimi: $valittuKurssi.max_laskaripisteet
-HT_1.pisteenraja: $valittuKurssi.lisapistealaraja
-HT_Kartuntaväli: $valittuKurssi.lisapisteiden_askelkoko
+LH_Saatavissa: $valittuKurssi.laskariRajat.maxPisteetYhteensa
+LH_Hyväksymisrajojen_summa: $valittuKurssi.laskariRajat.minPisteetYhteensa
+LH_Osuuden_hyväksymisraja: <input name=lh_oshyv value=$valittuKurssi.pakolliset_laskaritehtava_lkm>
 
-HT_Maksimi: $valittuKurssi.harjoitustyopisteet
-HT_1.pisteenraja: $valittuKurssi.ht_lisapistealaraja
-HT_Kartuntaväli: $valittuKurssi.harjoitustoiden_askelkoko
+HT_Saatavissa: $valittuKurssi.harjoitustyoRajat.maxPisteetYhteensa
+HT_Hyväksymisrajojen_summa: $valittuKurssi.harjoitustyoRajat.minPisteetYhteensa
+HT_Osuuden_hyväksymisraja: <input name=ht_oshyv value=$valittuKurssi.min_harjoitustyopisteet_summa>
 
-HT_Maksimi: #set($s = 0) #foreach($k in $valittuKurssi.koeRajat) #set($s = $s + $k.max) #end $s
-HT_1.pisteenraja: 1
-HT_Kartuntaväli: 1
+KOE_Saatavissa: $valittuKurssi.koeRajat.maxPisteetYhteensa
+KOE_Hyväksymisrajojen_summa: $valittuKurssi.koeRajat.minPisteetYhteensa
+KOE_Osuuden_hyväksymisraja: <input name=koe_oshyv value=$valittuKurssi.min_koepisteet_summa>
 
-Pisteitä_Max: $valittuKurssi.max_laskaripisteet + $valittuKurssi.harjoitustyopisteet + $s
-Hyväksymisalaraja: $valittuKurssi.min_yhteispisteet
-Arvosanaväli: $valittuKurssi.arvostelun_askelkoko
+ARVOSTELUUN VAIKUTTAVAT LISÄPISTEET:
+
+LH_Maksimi: <input name=lh_lisapistemaksimi value=$valittuKurssi.max_laskaripisteet>
+LH_1.pisteenraja: <input name=lh_lisapistealaraja value=$valittuKurssi.lisapistealaraja>
+LH_Kartuntaväli: <input name=lh_kartuntavali value=$valittuKurssi.lisapisteiden_askelkoko>
+
+HT_Maksimi: <input name=ht_lisapistemaksimi value=$valittuKurssi.harjoitustyopisteet>
+HT_1.pisteenraja: <input name=ht_lisapistealaraja value=$valittuKurssi.ht_lisapistealaraja>
+HT_Kartuntaväli: <input name=ht_kartuntavali value=$valittuKurssi.harjoitustoiden_askelkoko>
+
+KOE_Maksimi:$valittuKurssi.koeRajat.maxPisteetYhteensa
+KOE_1.pisteenraja: 1
+KOE_Kartuntaväli: 1
+
+
+Pisteitä_Max: $valittuKurssi.max_laskaripisteet + $valittuKurssi.harjoitustyopisteet + $valittuKurssi.koeRajat.maxPisteetYhteensa
+Hyväksymisalaraja: <input name=hyvalaraja value=$valittuKurssi.min_yhteispisteet>
+Arvosanaväli: <input name=arvosanavali value=$valittuKurssi.arvostelun_askelkoko>
 
 Arvosteluasteikko: 
 	<input type="radio" name="arvosteluasteikko" value="K" #if($valittuKurssi.arvostellaanko.equals("K")) checked #end>Arvosanat
@@ -54,10 +71,8 @@ Arvostelutapa:
 #end
 	</select>
 </pre>
-
-
-$valittuKurssi.laskentakaava
-
+<input type=submit class="btn" value=$bundle.getString("tmuutokset") onClick="">
+</form>
 
 <pre>
 $valittuKurssi
