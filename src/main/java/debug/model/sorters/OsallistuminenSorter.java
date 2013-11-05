@@ -119,19 +119,18 @@ public class OsallistuminenSorter {
     public static List useaFilteri(List<Osallistuminen> lista, String filter) {
         String[] sanat = filter.split(",");
         ArrayList<Osallistuminen> kopio = new ArrayList<Osallistuminen>(lista);
-        for (String string : sanat) {
-            System.out.println(string);
-            if (StringUtils.isNumeric(string)) {
-                kopio = (ArrayList<Osallistuminen>) filteroiRyhmanMukaan(kopio, string);
+        for (String string : sanat) {            
+            if (StringUtils.isNumeric(string.trim())) {
+                kopio = (ArrayList<Osallistuminen>) filteroiRyhmanMukaan(kopio, string.trim());
             } else {
-                if (string.contains("..")) {
-                    kopio = (ArrayList<Osallistuminen>) filteroiAlkuLoppu(kopio, string);
+                if (string.trim().contains("..")) {
+                    kopio = (ArrayList<Osallistuminen>) filteroiAlkuLoppu(kopio, string.trim());
                 }
-                if (string.charAt(0) != '#') {
-                    kopio = (ArrayList<Osallistuminen>) filteroiSukunimenMukaan(kopio, string);
+                if (string.trim().charAt(0) != '#') {
+                    kopio = (ArrayList<Osallistuminen>) filteroiSukunimenMukaan(kopio, string.trim());
                 }
-                if (string.charAt(0) == '#') {
-                    kopio = (ArrayList<Osallistuminen>) filteroiOpiskelijanumeronMukaan(kopio, string);
+                if (string.trim().charAt(0) == '#') {
+                    kopio = (ArrayList<Osallistuminen>) filteroiOpiskelijanumeronMukaan(kopio, string.trim());
                 }
             }
         }
@@ -139,8 +138,7 @@ public class OsallistuminenSorter {
     }
 
     public static List filteroi(List<Osallistuminen> lista, String filter) {
-        if (filter.contains(",")) {
-            System.out.println("Löyty pilkku!");
+        if (filter.contains(",")) {            
             return useaFilteri(lista, filter);
         }
         if (StringUtils.isNumeric(filter)) {
