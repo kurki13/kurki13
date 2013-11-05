@@ -37,6 +37,8 @@
                 #elseif (!$selected_course.Omistaja)
                     <input type="hidden" name="virhe" value="$bundle.getString("jaadytystaEiVoiSuorittaa")">
 
+                ##else ($SQLProseduurit.suoritaJaadytys($selected_course, $request)
+
                 #elseif ($SQLProseduurit.suoritaJaadytys($selected_course) == "OK")
                     ##$jaadytys.lahetaPostia($selected_course.listaString(), $kurssinTila, $request.getRemoteUser())
                     #set ($ilmoitus = "$bundle.getString('jaadytysInfo'). $bundle.getString('jaadytysInfo3') $bundle.getString('jaadytysInfo4')")
