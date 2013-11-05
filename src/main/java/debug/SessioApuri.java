@@ -35,6 +35,7 @@ public class SessioApuri {
     public final static String KurssinOpiskelijat = "selected_course_students";
     public final static String KurssinOsallistumiset = "selected_course_parts";
     public final static String Virhe = "error";
+    public final static String Viesti = "message";
     //GET -Parametrien avaimet
     public final static String KurssiGet = "courseId";
     public final static String LokaaliGet = "locale";
@@ -59,12 +60,36 @@ public class SessioApuri {
                 }
 
             } catch (SQLException sq) {
-                session.setAttribute(Virhe, "Kurssien lataaminen kannasta epäonnistui!" + sq.getLocalizedMessage());
+                annaVirhe(session, "Kurssien lataaminen kannasta epäonnistui!" + sq.getLocalizedMessage());
                 session.setAttribute(KurssiLista, new ArrayList());
             }
         }
     }
+    
+    public static void annaVirhe(HttpSession session, String virhe) {
+        if (session.getAttribute(Virhe) == null) {
+            session.setAttribute(Virhe, new ArrayList());
+        }
+        List<String> virheet = (List) session.getAttribute(Virhe);
+        virheet.add(virhe);
+    }
 
+    public static List<String> haeVirheet(HttpServletRequest request){
+        return (List) request.getSession().getAttribute(Virhe);
+    }
+    
+    public static void annaViesti(HttpSession session, String virhe) {
+        if (session.getAttribute(Viesti) == null) {
+            session.setAttribute(Viesti, new ArrayList());
+        }
+        List<String> viestit = (List) session.getAttribute(Viesti);
+        viestit.add(virhe);
+    }
+
+    public static List<String> haeViestit(HttpServletRequest request){
+        return (List) request.getSession().getAttribute(Viesti);
+    }
+    
     public static LocalisationBundle bundle(HttpServletRequest request) {
         HttpSession session = request.getSession();
         if (session.getAttribute(LokaaliTunnus) == null) {
@@ -77,7 +102,7 @@ public class SessioApuri {
         HttpSession session = request.getSession();
         lataa_kurssit(request);
         kasitteleGetParametrit(session, request.getQueryString());
-        
+
         Kurssi valittuKurssi = (Kurssi) session.getAttribute(ValittuKurssi);
         if (valittuKurssi != null) {
             lataaKurssinOpiskelijat(session, valittuKurssi);
@@ -91,7 +116,7 @@ public class SessioApuri {
                     KurssinOpiskelijat,
                     OpiskelijaKyselyt.kurssinOpiskelijat(valittuKurssi));
         } catch (SQLException ex) {
-            session.setAttribute(Virhe, "Kurssin opiskelijoiden lataamisessa tapahtui virhe: " + ex.getLocalizedMessage());
+            annaVirhe(session, "Kurssin opiskelijoiden lataamisessa tapahtui virhe: " + ex.getLocalizedMessage());
             Logger.getLogger(SessioApuri.class.getName()).log(Level.SEVERE, null, ex);
         }
 
@@ -103,7 +128,7 @@ public class SessioApuri {
                     KurssinOsallistumiset,
                     OsallistuminenKyselyt.osallistumisetKurssilla(valittuKurssi));
         } catch (SQLException ex) {
-            session.setAttribute(Virhe, "Kurssin osallistumisten lataamisessa tapahtui virhe: " + ex.getLocalizedMessage());
+            annaVirhe(session, "Kurssin osallistumisten lataamisessa tapahtui virhe: " + ex.getLocalizedMessage());
             Logger.getLogger(SessioApuri.class.getName()).log(Level.SEVERE, null, ex);
         }
 
@@ -148,7 +173,7 @@ public class SessioApuri {
             tyyppi = id.split("\\.")[3];
             kurssi_nro = Integer.parseInt(id.split("\\.")[4]);
         } catch (Exception ex) {
-            session.setAttribute(Virhe, "Get-parametrissa annetun kurssitunnuksen muoto virheellinen: " + ex.getLocalizedMessage());
+            annaVirhe(session, "Get-parametrissa annetun kurssitunnuksen muoto virheellinen: " + ex.getLocalizedMessage());
             return null;
         }
         for (Kurssi kurssi : kurssit) {
@@ -160,20 +185,21 @@ public class SessioApuri {
                 return kurssi;
             }
         }
-        session.setAttribute(Virhe, "Annetulla kurssitunnuksella ei löytynyt kurssia tälle käyttäjälle");
+        annaVirhe(session, "Annetulla kurssitunnuksella ei löytynyt kurssia tälle käyttäjälle");
         return null;
     }
-    
+
     public String print(HttpServletRequest rq) {
         HttpSession sesh = rq.getSession();
         String ret = "";
         ret += "Valittu kurssi: " + sesh.getAttribute(ValittuKurssi);
         return ret;
     }
-    
+
     public static String lisaysLause(Table taulu) {
-        if (taulu == null)
+        if (taulu == null) {
             return "";
+        }
         return Testikanta.taulunLisaysLause(taulu).replaceAll("(\r\n|\n\r|\r|\n)", "<br />");
     }
 }

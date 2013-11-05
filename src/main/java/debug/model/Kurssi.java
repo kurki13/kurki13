@@ -89,8 +89,9 @@ public class Kurssi extends Table {
 
     //<editor-fold defaultstate="collapsed" desc="setters">
     
-    public  void setHarjoitustunnit(Integer harjoitustunnit) {
-        this.setValue(Kurssi.harjoitustunnit, harjoitustunnit);
+    public  void setLaskarikerta_lkm(Integer laskarikerta_lkm) {
+        this.setValue(Kurssi.laskarikerta_lkm, laskarikerta_lkm);
+	laskariRajat.setAktiivisia(laskarikerta_lkm);
     }
 
     public  void setPakolliset_laskaritehtava_lkm(Integer pakolliset_laskaritehtava_lkm) {
@@ -105,6 +106,7 @@ public class Kurssi extends Table {
 
     public  void setHarjoitustyo_lkm(Integer aHarjoitustyo_lkm) {
          this.setValue(Kurssi.harjoitustyo_lkm,aHarjoitustyo_lkm);
+	 harjoitustyoRajat.setAktiivisia(aHarjoitustyo_lkm);
     }
 
     public  void setPakolliset_harjoitustyo_lkm(Integer aPakolliset_harjoitustyo_lkm) {
@@ -118,6 +120,7 @@ public class Kurssi extends Table {
 
     public  void setValikokeet_lkm(Integer aValikokeet_lkm) {
          this.setValue(Kurssi.valikokeet_lkm,aValikokeet_lkm);
+	 koeRajat.setAktiivisia(aValikokeet_lkm);
     }
 
     public  void setPakolliset_koe_lkm(Integer aPakolliset_koe_lkm) {

@@ -1,4 +1,3 @@
-
 #if ($valittuKurssi.getTila() == "J")
     #set ($jaassa = true)
 #else
@@ -53,10 +52,11 @@ $KurssiKyselyt.tallennaKantaan($valittuKurssi)
     <h3>$rajanNimi:</h3>
     #foreach($raja in $rajat)
         <div style="display:inline-block">
-           <b style="position:relative;top:-43px;">$i:</b>
+	   <div style="width:20px; display: inline-block">
+		<b style="position:relative;top:-15px;">$i:</b>
+	   </div>
            <div style="width:55px;display:inline-block">
                 <center>
-                    <small>max</small>
                     <input type="text" class="form-control" style="width:50px" maxlength="2"
                         name="${lomake_tunnus}_${i}_max" 
                         value="$raja.max" ##Maksimipisteet
@@ -69,7 +69,6 @@ $KurssiKyselyt.tallennaKantaan($valittuKurssi)
                         onBlur="rangecheck(this,0,18)"
                         #if($jaassa)readonly#end
                         >
-                    <small>min</small>
                 </center>
            </div>
        </div>
@@ -79,5 +78,6 @@ $KurssiKyselyt.tallennaKantaan($valittuKurssi)
 <br><br>
 <input type=submit class="btn" value=$bundle.getString("tmuutokset") onClick="">
 </form>
+
 </body>
-<html>
+</html>

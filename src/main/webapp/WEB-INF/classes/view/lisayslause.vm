@@ -4,14 +4,14 @@
 
 <h3>valitun kurssin lisäyslause</h3>
 <pre>
-$sessioapuri.lisaysLause($valittuKurssi)
+$SessioApuri.lisaysLause($valittuKurssi)
 </pre>
 
 <h3>valitun kurssin ekan oppilaan lisäyslause</h3>
 <pre>
 #set($ops = $OppilasKyselyt.oppilaatKurssilla($valittuKurssi))
 #if($ops && $oss.size() > 0)
-	$sessioapuri.lisaysLause($ops.get(0))
+	$SessioApuri.lisaysLause($ops.get(0))
 #end
 </pre>
 
@@ -19,10 +19,16 @@ $sessioapuri.lisaysLause($valittuKurssi)
 <pre>
 #set($oss = $OsallistuminenKyselyt.osallistumisetKurssilla($valittuKurssi))
 #if($oss && $oss.size() > 0)
-	$sessioapuri.lisaysLause($oss.get(0))
+	$SessioApuri.lisaysLause($oss.get(0))
 #end
 </pre>
 
 #end
+
+<pre>
+$valittuKurssi.update
+$valittuKurssi
+$valittuKurssi.laskariRajat
+</pre>
 </body>
 <html>

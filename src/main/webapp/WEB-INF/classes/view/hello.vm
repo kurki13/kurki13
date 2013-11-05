@@ -1,7 +1,7 @@
 ##Ensin tarkastetaan että kurssit on ladattu sessiomuuttujaan
-$sessioapuri.auta($request)
+$SessioApuri.auta($request)
 ##Lokalisaatiobundlen asetus
-#set($bundle = $sessioapuri.bundle($request))
+#set($bundle = $SessioApuri.bundle($request))
 ##Parametrit käytettäviksi
 #set($qs = $request.getQueryString())
 #if($qs)
@@ -30,11 +30,6 @@ $sessioapuri.auta($request)
 
 <body>
 
-##Mahdollisen virheen tulostus
-#if($session.getAttribute("error"))
-    <pre>$session.getAttribute("error")</pre>
-#end
-
 <h4>Logged in as: $request.getRemoteUser()</h4>
 <a href="?locale=en"><img src="images/liput/gb.png"></a>
 <a href="?locale=fi"><img src="images/liput/fi.png"></a>
@@ -61,28 +56,23 @@ $sessioapuri.auta($request)
         #end
     #end
     </select>
-
-##Lisätään key:ksi sivun osoite, sivut joilla on vain numero key:nä ei vie vielä mihinkään!
-#set ($services = {"1suoritteidenKirjaus.vm" : "Suoritteiden kirjaus" , "2osallistujatiedot.vm" : "Osallistujatietojen muutokset" ,
-"3kurssinPerustiedot.vm" : "Kurssin perustietojen muutokset" , "3OsasuoritustenRajat.vm" : "Osasuoritusten rajojen muutokset" , "4listat.vm" : "Listat" , "5arvostelu.vm" : "Arvostelu" ,
-"6tuloslistat.vm" : "Tuloslistat" , "7jaadytys.vm" : "Kurssin jäädytys"})
-
-    #if ($session.getAttribute('selected_course'))
-        <select name="serviceId" onChange="this.form.submit()" class="form-control form-inline" style="width:300px">
-        #if (!$session.getAttribute('selected_service_id') || $session.getAttribute('selected_service_id') == "")
-            <option value="" selected>-- $bundle.getString("valitsetoiminto") --</option>
-        #end
-        #foreach ($s in $services.entrySet())
-            #if($session.getAttribute('selected_service_id') && $session.getAttribute('selected_service_id') == $s.key)
-                <option value=$s.key selected>$s.value</option>
-            #else
-                <option value=$s.key>$s.value</option>
-            #end
-        #end
-        </select>
-    #end
 </form>
 
+##Lisätään key:ksi sivun osoite, sivut joilla on vain numero key:nä ei vie vielä mihinkään!
+#set ($services = {"1suoritteidenKirjaus.vm" : "Suoritteiden kirjaus" ,
+		 "2osallistujatiedot.vm" : "Osallistujatietojen muutokset" ,
+		 "3kurssinPerustiedot.vm" : "Kurssin perustietojen muutokset" ,
+		 "4listat.vm" : "Listat" , "5arvostelu.vm" : "Arvostelu" ,
+		 "6tuloslistat.vm" : "Tuloslistat" ,
+		 "7jaadytys.vm" : "Kurssin jäädytys"})
+
+<br>
+<div>
+#foreach ($s in $services.entrySet())
+	<a href=$s.key><input type=button class="btn" value="$s.value"></a>
+#end
+</div>
+<br><br>
 <div>
 Apulinkit testaukseen:
 <input type=button class="btn" value=hello onClick="parent.location='hello.vm'">
@@ -92,11 +82,6 @@ Apulinkit testaukseen:
 <input type=button class="btn" value=osallistujaLista onClick="parent.location='osallistujaLista.vm'">
 <input type=button class="btn" value=harjoitustyö onClick="parent.location='harjoitustyo.vm'">
 </div>
-
-</div>
-
-##avataan valittu sivu jos palvelun id kelpaa
-#if($services.keySet().contains($session.getAttribute('selected_service_id')))
-    #parse ($session.getAttribute('selected_service_id'))
-#end
+<br>
+<div id=ilmoitus> </div>
 

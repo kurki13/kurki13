@@ -1,58 +1,74 @@
+#parse("hello.vm")
+
+##Filterit/parametrit
+#set($sukuFilter = $params.get('filterSukunimi'))
+#set($hetuFilter = $params.get('filterOpnro'))
+#set($ryhmaFilter = $params.get('ryhma'))
+#set($toiminto = $params.get('toiminto'))
+
+##Osallistumiset
+#set($osallistumiset = $OsallistuminenKyselyt.osallistumisetKurssilla($valittuKurssi))
+
+##haetaan kurssin ryhmät, ja jätetään pois mystinen ryhmä "0"
+##lisätään tulostus muuttujaan 'var' jota ei käytetä missään, muuten velocity haluaa tulostaa "true" kun listaan lisäys on onnistunut
+#set ($ryhmat = [])
+#foreach($ryhmanro in $OpetusKyselyt.opetuksetKurssilla($valittuKurssi))
+    #if ($ryhmanro.ilmo_jnro != 0)
+        #set ($var = $ryhmat.add($ryhmanro.ilmo_jnro))
+    #end
+#end
+
+##Valikko ohjaa toiminnot toisiin tiedostoihin
+#set ($toiminnot = {
+    "osallistujat_listaus.vm" : $bundle.getString("tiedot") ,
+    "osallistujat_lisaa.vm" : $bundle.getString("haelisatop") ,
+    "osallistujat_palaut.vm" : $bundle.getString("haepalop")})
+
+
 <h3>$bundle.getString("2participants")</h3>
 
 <form name="osallistujatiedot" action="" method=get class="form-inline">
+  
+  <b>$bundle.getString("isosnimi"):</b>
+  <input type="text" class="form-control form-inline" style="width:150px"
+          name="filterSukunimi" #if($sukuFilter && !$sukuFilter.equals(""))value=$sukuFilter#end>
 
-    <b>$bundle.getString("isosnimi"):</b>
-    <input type="text" class="form-control form-inline" style="width:150px" name="filterSukunimi">
 
-##haetaan kurssin ryhmät, ja jätetään pois mystinen ryhmä "0"
-#set ($ryhmat = [])
-#foreach($r in $OpetusKyselyt.opetuksetKurssilla($valittuKurssi))
-    #if ($r.ilmo_jnro != 0)
-##lisätään tulostus muuttujaan 'var' jota ei käytetä missään, muuten velocity haluaa tulostaa "true" kun listaan lisäys on onnistunut
-        #set ($var = $ryhmat.add($r.ilmo_jnro))
+  <b>$bundle.getString("ryhma"):</b>
+  <select name="ryhma" class="form-control form-inline" style="width:100px">
+   #foreach($ryhma in $ryhmat)
+         <option #if($ryhmaFilter && $ryhma==$ryhmaFilter)selected#end value=$ryhma>$ryhma</option>
     #end
-#end
-    <b>$bundle.getString("ryhma"):</b>
-    <select name="ryhma" class="form-control form-inline" style="width:100px">
-    #foreach($r in $ryhmat)
-        #if($r == $params.get('ryhma'))
-        <option value=$r selected>$r</option>
-        #else
-        <option value=$r>$r</option>
-        #end
-    #end
-    </select>
+  </select>
 
-    <b>$bundle.getString("camelopnro"):</b>
-    <input type="text" class="form-control form-inline" style="width:150px" name="filterOpnro">
+  <b>$bundle.getString("camelopnro"):</b>
+  <input type="text" class="form-control form-inline" style="width:150px" 
+      name="filterOpnro" #if($hetuFilter && !$hetuFilter.equals(""))value=$hetuFilter#end>
 
-##Korvaa numero halutulla key:llä
-    #set ($tyypit = {"listaus" : $bundle.getString("tiedot") , "lisaa" : $bundle.getString("haelisatop") ,
-    "palaut" : $bundle.getString("haepalop")})
 
-    <select name="toiminto" class="form-control form-inline" style="width:350px">
-    #if (!$params.get('toiminto'))
-        <option value="" selected>-- $bundle.getString("valitse_toiminto") --</option>
-    #end
-    #foreach($t in $tyypit.entrySet())
-        #if($t.key == $params.get('toiminto'))
+  <select name="toiminto" class="form-control form-inline" style="width:350px">
+   #foreach($t in $toiminnot.entrySet())
+      #if($t.key == $toiminto)
         <option value=$t.key selected>$t.value</option>
-        #else
+      #else
         <option value=$t.key>$t.value</option>
-        #end
+      #end
     #end
-    </select>
+  </select>
 
     <input type=submit class="btn" value=">>>">
 </form>
 
 
+#if($request.getParameter("tiedot")) 
+    #parse ("osallistuja_tiedot.vm")
+    <br>
 
-#if($params.get('toiminto')) ##tiedot
-    #set($vmfile = "osallistujat_${params.get('toiminto')}.vm")
-    #parse ($vmfile)
+#elseif($toiminto) ##tiedot
+    #parse ($toiminto)
 #end
+
+#parse("bottom.vm")
 
 </body>
 <html>

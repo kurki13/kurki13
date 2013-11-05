@@ -42,7 +42,7 @@ public class MuotoilijaTest {
     @Test
     public void testStringToIntArray() {
         System.out.println("stringToIntArray");
-        String s = "3,5,??,??,??-??,??,??,??,??-??,??,??,??,??-??,??,??";
+        String s = " 3, 5,??,??,??-??,??,??,??,??-??,??,??,??,??-??,??,??";
         int[] expResult = {3, 5, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
         int[] result = Muotoilija.stringToIntArray(s);
         assertArrayEquals(expResult, result);
@@ -52,7 +52,7 @@ public class MuotoilijaTest {
     public void testIntArrayToString() {
         System.out.println("intArrayToString");
         int[] ints = {1,2,3};
-        String expResult = "1,2,3";
+        String expResult = " 1, 2, 3";
         String result = Muotoilija.intArrayToString(ints);
         assertEquals(expResult, result);
     }

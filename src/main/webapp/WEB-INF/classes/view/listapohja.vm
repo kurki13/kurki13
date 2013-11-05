@@ -2,11 +2,11 @@
 <head>
     <META charset='utf-8'/>
     <title>KURKI</title>
-
     <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
     <link href="bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
 </head>
 <body>
+#set ($regex = ".*")
 
 #set($qs = $request.getQueryString())
 
@@ -14,18 +14,25 @@
     #set($params = $queryparser.split($qs))
 #end
 
-#set($bundle = $sessioapuri.bundle($request))
+#set($bundle = $SessioApuri.bundle($request))
 
 #if($session.getAttribute('selected_course_id'))
     #set ($valittuKurssi = $KurssiKyselyt.kurssiIDlla($session.getAttribute('selected_course_id')))
 #end
 
-$valittuKurssi.listaString(): $bundle.getString("kaikkiopiskelijat")<br>
+$valittuKurssi.listaString()<br>
 $bundle.getString("tilanne"): $date.get('d.M.yyyy HH:mm')<br>
+
 #set ($valittuKurssi = $KurssiKyselyt.kurssiIDlla($session.getAttribute('selected_course_id')))     
 #if($valittuKurssi)
     #set ($osallistumiset = $OsallistuminenKyselyt.osallistumisetKurssilla($valittuKurssi))
 #end  
+
+#if (!$params.get("filter").equals(""))
+    #set ($filter = $params.get("filter"))
+    #set ($filter = $filter.toUpperCase())
+    #set ($osallistumiset = $OsallistuminenSorter.filteroi($osallistumiset, $filter))    
+#end
 
 #if (!$params.get("kommentti").equals(""))
     $bundle.getString("kommentti"): $params.get("kommentti")<br>

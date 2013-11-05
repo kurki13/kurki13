@@ -1,0 +1,120 @@
+#set($Integer = 0) ## ParseInt-metodia varten
+#if($request.getParameter("hetuParam")) 
+    #set($opiskelijaTiedot = $OpiskelijaKyselyt.opiskelijaHetulla($request.getParameter("hetuParam")))
+#end
+#set($osasuoritusTiedot = $OsallistuminenKyselyt.osallistuminenKurssilla($valittuKurssi,$opiskelijaTiedot.hetu))
+
+#set ($osasuoritukset = {
+        'lh' : $osasuoritusTiedot.Laskarit,
+        'ht' : $osasuoritusTiedot.Harjoitustyot,
+        'koe' : $osasuoritusTiedot.Kokeet})
+
+#foreach($osasuoritus in $osasuoritukset)
+    #set($arvot = $osasuoritus.value)
+    #set($param = $request.getParameterValues($osasuoritus.key)) ##tulleet parametrit
+    #set($i = 0)
+    #foreach($arvo in $arvot)
+        #if($param.get($i) && !$param.get($i).equals(""))
+            #if(!$arvo.setPisteet($Integer.parseInt($param.get($i))))
+               $SessioApuri.annaVirhe($request, $bundle.getString("pisteVirheellinen"))
+            #end
+        #end
+        #set($i = $i + 1)
+    #end
+#end
+
+#set($kiel = $request.getParameter('kiel'))
+#set($arv = $request.getParameter('arv'))
+#set($op = $request.getParameter('op'))
+$osasuoritusTiedot.suoritusTiedotUpdate($kiel, $arv, $op, $request)
+
+$osasuoritusTiedot.update()
+$OsallistuminenKyselyt.tallennaKantaan($osasuoritusTiedot)
+
+<h3>
+  <center>
+    $opiskelijaTiedot.sukunimi, $opiskelijaTiedot.etunimi ($opiskelijaTiedot.hetu / )
+   </center>
+</h3>
+
+#set ($tiedot = {
+        $bundle.getString("osoite") : $opiskelijaTiedot.osoite,
+        $bundle.getString("phonenumber") : $opiskelijaTiedot.puhelin,
+        $bundle.getString("sposti") : $opiskelijaTiedot.sahkopostiosoite,
+        $bundle.getString("pääaine") : $opiskelijaTiedot.paa_aine,
+        $bundle.getString("aloitusvuosi") : $opiskelijaTiedot.aloitusvuosi})
+
+<table class="normal" width="100%" style="max-width:1000px">
+  #foreach($t in $tiedot.entrySet())
+    <tr>
+      <th>$t.key</th>
+      #if($t.key.equals($bundle.getString("sposti")))
+        #if($t.value)<td><a href="mailto:"></a>#end
+      #else
+        <td>$t.value</td>
+      #end
+    </tr>  
+  #end
+</table>
+<br>
+
+#set ($osasuoritukset = [
+        [$bundle.getString("Laskuharjoituspisteet"), $osasuoritusTiedot.Laskarit, 'lh'],
+        [$bundle.getString("Harjoitustyöpisteet"), $osasuoritusTiedot.Harjoitustyot, 'ht'],
+        [$bundle.getString("Koepisteet"), $osasuoritusTiedot.Kokeet, 'koe']])
+
+##OSASUORITUKSET
+<form name=OsallistujaTiedot action="" method="post" >
+<table class="table table-condensed table-bordered" style="max-width:1000px">
+  #foreach($osat in $osasuoritukset)
+    #set($arvot = $osat.get(1))
+    #set($param = $osat.get(2))
+    <tr>
+      <th width="25%">$osat.get(0)</th> ##Otsikko
+      <td>
+        <table>
+          <tr>
+          #set ($i = 1)
+          #foreach($arvo in $arvot)
+            #if($i == 10) </tr> <tr> #end  ##Ei kaikkia samalle riville
+            <td nowrap>
+              <b>$i:</b>
+              <br>
+              <input type="text" name=$param
+                class="form-control input-sm" size="2" maxlength="2" style="width:50px"
+                placeholder=$arvo.maxPisteet
+                #if($arvo.pisteet!=-1)value=$arvo.pisteet#end >  ##-1 vastaa tyhjää
+            </td>
+            #set($i = $i+1)
+          #end
+          </tr>
+        </table>
+      </td>
+    </tr>
+  #end 
+
+#set ($suoritusTiedot = [
+        [$bundle.getString("Suorituskieli"), $osasuoritusTiedot.kielikoodi,  'kiel'],
+        [$bundle.getString("Arvosana"), $osasuoritusTiedot.arvosana,  'arv'],
+        [$bundle.getString("Opintopisteet"), $osasuoritusTiedot.laajuus_op,  'op']])
+
+##SUORITUSTIEDOT
+  #foreach($tieto in $suoritusTiedot)
+    #set($arvo = $tieto.get(1)) 
+    #set($parametri = $tieto.get(2))
+    <tr>
+      <th width="25%">$tieto.get(0)</th> ##Otsikko
+      <td>
+        <input type="text" name=$parametri
+          class="form-control input-sm" size="2" maxlength="2" style="width:50px" 
+          #if($arvo && !$arvo.equals("-"))value=$arvo#end >
+      </td>
+    </tr>
+  #end
+
+</table>
+
+<input type="submit" class="btn btn-success" value="$bundle.getString("tallennapisteet")">
+  
+</form>
+

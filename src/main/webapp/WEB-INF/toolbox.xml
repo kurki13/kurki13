@@ -36,7 +36,7 @@
     </tool>
     
     <tool>
-        <key>sessioapuri</key>
+        <key>SessioApuri</key>
         <class>debug.SessioApuri</class>
     </tool>
     

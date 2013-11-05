@@ -1,3 +1,4 @@
+#parse("hello.vm")
 <h3>$bundle.getString("4checklist")</h3>
 
 #if($session.getAttribute('selected_course_id'))
@@ -5,7 +6,8 @@
    <p>Valittu kurssi: $valittuKurssi.listaString() </p>
 #end
 
-<div>    
+<div class="form-group">  
+       
     <form name="suoritevalinta" class="form-inline" action="listapohja.vm" method="get" target="_blank">
     	<select name="listtype" tabindex="32600" class="form-control form-inline" style="width:200px">
             <option value="1">$bundle.getString("kirjanpitolista")</option>
@@ -18,11 +20,39 @@
             <option value="8">$bundle.getString("nimikirjoitus")</option>
             <option value="9">$bundle.getString("export")</option>
 	</select>
-         <div class="form-group">
+        
+        <div class="form-group">        
         <input type="text" class="form-control" name="kommentti" placeholder="$bundle.getString("kommentti")">
+        </div>
+        <div class="form-group">        
+        <input type="text" class="form-control" name="filter" placeholder="$bundle.getString("hakukriteerit")">
         </div>
         <input type="submit" tabindex="32601" value=">>>" class="btn btn-primary btn">
     </form>
+</div>
+
+<div class="instr">
+<b>$bundle.getString("valitsetyyppi")</b>
+	    <dl>
+	      <dt>$bundle.getString("tyhja")</dt>
+  	        <dd>$bundle.getString("kaikkiopiskelijat")</dd>
+	      <dt>$bundle.getString("numero")</dt>
+	        <dd>$bundle.getString("annetunro")</dd>
+              <dt>$bundle.getString("hashopnro")</dt>
+                <dd>$bundle.getString("opiskelijaopnro")</dd>
+	      <dt>$bundle.getString("sukunimi")</dt>
+	        <dd>$bundle.getString("opsukunimimerkki")</dd>
+	      <dt>$bundle.getString("al")</dt>
+	        <dd>$bundle.getString("sukunimiaakkos")</dd>
+	      <dt>$bundle.getString("kriteerit")</dt>
+	        <dd>$bundle.getString("useatkriteerit")</dd>
+	      <dt>$bundle.getString("meikalainen")</dt>
+		<dd>$bundle.getString("pienetjaisot")</dd>
+            </dl>
+	    <b>
+	    $bundle.getString("liitakommentti") 
+            </b>
+	    
 </div>
 
 </body>

@@ -1,3 +1,6 @@
+#parse("hello.vm")
+
+<h3>$bundle.getString("3coursebasics")</h3>
 
 #if ($valittuKurssi.getTila() == "J")
     #set ($jaassa = true)
@@ -7,22 +10,18 @@
 
 #set($Integer = 0)
 
-<pre>
 ##Laskareiden get-parametrit
-    #set($lh = $params.get('lh'))
+    #set($lh = $params.getParameter('lh'))
     #set($lh_p = $params.get('lh_p'))
     #set($lh_lp = $params.get('lh_lp'))
     #if($lh)
-        $valittuKurssi.setHarjoitustunnit($Integer.parseInt($lh))
-        Laskuharjoitusten määräksi asetettu $lh
+        $valittuKurssi.setLaskarikerta_lkm($Integer.parseInt($lh))
     #end
     #if($lh_p)
         $valittuKurssi.setPakolliset_laskaritehtava_lkm($Integer.parseInt($lh_p))
-        Laskuharjoitusten pakollisten laskareiden arvoksi asetettu $lh_p
     #end
     #if($lh_lp)
         $valittuKurssi.setMax_laskaripisteet($Integer.parseInt($lh_lp))
-        Laskuharjoitusten maksimipisteiden arvoksi asetettu $lh_lp
     #end
 
 ##Harjoitustöiden get-parametrit
@@ -31,15 +30,12 @@
     #set($ht_lp = $params.get('ht_lp'))
     #if($ht)
         $valittuKurssi.setHarjoitustyo_lkm($Integer.parseInt($ht))
-        Harjoitustöiden määräksi asetettu $ht
     #end
     #if($ht_p)
         $valittuKurssi.setPakolliset_harjoitustyo_lkm($Integer.parseInt($ht_p))
-        Harjoitustöiden pakollisten töiden arvoksi asetettu $ht_p
     #end
     #if($ht_lp)
         $valittuKurssi.setHarjoitustyopisteet($Integer.parseInt($ht_lp))
-        Harjoitustöiden maksimipisteiden arvoksi asetettu $ht_lp
     #end
 
 ##Kokeiden get-parametrit
@@ -47,23 +43,17 @@
     #set($koe_p = $params.get('koe_p'))
     #if($koe)
         $valittuKurssi.setValikokeet_lkm($Integer.parseInt($koe))
-        Kokeiden määräksi asetettu $koe
     #end
     #if($koe_p)
         $valittuKurssi.setPakolliset_koe_lkm($Integer.parseInt($koe_p))
-        Pakollisten kokeiden määräksi asetettu $koe_p
     #end
-</pre>
 ##Tallennetaan kurssi kantaan
 $KurssiKyselyt.tallennaKantaan($valittuKurssi)
-
-<pre>$valittuKurssi.idString()</pre>
-<pre>$valittuKurssi</pre>
 
 ##Tässä määritellään säädettäville kentille otsikot, niiden arvot tietokantaoliosta, ja get -parametrien arvo
 #set($basics = {
     $bundle.getString("laskuharjoituksia") : [
-            [""                               ,$valittuKurssi.harjoitustunnit, "lh"], 
+            [""                               ,$valittuKurssi.laskarikerta_lkm, "lh"], 
             [$bundle.getString("jpakollisia") ,$valittuKurssi.pakolliset_laskaritehtava_lkm, "lh_p"], 
             [$bundle.getString("lisapisteet") ,$valittuKurssi.max_laskaripisteet, "lh_lp"]
         ],
@@ -82,14 +72,13 @@ $KurssiKyselyt.tallennaKantaan($valittuKurssi)
 <form name="kurssinPerustiedot" action="" method=get class="form-inline">
     #foreach($otsikko in $basics.keySet()) ##Otsikko tässä joko Laskuharjoitukset, Harjoitustyöt tai Kokeet
         ##<h3>$otsikko</h3>
-        <br>
         <table>
+            <tr>
         #foreach($alaotsikko in $basics.get($otsikko))
             #set($nimi = $alaotsikko.get(0))
             #set($kentta = $alaotsikko.get(1))
             #set($parametri = $alaotsikko.get(2))
-            <tr>
-                <td>
+                <td style="width:200px">
                     #if($nimi.equals(""))$otsikko#end
                     $nimi
                 </td>
@@ -101,12 +90,11 @@ $KurssiKyselyt.tallennaKantaan($valittuKurssi)
                     value="$kentta" ##arvo valitun kurssin oliolta
                     #if($jaassa) readonly #end>
                 </td>
-            </tr>
         #end
+            </tr>
         </table>
     #end
-    <br>    
     <input type=submit class="btn" value=$bundle.getString("tmuutokset") onClick="">
 </form>
-</body>
-<html>
+
+#parse("3OsasuoritustenRajat.vm")

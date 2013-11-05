@@ -6,11 +6,15 @@ package debug.model;
 
 import debug.model.osasuoritukset.Osasuoritukset;
 import debug.ApplicationException;
+import static debug.SessioApuri.annaVirhe;
+import static debug.SessioApuri.bundle;
 import debug.model.column.IntegerColumn;
 import debug.model.column.StringColumn;
 import debug.model.column.TimestampColumn;
 import debug.model.util.Table;
 import java.sql.Timestamp;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -59,7 +63,7 @@ public class Osallistuminen extends Table {
     private String sukunimi;
     private String email;
 
-    public void setNimi(String nimi) {       
+    public void setNimi(String nimi) {
         this.nimi = nimi;
     }
 
@@ -138,17 +142,75 @@ public class Osallistuminen extends Table {
         }
         return kokeet;
     }
-    
+
     /**
-     * Päivittää aputaulujen (laskarit, harjoitustyöt, kokeet) arvot takaisin tekstimuotoisiin kenttiin,
-     * jotta olion tiedot voidaan tallentaa kantaan.
+     * Tarkistaa arvot
      */
-    public void update() {
-	    this.setValue(Osallistuminen.laskarisuoritukset, laskarit.pisteetTietokantamuodossa());
-	    this.setValue(Osallistuminen.harjoitustyopisteet, harjoitustyot.pisteetTietokantamuodossa());
-	    this.setValue(Osallistuminen.koepisteet, kokeet.pisteetTietokantamuodossa());
+    public void suoritusTiedotUpdate(String kieli, String arv,
+            String op, HttpServletRequest rqst) {
+
+        HttpSession session = rqst.getSession();
+        if (kieli != null) {
+            kieli = kieli.toLowerCase();
+            if (kieli.equals("fi") || kieli.equals("en") || kieli.equals("se")) {
+                this.setKielikoodi(kieli);
+            } else {
+                annaVirhe(session, bundle(rqst).getString("kielikoodiVirheellinen"));
+            }
+        }
+        if (op != null) {
+            try {
+                int opInt = Integer.parseInt(op);
+                if (opInt < 100) {
+                    this.setLaajuus_op(opInt);
+                }
+            } catch (NumberFormatException e) {
+                annaVirhe(session, bundle(rqst).getString("opVirheellinen"));
+            }
+        }
+        if (arv != null) {
+            try {
+                int arvInt = Integer.parseInt(arv);
+                if (arvInt < 6 && arvInt >= 0) {
+                    this.setArvosana(arv);
+                } else {
+                    annaVirhe(session, bundle(rqst).getString("arvosanaVirheellinen"));
+                }
+            } catch (NumberFormatException e) {
+                if (arv.equals("-") || arv.equals("+")) {
+                    this.setArvosana(arv);
+                } else {
+                    annaVirhe(session, bundle(rqst).getString("arvosanaVirheellinen"));
+                }
+            }
+        }
     }
 
+    /**
+     * Päivittää aputaulujen (laskarit, harjoitustyöt, kokeet) arvot takaisin
+     * tekstimuotoisiin kenttiin, jotta olion tiedot voidaan tallentaa kantaan.
+     */
+    public void update() {
+        this.setValue(Osallistuminen.laskarisuoritukset, laskarit.pisteetTietokantamuodossa());
+        this.setValue(Osallistuminen.harjoitustyopisteet, harjoitustyot.pisteetTietokantamuodossa());
+        this.setValue(Osallistuminen.koepisteet, kokeet.pisteetTietokantamuodossa());
+    }
+
+    //<editor-fold defaultstate="collapsed" desc="setters">
+    public void setKielikoodi(String kieli) {
+        kieli = kieli.toLowerCase();
+        this.setValue(Osallistuminen.kielikoodi, kieli);
+    }
+
+    public void setArvosana(String arv) {
+        this.setValue(Osallistuminen.arvosana, arv);
+    }
+
+    public void setLaajuus_op(int op) {
+        this.setValue(Osallistuminen.laajuus_op, op);
+    }
+
+    //</editor-fold>
     //<editor-fold defaultstate="collapsed" desc="getterit">
     public String getPersonid() {
         return getValue(Osallistuminen.personid);
