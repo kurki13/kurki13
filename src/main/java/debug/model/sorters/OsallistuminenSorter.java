@@ -66,7 +66,21 @@ public class OsallistuminenSorter {
         Collections.sort(kopio, new OsallistuminenSukunimenMukaan());
         Collections.sort(lista, new OsallistuminenSukunimenMukaan());
         String[] sanat = filter.split("\\.\\.");
-        if (sanat.length == 1) {
+        if (filter.trim().charAt(0) == '.' && filter.trim().charAt(1) == '.' && sanat.length > 1) {
+            System.out.println("Piste ekana ja tokana!");
+            for (String string : sanat) {
+                System.out.println("moi" + string);
+            }
+            Collections.sort(lista, new OsallistuminenSukunimenMukaanKaanteinen());
+            for (Osallistuminen osallistuminen : lista) {
+                if (!osallistuminen.getSukunimi().matches(sanat[1].trim() + ".*")) {
+                    kopio.remove(osallistuminen);
+                } else {
+                    break;
+                }
+            }
+            return kopio;
+        } else if (sanat.length == 1) {
             String alku = sanat[0].trim();
             System.out.println(alku);
             for (Osallistuminen osallistuminen : lista) {
@@ -102,8 +116,33 @@ public class OsallistuminenSorter {
         }
     }
 
-    public static List filteroi(List<Osallistuminen> lista, String filter) {
+    public static List useaFilteri(List<Osallistuminen> lista, String filter) {
+        String[] sanat = filter.split(",");
         ArrayList<Osallistuminen> kopio = new ArrayList<Osallistuminen>(lista);
+        for (String string : sanat) {
+            System.out.println(string);
+            if (StringUtils.isNumeric(string)) {
+                kopio = (ArrayList<Osallistuminen>) filteroiRyhmanMukaan(kopio, string);
+            } else {
+                if (string.contains("..")) {
+                    kopio = (ArrayList<Osallistuminen>) filteroiAlkuLoppu(kopio, string);
+                }
+                if (string.charAt(0) != '#') {
+                    kopio = (ArrayList<Osallistuminen>) filteroiSukunimenMukaan(kopio, string);
+                }
+                if (string.charAt(0) == '#') {
+                    kopio = (ArrayList<Osallistuminen>) filteroiOpiskelijanumeronMukaan(kopio, string);
+                }
+            }
+        }
+        return kopio;
+    }
+
+    public static List filteroi(List<Osallistuminen> lista, String filter) {
+        if (filter.contains(",")) {
+            System.out.println("Löyty pilkku!");
+            return useaFilteri(lista, filter);
+        }
         if (StringUtils.isNumeric(filter)) {
             return filteroiRyhmanMukaan(lista, filter);
         } else {
