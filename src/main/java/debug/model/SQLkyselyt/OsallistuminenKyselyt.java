@@ -10,6 +10,7 @@ import debug.model.Kurssi;
 import debug.model.Osallistuminen;
 import debug.model.osasuoritukset.Muotoilija;
 import debug.model.util.SQLoader;
+import java.lang.Number;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -101,10 +102,10 @@ public class OsallistuminenKyselyt {
         SQLoader.tallennaKantaan(os);
     }
 
-    public static void luoUusiOsallistuminen(String hetu, String ryhma,
+    public static void luoUusiOsallistuminen(String hetu, int ryhma,
             Kurssi kurssi, HttpServletRequest request) {
         HttpSession session = request.getSession();
-        if (kurssi==null){
+        if (kurssi == null) {
             SessioApuri.annaVirhe(session, "Kurssia ei ole valittu");
             return;
         }
@@ -112,11 +113,10 @@ public class OsallistuminenKyselyt {
             SessioApuri.annaVirhe(session, "Anna kelvollinen opiskelijanumero");
             return;
         }
-        try {
-            int rhm = Integer.parseInt(ryhma);
-            SQLProseduurit.lisaaOpiskelija(kurssi, rhm, hetu, request);
-        } catch (NumberFormatException e) {
+        if (ryhma > 99 && ryhma < 1) {
             SessioApuri.annaVirhe(session, "Anna kunnollinen ryhmä");
+            return;
         }
+        SQLProseduurit.lisaaOpiskelija(kurssi, ryhma, hetu, request);
     }
 }

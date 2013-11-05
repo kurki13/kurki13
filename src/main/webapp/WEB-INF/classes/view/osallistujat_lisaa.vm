@@ -12,19 +12,8 @@
 #end
 
 
- #if($request.getParameter("lisattava"))
-    <div class="alert alert-success">
-      <ul>
-        $OsallistuminenKyselyt.luoUusiOsallistuminen($lisattava, $ryhma, $valittuKurssi, $request)
-        <br>
-        Opiskelija ($lisattava) lisätty kurssille $valittuKurssi.nimi ryhmään $ryhma.
-         <form action="" name="tee" method=post > 
-            <input type="hidden" name="hetu" value=$request.getParameter("lisattava")>
-            <input name="tee" type="submit" value="Tiedot" class="btn btn-primary">
-            <input name="tee" type="submit" value="Peruuta" class="btn btn-danger">
-         </form>
-       </ul>
-    </div>
+#if($request.getParameter("lisattava"))
+    $OsallistuminenKyselyt.luoUusiOsallistuminen($lisattava, $ryhma, $valittuKurssi, $request)
 #end
 
 <table class="table table-condensed table-bordered" style="max-width:1000px">

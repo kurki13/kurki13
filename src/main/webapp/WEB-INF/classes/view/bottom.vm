@@ -1,5 +1,7 @@
+
+
 #if($session.getAttribute("message"))
-    <div class="alert alert-success">
+    <div id=viesti class="alert alert-success">
     #foreach($viesti in $SessioApuri.haeViestit($request))
       <ul>$viesti</ul>
     #end
@@ -8,13 +10,21 @@
 #end
 
 #if($session.getAttribute("error"))
-    <div class="alert alert-danger">
+    <div id=virhe class="alert alert-danger">
     #foreach($virhe in $SessioApuri.haeVirheet($request))
       <ul>$virhe</ul>
     #end
     </div>
     $session.setAttribute("error", null)
 #end
+
+<script>
+    viesti = document.getElementById("viesti")
+    virhe = document.getElementById("virhe")
+    ilmoitus = document.getElementById("ilmoitus")
+    if(viesti!=null) ilmoitus.appendChild(viesti)
+    if(virhe!=null) ilmoitus.appendChild(virhe)
+</script>
 
 </body>
 </html>

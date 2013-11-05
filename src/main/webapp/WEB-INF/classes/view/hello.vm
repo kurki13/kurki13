@@ -82,4 +82,6 @@ Apulinkit testaukseen:
 <input type=button class="btn" value=osallistujaLista onClick="parent.location='osallistujaLista.vm'">
 <input type=button class="btn" value=harjoitustyö onClick="parent.location='harjoitustyo.vm'">
 </div>
+<br>
+<div id=ilmoitus> </div>
 
