@@ -20,7 +20,7 @@
     #set ($valittuKurssi = $KurssiKyselyt.kurssiIDlla($session.getAttribute('selected_course_id')))
 #end
 
-$valittuKurssi.listaString(): $bundle.getString("kaikkiopiskelijat")<br>
+$valittuKurssi.listaString()<br>
 $bundle.getString("tilanne"): $date.get('d.M.yyyy HH:mm')<br>
 
 #set ($valittuKurssi = $KurssiKyselyt.kurssiIDlla($session.getAttribute('selected_course_id')))     
@@ -29,15 +29,9 @@ $bundle.getString("tilanne"): $date.get('d.M.yyyy HH:mm')<br>
 #end  
 
 #if (!$params.get("filter").equals(""))
-    #set ($filter = $params.get("filter"))   
+    #set ($filter = $params.get("filter"))
     #set ($filter = $filter.toUpperCase())
-    #set ($testi = $osallistumiset.clone())
-    #foreach ($osallistuminen in $osallistumiset)        
-        #if ($osallistuminen.sukunimi.toUpperCase().matches("$filter$regex"))            
-            #if($testi.remove($osallistuminen))#end
-        #end
-    #end
-    #set ($osallistumiset = $testi.clone())
+    #set ($osallistumiset = $OsallistuminenSorter.filteroi($osallistumiset, $filter))    
 #end
 
 #if (!$params.get("kommentti").equals(""))
