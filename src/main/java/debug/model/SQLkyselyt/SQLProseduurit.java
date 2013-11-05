@@ -46,6 +46,19 @@ public class SQLProseduurit {
         return palautus;
     }
     
+    public static void suoritaArvostelu(Kurssi kurssi, String arvostelija, HttpServletRequest request) {
+        HttpSession istunto = request.getSession();
+        LocalisationBundle bundle = SessioApuri.bundle(request);
+        
+        try {
+            int tulos = suoritaArvostelu(kurssi, arvostelija);
+            tarkastaArvostelunTulos(tulos, istunto, bundle);
+        } catch (SQLException poikkeus) {
+            String virhe = bundle.getString("tkvirhe") + ": " + poikkeus.getLocalizedMessage();
+            SessioApuri.annaVirhe(istunto, virhe);
+        }
+    }
+    
     /**
      * Metodi suorittaa SQL-Proseduurin arvostelu05 funktion arvostele.
      * 
@@ -54,7 +67,7 @@ public class SQLProseduurit {
      * @return Kokonaisluku 0, jos arvostelu onnistui
      * @throws SQLException Tietokantavirhe
      */
-    public static int suoritaArvostelu(Kurssi kurssi, String arvostelija) throws SQLException {
+    private static int suoritaArvostelu(Kurssi kurssi, String arvostelija) throws SQLException {
         Connection tietokantayhteys = DatabaseConnection.makeConnection();
         CallableStatement kutsuttavaLause = tietokantayhteys.prepareCall("{ ? = call arvostelu05.arvostele (?, ?, ?, ?, ?, ?) }");
 
@@ -71,6 +84,24 @@ public class SQLProseduurit {
         kutsuttavaLause.close();
         tietokantayhteys.close();
         return palautus;
+    }
+    
+    /**
+     * Metodi tarkastaa SQL-Proseduurin arvostelu05 funktion arvostele palautusarvon 
+     * ja asettaa onnistumisviestin tai virheilmoituksen asianmukaisesti.
+     * 
+     * @param tulos Tarkastettava palautusarvo
+     * @param istunto Käyttäjän istunto
+     * @param bundle Lokalisaatio työkalu
+     */
+    private static void tarkastaArvostelunTulos(int tulos, HttpSession istunto, LocalisationBundle bundle) {
+        if (tulos == 0) {
+            String viesti = bundle.getString("arvosteluSuor") + ".";
+            SessioApuri.annaViesti(istunto, viesti);
+        } else {
+            String virhe = bundle.getString("virhe") + ": " + bundle.getString("arvosteluEiOnnistunut") + "(" + tulos + ").";
+            SessioApuri.annaVirhe(istunto, virhe);
+        }
     }
     
     /**
@@ -324,9 +355,9 @@ public class SQLProseduurit {
         LocalisationBundle bundle = SessioApuri.bundle(request);
         
         try {
-            String virheilmoituksenAlku = bundle.getString("ryhmanVeo") + " " + palautaOpiskelijanNimi(opiskelijanumero)  + " " + bundle.getString("ryhmanVEO2") + ": ";
+            String virheilmoituksenAlku = bundle.getString("ryhmanVEO") + " " + palautaOpiskelijanNimi(opiskelijanumero)  + " " + bundle.getString("ryhmanVEO2") + ": ";
             int tulos = vaihdaOpiskelijanRyhmaa(uusiRyhma, kurssi, ryhmanNumero, opiskelijanumero);
-            tarkastaVaihdonTulos(tulos, istunto, bundle, uusiRyhma, opiskelijanumero);
+            tarkastaVaihdonTulos(tulos, istunto, bundle, uusiRyhma, opiskelijanumero, virheilmoituksenAlku);
         } catch (SQLException poikkeus) {
             String virhe = bundle.getString("tkvirhe") + ": " + poikkeus.getLocalizedMessage();
             SessioApuri.annaVirhe(istunto, virhe);
@@ -378,9 +409,8 @@ public class SQLProseduurit {
      * @param opiskelijanumero SQL-Proseduurissa ryhmää vaihtavan opiskelijan opiskelijanumero
      * @throws SQLException Tietokantavirhe
      */
-    private static void tarkastaVaihdonTulos(int tulos, HttpSession istunto, LocalisationBundle bundle, int uusiRyhma, String opiskelijanumero) throws SQLException {
+    private static void tarkastaVaihdonTulos(int tulos, HttpSession istunto, LocalisationBundle bundle, int uusiRyhma, String opiskelijanumero, String virheilmoituksenAlku) throws SQLException {
         String virhe;
-        String virheilmoituksenAlku = bundle.getString("ryhmanVeo") + " " + palautaOpiskelijanNimi(opiskelijanumero)  + " " + bundle.getString("ryhmanVEO2") + ": ";
         
         if (tulos == -1) {
             virhe = virheilmoituksenAlku + bundle.getString("ryhmaa") + uusiRyhma + bundle.getString("eiMaaritelty");
