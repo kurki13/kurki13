@@ -11,7 +11,7 @@
 #set($Integer = 0)
 
 ##Laskareiden get-parametrit
-    #set($lh = $params.get('lh'))
+    #set($lh = $params.getParameter('lh'))
     #set($lh_p = $params.get('lh_p'))
     #set($lh_lp = $params.get('lh_lp'))
     #if($lh)
@@ -72,14 +72,13 @@ $KurssiKyselyt.tallennaKantaan($valittuKurssi)
 <form name="kurssinPerustiedot" action="" method=get class="form-inline">
     #foreach($otsikko in $basics.keySet()) ##Otsikko tässä joko Laskuharjoitukset, Harjoitustyöt tai Kokeet
         ##<h3>$otsikko</h3>
-        <br>
         <table>
+            <tr>
         #foreach($alaotsikko in $basics.get($otsikko))
             #set($nimi = $alaotsikko.get(0))
             #set($kentta = $alaotsikko.get(1))
             #set($parametri = $alaotsikko.get(2))
-            <tr>
-                <td>
+                <td style="width:200px">
                     #if($nimi.equals(""))$otsikko#end
                     $nimi
                 </td>
@@ -91,12 +90,11 @@ $KurssiKyselyt.tallennaKantaan($valittuKurssi)
                     value="$kentta" ##arvo valitun kurssin oliolta
                     #if($jaassa) readonly #end>
                 </td>
-            </tr>
         #end
+            </tr>
         </table>
     #end
-    <br>    
     <input type=submit class="btn" value=$bundle.getString("tmuutokset") onClick="">
 </form>
-</body>
-<html>
+
+#parse("3OsasuoritustenRajat.vm")

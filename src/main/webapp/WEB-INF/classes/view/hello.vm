@@ -61,7 +61,6 @@ $SessioApuri.auta($request)
 #set ($services = {"1suoritteidenKirjaus.vm" : "Suoritteiden kirjaus" ,
 		 "2osallistujatiedot.vm" : "Osallistujatietojen muutokset" ,
 		 "3kurssinPerustiedot.vm" : "Kurssin perustietojen muutokset" ,
-		 "3OsasuoritustenRajat.vm" : "Osasuoritusten rajojen muutokset" ,
 		 "4listat.vm" : "Listat" , "5arvostelu.vm" : "Arvostelu" ,
 		 "6tuloslistat.vm" : "Tuloslistat" ,
 		 "7jaadytys.vm" : "Kurssin jäädytys"})
