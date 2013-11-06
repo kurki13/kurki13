@@ -1,7 +1,5 @@
 #set($Integer = 0) ## ParseInt-metodia varten
-#if($request.getParameter("hetuParam")) 
-    #set($opiskelijaTiedot = $OpiskelijaKyselyt.opiskelijaHetulla($request.getParameter("hetuParam")))
-#end
+#set($opiskelijaTiedot = $OpiskelijaKyselyt.opiskelijaHetulla($request.getParameter("hetuParam")))
 #set($osasuoritusTiedot = $OsallistuminenKyselyt.osallistuminenKurssilla($valittuKurssi,$opiskelijaTiedot.hetu))
 
 #set ($osasuoritukset = {
@@ -114,6 +112,7 @@ $OsallistuminenKyselyt.tallennaKantaan($osasuoritusTiedot)
 
 </table>
 
+<input type="hidden" name="hetuParam" value=$opiskelijaTiedot.hetu> ##jäädään tiedot sivulle
 <input type="submit" class="btn btn-success" value="$bundle.getString("tallennapisteet")">
   
 </form>

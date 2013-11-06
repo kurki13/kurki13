@@ -29,6 +29,7 @@ public class Osasuoritus {
     }
 
     public boolean setPisteet(int pisteet) {
+        System.out.println(pisteet);
         if (pisteet > maxPisteet || pisteet < 0 || pisteet > Muotoilija.MAX_PISTE) {
             return false;
         }

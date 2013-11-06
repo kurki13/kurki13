@@ -60,11 +60,11 @@
 </form>
 
 
-#if($request.getParameter("tiedot")) 
+#if($request.getParameter("hetuParam")) ##tiedot  
     #parse ("osallistuja_tiedot.vm")
     <br>
 
-#elseif($toiminto) ##tiedot
+#elseif($toiminto)
     #parse ($toiminto)
 #end
 

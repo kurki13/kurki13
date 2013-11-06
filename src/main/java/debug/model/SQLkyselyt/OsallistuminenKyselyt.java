@@ -10,11 +10,11 @@ import debug.model.Kurssi;
 import debug.model.Osallistuminen;
 import debug.model.osasuoritukset.Muotoilija;
 import debug.model.util.SQLoader;
-import java.lang.Number;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
@@ -104,28 +104,51 @@ public class OsallistuminenKyselyt {
 
     public static void luoUusiOsallistuminen(String hetu, int ryhma,
             Kurssi kurssi, HttpServletRequest request) {
-        if (tarkistaParametrit(kurssi,ryhma, hetu, request)) {
+        if (tarkistaParametrit(kurssi, ryhma, hetu, request)) {
             SQLProseduurit.lisaaOpiskelija(kurssi, ryhma, hetu, request);
         }
     }
 
     public static void palautaKurssille(String hetu_ryhma,
             Kurssi kurssi, HttpServletRequest request) {
+        SimpleEntry<String, Integer> info = pilkoParametrit(hetu_ryhma);
+        String hetu = info.getKey();
+        int ryhma = info.getValue();
+        if (tarkistaParametrit(kurssi, ryhma, hetu, request)) {
+            SQLProseduurit.palautaOpiskelija(kurssi, ryhma, hetu, request);
+        }
+    }
+  
+    public static void poistaKurssilta(String hetu_ryhma,
+            Kurssi kurssi, HttpServletRequest request) {
+        SimpleEntry<String, Integer> info = pilkoParametrit(hetu_ryhma);
+        String hetu = info.getKey();
+        int ryhma = info.getValue();
+        if (tarkistaParametrit(kurssi, ryhma, hetu, request)) {
+            SQLProseduurit.poistaOpiskelija(kurssi, ryhma, hetu, request);
+        }
+    }
+
+    /**
+     * Pilkkoo hetu_ryhmä String parametrin Stringiksi ja intiksi
+     * @param hetu_ryhma String 014020003_99
+     * @return yksi alkioinene mappi joka sisältää hetun ja ryhmän
+     */
+    public static SimpleEntry pilkoParametrit(String hetu_ryhma) {
         try {
             String[] info = hetu_ryhma.split("_");
             String hetu = info[0];
             int ryhma = Integer.parseInt(info[1]);
-            if (tarkistaParametrit(kurssi,ryhma, hetu, request)) {
-                SQLProseduurit.palautaOpiskelija(kurssi,ryhma, hetu, request);
-            }
+            return new SimpleEntry<String, Integer>(hetu, ryhma);
         } catch (NumberFormatException e) {
         } catch (ArrayIndexOutOfBoundsException e) {
         }
+        return null;
     }
 
-    public static boolean tarkistaParametrit(Kurssi kurssi,int ryhma, 
+    public static boolean tarkistaParametrit(Kurssi kurssi, int ryhma,
             String hetu, HttpServletRequest request) {
-        
+
         HttpSession session = request.getSession();
         if (kurssi == null) {
             SessioApuri.annaVirhe(session, "Kurssia ei ole valittu");
