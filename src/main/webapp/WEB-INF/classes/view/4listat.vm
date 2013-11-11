@@ -17,8 +17,7 @@
             <option value="5">$bundle.getString("email")</option>
             <option value="6">$bundle.getString("ilmjarjestys")</option>
             <option value="7">$bundle.getString("tarkistuslista")</option>
-            <option value="8">$bundle.getString("nimikirjoitus")</option>
-            <option value="9">$bundle.getString("export")</option>
+            <option value="8">$bundle.getString("nimikirjoitus")</option>            
 	</select>
         
         <div class="form-group">        
