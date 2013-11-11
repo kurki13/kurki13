@@ -1,69 +1,58 @@
 #parse("hello.vm")
-<html>
-    <h3>$bundle.getString("7freezing")</h3>
-    <body>
-        <div class="instr">
-            <ul>
-                #if ($selected_course.getTila() != "J")
-                    <li>$bundle.getString("jaadytys")</li>
-                    <li>$bundle.getString("tuloslistanToimitus")</li>
-                    <li>$bundle.getString("tuloslista")</li>
-                    <li>$bundle.getString("korjaukset")</li>
-                #else
-                    <li>$bundle.getString("kanslisti")</li>
-                    <li>$bundle.getString("toimitus")</li>
-                    <li>$bundle.getString("kuittaus")</li>
-                #end
-            </ul>
-        </div>
-
-        #if ($params.get('suoritusPvm')) 
-            $KurssiKyselyt.asetaSuorituspvm($selected_course, $params.get('suoritusPvm'))
-        #end
-
-        #if (!$selected_course.getSuoritus_pvm())
-            #set ($alaraja = $jaadytys.asetaSuorituspvmlleAlaraja())
-            #set ($ylaraja = $jaadytys.asetaSuorituspvmlleYlaraja($selected_course))
-            <form method=get>
-                <input type="date" name="suoritusPvm" min="$alaraja" max="$ylaraja">
-                <input type="submit" value="$bundle.getString("asetaSuorpvm")" class="btn">
-            </form>
-        #else
-            <form method=get>
-                #set ($kurssinTila = $selected_course.getTila())
-                #if (!$jaadytys.tarkastaSuorituspvm($selected_course))
-                    <input type="hidden" name="virhe" value="$bundle.getString("jaadytystaEiVoiSuorittaaPvm")">
-
-                #elseif (!$selected_course.Omistaja)
-                    <input type="hidden" name="virhe" value="$bundle.getString("jaadytystaEiVoiSuorittaa")">
-
-                ##else ($SQLProseduurit.suoritaJaadytys($selected_course, $request)
-
-                #elseif ($SQLProseduurit.suoritaJaadytys($selected_course) == "OK")
-                    ##$jaadytys.lahetaPostia($selected_course.listaString(), $kurssinTila, $request.getRemoteUser())
-                    #set ($ilmoitus = "$bundle.getString('jaadytysInfo'). $bundle.getString('jaadytysInfo3') $bundle.getString('jaadytysInfo4')")
-                    <input type="hidden" name="onnistui" value="$ilmoitus">
-
-                #else 
-                    #set ($kurkimail = "a href=mailto:tktl-kurki@cs.helsinki.fi")
-                    #set ($ilmoitus = "$bundle.getString('jaadytysEpaonnistui'). $bundle.getString('jaadytysEpaonnistuiInfo') <$kurkimail>tktl-kurki@cs.helsinki.fi</a>")
-                    <input type="hidden" name="virhe" value="$ilmoitus">
-
-                #end
-                <input type="submit" value="$bundle.getString("jaadyta")" class="btn">
-            </form>
-        #end
-
-        #if ($params.get('virhe'))
-            <div class="alert alert-danger">
-                $params.get('virhe')
+    <html>
+        <h3>$bundle.getString("7freezing")</h3>
+        <body>
+            <div class="instr">
+                <ul>
+                    #if ($selected_course.getTila() != "J")
+                        <li>$bundle.getString("jaadytys")</li>
+                        <li>$bundle.getString("tuloslistanToimitus")</li>
+                        <li>$bundle.getString("tuloslista")</li>
+                        <li>$bundle.getString("korjaukset")</li>
+                    #else
+                        <li>$bundle.getString("kanslisti")</li>
+                        <li>$bundle.getString("toimitus")</li>
+                        <li>$bundle.getString("kuittaus")</li>
+                    #end
+                </ul>
             </div>
-        #end
 
-        #if ($params.get('onnistui'))
-            <div class="alert alert-success">
-                $params.get('onnistui')
-            </div>
-        #end
-    </body>
-</html>
+            #if (!$selected_course.getSuoritus_pvm())
+                #set ($alaraja = $jaadytys.asetaSuorituspvmlleAlaraja())
+                #set ($ylaraja = $jaadytys.asetaSuorituspvmlleYlaraja($selected_course))
+                <form method=post>
+                    <input type="date" name="suoritusPvm" min="$alaraja" max="$ylaraja">
+                    <input type="submit" value="$bundle.getString("asetaSuorpvm")" class="btn">
+                </form>
+            #else
+                <form method=post>
+                    #if (!$jaadytys.tarkastaSuorituspvm($selected_course))
+                        <input type="hidden" name="virhe1">
+                    #elseif (!$selected_course.getOmistaja())
+                        <input type="hidden" name="virhe2">
+                    #else
+                        #set ($kurssinTila = $selected_course.getTila())
+                        <input type="hidden" name="jaadyta">
+                    #end
+                    <input type="submit" value="$bundle.getString("jaadyta")" class="btn">
+                </form>
+            #end
+
+            #if ($request.getParameter("suoritusPvm")) 
+                $KurssiKyselyt.asetaSuorituspvm($selected_course, $params.get('suoritusPvm'))
+            #end
+
+            #if ($request.getParameter("virhe1"))
+                $SessioApuri.annaVirhe($request.session, $bundle.getString("jaadytystaEiVoiSuorittaaPvm"))
+            #end
+
+            #if ($request.getParameter("virhe2"))
+                $SessioApuri.annaVirhe($request.session, $bundle.getString("jaadytystaEiVoiSuorittaa"))
+            #end
+
+            #if ($request.getParameter("jaadyta"))
+                $SQLProseduurit.suoritaJaadytys($selected_course, $kurssinTila, $request)
+            #end
+        </body>
+    </html>
+#parse("bottom.vm")

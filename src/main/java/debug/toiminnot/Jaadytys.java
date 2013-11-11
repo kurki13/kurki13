@@ -4,20 +4,24 @@
  */
 package debug.toiminnot;
 
+import debug.Konfiguraatio;
+import debug.SessioApuri;
 import debug.model.Kurssi;
+import debug.util.LocalisationBundle;
 import java.io.StringWriter;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Properties;
-import java.util.ResourceBundle;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Transport;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import org.apache.velocity.VelocityContext;
-import org.apache.velocity.app.Velocity;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import org.apache.velocity.*;
+import org.apache.velocity.app.*;
 
 public class Jaadytys {
     
@@ -62,49 +66,47 @@ public class Jaadytys {
         float pyoristysKaannos2 = jakaja;
         return Math.round((jaettava/jakaja)*100);
     }
-    /*
-    public static void lahetaPostia(String kurssinTiedot, String kurssinTila, String etaKayttaja) 
-            throws AddressException, MessagingException {
+    
+    public static void lahetaPostia(Kurssi kurssi, String kurssinTila, HttpServletRequest request) {
+        HttpSession istunto = request.getSession();
+        LocalisationBundle bundle = SessioApuri.bundle(request);
+        String kurssinTiedot = kurssi.listaString();
+        String etaKayttaja = request.getRemoteUser();
         String aihe = "KURKI: " + kurssinTiedot;
         if (kurssinTila.equals("J")) {
             aihe += " korjaukset";
         } else {
             aihe += " tulokset";
         }
-        String viestinSisalto = luoViesti();
+        String viestinSisalto = luoViesti(request, kurssi, kurssinTila);
         String kayttajanOsoite = etaKayttaja + "@cs.helsinki.fi";
         
         Properties ominaisuudet = new Properties();
         ominaisuudet.put("mail.smtp.host", "localhost");
         javax.mail.Session postiIstunto = javax.mail.Session.getInstance(ominaisuudet);
         MimeMessage viesti = new MimeMessage(postiIstunto);
-        viesti.setFrom(new InternetAddress("heikki.havukainen@helsinki.fi")); // webmaster
-        viesti.addRecipient(Message.RecipientType.TO, new InternetAddress("heikki.havukainen@helsinki.fi")); // oodi
-        viesti.addRecipient(Message.RecipientType.TO, new InternetAddress("kayttajanOsoite"));
-        viesti.setSubject(aihe);
-        viesti.setText(viestinSisalto);
-        Transport.send(viesti);
+        try {
+            viesti.setFrom(new InternetAddress(Konfiguraatio.getProperty("webmaster")));
+            viesti.addRecipient(Message.RecipientType.TO, new InternetAddress(Konfiguraatio.getProperty("oodi")));
+            viesti.addRecipient(Message.RecipientType.TO, new InternetAddress("heikki.havukainen@helsinki.fi")); //kayttajanOsoite
+            viesti.setSubject(aihe);
+            viesti.setText(viestinSisalto);
+            Transport.send(viesti);
+        } catch (AddressException poikkeus1) {
+            SessioApuri.annaVirhe(istunto, bundle.getString("sahkopostiPoikkeus") + ": " + poikkeus1.getLocalizedMessage());
+        } catch (MessagingException poikkeus2) {
+            SessioApuri.annaVirhe(istunto, bundle.getString("sahkopostiPoikkeus") + ": " + poikkeus2.getLocalizedMessage());
+        }
     }
     
-    public static String luoViesti() {
+    public static String luoViesti(HttpServletRequest request, Kurssi kurssi, String kurssinTila) {
         VelocityContext konteksti = new VelocityContext();
+        konteksti.put("request", request);
+        konteksti.put("kurssi", kurssi);
+        konteksti.put("kurssinTila", kurssinTila);
         StringWriter kirjoittaja = new StringWriter();
+        //Velocity.init();
         Velocity.mergeTemplate("sahkoposti.vm", "utf-8", konteksti, kirjoittaja);
         return kirjoittaja.toString();
     }
-    
-    
-    private VelocityContext setResults(VelocityContext results, Course course, kurki.Session session) {
-        results.put("students", course.getStudents());
-        results.put("selectedCourse", session.getSelectedCourse());
-        results.put("inc_ssn", "true"); // Opiskelijanro (HL08/8/)
-        results.put("inc_name", "true"); // Nimi
-        results.put("inc_grade", "true"); // Arvosana
-        results.put("inc_gradename", "Arvosana"); // Arvosanan sarakeotsake
-        results.put("inc_accepted", "true"); // Hyväksytyt
-        results.put("inc_failed", "true"); // Hylätyt   
- 	results.put("inc_", "true");
-        return results;
-   }
-   */
 }
