@@ -16,8 +16,8 @@ public class Konfiguraatio {
 
     static {
         prop.setProperty("use_local_test_database", "false");
-        prop.setProperty("webmaster", "taru.airola@helsinki.fi");
-        prop.setProperty("oodi", "taru.airola@helsinki.fi");
+        prop.setProperty("webmaster", "heikki.havukainen@helsinki.fi");
+        prop.setProperty("oodi", "heikki.havukainen@helsinki.fi");
         prop.setProperty("dbDriver", "oracle.jdbc.OracleDriver");
         prop.setProperty("dbServer", "jdbc:oracle:thin:@bodbacka.cs.helsinki.fi:1521:test");
         prop.setProperty("dbUser", "tk_testi");

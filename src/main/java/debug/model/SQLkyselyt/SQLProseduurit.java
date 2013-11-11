@@ -8,6 +8,7 @@ import debug.SessioApuri;
 import debug.dbconnection.DatabaseConnection;
 import debug.model.Kurssi;
 import debug.model.Opiskelija;
+import debug.toiminnot.Jaadytys;
 import debug.util.LocalisationBundle;
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -26,15 +27,16 @@ public class SQLProseduurit {
      * Jos jäädytys epäonnistui, niin istuntoon asetetaan virheilmoitus.
      * 
      * @param kurssi Jäädytettävä kurssi
+     * @param kurssinTila Jäädytettävän kurssin tila ennen jäädytystä
      * @param request 
      */
-    public static void suoritaJaadytys(Kurssi kurssi, HttpServletRequest request) {
+    public static void suoritaJaadytys(Kurssi kurssi, String kurssinTila, HttpServletRequest request) {
         HttpSession istunto = request.getSession();
         LocalisationBundle bundle = SessioApuri.bundle(request);
         
         try {
             String tulos = suoritaJaadytys(kurssi);
-            tarkastaJaadytyksenTulos(tulos, istunto, bundle);
+            tarkastaJaadytyksenTulos(tulos, request, bundle, kurssi, kurssinTila);
         } catch (SQLException poikkeus) {
             String virhe = bundle.getString("tkvirhe") + ": " + poikkeus.getLocalizedMessage();
             SessioApuri.annaVirhe(istunto, virhe);
@@ -75,10 +77,24 @@ public class SQLProseduurit {
      * @param istunto Käyttäjän istunto
      * @param bundle Lokalisaatio työkalu
      */
-    private static void tarkastaJaadytyksenTulos(String tulos, HttpSession istunto, LocalisationBundle bundle) {
+    
+    /**
+     * Metodi tarkastaa SQL-Proseduurin jaadytys05 palautusarvon 
+     * ja asettaa onnistumisviestin tai virheilmoituksen asianmukaisesti.
+     * Jos jäädytys onnistui, lähetetään jäädytyksestä tiedottava sähköpostiviesti asianmukaisille tahoille.
+     * 
+     * @param tulos Tarkastettava palautusarvo
+     * @param request
+     * @param bundle Lokalisaatio työkalu
+     * @param kurssi Jäädytettävä kurssi
+     * @param kurssinTila Jäädytettävän kurssin tila ennen jäädytystä
+     */
+    private static void tarkastaJaadytyksenTulos(String tulos, HttpServletRequest request, LocalisationBundle bundle, Kurssi kurssi, String kurssinTila) {
+        HttpSession istunto = request.getSession();
         if (tulos.equals("OK")) {
             String viesti = bundle.getString("jaadytysInfo") + ". " + bundle.getString("jaadytysInfo3") + " " 
                     + bundle.getString("jaadytysInfo4");
+            //Jaadytys.lahetaPostia(kurssi, kurssinTila, request);
             SessioApuri.annaViesti(istunto, viesti);
         } else {
             String virhe = bundle.getString("jaadytysEpaonnistui") + ". " + bundle.getString("jaadytysEpaonnistuiInfo") 
@@ -486,7 +502,7 @@ public class SQLProseduurit {
      * @return Palautettavan opiskelijan etunimi ja sukunimi
      * @throws SQLException Tietokantavirhe
      */
-    private static String palautaOpiskelijanNimi(String opiskelijanumero) throws SQLException {
+    public static String palautaOpiskelijanNimi(String opiskelijanumero) throws SQLException {
         Opiskelija palautettava = OpiskelijaKyselyt.opiskelijaHetulla(opiskelijanumero);
         return palautettava.getEtunimi() + " " + palautettava.getSukunimi();
     }
