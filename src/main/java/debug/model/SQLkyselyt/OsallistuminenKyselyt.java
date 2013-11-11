@@ -21,13 +21,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 /**
+ * K
  *
  * @author mkctammi
  */
 public class OsallistuminenKyselyt {
 
-    public static final String KURSSINOSALLISTUMISET =
-            "SELECT os.*, op.etunimi, op.sukunimi, op.sahkopostiosoite \n"
+    public static final String KURSSINOSALLISTUMISET
+            = "SELECT os.*, op.etunimi, op.sukunimi, op.sahkopostiosoite \n"
             + "FROM osallistuminen os, opiskelija op \n"
             + "WHERE os.hetu = op.hetu \n"
             + "AND os.kurssikoodi = ? \n"
@@ -37,7 +38,8 @@ public class OsallistuminenKyselyt {
             + "AND os.kurssi_nro = ? \n";
 
     public static List<Osallistuminen> osallistumisetKurssilla(Kurssi kurssi) throws SQLException {
-        String query = KURSSINOSALLISTUMISET + "ORDER BY op.etunimi";
+        String query = KURSSINOSALLISTUMISET
+                + "ORDER BY op.etunimi";
         Connection conn = DatabaseConnection.makeConnection();
         PreparedStatement ps = conn.prepareStatement(query);
         ps.setString(1, kurssi.getKurssikoodi());
@@ -69,9 +71,25 @@ public class OsallistuminenKyselyt {
         conn.close();
         return osallistumiset;
     }
+    
+    public static List<Osallistuminen> voimassaKurssilla(Kurssi kurssi) throws SQLException {
+        String query = KURSSINOSALLISTUMISET
+                + " AND os.voimassa = 'K' \n"
+                + "ORDER BY op.etunimi";
+        Connection conn = DatabaseConnection.makeConnection();
+        PreparedStatement ps = conn.prepareStatement(query);
+        ps.setString(1, kurssi.getKurssikoodi());
+        ps.setString(2, kurssi.getLukukausi());
+        ps.setInt(3, kurssi.getLukuvuosi());
+        ps.setString(4, kurssi.getTyyppi());
+        ps.setInt(5, kurssi.getKurssi_nro());
+        return SQLoader.loadTablesFromPreparedStatement(new Osallistuminen(), ps, conn);
+    }
 
     public static List<Osallistuminen> poistetutKurssilta(Kurssi kurssi) throws SQLException {
-        String query = KURSSINOSALLISTUMISET + " AND os.voimassa = 'P'";
+        String query = KURSSINOSALLISTUMISET 
+                + "AND os.voimassa = 'P' \n"
+                + "ORDER BY os.hetu";
         Connection conn = DatabaseConnection.makeConnection();
         PreparedStatement ps = conn.prepareStatement(query);
         ps.setString(1, kurssi.getKurssikoodi());
@@ -108,8 +126,11 @@ public class OsallistuminenKyselyt {
         SQLoader.tallennaKantaan(os);
     }
 
-    public static void luoUusiOsallistuminen(String hetu, int ryhma,
+    public static void luoUusiOsallistuminen(String hetu_ryhma,
             Kurssi kurssi, HttpServletRequest request) {
+        SimpleEntry<String, Integer> info = pilkoParametrit(hetu_ryhma);
+        String hetu = info.getKey();
+        int ryhma = info.getValue();
         if (tarkistaParametrit(kurssi, ryhma, hetu, request)) {
             SQLProseduurit.lisaaOpiskelija(kurssi, ryhma, hetu, request);
         }

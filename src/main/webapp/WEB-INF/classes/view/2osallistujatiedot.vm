@@ -6,9 +6,6 @@
 #set($ryhmaFilter = $params.get('ryhma'))
 #set($toiminto = $params.get('toiminto'))
 
-##Osallistumiset
-#set($osallistumiset = $OsallistuminenKyselyt.osallistumisetKurssilla($valittuKurssi))
-
 ##haetaan kurssin ryhmät, ja jätetään pois mystinen ryhmä "0"
 ##lisätään tulostus muuttujaan 'var' jota ei käytetä missään, muuten velocity haluaa tulostaa "true" kun listaan lisäys on onnistunut
 #set ($ryhmat = [])

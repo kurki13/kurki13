@@ -1,18 +1,18 @@
 
-#set($Integer = 0)
-#set($haetut = $OpiskelijaKyselyt.haeOpiskelijat($hetuFilter, $sukuFilter, $valittuKurssi))
-#set($lisattava = $request.getParameter("lisattava")) ##lisättävän opn hetu
-#if ($request.getParameter("ryhmanro") && !$request.getParameter("ryhmanro").equals(""))
-    #set($ryhma = $Integer.parseInt($request.getParameter("ryhmanro")))
+##Parametreissa tulleet opiskelijat lisätään
+#foreach($lisattava in $request.getParameterValues("lisattavat"))
+    #if($lisattava && !$lisattava.equals(""))
+        $OsallistuminenKyselyt.luoUusiOsallistuminen($lisattava, $valittuKurssi, $request)
+    #end
 #end
 
+##Opiskelijat jotka eivät ole kurssilla
+#set($haetut = $OpiskelijaKyselyt.haeOpiskelijat($hetuFilter, $sukuFilter, $valittuKurssi))
+
+##Kysely palauttaa maksimissaan 50, vaikka tuloksia olisi enemmän
 #if($haetut.size() == 50)
   $SessioApuri.annaVirhe($request.session,
     $bundle.getString("tarkennaHInfo").concat(" 50 ").concat($bundle.getString("tarkennaHInfo2")))
-#end
-
-#if($request.getParameter("lisattava"))
-    $OsallistuminenKyselyt.luoUusiOsallistuminen($lisattava, $ryhma, $valittuKurssi, $request)
 #end
 
 <form action="" method="post" class="inline" style="margin:0;display:inline;" >
@@ -36,10 +36,25 @@
     </td>
     <td>
       <center>
-        <button name="lisattava" type="submit" class="btn btn-success btn-sm" value=$opiskelija.hetu>lisää</button>
+         <select name="lisattavat" class="form-control form-inline" style="width:150px">
+         <option selected value="">Ei kurssilla</option>
+         #foreach($ryhma in $ryhmat)
+           <option value=${opiskelija.hetu}_${ryhma}>$ryhma</option>
+         #end
+         </select>
       </center>  
     </td>
   </tr>
   #end
+
+  <tr>
+    <th colspan="6">
+      <center>
+        <input type="submit" class="btn btn-success" value="$bundle.getString("tallenMuutoksetIso")">
+      </center>
+    </th>
+  </tr>
 </table>
+
+
  </form>    
