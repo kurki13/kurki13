@@ -117,7 +117,9 @@ public class SQLoader {
 					table.setValue(column, rs.getTimestamp(columnName));
 				} else if (columnType == Date.class) {
 					table.setValue(column, rs.getDate(columnName));
-				}
+				} else if (column.getType() == Float.class) {
+                    table.setValue(column, rs.getFloat(columnName));
+                }
 
 			} catch (SQLException e) {
 				throw new IllegalArgumentException("Errorii pukkaa @ column " + columnName + ": " + e.getLocalizedMessage());
@@ -155,6 +157,8 @@ public class SQLoader {
 				ps.setDate(i, (Date) taulu.getValue(column));
 			} else if (column.getType() == Timestamp.class) {
 				ps.setTimestamp(i, (Timestamp) taulu.getValue(column));
+			} else if (column.getType() == Float.class) {
+				ps.setFloat(i, (Float) taulu.getValue(column));
 			}
 			i++;
 		}
@@ -167,6 +171,8 @@ public class SQLoader {
 				ps.setDate(i, (Date) taulu.getValue(column));
 			} else if (column.getType() == Timestamp.class) {
 				ps.setTimestamp(i, (Timestamp) taulu.getValue(column));
+			} else if (column.getType() == Float.class) {
+				ps.setFloat(i, (Float) taulu.getValue(column));
 			}
 			i++;
 		}

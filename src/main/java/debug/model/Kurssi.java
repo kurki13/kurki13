@@ -1,4 +1,4 @@
-/*
+    /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
@@ -6,14 +6,11 @@ package debug.model;
 
 import debug.model.osasuoritus_rajat.OsasuoritusRajat;
 import debug.model.column.DateColumn;
+import debug.model.column.DecimalColumn;
 import debug.model.column.IntegerColumn;
 import debug.model.column.StringColumn;
-import debug.model.osasuoritukset.Muotoilija;
-import debug.model.osasuoritus_rajat.OsasuoritusRaja;
 import debug.model.util.Table;
 import java.sql.Date;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
@@ -48,7 +45,7 @@ public class Kurssi extends Table {
     public static final StringColumn hyvaksytty_laskarilasnaolo = new StringColumn("hyvaksytty_laskarilasnaolo");
     public static final IntegerColumn lisapistealaraja = new IntegerColumn("lisapistealaraja");
     public static final StringColumn lisapisterajat = new StringColumn("lisapisterajat");
-    public static final IntegerColumn lisapisteiden_askelkoko = new IntegerColumn("lisapisteiden_askelkoko");
+    public static final DecimalColumn lisapisteiden_askelkoko = new DecimalColumn("lisapisteiden_askelkoko");
     public static final IntegerColumn harjoitustyo_lkm = new IntegerColumn("harjoitustyo_lkm");
     public static final IntegerColumn pakolliset_harjoitustyo_lkm = new IntegerColumn("pakolliset_harjoitustyo_lkm");
     public static final IntegerColumn harjoitustyopisteet = new IntegerColumn("harjoitustyopisteet");
@@ -56,14 +53,14 @@ public class Kurssi extends Table {
     public static final StringColumn min_harjoitustyopisteet = new StringColumn("min_harjoitustyopisteet");
     public static final IntegerColumn min_harjoitustyopisteet_summa = new IntegerColumn("min_harjoitustyopisteet_summa");
     public static final StringColumn harjoitustyon_pisterajat = new StringColumn("harjoitustyon_pisterajat");
-    public static final IntegerColumn harjoitustoiden_askelkoko = new IntegerColumn("harjoitustoiden_askelkoko");
+    public static final DecimalColumn harjoitustoiden_askelkoko = new DecimalColumn("harjoitustoiden_askelkoko");
     public static final IntegerColumn valikokeet_lkm = new IntegerColumn("valikokeet_lkm"); //Välikokeet tässä tarkoittaa siis kaikkia kokeita yhteensä
     public static final IntegerColumn pakolliset_koe_lkm = new IntegerColumn("pakolliset_koe_lkm");
     public static final StringColumn max_koepisteet = new StringColumn("max_koepisteet");
     public static final StringColumn min_koepisteet = new StringColumn("min_koepisteet");
     public static final IntegerColumn min_koepisteet_summa = new IntegerColumn("min_koepisteet_summa");
     public static final IntegerColumn min_yhteispisteet = new IntegerColumn("min_yhteispisteet");
-    public static final IntegerColumn arvostelun_askelkoko = new IntegerColumn("arvostelun_askelkoko");
+    public static final DecimalColumn arvostelun_askelkoko = new DecimalColumn("arvostelun_askelkoko");
     public static final StringColumn arvosanarajat = new StringColumn("arvosanarajat");
     public static final StringColumn arvostellaanko = new StringColumn("arvostellaanko");
     public static final StringColumn kokonaistiedot = new StringColumn("kokonaistiedot");
@@ -311,7 +308,7 @@ public class Kurssi extends Table {
         return getValue(Kurssi.lisapisterajat);
     }
 
-    public Integer getLisapisteiden_askelkoko() {
+    public Float getLisapisteiden_askelkoko() {
         return getValue(Kurssi.lisapisteiden_askelkoko);
     }
 
@@ -343,7 +340,7 @@ public class Kurssi extends Table {
         return getValue(Kurssi.harjoitustyon_pisterajat);
     }
 
-    public Integer getHarjoitustoiden_askelkoko() {
+    public Float getHarjoitustoiden_askelkoko() {
         return getValue(Kurssi.harjoitustoiden_askelkoko);
     }
 
@@ -371,7 +368,7 @@ public class Kurssi extends Table {
         return getValue(Kurssi.min_yhteispisteet);
     }
 
-    public Integer getArvostelun_askelkoko() {
+    public Float getArvostelun_askelkoko() {
         return getValue(Kurssi.arvostelun_askelkoko);
     }
 

@@ -51,13 +51,17 @@
     </tool>        	
 
     <tool>
-         <key>date</key>         
-         <class>org.apache.velocity.tools.generic.DateTool</class>
+        <key>date</key>         
+        <class>org.apache.velocity.tools.generic.DateTool</class>
     </tool>
     
-        <tool>
-         <key>OsallistuminenSorter</key>         
-         <class>debug.model.sorters.OsallistuminenSorter</class>
+    <tool>
+        <key>OsallistuminenSorter</key>         
+        <class>debug.model.sorters.OsallistuminenSorter</class>
     </tool>
-    
+        
+    <tool>
+        <key>Arvostelu</key>         
+        <class>debug.Arvostelu</class>
+    </tool>
 </toolbox>

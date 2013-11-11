@@ -65,7 +65,7 @@ public class SessioApuri {
             }
         }
     }
-    
+
     public static void annaVirhe(HttpSession session, String virhe) {
         if (session.getAttribute(Virhe) == null) {
             session.setAttribute(Virhe, new ArrayList());
@@ -74,10 +74,10 @@ public class SessioApuri {
         virheet.add(virhe);
     }
 
-    public static List<String> haeVirheet(HttpServletRequest request){
+    public static List<String> haeVirheet(HttpServletRequest request) {
         return (List) request.getSession().getAttribute(Virhe);
     }
-    
+
     public static void annaViesti(HttpSession session, String virhe) {
         if (session.getAttribute(Viesti) == null) {
             session.setAttribute(Viesti, new ArrayList());
@@ -86,10 +86,10 @@ public class SessioApuri {
         viestit.add(virhe);
     }
 
-    public static List<String> haeViestit(HttpServletRequest request){
+    public static List<String> haeViestit(HttpServletRequest request) {
         return (List) request.getSession().getAttribute(Viesti);
     }
-    
+
     public static LocalisationBundle bundle(HttpServletRequest request) {
         HttpSession session = request.getSession();
         if (session.getAttribute(LokaaliTunnus) == null) {
@@ -164,6 +164,9 @@ public class SessioApuri {
     }
 
     private static Kurssi etsiKurssiListasta(List<Kurssi> kurssit, String id, HttpSession session) {
+        if (id == null) {
+            return null;
+        }
         String kurssikoodi, tyyppi, lukukausi;
         int lukuvuosi, kurssi_nro;
         try {
@@ -173,7 +176,7 @@ public class SessioApuri {
             tyyppi = id.split("\\.")[3];
             kurssi_nro = Integer.parseInt(id.split("\\.")[4]);
         } catch (Exception ex) {
-            annaVirhe(session, "Get-parametrissa annetun kurssitunnuksen muoto virheellinen: " + ex.getLocalizedMessage());
+            annaVirhe(session, "Get-parametrissa annetun kurssitunnuksen muoto virheellinen: " + id);
             return null;
         }
         for (Kurssi kurssi : kurssit) {
