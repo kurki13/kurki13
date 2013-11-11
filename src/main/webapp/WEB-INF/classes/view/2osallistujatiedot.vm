@@ -69,6 +69,3 @@
 #end
 
 #parse("bottom.vm")
-
-</body>
-<html>

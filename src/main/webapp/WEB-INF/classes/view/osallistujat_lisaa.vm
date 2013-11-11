@@ -1,6 +1,6 @@
 
 #set($Integer = 0)
-#set($haetut = $OpiskelijaKyselyt.haeOpiskelijat($hetuFilter, $sukuFilter))
+#set($haetut = $OpiskelijaKyselyt.haeOpiskelijat($hetuFilter, $sukuFilter, $valittuKurssi))
 #set($lisattava = $request.getParameter("lisattava")) ##lisättävän opn hetu
 #if ($request.getParameter("ryhmanro") && !$request.getParameter("ryhmanro").equals(""))
     #set($ryhma = $Integer.parseInt($request.getParameter("ryhmanro")))
@@ -15,6 +15,7 @@
     $OsallistuminenKyselyt.luoUusiOsallistuminen($lisattava, $ryhma, $valittuKurssi, $request)
 #end
 
+<form action="" method="post" class="inline" style="margin:0;display:inline;" >
 <table class="table table-condensed table-bordered" style="max-width:1000px">
   <caption>
     $bundle.getString("opvalittu") $haetut.size()
@@ -22,12 +23,10 @@
   <tr>
     <th> $bundle.getString("nimiSyntpva") </th>
     <th> $bundle.getString("camelopnro") </th>
-    <th> $bundle.getString("ryhma") </th>
     <th> $bundle.getString("ilmoitakurssille") </th>
   </tr> 
     
   #foreach($opiskelija in $haetut)
-  <form action="" method="post" class="inline" style="margin:0;display:inline;" >
   <tr>
     <td>
       <b><a href="mailto:MAIL">$opiskelija.etunimi, $opiskelija.sukunimi</a></b>
@@ -37,21 +36,10 @@
     </td>
     <td>
       <center>
-      <select name="ryhmanro">
-      #foreach($ryhma in $ryhmat)
-            <option #if($ryhma==$ryhmaFilter)selected#end value=$ryhma>$ryhma</option>
-      #end
-      </select>
-      <input type="hidden" name="lisattava" value=$opiskelija.hetu>
-      </center>
-    </td>
-    <td>
-      <center>
-      <input type="submit" value="lisää" class="btn btn-success btn-sm"> 
+        <button name="lisattava" type="submit" class="btn btn-success btn-sm" value=$opiskelija.hetu>lisää</button>
       </center>  
     </td>
   </tr>
-  </form>
   #end
-
 </table>
+ </form>    

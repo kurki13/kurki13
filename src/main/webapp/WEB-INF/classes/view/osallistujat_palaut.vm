@@ -8,12 +8,7 @@
     #set($osallistumiset = $OsallistuminenKyselyt.osallistumisetKurssilla($valittuKurssi))  
 #end
 
-#set ($poistetut = [])  
-#foreach($osallis in $osallistumiset)
-    #if ($osallis.voimassa.equals("P"))
-        #set ($var = $poistetut.add($osallis))
-    #end
-#end
+#set ($poistetut = $OsallistuminenKyselyt.poistetutKurssilta($valittuKurssi))
 
 <form name=palautaOpiskelijat action="" method=post>
 <table class="table table-condensed table-bordered" style="max-width:1000px">

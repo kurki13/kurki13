@@ -6,6 +6,7 @@
   $bundle.getString("opeivastannut")
 
 #else
+<form name=poistaOpiskelijat action="" method=post >
 <table class="table table-condensed table-bordered" style="max-width:1000px">
   <caption>
    $bundle.getString("opvalittu") $osallistumiset.size()
@@ -19,7 +20,7 @@
     <th> $bundle.getString("naytaTiedot") </th>
   </tr>
 
-<form name=poistaOpiskelijat action="" method=post >
+
 #foreach($osallinen in $osallistumiset)
   #if($osallinen.voimassa.equals("K"))
   <tr>
@@ -67,5 +68,4 @@
 </table>
 
 </form>
- 
 #end

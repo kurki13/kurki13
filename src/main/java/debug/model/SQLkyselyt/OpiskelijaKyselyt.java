@@ -19,21 +19,23 @@ import java.util.List;
  * @author mkctammi
  */
 public class OpiskelijaKyselyt {
-    
+
+    public static final String KURSSINOPISKELIJAT =
+            "SELECT op.* FROM osallistuminen os, opiskelija op \n"
+            + "WHERE op.hetu = os.hetu \n"
+            + "AND os.kurssikoodi = ? \n"
+            + "AND os.lukukausi = ? \n"
+            + "AND os.lukuvuosi = ? \n"
+            + "AND os.tyyppi = ? \n"
+            + "AND os.kurssi_nro = ?";
 
     public static Opiskelija opiskelijaHetulla(String hetu) throws SQLException {
         Filter f = new Filter(Opiskelija.hetu, hetu);
         return SQLoader.loadTable(new Opiskelija(), f).get(0);
     }
-    
+
     public static List<Opiskelija> kurssinOpiskelijat(Kurssi kurssi) throws SQLException {
-        String query = "SELECT op.* FROM osallistuminen os, opiskelija op \n"
-                + "WHERE op.hetu = os.hetu \n"
-                + "AND os.kurssikoodi = ? \n"
-                + "AND os.lukukausi = ? \n"
-                + "AND os.lukuvuosi = ? \n"
-                + "AND os.tyyppi = ? \n"
-                + "AND os.kurssi_nro = ?";
+        String query = KURSSINOPISKELIJAT;
         Connection connection = DatabaseConnection.makeConnection();
         PreparedStatement ps = connection.prepareStatement(query);
         ps.setString(1, kurssi.getKurssikoodi());
@@ -43,19 +45,30 @@ public class OpiskelijaKyselyt {
         ps.setInt(5, kurssi.getKurssi_nro());
         return SQLoader.loadTablesFromPreparedStatement(new Opiskelija(), ps, connection);
     }
-    
-    public static List<Opiskelija> 
-            haeOpiskelijat(String hetuLike, String sukunimi) throws SQLException{
-        String query = "SELECT * FROM (SELECT * FROM opiskelija op \n"
-                + "WHERE op.sukunimi like ? \n"
-                + "AND op.hetu like ? \n"
-                + "ORDER BY op.sukunimi ASC, op.etunimi ASC, op.hetu ASC)\n"
+
+    public static List<Opiskelija> haeOpiskelijat(String hetuLike, String sukunimi, Kurssi kurssi) throws SQLException {
+        //Opiskelijat jotka eivät ole kurssilla
+        String query =
+                "SELECT * FROM (\n"
+                + "SELECT * FROM Opiskelija\n"
+                + "WHERE sukunimi like ? \n"
+                + "AND hetu like ? \n"
+                + "MINUS\n"
+                + KURSSINOPISKELIJAT
+                + ")\n"
                 + "WHERE ROWNUM <= 50";
-        
+
         Connection connection = DatabaseConnection.makeConnection();
         PreparedStatement ps = connection.prepareStatement(query);
-        ps.setString(2, "%"+hetuLike+"%");
-        ps.setString(1, "%"+sukunimi+"%");
+
+        ps.setString(1, "%" + sukunimi + "%");
+        ps.setString(2, "%" + hetuLike + "%");
+        ps.setString(3, kurssi.getKurssikoodi());
+        ps.setString(4, kurssi.getLukukausi());
+        ps.setInt(5, kurssi.getLukuvuosi());
+        ps.setString(6, kurssi.getTyyppi());
+        ps.setInt(7, kurssi.getKurssi_nro());
+
         return SQLoader.loadTablesFromPreparedStatement(new Opiskelija(), ps, connection);
     }
 }

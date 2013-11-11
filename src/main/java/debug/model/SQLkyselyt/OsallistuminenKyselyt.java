@@ -26,17 +26,18 @@ import javax.servlet.http.HttpSession;
  */
 public class OsallistuminenKyselyt {
 
-    public static List<Osallistuminen> osallistumisetKurssilla(Kurssi kurssi) throws SQLException {
-        String query = "SELECT os.*, op.etunimi, op.sukunimi, op.sahkopostiosoite \n"
-                + "FROM osallistuminen os, opiskelija op \n"
-                + "WHERE os.hetu = op.hetu \n"
-                + "AND os.kurssikoodi = ? \n"
-                + "AND os.lukukausi = ? \n"
-                + "AND os.lukuvuosi = ? \n"
-                + "AND os.tyyppi = ? \n"
-                + "AND os.kurssi_nro = ?\n"
-                + "ORDER BY op.etunimi";
+    public static final String KURSSINOSALLISTUMISET =
+            "SELECT os.*, op.etunimi, op.sukunimi, op.sahkopostiosoite \n"
+            + "FROM osallistuminen os, opiskelija op \n"
+            + "WHERE os.hetu = op.hetu \n"
+            + "AND os.kurssikoodi = ? \n"
+            + "AND os.lukukausi = ? \n"
+            + "AND os.lukuvuosi = ? \n"
+            + "AND os.tyyppi = ? \n"
+            + "AND os.kurssi_nro = ? \n";
 
+    public static List<Osallistuminen> osallistumisetKurssilla(Kurssi kurssi) throws SQLException {
+        String query = KURSSINOSALLISTUMISET + "ORDER BY op.etunimi";
         Connection conn = DatabaseConnection.makeConnection();
         PreparedStatement ps = conn.prepareStatement(query);
         ps.setString(1, kurssi.getKurssikoodi());
@@ -69,25 +70,30 @@ public class OsallistuminenKyselyt {
         return osallistumiset;
     }
 
+    public static List<Osallistuminen> poistetutKurssilta(Kurssi kurssi) throws SQLException {
+        String query = KURSSINOSALLISTUMISET + " AND os.voimassa = 'P'";
+        Connection conn = DatabaseConnection.makeConnection();
+        PreparedStatement ps = conn.prepareStatement(query);
+        ps.setString(1, kurssi.getKurssikoodi());
+        ps.setString(2, kurssi.getLukukausi());
+        ps.setInt(3, kurssi.getLukuvuosi());
+        ps.setString(4, kurssi.getTyyppi());
+        ps.setInt(5, kurssi.getKurssi_nro());
+        return SQLoader.loadTablesFromPreparedStatement(new Osallistuminen(), ps, conn);
+    }
+
     public static Osallistuminen osallistuminenKurssilla(Kurssi kurssi,
             String hetu) throws SQLException {
-        String query = "SELECT os.* \n"
-                + "FROM osallistuminen os \n"
-                + "WHERE os.hetu = ? \n"
-                + "AND os.kurssikoodi = ? \n"
-                + "AND os.lukukausi = ? \n"
-                + "AND os.lukuvuosi = ? \n"
-                + "AND os.tyyppi = ? \n"
-                + "AND os.kurssi_nro = ?";
+        String query = KURSSINOSALLISTUMISET + " AND os.hetu = ?";
 
         Connection conn = DatabaseConnection.makeConnection();
         PreparedStatement ps = conn.prepareStatement(query);
-        ps.setString(1, hetu);
-        ps.setString(2, kurssi.getKurssikoodi());
-        ps.setString(3, kurssi.getLukukausi());
-        ps.setInt(4, kurssi.getLukuvuosi());
-        ps.setString(5, kurssi.getTyyppi());
-        ps.setInt(6, kurssi.getKurssi_nro());
+        ps.setString(6, hetu);
+        ps.setString(1, kurssi.getKurssikoodi());
+        ps.setString(2, kurssi.getLukukausi());
+        ps.setInt(3, kurssi.getLukuvuosi());
+        ps.setString(4, kurssi.getTyyppi());
+        ps.setInt(5, kurssi.getKurssi_nro());
 
         List<Osallistuminen> osallistumiset = SQLoader.loadTablesFromPreparedStatement(new Osallistuminen(), ps, conn);
         if (osallistumiset.isEmpty()) {
@@ -118,7 +124,7 @@ public class OsallistuminenKyselyt {
             SQLProseduurit.palautaOpiskelija(kurssi, ryhma, hetu, request);
         }
     }
-  
+
     public static void poistaKurssilta(String hetu_ryhma,
             Kurssi kurssi, HttpServletRequest request) {
         SimpleEntry<String, Integer> info = pilkoParametrit(hetu_ryhma);
@@ -131,6 +137,7 @@ public class OsallistuminenKyselyt {
 
     /**
      * Pilkkoo hetu_ryhmä String parametrin Stringiksi ja intiksi
+     *
      * @param hetu_ryhma String 014020003_99
      * @return yksi alkioinene mappi joka sisältää hetun ja ryhmän
      */
