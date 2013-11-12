@@ -122,7 +122,7 @@ public class Osallistuminen extends Table {
         }
         return laskarit;
     }
-
+ 
     public Osasuoritukset getHarjoitustyot() {
         if (kurssi == null) {
             throw new ApplicationException("Kurssi täytyy asettaa osallistumiselle sen luonnin jälkeen");
@@ -150,7 +150,7 @@ public class Osallistuminen extends Table {
             String op, HttpServletRequest rqst) {
 
         HttpSession session = rqst.getSession();
-        if (kieli != null) {
+        if (kieli != null && !kieli.equals("")) {
             kieli = kieli.toLowerCase();
             if (kieli.equals("fi") || kieli.equals("en") || kieli.equals("se")) {
                 this.setKielikoodi(kieli);
@@ -158,7 +158,7 @@ public class Osallistuminen extends Table {
                 annaVirhe(session, bundle(rqst).getString("kielikoodiVirheellinen"));
             }
         }
-        if (op != null) {
+        if (op != null && !op.equals("")) {
             try {
                 int opInt = Integer.parseInt(op);
                 if (opInt < 100) {
@@ -168,7 +168,7 @@ public class Osallistuminen extends Table {
                 annaVirhe(session, bundle(rqst).getString("opVirheellinen"));
             }
         }
-        if (arv != null) {
+        if (arv != null && !arv.equals("")) {
             try {
                 int arvInt = Integer.parseInt(arv);
                 if (arvInt < 6 && arvInt >= 0) {

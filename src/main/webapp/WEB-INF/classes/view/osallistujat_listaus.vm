@@ -25,9 +25,10 @@
 
 
 #foreach($osallinen in $osallistumiset)
+  #set($opiskelija = $OpiskelijaKyselyt.opiskelijaHetulla($osallinen.hetu))
   <tr>
     <td>
-      <b><a href="mailto:">$osallinen.sukunimi, $osallinen.etunimi</a></b>
+      <b><a href="mailto:">$opiskelija.sukunimi, $opiskelija.etunimi</a></b>
     </td>
     <td>
       <center>

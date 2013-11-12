@@ -7,8 +7,9 @@ package debug.model.osasuoritukset;
 import debug.ApplicationException;
 
 /**
- * Tämä luokka näyttää Osallistuminen -olion yhden osasuorituksen. 
- * Sitä käytetään Osasuoritukset -olion avulla.
+ * Tämä luokka näyttää Osallistuminen -olion yhden osasuorituksen. Sitä
+ * käytetään Osasuoritukset -olion avulla.
+ *
  * @author mkctammi
  */
 public class Osasuoritus {
@@ -29,7 +30,6 @@ public class Osasuoritus {
     }
 
     public boolean setPisteet(int pisteet) {
-        System.out.println(pisteet);
         if (pisteet > maxPisteet || pisteet < 0 || pisteet > Muotoilija.MAX_PISTE) {
             return false;
         }
@@ -37,10 +37,19 @@ public class Osasuoritus {
         return true;
     }
 
+    public boolean setPisteet(String param) {
+        System.out.println(param);
+        try {
+            return setPisteet(Integer.parseInt(param));
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+    }
+
     public void poistaPisteet() {
         this.pisteet = Muotoilija.EMPTY;
     }
-    
+
     public void opiskelijaLasna() {
         this.pisteet = Muotoilija.LASNA;
     }
@@ -57,9 +66,7 @@ public class Osasuoritus {
         if (pisteet == Muotoilija.LASNA) {
             return "+";
         } else {
-            return this.pisteet+"";
+            return this.pisteet + "";
         }
     }
-    
-    
 }

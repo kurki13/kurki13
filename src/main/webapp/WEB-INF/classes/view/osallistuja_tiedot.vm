@@ -1,33 +1,32 @@
-#set($Integer = 0) ## ParseInt-metodia varten
 #set($opiskelijaTiedot = $OpiskelijaKyselyt.opiskelijaHetulla($request.getParameter("hetuParam")))
 #set($osasuoritusTiedot = $OsallistuminenKyselyt.osallistuminenKurssilla($valittuKurssi,$opiskelijaTiedot.hetu))
 
-#set ($osasuoritukset = {
-        'lh' : $osasuoritusTiedot.Laskarit,
-        'ht' : $osasuoritusTiedot.Harjoitustyot,
-        'koe' : $osasuoritusTiedot.Kokeet})
+    #set ($osasuoritukset = {
+            'lh' : $osasuoritusTiedot.Laskarit,
+            'ht' : $osasuoritusTiedot.Harjoitustyot,
+            'koe' : $osasuoritusTiedot.Kokeet})
 
-#foreach($osasuoritus in $osasuoritukset)
-    #set($arvot = $osasuoritus.value)
-    #set($param = $request.getParameterValues($osasuoritus.key)) ##tulleet parametrit
-    #set($i = 0)
-    #foreach($arvo in $arvot)
-        #if($param.get($i) && !$param.get($i).equals(""))
-            #if(!$arvo.setPisteet($Integer.parseInt($param.get($i))))
-               $SessioApuri.annaVirhe($request, $bundle.getString("pisteVirheellinen"))
+    #foreach($osasuoritus in $osasuoritukset.entrySet())
+        #set($arvot = $osasuoritus.value)
+        #set($param = $request.getParameterValues($osasuoritus.key)) ##tulleet parametrit
+        #if($param) ##lopetetaan jos ei saatu parametrejä
+            #set($i = 0)
+            #foreach($arvo in $arvot)
+                #if(!$param.get($i).equals("") && !$arvo.setPisteet($param.get($i)))
+                    $SessioApuri.annaVirhe($request.session, $bundle.getString("pisteVirheellinen"))
+                #end
+                #set($i = $i + 1)
             #end
         #end
-        #set($i = $i + 1)
     #end
-#end
 
-#set($kiel = $request.getParameter('kiel'))
-#set($arv = $request.getParameter('arv'))
-#set($op = $request.getParameter('op'))
-$osasuoritusTiedot.suoritusTiedotUpdate($kiel, $arv, $op, $request)
+    #set($kiel = $request.getParameter('kiel'))
+    #set($arv = $request.getParameter('arv'))
+    #set($op = $request.getParameter('op'))
+    $osasuoritusTiedot.suoritusTiedotUpdate($kiel, $arv, $op, $request)
 
-$osasuoritusTiedot.update()
-$OsallistuminenKyselyt.tallennaKantaan($osasuoritusTiedot)
+    $osasuoritusTiedot.update()
+    $OsallistuminenKyselyt.tallennaKantaan($osasuoritusTiedot)
 
 <h3>
   <center>
@@ -43,13 +42,15 @@ $OsallistuminenKyselyt.tallennaKantaan($osasuoritusTiedot)
         $bundle.getString("aloitusvuosi") : $opiskelijaTiedot.aloitusvuosi})
 
 <table class="normal" width="100%" style="max-width:1000px">
-  #foreach($t in $tiedot.entrySet())
+  #foreach($tieto in $tiedot.entrySet())
     <tr>
-      <th>$t.key</th>
-      #if($t.key.equals($bundle.getString("sposti")))
-        #if($t.value)<td><a href="mailto:"></a>#end
-      #else
-        <td>$t.value</td>
+      <th>$tieto.key</th>
+      #if($tieto.value)
+        #if($tieto.key.equals($bundle.getString("sposti")))
+          <td><a href="mailto:$tieto.value"></a>
+        #else
+          <td>$tieto.value</td>
+        #end
       #end
     </tr>  
   #end
@@ -76,12 +77,13 @@ $OsallistuminenKyselyt.tallennaKantaan($osasuoritusTiedot)
           #foreach($arvo in $arvot)
             #if($i == 10) </tr> <tr> #end  ##Ei kaikkia samalle riville
             <td nowrap>
-              <b>$i:</b>
+              <b>$i#if($arvo.maxPisteet == -1)*#end:</b>
               <br>
               <input type="text" name=$param
                 class="form-control input-sm" size="2" maxlength="2" style="width:50px"
-                placeholder=$arvo.maxPisteet
-                #if($arvo.pisteet!=-1)value=$arvo.pisteet#end >  ##-1 vastaa tyhjää
+                #if($arvo.maxPisteet != -1)placeholder=$arvo.maxPisteet
+                #else readonly #set($selitys = 1) #end
+                #if($arvo.pisteet != -1) value=$arvo.pisteet #end >  ##-1 vastaa tyhjää
             </td>
             #set($i = $i+1)
           #end
@@ -111,6 +113,10 @@ $OsallistuminenKyselyt.tallennaKantaan($osasuoritusTiedot)
   #end
 
 </table>
+
+#if($selitys)
+    $SessioApuri.annaVirhe($request.session, "* osasuorituksen maksimiarvoja ei ole asetettu")
+#end
 
 <input type="hidden" name="hetuParam" value=$opiskelijaTiedot.hetu> ##jäädään tiedot sivulle
 <input type="submit" class="btn btn-success" value="$bundle.getString("tallennapisteet")">
