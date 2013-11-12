@@ -39,7 +39,7 @@ public class OsallistuminenKyselyt {
 
     public static List<Osallistuminen> osallistumisetKurssilla(Kurssi kurssi) throws SQLException {
         String query = KURSSINOSALLISTUMISET
-                + "ORDER BY op.etunimi";
+                + "ORDER BY op.sukunimi ASC, op.etunimi ASC, os.hetu ASC";
         Connection conn = DatabaseConnection.makeConnection();
         PreparedStatement ps = conn.prepareStatement(query);
         ps.setString(1, kurssi.getKurssikoodi());

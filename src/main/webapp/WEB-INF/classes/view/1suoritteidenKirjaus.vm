@@ -1,5 +1,4 @@
 #parse("hello.vm")
-#set($valittuKurssi = $KurssiKyselyt.kurssiIDlla($session.getAttribute('selected_course_id')))
 
 #set ($kerrat = {"laskarit" : $valittuKurssi.laskarikerta_lkm, "ht" : $valittuKurssi.harjoitustyo_lkm ,
 "koe" : $valittuKurssi.valikokeet_lkm})
@@ -89,7 +88,7 @@
 
 ##haetaan kurssin ryhmät, ja jätetään pois mystinen ryhmä "0"
 #set ($ryhmat = [])
-#foreach($r in $OpetusKyselyt.opetusTiedot($valittuKurssi))
+#foreach($r in $OpetusKyselyt.opetuksetKurssilla($valittuKurssi))
     #if ($r.ilmo_jnro != 0)
         #if ($ryhmat.add($r.ilmo_jnro)) #end
     #end
@@ -124,5 +123,5 @@
 
 ##valittu $params.get('lisääTähänNimi')
 
-</body>
-<html>
+
+#parse("bottom.vm")

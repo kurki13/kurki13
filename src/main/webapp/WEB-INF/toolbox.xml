@@ -64,4 +64,14 @@
         <key>Arvostelu</key>         
         <class>debug.Arvostelu</class>
     </tool>
+    
+    <tool>
+        <key>Valitsin</key>         
+        <class>debug.util.Valitsin</class>
+    </tool>
+    
+    <tool>
+        <key>Suoritukset</key>         
+        <class>debug.util.Suoritukset</class>
+    </tool>
 </toolbox>

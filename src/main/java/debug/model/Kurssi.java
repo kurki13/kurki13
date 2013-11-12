@@ -164,6 +164,7 @@ public class Kurssi extends Table {
      * Valmistaa kurssin tallennusta varten. Kurssin osasuoritusten rajat on tulkittu apuolioiksi, joten ne
      * täytyy ennen tallennusta muuttaa takaisin tietokannassa olevaan muotoon.
      */
+    @Override
     public void update() {
         //laskarirajat muutetaan
         this.setValue(Kurssi.hyvaksytty_laskarilasnaolo, getLaskariRajat().minArvotTietokantamuodossa());

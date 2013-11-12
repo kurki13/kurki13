@@ -34,6 +34,11 @@ public class Opetus extends Table {
     public static final StringColumn kuvaustieto = new StringColumn("kuvaustieto");
     public static final StringColumn kieli = new StringColumn("kieli");
 
+    
+    @Override
+    public void update() {
+    }
+    
     @Override
     public String getTableName() {
         return "opetus";

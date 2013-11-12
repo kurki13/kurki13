@@ -109,5 +109,7 @@ public abstract class Table {
         return ret;
     }
     
+    public abstract void update();
+    
     
 }

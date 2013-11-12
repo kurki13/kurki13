@@ -1,8 +1,7 @@
 ##lisää tarkistukset onko jäässä!!
 ##javascriptit eri tiedostoon ja
 ##<head>:iin <script language='JavaScript' type='text/javascript' src='tiedostonimi.js'></script>
-##tarkista onko osallistuminen voimassa 'e'=ei?? 'k'=kyllä p='poistettu'
-#set($valittuKurssi = $KurssiKyselyt.kurssiIDlla($session.getAttribute('selected_course_id')))
+##tarkista onko osallistuminen voimassa 'e'=ei?? 'k'=kyllä p='poistettu' $os.tyyppi
 #set($kurssinOsallistumiset = $OsallistuminenKyselyt.osallistumisetKurssilla($valittuKurssi))
 
 ##filterit
@@ -12,7 +11,10 @@
 #set ($opiskelijat = $params.get('opiskelijat'))
 #set ($filteroidytOsallistumiset = [])
 
-##
+##kerta näkyy refreshin jälkeen?
+<h4><b>$tyypit.get($params.get('type')), #if($kerta) $bundle.getString("kerta"): $kerta, #end $bundle.getString("ryhma"): #if ($ryhma != '') $ryhma #else $bundle.getString("kaikki") #end</b></h4>
+
+##filteröidään opiskelijat annettujen filteröintiparametrien mukaan
 #foreach ($o in $kurssinOsallistumiset)
     #set ($lisataanko = false)
     #if($ryhma == "" && $opiskelijat)
@@ -30,7 +32,7 @@
 #end
 
 <div>
-<p align=center>$bundle.getString("opvalittu") $filteroidytOsallistumiset.size()</p>
+<p>$bundle.getString("opvalittu") $filteroidytOsallistumiset.size()</p>
 <form name="pisteet" action="" method=get class="form-inline">
 
 <input value="$tyyppi" type="hidden" name="type">
@@ -44,53 +46,110 @@
             <td><b>$bundle.getString("ryhma")</b></td>
             <td colspan="2" align="center"><b>$tyypit.get($params.get('type'))</b></td>
         </tr>
+
+        ##määritellään radiobuttonien sallitut arvot
+        #if ($tyyppi == 'laskarit')  
+            #set ($max = $valittuKurssi.laskariRajat.osa($kerta).max)
+            $Valitsin.lisaaArvot("", "+")
+            $Valitsin.lisaaVali(0,$max)
+        #end
+
+        #if ($tyyppi == 'ht')
+            #set ($max = $valittuKurssi.harjoitustyoRajat.osa($kerta).max)
+            $Valitsin.lisaaArvot("", "+")
+            $Valitsin.lisaaVali(0,$max)
+        #end
+
+        #if ($tyyppi == 'koe')
+            #set ($max = $valittuKurssi.koeRajat.osa($kerta).max)
+            $Valitsin.lisaaArvot("", "+")
+            $Valitsin.lisaaVali(0,$max)
+        #end
+
+        #if ($tyyppi == 'arvosana')
+            #set ($max = 5)
+            ##arvosteluasteikko tarkista onko hyväksytty/hylätty
+            $Valitsin.lisaaArvot("-", "+")
+            $Valitsin.lisaaVali(0,$max)
+        #end
+
+        #if ($tyyppi == 'op')
+            #set ($max = $valittuKurssi.opintopisteet)
+            $Valitsin.lisaaVali(0,$max)
+        #end
+
+        #if ($tyyppi == 'kieli')
+            $Valitsin.lisaaArvot("", 'fi', 'en', 'se')
+        #end
+
+        ##lisätään radiobuttonien sallitut arvot listaan
+        #set ($arvot = $Valitsin.sallitut)
+
+        $Suoritukset.kasitteleLomake($request, $Valitsin, $filteroidytOsallistumiset)
+
+        ##käydään läpi kaikki kurssin osallistumiset ja tulostetaan pistetiedot
         #foreach ($os in $filteroidytOsallistumiset)
             <tr>
                 <td>$os.nimi, $os.hetu</td>
                 <td>$os.ilmo_jnro</td>
 
-            #set ($max = $valittuKurssi.laskariRajat.osa($kerta).max)
+            #if ($tyyppi == 'laskarit')  
+                #set ($osasuoritus = $os.laskarit.osa($kerta))
+            #end
 
-            ##laskaripisteet, lisää ehto ht ja koe
-                
-                ##lisää undo jos value liian iso tai pieni
-                <td><input value="$os.laskarit.osa($kerta)" type="text" class="form-control input-sm"
+            #if ($tyyppi == 'ht')
+                #set ($osasuoritus = $os.harjoitustyot.osa($kerta))
+            #end
+
+            #if ($tyyppi == 'koe')
+                #set ($osasuoritus = $os.kokeet.osa($kerta))
+            #end
+
+            #if ($tyyppi == 'arvosana')
+                #set ($osasuoritus = $os.arvosana)
+                ##arvosteluasteikko tarkista onko hyväksytty/hylätty
+            #end
+
+            #if ($tyyppi == 'op')
+                #set ($osasuoritus = $os.laajuus_op)
+            #end
+
+            #if ($tyyppi == 'kieli')
+                #if ($os.kielikoodi) #set ($osasuoritus = $os.kielikoodi) #else #set ($osasuoritus = '') #end
+            #end
+
+            ##$osasuoritus
+
+                ##lisää undo jos value liian iso tai pieni!!
+                <td><input value="$osasuoritus" type="text" class="form-control input-sm"
                         style="width:50px" maxlength="3" name="pisteet${os.hetu}"
                         onblur="if(this.value>$max || this.value<0) {alert('luku tulee olla väliltä 0-${max}') }"
-                        onChange="if(this.value != '$os.laskarit.osa($kerta)') { this.style.color='red'}
+                        onChange="if(this.value != '$osasuoritus') { this.style.color='red'}
                         else {this.style.color='black'};
                         setChecked('id${os.hetu}', this.value)"></td>
 
-<script type="text/javascript">
+                <script type="text/javascript">
 
-function setChecked(hetu, thisvalue){
-    var id = hetu+'_'+thisvalue
-    document.getElementById(id).checked = true
-}
+                function setChecked(hetu, thisvalue){
+                    var id = hetu+'_'+thisvalue
+                    document.getElementById(id).checked = true
+                }
 
-</script>
-
-                ##listataan pistemäärät tyhjästä plussaan ja siitä maksimipistemäärään
-                #set ($pisteet = [$bundle.getString('tyhja'), '+'])
-                #set($start = 0)
-                #set($end = $valittuKurssi.laskariRajat.osa($kerta).max)
-                #set($range = [$start..$end])
-                #foreach($r in $range)
-                    #if ($pisteet.add($r)) #end
-                #end
+                </script>
 
                 <td>
-
-                #foreach($i in $pisteet)
-                    #if ($i == $os.laskarit.osa($kerta) || ($i == $bundle.getString('tyhja') && $os.laskarit.osa($kerta) == ""))
-                        <input type="radio" name="laskaripisteet${os.hetu}" #if($i == $bundle.getString('tyhja')) value="" id="id${os.hetu}_" #else value=$i id="id${os.hetu}_$i" #end
+                
+                ##radiobuttonien tulostus
+                #foreach($i in $arvot)
+                    #if ($i == $osasuoritus || ($i == $bundle.getString('tyhja')))
+                        <input type="radio" name="osat${os.hetu}" #if($i == "") value="" id="id${os.hetu}_" #else value=$i id="id${os.hetu}_$i" #end
                             onChange="pisteet${os.hetu}.value=this.value;
                             pisteet${os.hetu}.style.color='black'"
                             checked>$i
                     #else
-                        <input type="radio" name="laskaripisteet${os.hetu}" #if($i == $bundle.getString('tyhja')) value="" id="id${os.hetu}_" #else value=$i id="id${os.hetu}_$i" #end
+                        <input type="radio" name="osat${os.hetu}" #if($i == "") value="" id="id${os.hetu}_" #else value=$i id="id${os.hetu}_$i" #end
                             onChange="pisteet${os.hetu}.value=this.value;
-                            if(laskaripisteet${os.hetu}.value != '$os.laskarit.osa($kerta)')
+                            if(osat${os.hetu}.value != '$osasuoritus')
                             { pisteet${os.hetu}.style.color='red'}">$i
                     #end
                 #end
@@ -102,33 +161,5 @@ function setChecked(hetu, thisvalue){
 <input type=hidden value=pressed name=button>
 <input type=submit class="btn" value=$bundle.getString("tmuutokset") onClick="">
 
-#foreach ($os in $filteroidytOsallistumiset)
-#set ($var = "pisteet${os.hetu}")
-$params.get($var)
-#end
-
 </form>
 </div>
-
-
-
-##Laskaritehtävien lukumäärä: $valittuKurssi.laskarikerta_lkm
-##Laskaritehtävien maksimipisteet: $valittuKurssi.laskaritehtava_lkm
-##Pakolliset laskaritehtävät lkm: $valittuKurssi.pakolliset_laskaritehtava_lkm
-##max_laskaripisteet: $valittuKurssi.max_laskaripisteet
-##hyvaksytty_laskarilasnaolo: $valittuKurssi.hyvaksytty_laskarilasnaolo
-
-###foreach($os in $OsallistuminenKyselyt.osallistumisetKurssilla($valittuKurssi))
-##     $os.hetu: 
-##        laskarisuoritukset:       $os.laskarisuoritukset
-##        laskari_lasnaolo_lkm:     $os.laskari_lasnaolo_lkm
-##        laskarisuoritukset:       $os.laskarisuoritukset
-##        laskarisuoritukset_summa: $os.laskarisuoritukset_summa 
-##        laskarihyvitys:           $os.laskarihyvitys
-##        #foreach ($laskari in $os.laskarit)
-##            $laskari.pisteet / $laskari.maxPisteet
-##        #end
-###end
-
-##$valittuKurssi
-

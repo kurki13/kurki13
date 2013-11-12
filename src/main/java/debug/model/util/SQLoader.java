@@ -129,6 +129,8 @@ public class SQLoader {
 
 	public static void tallennaKantaan(Table taulu) throws SQLException {
 
+                taulu.update();
+                
 		Connection c = DatabaseConnection.makeConnection();
 		StringBuilder sb = new StringBuilder();
 

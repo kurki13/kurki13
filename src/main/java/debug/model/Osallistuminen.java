@@ -190,10 +190,11 @@ public class Osallistuminen extends Table {
      * Päivittää aputaulujen (laskarit, harjoitustyöt, kokeet) arvot takaisin
      * tekstimuotoisiin kenttiin, jotta olion tiedot voidaan tallentaa kantaan.
      */
+    @Override
     public void update() {
-        this.setValue(Osallistuminen.laskarisuoritukset, laskarit.pisteetTietokantamuodossa());
-        this.setValue(Osallistuminen.harjoitustyopisteet, harjoitustyot.pisteetTietokantamuodossa());
-        this.setValue(Osallistuminen.koepisteet, kokeet.pisteetTietokantamuodossa());
+        this.setValue(Osallistuminen.laskarisuoritukset, getLaskarit().pisteetTietokantamuodossa());
+        this.setValue(Osallistuminen.harjoitustyopisteet, getHarjoitustyot().pisteetTietokantamuodossa());
+        this.setValue(Osallistuminen.koepisteet, getKokeet().pisteetTietokantamuodossa());
     }
 
     //<editor-fold defaultstate="collapsed" desc="setters">

@@ -70,4 +70,8 @@ public class Osasuoritukset implements Iterable<Osasuoritus> {
         return osa(nro);
     }
     
+    public int getLukumaara() {
+        return koko;
+    }
+    
 }

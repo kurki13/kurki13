@@ -32,6 +32,11 @@ public class Opiskelija extends Table {
     public static final StringColumn vinkki = new StringColumn("vinkki");
     public static final StringColumn varmenne = new StringColumn("varmenne");
 
+    
+    @Override
+    public void update() {
+    }
+    
     @Override
     public String getTableName() {
         return "opiskelija";

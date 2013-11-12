@@ -42,6 +42,10 @@ public class Henkilo extends Table {
     public String getTableName() {
         return "henkilo";
     }
+    
+    @Override
+    public void update() {
+    }
 
     @Override
     public Table getNewInstance() {
