@@ -164,33 +164,21 @@ $bundle.getString("tilanne"): $date.get('d.M.yyyy HH:mm')<br>
        <td>$osallistuminen.sukunimi, $osallistuminen.etunimi</td>
 
        #if ($valittuKurssi.laskarikerta_lkm > 0)    
-            #set ($yht = 0)
-            #foreach ( $i in [1..$valittuKurssi.laskarikerta_lkm] )       
-             #if($osallistuminen.laskarit.osa($i).getPisteet() > 0 && $osallistuminen.laskarit.osa($i).getPisteet() < 100) #set ($yht = $yht + $osallistuminen.laskarit.osa($i).pisteet)#end     
-            #end
-            <td align="center">$yht</td>
+            <td align="center">$osallistuminen.laskarit.getYhteispisteet()</td>
             #foreach ( $i in [1..$valittuKurssi.laskarikerta_lkm] )       
              <td>#if($osallistuminen.laskarit.osa($i)) $osallistuminen.laskarit.osa($i)#end</td>        
             #end
        #end
 
-        #if ($valittuKurssi.harjoitustyo_lkm > 0) 
-            #set ($yht = 0)
-            #foreach ( $i in [1..$valittuKurssi.harjoitustyo_lkm] )       
-             #if($osallistuminen.harjoitustyot.osa($i).getPisteet() > 0 && $osallistuminen.harjoitustyot.osa($i).getPisteet() < 100) #set ($yht = $yht + $osallistuminen.harjoitustyot.osa($i).pisteet)#end     
-            #end
-            <td align="center">$yht</td>
+        #if ($valittuKurssi.harjoitustyo_lkm > 0)             
+            <td align="center">$osallistuminen.harjoitustyot.getYhteispisteet()</td>
             #foreach ( $i in [1..$valittuKurssi.harjoitustyo_lkm] )       
              <td>#if($osallistuminen.harjoitustyot.osa($i)) $osallistuminen.harjoitustyot.osa($i)#end</td>
             #end
         #end
         
-        #if ($valittuKurssi.valikokeet_lkm > 0)
-        #set ($yht = 0)
-        #foreach ( $i in [1..$valittuKurssi.valikokeet_lkm] )       
-             #if($osallistuminen.kokeet.osa($i).getPisteet() > 0 && $osallistuminen.kokeet.osa($i).getPisteet() < 99) #set ($yht = $yht + $osallistuminen.kokeet.osa($i).pisteet)#end     
-            #end
-        <td align="center">$yht</td>
+        #if ($valittuKurssi.valikokeet_lkm > 0)       
+        <td align="center">$osallistuminen.kokeet.getYhteispisteet()</td>
         #foreach ( $i in [1..$valittuKurssi.valikokeet_lkm] )       
          <td>#if($osallistuminen.kokeet.osa($i)) $osallistuminen.kokeet.osa($i)#end</td>
         #end
