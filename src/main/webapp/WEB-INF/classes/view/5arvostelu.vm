@@ -17,6 +17,10 @@
     $Arvostelu.kasitteleLomake($valittuKurssi, $request)
 #end
 
+#if($request.getParameter("arvostele"))
+    $SQLProseduurit.suoritaArvostelu($valittuKurssi, $request.getRemoteUser(), $request)
+#end
+
 <form name="arvostelu" action="" method=get class="form-inline">
 
 <h3>Osasuorituksia:</h3>
