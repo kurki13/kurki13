@@ -14,6 +14,16 @@ public class Osasuoritukset implements Iterable<Osasuoritus> {
         return new OsasuoritusIterator(osasuoritukset, koko);
     }
     
+    public int getYhteispisteet() {
+        int pisteet = 0;
+        for (Osasuoritus os: osasuoritukset) {
+            if (os.getPisteet() > 0 && os.getPisteet() < 99) {
+                pisteet += os.getPisteet();
+            }
+        }        
+        return pisteet;
+    }
+    
     public String pisteetTietokantamuodossa() {
         int[] suoritukset = Muotoilija.tyhjaTaulu();
         int i=0;
