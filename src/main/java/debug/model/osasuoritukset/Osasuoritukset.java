@@ -17,7 +17,7 @@ public class Osasuoritukset implements Iterable<Osasuoritus> {
     public int getYhteispisteet() {
         int pisteet = 0;
         for (Osasuoritus os: osasuoritukset) {
-            if (os.getPisteet() > 0 && os.getPisteet() < 99) {
+            if (os.getPisteet() > 0 && os.getPisteet() < 100) {
                 pisteet += os.getPisteet();
             }
         }        
