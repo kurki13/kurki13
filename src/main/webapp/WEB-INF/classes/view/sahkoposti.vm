@@ -1,117 +1,68 @@
-<html>
-    <body>
-        #set($bundle = $SessioApuri.bundle($request))
-        $bundle.getString("HY")
+$bundle.getString("HY")
 
-        $bundle.getString("matlu")
-        $bundle.getString("cslaitos")
+$bundle.getString("matlu")
+$bundle.getString("cslaitos")
 
-        $bundle.getString("opintojakso"): $kurssi.getKurssikoodi(), $kurssi.listaString()
-        $bundle.getString("laajuus"): $kurssi.getOpintopisteet() $bundle.getString("op") ($kurssi.getOpintoviikot() $bundle.getString("ov"))
-        $bundle.getString("suoritusaika"): $kurssi.getSuoritus_pvm()
-        $bundle.getString("hyvaksyja"): $HenkiloKyselyt.haeNimet($kurssi.getOmistaja())
-
-        #set ($osallistumisetKurssilla = $OsallistuminenKyselyt.osallistumisetKurssilla($kurssi))
-        #set ($ilmoittautuneet = $osallistumisetKurssilla.size())
-        #set ($hyvaksytyt = 0)
-        #set ($hyvaksytytLista = "")
-        #set ($hylatyt = 0)
-        #set ($hylatytLista = "")
-        #set ($poistetutLista = "")
-        #set ($osallistuneet = 0)
-        #set ($kokeessa = 0)
-        #foreach ($osallistuminen in $osallistumisetKurssilla)
-            #set ($opiskelijanumero = $osallistuminen.getHetu())
-            #if ($osallistuminen.getArvosana() == 0)
-                #set ($hylatyt = $hylatyt + 1)
-                #set ($hylatytLista = "$hylatytLista $opiskelijanumero $SQLProseduurit.palautaOpiskelijanNimi($opiskelijanumero)")
-                #set ($osallistuneet = $osallistuneet + 1)
-            #elseif (!$osallistuminen.getArvosana() || $osallistuminen.getArvosana().equals('-'))
-            #else
-                #set ($hyvaksytyt = $hyvaksytyt + 1)
-                #set ($hyvaksytytLista = "$hyvaksytytLista $opiskelijanumero $SQLProseduurit.palautaOpiskelijanNimi($opiskelijanumero)")
-                #set ($osallistuneet = $osallistuneet +1)
-            #end
-            #if (!$osallistuminen.getKoepisteet().equals('??,??,??,??,??-??,??,??,??,??-??,??,??,??,??-??,??,??'))
-                #set ($kokeessa = $kokeessa +1)
-            #end
+#set($loppuindeksi = $kurssi.listaString().length())
+#set ($loppuindeksi = $loppuindeksi - 2)
+$bundle.getString("opintojakso"): $kurssi.getKurssikoodi(), $kurssi.listaString().substring(0, $loppuindeksi)
+$bundle.getString("laajuus"): $kurssi.getOpintopisteet() $bundle.getString("op") ($kurssi.getOpintoviikot() $bundle.getString("ov"))
+$bundle.getString("suoritusaika"): $kurssi.getSuoritus_pvm()
+$bundle.getString("hyvaksyja"): $HenkiloKyselyt.haeNimet($kurssi.getOmistaja())
+#set ($osallistumisetKurssilla = $OsallistuminenKyselyt.osallistumisetKurssilla($kurssi))
+#set ($ilmoittautuneet = $osallistumisetKurssilla.size())
+#set ($hyvaksytyt = 0)
+#set ($hyvaksytytLista = "")
+#set ($hylatyt = 0)
+#set ($hylatytLista = "")
+#set ($poistetutLista = "")
+#set ($osallistuneet = 0)
+#set ($kokeessa = 0)
+#foreach ($osallistuminen in $osallistumisetKurssilla)
+    #set ($opiskelijanumero = $osallistuminen.getHetu())
+    #set ($opiskelijanNimi = $SQLProseduurit.palautaOpiskelijanNimi($opiskelijanumero))
+    #set ($listaAlkio = "$opiskelijanumero $opiskelijanNimi")
+    #if ($kurssinTila.equals('J') && !$osallistuminen.getJaassa())
+        #set ($listaAlkio = "$listaAlkio U")
+    #end
+    #if ($osallistuminen.getArvosana() == 0)
+        #set ($hylatyt = $hylatyt + 1)
+        #set ($osallistuneet = $osallistuneet + 1)
+        #if (!$kurssinTila.equals('J') || ($kurssinTila.equals('J') && !$osallistuminen.getJaassa().equals('J')))
+            #set ($hylatytLista = "$hylatytLista $listaAlkio ${rivinvaihto}")
         #end
-
-        #if ($hyvaksytyt > 0)
-            $bundle.getString("hyvaksytyt")
-            $hyvaksytytLista
+    #elseif (!$osallistuminen.getArvosana() || $osallistuminen.getArvosana().equals('-'))
+        #if ($osallistuminen.getJaassa().equals('S'))
+            #set ($poistetutLista = "$poistetutLista $listaAlkio ${rivinvaihto}")
         #end
-
-        $bundle.getString("tilastoja")
-        $bundle.getString("ilmonneita"): $ilmoittautuneet
-        $bundle.getString("osallistuneita"): $osallistuneet
-        $bundle.getString("kokeessa"): $kokeessa
-        $bundle.getString("hyvaksyttyja"): $hyvaksytyt
-        #if ($osallistuneet > 0) 
-            ($jaadytys.prosenttiLasku($hyvaksytyt, $osallistuneet)% $bundle.getString("osallistuneista"))
+    #else
+        #set ($hyvaksytyt = $hyvaksytyt + 1)
+        #set ($osallistuneet = $osallistuneet +1)
+        #if (!$kurssinTila.equals('J') || ($kurssinTila.equals('J') && !$osallistuminen.getJaassa().equals('J')))
+            #set ($hyvaksytytLista = "$hyvaksytytLista $listaAlkio $osallistuminen.getArvosana() ${rivinvaihto}")
         #end
-        #if ($kokeessa > 0) 
-            ($jaadytys.prosenttiLasku($hyvaksytyt, $kokeessa)% $bundle.getString("kokeessaolleista"))
-        #end
-        $bundle.getString("hylattyja"): $hylatyt
+    #end
+    #if (!$osallistuminen.getKoepisteet().equals('??,??,??,??,??-??,??,??,??,??-??,??,??,??,??-??,??,??'))
+        #set ($kokeessa = $kokeessa +1)
+    #end
+#end
 
-        #if ($hylatyt > 0)
-            $bundle.getString("isohylatyt")
-            $hylatytLista
-        #end
+$bundle.getString("tilastoja")
+$bundle.getString("ilmonneita"): $ilmoittautuneet
+$bundle.getString("osallistuneita"): $osallistuneet
+$bundle.getString("kokeessa"): $kokeessa
+$bundle.getString("hyvaksyttyja"): $hyvaksytyt
+$bundle.getString("hylattyja"): $hylatyt
 
-        #if ($poistetutLista)
-            $bundle.getString("isopoistetut")
-            $poistetutLista
-        #end
-    </body>
-</html>
-
-
-#*
-##
-################### OPISKELIJAT ###################
-##
-#foreach ($student in $students)
-#set ($row = "")##--------- Yhden opiskelijan tiedot -----------##
-#if ($student.Grade)##---------- Onko osallistunut kurssille --> jos on, niin on myös arvosteltu -----------##
-#set ($grade = $student.Grade)
-#set ($creditunits =$student.CreditsNew)
-#if ($inc_ssn)#set ($row = "$row${c.getStr($student.SSN, $ssnl)} ")#end
-#set ($row = "$row${c.getStr($student.Name, $nl)}  ")
-##
-##--------- Opiskelija lisätty jäädytyksen jälkeen -----------##
-##
-#if ($c.isFrozen() && $inc_changes && $student.isNew())
-#set ($row = "$row U")
+#if (!$hyvaksytytLista.equals(''))
+    $bundle.getString("hyvaksytyt")
+    $hyvaksytytLista
 #end
-##
-##--------- opiskelija läpäissyt kurssin -------------##
-##
-#if ($grade && $grade != "0")
-#set ($acceptcount = $acceptcount + 1)
-#if (!$inc_changes || ($inc_changes && !$student.isFrozen()))##-------- Näytetäänkö vain muutokset? ----------##
-#set ($accepted = "$accepted${c.nl()}${row}")
-#if ($acceptcount % 5 == 0)
-#set ($accepted = "$accepted${c.nl()}")
+#if (!$hylatytLista.equals(''))
+    $bundle.getString("isohylatyt")
+    $hylatytLista
 #end
+#if (!$poistetutLista.equals(''))
+    $bundle.getString("isopoistetut")
+    $poistetutLista
 #end
-##
-##--------- opiskelija hylätty -------------##
-##
-#else
-#set ($failcount = $failcount + 1)
-#if (!$inc_changes || ($inc_changes && !$student.isFrozen()))##-------- Näytetäänkö vain muutokset? ----------##
-#set ($failed = "$failed${c.nl()}${row}")
-#if ($failcount % 5 == 0)
-#set ($failed = "$failed${c.nl()}")
-#end
-#end
-#end
-#if ($student.isDefrost())##--------- POISTETTU? ------##
-#if ($inc_ssn)#set ($row = "${row}${c.getStr($student.SSN, $ssnl)} ")#end
-#set ($row = "${row}${student.Name}")
-#set ($removed = "${removed}${c.nl()}${row}")
-#end##--if ($student.Grade)
-#end##--foreach
-*#

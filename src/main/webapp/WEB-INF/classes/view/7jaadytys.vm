@@ -17,15 +17,19 @@
                 </ul>
             </div>
 
+            #if ($request.getParameter("suoritusPvm")) 
+                $KurssiKyselyt.asetaSuorituspvm($selected_course, $request.getParameter('suoritusPvm'))
+            #end
+
             #if (!$selected_course.getSuoritus_pvm())
                 #set ($alaraja = $jaadytys.asetaSuorituspvmlleAlaraja())
                 #set ($ylaraja = $jaadytys.asetaSuorituspvmlleYlaraja($selected_course))
-                <form method=post>
+                <form method=get>
                     <input type="date" name="suoritusPvm" min="$alaraja" max="$ylaraja">
                     <input type="submit" value="$bundle.getString("asetaSuorpvm")" class="btn">
                 </form>
             #else
-                <form method=post>
+                <form method=get>
                     #if (!$jaadytys.tarkastaSuorituspvm($selected_course))
                         <input type="hidden" name="virhe1">
                     #elseif (!$selected_course.getOmistaja())
@@ -36,10 +40,6 @@
                     #end
                     <input type="submit" value="$bundle.getString("jaadyta")" class="btn">
                 </form>
-            #end
-
-            #if ($request.getParameter("suoritusPvm")) 
-                $KurssiKyselyt.asetaSuorituspvm($selected_course, $params.get('suoritusPvm'))
             #end
 
             #if ($request.getParameter("virhe1"))

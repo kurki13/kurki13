@@ -7,8 +7,13 @@ package debug.toiminnot;
 import debug.Konfiguraatio;
 import debug.SessioApuri;
 import debug.model.Kurssi;
+import debug.model.SQLkyselyt.HenkiloKyselyt;
+import debug.model.SQLkyselyt.OsallistuminenKyselyt;
+import debug.model.SQLkyselyt.SQLProseduurit;
 import debug.util.LocalisationBundle;
+import java.io.File;
 import java.io.StringWriter;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Properties;
@@ -58,19 +63,11 @@ public class Jaadytys {
         return muotoilu.format(ylaraja.getTime());
     }
     
-    public static int prosenttiLasku(int jaettava, int jakaja) {
-        if (jakaja == 0) {
-            return 100;
-        }
-        float pyoristysKaannos1 = jaettava;
-        float pyoristysKaannos2 = jakaja;
-        return Math.round((jaettava/jakaja)*100);
-    }
-    
     public static void lahetaPostia(Kurssi kurssi, String kurssinTila, HttpServletRequest request) {
         HttpSession istunto = request.getSession();
         LocalisationBundle bundle = SessioApuri.bundle(request);
         String kurssinTiedot = kurssi.listaString();
+        kurssinTiedot = kurssinTiedot.substring(0, kurssinTiedot.length()-2);
         String etaKayttaja = request.getRemoteUser();
         String aihe = "KURKI: " + kurssinTiedot;
         if (kurssinTila.equals("J")) {
@@ -101,11 +98,16 @@ public class Jaadytys {
     
     public static String luoViesti(HttpServletRequest request, Kurssi kurssi, String kurssinTila) {
         VelocityContext konteksti = new VelocityContext();
-        konteksti.put("request", request);
+        konteksti.put("bundle", SessioApuri.bundle(request));
         konteksti.put("kurssi", kurssi);
         konteksti.put("kurssinTila", kurssinTila);
+        konteksti.put("OsallistuminenKyselyt", OsallistuminenKyselyt.class);
+        konteksti.put("SQLProseduurit", SQLProseduurit.class);
+        konteksti.put("jaadytys", Jaadytys.class);
+        konteksti.put("HenkiloKyselyt", HenkiloKyselyt.class);
+        konteksti.put("rivinvaihto", "\n");
         StringWriter kirjoittaja = new StringWriter();
-        //Velocity.init();
+        Velocity.init("/cs/fs/home/heikkiha/NetBeansProjects/kurki13/src/main/webapp/WEB-INF/velocity.properties");
         Velocity.mergeTemplate("sahkoposti.vm", "utf-8", konteksti, kirjoittaja);
         return kirjoittaja.toString();
     }
