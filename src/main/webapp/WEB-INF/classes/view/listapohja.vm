@@ -138,23 +138,21 @@ $bundle.getString("tilanne"): $date.get('d.M.yyyy HH:mm')<br>
 #if ($params.get("listtype") == 7)       
     $OsallistuminenSorter.sorttaaSukunimenMukaan($osallistumiset)
     <table class="table table-bordered table-condensed" style="width: auto">            
-    <th>$bundle.getString("isonimi")</th>  
-    <th>$bundle.getString("lh")</th>     
-    #if ($valittuKurssi.laskarikerta_lkm > 0)        
+    <th>$bundle.getString("isonimi")</th>       
+    #if ($valittuKurssi.laskarikerta_lkm > 0)   
+    <th>$bundle.getString("lh")</th>    
         #foreach ( $i in [1..$valittuKurssi.laskarikerta_lkm] )
            <th>$i</th>       
         #end
-    #end 
-
-      <th>$bundle.getString("ht")</th> 
-       #if ($valittuKurssi.harjoitustyo_lkm > 0)        
+    #end        
+       #if ($valittuKurssi.harjoitustyo_lkm > 0)       
+       <th>$bundle.getString("ht")</th>
         #foreach ( $i in [1..$valittuKurssi.harjoitustyo_lkm] )
            <th>$i</th>       
         #end
-    #end
-
-    <th>$bundle.getString("koe")</th> 
-       #if ($valittuKurssi.valikokeet_lkm > 0)        
+    #end    
+       #if ($valittuKurssi.valikokeet_lkm > 0)     
+        <th>$bundle.getString("koe")</th>    
         #foreach ( $i in [1..$valittuKurssi.valikokeet_lkm] )
            <th>$i</th>       
         #end
@@ -168,7 +166,7 @@ $bundle.getString("tilanne"): $date.get('d.M.yyyy HH:mm')<br>
        #if ($valittuKurssi.laskarikerta_lkm > 0)    
             #set ($yht = 0)
             #foreach ( $i in [1..$valittuKurssi.laskarikerta_lkm] )       
-             #if($osallistuminen.laskarit.osa($i)) #set ($yht = $yht + $osallistuminen.laskarit.osa($i).pisteet)#end     
+             #if($osallistuminen.laskarit.osa($i).getPisteet() > 0 && $osallistuminen.laskarit.osa($i).getPisteet() < 100) #set ($yht = $yht + $osallistuminen.laskarit.osa($i).pisteet)#end     
             #end
             <td align="center">$yht</td>
             #foreach ( $i in [1..$valittuKurssi.laskarikerta_lkm] )       
@@ -179,7 +177,7 @@ $bundle.getString("tilanne"): $date.get('d.M.yyyy HH:mm')<br>
         #if ($valittuKurssi.harjoitustyo_lkm > 0) 
             #set ($yht = 0)
             #foreach ( $i in [1..$valittuKurssi.harjoitustyo_lkm] )       
-             #if($osallistuminen.harjoitustyot.osa($i)) #set ($yht = $yht + $osallistuminen.harjoitustyot.osa($i).pisteet)#end     
+             #if($osallistuminen.harjoitustyot.osa($i).getPisteet() > 0 && $osallistuminen.harjoitustyot.osa($i).getPisteet() < 100) #set ($yht = $yht + $osallistuminen.harjoitustyot.osa($i).pisteet)#end     
             #end
             <td align="center">$yht</td>
             #foreach ( $i in [1..$valittuKurssi.harjoitustyo_lkm] )       
@@ -190,7 +188,7 @@ $bundle.getString("tilanne"): $date.get('d.M.yyyy HH:mm')<br>
         #if ($valittuKurssi.valikokeet_lkm > 0)
         #set ($yht = 0)
         #foreach ( $i in [1..$valittuKurssi.valikokeet_lkm] )       
-             #if($osallistuminen.kokeet.osa($i)) #set ($yht = $yht + $osallistuminen.kokeet.osa($i).pisteet)#end     
+             #if($osallistuminen.kokeet.osa($i).getPisteet() > 0 && $osallistuminen.kokeet.osa($i).getPisteet() < 99) #set ($yht = $yht + $osallistuminen.kokeet.osa($i).pisteet)#end     
             #end
         <td align="center">$yht</td>
         #foreach ( $i in [1..$valittuKurssi.valikokeet_lkm] )       
