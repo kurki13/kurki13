@@ -4,22 +4,23 @@
  */
 package debug.model.SQLkyselyt;
 
+import debug.SessioApuri;
 import debug.dbconnection.DatabaseConnection;
 import debug.model.Kurssi;
-import debug.model.column.Column;
 import debug.model.util.Filter;
 import debug.model.util.SQLoader;
+import debug.util.LocalisationBundle;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -189,8 +190,18 @@ public class KurssiKyselyt {
 		}
 	}
 
-	public static void asetaSuorituspvm(Kurssi kurssi, String suorituspvm) throws SQLException {
-		Connection tietokantayhteys = DatabaseConnection.makeConnection();
+        /**
+         * Metodi asettaa kurssille suorituspäivämäärän.
+         * 
+         * @param kurssi Kurssi, jolle suorituspäivämäärä asetetaan
+         * @param suorituspvm Asetettava suorituspäivämäärä
+         * @param request 
+         */
+	public static void asetaSuorituspvm(Kurssi kurssi, String suorituspvm, HttpServletRequest request) {
+            HttpSession istunto = request.getSession();
+            LocalisationBundle bundle = SessioApuri.bundle(request);
+            try {
+                Connection tietokantayhteys = DatabaseConnection.makeConnection();
 		PreparedStatement valmisteltuLause = tietokantayhteys.prepareStatement(asetaSuorituspvm);
 		valmisteltuLause.setDate(1, java.sql.Date.valueOf(suorituspvm));
 		valmisteltuLause.setString(2, kurssi.getKurssikoodi());
@@ -201,6 +212,11 @@ public class KurssiKyselyt {
 		valmisteltuLause.executeUpdate();
 		valmisteltuLause.close();
 		tietokantayhteys.close();
+            } catch (SQLException poikkeus) {
+                String virhe = bundle.getString("tkvirhe") + ": " + poikkeus.getLocalizedMessage();
+                SessioApuri.annaVirhe(istunto, virhe);
+            }
+		
 	}
 
 	public static void tallennaKantaan(Kurssi kurssi) throws SQLException {
