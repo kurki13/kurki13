@@ -2,11 +2,15 @@
   $OsallistuminenKyselyt.poistaKurssilta($poistettava, $valittuKurssi, $request)
 #end
 
-##Osallistumiset
-#set($osallistumiset = $OsallistuminenKyselyt.voimassaKurssilla($valittuKurssi))
+#foreach($grp in $request.getParameterValues("grp"))
+  $OsallistuminenKyselyt.vaihdaRyhmaa($grp, $valittuKurssi, $request)
+#end
 
 #if($osallistumiset.size() == 0)
   $bundle.getString("opeivastannut")
+
+##Osallistumiset
+#set($osallistumiset = $OsallistuminenKyselyt.voimassaKurssilla($valittuKurssi))
 
 #else
 <form name=poistaOpiskelijat action="" method=post >
@@ -39,7 +43,7 @@
       <center>
         <select name="grp" class="form-control form-inline" style="width:70px">
         #foreach($ryhma in $ryhmat)
-          <option #if($osallinen.ilmo_jnro==$ryhma)selected#end>$ryhma</option>
+          <option #if($osallinen.ilmo_jnro==$ryhma)selected#end value=${osallinen.hetu}_${ryhma}>$ryhma</option>
         #end
         </select>
       </center>

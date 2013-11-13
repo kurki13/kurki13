@@ -145,6 +145,17 @@ public class OsallistuminenKyselyt {
             SQLProseduurit.palautaOpiskelija(kurssi, ryhma, hetu, request);
         }
     }
+    
+    public static void vaihdaRyhmaa(String hetu_ryhma,
+            Kurssi kurssi, HttpServletRequest request) {
+        SimpleEntry<String, Integer> info = pilkoParametrit(hetu_ryhma);
+        String hetu = info.getKey();
+        int ryhma = info.getValue();
+        if (tarkistaParametrit(kurssi, ryhma, hetu, request)) {
+            //99 on vain testausta varten
+            SQLProseduurit.vaihdaOpiskelijanRyhmaa(99 ,kurssi, ryhma, hetu, request);
+        }
+    }
 
     public static void poistaKurssilta(String hetu_ryhma,
             Kurssi kurssi, HttpServletRequest request) {
@@ -164,6 +175,7 @@ public class OsallistuminenKyselyt {
      */
     public static SimpleEntry pilkoParametrit(String hetu_ryhma) {
         try {
+            
             String[] info = hetu_ryhma.split("_");
             String hetu = info[0];
             int ryhma = Integer.parseInt(info[1]);
