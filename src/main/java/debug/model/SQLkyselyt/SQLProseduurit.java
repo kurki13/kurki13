@@ -94,7 +94,7 @@ public class SQLProseduurit {
         if (tulos.equals("OK")) {
             String viesti = bundle.getString("jaadytysInfo") + ". " + bundle.getString("jaadytysInfo3") + " " 
                     + bundle.getString("jaadytysInfo4");
-            //Jaadytys.lahetaPostia(kurssi, kurssinTila, request);
+            Jaadytys.lahetaPostia(kurssi, kurssinTila, request);
             SessioApuri.annaViesti(istunto, viesti);
         } else {
             String virhe = bundle.getString("jaadytysEpaonnistui") + ". " + bundle.getString("jaadytysEpaonnistuiInfo") 

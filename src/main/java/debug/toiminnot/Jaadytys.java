@@ -11,9 +11,7 @@ import debug.model.SQLkyselyt.HenkiloKyselyt;
 import debug.model.SQLkyselyt.OsallistuminenKyselyt;
 import debug.model.SQLkyselyt.SQLProseduurit;
 import debug.util.LocalisationBundle;
-import java.io.File;
 import java.io.StringWriter;
-import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Properties;
@@ -28,8 +26,18 @@ import javax.servlet.http.HttpSession;
 import org.apache.velocity.*;
 import org.apache.velocity.app.*;
 
+/**
+ * Luokka sisältää apumetodeja jäädytys-toiminnon toteuttamiseksi.
+ */
 public class Jaadytys {
     
+    /**
+     * Metodi tarkastaa, onko parametrina annetun kurssin suorituspäivämäärä ennen metodin ajamisajankohtaa.
+     * Jos on, niin metodi palauttaa true.
+     * 
+     * @param kurssi Kurssi, jonka suoritupäivämäärälle vertailu suoritetaan
+     * @return Onko suorituspäivämäärä ennen metodin ajamisajankohtaa?
+     */
     public static boolean tarkastaSuorituspvm(Kurssi kurssi) {
         Calendar suoritusPvm = Calendar.getInstance();
         suoritusPvm.setTime(kurssi.getSuoritus_pvm());
@@ -39,13 +47,12 @@ public class Jaadytys {
         return true;
     }
     
-    public static String asetaSuorituspvmlleAlaraja() {
-        Calendar alaraja = Calendar.getInstance();
-        alaraja.add(Calendar.MONTH, -6);
-        SimpleDateFormat muotoilu = new SimpleDateFormat("yyyy-MM-dd");
-        return muotoilu.format(alaraja.getTime());
-    }
-    
+    /**
+     * Metodi asettaa kurssin suorituspäivämäärän asetukselle ylärajan. 
+     * 
+     * @param kurssi Kurssi, jolle yläraja asetetaan
+     * @return Asetettu yläraja sopivassa muodossa
+     */
     public static String asetaSuorituspvmlleYlaraja(Kurssi kurssi) {
         Calendar paattymisPaiva = Calendar.getInstance();
         paattymisPaiva.setTime(kurssi.getPaattymis_pvm());
@@ -59,29 +66,24 @@ public class Jaadytys {
         }
         ylaraja.add(Calendar.MONTH, 2);
         
-        SimpleDateFormat muotoilu = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat muotoilu = new SimpleDateFormat("MM/dd/yyyy");
         return muotoilu.format(ylaraja.getTime());
     }
     
+    /**
+     * Metodi lähettää jäädytyksestä tiedottavan sähköpostin asianmukaisille tahoille.
+     * 
+     * @param kurssi Jäädytettävä kurssi
+     * @param kurssinTila Jäädytettävän kurssin tila ennen jäädytystä
+     * @param request 
+     */
     public static void lahetaPostia(Kurssi kurssi, String kurssinTila, HttpServletRequest request) {
         HttpSession istunto = request.getSession();
         LocalisationBundle bundle = SessioApuri.bundle(request);
-        String kurssinTiedot = kurssi.listaString();
-        kurssinTiedot = kurssinTiedot.substring(0, kurssinTiedot.length()-2);
-        String etaKayttaja = request.getRemoteUser();
-        String aihe = "KURKI: " + kurssinTiedot;
-        if (kurssinTila.equals("J")) {
-            aihe += " korjaukset";
-        } else {
-            aihe += " tulokset";
-        }
-        String viestinSisalto = luoViesti(request, kurssi, kurssinTila);
-        String kayttajanOsoite = etaKayttaja + "@cs.helsinki.fi";
-        
-        Properties ominaisuudet = new Properties();
-        ominaisuudet.put("mail.smtp.host", "localhost");
-        javax.mail.Session postiIstunto = javax.mail.Session.getInstance(ominaisuudet);
-        MimeMessage viesti = new MimeMessage(postiIstunto);
+        String aihe = asetaAihe(kurssi, kurssinTila);
+        String viestinSisalto = luoViestinSisalto(request, kurssi, kurssinTila);
+        String kayttajanOsoite = request.getRemoteUser() + "@cs.helsinki.fi";
+        MimeMessage viesti = luoViesti();
         try {
             viesti.setFrom(new InternetAddress(Konfiguraatio.getProperty("webmaster")));
             viesti.addRecipient(Message.RecipientType.TO, new InternetAddress(Konfiguraatio.getProperty("oodi")));
@@ -96,7 +98,47 @@ public class Jaadytys {
         }
     }
     
-    public static String luoViesti(HttpServletRequest request, Kurssi kurssi, String kurssinTila) {
+    /**
+     * Metodi luo tyhjän viesti-olion.
+     * 
+     * @return Tyhjä viesti-olio
+     */
+    private static MimeMessage luoViesti() {
+        Properties ominaisuudet = new Properties();
+        ominaisuudet.put("mail.smtp.host", "localhost");
+        javax.mail.Session postiIstunto = javax.mail.Session.getInstance(ominaisuudet);
+        MimeMessage viesti = new MimeMessage(postiIstunto);
+        return viesti;
+    }
+    
+    /**
+     * Metodi luo sähköpostiviestin aiheen.
+     * 
+     * @param kurssi Jäädytettävä kurssi
+     * @param kurssinTila Jäädytettävän kurssin tila ennen jäädytystä
+     * @return Sähköpostiviestin aihe
+     */
+    private static String asetaAihe(Kurssi kurssi, String kurssinTila) {
+        String kurssinTiedot = kurssi.listaString();
+        kurssinTiedot = kurssinTiedot.substring(0, kurssinTiedot.length()-2);
+        String aihe = "KURKI: " + kurssinTiedot;
+        if (kurssinTila.equals("J")) {
+            aihe += " korjaukset";
+        } else {
+            aihe += " tulokset";
+        }
+        return aihe;
+    }
+    
+    /**
+     * Metodi luo sähköpostiviestin tekstiosan sisällön.
+     * 
+     * @param request
+     * @param kurssi Jäädytettävä kurssi
+     * @param kurssinTila Jäädytettävän kurssin tila ennen jäädytystä
+     * @return Sähköpostiviestin tekstiosa
+     */
+    private static String luoViestinSisalto(HttpServletRequest request, Kurssi kurssi, String kurssinTila) {
         VelocityContext konteksti = new VelocityContext();
         konteksti.put("bundle", SessioApuri.bundle(request));
         konteksti.put("kurssi", kurssi);
@@ -107,7 +149,8 @@ public class Jaadytys {
         konteksti.put("HenkiloKyselyt", HenkiloKyselyt.class);
         konteksti.put("rivinvaihto", "\n");
         StringWriter kirjoittaja = new StringWriter();
-        Velocity.init("/cs/fs/home/heikkiha/NetBeansProjects/kurki13/src/main/webapp/WEB-INF/velocity.properties");
+        String projektinJuuri = System.getProperty("user.dir") + "/../..";
+        Velocity.init(projektinJuuri + "/src/main/webapp/WEB-INF/velocity.properties");
         Velocity.mergeTemplate("sahkoposti.vm", "utf-8", konteksti, kirjoittaja);
         return kirjoittaja.toString();
     }

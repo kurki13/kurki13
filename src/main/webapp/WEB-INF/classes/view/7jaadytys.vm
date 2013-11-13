@@ -17,28 +17,37 @@
                 </ul>
             </div>
 
-            #if ($request.getParameter("suoritusPvm")) 
-                $KurssiKyselyt.asetaSuorituspvm($selected_course, $request.getParameter('suoritusPvm'))
+            #if ($request.getParameter("suoritusPvm"))
+                $request.getParameter("suoritusPvm")
+                ##$KurssiKyselyt.asetaSuorituspvm($selected_course, $request.getParameter('suoritusPvm'))
             #end
 
             #if (!$selected_course.getSuoritus_pvm())
-                #set ($alaraja = $jaadytys.asetaSuorituspvmlleAlaraja())
                 #set ($ylaraja = $jaadytys.asetaSuorituspvmlleYlaraja($selected_course))
+                <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css"/>
+                <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+                <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+                <link rel="stylesheet" href="/resources/demos/style.css"/>
+                <script>
+                    $(function() {
+                        $('#datepicker').datepicker({minDate: "-6M", maxDate: "$ylaraja"});
+                    });
+                </script>
                 <form method=get>
-                    <input type="date" name="suoritusPvm" min="$alaraja" max="$ylaraja">
-                    <input type="submit" value="$bundle.getString("asetaSuorpvm")" class="btn">
+                    $bundle.getString("valitseSuorpvm"):<input type="text" name="suoritusPvm" id="datepicker"/>
+                    <input type="submit" value="$bundle.getString("laheta")" class="btn"/>
                 </form>
             #else
                 <form method=get>
                     #if (!$jaadytys.tarkastaSuorituspvm($selected_course))
-                        <input type="hidden" name="virhe1">
+                        <input type="hidden" name="virhe1"/>
                     #elseif (!$selected_course.getOmistaja())
-                        <input type="hidden" name="virhe2">
+                        <input type="hidden" name="virhe2"/>
                     #else
                         #set ($kurssinTila = $selected_course.getTila())
-                        <input type="hidden" name="jaadyta">
+                        <input type="hidden" name="jaadyta"/>
                     #end
-                    <input type="submit" value="$bundle.getString("jaadyta")" class="btn">
+                    <input type="submit" value="$bundle.getString("jaadyta")" class="btn"/>
                 </form>
             #end
 
