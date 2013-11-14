@@ -1,5 +1,5 @@
 #parse("hello.vm")
-<h3>$bundle.getString("6resultlist")</h3>
+<h1>$bundle.getString("6resultlist")</h1>
 
 #if($session.getAttribute('selected_course_id'))
     #set ($valittuKurssi = $KurssiKyselyt.kurssiIDlla($session.getAttribute('selected_course_id')))

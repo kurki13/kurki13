@@ -1,6 +1,6 @@
 #parse("hello.vm")
 
-<h3>$bundle.getString("3coursebasics")</h3>
+<h1>$bundle.getString("3coursebasics")</h1>
 
 #if ($valittuKurssi.getTila() == "J")
     #set ($jaassa = true)
@@ -97,4 +97,4 @@ $KurssiKyselyt.tallennaKantaan($valittuKurssi)
     <input type=submit class="btn" value=$bundle.getString("tmuutokset") onClick="">
 </form>
 
-#parse("3OsasuoritustenRajat.vm")
+#parse("osasuoritustenRajat.vm")

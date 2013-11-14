@@ -18,7 +18,7 @@
     #set ($v = $tyypit.remove("koe"))
 #end
 
-<h3>$bundle.getString("1entry")</h3>
+<h1>$bundle.getString("1entry")</h1>
 
 <form name="suoritteidenKirjaus" action="" method=get class="form-inline">
 
@@ -39,9 +39,7 @@
     <select name="kerta" onClick="this.options[this.options.selectedIndex].value" class="form-control form-inline" style="width:100px">
     </select>
 
-##vaihdetaan kerta-valikkoa lennosta, kun tyyppiä on vaihdettu
-##tätä voisi vielä kehittää eteenpäin niin, että "kerta"-select valikko ei ole näkyvissä
-##kun arvosanat, opintopisteet tai suorituskieli-valinta on valittu
+##vaihdetaan kerta-valikkoa lennosta, kun osasuoritustyyppiä on vaihdettu
 <script type="text/javascript">
     var kerratlista=document.suoritteidenKirjaus.kerta
 

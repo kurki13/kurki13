@@ -33,6 +33,11 @@ $SessioApuri.auta($request)
 <a href="?locale=fi"><img src="images/liput/fi.png"></a>
 <a href="logout.vm">Logout</a>
 <div>
+
+##onsubmit="alert('submit');change(serviceId.options[selectedVal.selectedIndex].value)"
+
+##<form onsubmit="change(document.getElementById('service-field').value)" class="form-inline">
+
 <form action="" method=get class="form-inline">
     <select name="courseId" onChange="this.form.submit()" class="form-control form-inline" style="width:700px">
     #if (!$session.getAttribute('selected_course_id'))
@@ -54,23 +59,35 @@ $SessioApuri.auta($request)
         #end
     #end
     </select>
+
+##Lisätään key:ksi sivun osoite
+    #set ($services = {"1suoritteidenKirjaus.vm" : $bundle.getString("1entry") ,
+                     "2osallistujatiedot.vm" : $bundle.getString("2participants") ,
+                     "3kurssinPerustiedot.vm" : $bundle.getString("3coursebasics") ,
+                     "4listat.vm" : $bundle.getString("4checklist") ,
+                     "5arvostelu.vm" : $bundle.getString("5grades") ,
+                     "6tuloslistat.vm" : $bundle.getString("6resultlist") ,
+                     "7jaadytys.vm" : $bundle.getString("7freezing")})
+
+     #if ($session.getAttribute('selected_course'))
+         <select name="serviceId" id="service-field" onChange="window.location.href=this.value;" class="form-control form-inline" style="width:300px">
+             <option value="" selected>-- $bundle.getString("valitsetoiminto") --</option>
+         #foreach ($s in $services.entrySet())
+             <option value=$s.key>$s.value</option>
+         #end
+         </select>
+    #end
+
+##<script type="text/javascript">
+##    function change(selectedVal){ 
+##        window.location.href=selectedVal.options[selectedVal.selectedIndex].value;
+##    }
+##</script>
+
 </form>
 
-##Lisätään key:ksi sivun osoite, sivut joilla on vain numero key:nä ei vie vielä mihinkään!
-#set ($services = {"1suoritteidenKirjaus.vm" : "Suoritteiden kirjaus" ,
-		 "2osallistujatiedot.vm" : "Osallistujatietojen muutokset" ,
-		 "3kurssinPerustiedot.vm" : "Kurssin perustietojen muutokset" ,
-		 "4listat.vm" : "Listat" , "5arvostelu.vm" : "Arvostelu" ,
-		 "6tuloslistat.vm" : "Tuloslistat" ,
-		 "7jaadytys.vm" : "Kurssin jäädytys"})
-
-<br>
-<div>
-#foreach ($s in $services.entrySet())
-	<a href=$s.key><input type=button class="btn" value="$s.value"></a>
-#end
-</div>
 <br><br>
+
 <div>
 Apulinkit testaukseen:
 <input type=button class="btn" value=hello onClick="parent.location='hello.vm'">
@@ -82,4 +99,3 @@ Apulinkit testaukseen:
 </div>
 <br>
 <div id=ilmoitus> </div>
-

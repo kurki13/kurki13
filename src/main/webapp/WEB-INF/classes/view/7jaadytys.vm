@@ -1,6 +1,6 @@
 #parse("hello.vm")
     <html>
-        <h3>$bundle.getString("7freezing")</h3>
+        <h1>$bundle.getString("7freezing")</h1>
         <body>
             <div class="instr">
                 <ul>

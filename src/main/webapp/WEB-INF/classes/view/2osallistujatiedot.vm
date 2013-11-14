@@ -22,7 +22,7 @@
     "osallistujat_palaut.vm" : $bundle.getString("haepalop")})
 
 
-<h3>$bundle.getString("2participants")</h3>
+<h1>$bundle.getString("2participants")</h1>
 
 <form name="osallistujatiedot" action="" method=get class="form-inline">
   
