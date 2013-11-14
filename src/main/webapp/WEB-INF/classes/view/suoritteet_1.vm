@@ -2,19 +2,18 @@
 ##javascriptit eri tiedostoon ja
 ##<head>:iin <script language='JavaScript' type='text/javascript' src='tiedostonimi.js'></script>
 ##tarkista onko osallistuminen voimassa 'e'=ei?? 'k'=kyllä p='poistettu' $os.tyyppi
+#parse ('1suoritteidenKirjaus.vm')
 
 #set($kurssinOsallistumiset = $OsallistuminenKyselyt.osallistumisetKurssilla($valittuKurssi))
 ##filterit
 #set ($tyyppi = $params.get('type'))
-#set ($kerta = $params.get('kerta'))
+#if ($kerta) #set ($kerta = $params.get('kerta'))) #else #set ($kerta = "") #end
 #set ($ryhma = $params.get('ryhma'))
 #set ($opiskelijat = $params.get('opiskelijat'))
 #set ($filteroidytOsallistumiset = [])
 
-<h2><b>$tyypit.get($params.get('type'))</h2>
-<h3>#if($tyyppi != "arvosana" && $tyyppi != "op" && $tyyppi != "kieli") $bundle.getString("kerta"): $kerta, #end
-$bundle.getString("ryhma"): #if ($ryhma != '') $ryhma #else $bundle.getString("kaikki") #end,
-$bundle.getString("opiskelijat"): #if ($opiskelijat != '') $opiskelijat #else $bundle.getString("kaikki") #end</b></h3>
+##kerta näkyy refreshin jälkeen?
+<h3><b>$tyypit.get($params.get('type')), $bundle.getString("kerta"): $kerta, $bundle.getString("ryhma"): #if ($ryhma != '') $ryhma #else $bundle.getString("kaikki") #end</b></h3>
 
 ##filteröidään opiskelijat annettujen filteröintiparametrien mukaan
 #foreach ($o in $kurssinOsallistumiset)
@@ -73,6 +72,7 @@ $bundle.getString("opiskelijat"): #if ($opiskelijat != '') $opiskelijat #else $b
                 $Valitsin.lisaaArvot("", "-", "+")
             #else
                 #set ($max = 5)
+                ##arvosteluasteikko tarkista onko hyväksytty/hylätty
                 $Valitsin.lisaaArvot("", "+")
                 $Valitsin.lisaaVali(0,$max)
             #end
@@ -90,12 +90,6 @@ $bundle.getString("opiskelijat"): #if ($opiskelijat != '') $opiskelijat #else $b
         ##lisätään radiobuttonien sallitut arvot listaan
         #set ($arvot = $Valitsin.sallitut)
 
-        ##lähetetään filteiröidytosallistumiset-sijaan lista opiskelijoista joiden suoritteita on muutettu!
-        
-        ##suoritusten tarkistus, onko muuttunut? kesken vielä!
-        ##$Suoritukset.muutosTarkistus($request, $Valitsin, $filteroidytOsallistumiset)
-        ##$Suoritukset.getMuutetut()
-        
         $Suoritukset.kasitteleLomake($request, $Valitsin, $filteroidytOsallistumiset)
 
         ##käydään läpi kaikki kurssin osallistumiset ja tulostetaan pistetiedot
@@ -105,15 +99,15 @@ $bundle.getString("opiskelijat"): #if ($opiskelijat != '') $opiskelijat #else $b
                 <td>$os.ilmo_jnro</td>
 
             #if ($tyyppi == 'laskarit')  
-                #if($os.laskarit.osa($kerta)) #set ($osasuoritus = $os.laskarit.osa($kerta)) #else #set ($osasuoritus = '') #end
+                #set ($osasuoritus = $os.laskarit.osa($kerta))
             #end
 
             #if ($tyyppi == 'ht')
-                #if($os.harjoitustyot.osa($kerta)) #set ($osasuoritus = $os.harjoitustyot.osa($kerta)) #else #set ($osasuoritus = '') #end
+                #set ($osasuoritus = $os.harjoitustyot.osa($kerta))
             #end
 
             #if ($tyyppi == 'koe')
-                #if($os.kokeet.osa($kerta)) #set ($osasuoritus = $os.kokeet.osa($kerta)) #else #set ($osasuoritus = '') #end
+                #set ($osasuoritus = $os.kokeet.osa($kerta))
             #end
 
             #if ($tyyppi == 'arvosana')
@@ -121,7 +115,7 @@ $bundle.getString("opiskelijat"): #if ($opiskelijat != '') $opiskelijat #else $b
             #end
 
             #if ($tyyppi == 'op')
-                #if($os.laajuus_op) #set ($osasuoritus = $os.laajuus_op) #else #set ($osasuoritus = '') #end
+                #set ($osasuoritus = $os.laajuus_op)
             #end
 
             #if ($tyyppi == 'kieli')
@@ -135,7 +129,7 @@ $bundle.getString("opiskelijat"): #if ($opiskelijat != '') $opiskelijat #else $b
                         this.value != 'se' && this.value != 'en' && this.value != 'fi'))
                         {alert(this.value + ' ei ole hyväksytty arvo.');
                         this.value='${osasuoritus}'; this.style.color='black'; setChecked('id${os.hetu}', this.value)}"
-                        onChange="if(this.value != '$osasuoritus') { this.style.color='red';}
+                        onChange="if(this.value != '$osasuoritus') { this.style.color='red'}
                         else {this.style.color='black'};
                         setChecked('id${os.hetu}', this.value)"></td>
 
@@ -158,9 +152,9 @@ $bundle.getString("opiskelijat"): #if ($opiskelijat != '') $opiskelijat #else $b
                 </td>
 
             </tr>
+        #end
     </table>
 
-##javascriptit
 <script type="text/javascript">
     function setChecked(hetu, thisvalue){
         var id = hetu+'_'+thisvalue
@@ -170,8 +164,6 @@ $bundle.getString("opiskelijat"): #if ($opiskelijat != '') $opiskelijat #else $b
 
 <input type=hidden value=pressed name=button>
 <input type=submit class="btn" value=$bundle.getString("tmuutokset") onClick="">
-
-$params.get('button')
 
 </form>
 </div>
