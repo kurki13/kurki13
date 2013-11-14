@@ -67,10 +67,14 @@
         #end
 
         #if ($tyyppi == 'arvosana')
-            #set ($max = 5)
-            ##arvosteluasteikko tarkista onko hyväksytty/hylätty
-            $Valitsin.lisaaArvot("-", "+")
-            $Valitsin.lisaaVali(0,$max)
+            #if ($valittuKurssi.arvostellaanko == "E")
+                $Valitsin.lisaaArvot("", "-", "+")
+            #else
+                #set ($max = 5)
+                ##arvosteluasteikko tarkista onko hyväksytty/hylätty
+                $Valitsin.lisaaArvot("", "+")
+                $Valitsin.lisaaVali(0,$max)
+            #end
         #end
 
         #if ($tyyppi == 'op')
@@ -106,8 +110,7 @@
             #end
 
             #if ($tyyppi == 'arvosana')
-                #set ($osasuoritus = $os.arvosana)
-                ##arvosteluasteikko tarkista onko hyväksytty/hylätty
+                #if ($os.arvosana) #set ($osasuoritus = $os.arvosana) #else #set ($osasuoritus = '') #end
             #end
 
             #if ($tyyppi == 'op')
@@ -118,23 +121,16 @@
                 #if ($os.kielikoodi) #set ($osasuoritus = $os.kielikoodi) #else #set ($osasuoritus = '') #end
             #end
 
-            ##$osasuoritus
-
-                ##lisää undo jos value liian iso tai pieni!!
+                ##textfield jossa osasuorituksen tms arvo
                 <td><input value="$osasuoritus" type="text" class="form-control input-sm"
                         style="width:50px" maxlength="3" name="pisteet${os.hetu}"
-                        onblur="if(this.value>$max || this.value<0) {alert('luku tulee olla väliltä 0-${max}') }"
+                        onblur="if(this.value>$max || this.value<0 || (isNaN(this.value) && this.value != '+' && this.value != '-' &&
+                        this.value != 'se' && this.value != 'en' && this.value != 'fi'))
+                        {alert(this.value + ' ei ole hyväksytty arvo.');
+                        this.value='${osasuoritus}'; this.style.color='black'; setChecked('id${os.hetu}', this.value)}"
                         onChange="if(this.value != '$osasuoritus') { this.style.color='red'}
                         else {this.style.color='black'};
                         setChecked('id${os.hetu}', this.value)"></td>
-
-                <script type="text/javascript">
-
-                function setChecked(hetu, thisvalue){
-                    var id = hetu+'_'+thisvalue
-                    document.getElementById(id).checked = true
-                }
-                </script>
 
                 <td>
                 
@@ -157,6 +153,14 @@
             </tr>
         #end
     </table>
+
+<script type="text/javascript">
+    function setChecked(hetu, thisvalue){
+        var id = hetu+'_'+thisvalue
+        document.getElementById(id).checked = true
+    }
+</script>
+
 <input type=hidden value=pressed name=button>
 <input type=submit class="btn" value=$bundle.getString("tmuutokset") onClick="">
 
