@@ -21,11 +21,28 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 /**
- * K
  *
  * @author mkctammi
  */
 public class OsallistuminenKyselyt {
+
+    private static class Osallistumistiedot {
+
+        String hetu;
+        int ryhma;
+        int uusiRyhma;
+
+        public Osallistumistiedot(String hetu, int ryhma) {
+            this.hetu = hetu;
+            this.ryhma = ryhma;
+        }
+
+        public Osallistumistiedot(String hetu, int ryhma, int uusiRyhma) {
+            this.hetu = hetu;
+            this.ryhma = ryhma;
+            this.uusiRyhma = uusiRyhma;
+        }
+    }
 
     public static final String KURSSINOSALLISTUMISET
             = "SELECT os.*, op.etunimi, op.sukunimi, op.sahkopostiosoite \n"
@@ -71,7 +88,7 @@ public class OsallistuminenKyselyt {
         conn.close();
         return osallistumiset;
     }
-    
+
     public static List<Osallistuminen> voimassaKurssilla(Kurssi kurssi) throws SQLException {
         String query = KURSSINOSALLISTUMISET
                 + " AND os.voimassa = 'K' \n"
@@ -87,7 +104,7 @@ public class OsallistuminenKyselyt {
     }
 
     public static List<Osallistuminen> poistetutKurssilta(Kurssi kurssi) throws SQLException {
-        String query = KURSSINOSALLISTUMISET 
+        String query = KURSSINOSALLISTUMISET
                 + "AND os.voimassa = 'P' \n"
                 + "ORDER BY os.hetu";
         Connection conn = DatabaseConnection.makeConnection();
@@ -126,80 +143,73 @@ public class OsallistuminenKyselyt {
         SQLoader.tallennaKantaan(os);
     }
 
-    public static void luoUusiOsallistuminen(String hetu_ryhma,
+    public static void luoUusiOsallistuminen(String parametrit,
             Kurssi kurssi, HttpServletRequest request) {
-        SimpleEntry<String, Integer> info = pilkoParametrit(hetu_ryhma);
-        String hetu = info.getKey();
-        int ryhma = info.getValue();
-        if (tarkistaParametrit(kurssi, ryhma, hetu, request)) {
-            SQLProseduurit.lisaaOpiskelija(kurssi, ryhma, hetu, request);
+        Osallistumistiedot tiedot = pilkoParametrit(parametrit);
+        if (tarkistaParametrit(kurssi, tiedot, request)) {
+            SQLProseduurit.lisaaOpiskelija(kurssi, tiedot.ryhma, tiedot.hetu, request);
         }
     }
 
-    public static void palautaKurssille(String hetu_ryhma,
+    public static void palautaKurssille(String parametrit,
             Kurssi kurssi, HttpServletRequest request) {
-        SimpleEntry<String, Integer> info = pilkoParametrit(hetu_ryhma);
-        String hetu = info.getKey();
-        int ryhma = info.getValue();
-        if (tarkistaParametrit(kurssi, ryhma, hetu, request)) {
-            SQLProseduurit.palautaOpiskelija(kurssi, ryhma, hetu, request);
-        }
-    }
-    
-    public static void vaihdaRyhmaa(String hetu_ryhma,
-            Kurssi kurssi, HttpServletRequest request) {
-        SimpleEntry<String, Integer> info = pilkoParametrit(hetu_ryhma);
-        String hetu = info.getKey();
-        int ryhma = info.getValue();
-        if (tarkistaParametrit(kurssi, ryhma, hetu, request)) {
-            //99 on vain testausta varten
-            SQLProseduurit.vaihdaOpiskelijanRyhmaa(99 ,kurssi, ryhma, hetu, request);
+        Osallistumistiedot tiedot = pilkoParametrit(parametrit);
+        if (tarkistaParametrit(kurssi, tiedot, request)) {
+            SQLProseduurit.palautaOpiskelija(kurssi, tiedot.ryhma, tiedot.hetu, request);
         }
     }
 
-    public static void poistaKurssilta(String hetu_ryhma,
+    public static void vaihdaRyhmaa(String parametrit,
             Kurssi kurssi, HttpServletRequest request) {
-        SimpleEntry<String, Integer> info = pilkoParametrit(hetu_ryhma);
-        String hetu = info.getKey();
-        int ryhma = info.getValue();
-        if (tarkistaParametrit(kurssi, ryhma, hetu, request)) {
-            SQLProseduurit.poistaOpiskelija(kurssi, ryhma, hetu, request);
+        Osallistumistiedot tiedot = pilkoParametrit(parametrit);
+        if (tarkistaParametrit(kurssi, tiedot, request)) {
+            SQLProseduurit.vaihdaOpiskelijanRyhmaa(tiedot.uusiRyhma, kurssi,
+                    tiedot.ryhma, tiedot.hetu, request);
         }
     }
 
-    /**
-     * Pilkkoo hetu_ryhmä String parametrin Stringiksi ja intiksi
-     *
-     * @param hetu_ryhma String 014020003_99
-     * @return yksi alkioinene mappi joka sisältää hetun ja ryhmän
+    public static void poistaKurssilta(String parametrit,
+            Kurssi kurssi, HttpServletRequest request) {
+        Osallistumistiedot tiedot = pilkoParametrit(parametrit);
+        if (tarkistaParametrit(kurssi, tiedot, request)) {
+            SQLProseduurit.poistaOpiskelija(kurssi, tiedot.ryhma, tiedot.hetu, request);
+        }
+    }
+
+    /*
+     * parametrit tulevat muodosssa hetu_ryhma tai hetu_ryhma_vanharyhma
      */
-    public static SimpleEntry pilkoParametrit(String hetu_ryhma) {
+    private static Osallistumistiedot pilkoParametrit(String parametrit) {
         try {
-            
-            String[] info = hetu_ryhma.split("_");
+            String[] info = parametrit.split("_");
             String hetu = info[0];
             int ryhma = Integer.parseInt(info[1]);
-            return new SimpleEntry<String, Integer>(hetu, ryhma);
+            if (info.length == 3) {
+                int uusi = Integer.parseInt(info[2]);
+                return new Osallistumistiedot(hetu, ryhma, uusi);
+            }
+            return new Osallistumistiedot(hetu, ryhma);
         } catch (NumberFormatException e) {
         } catch (ArrayIndexOutOfBoundsException e) {
         }
         return null;
     }
 
-    public static boolean tarkistaParametrit(Kurssi kurssi, int ryhma,
-            String hetu, HttpServletRequest request) {
+    private static boolean tarkistaParametrit(Kurssi kurssi, Osallistumistiedot tiedot,
+            HttpServletRequest request) {
 
         HttpSession session = request.getSession();
         if (kurssi == null) {
             SessioApuri.annaVirhe(session, "Kurssia ei ole valittu");
             return false;
         }
-        if (!Muotoilija.hetuTarkastus(hetu)) {
+        if (!Muotoilija.hetuTarkastus(tiedot.hetu)) {
             SessioApuri.annaVirhe(session, "Anna kelvollinen opiskelijanumero");
             return false;
         }
-        if (ryhma > 99 && ryhma < 1) {
-            SessioApuri.annaVirhe(session, "Anna kunnollinen ryhmä");
+        if ((tiedot.ryhma > 99 && tiedot.ryhma < 1)
+                || (tiedot.uusiRyhma != 0 && tiedot.uusiRyhma > 99 && tiedot.ryhma < 1)) {
+            SessioApuri.annaVirhe(session, "Ryhmän valinnassa on vikaa");
             return false;
         }
         return true;

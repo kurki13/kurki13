@@ -6,11 +6,11 @@
   $OsallistuminenKyselyt.vaihdaRyhmaa($grp, $valittuKurssi, $request)
 #end
 
-#if($osallistumiset.size() == 0)
-  $bundle.getString("opeivastannut")
-
 ##Osallistumiset
 #set($osallistumiset = $OsallistuminenKyselyt.voimassaKurssilla($valittuKurssi))
+
+#if($osallistumiset.size() == 0)
+  $bundle.getString("opeivastannut")
 
 #else
 <form name=poistaOpiskelijat action="" method=post >
@@ -42,8 +42,12 @@
     <td>
       <center>
         <select name="grp" class="form-control form-inline" style="width:70px">
+        
         #foreach($ryhma in $ryhmat)
-          <option #if($osallinen.ilmo_jnro==$ryhma)selected#end value=${osallinen.hetu}_${ryhma}>$ryhma</option>
+          <option 
+            #if($osallinen.ilmo_jnro==$ryhma) value="" disabled selected 
+            #else value="${osallinen.hetu}_${osallinen.ryhma_nro}_${ryhma}" #end>
+            $ryhma</option>
         #end
         </select>
       </center>
