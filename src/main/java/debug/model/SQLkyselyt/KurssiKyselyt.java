@@ -9,6 +9,7 @@ import debug.dbconnection.DatabaseConnection;
 import debug.model.Kurssi;
 import debug.model.util.Filter;
 import debug.model.util.SQLoader;
+import debug.toiminnot.Jaadytys;
 import debug.util.LocalisationBundle;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -194,16 +195,18 @@ public class KurssiKyselyt {
          * Metodi asettaa kurssille suorituspäivämäärän.
          * 
          * @param kurssi Kurssi, jolle suorituspäivämäärä asetetaan
-         * @param suorituspvm Asetettava suorituspäivämäärä
+         * @param suoritusPvm Asetettava suorituspäivämäärä
          * @param request 
          */
-	public static void asetaSuorituspvm(Kurssi kurssi, String suorituspvm, HttpServletRequest request) {
+	public static void asetaSuorituspvm(Kurssi kurssi, String suoritusPvm, HttpServletRequest request) {
+            Jaadytys.tarkastaSuorituspvmnMuoto(suoritusPvm, request);
+            suoritusPvm = Jaadytys.vaihdaPvmnMuotoa(suoritusPvm);
             HttpSession istunto = request.getSession();
             LocalisationBundle bundle = SessioApuri.bundle(request);
             try {
                 Connection tietokantayhteys = DatabaseConnection.makeConnection();
 		PreparedStatement valmisteltuLause = tietokantayhteys.prepareStatement(asetaSuorituspvm);
-		valmisteltuLause.setDate(1, java.sql.Date.valueOf(suorituspvm));
+		valmisteltuLause.setDate(1, java.sql.Date.valueOf(suoritusPvm));
 		valmisteltuLause.setString(2, kurssi.getKurssikoodi());
 		valmisteltuLause.setString(3, kurssi.getLukukausi());
 		valmisteltuLause.setInt(4, kurssi.getLukuvuosi());
@@ -215,8 +218,7 @@ public class KurssiKyselyt {
             } catch (SQLException poikkeus) {
                 String virhe = bundle.getString("tkvirhe") + ": " + poikkeus.getLocalizedMessage();
                 SessioApuri.annaVirhe(istunto, virhe);
-            }
-		
+            }	
 	}
 
 	public static void tallennaKantaan(Kurssi kurssi) throws SQLException {
