@@ -1,4 +1,16 @@
+#if ($request.getParameter("jaadyta"))
+    #$SQLProseduurit.suoritaJaadytys($session.getAttribute("selected_course"), $kurssinTila, $request)
+    $session.setAttribute("user_courses", null)
+#end
+
+#if ($request.getParameter("suoritusPvm"))
+    $KurssiKyselyt.asetaSuorituspvm($session.getAttribute("selected_course"), "$request.getParameter('suoritusPvm')", $request)
+    $session.setAttribute("user_courses", null)
+#end
+
 #parse("hello.vm")
+$session.setAttribute("selected_course", $KurssiKyselyt.kurssiIDlla("$selected_course.getKurssikoodi()", "$selected_course.getLukukausi()", "$selected_course.getLukuvuosi()", "$selected_course.getTyyppi()", "$selected_course.getKurssi_nro()"))
+#set ($selected_course = $session.getAttribute("selected_course"))
     <html>
         <h1>$bundle.getString("7freezing")</h1>
         <body>
@@ -16,13 +28,8 @@
                     #end
                 </ul>
             </div>
-
-            #if ($request.getParameter("suoritusPvm"))
-                $request.getParameter("suoritusPvm")
-                ##$KurssiKyselyt.asetaSuorituspvm($selected_course, $request.getParameter('suoritusPvm'))
-            #end
-
-            #if (!$selected_course.getSuoritus_pvm())
+            
+            #if ($jaadytys.onkoSuorituspvmNull($selected_course))
                 #set ($ylaraja = $jaadytys.asetaSuorituspvmlleYlaraja($selected_course))
                 <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css"/>
                 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
@@ -57,10 +64,6 @@
 
             #if ($request.getParameter("virhe2"))
                 $SessioApuri.annaVirhe($request.session, $bundle.getString("jaadytystaEiVoiSuorittaa"))
-            #end
-
-            #if ($request.getParameter("jaadyta"))
-                $SQLProseduurit.suoritaJaadytys($selected_course, $kurssinTila, $request)
             #end
         </body>
     </html>

@@ -12,6 +12,7 @@ import debug.model.SQLkyselyt.OsallistuminenKyselyt;
 import debug.model.SQLkyselyt.SQLProseduurit;
 import debug.util.LocalisationBundle;
 import java.io.StringWriter;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Properties;
@@ -30,6 +31,14 @@ import org.apache.velocity.app.*;
  * Luokka sisältää apumetodeja jäädytys-toiminnon toteuttamiseksi.
  */
 public class Jaadytys {
+    
+    public static boolean onkoSuorituspvmNull(Kurssi kurssi) {
+        if (kurssi.getSuoritus_pvm() == null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
     
     /**
      * Metodi tarkastaa, onko parametrina annetun kurssin suorituspäivämäärä ennen metodin ajamisajankohtaa.
@@ -68,6 +77,79 @@ public class Jaadytys {
         
         SimpleDateFormat muotoilu = new SimpleDateFormat("MM/dd/yyyy");
         return muotoilu.format(ylaraja.getTime());
+    }
+    
+    public static void tarkastaSuorituspvmnMuoto(String suoritusPvm, HttpServletRequest request) {
+        HttpSession istunto = request.getSession();
+        LocalisationBundle bundle = SessioApuri.bundle(request);
+        try {
+            String kuukausiString = suoritusPvm.substring(0, 2);
+            String paivaString = suoritusPvm.substring(3, 5);
+            String vuosiString = suoritusPvm.substring(6, 10);
+            int kuukausi = Integer.parseInt(kuukausiString);
+            int paiva = Integer.parseInt(paivaString);
+            int vuosi = Integer.parseInt(vuosiString);
+            if (kuukausi < 1 || kuukausi > 12) {
+                SessioApuri.annaVirhe(istunto, bundle.getString("virheKuukausi"));
+            }
+            if (kuukausi == 2) {
+                kasitteleHelmikuu(paiva, kuukausi, vuosi, request);
+            }
+            
+            kasittelePaiva(paiva, kuukausi, request);
+            
+        } catch (Exception poikkeus) {
+            SessioApuri.annaVirhe(istunto, bundle.getString("virheVirheellinenMuoto") + ": " + poikkeus.getLocalizedMessage());
+        }  
+    }
+    
+    private static void kasitteleHelmikuu(int paiva, int kuukausi, int vuosi, HttpServletRequest request) {
+        HttpSession istunto = request.getSession();
+        LocalisationBundle bundle = SessioApuri.bundle(request);
+        if(onkoKarkausvuosi(vuosi)) {
+            if (paiva < 1 || paiva > 29) {
+                SessioApuri.annaVirhe(istunto, bundle.getString("virheKarkausvuodenHelmikuu"));
+            }
+        } else {
+            if (paiva < 1 || paiva > 28) {
+                SessioApuri.annaVirhe(istunto, bundle.getString("virheKarkausvuodettomanHelmikuun"));
+            }
+        }
+    }
+    
+    private static boolean onkoKarkausvuosi(int vuosi) {
+        if (vuosi % 400 == 0)
+            return true;
+        if (vuosi % 100 == 0)
+            return false;
+        if (vuosi % 4 == 0)
+            return true;
+        return false;
+    }
+    
+    private static void kasittelePaiva(int paiva, int kuukausi, HttpServletRequest request) {
+        HttpSession istunto = request.getSession();
+        LocalisationBundle bundle = SessioApuri.bundle(request);
+        int[] kuukaudetJoissa31Paivaa = {1, 3, 5, 7, 8, 10, 12};
+        for (int alkio : kuukaudetJoissa31Paivaa) {
+            if (kuukausi == alkio) {
+                if (paiva < 1 || paiva > 31) {
+                    SessioApuri.annaVirhe(istunto, bundle.getString("virhePaiva1"));
+                }
+            } else {
+                if (paiva < 1 || paiva > 30) {
+                    SessioApuri.annaVirhe(istunto, bundle.getString("virhePaiva2"));
+                }
+            }
+        }     
+    }
+    
+    public static String vaihdaPvmnMuotoa(String pvm) {
+        String kuukausi = pvm.substring(0, 2);
+        String paiva = pvm.substring(3, 5);
+        String vuosi = pvm.substring(6, 10);
+        pvm = vuosi + "-" + kuukausi + "-" + paiva;
+        return pvm;
     }
     
     /**
@@ -149,8 +231,8 @@ public class Jaadytys {
         konteksti.put("HenkiloKyselyt", HenkiloKyselyt.class);
         konteksti.put("rivinvaihto", "\n");
         StringWriter kirjoittaja = new StringWriter();
-        String projektinJuuri = System.getProperty("user.dir") + "/../..";
-        Velocity.init(projektinJuuri + "/src/main/webapp/WEB-INF/velocity.properties");
+        URL url = Thread.currentThread().getContextClassLoader().getResource("../velocity.properties");
+        Velocity.init(url.getPath());
         Velocity.mergeTemplate("sahkoposti.vm", "utf-8", konteksti, kirjoittaja);
         return kirjoittaja.toString();
     }
