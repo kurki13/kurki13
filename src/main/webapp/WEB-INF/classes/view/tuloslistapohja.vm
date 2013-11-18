@@ -1,0 +1,38 @@
+#set($qs = $request.getQueryString())
+
+#if($qs)
+    #set($params = $queryparser.split($qs))
+#end
+
+#set($bundle = $SessioApuri.bundle($request))
+
+#if($session.getAttribute('selected_course_id'))
+    #set ($valittuKurssi = $KurssiKyselyt.kurssiIDlla($session.getAttribute('selected_course_id')))
+#end
+
+$bundle.getString("HY")
+#foreach ( $i in [1..20] )
+     &emsp;      
+#end
+$bundle.getString("tktlkurki")
+<br>$bundle.getString("matlu")<br>
+<br>$bundle.getString("cslaitos")<br>
+<br>$bundle.getString("opintojakso"): $valittuKurssi.kurssikoodi, $valittuKurssi.nimi [$valittuKurssi.lukukausi$valittuKurssi.lukuvuosi]
+<br>$bundle.getString("laajuus"): $valittuKurssi.opintopisteet $bundle.getString("op")
+<br>$bundle.getString("suoritusaika"): $date.format('d.M.yyyy', $valittuKurssi.suoritus_pvm)
+<br>$bundle.getString("hyvaksyja"): $HenkiloKyselyt.haeNimet($valittuKurssi.omistaja)
+
+#set ($lol = $request.getParameterNames())
+
+<p>
+<b><br>Nimet:<br></b>
+#foreach ($hihi in $lol)
+$hihi<br>
+#end
+<b>Values:<br></b>
+$request.getParameter("filter")
+$request.getParameter("ltype")
+$request.getParameter("inc_sum")
+$request.getParameter("inc_koesum")
+$request.getParameter("inc_accepted")
+</p>

@@ -7,7 +7,7 @@
 
 <p>$valittuKurssi.listaString()</p>
 
-            <form name="suoritevalinta" class="form-inline" action="checklist" method="post" target="_blank">
+            <form name="suoritevalinta" class="form-inline" action="tuloslistapohja.vm" method="post" target="_blank">
               <input type="hidden" name="ltype" value="99">
               <input type="hidden" name="ctype" value="text/plain">
               <input type="hidden" name="useinc" value="true">
