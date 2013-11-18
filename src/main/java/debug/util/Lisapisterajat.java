@@ -118,6 +118,12 @@ public class Lisapisterajat {
     public static String kolmenRyhmatStringiksi(int[] l) {
         StringBuilder ret = new StringBuilder();
         for (Integer i : l) {
+            if (i > 999) {
+                i = 999;
+            }
+            if (i < 0) {
+                i = 0;
+            }
             String a = i.toString();
             for (int j = a.length(); j < 3; j++) {
                 ret.append(" ");
@@ -135,5 +141,6 @@ public class Lisapisterajat {
         ArrayList<Integer> k = jasenteleKolmenRyhmat(t);
         System.out.println(Arrays.toString(k.toArray()));
         System.out.println(kolmenRyhmatStringiksi(k).equals(t));
+        System.out.println(kolmenRyhmatStringiksi(new int[] {-5050,99999,564065,1}));
     }
 }
