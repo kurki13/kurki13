@@ -1,0 +1,62 @@
+#parse("hello.vm")
+<style>
+    .lpraja {
+        display: inline-block;
+    }
+    .lprajainput {
+        width: 50px;
+        text-align: center;
+    }
+    .lprajaheader {
+        font-weight: bold;
+        text-align: center;
+    }
+    #lpform {
+        max-width:700px;
+    }
+</style>
+
+#if($request.getParameter("tallenna"))
+    $Lisapisterajat.kasitteleLomake($valittuKurssi, $request)
+#end
+
+<form id=lpform action="" method=get>
+
+    <h4> Laskarirajat: </h4>
+    #set($i = 0)
+    #set($ylaraja = $valittuKurssi.laskariRajat.maxPisteetYhteensa)
+    #foreach($raja in $Lisapisterajat.laskariRajat($valittuKurssi))
+        <div class="lpraja">
+            <div class="lprajaheader" #if($raja > $ylaraja)style="color:red"#end>
+                $i
+            </div>
+            <div>
+                <input class="lprajainput form-control" name=ltrajat value=$raja>
+            </div>
+        </div>
+        #set($i = $i + 1)
+    #end
+
+    <br><br>
+    <h4> Harjoitustyörajat: </h4>
+
+    #set($i = 0)
+    #set($ylaraja = $valittuKurssi.harjoitustyoRajat.maxPisteetYhteensa)
+    #foreach($raja in $Lisapisterajat.htRajat($valittuKurssi))
+        <div class="lpraja">
+            <div class="lprajaheader" #if($raja > $ylaraja)style="color:red"#end>
+                $i
+            </div>
+            <div>
+                <input class="lprajainput form-control" name=htrajat value=$raja>
+            </div>
+        </div>
+        #set($i = $i + 1)
+    #end
+    <br><br>
+    <input type=submit name=tallenna class="btn" value=$bundle.getString("tmuutokset") onClick="">
+    <a href="5arvostelu.vm">Takaisin arvosteluun</a>
+</form>
+
+
+#parse("bottom.vm")

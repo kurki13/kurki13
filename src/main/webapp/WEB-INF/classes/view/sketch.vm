@@ -1,0 +1,21 @@
+<style>
+    .max { 
+        background-color:green;
+    }
+    .min { 
+        background-color:yellow;
+    }
+</style>
+
+<div>
+    <div>
+    </div>
+    <div>
+        <div class="max">
+            10
+        </div>
+        <div class="min">
+            0
+        </div>
+    </div>
+</div>

@@ -27,14 +27,14 @@
 
 <table>
     <tr>
-        <td>
-        </td>
-        <td>LH
-        </td>
-        <td>HT
-        </td>
-        <td>KOE
-        </td>
+        <th>
+        </th>
+        <th>LH
+        </th>
+        <th>HT
+        </th>
+        <th>KOE
+        </th>
     </tr>
     <tr>
         <td style="width: 300px">Yhteensä:
@@ -61,14 +61,14 @@
 
 <table>
     <tr>
-        <td>
-        </td>
-        <td>LH
-        </td>
-        <td>HT
-        </td>
-        <td>KOE
-        </td>
+        <th>
+        </th>
+        <th>LH
+        </th>
+        <th>HT
+        </th>
+        <th>KOE
+        </th>
     </tr>
     <tr>
         <td style="width: 300px">Saatavissa:
@@ -106,14 +106,14 @@
 
 <table>
     <tr>
-        <td>
-        </td>
-        <td>LH
-        </td>
-        <td>HT
-        </td>
-        <td>KOE
-        </td>
+        <th>
+        </th>
+        <th>LH
+        </th>
+        <th>HT
+        </th>
+        <th>KOE
+        </th>
     </tr>
     <tr>
         <td style="width: 300px">Maksimi:
@@ -190,6 +190,7 @@
 </table>
 <input type=submit name=tallenna class="btn" value=$bundle.getString("tmuutokset") onClick="">
 <input type=submit name=arvostele class="btn" value="Tee arvostelu" onClick="">
+<a href="lisapisterajat.vm">Lisäpisterajojen asetus</a>
 </form>
 
 #parse("bottom.vm")

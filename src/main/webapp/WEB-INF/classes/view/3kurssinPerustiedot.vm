@@ -94,7 +94,7 @@ $KurssiKyselyt.tallennaKantaan($valittuKurssi)
             </tr>
         </table>
     #end
-    <input type=submit class="btn" value=$bundle.getString("tmuutokset") onClick="">
+    <input type=submit class="btn" value=$bundle.getString("tmuutokset") onClick="">z
 </form>
 
 #parse("osasuoritustenRajat.vm")

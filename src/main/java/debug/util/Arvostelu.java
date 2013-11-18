@@ -2,8 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package debug;
+package debug.util;
 
+import debug.SessioApuri;
 import debug.model.Kurssi;
 import debug.model.osasuoritukset.Muotoilija;
 import debug.model.util.SQLoader;

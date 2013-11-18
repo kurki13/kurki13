@@ -62,7 +62,7 @@
         
     <tool>
         <key>Arvostelu</key>         
-        <class>debug.Arvostelu</class>
+        <class>debug.util.Arvostelu</class>
     </tool>
     
     <tool>
@@ -73,5 +73,10 @@
     <tool>
         <key>Suoritukset</key>         
         <class>debug.util.Suoritukset</class>
+    </tool>
+    
+        <tool>
+        <key>Lisapisterajat</key>         
+        <class>debug.util.Lisapisterajat</class>
     </tool>
 </toolbox>
