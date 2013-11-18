@@ -210,6 +210,10 @@ public class Osallistuminen extends Table {
     public void setLaajuus_op(int op) {
         this.setValue(Osallistuminen.laajuus_op, op);
     }
+    
+     public void setJaassa(String s) {
+         this.setValue(Osallistuminen.jaassa, s);
+     }
 
     //</editor-fold>
     //<editor-fold defaultstate="collapsed" desc="getterit">
@@ -341,4 +345,6 @@ public class Osallistuminen extends Table {
         return getValue(Osallistuminen.kielikoodi);
     }
     //</editor-fold>
+
+   
 }

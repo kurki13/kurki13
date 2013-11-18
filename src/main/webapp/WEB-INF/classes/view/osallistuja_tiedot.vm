@@ -1,6 +1,12 @@
 #set($opiskelijaTiedot = $OpiskelijaKyselyt.opiskelijaHetulla($request.getParameter("hetuParam")))
+
+#if($request.getParameter('sulataOpiskelija'))
+    $OsallistuminenKyselyt.sulataOpiskelija($valittuKurssi, $opiskelijaTiedot.hetu, $request)
+#end
+
 #set($osasuoritusTiedot = $OsallistuminenKyselyt.osallistuminenKurssilla($valittuKurssi,$opiskelijaTiedot.hetu))
 
+#if(!$osasuoritusTiedot.jaassa.equals('J'))
     #set ($osasuoritukset = {
             'lh' : $osasuoritusTiedot.Laskarit,
             'ht' : $osasuoritusTiedot.Harjoitustyot,
@@ -27,6 +33,7 @@
 
     $osasuoritusTiedot.update()
     $OsallistuminenKyselyt.tallennaKantaan($osasuoritusTiedot)
+#end
 
 <h3>
   <center>
@@ -59,8 +66,10 @@
 
 #set ($osasuoritukset = [
         [$bundle.getString("Laskuharjoituspisteet"), $osasuoritusTiedot.Laskarit, 'lh'],
-        [$bundle.getString("Harjoitustyöpisteet"), $osasuoritusTiedot.Harjoitustyot, 'ht'],
-        [$bundle.getString("Koepisteet"), $osasuoritusTiedot.Kokeet, 'koe']])
+[$bundle.getString("Harjoitustyöpisteet"), $osasuoritusTiedot.Harjoitustyot, 'ht'],
+          [$bundle.getString("Koepisteet"), $osasuoritusTiedot.Kokeet, 'koe']])
+  
+      
 
 ##OSASUORITUKSET
 <form name=OsallistujaTiedot action="" method="post" >
@@ -78,12 +87,15 @@
             #if($i == 10) </tr> <tr> #end  ##Ei kaikkia samalle riville
             <td nowrap>
               <b>$i#if($arvo.maxPisteet == -1)*#end:</b>
-              <br>
-              <input type="text" name=$param
-                class="form-control input-sm" size="2" maxlength="2" style="width:50px"
-                #if($arvo.maxPisteet != -1)placeholder=$arvo.maxPisteet
-                #else readonly #set($selitys = 1) #end
-                #if($arvo.pisteet != -1) value=$arvo.pisteet #end >  ##-1 vastaa tyhjää
+              #if($osasuoritusTiedot.jaassa.equals('J'))$arvo.pisteet
+              #else
+                <br>
+                <input type="text" name=$param
+                  class="form-control input-sm" size="2" maxlength="2" style="width:50px"
+                  #if($arvo.maxPisteet != -1)placeholder=$arvo.maxPisteet
+                  #else readonly #set($selitys = 1) #end ##maxpisteinä -1 eli tyhjä
+                  #if($arvo.pisteet != -1) value=$arvo.pisteet #end >  ##-1 vastaa tyhjää
+              #end
             </td>
             #set($i = $i+1)
           #end
@@ -105,9 +117,12 @@
     <tr>
       <th width="25%">$tieto.get(0)</th> ##Otsikko
       <td>
+        #if($osasuoritusTiedot.jaassa.equals('J')) #if($arvo) $arvo #end  
+        #else
         <input type="text" name=$parametri
           class="form-control input-sm" size="2" maxlength="2" style="width:50px" 
           #if($arvo && !$arvo.equals("-"))value=$arvo#end >
+        #end
       </td>
     </tr>
   #end
@@ -119,7 +134,10 @@
 #end
 
 <input type="hidden" name="hetuParam" value=$opiskelijaTiedot.hetu> ##jäädään tiedot sivulle
-<input type="submit" class="btn btn-success" value="$bundle.getString("tallennapisteet")">
-  
+#if(!$osasuoritusTiedot.jaassa.equals('J'))
+    <input type="submit" class="btn btn-success" value="$bundle.getString("tallennapisteet")">
+#else 
+  <input type="hidden" name="sulataOpiskelija" value="true"> ##jäädään tiedot sivulle
+  <input type="submit" class="btn btn-success" value="SULATA">
+#end
 </form>
-

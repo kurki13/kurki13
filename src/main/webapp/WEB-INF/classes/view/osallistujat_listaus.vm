@@ -7,10 +7,11 @@
 #end
 
 ##Osallistumiset
-#set($osallistumiset = $OsallistuminenKyselyt.voimassaKurssilla($valittuKurssi))
+#set($osallistumiset = $OsallistuminenKyselyt.voimassaKurssilla($valittuKurssi,
+ $sukuFilter, $ryhmaFilter, $hetuFilter))
 
 #if($osallistumiset.size() == 0)
-  $bundle.getString("opeivastannut")
+  <h2>$bundle.getString("opeivastannut")</h2>
 
 #else
 <form name=poistaOpiskelijat action="" method=post >
@@ -40,25 +41,28 @@
       </center>
     </td>
     <td>
-      <center>
-        <select name="grp" class="form-control form-inline" style="width:70px">
-        
-        #foreach($ryhma in $ryhmat)
-          <option 
-            #if($osallinen.ilmo_jnro==$ryhma) value="" disabled selected 
-            #else value="${osallinen.hetu}_${osallinen.ryhma_nro}_${ryhma}" #end>
-            $ryhma</option>
-        #end
-        </select>
-      </center>
+        <center>
+        #if(!$osallinen.jaassa)
+          <select name="grp" class="form-control form-inline" style="width:70px">
+          #foreach($ryhma in $ryhmat)
+            <option 
+              #if($osallinen.ilmo_jnro==$ryhma) value="" disabled selected 
+              #else value="${osallinen.hetu}_${osallinen.ryhma_nro}_${ryhma}" #end>
+              $ryhma</option>
+          #end
+          </select>
+          #else <b> $osallinen.ilmo_jnro </b> #end
+        </center>
     </td>
     <td>
       <center> #if($osallinen.arvosana.equals("+"))X#end</center>
     </td>
     <td>
-      <center>
-        <input type="checkbox" name="poistettavat" value="${osallinen.hetu}_${osallinen.ryhma_nro}">
-      </center>
+        #if(!$osallinen.jaassa)
+          <center>
+            <input type="checkbox" name="poistettavat" value="${osallinen.hetu}_${osallinen.ryhma_nro}">
+          </center>
+        #end
     </td>
     <td>
       <center>
@@ -78,5 +82,4 @@
 </table>
 
 </form>
-
 #end

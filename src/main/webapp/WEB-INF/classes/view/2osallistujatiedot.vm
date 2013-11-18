@@ -2,9 +2,10 @@
 
 ##Filterit/parametrit
 #set($sukuFilter = $params.get('filterSukunimi'))
+#set($ryhmaFilter = $params.get('filterRyhma'))
 #set($hetuFilter = $params.get('filterOpnro'))
-#set($ryhmaFilter = $params.get('ryhma'))
 #set($toiminto = $params.get('toiminto'))
+#if($onkoJaassa) #set($vainLuku="readonly") #else #set($vainLuku="") #end
 
 ##haetaan kurssin ryhmät, ja jätetään pois mystinen ryhmä "0"
 ##lisätään tulostus muuttujaan 'var' jota ei käytetä missään, muuten velocity haluaa tulostaa "true" kun listaan lisäys on onnistunut
@@ -26,32 +27,35 @@
 
 <form name="osallistujatiedot" action="" method=get class="form-inline">
   
-  <b>$bundle.getString("isosnimi"):</b>
-  <input type="text" class="form-control form-inline" style="width:150px"
-          name="filterSukunimi" #if($sukuFilter && !$sukuFilter.equals(""))value=$sukuFilter#end>
+    <b>$bundle.getString("isosnimi"):</b>
+    <input type="text" class="form-control form-inline" style="width:150px"
+            name="filterSukunimi" #if($sukuFilter && !$sukuFilter.equals(""))value=$sukuFilter#end>
 
-
-  <b>$bundle.getString("ryhma"):</b>
-  <select name="ryhma" class="form-control form-inline" style="width:100px">
-   #foreach($ryhma in $ryhmat)
-         <option #if($ryhmaFilter && $ryhma==$ryhmaFilter)selected#end value=$ryhma>$ryhma</option>
+    #if(!$toiminto.equals("osallistujat_lisaa.vm")) ##ei näytetä ryhmää opiskelijoita lisättäessä
+      <b>$bundle.getString("ryhma"):</b>
+      <select name="filterRyhma" class="form-control form-inline" style="width:100px">
+      <option value="" selected>Kaikki</option>
+        #foreach($ryhma in $ryhmat)
+             <option #if($ryhmaFilter && $ryhma==$ryhmaFilter)selected#end value=$ryhma>$ryhma</option>
+        #end
+      </select>
+      #else <input type=hidden name="filterRyhma" value="">
     #end
-  </select>
 
-  <b>$bundle.getString("camelopnro"):</b>
-  <input type="text" class="form-control form-inline" style="width:150px" 
-      name="filterOpnro" #if($hetuFilter && !$hetuFilter.equals(""))value=$hetuFilter#end>
+    <b>$bundle.getString("camelopnro"):</b>
+    <input type="text" class="form-control form-inline" style="width:150px" 
+        name="filterOpnro" #if($hetuFilter && !$hetuFilter.equals(""))value=$hetuFilter#end>
 
 
-  <select name="toiminto" class="form-control form-inline" style="width:350px">
-   #foreach($t in $toiminnot.entrySet())
-      #if($t.key == $toiminto)
-        <option value=$t.key selected>$t.value</option>
-      #else
-        <option value=$t.key>$t.value</option>
+    <select name="toiminto" class="form-control form-inline" style="width:350px">
+     #foreach($t in $toiminnot.entrySet())
+        #if($t.key == $toiminto)
+          <option value=$t.key selected>$t.value</option>
+        #else
+          <option value=$t.key>$t.value</option>
+        #end
       #end
-    #end
-  </select>
+    </select>
 
     <input type=submit class="btn" value=">>>">
 </form>

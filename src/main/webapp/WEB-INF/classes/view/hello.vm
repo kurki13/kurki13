@@ -9,7 +9,7 @@ $SessioApuri.auta($request)
 #end
 ##Tähän voi asettaa yleishyödyllistä matskua
 #set($valittuKurssi = $session.getAttribute('selected_course'))
-
+#set($onkoJaassa = ($valittuKurssi.tila=='J'))
 <html>
 
 <head>

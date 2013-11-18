@@ -3,8 +3,9 @@
     $OsallistuminenKyselyt.palautaKurssille($palautettu, $valittuKurssi, $request)
 #end
 
-#set ($poistetut = $OsallistuminenKyselyt.poistetutKurssilta($valittuKurssi))
-
+#set ($poistetut = $OsallistuminenKyselyt.poistetutKurssilta($valittuKurssi,
+ $sukuFilter, $ryhmaFilter, $hetuFilter))
+    
 <form name=palautaOpiskelijat action="" method=post>
 <table class="table table-condensed table-bordered" style="max-width:1000px">
   <caption>
@@ -34,15 +35,14 @@
     <td>
       <center>
         <input type="checkbox" name="palautettavat" value="${poistet.hetu}_${poistet.ryhma_nro}">
-      </center>
     </td>   
   </tr>
 #end
   <tr>
     <th colspan="6">
-      <center>
-        <input type="submit" class="btn btn-success" value="PALAUTA">
-      </center>
+        <center>
+          <input type="submit" class="btn btn-success" value="PALAUTA">
+        </center>
     </th>
   </tr>
 </table>
