@@ -1,3 +1,5 @@
+<div style="font-size: 90%">
+
 #set($qs = $request.getQueryString())
 
 #if($qs)
@@ -9,10 +11,13 @@
 #if($session.getAttribute('selected_course_id'))
     #set ($valittuKurssi = $KurssiKyselyt.kurssiIDlla($session.getAttribute('selected_course_id')))
 #end
+#if($valittuKurssi)
+    #set ($osallistumiset = $OsallistuminenKyselyt.osallistumisetKurssilla($valittuKurssi))
+#end  
 
 $bundle.getString("HY")
-#foreach ( $i in [1..20] )
-     &emsp;      
+#foreach ( $i in [1..15] )
+     &emsp;
 #end
 $bundle.getString("tktlkurki")
 <br>$bundle.getString("matlu")<br>
@@ -23,6 +28,30 @@ $bundle.getString("tktlkurki")
 <br>$bundle.getString("hyvaksyja"): $HenkiloKyselyt.haeNimet($valittuKurssi.omistaja)
 
 #set ($lol = $request.getParameterNames())
+
+#if ($request.getParameter("inc_accepted") == "on")
+    <p>    
+    $bundle.getString("hyvaksytyt")<br>
+    #foreach ($osallistuminen in $osallistumiset)
+         #if ($osallistuminen.arvosana == "1"||$osallistuminen.arvosana == "2"||$osallistuminen.arvosana == "3"||$osallistuminen.arvosana == "4"||$osallistuminen.arvosana == "5"||$osallistuminen.arvosana == "+")
+            <br>#if($request.getParameter("inc_ssn") == "on")$osallistuminen.hetu &emsp;#end
+            $osallistuminen.sukunimi, $osallistuminen.etunimi
+         #end
+    #end
+    </p>
+#end
+
+#if ($request.getParameter("inc_accepted") == "on")
+    <p>    
+    $bundle.getString("isohylatyt")<br>
+    #foreach ($osallistuminen in $osallistumiset)
+         #if ($osallistuminen.arvosana == "0")
+            <br>#if($request.getParameter("inc_ssn") == "on")$osallistuminen.hetu &emsp;#end
+            $osallistuminen.sukunimi, $osallistuminen.etunimi, $osallistuminen.arvosana
+         #end
+    #end
+    </p>
+#end
 
 <p>
 <b><br>Nimet:<br></b>
@@ -36,3 +65,4 @@ $request.getParameter("inc_sum")
 $request.getParameter("inc_koesum")
 $request.getParameter("inc_accepted")
 </p>
+</div>
