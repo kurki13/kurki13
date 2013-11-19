@@ -1,9 +1,9 @@
 #foreach($poistettava in $request.getParameterValues("poistettavat"))
-  $OsallistuminenKyselyt.poistaKurssilta($poistettava, $valittuKurssi, $request)
+  $OsallistujaMuutokset.poistaKurssilta($poistettava, $valittuKurssi, $request)
 #end
 
 #foreach($grp in $request.getParameterValues("grp"))
-  $OsallistuminenKyselyt.vaihdaRyhmaa($grp, $valittuKurssi, $request)
+  $OsallistujaMuutokset.vaihdaRyhmaa($grp, $valittuKurssi, $request)
 #end
 
 ##Osallistumiset
@@ -30,10 +30,9 @@
 
 
 #foreach($osallinen in $osallistumiset)
-  #set($opiskelija = $OpiskelijaKyselyt.opiskelijaHetulla($osallinen.hetu))
   <tr>
     <td>
-      <b><a href="mailto:">$opiskelija.sukunimi, $opiskelija.etunimi</a>
+      <b><a href="mailto:">$osallinen.sukunimi, $osallinen.etunimi</a>
         #if($osallinen.jaassa.equals('J'))<img src="images/kurkijaassa.gif">#end
         #if($osallinen.jaassa.equals('S'))<img src="images/defrost.gif">#end
       </b>
@@ -49,16 +48,17 @@
           <select name="grp" class="form-control form-inline" style="width:70px">
           #foreach($ryhma in $ryhmat)
             <option 
-              #if($osallinen.ilmo_jnro==$ryhma) value="" disabled selected 
+              #if($osallinen.ilmo_jnro==$ryhma) value="" selected 
               #else value="${osallinen.hetu}_${osallinen.ryhma_nro}_${ryhma}" #end>
-              $ryhma</option>
+              $ryhma
+            </option>
           #end
           </select>
           #else <b> $osallinen.ilmo_jnro </b> #end
         </center>
     </td>
     <td>
-      <center> #if($osallinen.arvosana.equals("+"))X#end</center>
+      <center> #if($osallinen.suoritettu())X#end</center>
     </td>
     <td>
         #if(!$osallinen.jaassa)

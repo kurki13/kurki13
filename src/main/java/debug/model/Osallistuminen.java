@@ -6,15 +6,11 @@ package debug.model;
 
 import debug.model.osasuoritukset.Osasuoritukset;
 import debug.ApplicationException;
-import static debug.SessioApuri.annaVirhe;
-import static debug.SessioApuri.bundle;
 import debug.model.column.IntegerColumn;
 import debug.model.column.StringColumn;
 import debug.model.column.TimestampColumn;
 import debug.model.util.Table;
 import java.sql.Timestamp;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -113,6 +109,16 @@ public class Osallistuminen extends Table {
         this.kurssi = kurssi;
     }
 
+    public boolean suoritettu(){
+        try {
+            int arv = Integer.parseInt(this.getArvosana());
+            return (arv >= 0);
+        } catch (Exception e) {
+            if(this.getArvosana()!=null && this.getArvosana().equals("+")) return true;
+            else return false;
+        }
+    }
+    
     public Osasuoritukset getLaskarit() {
         if (kurssi == null) {
             throw new ApplicationException("Kurssi täytyy asettaa osallistumiselle sen luonnin jälkeen");
@@ -143,48 +149,7 @@ public class Osallistuminen extends Table {
         return kokeet;
     }
 
-    /**
-     * Tarkistaa arvot
-     */
-    public void suoritusTiedotUpdate(String kieli, String arv,
-            String op, HttpServletRequest rqst) {
-
-        HttpSession session = rqst.getSession();
-        if (kieli != null && !kieli.equals("")) {
-            kieli = kieli.toLowerCase();
-            if (kieli.equals("fi") || kieli.equals("en") || kieli.equals("se")) {
-                this.setKielikoodi(kieli);
-            } else {
-                annaVirhe(session, bundle(rqst).getString("kielikoodiVirheellinen"));
-            }
-        }
-        if (op != null && !op.equals("")) {
-            try {
-                int opInt = Integer.parseInt(op);
-                if (opInt < 100) {
-                    this.setLaajuus_op(opInt);
-                }
-            } catch (NumberFormatException e) {
-                annaVirhe(session, bundle(rqst).getString("opVirheellinen"));
-            }
-        }
-        if (arv != null && !arv.equals("")) {
-            try {
-                int arvInt = Integer.parseInt(arv);
-                if (arvInt < 6 && arvInt >= 0) {
-                    this.setArvosana(arv);
-                } else {
-                    annaVirhe(session, bundle(rqst).getString("arvosanaVirheellinen"));
-                }
-            } catch (NumberFormatException e) {
-                if (arv.equals("-") || arv.equals("+")) {
-                    this.setArvosana(arv);
-                } else {
-                    annaVirhe(session, bundle(rqst).getString("arvosanaVirheellinen"));
-                }
-            }
-        }
-    }
+   
 
     /**
      * Päivittää aputaulujen (laskarit, harjoitustyöt, kokeet) arvot takaisin
@@ -199,7 +164,6 @@ public class Osallistuminen extends Table {
 
     //<editor-fold defaultstate="collapsed" desc="setters">
     public void setKielikoodi(String kieli) {
-        kieli = kieli.toLowerCase();
         this.setValue(Osallistuminen.kielikoodi, kieli);
     }
 

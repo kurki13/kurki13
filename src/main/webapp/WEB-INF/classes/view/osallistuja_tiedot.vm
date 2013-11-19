@@ -1,16 +1,27 @@
 #set($opiskelijaTiedot = $OpiskelijaKyselyt.opiskelijaHetulla($request.getParameter("hetuParam")))
 
 #if($request.getParameter('sulataOpiskelija'))
-    $OsallistuminenKyselyt.sulataOpiskelija($valittuKurssi, $opiskelijaTiedot.hetu, $request)
+    $OsallistujaMuutokset.sulataOpiskelija($valittuKurssi, $opiskelijaTiedot.hetu, $request)
 #end
 
-#set($osasuoritusTiedot = $OsallistuminenKyselyt.osallistuminenKurssilla($valittuKurssi,$opiskelijaTiedot.hetu))
+##Edelliset ja seuraavat
+#set($osallistumiset = $OsallistuminenKyselyt.voimassaKurssilla($valittuKurssi, $sukuFilter, $ryhmaFilter, $hetuFilter))
+#set($edel = $OsallistujaMuutokset.edellinenOsallistuminen($osallistumiset, $opiskelijaTiedot.hetu))
+#set($seur = $OsallistujaMuutokset.seuraavaOsallistuminen($osallistumiset, $opiskelijaTiedot.hetu))
+<form action="" name="EdellisetJaSeuraavat" method="post"> 
+  <input type=hidden name="filterSukunimi" value=$sukuFilter>
+  <input type=hidden name="filterRyhma" value=$ryhmaFilter>
+  <input type=hidden name="filterOpnro" value=$hetuFilter>
+  <button name="hetuParam" type="submit" value="$edel">Edellinen</button>
+  <button name="hetuParam" type="submit" value="$seur">Seuraava</button>
+</form>
 
-#if(!$osasuoritusTiedot.jaassa.equals('J'))
+#set($osallistumisTiedot = $OsallistuminenKyselyt.osallistuminenKurssilla($valittuKurssi,$opiskelijaTiedot.hetu))
+#if(!$osallistumisTiedot.jaassa.equals('J'))
     #set ($osasuoritukset = {
-            'lh' : $osasuoritusTiedot.Laskarit,
-            'ht' : $osasuoritusTiedot.Harjoitustyot,
-            'koe' : $osasuoritusTiedot.Kokeet})
+            'lh' : $osallistumisTiedot.Laskarit,
+            'ht' : $osallistumisTiedot.Harjoitustyot,
+            'koe' : $osallistumisTiedot.Kokeet})
 
     #foreach($osasuoritus in $osasuoritukset.entrySet())
         #set($arvot = $osasuoritus.value)
@@ -29,10 +40,11 @@
     #set($kiel = $request.getParameter('kiel'))
     #set($arv = $request.getParameter('arv'))
     #set($op = $request.getParameter('op'))
-    $osasuoritusTiedot.suoritusTiedotUpdate($kiel, $arv, $op, $request)
+    $OsallistujaMuutokset.suoritusTiedotUpdate($osallistumisTiedot, $kiel, $arv, $op, $request)
 
-    $osasuoritusTiedot.update()
-    $OsallistuminenKyselyt.tallennaKantaan($osasuoritusTiedot)
+    $osallistumisTiedot.update()
+    $OsallistuminenKyselyt.tallennaKantaan($osallistumisTiedot)
+    $SessioApuri.annaViesti($request.session, "Tiedot päivitetty kantaan")
 #end
 
 <h3>
@@ -65,9 +77,9 @@
 <br>
 
 #set ($osasuoritukset = [
-        [$bundle.getString("Laskuharjoituspisteet"), $osasuoritusTiedot.Laskarit, 'lh'],
-[$bundle.getString("Harjoitustyöpisteet"), $osasuoritusTiedot.Harjoitustyot, 'ht'],
-          [$bundle.getString("Koepisteet"), $osasuoritusTiedot.Kokeet, 'koe']])
+        [$bundle.getString("Laskuharjoituspisteet"), $osallistumisTiedot.Laskarit, 'lh'],
+        [$bundle.getString("Harjoitustyöpisteet"), $osallistumisTiedot.Harjoitustyot, 'ht'],
+        [$bundle.getString("Koepisteet"), $osallistumisTiedot.Kokeet, 'koe']])
   
       
 
@@ -87,7 +99,7 @@
             #if($i == 10) </tr> <tr> #end  ##Ei kaikkia samalle riville
             <td nowrap>
               <b>$i#if($arvo.maxPisteet == -1)*#end:</b>
-              #if($osasuoritusTiedot.jaassa.equals('J'))$arvo.pisteet
+              #if($osallistumisTiedot.jaassa.equals('J'))$arvo.pisteet
               #else
                 <br>
                 <input type="text" name=$param
@@ -106,9 +118,9 @@
   #end 
 
 #set ($suoritusTiedot = [
-        [$bundle.getString("Suorituskieli"), $osasuoritusTiedot.kielikoodi,  'kiel'],
-        [$bundle.getString("Arvosana"), $osasuoritusTiedot.arvosana,  'arv'],
-        [$bundle.getString("Opintopisteet"), $osasuoritusTiedot.laajuus_op,  'op']])
+        [$bundle.getString("Suorituskieli"), $osallistumisTiedot.kielikoodi,  'kiel', ['S', 'E', 'R']],
+        [$bundle.getString("Arvosana"), $osallistumisTiedot.arvosana,  'arv'],
+        [$bundle.getString("Opintopisteet"), $osallistumisTiedot.laajuus_op,  'op']])
 
 ##SUORITUSTIEDOT
   #foreach($tieto in $suoritusTiedot)
@@ -117,11 +129,19 @@
     <tr>
       <th width="25%">$tieto.get(0)</th> ##Otsikko
       <td>
-        #if($osasuoritusTiedot.jaassa.equals('J')) #if($arvo) $arvo #end  
+        #if($parametri.equals('kiel'))
+            <select name="$parametri" class="form-control form-inline" style="width:70px">
+                #foreach($kieli in $tieto.get(3))
+                    <option #if($arvo.equals($kieli)) selected #end value="$kieli">$kieli</option>
+                #end
+            </select>
         #else
-        <input type="text" name=$parametri
-          class="form-control input-sm" size="2" maxlength="2" style="width:50px" 
-          #if($arvo && !$arvo.equals("-"))value=$arvo#end >
+            #if($osallistumisTiedot.jaassa.equals('J')) #if($arvo) $arvo #end  
+            #else
+            <input type="text" name="$parametri"
+              class="form-control input-sm" size="2" maxlength="2" style="width:50px" 
+              #if($arvo) value="$arvo" #end >
+            #end
         #end
       </td>
     </tr>
@@ -134,10 +154,10 @@
 #end
 
 <input type="hidden" name="hetuParam" value=$opiskelijaTiedot.hetu> ##jäädään tiedot sivulle
-#if(!$osasuoritusTiedot.jaassa.equals('J'))
+#if(!$osallistumisTiedot.jaassa.equals('J'))
     <input type="submit" class="btn btn-success" value="$bundle.getString("tallennapisteet")">
 #else 
-  <input type="hidden" name="sulataOpiskelija" value="true"> ##jäädään tiedot sivulle
+  <input type="hidden" name="sulataOpiskelija" value="true">
   <input type="submit" class="btn btn-success" value="SULATA">
 #end
 </form>

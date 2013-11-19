@@ -4,21 +4,16 @@
  */
 package debug.model.SQLkyselyt;
 
-import debug.SessioApuri;
 import debug.dbconnection.DatabaseConnection;
 import debug.model.Kurssi;
 import debug.model.Osallistuminen;
-import debug.model.osasuoritukset.Muotoilija;
 import debug.model.util.SQLoader;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
 import java.util.List;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -26,23 +21,6 @@ import javax.servlet.http.HttpSession;
  */
 public class OsallistuminenKyselyt {
 
-    private static class Osallistumistiedot {
-
-        String hetu;
-        int ryhmänro;
-        int uusiRyhma;
-
-        public Osallistumistiedot(String hetu, int ryhma) {
-            this.hetu = hetu;
-            this.ryhmänro = ryhma;
-        }
-
-        public Osallistumistiedot(String hetu, int ryhma, int uusiRyhma) {
-            this.hetu = hetu;
-            this.ryhmänro = ryhma;
-            this.uusiRyhma = uusiRyhma;
-        }
-    }
     public static final String KURSSINOSALLISTUMISET =
             "SELECT os.*, op.etunimi, op.sukunimi, op.sahkopostiosoite \n"
             + "FROM osallistuminen os, opiskelija op \n"
@@ -73,34 +51,45 @@ public class OsallistuminenKyselyt {
         }
     }
 
-    public static List<Osallistuminen> osallistumisetKurssilla(Kurssi kurssi) throws SQLException {
-        String query = KURSSINOSALLISTUMISET
-                + "ORDER BY op.sukunimi ASC, op.etunimi ASC, os.hetu ASC";
-        Connection conn = DatabaseConnection.makeConnection();
-        PreparedStatement ps = conn.prepareStatement(query);
-        valmisteleKurssi(ps, kurssi);
-        ResultSet rs = ps.executeQuery();
-
+    private static List<Osallistuminen> lisaaOpiskelijaTiedot(ResultSet rs, Kurssi kurssi) throws SQLException {
         List<Osallistuminen> osallistumiset = new ArrayList();
 
         while (rs.next()) {
-            Osallistuminen add = new Osallistuminen();
-            SQLoader.resultRowToTable(rs, add);
-            osallistumiset.add(add);
+            Osallistuminen uusi = new Osallistuminen();
+            SQLoader.resultRowToTable(rs, uusi);
+            osallistumiset.add(uusi);
             String etunimi = rs.getString("etunimi");
             String sukunimi = rs.getString("sukunimi");
-            add.setNimi(etunimi + " " + sukunimi);
-            add.setEtunimi(etunimi);
-            add.setSukunimi(sukunimi);
-            add.setEmail(rs.getString("sahkopostiosoite"));
+            uusi.setNimi(etunimi + " " + sukunimi);
+            uusi.setEtunimi(etunimi);
+            uusi.setSukunimi(sukunimi);
+            uusi.setEmail(rs.getString("sahkopostiosoite"));
         }
 
         for (Osallistuminen osallistuminen : osallistumiset) {
             osallistuminen.setKurssi(kurssi);
         }
+        return osallistumiset;
+    }
 
+    private static List<Osallistuminen> luoYhteys(Kurssi kurssi, String query,
+            String... filterit) throws SQLException {
+        Connection conn = DatabaseConnection.makeConnection();
+        PreparedStatement ps = conn.prepareStatement(query);
+        valmisteleKurssi(ps, kurssi);
+        if (filterit.length == 3) {
+            asetaFiltterit(ps, filterit[0], filterit[1], filterit[2]);
+        }
+        ResultSet rs = ps.executeQuery();
+        List osallistumiset = lisaaOpiskelijaTiedot(rs, kurssi);
         conn.close();
         return osallistumiset;
+    }
+
+    public static List<Osallistuminen> osallistumisetKurssilla(Kurssi kurssi) throws SQLException {
+        String query = KURSSINOSALLISTUMISET
+                + "ORDER BY op.sukunimi ASC, op.etunimi ASC, os.hetu ASC";
+        return luoYhteys(kurssi, query);
     }
 
     public static List<Osallistuminen> voimassaKurssilla(Kurssi kurssi,
@@ -111,11 +100,7 @@ public class OsallistuminenKyselyt {
                 + "AND op.hetu like ? \n"
                 + ((!ryhmaFilter.equals("")) ? "AND os.ilmo_jnro = ? \n" : "")
                 + "ORDER BY op.sukunimi ASC, op.etunimi ASC, os.hetu ASC";
-        Connection conn = DatabaseConnection.makeConnection();
-        PreparedStatement ps = conn.prepareStatement(query);
-        valmisteleKurssi(ps, kurssi);
-        asetaFiltterit(ps, sukunimi, ryhmaFilter, hetuFilter);
-        return SQLoader.loadTablesFromPreparedStatement(new Osallistuminen(), ps, conn);
+        return luoYhteys(kurssi, query, sukunimi, ryhmaFilter, hetuFilter);
     }
 
     public static List<Osallistuminen> poistetutKurssilta(Kurssi kurssi,
@@ -126,11 +111,7 @@ public class OsallistuminenKyselyt {
                 + "AND op.hetu like ? \n"
                 + ((!ryhmaFilter.equals("")) ? "AND os.ilmo_jnro = ? \n" : "")
                 + "ORDER BY op.sukunimi ASC, op.etunimi ASC, os.hetu ASC";
-        Connection conn = DatabaseConnection.makeConnection();
-        PreparedStatement ps = conn.prepareStatement(query);
-        valmisteleKurssi(ps, kurssi);
-        asetaFiltterit(ps, sukunimi, ryhmaFilter, hetuFilter);
-        return SQLoader.loadTablesFromPreparedStatement(new Osallistuminen(), ps, conn);
+        return luoYhteys(kurssi, query, sukunimi, ryhmaFilter, hetuFilter);
     }
 
     public static Osallistuminen osallistuminenKurssilla(Kurssi kurssi,
@@ -156,92 +137,4 @@ public class OsallistuminenKyselyt {
         SQLoader.tallennaKantaan(os);
     }
 
-    public static void luoUusiOsallistuminen(String parametrit,
-            Kurssi kurssi, HttpServletRequest request) {
-        Osallistumistiedot tiedot = pilkoParametrit(parametrit);
-        if (tarkistaParametrit(kurssi, tiedot, request)) {
-            SQLProseduurit.lisaaOpiskelija(kurssi, tiedot.ryhmänro, tiedot.hetu, request);
-        }
-    }
-
-    public static void palautaKurssille(String parametrit,
-            Kurssi kurssi, HttpServletRequest request) {
-        Osallistumistiedot tiedot = pilkoParametrit(parametrit);
-        if (tarkistaParametrit(kurssi, tiedot, request)) {
-            SQLProseduurit.palautaOpiskelija(kurssi, tiedot.ryhmänro, tiedot.hetu, request);
-        }
-    }
-
-    public static void vaihdaRyhmaa(String parametrit,
-            Kurssi kurssi, HttpServletRequest request) {
-        Osallistumistiedot tiedot = pilkoParametrit(parametrit);
-        if (tarkistaParametrit(kurssi, tiedot, request) && tiedot.uusiRyhma != 0) {
-            SQLProseduurit.vaihdaOpiskelijanRyhmaa(tiedot.uusiRyhma, kurssi,
-                    tiedot.ryhmänro, tiedot.hetu, request);
-        } else {
-            SessioApuri.annaVirhe(request.getSession(), "Uusi ryhmä ei saa olla 0");
-        }
-    }
-
-    public static void poistaKurssilta(String parametrit,
-            Kurssi kurssi, HttpServletRequest request) {
-        Osallistumistiedot tiedot = pilkoParametrit(parametrit);
-        if (tarkistaParametrit(kurssi, tiedot, request)) {
-            SQLProseduurit.poistaOpiskelija(kurssi, tiedot.ryhmänro, tiedot.hetu, request);
-        }
-    }
-
-    public static void sulataOpiskelija(Kurssi kurssi, String hetu,
-            HttpServletRequest request) {
-        try {
-            Osallistuminen os = osallistuminenKurssilla(kurssi, hetu);
-            if (os.getJaassa().equals("S")) {
-                SessioApuri.annaVirhe(request.getSession(), "Opiskelija on jo sulatettu");
-            }
-            os.setJaassa("S");
-            SQLoader.tallennaKantaan(os);
-             SessioApuri.annaViesti(request.getSession(), "Sulatus onnistui");
-        } catch (Exception e) {
-            SessioApuri.annaVirhe(request.getSession(), "Sulatus epäonnistui");
-        }
-    }
-
-    /*
-     * parametrit tulevat muodosssa hetu_ryhma tai hetu_ryhma_vanharyhma
-     */
-    private static Osallistumistiedot pilkoParametrit(String parametrit) {
-        try {
-            String[] info = parametrit.split("_");
-            String hetu = info[0];
-            int ryhma = Integer.parseInt(info[1]);
-            if (info.length == 3) {
-                int uusi = Integer.parseInt(info[2]);
-                return new Osallistumistiedot(hetu, ryhma, uusi);
-            }
-            return new Osallistumistiedot(hetu, ryhma);
-        } catch (NumberFormatException e) {
-        } catch (ArrayIndexOutOfBoundsException e) {
-        }
-        return null;
-    }
-
-    private static boolean tarkistaParametrit(Kurssi kurssi, Osallistumistiedot tiedot,
-            HttpServletRequest request) {
-
-        HttpSession session = request.getSession();
-        if (kurssi == null) {
-            SessioApuri.annaVirhe(session, "Kurssia ei ole valittu");
-            return false;
-        }
-        if (!Muotoilija.hetuTarkastus(tiedot.hetu)) {
-            SessioApuri.annaVirhe(session, "Anna kelvollinen opiskelijanumero");
-            return false;
-        }
-        if ((tiedot.ryhmänro > 99 && tiedot.ryhmänro < 1)
-                || (tiedot.uusiRyhma != 0 && tiedot.uusiRyhma > 99 && tiedot.ryhmänro < 1)) {
-            SessioApuri.annaVirhe(session, "Ryhmän valinnassa on vikaa");
-            return false;
-        }
-        return true;
-    }
 }

@@ -2,7 +2,7 @@
 ##Parametreissa tulleet opiskelijat lisätään
 #foreach($lisattava in $request.getParameterValues("lisattavat"))
     #if($lisattava && !$lisattava.equals(""))
-        $OsallistuminenKyselyt.luoUusiOsallistuminen($lisattava, $valittuKurssi, $request)
+        $OsallistujaMuutokset.luoUusiOsallistuminen($lisattava, $valittuKurssi, $request)
     #end
 #end
 

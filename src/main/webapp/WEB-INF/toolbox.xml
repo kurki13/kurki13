@@ -65,8 +65,14 @@
         <class>debug.util.Suoritukset</class>
     </tool>
     
-        <tool>
+    <tool>
         <key>Lisapisterajat</key>         
         <class>debug.util.Lisapisterajat</class>
     </tool>
+    
+    <tool>
+        <key>OsallistujaMuutokset</key>         
+        <class>debug.util.OsallistujaMuutokset</class>
+    </tool>
+    
 </toolbox>

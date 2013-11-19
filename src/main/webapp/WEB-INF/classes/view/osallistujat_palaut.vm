@@ -1,6 +1,6 @@
 
 #foreach($palautettu in $request.getParameterValues("palautettavat"))
-    $OsallistuminenKyselyt.palautaKurssille($palautettu, $valittuKurssi, $request)
+    $OsallistujaMuutokset.palautaKurssille($palautettu, $valittuKurssi, $request)
 #end
 
 #set ($poistetut = $OsallistuminenKyselyt.poistetutKurssilta($valittuKurssi,
@@ -20,11 +20,10 @@
 
 
 #foreach($poistet in $poistetut)
-  #set($opiskelija = $OpiskelijaKyselyt.opiskelijaHetulla($poistet.hetu))
   <tr>
     <td>
-      <b><a href="mailto:#if($opiskelija.sahkopostiosoite)$opiskelija.sahkopostiosoite#end">
-             $opiskelija.sukunimi, $opiskelija.etunimi</a></b>
+      <b><a href="mailto:#if($poistet.sahkopostiosoite)$poistet.sahkopostiosoite#end">
+             $poistet.sukunimi, $poistet.etunimi</a></b>
     </td>
     <td>
       <center><tt>$poistet.hetu</tt>
