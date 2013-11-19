@@ -91,7 +91,9 @@ public class SessioApuri {
         if (session.getAttribute(LokaaliTunnus) == null) {
             session.setAttribute(LokaaliTunnus, "fi");
         }
-        return new LocalisationBundle(new Locale((String) session.getAttribute(LokaaliTunnus)));
+        LocalisationBundle lb = new LocalisationBundle(new Locale((String) session.getAttribute(LokaaliTunnus)));
+        lb.setRequest(request);
+        return lb;
     }
 
     public static void auta(HttpServletRequest request) {

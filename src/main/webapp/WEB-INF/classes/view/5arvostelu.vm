@@ -23,21 +23,21 @@
 
 <form name="arvostelu" action="" method=get class="form-inline">
 
-<h3>Osasuorituksia:</h3>
+<h3>$bundle.getString('osasuorituksia'):</h3>
 
 <table>
     <tr>
         <th>
         </th>
-        <th>LH
+        <th>$bundle.getString('lh_lyhenne'):
         </th>
-        <th>HT
+        <th>$bundle.getString('ht_lyhenne'):
         </th>
-        <th>KOE
+        <th>$bundle.getString('koe_lyhenne'):
         </th>
     </tr>
     <tr>
-        <td style="width: 300px">Yhteensä:
+        <td style="width: 300px">$bundle.getString('yht'):
         </td>
         <td>$valittuKurssi.laskarikerta_lkm
         </td>
@@ -47,7 +47,7 @@
         </td>
     </tr>
     <tr>
-        <td>Pakollisia
+        <td>$bundle.getString('pakollisia')
         </td>
         <td><input name=lh_pak value=$valittuKurssi.pakolliset_laskarikerta_lkm>
         </td>
@@ -57,21 +57,21 @@
         </td>
     </tr>
 </table>
-<h3>Suorituspisteitä osasuorituksista:</h3>
+<h3>$bundle.getString('suorpstos')</h3>
 
 <table>
     <tr>
         <th>
         </th>
-        <th>LH
+        <th>$bundle.getString('lh_lyhenne'):
         </th>
-        <th>HT
+        <th>$bundle.getString('ht_lyhenne'):
         </th>
-        <th>KOE
+        <th>$bundle.getString('koe_lyhenne'):
         </th>
     </tr>
     <tr>
-        <td style="width: 300px">Saatavissa:
+        <td style="width: 300px">$bundle.getString('saatavissa'):
         </td>
         <td>$valittuKurssi.laskariRajat.maxPisteetYhteensa
         </td>
@@ -81,7 +81,7 @@
         </td>
     </tr>
     <tr>
-        <td>Hyväksymisrajojen summa
+        <td>$bundle.getString('hyvrajsum')
         </td>
         <td>$valittuKurssi.laskariRajat.minPisteetYhteensa
         </td>
@@ -91,7 +91,7 @@
         </td>
     </tr>    
     <tr>
-        <td>Osuuden hyväksymisraja
+        <td>$bundle.getString('oshr')
         </td>
         <td><input name=lh_oshyv value=$valittuKurssi.pakolliset_laskaritehtava_lkm>
         </td>
@@ -102,21 +102,21 @@
     </tr>
 </table>
 
-<h3>Arvosteluun vaikuttavat lisäpisteet:</h3>
+<h3>$bundle.getString('arvlp')</h3>
 
 <table>
     <tr>
         <th>
         </th>
-        <th>LH
+        <th>$bundle.getString('lh_lyhenne'):
         </th>
-        <th>HT
+        <th>$bundle.getString('ht_lyhenne'):
         </th>
-        <th>KOE
+        <th>$bundle.getString('koe_lyhenne'):
         </th>
     </tr>
     <tr>
-        <td style="width: 300px">Maksimi:
+        <td style="width: 300px">$bundle.getString('maksimi'):
         </td>
         <td><input name=lh_lisapistemaksimi value=$valittuKurssi.max_laskaripisteet>
         </td>
@@ -126,7 +126,7 @@
         </td>
     </tr>
     <tr>
-        <td>1.pisteen raja:
+        <td>$bundle.getString('1pstraja'):
         </td>
         <td><input name=lh_lisapistealaraja value=$valittuKurssi.lisapistealaraja>
         </td>
@@ -136,7 +136,7 @@
         </td>
     </tr>    
     <tr>
-        <td>Kartuntaväli
+        <td>$bundle.getString('kartuntavali'):
         </td>
         <td><input name=lh_kartuntavali value=$valittuKurssi.lisapisteiden_askelkoko>
         </td>
@@ -147,37 +147,37 @@
     </tr>
 </table>
 
-<h3>Muut</h3>
+<h3>$bundle.getString('muut'):</h3>
 
 <table>
     <tr>
-        <td style="width: 300px">Max pisteitä:
+        <td style="width: 300px">$bundle.getString('pstmax'):
         </td>
         <td>#set($summa = $valittuKurssi.max_laskaripisteet + $valittuKurssi.harjoitustyopisteet + $valittuKurssi.koeRajat.maxPisteetYhteensa) $summa
         </td>
     </tr>
     <tr>
-        <td>Hyväksymisalaraja:
+        <td>$bundle.getString('hyvar'):
         </td>
         <td><input name=hyvalaraja value=$valittuKurssi.min_yhteispisteet>
         </td>
     </tr>   
     <tr>
-        <td>Arvosanaväli:
+        <td>$bundle.getString('arvosanavali'):
         </td>
         <td><input name=arvosanavali value=$valittuKurssi.arvostelun_askelkoko>
         </td>
     </tr>       
     <tr>
-        <td>Arvosteluasteikko:
+        <td>$bundle.getString('arvasteikko'):
         </td>
         <td>
-            <input type="radio" name="arvosteluasteikko" value="K" #if($valittuKurssi.arvostellaanko.equals("K")) checked #end>Arvosanat
-            <input type="radio" name="arvosteluasteikko" value="E" #if($valittuKurssi.arvostellaanko.equals("E")) checked #end>Hyväksytty/hylätty
+            <input type="radio" name="arvosteluasteikko" value="K" #if($valittuKurssi.arvostellaanko.equals("K")) checked #end>$bundle.getString('arvosanat')
+            <input type="radio" name="arvosteluasteikko" value="E" #if($valittuKurssi.arvostellaanko.equals("E")) checked #end>$bundle.getString('hyvhyl')
         </td>
     </tr>   
     <tr>
-        <td>Arvostelutapa
+        <td>$bundle.getString('arvtapa'):
         </td>
         <td>
             <select name=arvostelutapa>
@@ -189,8 +189,8 @@
     </tr>
 </table>
 <input type=submit name=tallenna class="btn" value=$bundle.getString("tmuutokset") onClick="">
-<input type=submit name=arvostele class="btn" value="Tee arvostelu" onClick="">
-<a href="lisapisterajat.vm">Lisäpisterajojen asetus</a>
+<input type=submit name=arvostele class="btn" value="$bundle.getString("teearv")" onClick="">
+<a href="lisapisterajat.vm">$bundle.getString("muutaparajoja")</a>
 </form>
 
 #parse("bottom.vm")

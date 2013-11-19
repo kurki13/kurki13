@@ -4,8 +4,11 @@
  */
 package debug.util;
 
+import debug.SessioApuri;
 import java.util.Locale;
+import java.util.MissingResourceException;
 import java.util.ResourceBundle;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  *
@@ -14,16 +17,28 @@ import java.util.ResourceBundle;
 public class LocalisationBundle {
 
     private Locale locale = new Locale("fi");
+    private HttpServletRequest rq;
+
+    public void setRequest(HttpServletRequest request) {
+        this.rq = request;
+    }
 
     public LocalisationBundle(Locale locale) {
         this.locale = locale;
     }
 
     public String getString(String request) {
-        return ResourceBundle.getBundle("localisationBundle", locale).getString(request);
+        try{
+            return ResourceBundle.getBundle("localisationBundle", locale).getString(request);
+        } catch (MissingResourceException me) {
+            SessioApuri.annaVirhe(rq.getSession(), "Missing resource key for: " + request);
+            return "MISSING_" + request;
+        }
     }
 
     public ResourceBundle getBundle() {
         return ResourceBundle.getBundle("localisationBundle", locale);
     }
+    
+    
 }
