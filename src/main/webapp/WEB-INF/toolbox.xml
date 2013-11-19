@@ -2,11 +2,6 @@
 <toolbox>
     
     <tool>
-        <key>piippu</key>
-        <class>debug.Pipe</class>
-    </tool>    
-    
-    <tool>
         <key>OpiskelijaKyselyt</key>
         <class>debug.model.SQLkyselyt.OpiskelijaKyselyt</class>
     </tool>        

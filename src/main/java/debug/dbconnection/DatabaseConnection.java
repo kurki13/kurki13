@@ -5,7 +5,6 @@
 package debug.dbconnection;
 
 import debug.Konfiguraatio;
-import debug.Pipe;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -34,7 +33,7 @@ public class DatabaseConnection {
             try {
                 Class.forName(Konfiguraatio.getProperty("dbDriver"));
             } catch (ClassNotFoundException ex) {
-                Logger.getLogger(Pipe.class.getName()).log(Level.SEVERE, null, ex);
+                
             }
             return DriverManager.getConnection(Konfiguraatio.getProperty("dbServer"), Konfiguraatio.getProperty("dbUser"), Konfiguraatio.getProperty("dbPassword"));
         }
