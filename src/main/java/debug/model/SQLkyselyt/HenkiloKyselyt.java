@@ -44,7 +44,11 @@ public class HenkiloKyselyt {
         if (tulosJoukko.next()) {
             String kutsumanimi = tulosJoukko.getString("kutsumanimi");
             String sukunimi = tulosJoukko.getString("sukunimi");
-            palautus = sukunimi + " " + kutsumanimi;
+            if (kutsumanimi == null) {
+                palautus = sukunimi;
+            } else {
+                palautus = sukunimi + " " + kutsumanimi;
+            }
         } else {
             palautus = "Tuntematon";
         }
