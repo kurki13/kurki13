@@ -42,7 +42,7 @@
     
     <tool>
         <key>jaadytys</key>
-        <class>debug.toiminnot.Jaadytys</class>
+        <class>debug.util.Jaadytys</class>
     </tool>
     
     <tool>

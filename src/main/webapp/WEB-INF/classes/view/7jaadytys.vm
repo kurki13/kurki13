@@ -1,4 +1,5 @@
 #if ($request.getParameter("jaadyta"))
+    #set ($kurssinTila = $session.getAttribute("selected_course").getTila())
     #$SQLProseduurit.suoritaJaadytys($session.getAttribute("selected_course"), $kurssinTila, $request)
     $session.setAttribute("user_courses", null)
 #end
@@ -9,8 +10,16 @@
 #end
 
 #parse("hello.vm")
-$session.setAttribute("selected_course", $KurssiKyselyt.kurssiIDlla("$selected_course.getKurssikoodi()", "$selected_course.getLukukausi()", "$selected_course.getLukuvuosi()", "$selected_course.getTyyppi()", "$selected_course.getKurssi_nro()"))
+
+#set ($kurssikoodi = $selected_course.getKurssikoodi())
+#set ($lukukausi = $selected_course.getLukukausi())
+#set ($lukuvuosi = $selected_course.getLukuvuosi())
+#set ($tyyppi = $selected_course.getTyyppi())
+#set ($kurssinro = $selected_course.getKurssi_nro())
+#set ($kurssi = $KurssiKyselyt.kurssiIDlla("$kurssikoodi", "$lukukausi", "$lukuvuosi", "$tyyppi", "$kurssinro"))
+$session.setAttribute("selected_course", $kurssi)
 #set ($selected_course = $session.getAttribute("selected_course"))
+
     <html>
         <h1>$bundle.getString("7freezing")</h1>
         <body>
@@ -31,15 +40,6 @@ $session.setAttribute("selected_course", $KurssiKyselyt.kurssiIDlla("$selected_c
             
             #if ($jaadytys.onkoSuorituspvmNull($selected_course))
                 #set ($ylaraja = $jaadytys.asetaSuorituspvmlleYlaraja($selected_course))
-                <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css"/>
-                <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-                <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-                <link rel="stylesheet" href="/resources/demos/style.css"/>
-                <script>
-                    $(function() {
-                        $('#datepicker').datepicker({minDate: "-6M", maxDate: "$ylaraja"});
-                    });
-                </script>
                 <form method=get>
                     $bundle.getString("valitseSuorpvm"):<input type="text" name="suoritusPvm" id="datepicker"/>
                     <input type="submit" value="$bundle.getString("laheta")" class="btn"/>
@@ -51,7 +51,6 @@ $session.setAttribute("selected_course", $KurssiKyselyt.kurssiIDlla("$selected_c
                     #elseif (!$selected_course.getOmistaja())
                         <input type="hidden" name="virhe2"/>
                     #else
-                        #set ($kurssinTila = $selected_course.getTila())
                         <input type="hidden" name="jaadyta"/>
                     #end
                     <input type="submit" value="$bundle.getString("jaadyta")" class="btn"/>
@@ -65,6 +64,16 @@ $session.setAttribute("selected_course", $KurssiKyselyt.kurssiIDlla("$selected_c
             #if ($request.getParameter("virhe2"))
                 $SessioApuri.annaVirhe($request.session, $bundle.getString("jaadytystaEiVoiSuorittaa"))
             #end
+
+            <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css"/>
+            <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+            <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+            <link rel="stylesheet" href="/resources/demos/style.css"/>
+            <script>
+                $(function() {
+                    $('#datepicker').datepicker({minDate: "-6M", maxDate: "$ylaraja"});
+                });
+            </script>
         </body>
     </html>
 #parse("bottom.vm")

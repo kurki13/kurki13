@@ -8,7 +8,7 @@ import debug.SessioApuri;
 import debug.dbconnection.DatabaseConnection;
 import debug.model.Kurssi;
 import debug.model.Opiskelija;
-import debug.toiminnot.Jaadytys;
+import debug.util.Jaadytys;
 import debug.util.LocalisationBundle;
 import java.sql.CallableStatement;
 import java.sql.Connection;

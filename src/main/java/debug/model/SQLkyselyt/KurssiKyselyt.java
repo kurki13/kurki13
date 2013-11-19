@@ -9,7 +9,7 @@ import debug.dbconnection.DatabaseConnection;
 import debug.model.Kurssi;
 import debug.model.util.Filter;
 import debug.model.util.SQLoader;
-import debug.toiminnot.Jaadytys;
+import debug.util.Jaadytys;
 import debug.util.LocalisationBundle;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -199,7 +199,9 @@ public class KurssiKyselyt {
          * @param request 
          */
 	public static void asetaSuorituspvm(Kurssi kurssi, String suoritusPvm, HttpServletRequest request) {
-            Jaadytys.tarkastaSuorituspvmnMuoto(suoritusPvm, request);
+            if (!Jaadytys.tarkastaSuorituspvmnMuoto(suoritusPvm, request)) {
+                return;
+            }
             suoritusPvm = Jaadytys.vaihdaPvmnMuotoa(suoritusPvm);
             HttpSession istunto = request.getSession();
             LocalisationBundle bundle = SessioApuri.bundle(request);
