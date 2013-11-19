@@ -11,6 +11,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -50,6 +52,7 @@ public class Lisapisterajat {
         } catch (SQLException se) {
             SessioApuri.annaVirhe(request.getSession(), "Tietojen tallentamisessa tapahtui virhe: " + se.getMessage());
         }
+        SessioApuri.annaViesti(request.getSession(), "Muutokset tallennettu");
     }
 
     /**
@@ -68,6 +71,21 @@ public class Lisapisterajat {
             }
         }
         return intArray;
+    }
+
+    public static void laskeRajatUudestaan(Kurssi kurssi, HttpServletRequest request) {
+        kurssi.setValue(Kurssi.lisapisterajat, "");
+        kurssi.setValue(Kurssi.harjoitustyon_pisterajat, "");
+        
+        kurssi.setValue(Kurssi.lisapisterajat, kolmenRyhmatStringiksi(laskariRajat(kurssi)));
+        kurssi.setValue(Kurssi.harjoitustyon_pisterajat, kolmenRyhmatStringiksi(htRajat(kurssi)));
+        try {
+            SQLoader.tallennaKantaan(kurssi);
+        } catch (SQLException ex) {
+            SessioApuri.annaVirhe(request.getSession(), "Kantaan tallennuksessa tapahtui virhe: " + ex.getMessage());
+            return;
+        }
+        SessioApuri.annaViesti(request.getSession(), "Lisäpisterajat uudelleenlaskettu");
     }
 
     public static List<Integer> laskariRajat(Kurssi kurssi) {
@@ -101,6 +119,9 @@ public class Lisapisterajat {
     }
 
     private static ArrayList<Integer> jasenteleKolmenRyhmat(String p) {
+        if (p == null) {
+            p = "";
+        }
         ArrayList<Integer> ret = new ArrayList();
         for (int i = 0; i + 3 <= p.length(); i += 4) {
             try {
@@ -112,7 +133,7 @@ public class Lisapisterajat {
         return ret;
     }
 
-    private static String kolmenRyhmatStringiksi(ArrayList<Integer> l) {
+    private static String kolmenRyhmatStringiksi(List<Integer> l) {
         int[] ints = new int[l.size()];
         int i = 0;
         for (Integer integer : l) {
