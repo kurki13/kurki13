@@ -1,3 +1,13 @@
+<html>
+<head>
+    <META charset='utf-8'/>
+    <title>KURKI</title>
+    <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+</head>
+<body>
+
+
 <div style="font-size: 90%">
 
 #set($qs = $request.getQueryString())
@@ -31,16 +41,37 @@ $bundle.getString("tktlkurki")
 
 #if ($request.getParameter("inc_accepted") == "on")
     <p>    
-    $bundle.getString("hyvaksytyt")<br>
-    #foreach ($osallistuminen in $osallistumiset)
-         #if ($osallistuminen.arvosana == "1"||$osallistuminen.arvosana == "2"||$osallistuminen.arvosana == "3"||$osallistuminen.arvosana == "4"||$osallistuminen.arvosana == "5"||$osallistuminen.arvosana == "+")
-            <br>#if($request.getParameter("inc_ssn") == "on")$osallistuminen.hetu &emsp;#end
-            $osallistuminen.sukunimi, $osallistuminen.etunimi 
-            #if($request.getParameter("inc_grade") == "on")&emsp;$osallistuminen.arvosana#end
-         #end
-    #end
+    <br>$bundle.getString("hyvaksytyt")<br>
+    <table class="table table-bordered table-condensed"  style="font-size: 90%;width: auto">
+        #foreach ($osallistuminen in $osallistumiset)
+        <tr>
+             #if ($osallistuminen.arvosana == "1"||$osallistuminen.arvosana == "2"||$osallistuminen.arvosana == "3"||$osallistuminen.arvosana == "4"||$osallistuminen.arvosana == "5"||$osallistuminen.arvosana == "+")
+                #if($request.getParameter("inc_ssn") == "on")<td>$osallistuminen.hetu</td>#end
+                <td>$osallistuminen.sukunimi, $osallistuminen.etunimi</td> 
+                #if($request.getParameter("inc_koesep") == "on")
+                    #if ($valittuKurssi.valikokeet_lkm > 0)                         
+                    #foreach ( $i in [1..$valittuKurssi.valikokeet_lkm] )       
+                     <td>#if($osallistuminen.kokeet.osa($i) != "")
+                        $osallistuminen.kokeet.osa($i)
+                        #else
+                        0
+                        #end</td>
+                    #end
+                    #end
+                #end
+                #if($request.getParameter("inc_koesum") == "on")<td>$osallistuminen.laskarit.getYhteispisteet()</td>#end
+                #if($request.getParameter("inc_lhsum") == "on")<td>$osallistuminen.kokeet.getYhteispisteet()</td>#end
+                #if($request.getParameter("inc_grade") == "on")<td>$osallistuminen.arvosana</td>#end
+                #if($request.getParameter("inc_crunits") == "on")<td>$osallistuminen.laajuus_op</td>#end
+                
+             #end
+         </tr>
+        #end
+    </table>
     </p>
 #end
+
+#set ($lol = $request.getParameterNames())
 
 #if ($request.getParameter("inc_failed") == "on")
     <p>    
@@ -54,6 +85,7 @@ $bundle.getString("tktlkurki")
     </p>
 #end
 
+#set ($lol = $request.getParameterNames())
 <p>
 <b><br>Nimet:<br></b>
 #foreach ($hihi in $lol)
@@ -67,3 +99,5 @@ $request.getParameter("inc_koesum")
 $request.getParameter("inc_accepted")
 </p>
 </div>
+</body>
+</html>
