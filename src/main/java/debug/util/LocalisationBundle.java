@@ -28,17 +28,20 @@ public class LocalisationBundle {
     }
 
     public String getString(String request) {
-        try{
+        try {
             return ResourceBundle.getBundle("localisationBundle", locale).getString(request);
         } catch (MissingResourceException me) {
-            SessioApuri.annaVirhe(rq.getSession(), "Missing resource key for: " + request);
-            return "MISSING_" + request;
+            ResourceBundle.clearCache();
+            try {
+                return ResourceBundle.getBundle("localisationBundle", locale).getString(request);
+            } catch (MissingResourceException me2) {
+                SessioApuri.annaVirhe(rq.getSession(), "Missing resource key for: " + request);
+                return "missingkey(" + request + ")";
+            }
         }
     }
 
     public ResourceBundle getBundle() {
         return ResourceBundle.getBundle("localisationBundle", locale);
     }
-    
-    
 }

@@ -188,6 +188,7 @@
         </td>
     </tr>
 </table>
+<br>
 <input type=submit name=tallenna class="btn" value=$bundle.getString("tmuutokset") onClick="">
 <input type=submit name=arvostele class="btn" value="$bundle.getString("teearv")" onClick="">
 <a href="lisapisterajat.vm">$bundle.getString("muutaparajoja")</a>
