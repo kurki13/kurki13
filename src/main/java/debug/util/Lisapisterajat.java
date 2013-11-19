@@ -74,10 +74,22 @@ public class Lisapisterajat {
         int monta = kurssi.getValue(Kurssi.max_laskaripisteet);
         float kartuntavali = kurssi.getValue(Kurssi.lisapisteiden_askelkoko);
         int ekanraja = kurssi.getValue(Kurssi.lisapistealaraja);
-
-        List<Integer> ret = new ArrayList();
         List<Integer> asetetut_pisteet = jasenteleKolmenRyhmat(kurssi.getValue(Kurssi.lisapisterajat));
 
+        return lisapisterajatKaavanMukaan(monta, kartuntavali, ekanraja, asetetut_pisteet);
+    }
+
+    public static List<Integer> htRajat(Kurssi kurssi) {
+        int monta = kurssi.getValue(Kurssi.harjoitustyopisteet);
+        float kartuntavali = kurssi.getValue(Kurssi.harjoitustoiden_askelkoko);
+        int ekanraja = kurssi.getValue(Kurssi.ht_lisapistealaraja);
+        List<Integer> asetetut_pisteet = jasenteleKolmenRyhmat(kurssi.getValue(Kurssi.harjoitustyon_pisterajat));
+
+        return lisapisterajatKaavanMukaan(monta, kartuntavali, ekanraja, asetetut_pisteet);
+    }
+
+    private static List<Integer> lisapisterajatKaavanMukaan(int monta, float kartuntavali, int ekanraja, List<Integer> asetetut_pisteet) {
+        List<Integer> ret = new ArrayList();
         for (int i = 0; i < monta; i++) {
             if (i < asetetut_pisteet.size()) {
                 ret.add(asetetut_pisteet.get(i));
@@ -88,12 +100,7 @@ public class Lisapisterajat {
         return ret;
     }
 
-    public static List<Integer> htRajat(Kurssi kurssi) {
-        int monta = kurssi.getValue(Kurssi.harjoitustyopisteet);
-        return jasenteleKolmenRyhmat(kurssi.getValue(Kurssi.harjoitustyon_pisterajat)).subList(0, monta + 1);
-    }
-
-    public static ArrayList<Integer> jasenteleKolmenRyhmat(String p) {
+    private static ArrayList<Integer> jasenteleKolmenRyhmat(String p) {
         ArrayList<Integer> ret = new ArrayList();
         for (int i = 0; i + 3 <= p.length(); i += 4) {
             try {
@@ -105,7 +112,7 @@ public class Lisapisterajat {
         return ret;
     }
 
-    public static String kolmenRyhmatStringiksi(ArrayList<Integer> l) {
+    private static String kolmenRyhmatStringiksi(ArrayList<Integer> l) {
         int[] ints = new int[l.size()];
         int i = 0;
         for (Integer integer : l) {
@@ -115,7 +122,7 @@ public class Lisapisterajat {
         return kolmenRyhmatStringiksi(ints);
     }
 
-    public static String kolmenRyhmatStringiksi(int[] l) {
+    private static String kolmenRyhmatStringiksi(int[] l) {
         StringBuilder ret = new StringBuilder();
         for (Integer i : l) {
             if (i > 999) {
@@ -141,6 +148,6 @@ public class Lisapisterajat {
         ArrayList<Integer> k = jasenteleKolmenRyhmat(t);
         System.out.println(Arrays.toString(k.toArray()));
         System.out.println(kolmenRyhmatStringiksi(k).equals(t));
-        System.out.println(kolmenRyhmatStringiksi(new int[] {-5050,99999,564065,1}));
+        System.out.println(kolmenRyhmatStringiksi(new int[]{-5050, 99999, 564065, 1}));
     }
 }
