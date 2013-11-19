@@ -85,16 +85,13 @@ $SessioApuri.auta($request)
 
 </form>
 
-<br><br>
-
-<div>
-Apulinkit testaukseen:
-<input type=button class="btn" value=hello onClick="parent.location='hello.vm'">
-<input type=button class="btn" value=Lisäyslause onClick="parent.location='lisayslause.vm'">
-<input type=button class="btn" value=laskarit onClick="parent.location='laskarit.vm'">
-<input type=button class="btn" value=opiskelija onClick="parent.location='opiskelija.vm'">
-<input type=button class="btn" value=osallistujaLista onClick="parent.location='osallistujaLista.vm'">
-<input type=button class="btn" value=harjoitustyö onClick="parent.location='harjoitustyo.vm'">
-</div>
-<br>
+##<div>
+##Apulinkit testaukseen:
+##<input type=button class="btn" value=hello onClick="parent.location='hello.vm'">
+##<input type=button class="btn" value=Lisäyslause onClick="parent.location='lisayslause.vm'">
+##<input type=button class="btn" value=laskarit onClick="parent.location='laskarit.vm'">
+##<input type=button class="btn" value=opiskelija onClick="parent.location='opiskelija.vm'">
+##<input type=button class="btn" value=osallistujaLista onClick="parent.location='osallistujaLista.vm'">
+##<input type=button class="btn" value=harjoitustyö onClick="parent.location='harjoitustyo.vm'">
+##</div>
 <div id=ilmoitus> </div>
