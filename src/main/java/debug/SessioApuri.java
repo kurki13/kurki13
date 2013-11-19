@@ -11,14 +11,10 @@ import debug.model.SQLkyselyt.OpiskelijaKyselyt;
 import debug.model.SQLkyselyt.OsallistuminenKyselyt;
 import debug.model.util.Table;
 import debug.util.LocalisationBundle;
-import debug.util.QuerystringParser;
-import java.io.UnsupportedEncodingException;
-import java.net.MalformedURLException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
@@ -101,7 +97,7 @@ public class SessioApuri {
     public static void auta(HttpServletRequest request) {
         HttpSession session = request.getSession();
         lataa_kurssit(request);
-        kasitteleGetParametrit(session, request.getQueryString());
+        kasitteleGetParametrit(request);
 
         Kurssi valittuKurssi = (Kurssi) session.getAttribute(ValittuKurssi);
         if (valittuKurssi != null) {
@@ -134,32 +130,20 @@ public class SessioApuri {
 
     }
 
-    private static void kasitteleGetParametrit(HttpSession session, String queryString) {
-        if (queryString == null) {
-            return;
-        }
-        Map<String, String> params;
-        try {
-            params = QuerystringParser.split(queryString);
-        } catch (UnsupportedEncodingException ex) {
-            Logger.getLogger(SessioApuri.class.getName()).log(Level.SEVERE, null, ex);
-            return;
-        } catch (MalformedURLException ex) {
-            Logger.getLogger(SessioApuri.class.getName()).log(Level.SEVERE, null, ex);
-            return;
-        }
+    private static void kasitteleGetParametrit(HttpServletRequest request) {
+        HttpSession session = request.getSession();
 
-        if (params.containsKey(LokaaliGet)) {
-            session.setAttribute(LokaaliTunnus, params.get(LokaaliGet));
+        if (request.getParameter(LokaaliGet) != null) {
+            session.setAttribute(LokaaliTunnus, request.getParameter(LokaaliGet));
         }
-        if (params.containsKey(KurssiGet)) {
-            session.setAttribute(ValitunKurssinId, params.get(KurssiGet));
+        if (request.getParameter(KurssiGet) != null) {
+            session.setAttribute(ValitunKurssinId, request.getParameter(KurssiGet));
             session.setAttribute(ValittuKurssi,
                     etsiKurssiListasta((List<Kurssi>) session.getAttribute(KurssiLista),
-                    params.get(KurssiGet), session));
+                   request.getParameter(KurssiGet), session));
         }
-        if (params.containsKey(ToimintoGet)) {
-            session.setAttribute(Toiminto, params.get(ToimintoGet));
+        if (request.getParameter(ToimintoGet) != null) {
+            session.setAttribute(Toiminto, request.getParameter(ToimintoGet));
         }
     }
 
