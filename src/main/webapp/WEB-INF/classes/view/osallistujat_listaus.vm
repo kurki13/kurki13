@@ -33,7 +33,10 @@
   #set($opiskelija = $OpiskelijaKyselyt.opiskelijaHetulla($osallinen.hetu))
   <tr>
     <td>
-      <b><a href="mailto:">$opiskelija.sukunimi, $opiskelija.etunimi</a></b>
+      <b><a href="mailto:">$opiskelija.sukunimi, $opiskelija.etunimi</a>
+        #if($osallinen.jaassa.equals('J'))<img src="images/kurkijaassa.gif">#end
+        #if($osallinen.jaassa.equals('S'))<img src="images/defrost.gif">#end
+      </b>
     </td>
     <td>
       <center>
