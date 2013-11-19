@@ -26,11 +26,6 @@
     </tool>      
     
     <tool>
-        <key>queryparser</key>
-        <class>debug.util.QuerystringParser</class>
-    </tool>
-    
-    <tool>
         <key>SessioApuri</key>
         <class>debug.SessioApuri</class>
     </tool>
