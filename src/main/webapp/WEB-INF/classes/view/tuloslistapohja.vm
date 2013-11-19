@@ -59,8 +59,12 @@ $bundle.getString("tktlkurki")
                     #end
                     #end
                 #end
-                #if($request.getParameter("inc_koesum") == "on")<td>$osallistuminen.laskarit.getYhteispisteet()</td>#end
+                #if($request.getParameter("inc_koesum") == "on")<td>$osallistuminen.laskarit.getYhteispisteet()</td>#end                
                 #if($request.getParameter("inc_lhsum") == "on")<td>$osallistuminen.kokeet.getYhteispisteet()</td>#end
+                #if($request.getParameter("inc_htsum") == "on")<td>$osallistuminen.harjoitustyot.getYhteispisteet()</td>#end
+                #if($request.getParameter("inc_sum") == "on")<td>$osallistuminen.laskarihyvitys+$osallistuminen.harjoitustyohyvitys+$osallistuminen.kokeet.getYhteispisteet()</td>#end
+                #if($request.getParameter("inc_lhlp") == "on")<td>$osallistuminen.laskarihyvitys</td>#end
+                #if($request.getParameter("inc_htlp") == "on")<td>$osallistuminen.harjoitustyohyvitys</td>#end
                 #if($request.getParameter("inc_grade") == "on")<td>$osallistuminen.arvosana</td>#end
                 #if($request.getParameter("inc_crunits") == "on")<td>$osallistuminen.laajuus_op</td>#end
                 
