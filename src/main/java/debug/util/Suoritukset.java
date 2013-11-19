@@ -8,7 +8,6 @@ import debug.SessioApuri;
 import debug.model.Osallistuminen;
 import debug.model.osasuoritukset.Osasuoritus;
 import debug.model.util.SQLoader;
-import static debug.util.Tarkistus.lisaaMuutettu;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -37,6 +36,7 @@ public class Suoritukset {
 
                 Osallistuminen os = etsiOsallistuminenHetulla(hetu, osallistumiset);
 
+                //virheelliset arvot lisätään johonkin toiseen listaan?
                 if(isInteger(arvo)) {
                     if (tyyppi.equals("laskarit")) {
                         if (os.getLaskarit().osa(kerta).getPisteet() != Integer.parseInt(arvo)) {
@@ -51,7 +51,13 @@ public class Suoritukset {
                             lisaaMuutettu(hetu);
                         }
                     } else if (tyyppi.equals("arvosana")) {
-                        if (!os.getArvosana().equals(arvo)) {
+                        //kun asetetaan jostakin("",-,+,numero) toiseksi numeroksi
+                        if (os.getArvosana() != null && arvo != null) {
+                            if (!os.getArvosana().equals(arvo)) {
+                                lisaaMuutettu(hetu+"arvosana"+arvo);
+                            }
+                        //astetaan tyhjästä numeroksi
+                        } else if (os.getArvosana() == null && arvo != null) {
                             lisaaMuutettu(hetu+"arvosana"+arvo);
                         }
                     } else if (tyyppi.equals("op")) {
@@ -79,15 +85,34 @@ public class Suoritukset {
                             lisaaMuutettu(hetu);
                         }
                     } 
-//                    else if (tyyppi.equals("arvosana")) {
-//                        if (!os.getArvosana().equals(arvo)) {
-//                            lisaaMuutettu(hetu+"arvosana"+arvo);
-//                        }
-//                    } else if (tyyppi.equals("kieli")) {
-//                        if (!os.getKielikoodi().equals(arvo)) {
-//                            lisaaMuutettu(hetu+"kieli"+arvo);
-//                        }
-//                    } 
+                    else if (tyyppi.equals("arvosana")) {
+                        //kun asetetaan kirjaimesta toiseksi kirjaimeksi
+                        if (os.getArvosana() != null && !arvo.isEmpty()) {
+                            if (!os.getArvosana().equals(arvo)) {
+                                lisaaMuutettu(hetu+"arvosana"+arvo);
+                            }
+                        //kun asetetaan kirjaimesta tyhjäksi
+                        } else if (os.getArvosana() != null && arvo.isEmpty()) {
+                            lisaaMuutettu(hetu+"arvosana"+arvo);
+                        //kun astetaan tyhjästä kirjaimeksi
+                        } else if (os.getArvosana() == null && !arvo.isEmpty()) {
+                            lisaaMuutettu(hetu+"arvosana"+arvo);
+                        }
+                    } 
+                    else if (tyyppi.equals("kieli")) {
+                        //kielestä toiseksi kieleksi
+                        if (os.getKielikoodi() != null && !arvo.isEmpty()) {
+                            if (!os.getKielikoodi().equals(arvo)) {
+                                lisaaMuutettu(hetu+"kieli"+arvo);
+                            }
+                        //kielestä tyhjäksi
+                        } else if (os.getKielikoodi() != null && arvo.isEmpty()) {
+                                lisaaMuutettu(hetu+"kieli"+arvo);
+                        //tyhjästä kieleksi
+                        } else if (os.getKielikoodi() == null && !arvo.isEmpty()) {
+                                lisaaMuutettu(hetu+"kieli"+arvo);
+                        }
+                    } 
                 }
                 
                 

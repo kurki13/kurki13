@@ -84,7 +84,7 @@ $bundle.getString("opiskelijat"): #if ($opiskelijat != '') $opiskelijat #else $b
         #end
 
         #if ($tyyppi == 'kieli')
-            $Valitsin.lisaaArvot("", 'fi', 'en', 'se')
+            $Valitsin.lisaaArvot("", 'S', 'E', 'R')
         #end
 
         ##lisätään radiobuttonien sallitut arvot listaan
@@ -93,10 +93,10 @@ $bundle.getString("opiskelijat"): #if ($opiskelijat != '') $opiskelijat #else $b
         ##lähetetään filteiröidytosallistumiset-sijaan lista opiskelijoista joiden suoritteita on muutettu!
         
         ##suoritusten tarkistus, onko muuttunut? kesken vielä!
-        ##$Suoritukset.muutosTarkistus($request, $Valitsin, $filteroidytOsallistumiset)
-        ##$Suoritukset.getMuutetut()
-        
-        $Suoritukset.kasitteleLomake($request, $Valitsin, $filteroidytOsallistumiset)
+        $Suoritukset.muutosTarkistus($request, $Valitsin, $filteroidytOsallistumiset)
+        Muutetut arvot: $Suoritukset.getMuutetut()
+
+        ##$Suoritukset.kasitteleLomake($request, $Valitsin, $filteroidytOsallistumiset)
 
         ##käydään läpi kaikki kurssin osallistumiset ja tulostetaan pistetiedot
         #foreach ($os in $filteroidytOsallistumiset)
@@ -131,13 +131,21 @@ $bundle.getString("opiskelijat"): #if ($opiskelijat != '') $opiskelijat #else $b
                 ##textfield jossa osasuorituksen tms arvo
                 <td><input value="$osasuoritus" type="text" class="form-control input-sm"
                         style="width:50px" maxlength="3" name="pisteet${os.hetu}"
-                        onblur="if(this.value>$max || this.value<0 || (isNaN(this.value) && this.value != '+' && this.value != '-' &&
-                        this.value != 'se' && this.value != 'en' && this.value != 'fi'))
-                        {alert(this.value + ' ei ole hyväksytty arvo.');
-                        this.value='${osasuoritus}'; this.style.color='black'; setChecked('id${os.hetu}', this.value)}"
-                        onChange="if(this.value != '$osasuoritus') { this.style.color='red';}
-                        else {this.style.color='black'};
-                        setChecked('id${os.hetu}', this.value)"></td>
+                        onblur="
+                            if(!check(this.value)) {
+                                alert(this.value + ' ei ole hyväksytty arvo.');
+                                this.value='${osasuoritus}';
+                                this.style.color='black';
+                                setChecked('id${os.hetu}', this.value)
+                            }"
+                        onChange="
+                            if(this.value != '$osasuoritus') {
+                                this.style.color='red';
+                            } else {
+                                this.style.color='black'
+                            };
+                            setChecked('id${os.hetu}', this.value)
+                        "></td>
 
                 <td>
                 
@@ -158,10 +166,18 @@ $bundle.getString("opiskelijat"): #if ($opiskelijat != '') $opiskelijat #else $b
                 </td>
 
             </tr>
+        #end
     </table>
 
 ##javascriptit
 <script type="text/javascript">
+
+
+    function check(value) {
+        var sallitut = $Valitsin.sallitutJS
+        return sallitut.indexOf(value) != -1;
+    }
+
     function setChecked(hetu, thisvalue){
         var id = hetu+'_'+thisvalue
         document.getElementById(id).checked = true
@@ -169,7 +185,7 @@ $bundle.getString("opiskelijat"): #if ($opiskelijat != '') $opiskelijat #else $b
 </script>
 
 <input type=hidden value=pressed name=button>
-<input type=submit class="btn" value=$bundle.getString("tmuutokset") onClick="">
+<input type=submit class="btn" value=$bundle.getString("tmuutokset")>
 
 $request.getParameter('button')
 

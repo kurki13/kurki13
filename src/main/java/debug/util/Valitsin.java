@@ -47,4 +47,18 @@ public class Valitsin {
         return sallitut;
     }
     
+    public String getSallitutJS() {
+        StringBuilder ret = new StringBuilder();
+        ret.append("[");
+        for (String string : sallitut) {
+            ret.append("'").append(string).append("'");
+            ret.append(",");
+        }
+        if (!sallitut.isEmpty()) {
+            ret.deleteCharAt(ret.length()-1);
+        }
+        ret.append("]");
+        return ret.toString();
+    }
+    
 }
