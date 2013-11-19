@@ -199,7 +199,7 @@ public class KurssiKyselyt {
          * @param request 
          */
 	public static void asetaSuorituspvm(Kurssi kurssi, String suoritusPvm, HttpServletRequest request) {
-            if (!Jaadytys.tarkastaSuorituspvmnMuoto(suoritusPvm, request)) {
+            if (!Jaadytys.tarkastaSuorituspvmnMuoto(suoritusPvm, kurssi, request)) {
                 return;
             }
             suoritusPvm = Jaadytys.vaihdaPvmnMuotoa(suoritusPvm);

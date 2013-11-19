@@ -10,7 +10,6 @@ import debug.model.Kurssi;
 import debug.model.SQLkyselyt.HenkiloKyselyt;
 import debug.model.SQLkyselyt.OsallistuminenKyselyt;
 import debug.model.SQLkyselyt.SQLProseduurit;
-import debug.util.LocalisationBundle;
 import java.io.StringWriter;
 import java.net.URL;
 import java.text.SimpleDateFormat;
@@ -56,13 +55,13 @@ public class Jaadytys {
         return true;
     }
     
-    /**
-     * Metodi asettaa kurssin suorituspäivämäärän asetukselle ylärajan. 
-     * 
-     * @param kurssi Kurssi, jolle yläraja asetetaan
-     * @return Asetettu yläraja sopivassa muodossa
-     */
-    public static String asetaSuorituspvmlleYlaraja(Kurssi kurssi) {
+    public static String palautaSuorituspvmnYlaraja(Kurssi kurssi) {
+        Calendar ylaraja = asetaSuorituspvmlleYlaraja(kurssi);
+        SimpleDateFormat muotoilu = new SimpleDateFormat("dd.MM.yyyy");
+        return muotoilu.format(ylaraja.getTime());
+    }
+    
+    private static Calendar asetaSuorituspvmlleYlaraja(Kurssi kurssi) {
         Calendar paattymisPaiva = Calendar.getInstance();
         paattymisPaiva.setTime(kurssi.getPaattymis_pvm());
         Calendar ylaraja;
@@ -74,12 +73,10 @@ public class Jaadytys {
             ylaraja = jarjestelmanPaivays;
         }
         ylaraja.add(Calendar.MONTH, 2);
-        
-        SimpleDateFormat muotoilu = new SimpleDateFormat("MM/dd/yyyy");
-        return muotoilu.format(ylaraja.getTime());
+        return ylaraja;
     }
     
-    public static boolean tarkastaSuorituspvmnMuoto(String suoritusPvm, HttpServletRequest request) {
+    public static boolean tarkastaSuorituspvmnMuoto(String suoritusPvm, Kurssi kurssi, HttpServletRequest request) {
         HttpSession istunto = request.getSession();
         LocalisationBundle bundle = SessioApuri.bundle(request);
         try {
@@ -88,16 +85,20 @@ public class Jaadytys {
                 SessioApuri.annaVirhe(istunto, bundle.getString("virheVirheellinenMuoto") + ".");
                 return false;
             }
-            if (paivamaara[0] < 1 || paivamaara[0] > 12) {
+            if (paivamaara[1] < 1 || paivamaara[1] > 12) {
                 SessioApuri.annaVirhe(istunto, bundle.getString("virheKuukausi"));
                 return false;
             }
-            if (paivamaara[0] == 2) {
-                if (!kasitteleHelmikuu(paivamaara[1], paivamaara[0], paivamaara[2], request)){
+            if (paivamaara[1] == 2) {
+                if (!kasitteleHelmikuu(paivamaara[0], paivamaara[1], paivamaara[2], request)){
                     return false;
                 }
             }
-            if (!kasittelePaiva(paivamaara[1], paivamaara[0], request)) {
+            if (!kasittelePaiva(paivamaara[0], paivamaara[1], request)) {
+                return false;
+            }
+            if (!tarkastaSuorituspvmnRajat(paivamaara, kurssi)) {
+                SessioApuri.annaVirhe(istunto, bundle.getString("virheellinenSuorituspvm"));
                 return false;
             }
             return true;  
@@ -109,11 +110,11 @@ public class Jaadytys {
     
     private static int[] parsiPaivamaaraSyote(String syote) {
         int[] palautus = new int[3];
-        String kuukausiString = syote.substring(0, 2);
-        String paivaString = syote.substring(3, 5);
+        String paivaString = syote.substring(0, 2);
+        String kuukausiString = syote.substring(3, 5);
         String vuosiString = syote.substring(6, 10);
-        palautus[0] = Integer.parseInt(kuukausiString);
-        palautus[1] = Integer.parseInt(paivaString);
+        palautus[0] = Integer.parseInt(paivaString);
+        palautus[1] = Integer.parseInt(kuukausiString);
         palautus[2] = Integer.parseInt(vuosiString);
         return palautus;
     }
@@ -164,15 +165,22 @@ public class Jaadytys {
         }
         return true;
     }
-    /*
-    private static boolean tarkastaSuorituspvmnRajat(String suoritusPvm, Kurssi kurssi) {
-        Calendar ylaraja = Calendar.getInstance();
-        String ylarajaString = asetaSuorituspvmlleYlaraja(kurssi);
+    
+    private static boolean tarkastaSuorituspvmnRajat(int[] pvm, Kurssi kurssi) {
+        Calendar alaraja = Calendar.getInstance();
+        alaraja.add(Calendar.MONTH, -6);
+        Calendar ylaraja = asetaSuorituspvmlleYlaraja(kurssi);
+        Calendar suoritusPvm = Calendar.getInstance();
+        suoritusPvm.set(pvm[2], pvm[1]-1, pvm[0]);
+        if (suoritusPvm.before(alaraja) || suoritusPvm.after(ylaraja)) {
+            return false;
+        }
+        return true;
     }
-    */
+    
     public static String vaihdaPvmnMuotoa(String pvm) {
         int[] paivamaara = parsiPaivamaaraSyote(pvm);
-        String palautus = paivamaara[2] + "-" + paivamaara[0] + "-" + paivamaara[1];
+        String palautus = paivamaara[2] + "-" + paivamaara[1] + "-" + paivamaara[0];
         return palautus;
     }
     

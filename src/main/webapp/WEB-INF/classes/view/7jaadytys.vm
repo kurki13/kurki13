@@ -39,7 +39,7 @@ $session.setAttribute("selected_course", $kurssi)
             </div>
             
             #if ($jaadytys.onkoSuorituspvmNull($selected_course))
-                #set ($ylaraja = $jaadytys.asetaSuorituspvmlleYlaraja($selected_course))
+                #set ($ylaraja = $jaadytys.palautaSuorituspvmnYlaraja($selected_course))
                 <form method=get>
                     $bundle.getString("valitseSuorpvm"):<input type="text" name="suoritusPvm" id="datepicker"/>
                     <input type="submit" value="$bundle.getString("laheta")" class="btn"/>
@@ -71,7 +71,7 @@ $session.setAttribute("selected_course", $kurssi)
             <link rel="stylesheet" href="/resources/demos/style.css"/>
             <script>
                 $(function() {
-                    $('#datepicker').datepicker({minDate: "-6M", maxDate: "$ylaraja"});
+                    $('#datepicker').datepicker({minDate: "-6M", maxDate: "$ylaraja", dateFormat: "dd.mm.yy"});
                 });
             </script>
         </body>
