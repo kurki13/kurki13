@@ -1,8 +1,8 @@
 #parse ("hello.vm")
 
-$params.get('hetu') <br>
+$request.getParameter('hetu') <br>
 
-#foreach($opiskelija in $OpiskelijaKyselyt.opiskelijatHetulla($params.get('hetu')))
+#foreach($opiskelija in $OpiskelijaKyselyt.opiskelijatHetulla($request.getParameter('hetu')))
     $opiskelija.hetu
     $opiskelija.etunimi
     $opiskelija.sukunimi

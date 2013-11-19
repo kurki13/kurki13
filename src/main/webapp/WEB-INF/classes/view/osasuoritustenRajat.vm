@@ -22,8 +22,8 @@
     #foreach($raja in $rajat)
         #set($minParam = "${lomake_tunnus}_${i}_min")
         #set($maxParam = "${lomake_tunnus}_${i}_max")
-        #set($min = $params.get($minParam))
-        #set($max = $params.get($maxParam))
+        #set($min = $request.getParameter($minParam))
+        #set($max = $request.getParameter($maxParam))
         #if($min)
             #if($raja.setMin($min))
             <pre>$rajanNimi nro $i:n minimiarvoksi asetettu $min</pre>

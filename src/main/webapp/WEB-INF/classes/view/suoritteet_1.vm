@@ -6,14 +6,14 @@
 
 #set($kurssinOsallistumiset = $OsallistuminenKyselyt.osallistumisetKurssilla($valittuKurssi))
 ##filterit
-#set ($tyyppi = $params.get('type'))
-#if ($kerta) #set ($kerta = $params.get('kerta'))) #else #set ($kerta = "") #end
-#set ($ryhma = $params.get('ryhma'))
-#set ($opiskelijat = $params.get('opiskelijat'))
+#set ($tyyppi = $request.getParameter('type'))
+#if ($kerta) #set ($kerta = $request.getParameter('kerta'))) #else #set ($kerta = "") #end
+#set ($ryhma = $request.getParameter('ryhma'))
+#set ($opiskelijat = $request.getParameter('opiskelijat'))
 #set ($filteroidytOsallistumiset = [])
 
 ##kerta näkyy refreshin jälkeen?
-<h3><b>$tyypit.get($params.get('type')), $bundle.getString("kerta"): $kerta, $bundle.getString("ryhma"): #if ($ryhma != '') $ryhma #else $bundle.getString("kaikki") #end</b></h3>
+<h3><b>$tyypit.get($request.getParameter('type')), $bundle.getString("kerta"): $kerta, $bundle.getString("ryhma"): #if ($ryhma != '') $ryhma #else $bundle.getString("kaikki") #end</b></h3>
 
 ##filteröidään opiskelijat annettujen filteröintiparametrien mukaan
 #foreach ($o in $kurssinOsallistumiset)
@@ -45,7 +45,7 @@
         <tr>
             <td><b>$bundle.getString("opiskelija")</b></td>
             <td><b>$bundle.getString("ryhma")</b></td>
-            <td colspan="2" align="center"><b>$tyypit.get($params.get('type'))</b></td>
+            <td colspan="2" align="center"><b>$tyypit.get($request.getParameter('type'))</b></td>
         </tr>
 
         ##määritellään radiobuttonien sallitut arvot

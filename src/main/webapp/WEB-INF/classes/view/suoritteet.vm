@@ -5,13 +5,13 @@
 
 #set($kurssinOsallistumiset = $OsallistuminenKyselyt.osallistumisetKurssilla($valittuKurssi))
 ##filterit
-#set ($tyyppi = $params.get('type'))
-#set ($kerta = $params.get('kerta'))
-#set ($ryhma = $params.get('ryhma'))
-#set ($opiskelijat = $params.get('opiskelijat'))
+#set ($tyyppi = $request.getParameter('type'))
+#set ($kerta = $request.getParameter('kerta'))
+#set ($ryhma = $request.getParameter('ryhma'))
+#set ($opiskelijat = $request.getParameter('opiskelijat'))
 #set ($filteroidytOsallistumiset = [])
 
-<h2><b>$tyypit.get($params.get('type'))</h2>
+<h2><b>$tyypit.get($request.getParameter('type'))</h2>
 <h3>#if($tyyppi != "arvosana" && $tyyppi != "op" && $tyyppi != "kieli") $bundle.getString("kerta"): $kerta, #end
 $bundle.getString("ryhma"): #if ($ryhma != '') $ryhma #else $bundle.getString("kaikki") #end,
 $bundle.getString("opiskelijat"): #if ($opiskelijat != '') $opiskelijat #else $bundle.getString("kaikki") #end</b></h3>
@@ -46,7 +46,7 @@ $bundle.getString("opiskelijat"): #if ($opiskelijat != '') $opiskelijat #else $b
         <tr>
             <td><b>$bundle.getString("opiskelija")</b></td>
             <td><b>$bundle.getString("ryhma")</b></td>
-            <td colspan="2" align="center"><b>$tyypit.get($params.get('type'))</b></td>
+            <td colspan="2" align="center"><b>$tyypit.get($request.getParameter('type'))</b></td>
         </tr>
 
         ##määritellään radiobuttonien sallitut arvot
@@ -171,7 +171,7 @@ $bundle.getString("opiskelijat"): #if ($opiskelijat != '') $opiskelijat #else $b
 <input type=hidden value=pressed name=button>
 <input type=submit class="btn" value=$bundle.getString("tmuutokset") onClick="">
 
-$params.get('button')
+$request.getParameter('button')
 
 </form>
 </div>

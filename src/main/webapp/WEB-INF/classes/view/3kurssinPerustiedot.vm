@@ -12,8 +12,8 @@
 
 ##Laskareiden get-parametrit
     #set($lh = $params.getParameter('lh'))
-    #set($lh_p = $params.get('lh_p'))
-    #set($lh_lp = $params.get('lh_lp'))
+    #set($lh_p = $request.getParameter('lh_p'))
+    #set($lh_lp = $request.getParameter('lh_lp'))
     #if($lh)
         $valittuKurssi.setLaskarikerta_lkm($Integer.parseInt($lh))
     #end
@@ -25,9 +25,9 @@
     #end
 
 ##Harjoitustöiden get-parametrit
-    #set($ht = $params.get('ht'))
-    #set($ht_p = $params.get('ht_p'))
-    #set($ht_lp = $params.get('ht_lp'))
+    #set($ht = $request.getParameter('ht'))
+    #set($ht_p = $request.getParameter('ht_p'))
+    #set($ht_lp = $request.getParameter('ht_lp'))
     #if($ht)
         $valittuKurssi.setHarjoitustyo_lkm($Integer.parseInt($ht))
     #end
@@ -39,8 +39,8 @@
     #end
 
 ##Kokeiden get-parametrit
-    #set($koe = $params.get('koe'))
-    #set($koe_p = $params.get('koe_p'))
+    #set($koe = $request.getParameter('koe'))
+    #set($koe_p = $request.getParameter('koe_p'))
     #if($koe)
         $valittuKurssi.setValikokeet_lkm($Integer.parseInt($koe))
     #end

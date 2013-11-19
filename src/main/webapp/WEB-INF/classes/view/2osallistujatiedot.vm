@@ -1,10 +1,10 @@
 #parse("hello.vm")
 
 ##Filterit/parametrit
-#set($sukuFilter = $params.get('filterSukunimi'))
-#set($ryhmaFilter = $params.get('filterRyhma'))
-#set($hetuFilter = $params.get('filterOpnro'))
-#set($toiminto = $params.get('toiminto'))
+#set($sukuFilter = $request.getParameter('filterSukunimi'))
+#set($ryhmaFilter = $request.getParameter('filterRyhma'))
+#set($hetuFilter = $request.getParameter('filterOpnro'))
+#set($toiminto = $request.getParameter('toiminto'))
 #if($onkoJaassa) #set($vainLuku="readonly") #else #set($vainLuku="") #end
 
 ##haetaan kurssin ryhmät, ja jätetään pois mystinen ryhmä "0"

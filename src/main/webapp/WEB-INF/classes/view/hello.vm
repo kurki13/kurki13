@@ -3,10 +3,6 @@ $SessioApuri.auta($request)
 ##Lokalisaatiobundlen asetus
 #set($bundle = $SessioApuri.bundle($request))
 ##Parametrit käytettäviksi
-#set($qs = $request.getQueryString())
-#if($qs)
-    #set($params = $queryparser.split($qs))
-#end
 ##Tähän voi asettaa yleishyödyllistä matskua
 #set($valittuKurssi = $session.getAttribute('selected_course'))
 <html>

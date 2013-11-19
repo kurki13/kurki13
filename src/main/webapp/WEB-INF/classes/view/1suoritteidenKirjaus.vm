@@ -26,7 +26,7 @@
     <select name="type" onChange="osasuorituskerrat(this.selectedIndex)" class="form-control form-inline" style="width:250px">
 ##        <option value="" selected>--- Valitse ---</option>
     #foreach($t in $tyypit.entrySet())
-        #if($params.get("type") == $t.key)
+        #if($request.getParameter("type") == $t.key)
             <option value=$t.key selected>$t.value</option>
         #else
             <option value=$t.key>$t.value</option>
@@ -79,7 +79,7 @@
         if (kerrat[tyyppi].length == 0) {
             kerratlista.disabled=true
         }
-        kerratlista.selectedIndex=#if($params.get("kerta"))$params.get("kerta")-1#{else}0#end
+        kerratlista.selectedIndex=#if($request.getParameter("kerta"))$request.getParameter("kerta")-1#{else}0#end
     }
     window.onload = osasuorituskerrat(document.suoritteidenKirjaus.type.selectedIndex)
 </script>
@@ -96,7 +96,7 @@
     <select name="ryhma" class="form-control form-inline" style="width:100px">
     <option value="" selected>$bundle.getString("kaikki")</option>
     #foreach($r in $ryhmat)
-        #if($params.get("ryhma") == $r)
+        #if($request.getParameter("ryhma") == $r)
             <option value=$r selected>$r</option>
         #else
             <option value=$r>$r</option>
@@ -106,7 +106,7 @@
 
 
     <b>$bundle.getString("opiskelijat"):</b>
-    <input value="#if($params.get("opiskelijat"))$params.get("opiskelijat")#end"
+    <input value="#if($request.getParameter("opiskelijat"))$request.getParameter("opiskelijat")#end"
         type="text" class="form-control form-inline" style="width:150px" name="opiskelijat">
 
     <input type=hidden value=pressed name=button>
@@ -115,11 +115,11 @@
 
 </form>
 
-#if ($params.get("button"))
+#if ($request.getParameter("button"))
     #parse ('suoritteet.vm')
 #end
 
-##valittu $params.get('lisääTähänNimi')
+##valittu $request.getParameter('lisääTähänNimi')
 
 
 #parse("bottom.vm")
