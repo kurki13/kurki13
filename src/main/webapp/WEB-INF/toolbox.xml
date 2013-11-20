@@ -36,6 +36,11 @@
     </tool>
     
     <tool>
+        <key>suorituspaivamaara</key>
+        <class>debug.util.Suorituspaivamaara</class>
+    </tool>
+    
+    <tool>
         <key>SQLProseduurit</key>
         <class>debug.model.SQLkyselyt.SQLProseduurit</class>
     </tool>        	

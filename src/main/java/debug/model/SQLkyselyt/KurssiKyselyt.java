@@ -4,13 +4,10 @@
  */
 package debug.model.SQLkyselyt;
 
-import debug.SessioApuri;
 import debug.dbconnection.DatabaseConnection;
 import debug.model.Kurssi;
 import debug.model.util.Filter;
 import debug.model.util.SQLoader;
-import debug.util.Jaadytys;
-import debug.util.LocalisationBundle;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -20,8 +17,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -31,14 +26,6 @@ public class KurssiKyselyt {
 
 	private static final int MONTHS_OPEN = 12;
 	private static final int SUPER_OPEN = 48;
-	private static final String asetaSuorituspvm = //<editor-fold defaultstate="collapsed" desc="asetaSuorituspvm">
-		"UPDATE kurssi SET suoritus_pvm = ?\n"
-		+ " WHERE kurssikoodi = ?\n"
-		+ " AND lukukausi = ?\n"
-		+ " AND lukuvuosi = ?\n"
-		+ " AND tyyppi = ?\n"
-		+ " AND kurssi_nro = ?\n";
-	//</editor-fold>
 	private static final String COURSE_INFOS = //<editor-fold defaultstate="collapsed" desc="courseInfos">
 
 		// LUENTO- (JA LABORATORIOKURSSIT)
@@ -189,38 +176,6 @@ public class KurssiKyselyt {
 		} else {
 			return null;
 		}
-	}
-
-        /**
-         * Metodi asettaa kurssille suorituspäivämäärän.
-         * 
-         * @param kurssi Kurssi, jolle suorituspäivämäärä asetetaan
-         * @param suoritusPvm Asetettava suorituspäivämäärä
-         * @param request 
-         */
-	public static void asetaSuorituspvm(Kurssi kurssi, String suoritusPvm, HttpServletRequest request) {
-            if (!Jaadytys.tarkastaSuorituspvmnMuoto(suoritusPvm, kurssi, request)) {
-                return;
-            }
-            suoritusPvm = Jaadytys.vaihdaPvmnMuotoa(suoritusPvm);
-            HttpSession istunto = request.getSession();
-            LocalisationBundle bundle = SessioApuri.bundle(request);
-            try {
-                Connection tietokantayhteys = DatabaseConnection.makeConnection();
-		PreparedStatement valmisteltuLause = tietokantayhteys.prepareStatement(asetaSuorituspvm);
-		valmisteltuLause.setDate(1, java.sql.Date.valueOf(suoritusPvm));
-		valmisteltuLause.setString(2, kurssi.getKurssikoodi());
-		valmisteltuLause.setString(3, kurssi.getLukukausi());
-		valmisteltuLause.setInt(4, kurssi.getLukuvuosi());
-		valmisteltuLause.setString(5, kurssi.getTyyppi());
-		valmisteltuLause.setInt(6, kurssi.getKurssi_nro());
-		valmisteltuLause.executeUpdate();
-		valmisteltuLause.close();
-		tietokantayhteys.close();
-            } catch (SQLException poikkeus) {
-                String virhe = bundle.getString("tkvirhe") + ": " + poikkeus.getLocalizedMessage();
-                SessioApuri.annaVirhe(istunto, virhe);
-            }	
 	}
 
 	public static void tallennaKantaan(Kurssi kurssi) throws SQLException {
