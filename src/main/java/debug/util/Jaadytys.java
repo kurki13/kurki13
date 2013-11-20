@@ -12,7 +12,6 @@ import debug.model.SQLkyselyt.OsallistuminenKyselyt;
 import debug.model.SQLkyselyt.SQLProseduurit;
 import java.io.StringWriter;
 import java.net.URL;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Properties;
 import javax.mail.Message;
@@ -31,6 +30,12 @@ import org.apache.velocity.app.*;
  */
 public class Jaadytys {
     
+    /**
+     * Metodi tarkastaa onko parametrina annetun kurssin suorituspäivämäärä null.
+     * 
+     * @param kurssi Kurssi, jonka suorituspäivämäärä tarkastetaan
+     * @return True, jos suorituspäivämäärä on null
+     */
     public static boolean onkoSuorituspvmNull(Kurssi kurssi) {
         if (kurssi.getSuoritus_pvm() == null) {
             return true;
@@ -55,135 +60,6 @@ public class Jaadytys {
         return true;
     }
     
-    public static String palautaSuorituspvmnYlaraja(Kurssi kurssi) {
-        Calendar ylaraja = asetaSuorituspvmlleYlaraja(kurssi);
-        SimpleDateFormat muotoilu = new SimpleDateFormat("dd.MM.yyyy");
-        return muotoilu.format(ylaraja.getTime());
-    }
-    
-    private static Calendar asetaSuorituspvmlleYlaraja(Kurssi kurssi) {
-        Calendar paattymisPaiva = Calendar.getInstance();
-        paattymisPaiva.setTime(kurssi.getPaattymis_pvm());
-        Calendar ylaraja;
-        Calendar jarjestelmanPaivays = Calendar.getInstance();
-        
-        if (jarjestelmanPaivays.before(paattymisPaiva)) {
-            ylaraja = paattymisPaiva;
-        } else {
-            ylaraja = jarjestelmanPaivays;
-        }
-        ylaraja.add(Calendar.MONTH, 2);
-        return ylaraja;
-    }
-    
-    public static boolean tarkastaSuorituspvmnMuoto(String suoritusPvm, Kurssi kurssi, HttpServletRequest request) {
-        HttpSession istunto = request.getSession();
-        LocalisationBundle bundle = SessioApuri.bundle(request);
-        try {
-            int[] paivamaara = parsiPaivamaaraSyote(suoritusPvm);
-            if (suoritusPvm.length() > 10) {
-                SessioApuri.annaVirhe(istunto, bundle.getString("virheVirheellinenMuoto") + ".");
-                return false;
-            }
-            if (paivamaara[1] < 1 || paivamaara[1] > 12) {
-                SessioApuri.annaVirhe(istunto, bundle.getString("virheKuukausi"));
-                return false;
-            }
-            if (paivamaara[1] == 2) {
-                if (!kasitteleHelmikuu(paivamaara[0], paivamaara[1], paivamaara[2], request)){
-                    return false;
-                }
-            }
-            if (!kasittelePaiva(paivamaara[0], paivamaara[1], request)) {
-                return false;
-            }
-            if (!tarkastaSuorituspvmnRajat(paivamaara, kurssi)) {
-                SessioApuri.annaVirhe(istunto, bundle.getString("virheellinenSuorituspvm"));
-                return false;
-            }
-            return true;  
-        } catch (Exception poikkeus) {
-            SessioApuri.annaVirhe(istunto, bundle.getString("virheVirheellinenMuoto") + ": " + poikkeus.getLocalizedMessage());
-            return false;
-        }  
-    }
-    
-    private static int[] parsiPaivamaaraSyote(String syote) {
-        int[] palautus = new int[3];
-        String paivaString = syote.substring(0, 2);
-        String kuukausiString = syote.substring(3, 5);
-        String vuosiString = syote.substring(6, 10);
-        palautus[0] = Integer.parseInt(paivaString);
-        palautus[1] = Integer.parseInt(kuukausiString);
-        palautus[2] = Integer.parseInt(vuosiString);
-        return palautus;
-    }
-    
-    private static boolean kasitteleHelmikuu(int paiva, int kuukausi, int vuosi, HttpServletRequest request) {
-        HttpSession istunto = request.getSession();
-        LocalisationBundle bundle = SessioApuri.bundle(request);
-        if(onkoKarkausvuosi(vuosi)) {
-            if (paiva < 1 || paiva > 29) {
-                SessioApuri.annaVirhe(istunto, bundle.getString("virheKarkausvuodenHelmikuu"));
-                return false;
-            }
-        } else {
-            if (paiva < 1 || paiva > 28) {
-                SessioApuri.annaVirhe(istunto, bundle.getString("virheKarkausvuodettomanHelmikuun"));
-                return false;
-            }
-        }
-        return true;
-    }
-    
-    private static boolean onkoKarkausvuosi(int vuosi) {
-        if (vuosi % 400 == 0)
-            return true;
-        if (vuosi % 100 == 0)
-            return false;
-        if (vuosi % 4 == 0)
-            return true;
-        return false;
-    }
-    
-    private static boolean kasittelePaiva(int paiva, int kuukausi, HttpServletRequest request) {
-        HttpSession istunto = request.getSession();
-        LocalisationBundle bundle = SessioApuri.bundle(request);
-        int[] kuukaudetJoissa31Paivaa = {1, 3, 5, 7, 8, 10, 12};
-        for (int alkio : kuukaudetJoissa31Paivaa) {
-            if (kuukausi == alkio) {
-                if (paiva < 1 || paiva > 31) {
-                    SessioApuri.annaVirhe(istunto, bundle.getString("virhePaiva1"));
-                    return false;
-                }
-            } else {
-                if (paiva < 1 || paiva > 30) {
-                    SessioApuri.annaVirhe(istunto, bundle.getString("virhePaiva2"));
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
-    
-    private static boolean tarkastaSuorituspvmnRajat(int[] pvm, Kurssi kurssi) {
-        Calendar alaraja = Calendar.getInstance();
-        alaraja.add(Calendar.MONTH, -6);
-        Calendar ylaraja = asetaSuorituspvmlleYlaraja(kurssi);
-        Calendar suoritusPvm = Calendar.getInstance();
-        suoritusPvm.set(pvm[2], pvm[1]-1, pvm[0]);
-        if (suoritusPvm.before(alaraja) || suoritusPvm.after(ylaraja)) {
-            return false;
-        }
-        return true;
-    }
-    
-    public static String vaihdaPvmnMuotoa(String pvm) {
-        int[] paivamaara = parsiPaivamaaraSyote(pvm);
-        String palautus = paivamaara[2] + "-" + paivamaara[1] + "-" + paivamaara[0];
-        return palautus;
-    }
-    
     /**
      * Metodi lähettää jäädytyksestä tiedottavan sähköpostin asianmukaisille tahoille.
      * 
@@ -194,6 +70,7 @@ public class Jaadytys {
     public static void lahetaPostia(Kurssi kurssi, String kurssinTila, HttpServletRequest request) {
         HttpSession istunto = request.getSession();
         LocalisationBundle bundle = SessioApuri.bundle(request);
+        
         String aihe = asetaAihe(kurssi, kurssinTila);
         String viestinSisalto = luoViestinSisalto(request, kurssi, kurssinTila);
         String kayttajanOsoite = request.getRemoteUser() + "@cs.helsinki.fi";
@@ -210,19 +87,6 @@ public class Jaadytys {
         } catch (MessagingException poikkeus2) {
             SessioApuri.annaVirhe(istunto, bundle.getString("sahkopostiPoikkeus") + ": " + poikkeus2.getLocalizedMessage());
         }
-    }
-    
-    /**
-     * Metodi luo tyhjän viesti-olion.
-     * 
-     * @return Tyhjä viesti-olio
-     */
-    private static MimeMessage luoViesti() {
-        Properties ominaisuudet = new Properties();
-        ominaisuudet.put("mail.smtp.host", "localhost");
-        javax.mail.Session postiIstunto = javax.mail.Session.getInstance(ominaisuudet);
-        MimeMessage viesti = new MimeMessage(postiIstunto);
-        return viesti;
     }
     
     /**
@@ -266,5 +130,18 @@ public class Jaadytys {
         Velocity.init(url.getPath());
         Velocity.mergeTemplate("sahkoposti.vm", "utf-8", konteksti, kirjoittaja);
         return kirjoittaja.toString();
+    }
+    
+    /**
+     * Metodi luo tyhjän viesti-olion.
+     * 
+     * @return Tyhjä viesti-olio
+     */
+    private static MimeMessage luoViesti() {
+        Properties ominaisuudet = new Properties();
+        ominaisuudet.put("mail.smtp.host", "localhost");
+        javax.mail.Session postiIstunto = javax.mail.Session.getInstance(ominaisuudet);
+        MimeMessage viesti = new MimeMessage(postiIstunto);
+        return viesti;
     }
 }
