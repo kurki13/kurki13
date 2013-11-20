@@ -87,7 +87,7 @@ $bundle.getString("tktlkurki")
                 #if($request.getParameter("inc_htlp") == "on")<td>$osallistuminen.harjoitustyohyvitys</td>#end
                 #if($request.getParameter("inc_grade") == "on")<td>$osallistuminen.arvosana</td>#end
                 #if($request.getParameter("inc_crunits") == "on")<td>$osallistuminen.laajuus_op</td>#end               
-                
+                #if($request.getParameter("inc_language") == "on")<td>#if($osallistuminen.kielikoodi)$osallistuminen.kielikoodi.toUpperCase()#else S #end</td>#end 
              #end
          </tr>
         #end

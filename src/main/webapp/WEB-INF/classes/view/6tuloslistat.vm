@@ -170,6 +170,18 @@
                         name="inc_cruname" size="8" maxlength="8">
                   </td>
                 </tr>
+                <tr>
+                  <td>
+                    <input type="checkbox" name="inc_language" checked>
+                  </td>
+                  <td nowrap>
+                    $bundle.getString("kieli")
+                  </td>
+                  <td>
+                    <input type="text" class="form-control input-sm" style="width:80px" 
+                        name="inc_languagename" size="8" maxlength="8">
+                  </td>
+                </tr>
 
 
 
