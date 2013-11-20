@@ -6,6 +6,7 @@
     <link href="bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
 </head>
 <body>
+<div style="font-size: 90%">
 #set ($regex = ".*")
 
 #set($qs = $request.getQueryString())
@@ -61,7 +62,7 @@ $bundle.getString("tilanne"): $date.get('d.M.yyyy HH:mm')<br>
 
 #if ($request.getParameter("listtype") == 2)       
     $OsallistuminenSorter.sorttaaSukunimenMukaan($osallistumiset)
-    <table class="table table-bordered table-condensed" style="width: auto">            
+    <table class="table table-bordered table-condensed" style="font-size: 95%;width: auto">            
     <th>$bundle.getString("isonimi")</th>
     <th>$bundle.getString("opnro")</th>
     #foreach ($osallistuminen in $osallistumiset)
@@ -76,7 +77,7 @@ $bundle.getString("tilanne"): $date.get('d.M.yyyy HH:mm')<br>
 
 #if ($request.getParameter("listtype") == 3)       
     $OsallistuminenSorter.sorttaaSukunimenMukaan($osallistumiset)
-    <table class="table table-bordered table-condensed" style="width: auto">            
+    <table class="table table-bordered table-condensed" style="font-size: 95%;width: auto">            
     <th>$bundle.getString("isonimi")</th>
     #foreach ($osallistuminen in $osallistumiset)
     #if ($osallistuminen.voimassa.equals("K"))
@@ -90,7 +91,7 @@ $bundle.getString("tilanne"): $date.get('d.M.yyyy HH:mm')<br>
 
 #if ($request.getParameter("listtype") == 4) 
     $OsallistuminenSorter.sorttaaSukunimenMukaan($osallistumiset)
-    <table class="table table-bordered table-condensed" style="width: auto">  
+    <table class="table table-bordered table-condensed" style="font-size: 95%;width: auto">  
     <th>$bundle.getString("isonimi")</th>
     <th>Email</th>
     #foreach ($osallistuminen in $osallistumiset)
@@ -106,7 +107,7 @@ $bundle.getString("tilanne"): $date.get('d.M.yyyy HH:mm')<br>
 #if ($request.getParameter("listtype") == 5)       
     $bundle.getString("emailkopiointi")<br>
     <input value="#foreach ($osallistuminen in $osallistumiset)#if(!$osallistuminen.email.equals("undefined"))$osallistuminen.email,#end#end"></input><br><br>
-    <table class="table table-bordered table-condensed" style="width: auto"> 
+    <table class="table table-bordered table-condensed" style="font-size: 95%;width: auto"> 
     <th>Email</th>
     #foreach ($osallistuminen in $osallistumiset)
     #if ($osallistuminen.voimassa.equals("K"))
@@ -120,7 +121,7 @@ $bundle.getString("tilanne"): $date.get('d.M.yyyy HH:mm')<br>
 
 #if ($request.getParameter("listtype") == 6)    
     $OsallistuminenSorter.sorttaaIlmjarjestyksenMukaan($osallistumiset)    
-    <table class="table table-bordered table-condensed" style="width: auto"> 
+    <table class="table table-bordered table-condensed" style="font-size: 95%;width: auto"> 
     <th>#</th>
     <th>$bundle.getString("isonimi")</th>
     <th>$bundle.getString("ilmoaika")</th>
@@ -135,24 +136,24 @@ $bundle.getString("tilanne"): $date.get('d.M.yyyy HH:mm')<br>
     </table> 
 #end
 
-#if ($request.getParameter("listtype") == 7)       
+#if ($request.getParameter("listtype") == 7)         
     $OsallistuminenSorter.sorttaaSukunimenMukaan($osallistumiset)
-    <table class="table table-bordered table-condensed" style="width: auto">            
+    <table class="table table-bordered table-condensed" style="font-size: 95%;width: auto">  
     <th>$bundle.getString("isonimi")</th>       
     #if ($valittuKurssi.laskarikerta_lkm > 0)   
-    <th>$bundle.getString("lh")</th>    
+    <th>$bundle.getString("lh_lyhenne")</th>    
         #foreach ( $i in [1..$valittuKurssi.laskarikerta_lkm] )
            <th>$i</th>       
         #end
     #end        
        #if ($valittuKurssi.harjoitustyo_lkm > 0)       
-       <th>$bundle.getString("ht")</th>
+       <th>$bundle.getString("ht_lyhenne")</th>
         #foreach ( $i in [1..$valittuKurssi.harjoitustyo_lkm] )
            <th>$i</th>       
         #end
     #end    
        #if ($valittuKurssi.valikokeet_lkm > 0)     
-        <th>$bundle.getString("koe")</th>    
+        <th>$bundle.getString("koe_lyhenne")</th>    
         #foreach ( $i in [1..$valittuKurssi.valikokeet_lkm] )
            <th>$i</th>       
         #end
@@ -206,6 +207,6 @@ $bundle.getString("tilanne"): $date.get('d.M.yyyy HH:mm')<br>
     #end
     </table>        
 #end
-
+</div>
 </body>
 </html>
