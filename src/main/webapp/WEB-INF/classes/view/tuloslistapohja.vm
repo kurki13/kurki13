@@ -25,6 +25,12 @@
     #set ($osallistumiset = $OsallistuminenKyselyt.osallistumisetKurssilla($valittuKurssi))
 #end  
 
+#if (!$request.getParameter("filter").equals(""))
+    #set ($filter = $request.getParameter("filter"))
+    #set ($filter = $filter.toUpperCase())
+    #set ($osallistumiset = $OsallistuminenSorter.filteroi($osallistumiset, $filter))    
+#end
+
 $bundle.getString("HY")
 #foreach ( $i in [1..15] )
      &emsp;
@@ -53,6 +59,17 @@ $bundle.getString("tktlkurki")
                     #foreach ( $i in [1..$valittuKurssi.valikokeet_lkm] )       
                      <td>#if($osallistuminen.kokeet.osa($i) != "")
                         $osallistuminen.kokeet.osa($i)
+                        #else
+                        0
+                        #end</td>
+                    #end
+                    #end
+                #end
+                #if($request.getParameter("inc_htsep") == "on")
+                    #if ($valittuKurssi.harjoitustyo_lkm > 0)                         
+                    #foreach ( $i in [1..$valittuKurssi.harjoitustyo_lkm] )       
+                     <td>#if($osallistuminen.harjoitustyot.osa($i) != "")
+                        $osallistuminen.harjoitustyot.osa($i)
                         #else
                         0
                         #end</td>
