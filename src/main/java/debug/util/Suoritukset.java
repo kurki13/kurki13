@@ -9,6 +9,7 @@ import debug.model.Osallistuminen;
 import debug.model.osasuoritukset.Osasuoritus;
 import debug.model.util.SQLoader;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -75,21 +76,27 @@ public class Suoritukset {
                             }
                         } else {
                             if (tyyppi.equals("laskarit")) {
-                                if (arvo.isEmpty() && (os.getLaskarit().osa(kerta).getPisteet() != -1)) { //muutetaan numerosta tyhjään
+                                //muutetaan numerosta tyhjään
+                                if (arvo.isEmpty() && (os.getLaskarit().osa(kerta).getPisteet() != -1)) {
                                     lisaaMuutettu(os, arvo);
-                                } else if ("+".equals(arvo) && (os.getLaskarit().osa(kerta).getPisteet() != -2)) {  //muutetaan numerosta plussaan // muista myös "-" !!
+                                //muutetaan numerosta plussaan // muista myös "-" !!
+                                } else if ("+".equals(arvo) && (os.getLaskarit().osa(kerta).getPisteet() != -2)) {
                                     lisaaMuutettu(os, arvo);
                                 }
                             } else if (tyyppi.equals("ht")) {
-                                if (arvo.isEmpty() && (os.getHarjoitustyot().osa(kerta).getPisteet() != -1)) { //muutetaan numerosta tyhjään
+                                //muutetaan numerosta tyhjään
+                                if (arvo.isEmpty() && (os.getHarjoitustyot().osa(kerta).getPisteet() != -1)) {
                                     lisaaMuutettu(os, arvo);
-                                } else if ("+".equals(arvo) && (os.getHarjoitustyot().osa(kerta).getPisteet() != -2)) {  //muutetaan numerosta plussaan // muista myös "-" !!
+                                    //muutetaan numerosta plussaan // muista myös "-" !!
+                                } else if ("+".equals(arvo) && (os.getHarjoitustyot().osa(kerta).getPisteet() != -2)) { 
                                     lisaaMuutettu(os, arvo);
                                 }
                             } else if (tyyppi.equals("koe")) {
-                                if (arvo.isEmpty() && (os.getKokeet().osa(kerta).getPisteet() != -1)) { //muutetaan numerosta tyhjään
+                                //muutetaan numerosta tyhjään
+                                if (arvo.isEmpty() && (os.getKokeet().osa(kerta).getPisteet() != -1)) {
                                     lisaaMuutettu(os, arvo);
-                                } else if ("+".equals(arvo) && (os.getKokeet().osa(kerta).getPisteet() != -2)) {  //muutetaan numerosta plussaan // muista myös "-" !!
+                                    //muutetaan numerosta plussaan // muista myös "-" !!
+                                } else if ("+".equals(arvo) && (os.getKokeet().osa(kerta).getPisteet() != -2)) { 
                                     lisaaMuutettu(os, arvo);
                                 }
                             } else if (tyyppi.equals("arvosana")) {
@@ -181,6 +188,11 @@ public class Suoritukset {
                             }
                         } else if (tyyppi.equals("arvosana")) {
                             os.setArvosana(arvo);
+                            os.setKommentti2("MANUAL");
+                            //tenttija-kentän max koko on 20 joten siihen ei mahdu tallentamaan jokaista muutoksen tehnyttä tenttijää
+                            //os.setTenttija(os.getTenttija()+request.getRemoteUser());
+                            os.setTenttija(request.getRemoteUser());
+                            os.setKypsyyspvm(getTimestamp());
                         } else if (tyyppi.equals("op")) {
                             if (arvo.equals("")) {
                                 os.setValue(Osallistuminen.laajuus_op, 0);
@@ -211,6 +223,14 @@ public class Suoritukset {
             }
         }
     }
+
+    private static Timestamp getTimestamp() {
+	 java.util.Date date= new java.util.Date();
+	 Timestamp time = new Timestamp(date.getTime());
+         
+         return time;
+    }
+
 
     public static Osallistuminen etsiOsallistuminenHetulla(String hetu, List<Osallistuminen> osallistumiset) {
         for (Osallistuminen os : osallistumiset) {

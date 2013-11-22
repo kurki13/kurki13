@@ -58,7 +58,7 @@ public class Osallistuminen extends Table {
     private String etunimi;
     private String sukunimi;
     private String email;
-    
+
     public void setNimi(String nimi) {
         this.nimi = nimi;
     }
@@ -109,16 +109,19 @@ public class Osallistuminen extends Table {
         this.kurssi = kurssi;
     }
 
-    public boolean suoritettu(){
+    public boolean suoritettu() {
         try {
             int arv = Integer.parseInt(this.getArvosana());
             return (arv >= 0);
         } catch (Exception e) {
-            if(this.getArvosana()!=null && this.getArvosana().equals("+")) return true;
-            else return false;
+            if (this.getArvosana() != null && this.getArvosana().equals("+")) {
+                return true;
+            } else {
+                return false;
+            }
         }
     }
-    
+
     public Osasuoritukset getLaskarit() {
         if (kurssi == null) {
             throw new ApplicationException("Kurssi täytyy asettaa osallistumiselle sen luonnin jälkeen");
@@ -128,7 +131,7 @@ public class Osallistuminen extends Table {
         }
         return laskarit;
     }
- 
+
     public Osasuoritukset getHarjoitustyot() {
         if (kurssi == null) {
             throw new ApplicationException("Kurssi täytyy asettaa osallistumiselle sen luonnin jälkeen");
@@ -148,8 +151,6 @@ public class Osallistuminen extends Table {
         }
         return kokeet;
     }
-
-   
 
     /**
      * Päivittää aputaulujen (laskarit, harjoitustyöt, kokeet) arvot takaisin
@@ -174,11 +175,23 @@ public class Osallistuminen extends Table {
     public void setLaajuus_op(int op) {
         this.setValue(Osallistuminen.laajuus_op, op);
     }
-    
-     public void setJaassa(String s) {
-         this.setValue(Osallistuminen.jaassa, s);
-     }
 
+    public void setJaassa(String s) {
+        this.setValue(Osallistuminen.jaassa, s);
+    }
+    
+    public void setKommentti2(String kommentti) {
+        this.setValue(Osallistuminen.kommentti_2, kommentti);
+    }
+    
+    public void setTenttija(String tenttija) {
+        this.setValue(Osallistuminen.tenttija, tenttija);
+    }
+    
+    public void setKypsyyspvm(Timestamp pvm) {
+        this.setValue(Osallistuminen.kypsyys_pvm, pvm);
+    }
+    
     //</editor-fold>
     //<editor-fold defaultstate="collapsed" desc="getterit">
     public String getPersonid() {
@@ -309,6 +322,4 @@ public class Osallistuminen extends Table {
         return getValue(Osallistuminen.kielikoodi);
     }
     //</editor-fold>
-
-   
 }

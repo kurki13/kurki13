@@ -11,6 +11,10 @@
 #set ($opiskelijat = $request.getParameter('opiskelijat'))
 #set ($filteroidytOsallistumiset = [])
 
+#foreach ($o in $kurssinOsallistumiset)
+    $o
+#end
+
 <h2><b>$tyypit.get($request.getParameter('type'))</h2>
 <h3>#if($tyyppi != "arvosana" && $tyyppi != "op" && $tyyppi != "kieli") $bundle.getString("kerta"): $kerta, #end
 $bundle.getString("ryhma"): #if ($ryhma != '') $ryhma #else $bundle.getString("kaikki") #end,
