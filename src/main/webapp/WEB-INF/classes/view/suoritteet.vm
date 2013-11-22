@@ -73,7 +73,7 @@ $bundle.getString("opiskelijat"): #if ($opiskelijat != '') $opiskelijat #else $b
                 $Valitsin.lisaaArvot("", "-", "+")
             #else
                 #set ($max = 5)
-                $Valitsin.lisaaArvot("", "+")
+                $Valitsin.lisaaArvot("", "-" ,"+")
                 $Valitsin.lisaaVali(0,$max)
             #end
         #end
@@ -94,7 +94,7 @@ $bundle.getString("opiskelijat"): #if ($opiskelijat != '') $opiskelijat #else $b
         
         ##suoritusten tarkistus, onko muuttunut? kesken vielä!
         $Suoritukset.muutosTarkistus($request, $Valitsin, $filteroidytOsallistumiset)
-        Muutetut arvot: $Suoritukset.getMuutetut()
+        ##Muutetut arvot: $Suoritukset.getMuutetut()
 
         ##$Suoritukset.kasitteleLomake($request, $Valitsin, $filteroidytOsallistumiset)
 
@@ -186,8 +186,6 @@ $bundle.getString("opiskelijat"): #if ($opiskelijat != '') $opiskelijat #else $b
 
 <input type=hidden value=pressed name=button>
 <input type=submit class="btn" value=$bundle.getString("tmuutokset")>
-
-$request.getParameter('button')
 
 </form>
 </div>

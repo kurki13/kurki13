@@ -117,6 +117,8 @@
 
 #if ($request.getParameter("button"))
     #parse ('suoritteet.vm')
+#else
+    <p>$bundle.getString("valitsetyyppi").</p>
 #end
 
 ##valittu $request.getParameter('lisääTähänNimi')

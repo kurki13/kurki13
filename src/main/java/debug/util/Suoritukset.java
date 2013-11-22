@@ -9,7 +9,7 @@ import debug.model.Osallistuminen;
 import debug.model.osasuoritukset.Osasuoritus;
 import debug.model.util.SQLoader;
 import java.sql.SQLException;
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
@@ -19,12 +19,14 @@ import javax.servlet.http.HttpServletRequest;
  * @author tkairola
  */
 public class Suoritukset {
-    
-    private static ArrayList<String> muutetutOsallistumiset = new ArrayList<String>();
+
+    private static Map<Osallistuminen, String> muutetutArvot = new HashMap<Osallistuminen, String>();
 
     public static void muutosTarkistus(HttpServletRequest request, Valitsin valitsin, List<Osallistuminen> osallistumiset) {
-        muutetutOsallistumiset.clear();
-        SessioApuri.annaViesti(request.getSession(), "Tarkistus toimii");
+        if (muutetutArvot != null) {
+            muutetutArvot.clear();
+        }
+//        SessioApuri.annaViesti(request.getSession(), "Tarkistus toimii");
         String tyyppi = request.getParameter("type");
         String kerta = request.getParameter("kerta");
 
@@ -36,128 +38,128 @@ public class Suoritukset {
 
                 Osallistuminen os = etsiOsallistuminenHetulla(hetu, osallistumiset);
 
-                //virheelliset arvot lisätään johonkin toiseen listaan?
-                if(isInteger(arvo)) {
-                    if (tyyppi.equals("laskarit")) {
-                        if (os.getLaskarit().osa(kerta).getPisteet() != Integer.parseInt(arvo)) {
-                            lisaaMuutettu(hetu);
-                        }
-                    } else if (tyyppi.equals("ht")) {
-                        if (os.getHarjoitustyot().osa(kerta).getPisteet() != Integer.parseInt(arvo)) {
-                            lisaaMuutettu(hetu);
-                        }
-                    } else if (tyyppi.equals("koe")) {
-                        if (os.getKokeet().osa(kerta).getPisteet() != Integer.parseInt(arvo)) {
-                            lisaaMuutettu(hetu);
-                        }
-                    } else if (tyyppi.equals("arvosana")) {
-                        //kun asetetaan jostakin("",-,+,numero) toiseksi numeroksi
-                        if (os.getArvosana() != null && arvo != null) {
-                            if (!os.getArvosana().equals(arvo)) {
-                                lisaaMuutettu(hetu+"arvosana"+arvo);
+                if (valitsin.loytyykoArvo(arvo)) {
+
+                    if (os != null) {
+
+                        if (isInteger(arvo)) {
+                            if (tyyppi.equals("laskarit")) {
+                                if (os.getLaskarit().osa(kerta).getPisteet() != Integer.parseInt(arvo)) {
+                                    lisaaMuutettu(os, arvo);
+                                }
+                            } else if (tyyppi.equals("ht")) {
+                                if (os.getHarjoitustyot().osa(kerta).getPisteet() != Integer.parseInt(arvo)) {
+                                    lisaaMuutettu(os, arvo);
+                                }
+                            } else if (tyyppi.equals("koe")) {
+                                if (os.getKokeet().osa(kerta).getPisteet() != Integer.parseInt(arvo)) {
+                                    lisaaMuutettu(os, arvo);
+                                }
+                            } else if (tyyppi.equals("arvosana")) {
+                                //kun asetetaan jostakin("",-,+,numero) toiseksi numeroksi
+                                if (os.getArvosana() != null && arvo != null) {
+                                    if (!os.getArvosana().equals(arvo)) {
+                                        lisaaMuutettu(os, arvo);
+                                    }
+                                    //astetaan tyhjästä numeroksi
+                                } else if (os.getArvosana() == null && arvo != null) {
+                                    lisaaMuutettu(os, arvo);
+                                }
+                            } else if (tyyppi.equals("op")) {
+                                if (os.getLaajuus_op() != Integer.parseInt(arvo)) {
+                                    lisaaMuutettu(os, arvo);
+                                }
+                            } else {
+                                SessioApuri.annaVirhe(request.getSession(), "Väärä toiminto " + tyyppi);
+                                return;
                             }
-                        //astetaan tyhjästä numeroksi
-                        } else if (os.getArvosana() == null && arvo != null) {
-                            lisaaMuutettu(hetu+"arvosana"+arvo);
+                        } else {
+                            if (tyyppi.equals("laskarit")) {
+                                if (arvo.isEmpty() && (os.getLaskarit().osa(kerta).getPisteet() != -1)) { //muutetaan numerosta tyhjään
+                                    lisaaMuutettu(os, arvo);
+                                } else if ("+".equals(arvo) && (os.getLaskarit().osa(kerta).getPisteet() != -2)) {  //muutetaan numerosta plussaan // muista myös "-" !!
+                                    lisaaMuutettu(os, arvo);
+                                }
+                            } else if (tyyppi.equals("ht")) {
+                                if (arvo.isEmpty() && (os.getHarjoitustyot().osa(kerta).getPisteet() != -1)) { //muutetaan numerosta tyhjään
+                                    lisaaMuutettu(os, arvo);
+                                } else if ("+".equals(arvo) && (os.getHarjoitustyot().osa(kerta).getPisteet() != -2)) {  //muutetaan numerosta plussaan // muista myös "-" !!
+                                    lisaaMuutettu(os, arvo);
+                                }
+                            } else if (tyyppi.equals("koe")) {
+                                if (arvo.isEmpty() && (os.getKokeet().osa(kerta).getPisteet() != -1)) { //muutetaan numerosta tyhjään
+                                    lisaaMuutettu(os, arvo);
+                                } else if ("+".equals(arvo) && (os.getKokeet().osa(kerta).getPisteet() != -2)) {  //muutetaan numerosta plussaan // muista myös "-" !!
+                                    lisaaMuutettu(os, arvo);
+                                }
+                            } else if (tyyppi.equals("arvosana")) {
+                                //kun asetetaan kirjaimesta toiseksi kirjaimeksi
+                                if (os.getArvosana() != null && !arvo.isEmpty()) {
+                                    if (!os.getArvosana().equals(arvo)) {
+                                        lisaaMuutettu(os, arvo);
+                                    }
+                                    //kun asetetaan kirjaimesta tyhjäksi
+                                } else if (os.getArvosana() != null && arvo.isEmpty()) {
+                                    lisaaMuutettu(os, arvo);
+                                    //kun astetaan tyhjästä kirjaimeksi
+                                } else if (os.getArvosana() == null && !arvo.isEmpty()) {
+                                    lisaaMuutettu(os, arvo);
+                                }
+                            } else if (tyyppi.equals("kieli")) {
+                                //kielestä toiseksi kieleksi
+                                if (os.getKielikoodi() != null && !arvo.isEmpty()) {
+                                    if (!os.getKielikoodi().equals(arvo)) {
+                                        lisaaMuutettu(os, arvo);
+                                    }
+                                    //kielestä tyhjäksi
+                                } else if (os.getKielikoodi() != null && arvo.isEmpty()) {
+                                    lisaaMuutettu(os, arvo);
+                                    //tyhjästä kieleksi
+                                } else if (os.getKielikoodi() == null && !arvo.isEmpty()) {
+                                    lisaaMuutettu(os, arvo);
+                                }
+                            } else {
+                                SessioApuri.annaVirhe(request.getSession(), "Väärä toiminto " + tyyppi);
+                                return;
+                            }
                         }
-                    } else if (tyyppi.equals("op")) {
-                        if (os.getLaajuus_op() != Integer.parseInt(arvo)) {
-                            lisaaMuutettu(hetu);
-                        }
-                    }     
+                    } else {
+                        SessioApuri.annaVirhe(request.getSession(), "hetu " + hetu + " ei ole kurssilla");
+                    }
                 } else {
-                    if (tyyppi.equals("laskarit")) {
-                        if (arvo.isEmpty() && (os.getLaskarit().osa(kerta).getPisteet() != -1)) { //muutetaan numerosta tyhjään
-                            lisaaMuutettu(hetu);
-                        } else if ("+".equals(arvo) && (os.getLaskarit().osa(kerta).getPisteet() != -2)) {  //muutetaan numerosta plussaan // muista myös "-" !!
-                            lisaaMuutettu(hetu);
-                        }
-                    } else if (tyyppi.equals("ht")) {
-                        if (arvo.isEmpty() && (os.getHarjoitustyot().osa(kerta).getPisteet() != -1)) { //muutetaan numerosta tyhjään
-                            lisaaMuutettu(hetu);
-                        } else if ("+".equals(arvo) && (os.getHarjoitustyot().osa(kerta).getPisteet() != -2)) {  //muutetaan numerosta plussaan // muista myös "-" !!
-                            lisaaMuutettu(hetu);
-                        }
-                    } else if (tyyppi.equals("koe")) {
-                        if (arvo.isEmpty() && (os.getKokeet().osa(kerta).getPisteet() != -1)) { //muutetaan numerosta tyhjään
-                            lisaaMuutettu(hetu);
-                        } else if ("+".equals(arvo) && (os.getKokeet().osa(kerta).getPisteet() != -2)) {  //muutetaan numerosta plussaan // muista myös "-" !!
-                            lisaaMuutettu(hetu);
-                        }
-                    } 
-                    else if (tyyppi.equals("arvosana")) {
-                        //kun asetetaan kirjaimesta toiseksi kirjaimeksi
-                        if (os.getArvosana() != null && !arvo.isEmpty()) {
-                            if (!os.getArvosana().equals(arvo)) {
-                                lisaaMuutettu(hetu+"arvosana"+arvo);
-                            }
-                        //kun asetetaan kirjaimesta tyhjäksi
-                        } else if (os.getArvosana() != null && arvo.isEmpty()) {
-                            lisaaMuutettu(hetu+"arvosana"+arvo);
-                        //kun astetaan tyhjästä kirjaimeksi
-                        } else if (os.getArvosana() == null && !arvo.isEmpty()) {
-                            lisaaMuutettu(hetu+"arvosana"+arvo);
-                        }
-                    } 
-                    else if (tyyppi.equals("kieli")) {
-                        //kielestä toiseksi kieleksi
-                        if (os.getKielikoodi() != null && !arvo.isEmpty()) {
-                            if (!os.getKielikoodi().equals(arvo)) {
-                                lisaaMuutettu(hetu+"kieli"+arvo);
-                            }
-                        //kielestä tyhjäksi
-                        } else if (os.getKielikoodi() != null && arvo.isEmpty()) {
-                                lisaaMuutettu(hetu+"kieli"+arvo);
-                        //tyhjästä kieleksi
-                        } else if (os.getKielikoodi() == null && !arvo.isEmpty()) {
-                                lisaaMuutettu(hetu+"kieli"+arvo);
-                        }
-                    } 
+                    SessioApuri.annaVirhe(request.getSession(), "virheellinen arvo " + arvo + " annettu hetulle " + hetu);
                 }
-                
-                
             }
         }
+        //kutsutaan lopuksi lomakkeen käsittelyä kantaan tallennusta varten
+        if (muutetutArvot != null) {
+            kasitteleLomake(request, valitsin, muutetutArvot, tyyppi, kerta);
+        }
     }
-    
+
     public static boolean isInteger(String s) {
-    try { 
-        Integer.parseInt(s); 
-    } catch(NumberFormatException e) { 
-        return false; 
-    }
-    return true;
-}
-
-    public static void lisaaMuutettu(String... muutetut) {
-        for (String string : muutetut) {
-            muutetutOsallistumiset.add(string);
+        try {
+            Integer.parseInt(s);
+        } catch (NumberFormatException e) {
+            return false;
         }
+        return true;
     }
-    
-    public void poistaMuutettu(String... poistetut) {
-        for (String string : poistetut) {
-            muutetutOsallistumiset.remove(string);
-        }
-    }
-    
-    public ArrayList<String> getMuutetut() {
-        return muutetutOsallistumiset;
-    }
-    
-    //tarkista hetu osallistumisista ja arvo valitsimella
-    public static void kasitteleLomake(HttpServletRequest request, Valitsin valitsin, List<Osallistuminen> osallistumiset) {
-        SessioApuri.annaViesti(request.getSession(), "Lomakkeen käsittely kutsuttu");
-        String tyyppi = request.getParameter("type");
-        String kerta = request.getParameter("kerta");
 
-        Map<String, String[]> paramMap = request.getParameterMap();
-        for (String paramName : paramMap.keySet()) {
-            if (paramName.contains("pisteet")) {
-                String hetu = paramName.substring(7);
-                String arvo = paramMap.get(paramName)[0];
+    public static void lisaaMuutettu(Osallistuminen os, String arvo) {
+        muutetutArvot.put(os, arvo);
+    }
 
-                Osallistuminen os = etsiOsallistuminenHetulla(hetu, osallistumiset);
+    public Map<Osallistuminen, String> getMuutetut() {
+        return muutetutArvot;
+    }
+
+    public static void kasitteleLomake(HttpServletRequest request, Valitsin valitsin, Map<Osallistuminen, String> muutetut, String tyyppi, String kerta) {
+//        SessioApuri.annaViesti(request.getSession(), "Lomakkeen käsittely kutsuttu");
+        if (muutetut != null) {
+            for (Map.Entry<Osallistuminen, String> map : muutetut.entrySet()) {
+                String arvo = map.getValue();
+                Osallistuminen os = map.getKey();
 
                 if (valitsin.loytyykoArvo(arvo)) {
 
@@ -191,22 +193,20 @@ public class Suoritukset {
                             SessioApuri.annaVirhe(request.getSession(), "Väärä toiminto " + tyyppi);
                             return;
                         }
-                        
-                        //tarkista muuttuuko arvo ja vasta sitten tallenna kantaan
-                        
+                            
+                        //tallennetaan kantaan
                         try {
                             SQLoader.tallennaKantaan(os);
-                            SessioApuri.annaViesti(request.getSession(), "Osasuoritus tallennettu kantaan " + hetu + "  -  " + arvo);
+                            SessioApuri.annaViesti(request.getSession(), "Osasuoritus tallennettu kantaan " + os.getHetu() + "  -  " + arvo);
                         } catch (SQLException ex) {
                             SessioApuri.annaVirhe(request.getSession(), "Osasuorituksen kantaan tallennuksessa tapahtui virhe: " + ex.getMessage());
                         }
-                        
-                        
+
                     } else {
-                        SessioApuri.annaVirhe(request.getSession(), "hetu " + hetu + " ei ole kurssilla");
+                        SessioApuri.annaVirhe(request.getSession(), "hetu " + os.getHetu() + " ei ole kurssilla");
                     }
                 } else {
-                    SessioApuri.annaVirhe(request.getSession(), "virheellinen arvo " + arvo + " annettu hetulle " + hetu);
+                    SessioApuri.annaVirhe(request.getSession(), "virheellinen arvo " + arvo + " annettu hetulle " + os.getHetu());
                 }
             }
         }
@@ -237,8 +237,7 @@ public class Suoritukset {
     private static void pisteetOsasuoritukselle(Osasuoritus osas, String pisteet) {
         if (pisteet.equals("+")) {
             osas.opiskelijaLasna();
-        }
-        else if (pisteet.equals("")) {
+        } else if (pisteet.equals("")) {
             osas.poistaPisteet();
         } else {
             osas.setPisteet(Integer.parseInt(pisteet));
