@@ -281,9 +281,11 @@
 	<td colspan="4">
 <div class="instr">
 <ol>
+
+
   <li>$bundle.getString("tuloslistavalintainfo")</li>
 
-
+<b style="color:red">Ei kai me käytetä näitä kammottavia hakukriteerejä enää? Hakukenttä vois hakea automaattisesti etu- ja sukunimestä ja opiskelijanumerosta.</b>
   <li>$bundle.getString("hakuperusteinfo")
 	    <dl>
 	      <dt>$bundle.getString("tyhja")</dt>

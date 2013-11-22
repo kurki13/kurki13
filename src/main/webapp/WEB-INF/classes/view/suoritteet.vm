@@ -1,6 +1,7 @@
 ##lisää tarkistukset onko jäässä!!!!!!!!!!!!!!!
 ##javascriptit eri tiedostoon ja
 ##<head>:iin <script language='JavaScript' type='text/javascript' src='tiedostonimi.js'></script>
+##sivua päivittäessä lataa valitut hakukriteerit ym kenttiin
 
 #set($kurssinOsallistumiset = $OsallistuminenKyselyt.osallistumisetKurssilla($valittuKurssi))
 ##filterit
@@ -209,7 +210,7 @@ window.onbeforeunload = function() {
 </script>
 
 <input type=hidden value=pressed name=button>
-<input type=submit class="btn" value=$bundle.getString("tmuutokset")>
+<input type=submit class="btn" value=$bundle.getString("tmuutokset") onclick="window.onbeforeunload = null;">
 
 </form>
 </div>

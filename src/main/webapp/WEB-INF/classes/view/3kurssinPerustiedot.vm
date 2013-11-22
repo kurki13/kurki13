@@ -14,6 +14,7 @@
     #set($lh = $params.getParameter('lh'))
     #set($lh_p = $request.getParameter('lh_p'))
     #set($lh_lp = $request.getParameter('lh_lp'))
+    #set($arv_asteikko = $request.getParameter('arvosteluasteikko'))
     #if($lh)
         $valittuKurssi.setLaskarikerta_lkm($Integer.parseInt($lh))
     #end
@@ -47,6 +48,10 @@
     #if($koe_p)
         $valittuKurssi.setPakolliset_koe_lkm($Integer.parseInt($koe_p))
     #end
+    #if($arv_asteikko)
+        $valittuKurssi.setArvosteluasteikko($arv_asteikko)
+    #end
+
 ##Tallennetaan kurssi kantaan
 $KurssiKyselyt.tallennaKantaan($valittuKurssi)
 
@@ -94,7 +99,13 @@ $KurssiKyselyt.tallennaKantaan($valittuKurssi)
             </tr>
         </table>
     #end
-    <input type=submit class="btn" value=$bundle.getString("tmuutokset") onClick="">z
+    <br>
+    <p> <b>$bundle.getString("arvasteikko"):</b>
+        <input type="radio" name="arvosteluasteikko" value="K" #if($valittuKurssi.arvostellaanko.equals("K")) checked #end>$bundle.getString('arvosanat')
+        <input type="radio" name="arvosteluasteikko" value="E" #if($valittuKurssi.arvostellaanko.equals("E")) checked #end>$bundle.getString('hyvhyl')
+    </p>
+
+    <input type=submit class="btn" value=$bundle.getString("tmuutokset") onClick="">
 </form>
 
 #parse("osasuoritustenRajat.vm")

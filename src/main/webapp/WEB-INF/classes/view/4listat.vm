@@ -24,11 +24,13 @@
         <input type="text" class="form-control" name="kommentti" placeholder="$bundle.getString("kommentti")">
         </div>
         <div class="form-group">        
-        <input type="text" class="form-control" name="filter" placeholder="$bundle.getString("hakukriteerit")">
+    <input type="text" class="form-control" name="filter" placeholder="$bundle.getString("hakukriteerit")">
         </div>
         <input type="submit" tabindex="32601" value=">>>" class="btn btn-primary btn">
     </form>
 </div>
+
+<b style="color:red">Ei kai me käytetä näitä kammottavia hakukriteerejä enää? Hakukenttä vois hakea automaattisesti etu- ja sukunimestä ja opiskelijanumerosta.</b>
 
 <div class="instr">
 <b>$bundle.getString("valitsetyyppi")</b>

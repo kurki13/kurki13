@@ -123,6 +123,10 @@ public class Kurssi extends Table {
     public  void setPakolliset_koe_lkm(Integer aPakolliset_koe_lkm) {
          this.setValue(Kurssi.pakolliset_koe_lkm,aPakolliset_koe_lkm);
     }
+    
+    public void setArvosteluasteikko(String arv_asteikko) {
+        this.setValue(Kurssi.arvostellaanko, arv_asteikko);
+    }
     //</editor-fold>
     
     OsasuoritusRajat laskariRajat;

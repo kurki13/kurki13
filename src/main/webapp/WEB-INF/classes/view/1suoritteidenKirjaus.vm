@@ -24,7 +24,6 @@
 
     <b>$bundle.getString("tyyppi"):</b>
     <select name="type" onChange="osasuorituskerrat(this.selectedIndex)" class="form-control form-inline" style="width:250px">
-##        <option value="" selected>--- Valitse ---</option>
     #foreach($t in $tyypit.entrySet())
         #if($request.getParameter("type") == $t.key)
             <option value=$t.key selected>$t.value</option>
@@ -122,6 +121,5 @@
 #end
 
 ##valittu $request.getParameter('lisääTähänNimi')
-
 
 #parse("bottom.vm")
