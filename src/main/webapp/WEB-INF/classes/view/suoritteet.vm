@@ -1,7 +1,6 @@
-##lisää tarkistukset onko jäässä!!
+##lisää tarkistukset onko jäässä!!!!!!!!!!!!!!!
 ##javascriptit eri tiedostoon ja
 ##<head>:iin <script language='JavaScript' type='text/javascript' src='tiedostonimi.js'></script>
-##tarkista onko osallistuminen voimassa 'e'=ei?? 'k'=kyllä p='poistettu' $os.tyyppi
 
 #set($kurssinOsallistumiset = $OsallistuminenKyselyt.osallistumisetKurssilla($valittuKurssi))
 ##filterit
@@ -10,10 +9,6 @@
 #set ($ryhma = $request.getParameter('ryhma'))
 #set ($opiskelijat = $request.getParameter('opiskelijat'))
 #set ($filteroidytOsallistumiset = [])
-
-#foreach ($o in $kurssinOsallistumiset)
-    $o
-#end
 
 <h2><b>$tyypit.get($request.getParameter('type'))</h2>
 <h3>#if($tyyppi != "arvosana" && $tyyppi != "op" && $tyyppi != "kieli") $bundle.getString("kerta"): $kerta, #end
@@ -32,7 +27,7 @@ $bundle.getString("opiskelijat"): #if ($opiskelijat != '') $opiskelijat #else $b
             #set ($lisataanko = true)
         #end
     #end
-    #if ($lisataanko) 
+    #if ($lisataanko && $o.voimassa == "K") 
         #set ($var = $filteroidytOsallistumiset.add($o))
     #end
 #end
@@ -50,7 +45,7 @@ $bundle.getString("opiskelijat"): #if ($opiskelijat != '') $opiskelijat #else $b
         <tr>
             <td><b>$bundle.getString("opiskelija")</b></td>
             <td><b>$bundle.getString("ryhma")</b></td>
-            <td colspan="2" align="center"><b>$tyypit.get($request.getParameter('type'))</b></td>
+            <td colspan="3" align="center"><b>$tyypit.get($request.getParameter('type'))</b></td>
         </tr>
 
         ##määritellään radiobuttonien sallitut arvot
@@ -96,11 +91,8 @@ $bundle.getString("opiskelijat"): #if ($opiskelijat != '') $opiskelijat #else $b
 
         ##lähetetään filteiröidytosallistumiset-sijaan lista opiskelijoista joiden suoritteita on muutettu!
         
-        ##suoritusten tarkistus, onko muuttunut? kesken vielä!
+        ##suoritusten tarkistus, onko muuttunut? Käsittelee myös muutetut arvot ja tallentaa kantaan
         $Suoritukset.muutosTarkistus($request, $Valitsin, $filteroidytOsallistumiset)
-        ##Muutetut arvot: $Suoritukset.getMuutetut()
-
-        ##$Suoritukset.kasitteleLomake($request, $Valitsin, $filteroidytOsallistumiset)
 
         ##käydään läpi kaikki kurssin osallistumiset ja tulostetaan pistetiedot
         #foreach ($os in $filteroidytOsallistumiset)
@@ -140,33 +132,49 @@ $bundle.getString("opiskelijat"): #if ($opiskelijat != '') $opiskelijat #else $b
                                 alert(this.value + ' ei ole hyväksytty arvo.');
                                 this.value='${osasuoritus}';
                                 this.style.color='black';
-                                setChecked('id${os.hetu}', this.value)
+                                setChecked('id${os.hetu}', this.value);
+                                asteriskiSet('muutettu${os.hetu}', 'hidden');
                             }"
                         onChange="
                             if(this.value != '$osasuoritus') {
                                 this.style.color='red';
+                                asteriskiSet('muutettu${os.hetu}', 'visible');
                             } else {
-                                this.style.color='black'
+                                this.style.color='black';
+                                asteriskiSet('muutettu${os.hetu}', 'hidden');
                             };
                             setChecked('id${os.hetu}', this.value)
-                        "></td>
+                        ">
+                <input type="text" id="muutettu${os.hetu}" name="valueMuutettu" value="*" style="width:10px;border:0;visibility:hidden;color:red" readonly>
+                </td>
 
                 <td>
-                
                 ##radiobuttonien tulostus
                 #foreach($i in $arvot)
                     #if ($i == $osasuoritus || ($i == $bundle.getString('tyhja')))
                         <input type="radio" name="osat${os.hetu}" #if($i == "") value="" id="id${os.hetu}_" #else value=$i id="id${os.hetu}_$i" #end
                             onChange="pisteet${os.hetu}.value=this.value;
-                            pisteet${os.hetu}.style.color='black'"
+                            pisteet${os.hetu}.style.color='black';
+                            asteriskiSet('muutettu${os.hetu}', 'hidden');"
                             checked>$i
                     #else
                         <input type="radio" name="osat${os.hetu}" #if($i == "") value="" id="id${os.hetu}_" #else value=$i id="id${os.hetu}_$i" #end
                             onChange="pisteet${os.hetu}.value=this.value;
-                            if(osat${os.hetu}.value != '$osasuoritus')
-                            { pisteet${os.hetu}.style.color='red'}">$i
+                            if(osat${os.hetu}.value != '$osasuoritus') {
+                            pisteet${os.hetu}.style.color='red';
+                            asteriskiSet('muutettu${os.hetu}', 'visible');
+                            }">$i
                     #end
                 #end
+                </td>
+
+                <td>
+                    <input type="button" value="$bundle.getString("peru")" class="btn btn-sm btn-danger"
+                    onClick="
+                    pisteet${os.hetu}.value='${osasuoritus}';
+                    pisteet${os.hetu}.style.color='black';
+                    setChecked('id${os.hetu}', '${osasuoritus}');
+                    asteriskiSet('muutettu${os.hetu}', 'hidden');">
                 </td>
 
             </tr>
@@ -175,17 +183,29 @@ $bundle.getString("opiskelijat"): #if ($opiskelijat != '') $opiskelijat #else $b
 
 ##javascriptit
 <script type="text/javascript">
-
+    function asteriskiSet(id, nakyvyys) {
+        document.getElementById(id).style.visibility=nakyvyys;
+    }
 
     function check(value) {
         var sallitut = $Valitsin.sallitutJS
-        return sallitut.indexOf(value) != -1;
+        return sallitut.indexOf(value) != -1
     }
 
     function setChecked(hetu, thisvalue){
         var id = hetu+'_'+thisvalue
         document.getElementById(id).checked = true
     }
+
+window.onbeforeunload = function() {
+    #foreach ($os in $filteroidytOsallistumiset)
+            var id = 'muutettu${os.hetu}'
+            var nakyvyys = document.getElementById(id).style.visibility
+            if (nakyvyys == 'visible') {
+                return '$bundle.getString("TallenTaiPeru")';
+            }
+    #end
+ }
 </script>
 
 <input type=hidden value=pressed name=button>
