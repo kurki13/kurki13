@@ -84,7 +84,7 @@ $bundle.getString("opiskelijat"): #if ($opiskelijat != '') $opiskelijat #else $b
         #end
 
         #if ($tyyppi == 'kieli')
-            $Valitsin.lisaaArvot("", 'S', 'E', 'R')
+            $Valitsin.lisaaArvotListasta($Valitsin.kielet)
         #end
 
         ##lisätään radiobuttonien sallitut arvot listaan

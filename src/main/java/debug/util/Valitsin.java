@@ -14,6 +14,7 @@ public class Valitsin {
     
     private ArrayList<String> sallitut = new ArrayList<String>();
     private String kuvaus;
+    private ArrayList<String> kielikoodit = new ArrayList<String>();
     
     /*
      * Tarkista onko arvo sallittu
@@ -41,10 +42,32 @@ public class Valitsin {
     }
     
     /*
+     * Lisää yhden tai useamman arvon sallitut-listaan
+     */
+    public void lisaaArvotListasta(ArrayList<String> lista) {
+        for (String string : lista) {
+            sallitut.add(string);
+        }
+    }
+    
+    /*
      * Palauttaa sallitut arvot arraylistinä
      */
     public ArrayList<String> getSallitut() {
         return sallitut;
+    }
+    
+    /*
+     * Lisätään tietokantaan tallennettavat kielikoodit (sekä tyhjä-vaihtoehto)
+     * Ja palautetaan
+     */
+    public ArrayList<String> getKielet() {
+        kielikoodit.add("");
+        kielikoodit.add("S");
+        kielikoodit.add("E");
+        kielikoodit.add("R");
+        
+        return kielikoodit;
     }
     
     public String getSallitutJS() {
