@@ -46,6 +46,10 @@ public class OsasuoritusRajat implements Iterable<OsasuoritusRaja> {
     public void setAktiivisia(int aktiivisia) {
         this.aktiivisia = aktiivisia;
     }
+    
+    public int getAktiivisia() {
+        return this.aktiivisia;
+    }
 
     //TODO: Is prepared for nulls?
     public OsasuoritusRajat(String minstring, String maxstring, int aktiivisia) {
