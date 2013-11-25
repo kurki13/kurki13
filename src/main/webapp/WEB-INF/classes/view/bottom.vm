@@ -24,6 +24,27 @@
     ilmoitus = document.getElementById("ilmoitus")
     if(viesti!=null) ilmoitus.appendChild(viesti)
     if(virhe!=null) ilmoitus.appendChild(virhe)
+
+    function rangeChecker(kentta, min, max) {
+        var arvo = kentta.value;
+        if(min > arvo || max < arvo) {
+            kentta.style.borderColor = "Red";
+        } else if (arvo == '+' || kentta.value == "" || (min <= arvo || max >= arvo)) {
+            kentta.style.borderColor = "Green";
+        } else { 
+            kentta.value = "";
+        }
+        document.getElementById("viesti").remove();
+    }
+
+    function rajaTiedot(viesti) {
+        kohta = document.getElementById("pisterajat");
+        var ilmoitus = document.createElement("div");
+        ilmoitus.id = "viesti";
+        ilmoitus.innerHTML = viesti;
+        kohta.appendChild(ilmoitus);
+    }
+
 </script>
 
 </body>

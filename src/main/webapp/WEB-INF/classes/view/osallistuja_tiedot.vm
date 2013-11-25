@@ -9,11 +9,14 @@
 #set($edel = $OsallistujaMuutokset.edellinenOsallistuminen($osallistumiset, $opiskelijaTiedot.hetu))
 #set($seur = $OsallistujaMuutokset.seuraavaOsallistuminen($osallistumiset, $opiskelijaTiedot.hetu))
 <form action="" name="EdellisetJaSeuraavat" method="post"> 
-  <input type=hidden name="filterSukunimi" value=$sukuFilter>
-  <input type=hidden name="filterRyhma" value=$ryhmaFilter>
-  <input type=hidden name="filterOpnro" value=$hetuFilter>
-  <button name="hetuParam" type="submit" value="$edel">Edellinen</button>
-  <button name="hetuParam" type="submit" value="$seur">Seuraava</button>
+  <input type=hidden name="filterSukunimi" value="$sukuFilter">
+  <input type=hidden name="filterRyhma" value="$ryhmaFilter">
+  <input type=hidden name="filterOpnro" value="$hetuFilter">
+  <center style="max-width:1000px">
+  <button  class="btn btn-primary" name="hetuParam" type="submit" value="$edel">Edellinen</button>
+  <button  class="btn btn-primary" name="toiminto" type="submit" value="osallistujat_lisaa.vm">Lista</button>
+  <button class="btn btn-primary" name="hetuParam" type="submit" value="$seur">Seuraava</button>
+  </center>
 </form>
 
 #set($osallistumisTiedot = $OsallistuminenKyselyt.osallistuminenKurssilla($valittuKurssi,$opiskelijaTiedot.hetu))
@@ -24,12 +27,12 @@
             'koe' : $osallistumisTiedot.Kokeet})
 
     #foreach($osasuoritus in $osasuoritukset.entrySet())
-        #set($arvot = $osasuoritus.value)
-        #set($param = $request.getParameterValues($osasuoritus.key)) ##tulleet parametrit
-        #if($param) ##lopetetaan jos ei saatu parametrejä
-            #set($i = 0)
-            #foreach($arvo in $arvot)
-                #if(!$param.get($i).equals("") && !$arvo.setPisteet($param.get($i)))
+        #set($nykyiset = $osasuoritus.value)
+        #set($uudet = $request.getParameterValues($osasuoritus.key)) ##tulleet parametrit
+        #if($uudet) ##lopetetaan jos ei saatu parametrejä
+            #set($i = 0) ##pidetään countteria missä mennään
+            #foreach($arvo in $nykyiset)
+                #if(!$arvo.setPisteet($uudet.get($i))) ##kokeillaan päivittää pisteitä
                     $SessioApuri.annaVirhe($request.session, $bundle.getString("pisteVirheellinen"))
                 #end
                 #set($i = $i + 1)
@@ -46,9 +49,9 @@
     $OsallistuminenKyselyt.tallennaKantaan($osallistumisTiedot)
 #end
 
-<h3>
+<h3 style="max-width:1000px">
   <center>
-    $opiskelijaTiedot.sukunimi, $opiskelijaTiedot.etunimi ($opiskelijaTiedot.hetu / )
+    $opiskelijaTiedot.sukunimi, $opiskelijaTiedot.etunimi ($opiskelijaTiedot.hetu)
    </center>
 </h3>
 
@@ -59,13 +62,13 @@
         $bundle.getString("pääaine") : $opiskelijaTiedot.paa_aine,
         $bundle.getString("aloitusvuosi") : $opiskelijaTiedot.aloitusvuosi})
 
-<table class="normal" width="100%" style="max-width:1000px">
+<table class="normal" width="100%" style="max-width:1000px" >
   #foreach($tieto in $tiedot.entrySet())
     <tr>
-      <th>$tieto.key</th>
+      <th width="25%" >$tieto.key</th>
       #if($tieto.value)
         #if($tieto.key.equals($bundle.getString("sposti")))
-          <td><a href="mailto:$tieto.value"></a>
+          <td><a href="mailto:$tieto.value"></a><td>
         #else
           <td>$tieto.value</td>
         #end
@@ -80,11 +83,10 @@
         [$bundle.getString("Harjoitustyöpisteet"), $osallistumisTiedot.Harjoitustyot, 'ht'],
         [$bundle.getString("Koepisteet"), $osallistumisTiedot.Kokeet, 'koe']])
   
-      
-
 ##OSASUORITUKSET
+<div id=pisterajat> </div> ##Javascriptillä tehtyä ilmoitusta varten
 <form name=OsallistujaTiedot action="" method="post" >
-<table class="table table-condensed table-bordered" style="max-width:1000px">
+<table class="table" style="max-width:1000px">
   #foreach($osat in $osasuoritukset)
     #set($arvot = $osat.get(1))
     #set($param = $osat.get(2))
@@ -101,11 +103,14 @@
               #if($osallistumisTiedot.jaassa.equals('J'))$arvo.pisteet
               #else
                 <br>
-                <input type="text" name=$param
+                <input type="text" name="$param"
                   class="form-control input-sm" size="2" maxlength="2" style="width:50px"
-                  #if($arvo.maxPisteet != -1)placeholder=$arvo.maxPisteet
+                  #if($arvo.maxPisteet != -1)
+                    #set($viesti = "Anna arvo väliltä 0 - "+${arvo.maxPisteet}+", + jos opiskelija on ollut läsnä tai tyhjä.")
+                    onFocus="rajaTiedot('$viesti')"
+                    onBlur="rangeChecker(this,0,$arvo.maxPisteet)"
                   #else readonly #set($selitys = 1) #end ##maxpisteinä -1 eli tyhjä
-                  #if($arvo.pisteet != -1) value=$arvo.pisteet #end >  ##-1 vastaa tyhjää
+                  value="$arvo.toString()" >  
               #end
             </td>
             #set($i = $i+1)
@@ -128,35 +133,40 @@
     <tr>
       <th width="25%">$tieto.get(0)</th> ##Otsikko
       <td>
-        #if($parametri.equals('kiel'))
-            <select name="$parametri" class="form-control form-inline" style="width:70px">
-                #foreach($kieli in $tieto.get(3))
-                    <option #if($arvo.equals($kieli)) selected #end value="$kieli">$kieli</option>
-                #end
-            </select>
+        #if($osallistumisTiedot.jaassa.equals('J')) #if($arvo) $arvo #end  
         #else
-            #if($osallistumisTiedot.jaassa.equals('J')) #if($arvo) $arvo #end  
+            #if($parametri.equals('kiel'))
+                <select name="$parametri" class="form-control form-inline" style="width:70px">
+                    #foreach($kieli in $tieto.get(3))
+                        <option #if($arvo.equals($kieli)) selected #end value="$kieli">$kieli</option>
+                    #end
+                </select>
             #else
-            <input type="text" name="$parametri"
-              class="form-control input-sm" size="2" maxlength="2" style="width:50px" 
-              #if($arvo) value="$arvo" #end >
+                <input type="text" name="$parametri"
+                  class="form-control input-sm" size="2" maxlength="2" style="width:50px" 
+                  #if($arvo) value="$arvo" #end >
             #end
         #end
       </td>
     </tr>
   #end
 
+    <tr>
+       <th colspan="6">
+         <center>
+           <input type="hidden" name="hetuParam" value=$opiskelijaTiedot.hetu> ##jäädään tiedot sivulle
+           #if(!$osallistumisTiedot.jaassa.equals('J'))
+               <input type="submit" class="btn btn-success" value="$bundle.getString("tallennapisteet")">
+           #else 
+             <input type="hidden" name="sulataOpiskelija" value="true">
+             <input type="submit" class="btn btn-success" value="SULATA">
+           #end
+         </center>
+       </th>
+   </tr>
 </table>
 
 #if($selitys)
     $SessioApuri.annaVirhe($request.session, "* osasuorituksen maksimiarvoja ei ole asetettu")
-#end
-
-<input type="hidden" name="hetuParam" value=$opiskelijaTiedot.hetu> ##jäädään tiedot sivulle
-#if(!$osallistumisTiedot.jaassa.equals('J'))
-    <input type="submit" class="btn btn-success" value="$bundle.getString("tallennapisteet")">
-#else 
-  <input type="hidden" name="sulataOpiskelija" value="true">
-  <input type="submit" class="btn btn-success" value="SULATA">
 #end
 </form>

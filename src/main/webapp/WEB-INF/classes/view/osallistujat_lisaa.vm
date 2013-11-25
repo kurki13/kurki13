@@ -32,7 +32,7 @@
       <b><a href="mailto:MAIL">$opiskelija.etunimi, $opiskelija.sukunimi</a></b>
     </td>
     <td>
-      <center><tt>$opiskelija.hetu</tt></center>
+      <center>$opiskelija.hetu</center>
     </td>
     <td>
       <center>

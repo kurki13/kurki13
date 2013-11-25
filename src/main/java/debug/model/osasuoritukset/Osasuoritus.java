@@ -38,10 +38,18 @@ public class Osasuoritus {
     }
 
     public boolean setPisteet(String param) {
-        System.out.println(param);
         try {
             return setPisteet(Integer.parseInt(param));
         } catch (NumberFormatException nfe) {
+            if(param == null) return false;
+            if(param.equals("+")) {
+                opiskelijaLasna();
+                return true;
+            }
+            if(param.equals("")) {
+                poistaPisteet();
+                return true;
+            }
             return false;
         }
     }
