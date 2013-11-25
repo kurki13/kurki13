@@ -25,104 +25,111 @@
 
 <h1>$bundle.getString("1entry")</h1>
 
+## <label for=""> <br>
+## </label>
+
 <form name="suoritteidenKirjaus" action="" method=get class="form-inline">
+        <label for="type">$bundle.getString("tyyppi") <br>
+            <select name="type" id="type" onChange="osasuorituskerrat(this.selectedIndex)" class="form-control form-inline" style="width:190px">
+            #foreach($t in $tyypit.entrySet())
+                #if($request.getParameter("type") == $t.key)
+                    <option value=$t.key selected>$t.value</option>
+                #else
+                    <option value=$t.key>$t.value</option>
+                #end
+            #end
+            </select>
+        </label>
 
-    <b>$bundle.getString("tyyppi"):</b>
-    <select name="type" onChange="osasuorituskerrat(this.selectedIndex)" class="form-control form-inline" style="width:250px">
-    #foreach($t in $tyypit.entrySet())
-        #if($request.getParameter("type") == $t.key)
-            <option value=$t.key selected>$t.value</option>
-        #else
-            <option value=$t.key>$t.value</option>
-        #end
-    #end
+        <label for="kerta">$bundle.getString("kerta") <br>
+            <select name="kerta" id="kerta" onClick="this.options[this.options.selectedIndex].value" class="form-control form-inline" style="width:70px">
+            </select>
+        </label>
 
-    </select>
+    ##vaihdetaan kerta-valikkoa lennosta, kun osasuoritustyyppiä on vaihdettu
+    <script type="text/javascript">
+        var kerratlista=document.suoritteidenKirjaus.kerta
 
-    <b>$bundle.getString("kerta"):</b>
-    <select name="kerta" onClick="this.options[this.options.selectedIndex].value" class="form-control form-inline" style="width:100px">
-    </select>
+        var laskarit = "${kerrat.get("laskarit")}"
+        var ht = "${kerrat.get("ht")}"
+        var koe = "${kerrat.get("koe")}"
 
-##vaihdetaan kerta-valikkoa lennosta, kun osasuoritustyyppiä on vaihdettu
-<script type="text/javascript">
-    var kerratlista=document.suoritteidenKirjaus.kerta
+        var osaSuor=new Array()
+        osaSuor[0] = [laskarit]
+        osaSuor[1] = [ht]
+        osaSuor[2] = [koe]
 
-    var laskarit = "${kerrat.get("laskarit")}"
-    var ht = "${kerrat.get("ht")}"
-    var koe = "${kerrat.get("koe")}"
+        var apuInt = 0
+        var apuArray = new Array()
+        var koko = "${tyypit.size()}"
 
-    var osaSuor=new Array()
-    osaSuor[0] = [laskarit]
-    osaSuor[1] = [ht]
-    osaSuor[2] = [koe]
-
-    var apuInt = 0
-    var apuArray = new Array()
-    var koko = "${tyypit.size()}"
-
-    var kerrat=new Array()
-    for (i=0; i<koko; i++){
-        if (osaSuor[i] != 0) {
-            for (a=0; a<osaSuor[i]; a++){
-                apuArray[a] = a+1
+        var kerrat=new Array()
+        for (i=0; i<koko; i++){
+            if (osaSuor[i] != 0) {
+                for (a=0; a<osaSuor[i]; a++){
+                    apuArray[a] = a+1
+                }
+                kerrat[apuInt]=apuArray
+                var apuArray = new Array()
+                apuInt++
             }
-            kerrat[apuInt]=apuArray
-            var apuArray = new Array()
-            apuInt++
         }
-    }
 
-    apuArray[1] = [99]
+        apuArray[1] = [99]
 
-    function osasuorituskerrat(tyyppi){
-        kerratlista.options.length=0
-        for (i=0; i<kerrat[tyyppi].length; i++) {
-            kerratlista.options[kerratlista.options.length]=new Option(kerrat[tyyppi][i]) 
+        function osasuorituskerrat(tyyppi){
+            kerratlista.options.length=0
+            for (i=0; i<kerrat[tyyppi].length; i++) {
+                kerratlista.options[kerratlista.options.length]=new Option(kerrat[tyyppi][i]) 
+            }
+            kerratlista.disabled=false
+            if (kerrat[tyyppi].length == 0) {
+                kerratlista.disabled=true
+            }
+            kerratlista.selectedIndex=#if($request.getParameter("kerta"))$request.getParameter("kerta")-1#{else}0#end
         }
-        kerratlista.disabled=false
-        if (kerrat[tyyppi].length == 0) {
-            kerratlista.disabled=true
-        }
-        kerratlista.selectedIndex=#if($request.getParameter("kerta"))$request.getParameter("kerta")-1#{else}0#end
-    }
-    window.onload = osasuorituskerrat(document.suoritteidenKirjaus.type.selectedIndex)
-</script>
+        window.onload = osasuorituskerrat(document.suoritteidenKirjaus.type.selectedIndex)
+    </script>
 
-##haetaan kurssin ryhmät, ja jätetään pois mystinen ryhmä "0"
-#set ($ryhmat = [])
-#foreach($r in $OpetusKyselyt.opetuksetKurssilla($valittuKurssi))
-    #if ($r.ilmo_jnro != 0)
-        #if ($ryhmat.add($r.ilmo_jnro)) #end
-    #end
-#end
-
-    <b>$bundle.getString("ryhma"):</b>
-    <select name="ryhma" class="form-control form-inline" style="width:100px">
-    <option value="" selected>$bundle.getString("kaikki")</option>
-    #foreach($r in $ryhmat)
-        #if($request.getParameter("ryhma") == $r)
-            <option value=$r selected>$r</option>
-        #else
-            <option value=$r>$r</option>
+    ##haetaan kurssin ryhmät, ja jätetään pois mystinen ryhmä "0"
+    #set ($ryhmat = [])
+    #if ($valittuKurssi)
+        #foreach($r in $OpetusKyselyt.opetuksetKurssilla($valittuKurssi))
+            #if ($r.ilmo_jnro != 0)
+                #if ($ryhmat.add($r.ilmo_jnro)) #end
+            #end
         #end
     #end
-    </select>
+
+        <label for="ryhma">$bundle.getString("ryhma") <br>
+            <select name="ryhma" id="ryhma" class="form-control form-inline" style="width:90px">
+            <option value="" selected>$bundle.getString("kaikki")</option>
+            #foreach($r in $ryhmat)
+                #if($request.getParameter("ryhma") == $r)
+                    <option value=$r selected>$r</option>
+                #else
+                    <option value=$r>$r</option>
+                #end
+            #end
+            </select>
+        </label>
 
 
-    <b>$bundle.getString("opiskelijat"):</b>
-    <input value="#if($request.getParameter("opiskelijat"))$request.getParameter("opiskelijat")#end"
-        type="text" class="form-control form-inline" style="width:150px" name="opiskelijat">
+        <label for="filterit">$bundle.getString("hakukriteerit") <br>
+            <input id="filterit" value="#if($request.getParameter("filterit"))$request.getParameter("filterit")#end"
+                type="text" class="form-control form-inline" style="width:150px" name="filterit"
+                placeholder="$bundle.getString("hakukriteerit")">
+        </label>
 
-    <input type=hidden value=pressed name=button>
-    
-    <input type=submit class="btn" value=">>>">
+        <input type="hidden" value="pressed" name="button">
 
+        <input type="submit" class="btn" value=">>>">
 </form>
 
 #if ($request.getParameter("button"))
     #parse ('suoritteet.vm')
 #else
-    <p>$bundle.getString("valitsetyyppi").</p>
+lisää ohjeet
 #end
 
 ##valittu $request.getParameter('lisääTähänNimi')

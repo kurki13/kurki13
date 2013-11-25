@@ -3,34 +3,36 @@
 
 #if($session.getAttribute('selected_course_id'))
     #set ($valittuKurssi = $KurssiKyselyt.kurssiIDlla($session.getAttribute('selected_course_id')))
-   <p>Valittu kurssi: $valittuKurssi.listaString() </p>
 #end
 
 <div class="form-group">  
        
     <form name="suoritevalinta" class="form-inline" action="listapohja.vm" method="get" target="_blank">
-    	<select name="listtype" tabindex="32600" class="form-control form-inline" style="width:200px">
-            <option value="1">$bundle.getString("kirjanpitolista")</option>
-            <option value="2">$bundle.getString("opnronimi")</option>
-            <option value="3">$bundle.getString("nimi")</option>
-            <option value="4">$bundle.getString("nimiemail")</option>
-            <option value="5">$bundle.getString("email")</option>
-            <option value="6">$bundle.getString("ilmjarjestys")</option>
-            <option value="7">$bundle.getString("tarkistuslista")</option>
-            <option value="8">$bundle.getString("nimikirjoitus")</option>            
-	</select>
+
+        <label for="listtype">$bundle.getString("lista") <br>
+            <select name="listtype" id="listtype" tabindex="32600" class="form-control form-inline" style="width:200px">
+                <option value="1">$bundle.getString("kirjanpitolista")</option>
+                <option value="2">$bundle.getString("opnronimi")</option>
+                <option value="3">$bundle.getString("nimi")</option>
+                <option value="4">$bundle.getString("nimiemail")</option>
+                <option value="5">$bundle.getString("email")</option>
+                <option value="6">$bundle.getString("ilmjarjestys")</option>
+                <option value="7">$bundle.getString("tarkistuslista")</option>
+                <option value="8">$bundle.getString("nimikirjoitus")</option>            
+            </select>
+        </label>
         
-        <div class="form-group">        
-        <input type="text" class="form-control" name="kommentti" placeholder="$bundle.getString("kommentti")">
-        </div>
-        <div class="form-group">        
-    <input type="text" class="form-control" name="filter" placeholder="$bundle.getString("hakukriteerit")">
-        </div>
+        <label for="kommentti">$bundle.getString("kommentti") <br>
+            <input type="text" id="kommentti" class="form-control" name="kommentti" placeholder="$bundle.getString("kommentti")">
+        </label>
+     
+        <label for="filter">$bundle.getString("hakukriteerit") <br>
+            <input type="text" id="filter" class="form-control" name="filter" placeholder="$bundle.getString("hakukriteerit")">
+        </label>
+
         <input type="submit" tabindex="32601" value=">>>" class="btn btn-primary btn">
     </form>
 </div>
-
-<b style="color:red">Ei kai me käytetä näitä kammottavia hakukriteerejä enää? Hakukenttä vois hakea automaattisesti etu- ja sukunimestä ja opiskelijanumerosta.</b>
 
 <div class="instr">
 <b>$bundle.getString("valitsetyyppi")</b>

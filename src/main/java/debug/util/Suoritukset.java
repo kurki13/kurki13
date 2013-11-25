@@ -263,10 +263,5 @@ public class Suoritukset {
             osas.setPisteet(Integer.parseInt(pisteet));
         }
     }
-    
-    public static void sulata(Osallistuminen os) throws SQLException {
-//        os.setJaassa("S");
-//        SQLoader.tallennaKantaan(os);
-        System.out.println("tallenna kantaan " + os.getNimi());
-    }
+ 
 }

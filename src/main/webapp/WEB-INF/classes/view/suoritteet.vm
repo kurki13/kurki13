@@ -7,23 +7,23 @@
 #set ($tyyppi = $request.getParameter('type'))
 #set ($kerta = $request.getParameter('kerta'))
 #set ($ryhma = $request.getParameter('ryhma'))
-#set ($opiskelijat = $request.getParameter('opiskelijat'))
+#set ($filterit = $request.getParameter('filterit'))
 #set ($filteroidytOsallistumiset = [])
 
 <h2><b>$tyypit.get($request.getParameter('type'))</h2>
 <h3>#if($tyyppi != "arvosana" && $tyyppi != "op" && $tyyppi != "kieli") $bundle.getString("kerta"): $kerta, #end
 $bundle.getString("ryhma"): #if ($ryhma != '') $ryhma #else $bundle.getString("kaikki") #end,
-$bundle.getString("opiskelijat"): #if ($opiskelijat != '') $opiskelijat #else $bundle.getString("kaikki") #end</b></h3>
+$bundle.getString("opiskelijat"): #if ($filterit != '') $filterit #else $bundle.getString("kaikki") #end</b></h3>
 
 ##filteröidään opiskelijat annettujen filteröintiparametrien mukaan
 #foreach ($o in $kurssinOsallistumiset)
     #set ($lisataanko = false)
-    #if($ryhma == "" && $opiskelijat)
-        #if ($o.hetu.contains($opiskelijat) || $o.getNimi().toLowerCase().contains($opiskelijat.toLowerCase()))
+    #if($ryhma == "" && $filterit)
+        #if ($o.hetu.contains($filterit) || $o.getNimi().toLowerCase().contains($filterit.toLowerCase()))
             #set ($lisataanko = true)
         #end
     #else
-        #if ($o.ilmo_jnro == $ryhma && ($o.hetu.contains($opiskelijat) || $o.getNimi().toLowerCase().contains($opiskelijat.toLowerCase())))
+        #if ($o.ilmo_jnro == $ryhma && ($o.hetu.contains($filterit) || $o.getNimi().toLowerCase().contains($filterit.toLowerCase())))
             #set ($lisataanko = true)
         #end
     #end
@@ -39,7 +39,7 @@ $bundle.getString("opiskelijat"): #if ($opiskelijat != '') $opiskelijat #else $b
 <input value="$tyyppi" type="hidden" name="type">
 <input value="$kerta" type="hidden" name="kerta">
 <input value="$ryhma" type="hidden" name="ryhma">
-<input value="$opiskelijat" type="hidden" name="opiskelijat">
+<input value="$filterit" type="hidden" name="filterit">
 
     <table class="table table-striped table-nonfluid table-condensed">
         <tr>
@@ -101,7 +101,7 @@ $bundle.getString("opiskelijat"): #if ($opiskelijat != '') $opiskelijat #else $b
                 $os.nimi, $os.hetu
                 #if ($os.jaassa == "J") <img src="images/kurkijaassa.gif"> #end
                 #if ($os.jaassa == "S") <img src="images/defrost.gif"> #end
-                 $os.jaassa</td>
+                </td>
                 <td align="center">$os.ilmo_jnro</td>
 
             #if ($tyyppi == 'laskarit')  

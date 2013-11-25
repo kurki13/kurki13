@@ -31,7 +31,8 @@
     <h3 class=arvosteluvaliotsikko>$bundle.getString("suorituspvm"):</h3>
         #set ($ylaraja = $suorituspaivamaara.palautaSuorituspvmnYlaraja($valittuKurssi))
         #if ($valittuKurssi.getTila() != "J")
-            ($bundle.getString("pvm")) <input type="text" name="suoritusPvm" value="$suorituspaivamaara.palautaSuorituspvm($valittuKurssi)" id="datepicker"/>
+            ($bundle.getString("pvm")) <input type="text" name="suoritusPvm" class="form-control" style="width:200px"
+                value="$suorituspaivamaara.palautaSuorituspvm($valittuKurssi)" id="datepicker"/>
         #else
             <input type="text" value="$suorituspaivamaara.palautaSuorituspvm($valittuKurssi)" readonly/>
         #end
