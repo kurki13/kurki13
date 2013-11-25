@@ -109,7 +109,7 @@ $SessioApuri.auta($request)
         #end
     #end
     </select>
-
+## $session.setAttribute("selected_service_id", "")
 ##Lisätään key:ksi sivun osoite
     #set ($services = {"1suoritteidenKirjaus.vm" : $bundle.getString("1entry") ,
                      "2osallistujatiedot.vm" : $bundle.getString("2participants") ,
@@ -118,21 +118,21 @@ $SessioApuri.auta($request)
                      "5arvostelu.vm" : $bundle.getString("5grades") ,
                      "6tuloslistat.vm" : $bundle.getString("6resultlist") ,
                      "7jaadytys.vm" : $bundle.getString("7freezing")})
-
+##window.location.href=this.value;
      #if ($session.getAttribute('selected_course'))
-         <select id=serviceselect name="serviceId" id="service-field" onChange="window.location.href=this.value;" class="form-control topselect">
-             <option value="" selected>-- $bundle.getString("valitsetoiminto") --</option>
+         <select id=serviceselect name="serviceId" id="service-field" onChange="window.location.href=this.value+'?serviceId=' + this.value;" class="form-control topselect">
+         #if (!$session.getAttribute('selected_service_id'))
+            <option value="" selected>-- $bundle.getString("valitsetoiminto") --</option>
+         #end
          #foreach ($s in $services.entrySet())
+            #if($session.getAttribute('selected_service_id') && $session.getAttribute('selected_service_id') == $s.key)
+             <option value=$s.key selected>$s.value</option>
+            #else
              <option value=$s.key>$s.value</option>
+            #end
          #end
          </select>
     #end
-
-##<script type="text/javascript">
-##    function change(selectedVal){ 
-##        window.location.href=selectedVal.options[selectedVal.selectedIndex].value;
-##    }
-##</script>
 
 </form>
 
