@@ -35,8 +35,8 @@ public class LocalisationBundle {
             try {
                 return ResourceBundle.getBundle("localisationBundle", locale).getString(request);
             } catch (MissingResourceException me2) {
-                SessioApuri.annaVirhe(rq.getSession(), "Missing resource key for: " + request);
-                return "missingkey(" + request + ")";
+                SessioApuri.annaVirhe(rq.getSession(), "Missing resource key for: " + request + " (" + locale.getLanguage() + ")");
+                return "missingkey(" + request + "," + locale.getLanguage() + ")";
             }
         }
     }
