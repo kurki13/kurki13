@@ -16,44 +16,80 @@ $SessioApuri.auta($request)
     <link href="bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
     <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
     <style>
+        html {
+            height: 100%;
+        }
         body {
             margin: 0px;
             padding: 0px;
+            margin-left:auto;
+            margin-right:auto;
+            max-width: 22cm;
+            background-color: #a0a0a0;
+            height: 100%;
         }
         #top {
-            background-color: #101010;
-            padding: 10px;
-            color: #ffffff;
+            background-color: #00304A;
+            padding: 0px 10px 0px 10px;
+            color: #f0f0f0;
+            padding-bottom: 4px;
         }
         #middle {
-            padding: 10px;
+            padding: 30px;
+            padding-left: 30px;
+            background-color: #ffffff;
+            min-height: 100%;
+        }
+        #headerntools {
+            width: 100%;
+        }
+        #header {
+            font-size: 20pt;
         }
         #toolbar {
-            text-align: right;
         }
         .topselect {
-            margin: 3px;
+            display: inline-block;
+        }
+        #courseselect {
+            width: 68%;
+        }
+        #serviceselect {
+            width: 30%;
+        }
+        .section {
+            padding: 15px;
+            padding-top: 50px;
+            padding-bottom: 50px;
+            background-color: #eeeeee;
+            border: 2px solid;
+            border-color: white lightgray lightgray white;
+        }
+        h1 {
+            text-align: center;
+            margin: 20px;
         }
     </style>
 </head>
 
 <body>
 <div id=top>
-
-<h1>KURKI 2.0</h1>
-<div id=toolbar>
-    $bundle.getString("kirjautuneena") $request.getRemoteUser()
-    <a href="?locale=en"><img src="images/liput/gb.png"></a>
-    <a href="?locale=fi"><img src="images/liput/fi.png"></a>
-    <a href="logout.vm">Logout</a>
+<div id=headerntools>
+    <div id=header>KURKI 2.0</div>
+    <div id=toolbar>
+        $bundle.getString("kirjautuneena") $request.getRemoteUser()
+        <a href="?locale=en"><img src="images/liput/gb.png"></a>
+        <a href="?locale=fi"><img src="images/liput/fi.png"></a>
+        <a href="logout.vm">Logout</a>
+    </div>
 </div>
 
 ##onsubmit="alert('submit');change(serviceId.options[selectedVal.selectedIndex].value)"
 
 ##<form onsubmit="change(document.getElementById('service-field').value)" class="form-inline">
 
-<form action="" method=get class="form-inline">
-    <select name="courseId" onChange="this.form.submit()" class="form-control topselect">
+<form action="" method=get id=topform>
+    <select id=courseselect name="courseId" onChange="this.form.submit()" class="form-control topselect">
     #if (!$session.getAttribute('selected_course_id'))
             <option value="" selected>-- $bundle.getString("valitseKurssi") --</option>
     #end
@@ -84,7 +120,7 @@ $SessioApuri.auta($request)
                      "7jaadytys.vm" : $bundle.getString("7freezing")})
 
      #if ($session.getAttribute('selected_course'))
-         <select name="serviceId" id="service-field" onChange="window.location.href=this.value;" class="form-control topselect">
+         <select id=serviceselect name="serviceId" id="service-field" onChange="window.location.href=this.value;" class="form-control topselect">
              <option value="" selected>-- $bundle.getString("valitsetoiminto") --</option>
          #foreach ($s in $services.entrySet())
              <option value=$s.key>$s.value</option>
@@ -109,6 +145,7 @@ $SessioApuri.auta($request)
 ##<input type=button class="btn" value=osallistujaLista onClick="parent.location='osallistujaLista.vm'">
 ##<input type=button class="btn" value=harjoitustyö onClick="parent.location='harjoitustyo.vm'">
 ##</div>
-<div id=ilmoitus> </div>
 </div>
 <div id=middle>
+
+<div id=ilmoitus> </div>

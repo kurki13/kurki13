@@ -74,38 +74,66 @@ $KurssiKyselyt.tallennaKantaan($valittuKurssi)
     }
 )
 
-<form name="kurssinPerustiedot" action="" method=get class="form-inline">
+<style>
+    .perustietorivi{
+        margin-bottom: 10px;
+    }
+    .perustietosarake {
+        display: inline-block;
+        width: 230px;
+    }
+    .perustieto-otsake {
+        display:inline-block;
+        width: 120px;
+    }
+    .perustieto-input {
+        display:inline-block;
+        width: 50px;
+    }
+    .center {
+        margin-left:auto;
+        margin-right:auto;
+    }
+    .perustietosection {
+        padding: 15px;
+        padding-top: 50px;
+        padding-bottom: 50px;
+        background-color: #F0EFD5;
+        border: 5px solid;
+        border-color: lightgray white white lightgray;
+    }
+</style>
+<div class=section>
+<form name="kurssinPerustiedot" action="" method=get>
     #foreach($otsikko in $basics.keySet()) ##Otsikko tässä joko Laskuharjoitukset, Harjoitustyöt tai Kokeet
         ##<h3>$otsikko</h3>
-        <table>
-            <tr>
+        <div class="perustietorivi">
         #foreach($alaotsikko in $basics.get($otsikko))
             #set($nimi = $alaotsikko.get(0))
             #set($kentta = $alaotsikko.get(1))
             #set($parametri = $alaotsikko.get(2))
-                <td style="width:200px">
-                    #if($nimi.equals(""))$otsikko#end
-                    $nimi
-                </td>
-                <td>
-                    <input type="text" 
-                    class="form-control" 
-                    style="width:50px"
-                    name="$parametri" ##get-parametria varten, "lh", "lh_p" jne...
-                    value="$kentta" ##arvo valitun kurssin oliolta
-                    #if($jaassa) readonly #end>
-                </td>
+                <div class="perustietosarake">
+                    <div class="perustieto-otsake">
+                        #if($nimi.equals(""))$otsikko#end
+                        $nimi
+                    </div>
+                        <input type="text" 
+                        class="form-control perustieto-input"
+                        name="$parametri" ##get-parametria varten, "lh", "lh_p" jne...
+                        value="$kentta" ##arvo valitun kurssin oliolta
+                        #if($jaassa) readonly #end>
+                </div>
         #end
-            </tr>
-        </table>
+        </div>
     #end
     <br>
     <p> <b>$bundle.getString("arvasteikko"):</b>
         <input type="radio" name="arvosteluasteikko" value="K" #if($valittuKurssi.arvostellaanko.equals("K")) checked #end>$bundle.getString('arvosanat')
         <input type="radio" name="arvosteluasteikko" value="E" #if($valittuKurssi.arvostellaanko.equals("E")) checked #end>$bundle.getString('hyvhyl')
     </p>
+    <br>
 
     <input type=submit class="btn" value=$bundle.getString("tmuutokset") onClick="">
 </form>
-
+</div>
 #parse("osasuoritustenRajat.vm")

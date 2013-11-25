@@ -47,6 +47,7 @@ $KurssiKyselyt.tallennaKantaan($valittuKurssi)
     }
     .mminput {
         width: 45px;
+        text-align: center;
     }
     .index {
         display: inline-block;
@@ -65,21 +66,26 @@ $KurssiKyselyt.tallennaKantaan($valittuKurssi)
         border: 1px solid gray;
         padding: 10px;
     }
-    #minmaxform {
-        max-width: 800px;
+    .legendcontainer {
+        width: 100%;
+        text-align: center;
     }
 </style>
 
-<div class="minmaxbox legend">
-    <div class=index>
-        #:
-    </div>
-    <div class=minmax>
-            <input class="form-control mminput" style="width: 60px" value=max>
-            <input class="form-control mminput" style="width: 60px" value=min>
+<h1>$bundle.getString("OsasuoritustenPisterajat")</h1>
+
+<div class=section>
+<div class="legendcontainer">
+    <div class="minmaxbox legend">
+        <div class=index>
+            #:
+        </div>
+        <div class=minmax>
+                <input class="form-control mminput" style="width: 60px" value=max>
+                <input class="form-control mminput" style="width: 60px" value=min>
+        </div>
     </div>
 </div>
-
 <form name="kurssinPisteet" action="" method=get id="minmaxform">
 
 #foreach($rajaTyyppi in $osasuoritusTyypit)
@@ -88,33 +94,35 @@ $KurssiKyselyt.tallennaKantaan($valittuKurssi)
     #set ($rajanNimi = $rajaTyyppi.get(0))
     #set ($rajat = $rajaTyyppi.get(1))
     #set ($lomake_tunnus = $rajaTyyppi.get(2))
-    <h3>$rajanNimi:</h3>
-    #foreach($raja in $rajat)
-       <div class=minmaxbox>
-	   <div class=index>
-        $i:
-	   </div>
-           <div class=minmax>
-                    <input class="form-control mminput" maxlength="2"
-                        name="${lomake_tunnus}_${i}_max" 
-                        value="$raja.max" ##Maksimipisteet
-                        onBlur="rangecheck(this,0,18)"
-                        #if($jaassa)readonly#end
-                        >
-                    <input class="form-control mminput" maxlength="2"
-                        name="${lomake_tunnus}_${i}_min" 
-                        value="$raja.min" ##Hyväksymisraja
-                        onBlur="rangecheck(this,0,18)"
-                        #if($jaassa)readonly#end
-                        >
+    #if($rajat.aktiivisia > 0)
+        <h3>$rajanNimi:</h3>
+        #foreach($raja in $rajat)
+           <div class=minmaxbox>
+                <div class=index>
+                 $i:
+                </div>
+                <div class=minmax>
+                         <input class="form-control mminput" maxlength="2"
+                             name="${lomake_tunnus}_${i}_max" 
+                             value="$raja.max" ##Maksimipisteet
+                             onBlur="rangecheck(this,0,18)"
+                             #if($jaassa)readonly#end
+                             >
+                         <input class="form-control mminput" maxlength="2"
+                             name="${lomake_tunnus}_${i}_min" 
+                             value="$raja.min" ##Hyväksymisraja
+                             onBlur="rangecheck(this,0,18)"
+                             #if($jaassa)readonly#end
+                             >
+                </div>
            </div>
-       </div>
-    #set($i = $i+1)
+        #set($i = $i+1)
+        #end
     #end
 #end
 <br><br>
 <input type=submit class="btn" value=$bundle.getString("tmuutokset") onClick="">
 </form>
+</div>
 
-</body>
-</html>
+#parse('bottom.vm')

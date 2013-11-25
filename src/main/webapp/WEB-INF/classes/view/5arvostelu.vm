@@ -3,6 +3,7 @@
 ##lisää rangecheck ja jäätymistarkistus inputteihin
 <h1>$bundle.getString("5grades")</h1>
 
+<div class=section>
 #set($arvostelutavat = {1 : $bundle.getString("conventionLabel1"),
                         2 : $bundle.getString("conventionLabel2"),
                         3 : $bundle.getString("conventionLabel3"),
@@ -210,9 +211,200 @@
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 <link rel="stylesheet" href="/resources/demos/style.css"/>
+
 <script>
     $(function() {
         $('#datepicker').datepicker({minDate: "-6M", maxDate: "$ylaraja", dateFormat: "dd.mm.yy"});
     });
 </script>
+
+<h3 class=arvosteluvaliotsikko>$bundle.getString('osasuorituksia'):</h3>
+
+<style>
+    .arvosteluinput {
+        width: 70px;
+    }
+    .arvostelukohta {
+        width: 300px;
+    }
+    .arvosteluvaliotsikko {
+        margin-left: 10px;
+        margin-top: 50px;
+        margin-bottom: 50px;
+    }
+    table {
+        margin-left: 50px;
+    }
+</style>
+
+<table>
+    <tr>
+        <th>
+        </th>
+        <th>$bundle.getString('lh_lyhenne'):
+        </th>
+        <th>$bundle.getString('ht_lyhenne'):
+        </th>
+        <th>$bundle.getString('koe_lyhenne'):
+        </th>
+    </tr>
+    <tr>
+        <td class="arvostelukohta">$bundle.getString('yht'):
+        </td>
+        <td>$valittuKurssi.laskarikerta_lkm
+        </td>
+        <td>$valittuKurssi.harjoitustyo_lkm
+        </td>
+        <td>$valittuKurssi.valikokeet_lkm
+        </td>
+    </tr>
+    <tr>
+        <td>$bundle.getString('pakollisia')
+        </td>
+        <td><input name=lh_pak value=$valittuKurssi.pakolliset_laskarikerta_lkm class="form-control arvosteluinput">
+        </td>
+        <td><input name=ht_pak value=$valittuKurssi.pakolliset_harjoitustyo_lkm class="form-control arvosteluinput">
+        </td>
+        <td><input name=koe_pak value=$valittuKurssi.pakolliset_koe_lkm class="form-control arvosteluinput">
+        </td>
+    </tr>
+</table>
+<h3 class=arvosteluvaliotsikko>$bundle.getString('suorpstos'):</h3>
+
+<table>
+    <tr>
+        <th>
+        </th>
+        <th>$bundle.getString('lh_lyhenne'):
+        </th>
+        <th>$bundle.getString('ht_lyhenne'):
+        </th>
+        <th>$bundle.getString('koe_lyhenne'):
+        </th>
+    </tr>
+    <tr>
+        <td class="arvostelukohta">$bundle.getString('saatavissa'):
+        </td>
+        <td>$valittuKurssi.laskariRajat.maxPisteetYhteensa
+        </td>
+        <td>$valittuKurssi.harjoitustyoRajat.maxPisteetYhteensa
+        </td>
+        <td>$valittuKurssi.koeRajat.maxPisteetYhteensa
+        </td>
+    </tr>
+    <tr>
+        <td>$bundle.getString('hyvrajsum')
+        </td>
+        <td>$valittuKurssi.laskariRajat.minPisteetYhteensa
+        </td>
+        <td>$valittuKurssi.harjoitustyoRajat.minPisteetYhteensa
+        </td>
+        <td>$valittuKurssi.koeRajat.minPisteetYhteensa
+        </td>
+    </tr>    
+    <tr>
+        <td>$bundle.getString('oshr')
+        </td>
+        <td><input name=lh_oshyv value=$valittuKurssi.pakolliset_laskaritehtava_lkm class="form-control arvosteluinput">
+        </td>
+        <td><input name=ht_oshyv value=$valittuKurssi.min_harjoitustyopisteet_summa class="form-control arvosteluinput">
+        </td>
+        <td><input name=koe_oshyv value=$valittuKurssi.min_koepisteet_summa class="form-control arvosteluinput">
+        </td>
+    </tr>
+</table>
+
+<h3 class=arvosteluvaliotsikko>$bundle.getString('arvlp'):</h3>
+
+<table>
+    <tr>
+        <th>
+        </th>
+        <th>$bundle.getString('lh_lyhenne'):
+        </th>
+        <th>$bundle.getString('ht_lyhenne'):
+        </th>
+        <th>$bundle.getString('koe_lyhenne'):
+        </th>
+    </tr>
+    <tr>
+        <td class="arvostelukohta">$bundle.getString('maksimi'):
+        </td>
+        <td><input name=lh_lisapistemaksimi value=$valittuKurssi.max_laskaripisteet class="form-control arvosteluinput">
+        </td>
+        <td><input name=ht_lisapistemaksimi value=$valittuKurssi.harjoitustyopisteet class="form-control arvosteluinput">
+        </td>
+        <td>$valittuKurssi.koeRajat.maxPisteetYhteensa
+        </td>
+    </tr>
+    <tr>
+        <td>$bundle.getString('1pstraja'):
+        </td>
+        <td><input name=lh_lisapistealaraja value=$valittuKurssi.lisapistealaraja class="form-control arvosteluinput">
+        </td>
+        <td><input name=ht_lisapistealaraja value=$valittuKurssi.ht_lisapistealaraja class="form-control arvosteluinput">
+        </td>
+        <td>1
+        </td>
+    </tr>    
+    <tr>
+        <td>$bundle.getString('kartuntavali'):
+        </td>
+        <td><input name=lh_kartuntavali value=$valittuKurssi.lisapisteiden_askelkoko class="form-control arvosteluinput">
+        </td>
+        <td><input name=ht_kartuntavali value=$valittuKurssi.harjoitustoiden_askelkoko class="form-control arvosteluinput">
+        </td>
+        <td>1
+        </td>
+    </tr>
+</table>
+
+<h3 class=arvosteluvaliotsikko>$bundle.getString('muut'):</h3>
+
+<table>
+    <tr>
+        <td class="arvostelukohta">$bundle.getString('pstmax'):
+        </td>
+        <td>#set($summa = $valittuKurssi.max_laskaripisteet + $valittuKurssi.harjoitustyopisteet + $valittuKurssi.koeRajat.maxPisteetYhteensa) $summa
+        </td>
+    </tr>
+    <tr>
+        <td>$bundle.getString('hyvar'):
+        </td>
+        <td><input name=hyvalaraja value=$valittuKurssi.min_yhteispisteet class="form-control arvosteluinput">
+        </td>
+    </tr>   
+    <tr>
+        <td>$bundle.getString('arvosanavali'):
+        </td>
+        <td><input name=arvosanavali value=$valittuKurssi.arvostelun_askelkoko class="form-control arvosteluinput">
+        </td>
+    </tr>       
+    <tr>
+        <td>$bundle.getString('arvasteikko'):
+        </td>
+        <td>
+            <input type="radio" name="arvosteluasteikko" value="K" #if($valittuKurssi.arvostellaanko.equals("K")) checked #end>$bundle.getString('arvosanat')
+            <input type="radio" name="arvosteluasteikko" value="E" #if($valittuKurssi.arvostellaanko.equals("E")) checked #end>$bundle.getString('hyvhyl')
+        </td>
+    </tr>   
+    <tr>
+        <td>$bundle.getString('arvtapa'):
+        </td>
+        <td>
+            <select name=arvostelutapa class="form-control form-inline">
+                #foreach($e in $arvostelutavat.entrySet())
+                    <option value=$e.key #if($valittuKurssi.laskentakaava && $valittuKurssi.laskentakaava == $e.key)selected#end>$e.value</option>
+                #end
+            </select>
+        </td>
+    </tr>
+</table>
+<br>
+<input type=submit name=tallenna class="btn" value=$bundle.getString("tmuutokset") onClick="">
+<input type=submit name=arvostele class="btn" value="$bundle.getString("teearv")" onClick="">
+<input type=submit name=arvostele class="btn" value="$bundle.getString("muutaparajoja")" onClick="">
+</form>
+
+</div>
 #parse("bottom.vm")
