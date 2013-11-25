@@ -139,15 +139,31 @@ $bundle.getString("tktlkurki")
     </p>
 #end
 
+#if($request.getParameter("inc_statistics") == "on")
+    #set ($osallistumisia = 0)
+    #set ($arvosteltu = 0)
+    #foreach ($osallistuminen in $osallistumiset)
+        #if ($osallistuminen.voimassa == "K")
+            #set ($osallistumisia = $osallistumisia + 1)
+        #end
+        #if ($osallistuminen.arvosana == "1"||$osallistuminen.arvosana == "2"||$osallistuminen.arvosana == "3"||$osallistuminen.arvosana == "4"||$osallistuminen.arvosana == "5"||$osallistuminen.arvosana == "+"||$osallistuminen.arvosana == "0")
+            #set ($arvosteltu = $arvosteltu + 1)
+        #end
+    #end
+    $osallistumisia
+    $arvosteltu
+
+#end
+
 #set ($lol = $request.getParameterNames())
 
 #if ($request.getParameter("inc_failed") == "on")
     <p>    
     $bundle.getString("isohylatyt")<br>
     #foreach ($osallistuminen in $osallistumiset)
-         #if ($osallistuminen.arvosana == "0")
+         #if ($osallistuminen.arvosana == "-"||$osallistuminen.arvosana == "0")
             <br>#if($request.getParameter("inc_ssn") == "on")$osallistuminen.hetu &emsp;#end
-            $osallistuminen.sukunimi, $osallistuminen.etunimi
+            $osallistuminen.sukunimi, $osallistuminen.etunimi #if($request.getParameter("inc_grade") == "on")<td>$osallistuminen.arvosana</td>#end
          #end
     #end
     </p>
