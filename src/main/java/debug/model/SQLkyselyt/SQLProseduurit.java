@@ -116,6 +116,12 @@ public class SQLProseduurit {
         HttpSession istunto = request.getSession();
         LocalisationBundle bundle = SessioApuri.bundle(request);
         
+        if (kurssi.getSuoritus_pvm() == null) {
+            String virhe = bundle.getString("arvosteluEiOnnistunut") + ": " + bundle.getString("kurssilleEiAsetettuSuorpvm");
+            SessioApuri.annaVirhe(istunto, virhe);
+            return;
+        }
+        
         try {
             int tulos = suoritaArvostelu(kurssi, arvostelija);
             tarkastaArvostelunTulos(tulos, istunto, bundle);

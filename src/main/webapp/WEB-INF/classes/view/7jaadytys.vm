@@ -5,7 +5,10 @@
 #end
 
 #if ($request.getParameter("suoritusPvm"))
-    $suorituspaivamaara.asetaSuorituspvm($session.getAttribute("selected_course"), "$request.getParameter('suoritusPvm')", $request)
+    #set ($suoritusPvm = $suorituspaivamaara.tarkastaSuorituspvm($session.getAttribute('selected_course'), "$request.getParameter('suoritusPvm')", $request))
+    #if (!$suorituspaivamaara.onkoNull($suoritusPvm))
+        $suorituspaivamaara.suoritaAsetus($suoritusPvm, $session.getAttribute("selected_course"), $request.getSession(), $SessioApuri.bundle($request))
+    #end
     $session.setAttribute("user_courses", null)
 #end
 
@@ -38,7 +41,7 @@ $session.setAttribute("selected_course", $kurssi)
                 </ul>
             </div>
             
-            #if ($jaadytys.onkoSuorituspvmNull($selected_course))
+            #if ($suorituspaivamaara.onkoSuorituspvmNull($selected_course))
                 #if (!$suorituspaivamaara.palautaSuorituspvmnYlaraja($selected_course))
                     $SessioApuri.annaVirhe($request.session, $bundle.getString("kurssinPaattymispvmEiAsetettu"))
                 #else
