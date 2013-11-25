@@ -41,7 +41,46 @@
 ##Tallennetaan kurssi kantaan
 $KurssiKyselyt.tallennaKantaan($valittuKurssi)
 
-<form name="kurssinPisteet" action="" method=get class="form-inline">
+<style>
+    .minmax {
+        display: inline-block;
+    }
+    .mminput {
+        width: 45px;
+    }
+    .index {
+        display: inline-block;
+        position: relative;
+        bottom: 18px;
+        left: 2px;
+        font-weight: bold;
+        width: 20px;
+    }
+    .minmaxbox {
+        display: inline-block;
+        padding: 3px;
+    }
+    .legend {
+        background-color: lightgray;
+        border: 1px solid gray;
+        padding: 10px;
+    }
+    #minmaxform {
+        max-width: 800px;
+    }
+</style>
+
+<div class="minmaxbox legend">
+    <div class=index>
+        #:
+    </div>
+    <div class=minmax>
+            <input class="form-control mminput" style="width: 60px" value=max>
+            <input class="form-control mminput" style="width: 60px" value=min>
+    </div>
+</div>
+
+<form name="kurssinPisteet" action="" method=get id="minmaxform">
 
 #foreach($rajaTyyppi in $osasuoritusTyypit)
     
@@ -51,25 +90,23 @@ $KurssiKyselyt.tallennaKantaan($valittuKurssi)
     #set ($lomake_tunnus = $rajaTyyppi.get(2))
     <h3>$rajanNimi:</h3>
     #foreach($raja in $rajat)
-        <div style="display:inline-block">
-	   <div style="width:20px; display: inline-block">
-		<b style="position:relative;top:-15px;">$i:</b>
+       <div class=minmaxbox>
+	   <div class=index>
+        $i:
 	   </div>
-           <div style="width:55px;display:inline-block">
-                <center>
-                    <input type="text" class="form-control" style="width:50px" maxlength="2"
+           <div class=minmax>
+                    <input class="form-control mminput" maxlength="2"
                         name="${lomake_tunnus}_${i}_max" 
                         value="$raja.max" ##Maksimipisteet
                         onBlur="rangecheck(this,0,18)"
                         #if($jaassa)readonly#end
                         >
-                    <input type="text" class="form-control" style="width:50px" maxlength="2"
+                    <input class="form-control mminput" maxlength="2"
                         name="${lomake_tunnus}_${i}_min" 
                         value="$raja.min" ##Hyväksymisraja
                         onBlur="rangecheck(this,0,18)"
                         #if($jaassa)readonly#end
                         >
-                </center>
            </div>
        </div>
     #set($i = $i+1)

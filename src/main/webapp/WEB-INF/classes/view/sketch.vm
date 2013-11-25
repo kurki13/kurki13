@@ -1,21 +1,39 @@
+#parse('hello.vm')
 <style>
-    .max { 
-        background-color:green;
+    .minmax {
+        display: inline-block;
     }
-    .min { 
-        background-color:yellow;
+    .mminput {
+        width: 45px;
+    }
+    .index {
+        display: inline-block;
+        position: relative;
+        bottom: 18px;
+        left: 2px;
+        font-weight: bold;
+    }
+    .minmaxbox {
+        display: inline-block;
     }
 </style>
 
-<div>
-    <div>
+<div class=minmaxbox>
+    <div class=index>
+        0:
     </div>
-    <div>
-        <div class="max">
-            10
-        </div>
-        <div class="min">
-            0
-        </div>
+    <div class=minmax>
+            <input class="form-control mminput" value=99>
+            <input class="form-control mminput" value=0>
+    </div>
+</div>
+
+<div class=minmaxbox>
+    <div class=index>
+        0:
+    </div>
+    <div class=minmax>
+            <input class="form-control mminput" value=99>
+            <input class="form-control mminput" value=0>
     </div>
 </div>

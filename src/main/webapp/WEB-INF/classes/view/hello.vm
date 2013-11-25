@@ -12,29 +12,48 @@ $SessioApuri.auta($request)
     <title>KURKI</title>
 
     <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
-    <style>
 
-      
-    </style>
     <link href="bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
     <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
-
+    <style>
+        body {
+            margin: 0px;
+            padding: 0px;
+        }
+        #top {
+            background-color: #101010;
+            padding: 10px;
+            color: #ffffff;
+        }
+        #middle {
+            padding: 10px;
+        }
+        #toolbar {
+            text-align: right;
+        }
+        .topselect {
+            margin: 3px;
+        }
+    </style>
 </head>
 
 <body>
+<div id=top>
 
-<h4>Logged in as: $request.getRemoteUser()</h4>
-<a href="?locale=en"><img src="images/liput/gb.png"></a>
-<a href="?locale=fi"><img src="images/liput/fi.png"></a>
-<a href="logout.vm">Logout</a>
-<div>
+<h1>KURKI 2.0</h1>
+<div id=toolbar>
+    $bundle.getString("kirjautuneena") $request.getRemoteUser()
+    <a href="?locale=en"><img src="images/liput/gb.png"></a>
+    <a href="?locale=fi"><img src="images/liput/fi.png"></a>
+    <a href="logout.vm">Logout</a>
+</div>
 
 ##onsubmit="alert('submit');change(serviceId.options[selectedVal.selectedIndex].value)"
 
 ##<form onsubmit="change(document.getElementById('service-field').value)" class="form-inline">
 
 <form action="" method=get class="form-inline">
-    <select name="courseId" onChange="this.form.submit()" class="form-control form-inline" style="width:700px">
+    <select name="courseId" onChange="this.form.submit()" class="form-control topselect">
     #if (!$session.getAttribute('selected_course_id'))
             <option value="" selected>-- $bundle.getString("valitseKurssi") --</option>
     #end
@@ -65,7 +84,7 @@ $SessioApuri.auta($request)
                      "7jaadytys.vm" : $bundle.getString("7freezing")})
 
      #if ($session.getAttribute('selected_course'))
-         <select name="serviceId" id="service-field" onChange="window.location.href=this.value;" class="form-control form-inline" style="width:300px">
+         <select name="serviceId" id="service-field" onChange="window.location.href=this.value;" class="form-control topselect">
              <option value="" selected>-- $bundle.getString("valitsetoiminto") --</option>
          #foreach ($s in $services.entrySet())
              <option value=$s.key>$s.value</option>
@@ -91,3 +110,5 @@ $SessioApuri.auta($request)
 ##<input type=button class="btn" value=harjoitustyö onClick="parent.location='harjoitustyo.vm'">
 ##</div>
 <div id=ilmoitus> </div>
+</div>
+<div id=middle>

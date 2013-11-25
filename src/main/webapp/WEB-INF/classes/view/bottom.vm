@@ -1,4 +1,5 @@
 
+</div> ##Middle div ends here
 
 #if($session.getAttribute("message"))
     <div id=viesti class="alert alert-success">
