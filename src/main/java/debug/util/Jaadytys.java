@@ -30,19 +30,7 @@ import org.apache.velocity.app.*;
  */
 public class Jaadytys {
     
-    /**
-     * Metodi tarkastaa onko parametrina annetun kurssin suorituspäivämäärä null.
-     * 
-     * @param kurssi Kurssi, jonka suorituspäivämäärä tarkastetaan
-     * @return True, jos suorituspäivämäärä on null
-     */
-    public static boolean onkoSuorituspvmNull(Kurssi kurssi) {
-        if (kurssi.getSuoritus_pvm() == null) {
-            return true;
-        } else {
-            return false;
-        }
-    }
+    
     
     /**
      * Metodi tarkastaa, onko parametrina annetun kurssin suorituspäivämäärä ennen metodin ajamisajankohtaa.

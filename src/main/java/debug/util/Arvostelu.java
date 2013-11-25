@@ -22,6 +22,8 @@ public class Arvostelu {
         HttpSession session = request.getSession();
 
         try {
+            String suoritusPvm = request.getParameter("suoritusPvm");
+            
             int lh_pak = Integer.parseInt(request.getParameter("lh_pak"));
             int ht_pak = Integer.parseInt(request.getParameter("ht_pak"));
             int koe_pak = Integer.parseInt(request.getParameter("koe_pak"));
@@ -43,7 +45,19 @@ public class Arvostelu {
 
             String arvosteluasteikko = request.getParameter("arvosteluasteikko");
             int arvostelutapa = Integer.parseInt(request.getParameter("arvostelutapa"));
-
+            
+            /*
+             * Suorituspäivämäärän asetus
+             */
+            if (!suoritusPvm.equals("")) {
+                suoritusPvm = Suorituspaivamaara.tarkastaSuorituspvm(kurssi, suoritusPvm, request);
+                if (suoritusPvm != null) {
+                    kurssi.setValue(Kurssi.suoritus_pvm, java.sql.Date.valueOf(suoritusPvm));
+                } else {
+                    return;
+                }
+            }
+            
             /*
              * Pakolliset osasuoritukset
              */

@@ -31,34 +31,50 @@ public class Suorituspaivamaara {
 		+ " AND tyyppi = ?\n"
 		+ " AND kurssi_nro = ?\n";
 	//</editor-fold>
+
+    /**
+     * Metodi tarkastaa onko parametrina annetun kurssin suorituspäivämäärä null.
+     * 
+     * @param kurssi Kurssi, jonka suorituspäivämäärä tarkastetaan
+     * @return True, jos suorituspäivämäärä on null
+     */
+    public static boolean onkoSuorituspvmNull(Kurssi kurssi) {
+        if (kurssi.getSuoritus_pvm() == null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
     
     /**
-    * Metodi asettaa kurssille suorituspäivämäärän.
+    * Metodi tarkastaa, että parametrina annetun kurssin suorituspäivämäärä on kelvollinen 
+    * ja muuntaa suorituspäivämäärän java.sql.Date.valueOf() metodille sopivaan muotoon.
     * 
-    * @param kurssi Kurssi, jolle suorituspäivämäärä asetetaan
-    * @param suoritusPvm Asetettava suorituspäivämäärä
+    * @param kurssi Kurssi, jonka suorituspäivämäärän kelvollisuutta tarkastetaan
+    * @param suoritusPvm Kurssin suorituspäivämäärä
     * @param request 
+    * @return Kurssin suorituspäivämäärä muodossa (vvvv-kk-pp)
     */
-    public static void asetaSuorituspvm(Kurssi kurssi, String suoritusPvm, HttpServletRequest request) {
+    public static String tarkastaSuorituspvm(Kurssi kurssi, String suoritusPvm, HttpServletRequest request) {
         HttpSession istunto = request.getSession();
         LocalisationBundle bundle = SessioApuri.bundle(request);
         
         try {
             if (!tarkastaSuorituspvmnMuoto(suoritusPvm, kurssi, istunto, bundle)) {
-                return;
+                return null;
             }
             suoritusPvm = vaihdaPvmnMuotoa(suoritusPvm);
         } catch (IndexOutOfBoundsException poikkeus1) {
-            SessioApuri.annaVirhe(istunto, "testi1");//SessioApuri.annaVirhe(istunto, bundle.getString("virheVirheellinenMuoto") + ": " + poikkeus1.getLocalizedMessage());
-            return;
+            SessioApuri.annaVirhe(istunto, bundle.getString("virheVirheellinenMuoto") + ": " + poikkeus1.getLocalizedMessage());
+            return null;
         } catch (NullPointerException poikkeus2) {
-            SessioApuri.annaVirhe(istunto, "testi2");//SessioApuri.annaVirhe(istunto, bundle.getString("virheVirheellinenMuoto") + ": " + poikkeus2.getLocalizedMessage());
-            return;
+            SessioApuri.annaVirhe(istunto, bundle.getString("virheVirheellinenMuoto") + ": " + poikkeus2.getLocalizedMessage());
+            return null;
         } catch (NumberFormatException poikkeus3) {
-            SessioApuri.annaVirhe(istunto, "testi3");//SessioApuri.annaVirhe(istunto, bundle.getString("virheVirheellinenMuoto") + ": " + poikkeus3.getLocalizedMessage());
-            return;
+            SessioApuri.annaVirhe(istunto, bundle.getString("virheVirheellinenMuoto") + ": " + poikkeus3.getLocalizedMessage());
+            return null;
         }
-        suoritaAsetus(suoritusPvm, kurssi, istunto, bundle);
+        return suoritusPvm;
     }
     
     /**
@@ -80,25 +96,25 @@ public class Suorituspaivamaara {
             return false;
         }
 
-        if (!tarkastaSuoritusPvm(suoritusPvm, kurssi, istunto, bundle)) {
+        if (!tarkastaSuoritusPvmnAjankohta(suoritusPvm, kurssi, istunto, bundle)) {
             return false;
         }
         return true;  
     }
     
     /**
-     * Metodi tarkastaa, että parametrina annetun kurssin suorituspäivämäärä on kelvollinen.
+     * Metodi tarkastaa, että parametrina annetun kurssin suorituspäivämäärän ajankohta on kelvollinen.
      * 
      * @param suoritusPvm Kurssin suorituspäivämäärä
-     * @param kurssi Kurssi, jonka suorituspäivämäärän kelvollisuutta tarkastetaan
+     * @param kurssi Kurssi, jonka suorituspäivämäärän ajankohdan kelvollisuutta tarkastetaan
      * @param istunto Käyttäjän istunto
      * @param bundle Lokalisaatio työkalu
-     * @return Onko suorituspäivämäärä kelvollinen?
+     * @return Onko suorituspäivämäärän ajankohta kelvollinen?
      * @throws IndexOutOfBoundsException Suorituspäivämäärä syötetty väärässä muodossa
      * @throws NullPointerException Suorituspäivämäärä null
      * @throws NumberFormatException Suorituspäivämäärä syötetty väärässä muodossa 
      */
-    private static boolean tarkastaSuoritusPvm(String suoritusPvm, Kurssi kurssi, HttpSession istunto, LocalisationBundle bundle) 
+    private static boolean tarkastaSuoritusPvmnAjankohta(String suoritusPvm, Kurssi kurssi, HttpSession istunto, LocalisationBundle bundle) 
             throws IndexOutOfBoundsException, NullPointerException, NumberFormatException {
         int[] paivamaara = parsiPaivamaaraSyote(suoritusPvm);
         if (paivamaara[1] < 1 || paivamaara[1] > 12) {
@@ -270,7 +286,7 @@ public class Suorituspaivamaara {
      * @throws NullPointerException Syöte null
      * @throws NumberFormatException Syöte väärässä muodossa
      */
-    private static String vaihdaPvmnMuotoa(String pvm) throws IndexOutOfBoundsException, NullPointerException, NumberFormatException {
+    public static String vaihdaPvmnMuotoa(String pvm) throws IndexOutOfBoundsException, NullPointerException, NumberFormatException {
         int[] paivamaara = parsiPaivamaaraSyote(pvm);
         String palautus = paivamaara[2] + "-" + paivamaara[1] + "-" + paivamaara[0];
         return palautus;
@@ -284,7 +300,7 @@ public class Suorituspaivamaara {
      * @param istunto Käyttäjän istunto
      * @param bundle Lokalisaatio työkalu
      */
-    private static void suoritaAsetus(String suoritusPvm, Kurssi kurssi, HttpSession istunto, LocalisationBundle bundle) {
+    public static void suoritaAsetus(String suoritusPvm, Kurssi kurssi, HttpSession istunto, LocalisationBundle bundle) {
         try {
             Connection tietokantayhteys = DatabaseConnection.makeConnection();
             PreparedStatement valmisteltuLause = tietokantayhteys.prepareStatement(asetaSuorituspvm);
@@ -336,5 +352,19 @@ public class Suorituspaivamaara {
             palautus = "";
         }
         return palautus;
+    }
+    
+    /**
+     * Metodi tarkastaa onko parametrina annettu olio null
+     * 
+     * @param suoritusPvm Tarkastettava parametri
+     * @return Onko parametri null?
+     */
+    public static boolean onkoNull(Object suoritusPvm) {
+        if (suoritusPvm == null) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
