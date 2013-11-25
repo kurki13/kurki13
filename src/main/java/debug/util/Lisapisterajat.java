@@ -11,8 +11,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -37,7 +35,7 @@ public class Lisapisterajat {
             ltrajat = stringArrayIntArrayksi(ltrajats);
             htrajat = stringArrayIntArrayksi(htrajats);
         } catch (NumberFormatException ne) {
-            SessioApuri.annaVirhe(request.getSession(), "Sallitut arvot ovat 0-999");
+            SessioApuri.annaVirhe(request.getSession(), SessioApuri.bundle(request).getString("lisap.sallitutArvotOvat") + "0-999");
             return;
         }
 
@@ -50,9 +48,9 @@ public class Lisapisterajat {
         try {
             SQLoader.tallennaKantaan(kurssi);
         } catch (SQLException se) {
-            SessioApuri.annaVirhe(request.getSession(), "Tietojen tallentamisessa tapahtui virhe: " + se.getMessage());
+            SessioApuri.annaVirhe(request.getSession(), SessioApuri.bundle(request).getString("lisap.tietojenTallentamisessaVirhe") + se.getMessage());
         }
-        SessioApuri.annaViesti(request.getSession(), "Muutokset tallennettu");
+        SessioApuri.annaViesti(request.getSession(), SessioApuri.bundle(request).getString("lisap.muutoksetTallennettu"));
     }
 
     /**
@@ -82,10 +80,10 @@ public class Lisapisterajat {
         try {
             SQLoader.tallennaKantaan(kurssi);
         } catch (SQLException ex) {
-            SessioApuri.annaVirhe(request.getSession(), "Kantaan tallennuksessa tapahtui virhe: " + ex.getMessage());
+            SessioApuri.annaVirhe(request.getSession(), SessioApuri.bundle(request).getString("lisap.tietojenTallentamisessaVirhe") + ex.getMessage());
             return;
         }
-        SessioApuri.annaViesti(request.getSession(), "Lisäpisterajat uudelleenlaskettu");
+        SessioApuri.annaViesti(request.getSession(), SessioApuri.bundle(request).getString("lisap.uudelleenlaskettu"));
     }
 
     public static List<Integer> laskariRajat(Kurssi kurssi) {

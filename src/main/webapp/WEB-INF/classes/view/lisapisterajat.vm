@@ -26,7 +26,7 @@
 
 <form id=lpform action="" method=get>
 
-    <h4> Laskarirajat: </h4>
+    <h4>$bundle.getString("lisap.laskariRajat"): </h4>
     #set($i = 0)
     #set($ylaraja = $valittuKurssi.laskariRajat.maxPisteetYhteensa)
     #foreach($raja in $Lisapisterajat.laskariRajat($valittuKurssi))
@@ -42,7 +42,7 @@
     #end
 
     <br><br>
-    <h4> Harjoitustyörajat: </h4>
+    <h4>$bundle.getString("lisap.harjoitustyoRajat"): </h4>
 
     #set($i = 0)
     #set($ylaraja = $valittuKurssi.harjoitustyoRajat.maxPisteetYhteensa)
@@ -59,8 +59,8 @@
     #end
     <br><br>
     <input type=submit name=tallenna class="btn" value=$bundle.getString("tmuutokset") onClick="">
-    <input type=submit name=resetoi class="btn" value="Laske rajat uudestaan" onClick="">
-    <a href="5arvostelu.vm">Takaisin arvosteluun</a>
+    <input type=submit name=resetoi class="btn" value="$bundle.getString("lisap.laskeRajatUudestaan")" onClick="">
+    <a href="5arvostelu.vm">$bundle.getString("lisap.takaisinArvosteluun")</a>
 </form>
 
 
