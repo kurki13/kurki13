@@ -1,5 +1,10 @@
 #parse("hello.vm")
 
+#if($request.getParameter('sulatettavaHetu')) 
+    $OsallistujaMuutokset.sulataOpiskelija($valittuKurssi, $request.getParameter('sulatettavaHetu'), $request)
+    #stop
+#end
+
 #set ($kerrat = {"laskarit" : $valittuKurssi.laskarikerta_lkm, "ht" : $valittuKurssi.harjoitustyo_lkm ,
 "koe" : $valittuKurssi.valikokeet_lkm})
 

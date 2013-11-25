@@ -1,6 +1,5 @@
 ##lisää tarkistukset onko jäässä!!!!!!!!!!!!!!!
-##javascriptit eri tiedostoon ja
-##<head>:iin <script language='JavaScript' type='text/javascript' src='tiedostonimi.js'></script>
+##javascriptit erikseen
 ##sivua päivittäessä lataa valitut hakukriteerit ym kenttiin
 
 #set($kurssinOsallistumiset = $OsallistuminenKyselyt.osallistumisetKurssilla($valittuKurssi))
@@ -98,46 +97,52 @@ $bundle.getString("opiskelijat"): #if ($opiskelijat != '') $opiskelijat #else $b
         ##käydään läpi kaikki kurssin osallistumiset ja tulostetaan pistetiedot
         #foreach ($os in $filteroidytOsallistumiset)
             <tr>
-                <td>$os.nimi, $os.hetu</td>
-                <td>$os.ilmo_jnro</td>
+                <td>
+                $os.nimi, $os.hetu
+                #if ($os.jaassa == "J") <img src="images/kurkijaassa.gif"> #end
+                #if ($os.jaassa == "S") <img src="images/defrost.gif"> #end
+                 $os.jaassa</td>
+                <td align="center">$os.ilmo_jnro</td>
 
             #if ($tyyppi == 'laskarit')  
-                #if($os.laskarit.osa($kerta)) #set ($osasuoritus = $os.laskarit.osa($kerta)) #else #set ($osasuoritus = '') #end
+                #if($os.laskarit.osa($kerta)) #set ($valittuTyyppi = $os.laskarit.osa($kerta)) #else #set ($valittuTyyppi = '') #end
             #end
 
             #if ($tyyppi == 'ht')
-                #if($os.harjoitustyot.osa($kerta)) #set ($osasuoritus = $os.harjoitustyot.osa($kerta)) #else #set ($osasuoritus = '') #end
+                #if($os.harjoitustyot.osa($kerta)) #set ($valittuTyyppi = $os.harjoitustyot.osa($kerta)) #else #set ($valittuTyyppi = '') #end
             #end
 
             #if ($tyyppi == 'koe')
-                #if($os.kokeet.osa($kerta)) #set ($osasuoritus = $os.kokeet.osa($kerta)) #else #set ($osasuoritus = '') #end
+                #if($os.kokeet.osa($kerta)) #set ($valittuTyyppi = $os.kokeet.osa($kerta)) #else #set ($valittuTyyppi = '') #end
             #end
 
             #if ($tyyppi == 'arvosana')
-                #if ($os.arvosana) #set ($osasuoritus = $os.arvosana) #else #set ($osasuoritus = '') #end
+                #if ($os.arvosana) #set ($valittuTyyppi = $os.arvosana) #else #set ($valittuTyyppi = '') #end
             #end
 
             #if ($tyyppi == 'op')
-                #if($os.laajuus_op) #set ($osasuoritus = $os.laajuus_op) #else #set ($osasuoritus = '') #end
+                #if($os.laajuus_op) #set ($valittuTyyppi = $os.laajuus_op) #else #set ($valittuTyyppi = '') #end
             #end
 
             #if ($tyyppi == 'kieli')
-                #if ($os.kielikoodi) #set ($osasuoritus = $os.kielikoodi) #else #set ($osasuoritus = '') #end
+                #if ($os.kielikoodi) #set ($valittuTyyppi = $os.kielikoodi) #else #set ($valittuTyyppi = '') #end
             #end
 
                 ##textfield jossa osasuorituksen tms arvo
-                <td><input value="$osasuoritus" type="text" class="form-control input-sm"
+                <td>
+                #if ($os.jaassa != "J")
+                    <input value="$valittuTyyppi" type="text" class="form-control input-sm"
                         style="width:50px" maxlength="3" name="pisteet${os.hetu}"
                         onblur="
                             if(!check(this.value)) {
                                 alert(this.value + ' ei ole hyväksytty arvo.');
-                                this.value='${osasuoritus}';
+                                this.value='${valittuTyyppi}';
                                 this.style.color='black';
                                 setChecked('id${os.hetu}', this.value);
                                 asteriskiSet('muutettu${os.hetu}', 'hidden');
                             }"
                         onChange="
-                            if(this.value != '$osasuoritus') {
+                            if(this.value != '$valittuTyyppi') {
                                 this.style.color='red';
                                 asteriskiSet('muutettu${os.hetu}', 'visible');
                             } else {
@@ -147,40 +152,68 @@ $bundle.getString("opiskelijat"): #if ($opiskelijat != '') $opiskelijat #else $b
                             setChecked('id${os.hetu}', this.value)
                         ">
                 <input type="text" id="muutettu${os.hetu}" name="valueMuutettu" value="*" style="width:10px;border:0;visibility:hidden;color:red" readonly>
-                </td>
-
-                <td>
-                ##radiobuttonien tulostus
-                #foreach($i in $arvot)
-                    #if ($i == $osasuoritus || ($i == $bundle.getString('tyhja')))
-                        <input type="radio" name="osat${os.hetu}" #if($i == "") value="" id="id${os.hetu}_" #else value=$i id="id${os.hetu}_$i" #end
-                            onChange="pisteet${os.hetu}.value=this.value;
-                            pisteet${os.hetu}.style.color='black';
-                            asteriskiSet('muutettu${os.hetu}', 'hidden');"
-                            checked>$i
-                    #else
-                        <input type="radio" name="osat${os.hetu}" #if($i == "") value="" id="id${os.hetu}_" #else value=$i id="id${os.hetu}_$i" #end
-                            onChange="pisteet${os.hetu}.value=this.value;
-                            if(osat${os.hetu}.value != '$osasuoritus') {
-                            pisteet${os.hetu}.style.color='red';
-                            asteriskiSet('muutettu${os.hetu}', 'visible');
-                            }">$i
-                    #end
+                #else
+                    <input value="$valittuTyyppi" type="text" class="form-control input-sm"
+                        style="width:50px" readonly>
                 #end
+                
                 </td>
 
+                #if ($os.jaassa != "J")
+                    <td>
+                    ##radiobuttonien tulostus
+                    #foreach($i in $arvot)
+                        #if ($i == $valittuTyyppi || ($i == $bundle.getString('tyhja')))
+                            <input type="radio" name="osat${os.hetu}" #if($i == "") value="" id="id${os.hetu}_" #else value=$i id="id${os.hetu}_$i" #end
+                                onChange="pisteet${os.hetu}.value=this.value;
+                                pisteet${os.hetu}.style.color='black';
+                                asteriskiSet('muutettu${os.hetu}', 'hidden');"
+                                checked>$i
+                        #else
+                            <input type="radio" name="osat${os.hetu}" #if($i == "") value="" id="id${os.hetu}_" #else value=$i id="id${os.hetu}_$i" #end
+                                onChange="pisteet${os.hetu}.value=this.value;
+                                if(osat${os.hetu}.value != '$valittuTyyppi') {
+                                pisteet${os.hetu}.style.color='red';
+                                asteriskiSet('muutettu${os.hetu}', 'visible');
+                                }">$i
+                        #end
+                    #end
+                    </td>
+                #end
+
                 <td>
-                    <input type="button" value="$bundle.getString("peru")" class="btn btn-sm btn-danger"
+                #if ($os.jaassa != "J")
+                    <input type="button" value="$bundle.getString("peru")"
+                    class="btn btn-sm btn-danger"
                     onClick="
-                    pisteet${os.hetu}.value='${osasuoritus}';
+                    pisteet${os.hetu}.value='${valittuTyyppi}';
                     pisteet${os.hetu}.style.color='black';
-                    setChecked('id${os.hetu}', '${osasuoritus}');
+                    setChecked('id${os.hetu}', '${valittuTyyppi}');
                     asteriskiSet('muutettu${os.hetu}', 'hidden');">
+                #else
+                    <input type="button" value="--> $bundle.getString("sulata") <--"
+                    class="btn btn-sm btn-warning"
+                    onClick="getPage('1suoritteidenKirjaus.vm?sulatettavaHetu=${os.hetu}');">
+                #end
                 </td>
 
             </tr>
         #end
     </table>
+
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css"/>
+            <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+            <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+            <link rel="stylesheet" href="/resources/demos/style.css"/>
+            <script>
+                getPage = function(url) {
+                    $.get(url, function(data) {
+                    });
+                    setTimeout(function() {
+                        location.reload();
+                    }, 1000);
+                }
+            </script>
 
 ##javascriptit
 <script type="text/javascript">

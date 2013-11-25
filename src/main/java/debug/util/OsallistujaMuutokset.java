@@ -189,13 +189,13 @@ public class OsallistujaMuutokset {
         try {
             Osallistuminen os = osallistuminenKurssilla(kurssi, hetu);
             if (os.getJaassa().equals("S")) {
-                SessioApuri.annaVirhe(request.getSession(), "Opiskelija on jo sulatettu");
+                SessioApuri.annaVirhe(request.getSession(), "Opiskelija " + hetu + " on jo sulatettu");
             }
             os.setJaassa("S");
             SQLoader.tallennaKantaan(os);
-            SessioApuri.annaViesti(request.getSession(), "Sulatus onnistui");
+            SessioApuri.annaViesti(request.getSession(), "Sulatus onnistui hetulle " + hetu);
         } catch (Exception e) {
-            SessioApuri.annaVirhe(request.getSession(), "Sulatus epäonnistui");
+            SessioApuri.annaVirhe(request.getSession(), "Sulatus epäonnistui hetulle " + hetu);
         }
     }
 }

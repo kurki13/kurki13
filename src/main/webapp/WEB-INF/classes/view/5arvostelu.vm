@@ -71,7 +71,7 @@
     <tr>
         <th>
         </th>
-        <th>$bundle.getString('lh_lyhenne'):
+        <th>$bundle.getString('lh_lyhenne'):sulata
         </th>
         <th>$bundle.getString('ht_lyhenne'):
         </th>
