@@ -72,15 +72,6 @@ public class SQLProseduurit {
     /**
      * Metodi tarkastaa SQL-Proseduurin jaadytys05 palautusarvon 
      * ja asettaa onnistumisviestin tai virheilmoituksen asianmukaisesti.
-     * 
-     * @param tulos Tarkastettava palautusarvo
-     * @param istunto Käyttäjän istunto
-     * @param bundle Lokalisaatio työkalu
-     */
-    
-    /**
-     * Metodi tarkastaa SQL-Proseduurin jaadytys05 palautusarvon 
-     * ja asettaa onnistumisviestin tai virheilmoituksen asianmukaisesti.
      * Jos jäädytys onnistui, lähetetään jäädytyksestä tiedottava sähköpostiviesti asianmukaisille tahoille.
      * 
      * @param tulos Tarkastettava palautusarvo

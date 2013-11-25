@@ -13,6 +13,7 @@ $bundle.getString("hyvaksyja"): $HenkiloKyselyt.haeNimet($kurssi.getOmistaja())
 #set ($ilmoittautuneet = $osallistumisetKurssilla.size())
 #set ($hyvaksytyt = 0)
 #set ($hyvaksytytLista = "")
+#set ($poistetutApu = 0)
 #set ($hylatyt = 0)
 #set ($hylatytLista = "")
 #set ($poistetutLista = "")
@@ -29,17 +30,30 @@ $bundle.getString("hyvaksyja"): $HenkiloKyselyt.haeNimet($kurssi.getOmistaja())
         #set ($hylatyt = $hylatyt + 1)
         #set ($osallistuneet = $osallistuneet + 1)
         #if (!$kurssinTila.equals('J') || ($kurssinTila.equals('J') && !$osallistuminen.getJaassa().equals('J')))
-            #set ($hylatytLista = "$hylatytLista $listaAlkio ${rivinvaihto}")
+            #if ($hylatyt == 1) 
+                #set ($hylatytLista = "$listaAlkio ${rivinvaihto}")
+            #else
+                #set ($hylatytLista = "$hylatytLista $listaAlkio ${rivinvaihto}")
+            #end
         #end
     #elseif (!$osallistuminen.getArvosana() || $osallistuminen.getArvosana().equals('-'))
         #if ($osallistuminen.getJaassa().equals('S'))
-            #set ($poistetutLista = "$poistetutLista $listaAlkio ${rivinvaihto}")
+            #set ($poistetutApu = $poistetutApu + 1)
+            #if ($poistetutApu == 1) 
+                #set ($poistetutLista = "$listaAlkio ${rivinvaihto}")
+            #else 
+                #set ($poistetutLista = "$poistetutLista $listaAlkio ${rivinvaihto}")
+            #end
         #end
     #else
         #set ($hyvaksytyt = $hyvaksytyt + 1)
         #set ($osallistuneet = $osallistuneet +1)
         #if (!$kurssinTila.equals('J') || ($kurssinTila.equals('J') && !$osallistuminen.getJaassa().equals('J')))
-            #set ($hyvaksytytLista = "$hyvaksytytLista $listaAlkio $osallistuminen.getArvosana() ${rivinvaihto}")
+            #if ($hyvaksytyt == 1)
+                #set ($hyvaksytytLista = "$listaAlkio $osallistuminen.getArvosana() ${rivinvaihto}")
+            #else
+                #set ($hyvaksytytLista = "$hyvaksytytLista $listaAlkio $osallistuminen.getArvosana() ${rivinvaihto}")
+            #end
         #end
     #end
     #if (!$osallistuminen.getKoepisteet().equals('??,??,??,??,??-??,??,??,??,??-??,??,??,??,??-??,??,??'))
@@ -55,14 +69,14 @@ $bundle.getString("hyvaksyttyja"): $hyvaksytyt
 $bundle.getString("hylattyja"): $hylatyt
 
 #if (!$hyvaksytytLista.equals(''))
-    $bundle.getString("hyvaksytyt")
-    $hyvaksytytLista
+$bundle.getString("hyvaksytyt")
+$hyvaksytytLista
 #end
 #if (!$hylatytLista.equals(''))
-    $bundle.getString("isohylatyt")
-    $hylatytLista
+$bundle.getString("isohylatyt")
+$hylatytLista
 #end
 #if (!$poistetutLista.equals(''))
-    $bundle.getString("isopoistetut")
-    $poistetutLista
+$bundle.getString("isopoistetut")
+$poistetutLista
 #end

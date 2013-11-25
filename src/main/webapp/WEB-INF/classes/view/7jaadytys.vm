@@ -1,6 +1,6 @@
 #if ($request.getParameter("jaadyta"))
     #set ($kurssinTila = $session.getAttribute("selected_course").getTila())
-    #$SQLProseduurit.suoritaJaadytys($session.getAttribute("selected_course"), $kurssinTila, $request)
+    $SQLProseduurit.suoritaJaadytys($session.getAttribute("selected_course"), $kurssinTila, $request)
     $session.setAttribute("user_courses", null)
 #end
 

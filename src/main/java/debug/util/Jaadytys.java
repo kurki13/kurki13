@@ -30,8 +30,6 @@ import org.apache.velocity.app.*;
  */
 public class Jaadytys {
     
-    
-    
     /**
      * Metodi tarkastaa, onko parametrina annetun kurssin suorituspäivämäärä ennen metodin ajamisajankohtaa.
      * Jos on, niin metodi palauttaa true.
