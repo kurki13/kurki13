@@ -58,7 +58,7 @@
         </center>
     </td>
     <td>
-      <center> #if($osallinen.suoritettu())X#end</center>
+      <center> #if($osallinen.suoritetuksia())X#end</center>
     </td>
     <td>
         #if(!$osallinen.jaassa)
@@ -69,7 +69,7 @@
     </td>
     <td>
       <center>
-          <button name="hetuParam" type="submit" class="btn btn-primary" value=$osallinen.hetu>Tiedot</button>
+          <button name="hetuParam" type="submit" class="btn btn-primary" value=$osallinen.hetu> >>> </button>
       </center>
     </td>
   </tr>

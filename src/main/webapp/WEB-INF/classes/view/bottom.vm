@@ -38,7 +38,7 @@
         document.getElementById("viesti").remove();
     }
 
-    function rajaTiedot(viesti) {
+    function paramInfo(viesti) {
         kohta = document.getElementById("pisterajat");
         var ilmoitus = document.createElement("div");
         ilmoitus.id = "viesti";

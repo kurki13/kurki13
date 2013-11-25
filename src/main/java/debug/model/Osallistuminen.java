@@ -109,17 +109,11 @@ public class Osallistuminen extends Table {
         this.kurssi = kurssi;
     }
 
-    public boolean suoritettu() {
-        try {
-            int arv = Integer.parseInt(this.getArvosana());
-            return (arv >= 0);
-        } catch (Exception e) {
-            if (this.getArvosana() != null && this.getArvosana().equals("+")) {
-                return true;
-            } else {
-                return false;
-            }
-        }
+    public boolean suoritetuksia() {
+        String tyhja = "??,??,??,??,??-??,??,??,??,??-??,??,??,??,??-??,??,??";
+        return (!getHarjoitustyopisteet().equals(tyhja)
+                || !getLaskarisuoritukset().equals(tyhja)
+                || !getHarjoitustyopisteet().equals(tyhja));
     }
 
     public Osasuoritukset getLaskarit() {
@@ -179,19 +173,19 @@ public class Osallistuminen extends Table {
     public void setJaassa(String s) {
         this.setValue(Osallistuminen.jaassa, s);
     }
-    
+
     public void setKommentti2(String kommentti) {
         this.setValue(Osallistuminen.kommentti_2, kommentti);
     }
-    
+
     public void setTenttija(String tenttija) {
         this.setValue(Osallistuminen.tenttija, tenttija);
     }
-    
+
     public void setKypsyyspvm(Timestamp pvm) {
         this.setValue(Osallistuminen.kypsyys_pvm, pvm);
     }
-    
+
     //</editor-fold>
     //<editor-fold defaultstate="collapsed" desc="getterit">
     public String getPersonid() {

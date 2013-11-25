@@ -20,13 +20,11 @@ public class Muotoilija {
     public final static int LASNA = -2;
 
     public static int[] stringToIntArray(String s) {
+        int[] ints = tyhjaTaulu();
         if (s == null) {
-            int[] ints = new int[MAX_KOKO];
-            Arrays.fill(ints, EMPTY);
             return ints;
         }
         String[] intAr = s.replace('-', ',').split(",");
-        int[] ints = new int[intAr.length];
         int i = 0;
         for (String string : intAr) {
             try {
@@ -76,8 +74,9 @@ public class Muotoilija {
     }
 
     public static boolean hetuTarkastus(String numero) {
-        if (numero.matches("01[0-9]{7}"))
+        if (numero.matches("01[0-9]{7}")) {
             return true;
+        }
         return false;
     }
 }

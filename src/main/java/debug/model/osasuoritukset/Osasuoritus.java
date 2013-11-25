@@ -38,6 +38,7 @@ public class Osasuoritus {
     }
 
     public boolean setPisteet(String param) {
+        param = param.trim();
         try {
             return setPisteet(Integer.parseInt(param));
         } catch (NumberFormatException nfe) {

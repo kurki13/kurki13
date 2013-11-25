@@ -1,7 +1,6 @@
 package debug.model.osasuoritukset;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
@@ -40,8 +39,6 @@ public class Osasuoritukset implements Iterable<Osasuoritus> {
         osasuoritukset = new ArrayList();
         int[] maxPisteet = Muotoilija.stringToIntArray(dbmax_pisteet);
         int[] pisteet = Muotoilija.stringToIntArray(dbpisteet);
-        System.out.println("max" + Arrays.toString(maxPisteet));
-        System.out.println("min" + Arrays.toString(pisteet));
         //Luodaan jokaiselle mahdolliselle laskarille yksi olio
         for (int i = 0; i < Muotoilija.MAX_KOKO; i++) {
             osasuoritukset.add(new Osasuoritus(pisteet[i], maxPisteet[i]));

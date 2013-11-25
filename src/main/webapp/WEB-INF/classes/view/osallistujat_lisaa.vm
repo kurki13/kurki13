@@ -11,8 +11,8 @@
 
 ##Kysely palauttaa maksimissaan 50, vaikka tuloksia olisi enemmän
 #if($haetut.size() == 50)
-  $SessioApuri.annaVirhe($request.session,
-    $bundle.getString("tarkennaHInfo").concat(" 50 ").concat($bundle.getString("tarkennaHInfo2")))
+    #set($virhe = ${bundle.getString("tarkennaHInfo")}+" 50 "+$bundle.getString("tarkennaHInfo2"))
+    $SessioApuri.annaVirhe($request.session,$virhe)
 #end
 
 <form action="" method="post" class="inline" style="margin:0;display:inline;" >
@@ -37,7 +37,7 @@
     <td>
       <center>
          <select name="lisattavat" class="form-control form-inline" style="width:150px">
-         <option selected value="">Ei kurssilla</option>
+         <option selected value="">$bundle.getString("eiKurssilla")</option>
          #foreach($ryhma in $ryhmat)
            <option value=${opiskelija.hetu}_${ryhma}>$ryhma</option>
          #end

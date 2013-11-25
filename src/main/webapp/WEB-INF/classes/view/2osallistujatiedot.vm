@@ -5,10 +5,10 @@
 #set($ryhmaFilter = $request.getParameter('filterRyhma'))
 #set($hetuFilter = $request.getParameter('filterOpnro'))
 #set($toiminto = $request.getParameter('toiminto'))
-#if($onkoJaassa) #set($vainLuku="readonly") #else #set($vainLuku="") #end
 
 ##haetaan kurssin ryhmät, ja jätetään pois mystinen ryhmä "0"
-##lisätään tulostus muuttujaan 'var' jota ei käytetä missään, muuten velocity haluaa tulostaa "true" kun listaan lisäys on onnistunut
+##lisätään tulostus muuttujaan 'var' jota ei käytetä missään, 
+##muuten velocity haluaa tulostaa "true" kun listaan lisäys on onnistunut
 #set ($ryhmat = [])
 #foreach($ryhmanro in $OpetusKyselyt.opetuksetKurssilla($valittuKurssi))
     #if ($ryhmanro.ilmo_jnro != 0)
@@ -64,7 +64,6 @@
 #if($request.getParameter("hetuParam")) ##tiedot  
     #parse ("osallistuja_tiedot.vm")
     <br>
-
 #elseif($toiminto)
     #parse ($toiminto)
 #end

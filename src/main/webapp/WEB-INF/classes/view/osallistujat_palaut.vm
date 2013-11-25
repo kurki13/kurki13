@@ -9,7 +9,7 @@
 <form name=palautaOpiskelijat action="" method=post>
 <table class="table table-condensed table-bordered" style="max-width:1000px">
   <caption>
-   Opiskelijoita valittu $poistetut.size()
+   $bundle.getString("opvalittu") $poistetut.size()
   </caption>
   <tr>
     <th> $bundle.getString("nimiSyntpva") </th>
@@ -40,7 +40,7 @@
   <tr>
     <th colspan="6">
         <center>
-          <input type="submit" class="btn btn-success" value="PALAUTA">
+          <input type="submit" class="btn btn-success" value="$bundle.getString("palautaIso")">
         </center>
     </th>
   </tr>
