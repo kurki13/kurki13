@@ -1,4 +1,4 @@
-#parse("hello.vm")
+#parse("top.vm")
 
 <h1>$bundle.getString("3coursebasics")</h1>
 

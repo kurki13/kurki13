@@ -12,7 +12,7 @@
     $session.setAttribute("user_courses", null)
 #end
 
-#parse("hello.vm")
+#parse("top.vm")
 
 #set ($kurssikoodi = $selected_course.getKurssikoodi())
 #set ($lukukausi = $selected_course.getLukukausi())

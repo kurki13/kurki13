@@ -1,4 +1,4 @@
-#parse("hello.vm")
+#parse("top.vm")
 
 ##Filterit/parametrit
 #set($sukuFilter = $request.getParameter('filterSukunimi'))
