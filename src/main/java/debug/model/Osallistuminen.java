@@ -5,7 +5,6 @@
 package debug.model;
 
 import debug.model.osasuoritukset.Osasuoritukset;
-import debug.ApplicationException;
 import debug.model.column.IntegerColumn;
 import debug.model.column.StringColumn;
 import debug.model.column.TimestampColumn;
@@ -118,7 +117,7 @@ public class Osallistuminen extends Table {
 
     public Osasuoritukset getLaskarit() {
         if (kurssi == null) {
-            throw new ApplicationException("Kurssi täytyy asettaa osallistumiselle sen luonnin jälkeen");
+            throw new IllegalStateException("Kurssi täytyy asettaa osallistumiselle sen luonnin jälkeen");
         }
         if (laskarit == null) {
             laskarit = new Osasuoritukset(kurssi.getLaskaritehtava_lkm(), getLaskarisuoritukset(), kurssi.getLaskarikerta_lkm());
@@ -128,7 +127,7 @@ public class Osallistuminen extends Table {
 
     public Osasuoritukset getHarjoitustyot() {
         if (kurssi == null) {
-            throw new ApplicationException("Kurssi täytyy asettaa osallistumiselle sen luonnin jälkeen");
+            throw new IllegalStateException("Kurssi täytyy asettaa osallistumiselle sen luonnin jälkeen");
         }
         if (harjoitustyot == null) {
             harjoitustyot = new Osasuoritukset(kurssi.getMax_harjoitustyopisteet(), getHarjoitustyopisteet(), kurssi.getHarjoitustyo_lkm());
@@ -138,7 +137,7 @@ public class Osallistuminen extends Table {
 
     public Osasuoritukset getKokeet() {
         if (kurssi == null) {
-            throw new ApplicationException("Kurssi täytyy asettaa osallistumiselle sen luonnin jälkeen");
+            throw new IllegalStateException("Kurssi täytyy asettaa osallistumiselle sen luonnin jälkeen");
         }
         if (kokeet == null) {
             kokeet = new Osasuoritukset(kurssi.getMax_koepisteet(), getKoepisteet(), kurssi.getValikokeet_lkm());
