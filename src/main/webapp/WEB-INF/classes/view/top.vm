@@ -8,68 +8,18 @@ $SessioApuri.auta($request)
 <html>
 
 <head>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css"/>
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+
     <META charset='utf-8'/>
     <title>KURKI</title>
 
-    <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="style/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="style/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="style/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="style/main.css" rel="stylesheet">
 
-    <link href="bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
-    <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
-    <style>
-        html {
-            height: 100%;
-        }
-        body {
-            margin: 0px;
-            padding: 0px;
-            margin-left:auto;
-            margin-right:auto;
-            max-width: 22cm;
-            background-color: #a0a0a0;
-            height: 100%;
-        }
-        #top {
-            background-color: #00304A;
-            padding: 0px 10px 0px 10px;
-            color: #f0f0f0;
-            padding-bottom: 4px;
-        }
-        #middle {
-            padding: 30px;
-            padding-left: 30px;
-            background-color: #ffffff;
-            min-height: 100%;
-        }
-        #headerntools {
-            width: 100%;
-        }
-        #header {
-            font-size: 20pt;
-        }
-        #toolbar {
-        }
-        .topselect {
-            display: inline-block;
-        }
-        #courseselect {
-            width: 68%;
-        }
-        #serviceselect {
-            width: 30%;
-        }
-        .section {
-            padding: 15px;
-            padding-top: 50px;
-            padding-bottom: 50px;
-            background-color: #eeeeee;
-            border: 2px solid;
-            border-color: white lightgray lightgray white;
-        }
-        h1 {
-            text-align: center;
-            margin: 20px;
-        }
-    </style>
 </head>
 
 <body>

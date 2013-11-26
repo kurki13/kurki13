@@ -20,6 +20,18 @@
 #end
 
 <script>
+
+        //Funktio lataa sivun taustalla, ja päivittää sitten sivun
+        getPage = function(url) {
+            $.get(url, function(data) {
+                location.reload();
+            });
+        }
+
+        $(function() {
+            $('#datepicker').datepicker({minDate: '-6M', maxDate: '$ylaraja', dateFormat: 'dd.mm.yy'});
+        });
+
     viesti = document.getElementById("viesti")
     virhe = document.getElementById("virhe")
     ilmoitus = document.getElementById("ilmoitus")
@@ -35,15 +47,11 @@
         } else { 
             kentta.value = "";
         }
-        document.getElementById("viesti").remove();
     }
 
     function paramInfo(viesti) {
-        kohta = document.getElementById("pisterajat");
-        var ilmoitus = document.createElement("div");
-        ilmoitus.id = "viesti";
+        ilmoitus = document.getElementById("OsallistujaTiedotVinkki");
         ilmoitus.innerHTML = viesti;
-        kohta.appendChild(ilmoitus);
     }
 
 </script>

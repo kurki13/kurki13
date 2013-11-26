@@ -1,0 +1,120 @@
+
+html {
+    height: 100%;
+}
+body {
+    margin: 0px;
+    padding: 0px;
+    margin-left:auto;
+    margin-right:auto;
+    max-width: 22cm;
+    background-color: #a0a0a0;
+    height: 100%;
+}
+#top {
+    background-color: #00304A;
+    padding: 0px 10px 0px 10px;
+    color: #f0f0f0;
+    padding-bottom: 4px;
+}
+#middle {
+    padding: 30px;
+    padding-left: 30px;
+    background-color: #ffffff;
+    min-height: 100%;
+}
+#headerntools {
+    width: 100%;
+}
+#header {
+    font-size: 20pt;
+}
+#toolbar {
+}
+.topselect {
+    display: inline-block;
+}
+#courseselect {
+    width: 68%;
+}
+#serviceselect {
+    width: 30%;
+}
+.section {
+    padding: 15px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    background-color: #eeeeee;
+    border: 2px solid;
+    border-color: white lightgray lightgray white;
+}
+h1 {
+    text-align: center;
+    margin: 20px;
+}
+
+
+/*perustietojen tyylit*/
+.perustietorivi{
+    margin-bottom: 10px;
+}
+.perustietosarake {
+    display: inline-block;
+    width: 230px;
+}
+.perustieto-otsake {
+    display:inline-block;
+    width: 120px;
+}
+.perustieto-input {
+    display:inline-block;
+    width: 50px;
+}
+.center {
+    margin-left:auto;
+    margin-right:auto;
+}
+.perustietosection {
+    padding: 15px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    background-color: #F0EFD5;
+    border: 5px solid;
+    border-color: lightgray white white lightgray;
+}
+/*pisterajojen tyylit*/
+.minmax {
+    display: inline-block;
+}
+.mminput {
+    width: 45px;
+    text-align: center;
+}
+.index {
+    display: inline-block;
+    position: relative;
+    bottom: 18px;
+    left: 2px;
+    font-weight: bold;
+    width: 20px;
+}
+.minmaxbox {
+    display: inline-block;
+    padding: 3px;
+}
+.legend {
+    background-color: lightgray;
+    border: 1px solid gray;
+    padding: 10px;
+}
+.legendcontainer {
+    width: 100%;
+    text-align: center;
+}
+
+
+#OsallistujaTiedotVinkki {
+    height: 15pt;
+    font-size: 12pt;
+    text-align: center;
+}

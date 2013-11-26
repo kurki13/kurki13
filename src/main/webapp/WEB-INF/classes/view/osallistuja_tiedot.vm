@@ -84,7 +84,7 @@
         [$bundle.getString("Koepisteet"), $osallistumisTiedot.Kokeet, 'koe']])
   
 ##OSASUORITUKSET
-<div id="pisterajat"> </div> ##Javascriptillä tehtyä ilmoitusta varten
+<div id="OsallistujaTiedotVinkki"> </div> ##Javascriptillä tehtyä ilmoitusta varten
 <form name="OsallistujaTiedot" action="" method="post" >
 <table class="table" style="max-width:1000px">
 #foreach($osat in $osasuoritukset)
@@ -108,7 +108,8 @@
                 #if($arvo.maxPisteet != -1)
                   #set($viesti = $bundle.getString("osaParametri")+${arvo.maxPisteet}+$bundle.getString("osaParametri2")) 
                   onFocus="paramInfo('$viesti')" ##tulostaa viestin ilmoituksessa
-                  onBlur="rangeChecker(this,0,$arvo.maxPisteet)"
+                  onBlur="rangeChecker(this,0,$arvo.maxPisteet);
+                          document.getElementById('OsallistujaTiedotVinkki').innerHTML = ''"
                 #else readonly #set($selitys = 1) #end ##maxpisteinä -1 eli tyhjä
                 value="$arvo.toString()" >  
             #end
@@ -151,7 +152,7 @@
                 <input type="text" name="$parametri"
                   class="form-control input-sm" size="2" maxlength="2" style="width:50px" 
                   onFocus="paramInfo('$tieto.get(3)')" ##tulostaa viestin ilmoituksessa
-                  onBlur="document.getElementById('viesti').remove()"
+                  onBlur="document.getElementById('OsallistujaTiedotVinkki').innerHTML = ''"
                   #if($arvo) value="$arvo" #end >
             #end
         #end

@@ -201,20 +201,6 @@ $bundle.getString("opiskelijat"): #if ($filterit != '') $filterit #else $bundle.
         #end
     </table>
 
-<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css"/>
-            <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-            <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-            <link rel="stylesheet" href="/resources/demos/style.css"/>
-            <script>
-                getPage = function(url) {
-                    $.get(url, function(data) {
-                    });
-                    setTimeout(function() {
-                        location.reload();
-                    }, 1000);
-                }
-            </script>
-
 ##javascriptit
 <script type="text/javascript">
     function asteriskiSet(id, nakyvyys) {

@@ -41,37 +41,6 @@
 ##Tallennetaan kurssi kantaan
 $KurssiKyselyt.tallennaKantaan($valittuKurssi)
 
-<style>
-    .minmax {
-        display: inline-block;
-    }
-    .mminput {
-        width: 45px;
-        text-align: center;
-    }
-    .index {
-        display: inline-block;
-        position: relative;
-        bottom: 18px;
-        left: 2px;
-        font-weight: bold;
-        width: 20px;
-    }
-    .minmaxbox {
-        display: inline-block;
-        padding: 3px;
-    }
-    .legend {
-        background-color: lightgray;
-        border: 1px solid gray;
-        padding: 10px;
-    }
-    .legendcontainer {
-        width: 100%;
-        text-align: center;
-    }
-</style>
-
 <h1>$bundle.getString("OsasuoritustenPisterajat")</h1>
 
 <div class=section>

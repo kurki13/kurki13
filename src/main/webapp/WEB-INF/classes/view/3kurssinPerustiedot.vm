@@ -74,35 +74,6 @@ $KurssiKyselyt.tallennaKantaan($valittuKurssi)
     }
 )
 
-<style>
-    .perustietorivi{
-        margin-bottom: 10px;
-    }
-    .perustietosarake {
-        display: inline-block;
-        width: 230px;
-    }
-    .perustieto-otsake {
-        display:inline-block;
-        width: 120px;
-    }
-    .perustieto-input {
-        display:inline-block;
-        width: 50px;
-    }
-    .center {
-        margin-left:auto;
-        margin-right:auto;
-    }
-    .perustietosection {
-        padding: 15px;
-        padding-top: 50px;
-        padding-bottom: 50px;
-        background-color: #F0EFD5;
-        border: 5px solid;
-        border-color: lightgray white white lightgray;
-    }
-</style>
 <div class=section>
 <form name="kurssinPerustiedot" action="" method=get>
     #foreach($otsikko in $basics.keySet()) ##Otsikko tässä joko Laskuharjoitukset, Harjoitustyöt tai Kokeet

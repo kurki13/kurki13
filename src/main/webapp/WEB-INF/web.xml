@@ -59,4 +59,9 @@
     <login-config>
         <auth-method>BASIC</auth-method>
     </login-config>
+    
+    <welcome-file-list>
+      <welcome-file>top.vm</welcome-file>
+   </welcome-file-list>
+   
 </web-app>
