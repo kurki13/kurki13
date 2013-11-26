@@ -3,46 +3,31 @@
     
     <tool>
         <key>OpiskelijaKyselyt</key>
-        <class>debug.model.SQLkyselyt.OpiskelijaKyselyt</class>
+        <class>model.SQLkyselyt.OpiskelijaKyselyt</class>
     </tool>        
     <tool>
         <key>OsallistuminenKyselyt</key>
-        <class>debug.model.SQLkyselyt.OsallistuminenKyselyt</class>
+        <class>model.SQLkyselyt.OsallistuminenKyselyt</class>
     </tool>        
     
     <tool>
         <key>KurssiKyselyt</key>
-        <class>debug.model.SQLkyselyt.KurssiKyselyt</class>
+        <class>model.SQLkyselyt.KurssiKyselyt</class>
     </tool>    
         
     <tool>
         <key>HenkiloKyselyt</key>
-        <class>debug.model.SQLkyselyt.HenkiloKyselyt</class>
+        <class>model.SQLkyselyt.HenkiloKyselyt</class>
     </tool>
     
     <tool>
         <key>OpetusKyselyt</key>
-        <class>debug.model.SQLkyselyt.OpetusKyselyt</class>
+        <class>model.SQLkyselyt.OpetusKyselyt</class>
     </tool>      
     
     <tool>
-        <key>SessioApuri</key>
-        <class>debug.SessioApuri</class>
-    </tool>
-    
-    <tool>
-        <key>jaadytys</key>
-        <class>debug.util.Jaadytys</class>
-    </tool>
-    
-    <tool>
-        <key>suorituspaivamaara</key>
-        <class>debug.util.Suorituspaivamaara</class>
-    </tool>
-    
-    <tool>
         <key>SQLProseduurit</key>
-        <class>debug.model.SQLkyselyt.SQLProseduurit</class>
+        <class>model.SQLkyselyt.SQLProseduurit</class>
     </tool>        	
 
     <tool>
@@ -52,37 +37,52 @@
     
     <tool>
         <key>OsallistuminenSorter</key>         
-        <class>debug.model.sorters.OsallistuminenSorter</class>
+        <class>model.sorters.OsallistuminenSorter</class>
     </tool>
         
     <tool>
+        <key>SessioApuri</key>
+        <class>view.util.SessioApuri</class>
+    </tool>
+    
+    <tool>
+        <key>jaadytys</key>
+        <class>view.util.Jaadytys</class>
+    </tool>
+    
+    <tool>
+        <key>suorituspaivamaara</key>
+        <class>view.util.Suorituspaivamaara</class>
+    </tool>
+    
+    <tool>
         <key>Arvostelu</key>         
-        <class>debug.util.Arvostelu</class>
+        <class>view.util.Arvostelu</class>
     </tool>
     
     <tool>
         <key>Valitsin</key>         
-        <class>debug.util.Valitsin</class>
+        <class>view.util.Valitsin</class>
     </tool>
     
     <tool>
         <key>Suoritukset</key>         
-        <class>debug.util.Suoritukset</class>
+        <class>view.util.Suoritukset</class>
     </tool>
     
     <tool>
         <key>Lisapisterajat</key>         
-        <class>debug.util.Lisapisterajat</class>
+        <class>view.util.Lisapisterajat</class>
     </tool>
     
     <tool>
         <key>OsallistujaMuutokset</key>         
-        <class>debug.util.OsallistujaMuutokset</class>
+        <class>view.util.OsallistujaMuutokset</class>
     </tool>
     
     <tool>
         <key>Lokalisaatio</key>         
-        <class>debug.util.Lokalisaatio</class>
+        <class>view.util.Lokalisaatio</class>
     </tool>
     
 </toolbox>

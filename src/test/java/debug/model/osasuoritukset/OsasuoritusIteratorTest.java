@@ -4,8 +4,10 @@
  */
 package debug.model.osasuoritukset;
 
-import debug.model.Kurssi;
-import debug.model.Osallistuminen;
+import model.osasuoritukset.Osasuoritus;
+import model.osasuoritukset.OsasuoritusIterator;
+import model.Kurssi;
+import model.Osallistuminen;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;

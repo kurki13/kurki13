@@ -4,6 +4,7 @@
  */
 package debug.model.osasuoritukset;
 
+import model.osasuoritukset.Osasuoritus;
 import org.junit.Test;
 import static org.junit.Assert.*;
 

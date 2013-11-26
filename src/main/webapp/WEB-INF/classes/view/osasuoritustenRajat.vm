@@ -104,14 +104,14 @@ $KurssiKyselyt.tallennaKantaan($valittuKurssi)
                 <div class=minmax>
                          <input class="form-control mminput" maxlength="2"
                              name="${lomake_tunnus}_${i}_max" 
-                             value="$raja.max" ##Maksimipisteet
-                             onBlur="rangecheck(this,0,18)"
+                             value="$raja.maxString" ##Maksimipisteet
+                             onBlur="rangeChecker(this,0,99)"
                              #if($jaassa)readonly#end
                              >
                          <input class="form-control mminput" maxlength="2"
                              name="${lomake_tunnus}_${i}_min" 
-                             value="$raja.min" ##Hyväksymisraja
-                             onBlur="rangecheck(this,0,18)"
+                             value="$raja.minString" ##Hyväksymisraja
+                             onBlur="rangeChecker(this,0,99)"
                              #if($jaassa)readonly#end
                              >
                 </div>

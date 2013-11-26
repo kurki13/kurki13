@@ -4,8 +4,9 @@
  */
 package debug.model.osasuoritukset;
 
-import debug.model.Kurssi;
-import debug.model.Osallistuminen;
+import model.osasuoritukset.Muotoilija;
+import model.Kurssi;
+import model.Osallistuminen;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
