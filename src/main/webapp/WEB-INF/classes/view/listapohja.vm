@@ -2,8 +2,34 @@
 <head>
     <META charset='utf-8'/>
     <title>KURKI</title>
-    <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
-    <link href="bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="style/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="style/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+    <style>
+    @media print
+    {
+      table { page-break-after:auto }
+      tr    { page-break-inside:avoid; page-break-after:auto }
+      td    { page-break-inside:avoid; page-break-after:auto }
+      thead { display:table-header-group }
+      tfoot { display:table-footer-group }
+    }
+    .t1 {
+        border: 1px solid black;
+        font-size: 95%;
+    }
+    td.t1 {
+        width: 25px;
+        height: 25px;
+    }
+    td.t1name {
+        width: auto;
+        min-width: 200px;
+        text-align: left;
+    }
+    tr.evenrow {
+        background-color: #f0f0f0;
+    }
+    </style>
 </head>
 <body>
 <div style="font-size: 90%">
@@ -42,20 +68,22 @@ $bundle.getString("tilanne"): $date.get('d.M.yyyy HH:mm')<br>
 
 #if ($request.getParameter("listtype") == 1)  
     $OsallistuminenSorter.sorttaaSukunimenMukaan($osallistumiset)
-    <table border="1">            
-    <th width="350">$bundle.getString("isonimi")</th>
+    <table class="t1">            
+    <th class="t1name">$bundle.getString("isonimi")</th>
     #foreach ( $i in [1..10] )
-        <th width="55">$i</th>    
+        <th class="t1">$i</th>    
     #end    
+    #set($rowno = 0)
     #foreach ($osallistuminen in $osallistumiset)
-    #if ($osallistuminen.voimassa.equals("K"))
-     <tr>        
-       <td>$osallistuminen.sukunimi, $osallistuminen.etunimi</td>
-       #foreach ( $i in [1..10] )
-       <td>&nbsp</td>
-       #end
-     </tr>
-    #end   
+        #if ($osallistuminen.voimassa.equals("K"))
+            <tr class="t1 #if($rowno%2==0)evenrow#end">        
+              <td class="t1name">$osallistuminen.sukunimi, $osallistuminen.etunimi</td>
+              #foreach ( $i in [1..10] )
+               <td class="t1">&nbsp</td>
+              #end
+            </tr>
+            #set($rowno = $rowno + 1)
+        #end
     #end
     </table> 
 #end
