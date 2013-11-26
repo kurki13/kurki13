@@ -1,7 +1,7 @@
 ##Ensin tarkastetaan että kurssit on ladattu sessiomuuttujaan
 $SessioApuri.auta($request)
 ##Lokalisaatiobundlen asetus
-#set($bundle = $SessioApuri.bundle($request))
+#set($bundle = $Lokalisaatio.bundle($request))
 ##Parametrit käytettäviksi
 ##Tähän voi asettaa yleishyödyllistä matskua
 #set($valittuKurssi = $session.getAttribute('selected_course'))

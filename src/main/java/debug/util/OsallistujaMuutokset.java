@@ -6,7 +6,6 @@ package debug.util;
 
 import debug.SessioApuri;
 import static debug.SessioApuri.annaVirhe;
-import static debug.SessioApuri.bundle;
 import debug.model.Kurssi;
 import debug.model.Osallistuminen;
 import static debug.model.SQLkyselyt.OsallistuminenKyselyt.osallistuminenKurssilla;
@@ -52,7 +51,7 @@ public class OsallistujaMuutokset {
             if (kieli.equals("S") || kieli.equals("E") || kieli.equals("R")) {
                 os.setKielikoodi(kieli);
             } else {
-                annaVirhe(session, bundle(rqst).getString("kielikoodiVirheellinen"));
+                annaVirhe(session, Lokalisaatio.bundle(rqst).getString("kielikoodiVirheellinen"));
             }
         }
         if (op != null && !op.equals("")) {
@@ -62,7 +61,7 @@ public class OsallistujaMuutokset {
                     os.setLaajuus_op(opInt);
                 }
             } catch (NumberFormatException e) {
-                annaVirhe(session, bundle(rqst).getString("opVirheellinen"));
+                annaVirhe(session, Lokalisaatio.bundle(rqst).getString("opVirheellinen"));
             }
         }
         if (arv != null && !arv.equals("")) {
@@ -71,13 +70,13 @@ public class OsallistujaMuutokset {
                 if (arvInt < 6 && arvInt >= 0) {
                     os.setArvosana(arv);
                 } else {
-                    annaVirhe(session, bundle(rqst).getString("arvosanaVirheellinen"));
+                    annaVirhe(session, Lokalisaatio.bundle(rqst).getString("arvosanaVirheellinen"));
                 }
             } catch (NumberFormatException e) {
                 if (arv.equals("-") || arv.equals("+")) {
                     os.setArvosana(arv);
                 } else {
-                    annaVirhe(session, bundle(rqst).getString("arvosanaVirheellinen"));
+                    annaVirhe(session, Lokalisaatio.bundle(rqst).getString("arvosanaVirheellinen"));
                 }
             }
         }

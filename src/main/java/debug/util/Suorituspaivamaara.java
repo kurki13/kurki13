@@ -57,7 +57,7 @@ public class Suorituspaivamaara {
     */
     public static String tarkastaSuorituspvm(Kurssi kurssi, String suoritusPvm, HttpServletRequest request) {
         HttpSession istunto = request.getSession();
-        LocalisationBundle bundle = SessioApuri.bundle(request);
+        Lokalisaatio bundle = Lokalisaatio.bundle(request);
         
         try {
             if (!tarkastaSuorituspvmnMuoto(suoritusPvm, kurssi, istunto, bundle)) {
@@ -89,7 +89,7 @@ public class Suorituspaivamaara {
      * @throws NullPointerException Suorituspäivämäärä null
      * @throws NumberFormatException Suorituspäivämäärä syötetty väärässä muodossa 
      */
-    private static boolean tarkastaSuorituspvmnMuoto(String suoritusPvm, Kurssi kurssi, HttpSession istunto, LocalisationBundle bundle) 
+    private static boolean tarkastaSuorituspvmnMuoto(String suoritusPvm, Kurssi kurssi, HttpSession istunto, Lokalisaatio bundle) 
             throws IndexOutOfBoundsException, NullPointerException, NumberFormatException {
         if (suoritusPvm.length() > 10 || !suoritusPvm.substring(2, 3).equals(".") || !suoritusPvm.substring(5, 6).equals(".")) {
             SessioApuri.annaVirhe(istunto, bundle.getString("virheVirheellinenMuoto") + ".");
@@ -114,7 +114,7 @@ public class Suorituspaivamaara {
      * @throws NullPointerException Suorituspäivämäärä null
      * @throws NumberFormatException Suorituspäivämäärä syötetty väärässä muodossa 
      */
-    private static boolean tarkastaSuoritusPvmnAjankohta(String suoritusPvm, Kurssi kurssi, HttpSession istunto, LocalisationBundle bundle) 
+    private static boolean tarkastaSuoritusPvmnAjankohta(String suoritusPvm, Kurssi kurssi, HttpSession istunto, Lokalisaatio bundle) 
             throws IndexOutOfBoundsException, NullPointerException, NumberFormatException {
         int[] paivamaara = parsiPaivamaaraSyote(suoritusPvm);
         if (paivamaara[1] < 1 || paivamaara[1] > 12) {
@@ -167,7 +167,7 @@ public class Suorituspaivamaara {
      * @param bundle Lokalisaatio työkalu
      * @return True, jos päivä on kelvollinen helmikuun päivä
      */
-    private static boolean kasitteleHelmikuu(int paiva, int kuukausi, int vuosi, HttpSession istunto, LocalisationBundle bundle) {
+    private static boolean kasitteleHelmikuu(int paiva, int kuukausi, int vuosi, HttpSession istunto, Lokalisaatio bundle) {
         if(onkoKarkausvuosi(vuosi)) {
             if (paiva < 1 || paiva > 29) {
                 SessioApuri.annaVirhe(istunto, bundle.getString("virheKarkausvuodenHelmikuu"));
@@ -206,7 +206,7 @@ public class Suorituspaivamaara {
      * @param bundle Lokalisaatio työkalu
      * @return True, jos päivä on kelvollinen annetun kuukauden päivä
      */
-    private static boolean kasittelePaiva(int paiva, int kuukausi, HttpSession istunto, LocalisationBundle bundle) {
+    private static boolean kasittelePaiva(int paiva, int kuukausi, HttpSession istunto, Lokalisaatio bundle) {
         int[] kuukaudetJoissa31Paivaa = {1, 3, 5, 7, 8, 10, 12};
         for (int alkio : kuukaudetJoissa31Paivaa) {
             if (kuukausi == alkio) {
@@ -232,7 +232,7 @@ public class Suorituspaivamaara {
      * @param bundle Lokalisaatio työkalu
      * @return True, jos suorituspäivämäärä sopii rajojen väliin
      */
-    private static boolean tarkastaSuorituspvmnRajat(int[] pvm, Kurssi kurssi, HttpSession istunto, LocalisationBundle bundle) {
+    private static boolean tarkastaSuorituspvmnRajat(int[] pvm, Kurssi kurssi, HttpSession istunto, Lokalisaatio bundle) {
         Calendar alaraja = Calendar.getInstance();
         alaraja.add(Calendar.MONTH, -6);
         Calendar ylaraja;
@@ -300,7 +300,7 @@ public class Suorituspaivamaara {
      * @param istunto Käyttäjän istunto
      * @param bundle Lokalisaatio työkalu
      */
-    public static void suoritaAsetus(String suoritusPvm, Kurssi kurssi, HttpSession istunto, LocalisationBundle bundle) {
+    public static void suoritaAsetus(String suoritusPvm, Kurssi kurssi, HttpSession istunto, Lokalisaatio bundle) {
         try {
             Connection tietokantayhteys = DatabaseConnection.makeConnection();
             PreparedStatement valmisteltuLause = tietokantayhteys.prepareStatement(asetaSuorituspvm);

@@ -80,4 +80,9 @@
         <class>debug.util.OsallistujaMuutokset</class>
     </tool>
     
+    <tool>
+        <key>Lokalisaatio</key>         
+        <class>debug.util.Lokalisaatio</class>
+    </tool>
+    
 </toolbox>

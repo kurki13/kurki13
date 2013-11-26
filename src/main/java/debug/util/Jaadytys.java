@@ -55,7 +55,7 @@ public class Jaadytys {
      */
     public static void lahetaPostia(Kurssi kurssi, String kurssinTila, HttpServletRequest request) {
         HttpSession istunto = request.getSession();
-        LocalisationBundle bundle = SessioApuri.bundle(request);
+        Lokalisaatio bundle = Lokalisaatio.bundle(request);
         
         String aihe = asetaAihe(kurssi, kurssinTila);
         String viestinSisalto = luoViestinSisalto(request, kurssi, kurssinTila);
@@ -104,7 +104,7 @@ public class Jaadytys {
      */
     private static String luoViestinSisalto(HttpServletRequest request, Kurssi kurssi, String kurssinTila) {
         VelocityContext konteksti = new VelocityContext();
-        konteksti.put("bundle", SessioApuri.bundle(request));
+        konteksti.put("bundle", Lokalisaatio.bundle(request));
         konteksti.put("kurssi", kurssi);
         konteksti.put("kurssinTila", kurssinTila);
         konteksti.put("OsallistuminenKyselyt", OsallistuminenKyselyt.class);

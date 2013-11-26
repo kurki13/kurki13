@@ -9,7 +9,7 @@ import debug.dbconnection.DatabaseConnection;
 import debug.model.Kurssi;
 import debug.model.Opiskelija;
 import debug.util.Jaadytys;
-import debug.util.LocalisationBundle;
+import debug.util.Lokalisaatio;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -32,7 +32,7 @@ public class SQLProseduurit {
      */
     public static void suoritaJaadytys(Kurssi kurssi, String kurssinTila, HttpServletRequest request) {
         HttpSession istunto = request.getSession();
-        LocalisationBundle bundle = SessioApuri.bundle(request);
+        Lokalisaatio bundle = Lokalisaatio.bundle(request);
         
         try {
             String tulos = suoritaJaadytys(kurssi);
@@ -80,7 +80,7 @@ public class SQLProseduurit {
      * @param kurssi Jäädytettävä kurssi
      * @param kurssinTila Jäädytettävän kurssin tila ennen jäädytystä
      */
-    private static void tarkastaJaadytyksenTulos(String tulos, HttpServletRequest request, LocalisationBundle bundle, Kurssi kurssi, String kurssinTila) {
+    private static void tarkastaJaadytyksenTulos(String tulos, HttpServletRequest request, Lokalisaatio bundle, Kurssi kurssi, String kurssinTila) {
         HttpSession istunto = request.getSession();
         if (tulos.equals("OK")) {
             String viesti = bundle.getString("jaadytysInfo") + ". " + bundle.getString("jaadytysInfo3") + " " 
@@ -105,7 +105,7 @@ public class SQLProseduurit {
      */
     public static void suoritaArvostelu(Kurssi kurssi, String arvostelija, HttpServletRequest request) {
         HttpSession istunto = request.getSession();
-        LocalisationBundle bundle = SessioApuri.bundle(request);
+        Lokalisaatio bundle = Lokalisaatio.bundle(request);
         
         if (kurssi.getSuoritus_pvm() == null) {
             String virhe = bundle.getString("arvosteluEiOnnistunut") + ": " + bundle.getString("kurssilleEiAsetettuSuorpvm");
@@ -157,7 +157,7 @@ public class SQLProseduurit {
      * @param istunto Käyttäjän istunto
      * @param bundle Lokalisaatio työkalu
      */
-    private static void tarkastaArvostelunTulos(int tulos, HttpSession istunto, LocalisationBundle bundle) {
+    private static void tarkastaArvostelunTulos(int tulos, HttpSession istunto, Lokalisaatio bundle) {
         if (tulos == 0) {
             String viesti = bundle.getString("arvosteluSuor") + ".";
             SessioApuri.annaViesti(istunto, viesti);
@@ -179,7 +179,7 @@ public class SQLProseduurit {
      */
     public static void palautaOpiskelija(Kurssi kurssi, int ryhmanNumero, String opiskelijanumero, HttpServletRequest request) {
         HttpSession istunto = request.getSession();
-        LocalisationBundle bundle = SessioApuri.bundle(request);
+        Lokalisaatio bundle = Lokalisaatio.bundle(request);
         
         try {
             int tulos = palautaOpiskelija(kurssi, ryhmanNumero, opiskelijanumero);
@@ -231,7 +231,7 @@ public class SQLProseduurit {
      * @param opiskelijanumero Palautettavan opiskelijan opiskelijanumero
      * @throws SQLException Tietokantavirhe
      */
-    private static void tarkastaPalautuksenTulos(int tulos, HttpSession istunto, LocalisationBundle bundle, String opiskelijanumero) throws SQLException {
+    private static void tarkastaPalautuksenTulos(int tulos, HttpSession istunto, Lokalisaatio bundle, String opiskelijanumero) throws SQLException {
         String virhe;
         String virheilmoituksenAlku = bundle.getString("palauttaminenKEO") + ": ";
         
@@ -259,7 +259,7 @@ public class SQLProseduurit {
      */
     public static void poistaOpiskelija(Kurssi kurssi, int ryhmanNumero, String opiskelijanumero, HttpServletRequest request) {
         HttpSession istunto = request.getSession();
-        LocalisationBundle bundle = SessioApuri.bundle(request);
+        Lokalisaatio bundle = Lokalisaatio.bundle(request);
         
         try {
             int tulos = poistaOpiskelija(kurssi, ryhmanNumero, opiskelijanumero);
@@ -310,7 +310,7 @@ public class SQLProseduurit {
      * @param opiskelijanumero Poistettavan opiskelijan opiskelijanumero
      * @throws SQLException Tietokantavirhe
      */
-    private static void tarkastaPoistonTulos(int tulos, HttpSession istunto, LocalisationBundle bundle, String opiskelijanumero) throws SQLException {
+    private static void tarkastaPoistonTulos(int tulos, HttpSession istunto, Lokalisaatio bundle, String opiskelijanumero) throws SQLException {
         String virhe;
         String virheilmoituksenAlku = bundle.getString("kurssiltaPoistoEO") + ": ";
         
@@ -338,7 +338,7 @@ public class SQLProseduurit {
      */
     public static void lisaaOpiskelija(Kurssi kurssi, int ryhmanNumero, String opiskelijanumero, HttpServletRequest request) {
         HttpSession istunto = request.getSession();
-        LocalisationBundle bundle = SessioApuri.bundle(request);
+        Lokalisaatio bundle = Lokalisaatio.bundle(request);
         
         try {
             String tulos = lisaaOpiskelija(kurssi, ryhmanNumero, opiskelijanumero);
@@ -386,7 +386,7 @@ public class SQLProseduurit {
      * @param istunto Käyttäjän istunto
      * @param bundle Lokalisaatio työkalu
      */
-    private static void tarkastaLisayksenTulos(String tulos, HttpSession istunto, LocalisationBundle bundle) {
+    private static void tarkastaLisayksenTulos(String tulos, HttpSession istunto, Lokalisaatio bundle) {
         String virhe;
         String virheilmoituksenAlku = bundle.getString("lisaysKEO") + ": ";
         
@@ -415,7 +415,7 @@ public class SQLProseduurit {
      */
     public static void vaihdaOpiskelijanRyhmaa(int uusiRyhma, Kurssi kurssi, int ryhmanNumero, String opiskelijanumero, HttpServletRequest request) {
         HttpSession istunto = request.getSession();
-        LocalisationBundle bundle = SessioApuri.bundle(request);
+        Lokalisaatio bundle = Lokalisaatio.bundle(request);
         
         try {
             String virheilmoituksenAlku = bundle.getString("ryhmanVEO") + " " + palautaOpiskelijanNimi(opiskelijanumero)  + " " + bundle.getString("ryhmanVEO2") + ": ";
@@ -472,7 +472,7 @@ public class SQLProseduurit {
      * @param opiskelijanumero SQL-Proseduurissa ryhmää vaihtavan opiskelijan opiskelijanumero
      * @throws SQLException Tietokantavirhe
      */
-    private static void tarkastaVaihdonTulos(int tulos, HttpSession istunto, LocalisationBundle bundle, int uusiRyhma, String opiskelijanumero, String virheilmoituksenAlku) throws SQLException {
+    private static void tarkastaVaihdonTulos(int tulos, HttpSession istunto, Lokalisaatio bundle, int uusiRyhma, String opiskelijanumero, String virheilmoituksenAlku) throws SQLException {
         String virhe;
         
         if (tulos == -1) {

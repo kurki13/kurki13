@@ -35,7 +35,7 @@ public class Lisapisterajat {
             ltrajat = stringArrayIntArrayksi(ltrajats);
             htrajat = stringArrayIntArrayksi(htrajats);
         } catch (NumberFormatException ne) {
-            SessioApuri.annaVirhe(request.getSession(), SessioApuri.bundle(request).getString("lisap.sallitutArvotOvat") + "0-999");
+            SessioApuri.annaVirhe(request.getSession(), Lokalisaatio.bundle(request).getString("lisap.sallitutArvotOvat") + "0-999");
             return;
         }
 
@@ -48,9 +48,9 @@ public class Lisapisterajat {
         try {
             SQLoader.tallennaKantaan(kurssi);
         } catch (SQLException se) {
-            SessioApuri.annaVirhe(request.getSession(), SessioApuri.bundle(request).getString("lisap.tietojenTallentamisessaVirhe") + se.getMessage());
+            SessioApuri.annaVirhe(request.getSession(), Lokalisaatio.bundle(request).getString("lisap.tietojenTallentamisessaVirhe") + se.getMessage());
         }
-        SessioApuri.annaViesti(request.getSession(), SessioApuri.bundle(request).getString("lisap.muutoksetTallennettu"));
+        SessioApuri.annaViesti(request.getSession(), Lokalisaatio.bundle(request).getString("lisap.muutoksetTallennettu"));
     }
 
     /**
@@ -80,10 +80,10 @@ public class Lisapisterajat {
         try {
             SQLoader.tallennaKantaan(kurssi);
         } catch (SQLException ex) {
-            SessioApuri.annaVirhe(request.getSession(), SessioApuri.bundle(request).getString("lisap.tietojenTallentamisessaVirhe") + ex.getMessage());
+            SessioApuri.annaVirhe(request.getSession(), Lokalisaatio.bundle(request).getString("lisap.tietojenTallentamisessaVirhe") + ex.getMessage());
             return;
         }
-        SessioApuri.annaViesti(request.getSession(), SessioApuri.bundle(request).getString("lisap.uudelleenlaskettu"));
+        SessioApuri.annaViesti(request.getSession(), Lokalisaatio.bundle(request).getString("lisap.uudelleenlaskettu"));
     }
 
     public static List<Integer> laskariRajat(Kurssi kurssi) {

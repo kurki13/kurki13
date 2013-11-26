@@ -64,19 +64,19 @@ public class Arvostelu {
             if (lh_pak >= 0 && lh_pak <= Muotoilija.MAX_KOKO) {
                 kurssi.setValue(Kurssi.pakolliset_laskarikerta_lkm, lh_pak);
             } else {
-                SessioApuri.annaVirhe(session, SessioApuri.bundle(request).getString("paklaskharjvali") + "0-18");
+                SessioApuri.annaVirhe(session, Lokalisaatio.bundle(request).getString("paklaskharjvali") + "0-18");
             }
 
             if (ht_pak >= 0 && ht_pak <= Muotoilija.MAX_KOKO) {
                 kurssi.setValue(Kurssi.pakolliset_harjoitustyo_lkm, ht_pak);
             } else {
-                SessioApuri.annaVirhe(session,  SessioApuri.bundle(request).getString("pakhtvali") + "0-18");
+                SessioApuri.annaVirhe(session,  Lokalisaatio.bundle(request).getString("pakhtvali") + "0-18");
             }
 
             if (koe_pak >= 0 && koe_pak <= Muotoilija.MAX_KOKO) {
                 kurssi.setValue(Kurssi.pakolliset_koe_lkm, koe_pak);
             } else {
-                SessioApuri.annaVirhe(session,  SessioApuri.bundle(request).getString("pakkoevali") + "0-18");
+                SessioApuri.annaVirhe(session,  Lokalisaatio.bundle(request).getString("pakkoevali") + "0-18");
             }
 
             /*
@@ -85,19 +85,19 @@ public class Arvostelu {
             if (lh_oshyv >= 0 && lh_oshyv <= kurssi.getLaskariRajat().getMaxPisteetYhteensa()) {
                 kurssi.setValue(Kurssi.pakolliset_laskaritehtava_lkm, lh_oshyv);
             } else {
-                SessioApuri.annaVirhe(session, SessioApuri.bundle(request).getString("laskarihyvrajavali") + " 0-" + kurssi.getLaskariRajat().getMaxPisteetYhteensa());
+                SessioApuri.annaVirhe(session, Lokalisaatio.bundle(request).getString("laskarihyvrajavali") + " 0-" + kurssi.getLaskariRajat().getMaxPisteetYhteensa());
             }
 
             if (ht_oshyv >= 0 && ht_oshyv <= kurssi.getHarjoitustyoRajat().getMaxPisteetYhteensa()) {
                 kurssi.setValue(Kurssi.min_harjoitustyopisteet_summa, ht_oshyv);
             } else {
-                SessioApuri.annaVirhe(session, SessioApuri.bundle(request).getString("hthyvrajavali") + " 0-" + kurssi.getHarjoitustyoRajat().getMaxPisteetYhteensa());
+                SessioApuri.annaVirhe(session, Lokalisaatio.bundle(request).getString("hthyvrajavali") + " 0-" + kurssi.getHarjoitustyoRajat().getMaxPisteetYhteensa());
             }
 
             if (koe_oshyv >= 0 && koe_oshyv <= kurssi.getKoeRajat().getMaxPisteetYhteensa()) {
                 kurssi.setValue(Kurssi.min_koepisteet_summa, koe_oshyv);
             } else {
-                SessioApuri.annaVirhe(session, SessioApuri.bundle(request).getString("koehyvrajavali") + " 0-" + kurssi.getKoeRajat().getMaxPisteetYhteensa());
+                SessioApuri.annaVirhe(session, Lokalisaatio.bundle(request).getString("koehyvrajavali") + " 0-" + kurssi.getKoeRajat().getMaxPisteetYhteensa());
             }
 
             /**
@@ -115,29 +115,29 @@ public class Arvostelu {
             if (0 <= hyvalaraja && hyvalaraja <= pisteet_max) {
                 kurssi.setValue(Kurssi.min_yhteispisteet, hyvalaraja);
             } else {
-                SessioApuri.annaVirhe(session, SessioApuri.bundle(request).getString("hyvrajavali") + " 0-" + pisteet_max);
+                SessioApuri.annaVirhe(session, Lokalisaatio.bundle(request).getString("hyvrajavali") + " 0-" + pisteet_max);
             }
             kurssi.setValue(Kurssi.arvostelun_askelkoko, arvosanavali);
 
             if (arvosteluasteikko.equals("K") || arvosteluasteikko.equals("E")) {
                 kurssi.setValue(Kurssi.arvostellaanko, arvosteluasteikko);
             } else {
-                SessioApuri.annaVirhe(session, SessioApuri.bundle(request).getString("arvasteikkovoiolla"));
+                SessioApuri.annaVirhe(session, Lokalisaatio.bundle(request).getString("arvasteikkovoiolla"));
             }
 
             if (arvostelutapa >= 0 && arvostelutapa <= 9) {
                 kurssi.setValue(Kurssi.laskentakaava, arvostelutapa);
             } else {
-                SessioApuri.annaVirhe(session, SessioApuri.bundle(request).getString("arvtavaksitaytyyantaa") + " 1-9");
+                SessioApuri.annaVirhe(session, Lokalisaatio.bundle(request).getString("arvtavaksitaytyyantaa") + " 1-9");
             }
             try {
                 SQLoader.tallennaKantaan(kurssi);
-                SessioApuri.annaViesti(session, SessioApuri.bundle(request).getString("arvmuuttallennettu"));
+                SessioApuri.annaViesti(session, Lokalisaatio.bundle(request).getString("arvmuuttallennettu"));
             } catch (SQLException se) {
-                SessioApuri.annaVirhe(session, SessioApuri.bundle(request).getString("kurssinkantaantallennusvirhe") + ": " + se.getLocalizedMessage());                
+                SessioApuri.annaVirhe(session, Lokalisaatio.bundle(request).getString("kurssinkantaantallennusvirhe") + ": " + se.getLocalizedMessage());                
             }
         } catch (NumberFormatException e) {
-            SessioApuri.annaVirhe(session, SessioApuri.bundle(request).getString("numeroaeivoitujasentaa"));
+            SessioApuri.annaVirhe(session, Lokalisaatio.bundle(request).getString("numeroaeivoitujasentaa"));
         } catch (Exception e) {
             SessioApuri.annaVirhe(session, e.getMessage());
         }

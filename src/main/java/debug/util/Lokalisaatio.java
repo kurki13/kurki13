@@ -9,21 +9,33 @@ import java.util.Locale;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author mkctammi
  */
-public class LocalisationBundle {
+public class Lokalisaatio {
+
+    public static Lokalisaatio bundle(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        if (session.getAttribute(SessioApuri.LokaaliTunnus) == null) {
+            session.setAttribute(SessioApuri.LokaaliTunnus, "fi");
+        }
+        Lokalisaatio lb = new Lokalisaatio();
+        lb.setLocale(new Locale((String) session.getAttribute(SessioApuri.LokaaliTunnus)));
+        lb.setRequest(request);
+        return lb;
+    }
 
     private Locale locale = new Locale("fi");
     private HttpServletRequest rq;
 
-    public void setRequest(HttpServletRequest request) {
+    private void setRequest(HttpServletRequest request) {
         this.rq = request;
     }
 
-    public LocalisationBundle(Locale locale) {
+    private void setLocale(Locale locale) {
         this.locale = locale;
     }
 
@@ -39,9 +51,5 @@ public class LocalisationBundle {
                 return "missingkey(" + request + "," + locale.getLanguage() + ")";
             }
         }
-    }
-
-    public ResourceBundle getBundle() {
-        return ResourceBundle.getBundle("localisationBundle", locale);
     }
 }

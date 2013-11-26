@@ -10,7 +10,7 @@ import debug.model.SQLkyselyt.KurssiKyselyt;
 import debug.model.SQLkyselyt.OpiskelijaKyselyt;
 import debug.model.SQLkyselyt.OsallistuminenKyselyt;
 import debug.model.util.Table;
-import debug.util.LocalisationBundle;
+import debug.util.Lokalisaatio;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -84,16 +84,6 @@ public class SessioApuri {
 
     public static List<String> haeViestit(HttpServletRequest request) {
         return (List) request.getSession().getAttribute(Viesti);
-    }
-
-    public static LocalisationBundle bundle(HttpServletRequest request) {
-        HttpSession session = request.getSession();
-        if (session.getAttribute(LokaaliTunnus) == null) {
-            session.setAttribute(LokaaliTunnus, "fi");
-        }
-        LocalisationBundle lb = new LocalisationBundle(new Locale((String) session.getAttribute(LokaaliTunnus)));
-        lb.setRequest(request);
-        return lb;
     }
 
     public static void auta(HttpServletRequest request) {
