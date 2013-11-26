@@ -7,7 +7,7 @@
 #if ($request.getParameter("suoritusPvm"))
     #set ($suoritusPvm = $suorituspaivamaara.tarkastaSuorituspvm($session.getAttribute('selected_course'), "$request.getParameter('suoritusPvm')", $request))
     #if (!$suorituspaivamaara.onkoNull($suoritusPvm))
-        $suorituspaivamaara.suoritaAsetus($suoritusPvm, $session.getAttribute("selected_course"), $request.getSession(), $SessioApuri.bundle($request))
+        $suorituspaivamaara.suoritaAsetus($suoritusPvm, $session.getAttribute("selected_course"), $request.getSession(), $Lokalisaatio.bundle($request))
     #end
     $session.setAttribute("user_courses", null)
 #end

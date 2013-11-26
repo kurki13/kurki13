@@ -1,9 +1,0 @@
-##
-################### Opiskelijanumero ja nimi ###################
-##
-${selectedCourse.Label}: $!studentFilterDesc
-$bundle.getString("tilanne"): ${sysdate} $bundle.getString("klo"): ${time}
-
-#foreach ($student in $students)
-    $!{student.SSN}   $!{student.LName}, $!{student.FName}
-#end

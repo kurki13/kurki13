@@ -16,7 +16,7 @@
     #set($params = $queryparser.split($qs))
 #end
 
-#set($bundle = $SessioApuri.bundle($request))
+#set($bundle = $Lokalisaatio.bundle($request))
 
 #if($session.getAttribute('selected_course_id'))
     #set ($valittuKurssi = $KurssiKyselyt.kurssiIDlla($session.getAttribute('selected_course_id')))

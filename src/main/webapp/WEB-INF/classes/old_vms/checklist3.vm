@@ -1,9 +1,0 @@
-##
-################### Nimi ###################
-##
-${selectedCourse.Label}: $!studentFilterDesc
-$bundle.getString("tilanne"): ${sysdate} $bundle.getString("klo"): ${time}
-
-#foreach ($student in $students)
-    $!{student.LName}, $!{student.FName}
-#end
