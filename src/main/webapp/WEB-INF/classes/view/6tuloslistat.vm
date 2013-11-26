@@ -303,6 +303,4 @@
             </dl>
   </li>
 
-
-</body>
-</html>
+#parse ('bottom.vm')
