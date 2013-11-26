@@ -85,4 +85,9 @@
         <class>view.util.Lokalisaatio</class>
     </tool>
     
+    <tool>
+        <key>Tuloslistat</key>         
+        <class>view.util.Tuloslistat</class>
+    </tool>
+    
 </toolbox>
