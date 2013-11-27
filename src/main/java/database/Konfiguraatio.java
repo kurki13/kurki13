@@ -4,32 +4,50 @@
  */
 package database;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.net.URL;
 import java.util.Properties;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import view.util.Lokalisaatio;
+import view.util.SessioApuri;
 
 /**
- *
- * @author mkctammi
+ * Luokka konfiguraatioiden käsittelemiseen muistissa.
  */
 public class Konfiguraatio {
-
-    private static Properties prop = new Properties();
-
-    static {
-        prop.setProperty("use_local_test_database", "false");
-        prop.setProperty("webmaster", "heikki.havukainen@helsinki.fi");
-        prop.setProperty("oodi", "heikki.havukainen@helsinki.fi");
-        prop.setProperty("dbDriver", "oracle.jdbc.OracleDriver");
-        prop.setProperty("dbServer", "jdbc:oracle:thin:@bodbacka.cs.helsinki.fi:1521:test");
-        prop.setProperty("dbUser", "tk_testi");
-        prop.setProperty("dbPassword", "tapaus2");
-        prop.setProperty("loginManagers", "laine, siven, mkctammi, admin");
-        prop.setProperty("superUsers", "siven, laine, mkctammi, admin");
-    }
+    /**
+     * Muuttujaan ladataan konfiguraatio.
+     */
+    private static Properties konfiguraatio = new Properties();
     
+    /**
+     * Metodi lataa WEB-INF kansiossa sijaitsevan kurki.cnf tiedoston avain-arvo parit muistiin.
+     * 
+     * @param request 
+     */
+    public static void lataaKonfiguraatio(HttpServletRequest request) {
+        if (konfiguraatio.isEmpty()) {
+            HttpSession istunto = request.getSession();
+            Lokalisaatio bundle = Lokalisaatio.bundle(request);
+            URL url = Thread.currentThread().getContextClassLoader().getResource("../kurki.cnf");
+            File konfiguraatioTiedosto = new File(url.getPath());
+            try {
+                FileInputStream fis = new FileInputStream(konfiguraatioTiedosto);
+                konfiguraatio.load(fis);
+                konfiguraatio.setProperty("use_local_test_database", "false");
+            } catch (IOException poikkeus) {
+                SessioApuri.annaVirhe(istunto, bundle.getString("konfiguraatioTiedostonLatEO") + ": " + poikkeus.getLocalizedMessage());
+            }
+        }
+    }
+        
     public static String getProperty(String key) {
-        return prop.getProperty(key);
+        return konfiguraatio.getProperty(key);
     }
-    
+
     public static boolean testing() {
         return getProperty("use_local_test_database").equals("true");
     }

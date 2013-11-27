@@ -285,7 +285,7 @@ public class Suorituspaivamaara {
      * @throws NullPointerException Syöte null
      * @throws NumberFormatException Syöte väärässä muodossa
      */
-    public static String vaihdaPvmnMuotoa(String pvm) throws IndexOutOfBoundsException, NullPointerException, NumberFormatException {
+    private static String vaihdaPvmnMuotoa(String pvm) throws IndexOutOfBoundsException, NullPointerException, NumberFormatException {
         int[] paivamaara = parsiPaivamaaraSyote(pvm);
         String palautus = paivamaara[2] + "-" + paivamaara[1] + "-" + paivamaara[0];
         return palautus;

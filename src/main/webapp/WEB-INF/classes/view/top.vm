@@ -1,3 +1,5 @@
+##Konfiguraation lataus
+$Konfiguraatio.lataaKonfiguraatio($request)
 ##Ensin tarkastetaan että kurssit on ladattu sessiomuuttujaan
 $SessioApuri.auta($request)
 ##Lokalisaatiobundlen asetus

@@ -13,8 +13,10 @@ import view.util.Lokalisaatio;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import model.Osallistuminen;
 
 /**
  * Luokka SQL-Proseduurien suorittamiseen.
@@ -28,15 +30,16 @@ public class SQLProseduurit {
      * 
      * @param kurssi Jäädytettävä kurssi
      * @param kurssinTila Jäädytettävän kurssin tila ennen jäädytystä
+     * @param osallistumisetKurssilla Lista jäädytettävän kurssin osallistujista
      * @param request 
      */
-    public static void suoritaJaadytys(Kurssi kurssi, String kurssinTila, HttpServletRequest request) {
+    public static void suoritaJaadytys(Kurssi kurssi, String kurssinTila, List<Osallistuminen> osallistumisetKurssilla, HttpServletRequest request) {
         HttpSession istunto = request.getSession();
         Lokalisaatio bundle = Lokalisaatio.bundle(request);
         
         try {
             String tulos = suoritaJaadytys(kurssi);
-            tarkastaJaadytyksenTulos(tulos, request, bundle, kurssi, kurssinTila);
+            tarkastaJaadytyksenTulos(tulos, request, bundle, kurssi, kurssinTila, osallistumisetKurssilla);
         } catch (SQLException poikkeus) {
             String virhe = bundle.getString("tkvirhe") + ": " + poikkeus.getLocalizedMessage();
             SessioApuri.annaVirhe(istunto, virhe);
@@ -79,13 +82,14 @@ public class SQLProseduurit {
      * @param bundle Lokalisaatio työkalu
      * @param kurssi Jäädytettävä kurssi
      * @param kurssinTila Jäädytettävän kurssin tila ennen jäädytystä
+     * @param osallistumisetKurssilla Lista jäädytettävän kurssin osallistujista
      */
-    private static void tarkastaJaadytyksenTulos(String tulos, HttpServletRequest request, Lokalisaatio bundle, Kurssi kurssi, String kurssinTila) {
+    private static void tarkastaJaadytyksenTulos(String tulos, HttpServletRequest request, Lokalisaatio bundle, Kurssi kurssi, String kurssinTila, List<Osallistuminen> osallistumisetKurssilla) {
         HttpSession istunto = request.getSession();
         if (tulos.equals("OK")) {
             String viesti = bundle.getString("jaadytysInfo") + ". " + bundle.getString("jaadytysInfo3") + " " 
                     + bundle.getString("jaadytysInfo4");
-            Jaadytys.lahetaPostia(kurssi, kurssinTila, request);
+            Jaadytys.lahetaPostia(kurssi, kurssinTila, osallistumisetKurssilla, request);
             SessioApuri.annaViesti(istunto, viesti);
         } else {
             String virhe = bundle.getString("jaadytysEpaonnistui") + ". " + bundle.getString("jaadytysEpaonnistuiInfo") 

@@ -90,4 +90,9 @@
         <class>view.util.Tuloslistat</class>
     </tool>
     
+    <tool>
+        <key>Konfiguraatio</key>
+        <class>database.Konfiguraatio</class>
+    </tool>
+    
 </toolbox>
