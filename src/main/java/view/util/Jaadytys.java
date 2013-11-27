@@ -12,6 +12,7 @@ import model.SQLkyselyt.SQLProseduurit;
 import java.io.StringWriter;
 import java.net.URL;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Properties;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -21,6 +22,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import model.Osallistuminen;
 import org.apache.velocity.*;
 import org.apache.velocity.app.*;
 
@@ -50,20 +52,21 @@ public class Jaadytys {
      * 
      * @param kurssi Jäädytettävä kurssi
      * @param kurssinTila Jäädytettävän kurssin tila ennen jäädytystä
+     * @param osallistumisetKurssilla Lista jäädytettävän kurssin osallistujista
      * @param request 
      */
-    public static void lahetaPostia(Kurssi kurssi, String kurssinTila, HttpServletRequest request) {
+    public static void lahetaPostia(Kurssi kurssi, String kurssinTila, List<Osallistuminen> osallistumisetKurssilla, HttpServletRequest request) {
         HttpSession istunto = request.getSession();
         Lokalisaatio bundle = Lokalisaatio.bundle(request);
         
         String aihe = asetaAihe(kurssi, kurssinTila);
-        String viestinSisalto = luoViestinSisalto(request, kurssi, kurssinTila);
+        String viestinSisalto = luoViestinSisalto(request, kurssi, kurssinTila, osallistumisetKurssilla);
         String kayttajanOsoite = request.getRemoteUser() + "@cs.helsinki.fi";
         MimeMessage viesti = luoViesti();
         try {
             viesti.setFrom(new InternetAddress(Konfiguraatio.getProperty("webmaster")));
             viesti.addRecipient(Message.RecipientType.TO, new InternetAddress(Konfiguraatio.getProperty("oodi")));
-            viesti.addRecipient(Message.RecipientType.TO, new InternetAddress("heikki.havukainen@helsinki.fi")); //kayttajanOsoite
+            viesti.addRecipient(Message.RecipientType.TO, new InternetAddress(kayttajanOsoite));
             viesti.setSubject(aihe);
             viesti.setText(viestinSisalto);
             Transport.send(viesti);
@@ -99,13 +102,16 @@ public class Jaadytys {
      * @param request
      * @param kurssi Jäädytettävä kurssi
      * @param kurssinTila Jäädytettävän kurssin tila ennen jäädytystä
+     * @param osallistumisetKurssilla Lista jäädytettävän kurssin osallistujista
      * @return Sähköpostiviestin tekstiosa
      */
-    private static String luoViestinSisalto(HttpServletRequest request, Kurssi kurssi, String kurssinTila) {
+    private static String luoViestinSisalto(HttpServletRequest request, Kurssi kurssi, String kurssinTila, List<Osallistuminen> osallistumisetKurssilla) {
         VelocityContext konteksti = new VelocityContext();
         konteksti.put("bundle", Lokalisaatio.bundle(request));
         konteksti.put("kurssi", kurssi);
         konteksti.put("kurssinTila", kurssinTila);
+        konteksti.put("osallistumisetKurssilla", osallistumisetKurssilla);
+        konteksti.put("jaadytys", Jaadytys.class);
         konteksti.put("OsallistuminenKyselyt", OsallistuminenKyselyt.class);
         konteksti.put("SQLProseduurit", SQLProseduurit.class);
         konteksti.put("HenkiloKyselyt", HenkiloKyselyt.class);

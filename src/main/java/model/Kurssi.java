@@ -127,6 +127,14 @@ public class Kurssi extends Table {
     public void setArvosteluasteikko(String arv_asteikko) {
         this.setValue(Kurssi.arvostellaanko, arv_asteikko);
     }
+    
+    public void setSuoritus_pvm(Date suoritusPvm) {
+        this.setValue(Kurssi.suoritus_pvm, suoritusPvm);
+    }
+    
+    public void setPaattymis_pvm(Date paattymisPvm) {
+        this.setValue(Kurssi.paattymis_pvm, paattymisPvm);
+    }
     //</editor-fold>
     
     OsasuoritusRajat laskariRajat;

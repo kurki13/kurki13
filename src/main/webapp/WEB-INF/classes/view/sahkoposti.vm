@@ -9,7 +9,6 @@ $bundle.getString("opintojakso"): $kurssi.getKurssikoodi(), $kurssi.listaString(
 $bundle.getString("laajuus"): $kurssi.getOpintopisteet() $bundle.getString("op") ($kurssi.getOpintoviikot() $bundle.getString("ov"))
 $bundle.getString("suoritusaika"): $kurssi.getSuoritus_pvm()
 $bundle.getString("hyvaksyja"): $HenkiloKyselyt.haeNimet($kurssi.getOmistaja())
-#set ($osallistumisetKurssilla = $OsallistuminenKyselyt.osallistumisetKurssilla($kurssi))
 #set ($ilmoittautuneet = $osallistumisetKurssilla.size())
 #set ($hyvaksytyt = 0)
 #set ($hyvaksytytLista = "")
@@ -45,7 +44,7 @@ $bundle.getString("hyvaksyja"): $HenkiloKyselyt.haeNimet($kurssi.getOmistaja())
                 #set ($poistetutLista = "$poistetutLista $listaAlkio ${rivinvaihto}")
             #end
         #end
-    #else
+    #elseif ($osallistuminen.getVoimassa().equals('K'))
         #set ($hyvaksytyt = $hyvaksytyt + 1)
         #set ($osallistuneet = $osallistuneet +1)
         #if (!$kurssinTila.equals('J') || ($kurssinTila.equals('J') && !$osallistuminen.getJaassa().equals('J')))

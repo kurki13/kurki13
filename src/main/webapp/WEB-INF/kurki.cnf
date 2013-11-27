@@ -3,12 +3,13 @@
 
 #Pääylläpitäjän sähköpostiosoite
 #Tomcattia ei tarvitse uudelleenkäynnistää
-webmaster=taru.airola@helsinki.fi
+#webmaster=tktl-kurki@cs.helsinki.fi
+webmaster=heikki.havukainen@helsinki.fi
 
 #Oodi-siirroista vastaavan henkilön sähköpostiosoite
 #Tomcattia ei tarvitse uudelleenkäynnistää
 #oodi=Reijo.Siven@cs.Helsinki.FI
-oodi=taru.airola@helsinki.fi
+oodi=heikki.havukainen@helsinki.fi
 
 #Tietokanta
 #Tomcattia ei tarvitse uudelleenkäynnistää
