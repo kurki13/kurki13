@@ -4,49 +4,18 @@
     <title>KURKI</title>
     <link href="style/bootstrap/css/bootstrap.css" rel="stylesheet">
     <link href="style/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+    <style>
+        body {
+            font-size: 11px;
+        }
+    </style>
 </head>
 <body>
 
 
-<div style="font-size: 90%">
+#parse('tuloslista/otsikko.vm')
 
-#set($qs = $request.getQueryString())
-
-#if($qs)
-    #set($params = $queryparser.split($qs))
-#end
-
-#set($bundle = $Lokalisaatio.bundle($request))
-
-#if($session.getAttribute('selected_course_id'))
-    #set ($valittuKurssi = $KurssiKyselyt.kurssiIDlla($session.getAttribute('selected_course_id')))
-#end
-#if($valittuKurssi)
-    #set ($osallistumiset = $OsallistuminenKyselyt.osallistumisetKurssilla($valittuKurssi))
-#end  
-
-#if (!$request.getParameter("filter").equals(""))
-    #set ($filter = $request.getParameter("filter"))
-    #set ($filter = $filter.toUpperCase())
-    #set ($osallistumiset = $OsallistuminenSorter.filteroi($osallistumiset, $filter))    
-#end
-
-$bundle.getString("HY")
-#foreach ( $i in [1..15] )
-     &emsp;
-#end
-$bundle.getString("tktlkurki")
-<br>$bundle.getString("matlu")<br>
-<br>$bundle.getString("cslaitos")<br>
-<br>$bundle.getString("opintojakso"): $valittuKurssi.kurssikoodi, $valittuKurssi.nimi [$valittuKurssi.lukukausi$valittuKurssi.lukuvuosi]
-<br>$bundle.getString("laajuus"): $valittuKurssi.opintopisteet $bundle.getString("op")
-<br>$bundle.getString("suoritusaika"): $date.format('d.M.yyyy', $valittuKurssi.suoritus_pvm)
-<br>$bundle.getString("hyvaksyja"): $HenkiloKyselyt.haeNimet($valittuKurssi.omistaja)
-
-#set ($lol = $request.getParameterNames())
-
-#if ($request.getParameter("inc_accepted") == "on")
-    <p>    
+#if ($Tuloslistat.hyvaksytyt.active)
     <br>$bundle.getString("hyvaksytyt")<br>
     <table class="table table-bordered table-condensed"  style="font-size: 90%;width: auto">
         #foreach ($osallistuminen in $osallistumiset)
@@ -92,52 +61,9 @@ $bundle.getString("tktlkurki")
          </tr>
         #end
     </table>
-
-        #if($request.getParameter("inc_gradeDistr") == "on")
-            #set ($viisi = 0)
-            #set ($nelja = 0)
-            #set ($kolme = 0)
-            #set ($kaksi = 0)
-            #set ($yksi = 0)
-            #foreach ($osallistuminen in $osallistumiset)
-                #if ($osallistuminen.arvosana == 5)
-                    #set ($viisi = $viisi+1)
-                #end
-                #if ($osallistuminen.arvosana == 4)
-                    #set ($nelja = $nelja+1)
-                #end
-                #if ($osallistuminen.arvosana == 3)
-                    #set ($kolme = $kolme+1)
-                #end
-                #if ($osallistuminen.arvosana == 2)
-                    #set ($kaksi = $kaksi+1)
-                #end
-                #if ($osallistuminen.arvosana == 1)
-                    #set ($yksi = $yksi+1)
-                #end
-            #end            
-            
-            <p>$bundle.getString("arvosanajakauma")<br>
-            &emsp;5: $viisi&emsp;#if ($viisi > 0)#foreach ($i in [1..$viisi])*#end#end<br> 
-            &emsp;4: $nelja&emsp;#if ($nelja > 0)#foreach ($i in [1..$nelja])*#end#end<br>
-            &emsp;3: $kolme&emsp;#if ($kolme > 0)#foreach ($i in [1..$kolme])*#end#end<br>   
-            &emsp;2: $kaksi&emsp;#if ($kaksi > 0)#foreach ($i in [1..$kaksi])*#end#end<br>
-            &emsp;1: $yksi&emsp;#if ($yksi > 0)#foreach ($i in [1..$yksi])*#end#end<br>
-            </p>
-
-        #end 
-
-        #if($request.getParameter("inc_feedback") == "on")
-            <p>$bundle.getString("palautetilaisuus") __.__ $bundle.getString("klo") __:__ - __:__ $bundle.getString("huoneessa") ____.</p>                
-        #end
-
-        #if($request.getParameter("inc_signature") == "on")
-            <p><br>$bundle.getString("helsingissa") $date.get('d.M.yyyy')<br>
-            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;_____________________________<br>
-            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;$HenkiloKyselyt.haeNimet($valittuKurssi.omistaja)</p>                
-        #end
-    </p>
 #end
+
+#parse('tuloslista/arvosanajakauma_allekirj.vm')
 
 #if($request.getParameter("inc_statistics") == "on")
     #set ($osallistumisia = 0)

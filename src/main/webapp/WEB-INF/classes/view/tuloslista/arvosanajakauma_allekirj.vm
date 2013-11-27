@@ -1,0 +1,45 @@
+
+
+#if($Tuloslistat.arvosanajakauma.active)
+    #set ($viisi = 0)
+    #set ($nelja = 0)
+    #set ($kolme = 0)
+    #set ($kaksi = 0)
+    #set ($yksi = 0)
+    #foreach ($osallistuminen in $osallistumiset)
+        #if ($osallistuminen.arvosana == 5)
+            #set ($viisi = $viisi+1)
+        #end
+        #if ($osallistuminen.arvosana == 4)
+            #set ($nelja = $nelja+1)
+        #end
+        #if ($osallistuminen.arvosana == 3)
+            #set ($kolme = $kolme+1)
+        #end
+        #if ($osallistuminen.arvosana == 2)
+            #set ($kaksi = $kaksi+1)
+        #end
+        #if ($osallistuminen.arvosana == 1)
+            #set ($yksi = $yksi+1)
+        #end
+    #end            
+
+    <p>$bundle.getString("arvosanajakauma")<br>
+    &emsp;5: $viisi&emsp;#if ($viisi > 0)#foreach ($i in [1..$viisi])*#end#end<br> 
+    &emsp;4: $nelja&emsp;#if ($nelja > 0)#foreach ($i in [1..$nelja])*#end#end<br>
+    &emsp;3: $kolme&emsp;#if ($kolme > 0)#foreach ($i in [1..$kolme])*#end#end<br>   
+    &emsp;2: $kaksi&emsp;#if ($kaksi > 0)#foreach ($i in [1..$kaksi])*#end#end<br>
+    &emsp;1: $yksi&emsp;#if ($yksi > 0)#foreach ($i in [1..$yksi])*#end#end<br>
+    </p>
+
+#end 
+
+#if($request.getParameter("inc_feedback") == "on")
+    <p>$bundle.getString("palautetilaisuus") __.__ $bundle.getString("klo") __:__ - __:__ $bundle.getString("huoneessa") ____.</p>                
+#end
+
+#if($request.getParameter("inc_signature") == "on")
+    <p><br>$bundle.getString("helsingissa") $date.get('d.M.yyyy')<br>
+    &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;_____________________________<br>
+    &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;$HenkiloKyselyt.haeNimet($valittuKurssi.omistaja)</p>                
+#end

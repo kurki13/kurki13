@@ -1,0 +1,26 @@
+#set($bundle = $Lokalisaatio.bundle($request))
+
+#if($session.getAttribute('selected_course_id'))
+    #set ($valittuKurssi = $KurssiKyselyt.kurssiIDlla($session.getAttribute('selected_course_id')))
+#end
+#if($valittuKurssi)
+    #set ($osallistumiset = $OsallistuminenKyselyt.osallistumisetKurssilla($valittuKurssi))
+#end  
+
+#if (!$request.getParameter("filter").equals(""))
+    #set ($filter = $request.getParameter("filter"))
+    #set ($filter = $filter.toUpperCase())
+    #set ($osallistumiset = $OsallistuminenSorter.filteroi($osallistumiset, $filter))    
+#end
+
+$bundle.getString("HY")
+#foreach ( $i in [1..15] )
+     &emsp;
+#end
+$bundle.getString("tktlkurki")
+<br>$bundle.getString("matlu")<br>
+<br>$bundle.getString("cslaitos")<br>
+<br>$bundle.getString("opintojakso"): $valittuKurssi.kurssikoodi, $valittuKurssi.nimi [$valittuKurssi.lukukausi$valittuKurssi.lukuvuosi]
+<br>$bundle.getString("laajuus"): $valittuKurssi.opintopisteet $bundle.getString("op")
+<br>$bundle.getString("suoritusaika"): $date.format('d.M.yyyy', $valittuKurssi.suoritus_pvm)
+<br>$bundle.getString("hyvaksyja"): $HenkiloKyselyt.haeNimet($valittuKurssi.omistaja)

@@ -23,7 +23,7 @@
                   </th>
                 </tr>
 
-#foreach($kohta in $Tuloslistat.getKohdat($valittuKurssi))
+#foreach($kohta in $Tuloslistat.kohdat)
     #if($kohta.ehto)
                 <tr>
                   <td>

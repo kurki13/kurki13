@@ -6,6 +6,7 @@ package view.util;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.servlet.http.HttpServletRequest;
 import model.Kurssi;
 
 /**
@@ -14,8 +15,84 @@ import model.Kurssi;
  */
 public class Tuloslistat {
 
-    public class Kohta {
+    public Kohta getOpiskelijanumero() {
+        return opiskelijanumero;
+    }
 
+    public Kohta getHarjoitustyot_eriteltyina() {
+        return harjoitustyot_eriteltyina;
+    }
+
+    public Kohta getValikokeet_eriteltyina() {
+        return valikokeet_eriteltyina;
+    }
+
+    public Kohta getLaskarit_summa() {
+        return laskarit_summa;
+    }
+
+    public Kohta getHarjoitustyot_summa() {
+        return harjoitustyot_summa;
+    }
+
+    public Kohta getKokeet_summa() {
+        return kokeet_summa;
+    }
+
+    public Kohta getLaskarit_lisapisteet() {
+        return laskarit_lisapisteet;
+    }
+
+    public Kohta getHarjoitustyot_lisapisteet() {
+        return harjoitustyot_lisapisteet;
+    }
+
+    public Kohta getYhteispisteet() {
+        return yhteispisteet;
+    }
+
+    public Kohta getArvosana() {
+        return arvosana;
+    }
+
+    public Kohta getOpintopisteet() {
+        return opintopisteet;
+    }
+
+    public Kohta getKieli() {
+        return kieli;
+    }
+
+    public Kohta getTilastoja() {
+        return tilastoja;
+    }
+
+    public Kohta getArvosanajakauma() {
+        return arvosanajakauma;
+    }
+
+    public Kohta getPalautetilaisuus() {
+        return palautetilaisuus;
+    }
+
+    public Kohta getAllekirjoitus() {
+        return allekirjoitus;
+    }
+
+    public Kohta getHyvaksytyt() {
+        return hyvaksytyt;
+    }
+
+    public Kohta getHylatyt() {
+        return hylatyt;
+    }
+
+    public Kohta getJaadytyksenjalkeiset() {
+        return jaadytyksenjalkeiset;
+    }
+    
+    public class Kohta {
+        
         boolean ehto;
         String checkboxname;
         String bundlekey;
@@ -65,35 +142,55 @@ public class Tuloslistat {
         public String getOtsikkodefault() {
             return otsikkodefault;
         }
+        
+        public boolean isActive() {
+            String r = request.getParameter(checkboxname);
+            if (r == null) {
+                return false;
+            }
+            return r.equals("on");
+        }
     }
-    List<Kohta> kohdat = new ArrayList();
     
-    private Kohta opiskelijanumero;
-    private Kohta harjoitustyot_eriteltyina;
-    private Kohta valikokeet_eriteltyina;
-    private Kohta laskarit_summa;
-    private Kohta harjoitustyot_summa;
-    private Kohta kokeet_summa;
-    private Kohta laskarit_lisapisteet;
-    private Kohta harjoitustyot_lisapisteet;
-    private Kohta yhteispisteet;
-    private Kohta arvosana;
-    private Kohta opintopisteet;
-    private Kohta kieli;
-    private Kohta tilastoja;
-    private Kohta arvosanajakauma;
-    private Kohta palautetilaisuus;
-    private Kohta allekirjoitus;
-    private Kohta hyvaksytyt;
-    private Kohta hylatyt;
-    private Kohta jaadytyksenjalkeiset;
-
-    public List<Kohta> getKohdat(Kurssi kurssi) {
-        setKurssi(kurssi);
+    List<Kohta> kohdat = new ArrayList();
+    Kohta opiskelijanumero;
+    Kohta harjoitustyot_eriteltyina;
+    Kohta valikokeet_eriteltyina;
+    Kohta laskarit_summa;
+    Kohta harjoitustyot_summa;
+    Kohta kokeet_summa;
+    Kohta laskarit_lisapisteet;
+    Kohta harjoitustyot_lisapisteet;
+    Kohta yhteispisteet;
+    Kohta arvosana;
+    Kohta opintopisteet;
+    Kohta kieli;
+    Kohta tilastoja;
+    Kohta arvosanajakauma;
+    Kohta palautetilaisuus;
+    Kohta allekirjoitus;
+    Kohta hyvaksytyt;
+    Kohta hylatyt;
+    Kohta jaadytyksenjalkeiset;
+    
+    HttpServletRequest request;
+    
+    public List<Kohta> getKohdat() {
         return kohdat;
     }
 
-    public void setKurssi(Kurssi kurssi) {
+    public void setRequest(HttpServletRequest request) {
+        System.out.println("Setrequest called");
+        this.request = request;
+        Kurssi kurssi = SessioApuri.valittuKurssi(request);
+        if (kurssi == null) {
+            SessioApuri.annaVirhe(request.getSession(), "Kurssia ei valittu!");
+            return;
+        }
+        setKurssi(kurssi);
+    }
+    
+    private void setKurssi(Kurssi kurssi) {
         opiskelijanumero = new Kohta(
                 (true),
                 "inc_ssn",
@@ -209,4 +306,6 @@ public class Tuloslistat {
                 null,
                 null);
     }
+    
+    
 }

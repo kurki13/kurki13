@@ -181,4 +181,8 @@ public class SessioApuri {
         }
         return Testikanta.taulunLisaysLause(taulu).replaceAll("(\r\n|\n\r|\r|\n)", "<br />");
     }
+    
+    public static Kurssi valittuKurssi(HttpServletRequest request) {
+        return (Kurssi) request.getSession().getAttribute(ValittuKurssi);
+    }
 }
