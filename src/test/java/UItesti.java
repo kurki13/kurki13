@@ -20,13 +20,13 @@ public class UItesti {
 
     @Test
     public void title() {
-        tester.beginAt("kurki13/hello.vm");
+        tester.beginAt("kurki13");
         tester.assertTitleEquals("KURKI");
     }
 
     @Test
     public void kurssivalikkoAluksi() {
-        tester.beginAt("kurki13/hello.vm");
+        tester.beginAt("kurki13");
         tester.assertFormElementPresent("courseId");
         tester.assertSelectOptionPresent("courseId", "-- valitse kurssi --");
         tester.assertSelectOptionPresent("courseId", "Data Mining [2010-03-15] K");
@@ -36,7 +36,7 @@ public class UItesti {
 
     @Test
     public void toimintovalikkoAluksi() {
-        tester.beginAt("kurki13/hello.vm");
+        tester.beginAt("kurki13");
         tester.assertFormElementPresent("courseId");
         tester.assertFormElementNotPresent("serviceId");        
         tester.assertSelectOptionPresent("courseId", "Data Mining [2010-03-15] K");
@@ -46,7 +46,7 @@ public class UItesti {
 
     @Test
     public void logout() {
-        tester.beginAt("kurki13/hello.vm");
+        tester.beginAt("kurki13");
         tester.assertLinkPresentWithText("Logout");
         tester.clickLinkWithText("Logout");
         tester.assertTextPresent("Session has been reset");
@@ -54,7 +54,7 @@ public class UItesti {
 
     @Test
     public void kurssinVaihtaminen() {
-        tester.beginAt("kurki13/hello.vm");
+        tester.beginAt("kurki13");
         tester.assertFormElementPresent("courseId");
         tester.assertSelectOptionPresent("courseId", "Data Mining [2010-03-15] K");
         tester.selectOption("courseId", "Data Mining [2010-03-15] K");
@@ -64,7 +64,7 @@ public class UItesti {
 
     @Test
     public void suoritteidenKirjaus() {
-        tester.beginAt("kurki13/hello.vm");
+        tester.beginAt("kurki13");
         tester.assertFormElementPresent("courseId");
         tester.assertSelectOptionPresent("courseId", "Data Mining [2010-03-15] K");
         tester.selectOption("courseId", "Data Mining [2010-03-15] K");
@@ -79,21 +79,21 @@ public class UItesti {
 
     @Test
     public void osallistujatietojenMuutokset() {
-        tester.beginAt("kurki13/hello.vm");
+        tester.beginAt("kurki13");
         tester.assertFormElementPresent("courseId");
         tester.assertSelectOptionPresent("courseId", "Data Mining [2010-03-15] K");
         tester.selectOption("courseId", "Data Mining [2010-03-15] K");
         tester.assertFormElementPresent("serviceId");
         tester.selectOption("serviceId", "Osallistujatietojen muutokset");
         tester.assertFormPresent("osallistujatiedot");
-        tester.assertFormElementPresent("ryhma");
+        tester.assertFormElementPresent("filterRyhma");
         tester.assertFormElementPresent("toiminto");
         tester.assertSubmitButtonPresent();
     }
 
     @Test
     public void perustietojenMuutokset() {
-        tester.beginAt("kurki13/hello.vm");
+        tester.beginAt("kurki13");
         tester.assertFormElementPresent("courseId");
         tester.assertSelectOptionPresent("courseId", "Data Mining [2010-03-15] K");
         tester.selectOption("courseId", "Data Mining [2010-03-15] K");
