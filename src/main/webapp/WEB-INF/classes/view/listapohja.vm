@@ -55,11 +55,11 @@ $bundle.getString("tilanne"): $date.get('d.M.yyyy HH:mm')<br>
     #set ($osallistumiset = $OsallistuminenKyselyt.osallistumisetKurssilla($valittuKurssi))
 #end  
 
-#if (!$request.getParameter("filter").equals(""))
-    #set ($filter = $request.getParameter("filter"))
-    #set ($filter = $filter.toUpperCase())
-    #set ($osallistumiset = $OsallistuminenSorter.filteroi($osallistumiset, $filter))    
-#end
+#set ($filter = $request.getParameter("filter"))
+#set ($ryhma = $request.getParameter("ryhma"))
+##filteröidään opiskelijat annettujen filteröintiparametrien mukaan
+$Filter.filterointi($request, $ryhma, $filter, $osallistumiset)
+#set ($osallistumiset = $Filter.getFilteroidyt())
 
 #if (!$request.getParameter("kommentti").equals(""))
     $bundle.getString("kommentti"): $request.getParameter("kommentti")<br>

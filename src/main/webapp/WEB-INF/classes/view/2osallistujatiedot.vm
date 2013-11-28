@@ -52,7 +52,7 @@
     </label>
 
     <label for="toiminto">$bundle.getString("toiminto") <br>
-        <select name="toiminto" id="toiminto" class="form-control form-inline" style="width:340px">
+        <select name="toiminto" id="toiminto" class="form-control form-inline" style="width:310px">
          #foreach($t in $toiminnot.entrySet())
             #if($t.key == $toiminto)
               <option value=$t.key selected>$t.value</option>

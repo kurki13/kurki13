@@ -25,9 +25,6 @@
 
 <h1>$bundle.getString("1entry")</h1>
 
-## <label for=""> <br>
-## </label>
-
 <form name="suoritteidenKirjaus" action="" method=get class="form-inline">
         <label for="type">$bundle.getString("tyyppi") <br>
             <select name="type" id="type" onChange="osasuorituskerrat(this.selectedIndex)" class="form-control form-inline" style="width:190px">
@@ -117,7 +114,7 @@
 
         <label for="filterit">$bundle.getString("hakukriteerit") <br>
             <input id="filterit" value="#if($request.getParameter("filterit"))$request.getParameter("filterit")#end"
-                type="text" class="form-control form-inline" style="width:150px" name="filterit"
+                type="text" class="form-control form-inline" style="width:200px" name="filterit"
                 placeholder="$bundle.getString("hakukriteerit")">
         </label>
 
@@ -129,7 +126,23 @@
 #if ($request.getParameter("button"))
     #parse ('suoritteet.vm')
 #else
-lisää ohjeet
+<div class="instr">
+<b>$bundle.getString("valitsetyyppi")</b>
+	    <dl>
+	      <dt>$bundle.getString("tyhja")</dt>
+  	        <dd>$bundle.getString("kaikkiopiskelijat")</dd>
+	      <dt>$bundle.getString("numero")</dt>
+	        <dd>$bundle.getString("opiskelijaopnro")</dd>
+	      <dt>$bundle.getString("sukunimi")</dt>
+	        <dd>$bundle.getString("opsukunimimerkki")</dd>
+	      <dt>$bundle.getString("al")</dt>
+	        <dd>$bundle.getString("sukunimiaakkos")</dd>
+	      <dt>$bundle.getString("kriteerit")</dt>
+	        <dd>$bundle.getString("useatkriteeritUusi")</dd>
+	      <dt>$bundle.getString("meikalainen")</dt>
+		<dd>$bundle.getString("pienetjaisot")</dd>
+            </dl>
+</div>
 #end
 
 ##valittu $request.getParameter('lisääTähänNimi')

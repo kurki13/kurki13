@@ -95,4 +95,9 @@
         <class>database.Konfiguraatio</class>
     </tool>
     
+    <tool>
+        <key>Filter</key>         
+        <class>view.util.Filter</class>
+    </tool>
+    
 </toolbox>

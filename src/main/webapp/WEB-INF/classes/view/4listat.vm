@@ -25,12 +25,35 @@
         <label for="kommentti">$bundle.getString("kommentti") <br>
             <input type="text" id="kommentti" class="form-control" name="kommentti" placeholder="$bundle.getString("kommentti")">
         </label>
+
+    ##haetaan kurssin ryhmät, ja jätetään pois mystinen ryhmä "0"
+        #set ($ryhmat = [])
+        #if ($valittuKurssi)
+            #foreach($r in $OpetusKyselyt.opetuksetKurssilla($valittuKurssi))
+                #if ($r.ilmo_jnro != 0)
+                    #if ($ryhmat.add($r.ilmo_jnro)) #end
+                #end
+            #end
+        #end
+
+        <label for="ryhma">$bundle.getString("ryhma") <br>
+            <select name="ryhma" id="ryhma" class="form-control form-inline" style="width:90px">
+            <option value="" selected>$bundle.getString("kaikki")</option>
+            #foreach($r in $ryhmat)
+                #if($request.getParameter("ryhma") == $r)
+                    <option value=$r selected>$r</option>
+                #else
+                    <option value=$r>$r</option>
+                #end
+            #end
+            </select>
+        </label>
      
         <label for="filter">$bundle.getString("hakukriteerit") <br>
             <input type="text" id="filter" class="form-control" name="filter" placeholder="$bundle.getString("hakukriteerit")">
         </label>
 
-        <input type="submit" tabindex="32601" value=">>>" class="btn btn-primary btn">
+        <input type="submit" tabindex="32601" value=">>>" class="btn">
     </form>
 </div>
 
@@ -40,15 +63,13 @@
 	      <dt>$bundle.getString("tyhja")</dt>
   	        <dd>$bundle.getString("kaikkiopiskelijat")</dd>
 	      <dt>$bundle.getString("numero")</dt>
-	        <dd>$bundle.getString("annetunro")</dd>
-              <dt>$bundle.getString("hashopnro")</dt>
-                <dd>$bundle.getString("opiskelijaopnro")</dd>
+	        <dd>$bundle.getString("opiskelijaopnro")</dd>
 	      <dt>$bundle.getString("sukunimi")</dt>
 	        <dd>$bundle.getString("opsukunimimerkki")</dd>
 	      <dt>$bundle.getString("al")</dt>
 	        <dd>$bundle.getString("sukunimiaakkos")</dd>
 	      <dt>$bundle.getString("kriteerit")</dt>
-	        <dd>$bundle.getString("useatkriteerit")</dd>
+	        <dd>$bundle.getString("useatkriteeritUusi")</dd>
 	      <dt>$bundle.getString("meikalainen")</dt>
 		<dd>$bundle.getString("pienetjaisot")</dd>
             </dl>

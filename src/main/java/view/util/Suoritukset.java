@@ -78,7 +78,7 @@ public class Suoritukset {
                                 //muutetaan numerosta tyhjään
                                 if (arvo.isEmpty() && (os.getLaskarit().osa(kerta).getPisteet() != -1)) {
                                     lisaaMuutettu(os, arvo);
-                                //muutetaan numerosta plussaan // muista myös "-" !!
+                                    //muutetaan numerosta plussaan // muista myös "-" !!
                                 } else if ("+".equals(arvo) && (os.getLaskarit().osa(kerta).getPisteet() != -2)) {
                                     lisaaMuutettu(os, arvo);
                                 }
@@ -87,7 +87,7 @@ public class Suoritukset {
                                 if (arvo.isEmpty() && (os.getHarjoitustyot().osa(kerta).getPisteet() != -1)) {
                                     lisaaMuutettu(os, arvo);
                                     //muutetaan numerosta plussaan // muista myös "-" !!
-                                } else if ("+".equals(arvo) && (os.getHarjoitustyot().osa(kerta).getPisteet() != -2)) { 
+                                } else if ("+".equals(arvo) && (os.getHarjoitustyot().osa(kerta).getPisteet() != -2)) {
                                     lisaaMuutettu(os, arvo);
                                 }
                             } else if (tyyppi.equals("koe")) {
@@ -95,7 +95,7 @@ public class Suoritukset {
                                 if (arvo.isEmpty() && (os.getKokeet().osa(kerta).getPisteet() != -1)) {
                                     lisaaMuutettu(os, arvo);
                                     //muutetaan numerosta plussaan // muista myös "-" !!
-                                } else if ("+".equals(arvo) && (os.getKokeet().osa(kerta).getPisteet() != -2)) { 
+                                } else if ("+".equals(arvo) && (os.getKokeet().osa(kerta).getPisteet() != -2)) {
                                     lisaaMuutettu(os, arvo);
                                 }
                             } else if (tyyppi.equals("arvosana")) {
@@ -204,7 +204,7 @@ public class Suoritukset {
                             SessioApuri.annaVirhe(request.getSession(), "Väärä toiminto " + tyyppi);
                             return;
                         }
-                            
+
                         //tallennetaan kantaan
                         try {
                             SQLoader.tallennaKantaan(os);
@@ -224,12 +224,11 @@ public class Suoritukset {
     }
 
     private static Timestamp getTimestamp() {
-	 java.util.Date date= new java.util.Date();
-	 Timestamp time = new Timestamp(date.getTime());
-         
-         return time;
-    }
+        java.util.Date date = new java.util.Date();
+        Timestamp time = new Timestamp(date.getTime());
 
+        return time;
+    }
 
     public static Osallistuminen etsiOsallistuminenHetulla(String hetu, List<Osallistuminen> osallistumiset) {
         for (Osallistuminen os : osallistumiset) {
@@ -262,5 +261,4 @@ public class Suoritukset {
             osas.setPisteet(Integer.parseInt(pisteet));
         }
     }
- 
 }

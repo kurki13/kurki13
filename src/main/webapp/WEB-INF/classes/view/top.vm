@@ -48,15 +48,15 @@ $SessioApuri.auta($request)
     #foreach($k in $session.getAttribute('user_courses'))
         #if($session.getAttribute('selected_course_id') && $session.getAttribute('selected_course_id') == $k.idString())
             #if($k.getTila() == "J")
-                <option value=$k.idString() selected>* $k.listaString() *</option>
+                <option value=$k.idString() selected>* $k.listaString() Tila:$k.getTila()*</option>
             #else
-                <option value=$k.idString() selected>$k.listaString()</option>
+                <option value=$k.idString() selected>$k.listaString() Tila:$k.getTila()</option>
             #end
         #else
             #if($k.getTila() == "J")
-                <option value=$k.idString()>* $k.listaString() *</option>
+                <option value=$k.idString()>* $k.listaString() Tila:$k.getTila()*</option>
             #else
-                <option value=$k.idString()>$k.listaString()</option>
+                <option value=$k.idString()>$k.listaString() Tila:$k.getTila()</option>
             #end
         #end
     #end

@@ -35,10 +35,10 @@ body {
     display: inline-block;
 }
 #courseselect {
-    width: 68%;
+    width: 60%;
 }
 #serviceselect {
-    width: 30%;
+    width: 38%;
 }
 .section {
     padding: 15px;
