@@ -5,12 +5,17 @@
     #stop
 #end
 
-#set ($kerrat = {"laskarit" : $valittuKurssi.laskarikerta_lkm, "ht" : $valittuKurssi.harjoitustyo_lkm ,
+#set ($kerrat = {"laskarit" : $valittuKurssi.laskarikerta_lkm,
+"ht" : $valittuKurssi.harjoitustyo_lkm,
 "koe" : $valittuKurssi.valikokeet_lkm})
 
 ##Tässä määritellään pudotusvalikon valinnat
-#set ($tyypit = {"laskarit" : $bundle.getString("Laskuharjoituspisteet"), "ht" : $bundle.getString("Harjoitustyöpisteet") , "koe" : $bundle.getString("Koepisteet") ,
-"arvosana" : $bundle.getString("Arvosana") , "op" : $bundle.getString("Opintopisteet") , "kieli" : $bundle.getString("Suorituskieli")})
+#set ($tyypit = {"laskarit" : $bundle.getString("Laskuharjoituspisteet"),
+"ht" : $bundle.getString("Harjoitustyöpisteet"),
+"koe" : $bundle.getString("Koepisteet"),
+"arvosana" : $bundle.getString("Arvosana"),
+"op" : $bundle.getString("Opintopisteet"),
+"kieli" : $bundle.getString("Suorituskieli")})
 
 ##poistetaan kurssilla käyttämättömät osasuoritukset mapista
 #if ($kerrat.get("laskarit") == 0)

@@ -4,11 +4,6 @@
 #if($session.getAttribute('selected_course_id'))
     #set ($valittuKurssi = $KurssiKyselyt.kurssiIDlla($session.getAttribute('selected_course_id')))
 #end
-
-
-
-<p>$valittuKurssi.listaString()</p>
-
             <form name="suoritevalinta" class="form-inline" action="tuloslistapohja.vm" method="post" target="_blank">
               <input type="hidden" name="ltype" value="99">
               <input type="hidden" name="ctype" value="text/plain">
@@ -61,7 +56,6 @@
 
   <li>$bundle.getString("tuloslistavalintainfo")</li>
 
-<b style="color:red">Ei kai me käytetä näitä kammottavia hakukriteerejä enää? Hakukenttä vois hakea automaattisesti etu- ja sukunimestä ja opiskelijanumerosta.</b>
   <li>$bundle.getString("hakuperusteinfo")
 	    <dl>
 	      <dt>$bundle.getString("tyhja")</dt>

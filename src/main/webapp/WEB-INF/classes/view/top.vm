@@ -71,6 +71,7 @@ $SessioApuri.auta($request)
                      "6tuloslistat.vm" : $bundle.getString("6resultlist") ,
                      "7jaadytys.vm" : $bundle.getString("7freezing")})
 ##window.location.href=this.value;
+#set ($i = 1)
      #if ($session.getAttribute('selected_course'))
          <select id=serviceselect name="serviceId" id="service-field" onChange="window.location.href=this.value+'?serviceId=' + this.value;" class="form-control topselect">
          #if (!$session.getAttribute('selected_service_id'))
@@ -78,10 +79,11 @@ $SessioApuri.auta($request)
          #end
          #foreach ($s in $services.entrySet())
             #if($session.getAttribute('selected_service_id') && $session.getAttribute('selected_service_id') == $s.key)
-             <option value=$s.key selected>$s.value</option>
+             <option value=$s.key selected>$i. $s.value</option>
             #else
-             <option value=$s.key>$s.value</option>
+             <option value=$s.key>$i. $s.value</option>
             #end
+         #set ($i = $i+1)
          #end
          </select>
     #end

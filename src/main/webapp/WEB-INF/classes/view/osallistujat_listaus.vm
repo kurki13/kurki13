@@ -6,14 +6,20 @@
   $OsallistujaMuutokset.vaihdaRyhmaa($grp, $valittuKurssi, $request)
 #end
 
-##Osallistumiset
-#set($osallistumiset = $OsallistuminenKyselyt.voimassaKurssilla($valittuKurssi,
- $sukuFilter, $ryhmaFilter, $hetuFilter))
+#set($kurssinOsallistumiset = $OsallistuminenKyselyt.osallistumisetKurssilla($valittuKurssi))
+##filteröidään kurssin osallistumiset
+#if ($sukuFilter != "" && $hetuFilter != "")
+    #set ($filterit = "${sukuFilter},${hetuFilter}")
+#else
+    #set ($filterit = "${sukuFilter}${hetuFilter}")
+#end 
+$Filter.filterointi($request,$ryhmaFilter,$filterit,$kurssinOsallistumiset)
+#set ($osallistumiset = $Filter.getFilteroidyt())
 
 #if($osallistumiset.size() == 0)
-  <h2>$bundle.getString("opeivastannut")</h2>
-
+  $SessioApuri.annaVirhe($request.getSession(), $bundle.getString("opeivastannut"))
 #else
+
 <form name=poistaOpiskelijat action="" method=post >
 <table class="table table-condensed table-bordered" style="max-width:1000px">
   <caption>

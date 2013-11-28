@@ -1,5 +1,4 @@
 #parse("top.vm")
-
 ##lisää rangecheck ja jäätymistarkistus inputteihin
 <h1>$bundle.getString("5grades")</h1>
 
@@ -45,12 +44,12 @@
         width: 70px;
     }
     .arvostelukohta {
-        width: 300px;
+        width: 200px;
     }
     .arvosteluvaliotsikko {
         margin-left: 10px;
-        margin-top: 50px;
-        margin-bottom: 50px;
+        margin-top: 10px;
+        margin-bottom: 10px;
     }
     table {
         margin-left: 50px;
@@ -79,7 +78,7 @@
         </td>
     </tr>
     <tr>
-        <td>$bundle.getString('pakollisia')
+        <td>$bundle.getString('pakollisia'):
         </td>
         <td><input name=lh_pak value=$valittuKurssi.pakolliset_laskarikerta_lkm class="form-control arvosteluinput">
         </td>
@@ -113,7 +112,7 @@
         </td>
     </tr>
     <tr>
-        <td>$bundle.getString('hyvrajsum')
+        <td>$bundle.getString('hyvrajsum'):
         </td>
         <td>$valittuKurssi.laskariRajat.minPisteetYhteensa
         </td>
@@ -123,7 +122,7 @@
         </td>
     </tr>    
     <tr>
-        <td>$bundle.getString('oshr')
+        <td>$bundle.getString('oshr'):
         </td>
         <td><input name=lh_oshyv value=$valittuKurssi.pakolliset_laskaritehtava_lkm class="form-control arvosteluinput">
         </td>

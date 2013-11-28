@@ -45,15 +45,8 @@
 
 #if($session.getAttribute('selected_course_id'))
     #set ($valittuKurssi = $KurssiKyselyt.kurssiIDlla($session.getAttribute('selected_course_id')))
-#end
-
-$valittuKurssi.listaString()<br>
-$bundle.getString("tilanne"): $date.get('d.M.yyyy HH:mm')<br>
-
-#set ($valittuKurssi = $KurssiKyselyt.kurssiIDlla($session.getAttribute('selected_course_id')))     
-#if($valittuKurssi)
     #set ($osallistumiset = $OsallistuminenKyselyt.osallistumisetKurssilla($valittuKurssi))
-#end  
+#end
 
 #set ($filter = $request.getParameter("filter"))
 #set ($ryhma = $request.getParameter("ryhma"))
@@ -61,6 +54,20 @@ $bundle.getString("tilanne"): $date.get('d.M.yyyy HH:mm')<br>
 $Filter.filterointi($request, $ryhma, $filter, $osallistumiset)
 #set ($osallistumiset = $Filter.getFilteroidyt())
 
+$valittuKurssi.listaString()
+<br>
+$bundle.getString("tilanne"): $date.get('d.M.yyyy HH:mm')
+
+#if ($ryhma == "" && $filter == "")
+    $bundle.getString("kaikkiopiskelijat")
+#elseif ($ryhma == "" && $filter != "")
+    $bundle.getString("kaikkiryhmat"), $bundle.getString("opiskHakukriteereilla"): $filter
+#elseif ($ryhma != "" && $filter == "")
+    $bundle.getString("ryhma") $ryhma
+#else
+    $bundle.getString("ryhma") $ryhma, $bundle.getString("opiskHakukriteereilla"): $filter
+#end
+<br>
 #if (!$request.getParameter("kommentti").equals(""))
     $bundle.getString("kommentti"): $request.getParameter("kommentti")<br>
 #end

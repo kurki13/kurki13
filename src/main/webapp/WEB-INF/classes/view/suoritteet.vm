@@ -9,213 +9,224 @@
 #set ($filterit = $request.getParameter('filterit'))
 #set ($filteroidytOsallistumiset = [])
 
-<h2><b>$tyypit.get($request.getParameter('type'))</h2>
-<h3>#if($tyyppi != "arvosana" && $tyyppi != "op" && $tyyppi != "kieli") $bundle.getString("kerta"): $kerta, #end
-$bundle.getString("ryhma"): #if ($ryhma != '') $ryhma, #else $bundle.getString("kaikki"), #end
-$bundle.getString("opiskelijat"): #if ($filterit != '') $filterit #else $bundle.getString("kaikki") #end</b></h3>
-
 ##filteröidään opiskelijat annettujen filteröintiparametrien mukaan
 $Filter.filterointi($request, $ryhma, $filterit, $kurssinOsallistumiset)
 #set ($filteroidytOsallistumiset = $Filter.getFilteroidyt())
 
-<div>
-<p>$bundle.getString("opvalittu") $filteroidytOsallistumiset.size()</p>
-<form name="pisteet" action="" method=get class="form-inline">
+#if ($filteroidytOsallistumiset != "[]")
+    <h2><b>$tyypit.get($request.getParameter('type'))</h2>
+    <h3>#if($tyyppi != "arvosana" && $tyyppi != "op" && $tyyppi != "kieli") $bundle.getString("kerta"): $kerta, #end
+    $bundle.getString("ryhma"): #if ($ryhma != '') $ryhma, #else $bundle.getString("kaikki"), #end
+    $bundle.getString("opiskelijat"): #if ($filterit != '') $filterit #else $bundle.getString("kaikki") #end</b></h3>
 
-<input value="$tyyppi" type="hidden" name="type">
-<input value="$kerta" type="hidden" name="kerta">
-<input value="$ryhma" type="hidden" name="ryhma">
-<input value="$filterit" type="hidden" name="filterit">
+    <div>
+    <p>$bundle.getString("opvalittu") $filteroidytOsallistumiset.size()</p>
+    <form name="pisteet" action="" method=get class="form-inline">
 
-    <table class="table table-striped table-nonfluid table-condensed">
-        <tr>
-            <td><b>$bundle.getString("opiskelija")</b></td>
-            <td><b>$bundle.getString("ryhma")</b></td>
-            <td colspan="3" align="center"><b>$tyypit.get($request.getParameter('type'))</b></td>
-        </tr>
+    <input value="$tyyppi" type="hidden" name="type">
+    <input value="$kerta" type="hidden" name="kerta">
+    <input value="$ryhma" type="hidden" name="ryhma">
+    <input value="$filterit" type="hidden" name="filterit">
 
-        ##määritellään radiobuttonien sallitut arvot
-        #if ($tyyppi == 'laskarit')  
-            #set ($max = $valittuKurssi.laskariRajat.osa($kerta).max)
-            $Valitsin.lisaaArvot("", "+")
-            $Valitsin.lisaaVali(0,$max)
-        #end
-
-        #if ($tyyppi == 'ht')
-            #set ($max = $valittuKurssi.harjoitustyoRajat.osa($kerta).max)
-            $Valitsin.lisaaArvot("", "+")
-            $Valitsin.lisaaVali(0,$max)
-        #end
-
-        #if ($tyyppi == 'koe')
-            #set ($max = $valittuKurssi.koeRajat.osa($kerta).max)
-            $Valitsin.lisaaArvot("", "+")
-            $Valitsin.lisaaVali(0,$max)
-        #end
-
-        #if ($tyyppi == 'arvosana')
-            #if ($valittuKurssi.arvostellaanko == "E")
-                $Valitsin.lisaaArvot("", "-", "+")
-            #else
-                #set ($max = 5)
-                $Valitsin.lisaaArvot("", "-" ,"+")
-                $Valitsin.lisaaVali(0,$max)
-            #end
-        #end
-
-        #if ($tyyppi == 'op')
-            #set ($max = $valittuKurssi.opintopisteet)
-            $Valitsin.lisaaVali(0,$max)
-        #end
-
-        #if ($tyyppi == 'kieli')
-            $Valitsin.lisaaArvotListasta($Valitsin.kielet)
-        #end
-
-        ##lisätään radiobuttonien sallitut arvot listaan
-        #set ($arvot = $Valitsin.sallitut)
-
-        ##lähetetään filteiröidytosallistumiset-sijaan lista opiskelijoista joiden suoritteita on muutettu!
-        
-        ##suoritusten tarkistus, onko muuttunut? Käsittelee myös muutetut arvot ja tallentaa kantaan
-        $Suoritukset.muutosTarkistus($request, $Valitsin, $filteroidytOsallistumiset)
-
-        ##käydään läpi kaikki kurssin osallistumiset ja tulostetaan pistetiedot
-        #foreach ($os in $filteroidytOsallistumiset)
+        <table class="table table-striped table-nonfluid table-condensed">
             <tr>
-                <td>
-                $os.nimi, $os.hetu
-                #if ($os.jaassa == "J") <img src="images/kurkijaassa.gif"> #end
-                #if ($os.jaassa == "S") <img src="images/defrost.gif"> #end
-                </td>
-                <td align="center">$os.ilmo_jnro</td>
+                <td><b>$bundle.getString("opiskelija")</b></td>
+                <td><b>$bundle.getString("ryhma")</b></td>
+                <td colspan="3" align="center"><b>$tyypit.get($request.getParameter('type'))</b></td>
+            </tr>
 
+            ##määritellään radiobuttonien sallitut arvot
             #if ($tyyppi == 'laskarit')  
-                #if($os.laskarit.osa($kerta)) #set ($valittuTyyppi = $os.laskarit.osa($kerta)) #else #set ($valittuTyyppi = '') #end
+                #set ($max = $valittuKurssi.laskariRajat.osa($kerta).max)
+                $Valitsin.lisaaArvot("", "+")
+                $Valitsin.lisaaVali(0,$max)
             #end
 
             #if ($tyyppi == 'ht')
-                #if($os.harjoitustyot.osa($kerta)) #set ($valittuTyyppi = $os.harjoitustyot.osa($kerta)) #else #set ($valittuTyyppi = '') #end
+                #set ($max = $valittuKurssi.harjoitustyoRajat.osa($kerta).max)
+                $Valitsin.lisaaArvot("", "+")
+                $Valitsin.lisaaVali(0,$max)
             #end
 
             #if ($tyyppi == 'koe')
-                #if($os.kokeet.osa($kerta)) #set ($valittuTyyppi = $os.kokeet.osa($kerta)) #else #set ($valittuTyyppi = '') #end
+                #set ($max = $valittuKurssi.koeRajat.osa($kerta).max)
+                $Valitsin.lisaaArvot("", "+")
+                $Valitsin.lisaaVali(0,$max)
             #end
 
             #if ($tyyppi == 'arvosana')
-                #if ($os.arvosana) #set ($valittuTyyppi = $os.arvosana) #else #set ($valittuTyyppi = '') #end
+                #if ($valittuKurssi.arvostellaanko == "E")
+                    $Valitsin.lisaaArvot("", "-", "+")
+                #else
+                    #set ($max = 5)
+                    $Valitsin.lisaaArvot("", "-" ,"+")
+                    $Valitsin.lisaaVali(0,$max)
+                #end
             #end
 
             #if ($tyyppi == 'op')
-                #if($os.laajuus_op) #set ($valittuTyyppi = $os.laajuus_op) #else #set ($valittuTyyppi = '') #end
+                #set ($max = $valittuKurssi.opintopisteet)
+                $Valitsin.lisaaVali(0,$max)
             #end
 
             #if ($tyyppi == 'kieli')
-                #if ($os.kielikoodi) #set ($valittuTyyppi = $os.kielikoodi) #else #set ($valittuTyyppi = '') #end
+                $Valitsin.lisaaArvotListasta($Valitsin.kielet)
             #end
 
-                ##textfield jossa osasuorituksen tms arvo
-                <td>
-                #if ($os.jaassa != "J")
-                    <input value="$valittuTyyppi" type="text" class="form-control input-sm"
-                        style="width:50px" maxlength="3" name="pisteet${os.hetu}"
-                        onblur="
-                            if(!check(this.value)) {
-                                alert(this.value + ' ei ole hyväksytty arvo.');
-                                this.value='${valittuTyyppi}';
-                                this.style.color='black';
-                                setChecked('id${os.hetu}', this.value);
-                                asteriskiSet('muutettu${os.hetu}', 'hidden');
-                            }"
-                        onChange="
-                            if(this.value != '$valittuTyyppi') {
-                                this.style.color='red';
-                                asteriskiSet('muutettu${os.hetu}', 'visible');
-                            } else {
-                                this.style.color='black';
-                                asteriskiSet('muutettu${os.hetu}', 'hidden');
-                            };
-                            setChecked('id${os.hetu}', this.value)
-                        ">
-                <input type="text" id="muutettu${os.hetu}" name="valueMuutettu" value="*" style="width:10px;border:0;visibility:hidden;color:red" readonly>
-                #else
-                    <input value="$valittuTyyppi" type="text" class="form-control input-sm"
-                        style="width:50px" readonly>
-                #end
-                
-                </td>
+            ##lisätään radiobuttonien sallitut arvot listaan
+            #set ($arvot = $Valitsin.sallitut)
 
-                #if ($os.jaassa != "J")
+            ##lähetetään filteiröidytosallistumiset-sijaan lista opiskelijoista joiden suoritteita on muutettu!
+
+            ##suoritusten tarkistus, onko muuttunut? Käsittelee myös muutetut arvot ja tallentaa kantaan
+            $Suoritukset.muutosTarkistus($request, $Valitsin, $filteroidytOsallistumiset)
+
+            ##käydään läpi kaikki kurssin osallistumiset ja tulostetaan pistetiedot
+            #foreach ($os in $filteroidytOsallistumiset)
+                <tr>
                     <td>
-                    ##radiobuttonien tulostus
-                    #foreach($i in $arvot)
-                        #if ($i == $valittuTyyppi || ($i == $bundle.getString('tyhja')))
-                            <input type="radio" name="osat${os.hetu}" #if($i == "") value="" id="id${os.hetu}_" #else value=$i id="id${os.hetu}_$i" #end
-                                onChange="pisteet${os.hetu}.value=this.value;
-                                pisteet${os.hetu}.style.color='black';
-                                asteriskiSet('muutettu${os.hetu}', 'hidden');"
-                                checked>$i
-                        #else
-                            <input type="radio" name="osat${os.hetu}" #if($i == "") value="" id="id${os.hetu}_" #else value=$i id="id${os.hetu}_$i" #end
-                                onChange="pisteet${os.hetu}.value=this.value;
-                                if(osat${os.hetu}.value != '$valittuTyyppi') {
-                                pisteet${os.hetu}.style.color='red';
-                                asteriskiSet('muutettu${os.hetu}', 'visible');
-                                }">$i
+                    $os.nimi, $os.hetu
+                    #if ($os.jaassa == "J") <img src="images/kurkijaassa.gif"> #end
+                    #if ($os.jaassa == "S") <img src="images/defrost.gif"> #end
+                    </td>
+                    <td align="center">$os.ilmo_jnro</td>
+
+                #if ($tyyppi == 'laskarit')  
+                    #if($os.laskarit.osa($kerta)) #set ($valittuTyyppi = $os.laskarit.osa($kerta)) #else #set ($valittuTyyppi = '') #end
+                #end
+
+                #if ($tyyppi == 'ht')
+                    #if($os.harjoitustyot.osa($kerta)) #set ($valittuTyyppi = $os.harjoitustyot.osa($kerta)) #else #set ($valittuTyyppi = '') #end
+                #end
+
+                #if ($tyyppi == 'koe')
+                    #if($os.kokeet.osa($kerta)) #set ($valittuTyyppi = $os.kokeet.osa($kerta)) #else #set ($valittuTyyppi = '') #end
+                #end
+
+                #if ($tyyppi == 'arvosana')
+                    #if ($os.arvosana) #set ($valittuTyyppi = $os.arvosana) #else #set ($valittuTyyppi = '') #end
+                #end
+
+                #if ($tyyppi == 'op')
+                    #if($os.laajuus_op) #set ($valittuTyyppi = $os.laajuus_op) #else #set ($valittuTyyppi = '') #end
+                #end
+
+                #if ($tyyppi == 'kieli')
+                    #if ($os.kielikoodi) #set ($valittuTyyppi = $os.kielikoodi) #else #set ($valittuTyyppi = '') #end
+                #end
+
+                    ##textfield jossa osasuorituksen tms arvo
+                    <td>
+                    #if ($os.jaassa != "J")
+                        <input value="$valittuTyyppi" type="text" class="form-control input-sm"
+                            style="width:50px" maxlength="3" name="pisteet${os.hetu}"
+                            onblur="
+                                if(!check(this.value)) {
+                                    alert(this.value + ' ei ole hyväksytty arvo.');
+                                    this.value='${valittuTyyppi}';
+                                    this.style.color='black';
+                                    setChecked('id${os.hetu}', this.value);
+                                    asteriskiSet('muutettu${os.hetu}', 'hidden');
+                                }"
+                            onChange="
+                                if(this.value != '$valittuTyyppi') {
+                                    this.style.color='red';
+                                    asteriskiSet('muutettu${os.hetu}', 'visible');
+                                } else {
+                                    this.style.color='black';
+                                    asteriskiSet('muutettu${os.hetu}', 'hidden');
+                                };
+                                setChecked('id${os.hetu}', this.value)
+                            ">
+                    <input type="text" id="muutettu${os.hetu}" name="valueMuutettu" value="*" style="width:10px;border:0;visibility:hidden;color:red" readonly>
+                    #else
+                        <input value="$valittuTyyppi" type="text" class="form-control input-sm"
+                            style="width:50px" readonly>
+                    #end
+
+                    </td>
+
+                    #if ($os.jaassa != "J")
+                        <td>
+                        ##radiobuttonien tulostus
+                        #foreach($i in $arvot)
+                            #if ($i == $valittuTyyppi || ($i == $bundle.getString('tyhja')))
+                                <input type="radio" name="osat${os.hetu}" #if($i == "") value="" id="id${os.hetu}_" #else value=$i id="id${os.hetu}_$i" #end
+                                    onChange="pisteet${os.hetu}.value=this.value;
+                                    pisteet${os.hetu}.style.color='black';
+                                    asteriskiSet('muutettu${os.hetu}', 'hidden');"
+                                    checked>$i
+                            #else
+                                <input type="radio" name="osat${os.hetu}" #if($i == "") value="" id="id${os.hetu}_" #else value=$i id="id${os.hetu}_$i" #end
+                                    onChange="pisteet${os.hetu}.value=this.value;
+                                    if(osat${os.hetu}.value != '$valittuTyyppi') {
+                                    pisteet${os.hetu}.style.color='red';
+                                    asteriskiSet('muutettu${os.hetu}', 'visible');
+                                    }">$i
+                            #end
                         #end
+                        </td>
+                    #end
+
+                    <td>
+                    #if ($os.jaassa != "J")
+                        <input type="button" value="$bundle.getString("peru")"
+                        class="btn btn-sm btn-danger"
+                        onClick="
+                        pisteet${os.hetu}.value='${valittuTyyppi}';
+                        pisteet${os.hetu}.style.color='black';
+                        setChecked('id${os.hetu}', '${valittuTyyppi}');
+                        asteriskiSet('muutettu${os.hetu}', 'hidden');">
+                    #else
+                        <input type="button" value="--> $bundle.getString("sulata") <--"
+                        class="btn btn-sm btn-warning"
+                        onClick="getPage('1suoritteidenKirjaus.vm?sulatettavaHetu=${os.hetu}');">
                     #end
                     </td>
-                #end
 
-                <td>
-                #if ($os.jaassa != "J")
-                    <input type="button" value="$bundle.getString("peru")"
-                    class="btn btn-sm btn-danger"
-                    onClick="
-                    pisteet${os.hetu}.value='${valittuTyyppi}';
-                    pisteet${os.hetu}.style.color='black';
-                    setChecked('id${os.hetu}', '${valittuTyyppi}');
-                    asteriskiSet('muutettu${os.hetu}', 'hidden');">
-                #else
-                    <input type="button" value="--> $bundle.getString("sulata") <--"
-                    class="btn btn-sm btn-warning"
-                    onClick="getPage('1suoritteidenKirjaus.vm?sulatettavaHetu=${os.hetu}');">
-                #end
-                </td>
+                </tr>
+            #end
+        </table>
 
-            </tr>
+    ##javascriptit
+    <script type="text/javascript">
+        function asteriskiSet(id, nakyvyys) {
+            document.getElementById(id).style.visibility=nakyvyys;
+        }
+
+        function check(value) {
+            var sallitut = $Valitsin.sallitutJS
+            return sallitut.indexOf(value) != -1  if(!check(this.value)) {
+                                    alert(this.value + ' ei ole hyväksytty arvo.');
+                                    this.value='${valittuTyyppi}';
+                                    this.style.color='black';
+                                    setChecked('id${os.hetu}', this.value);
+                                    asteriskiSet('muutettu${os.hetu}', 'hidden');
+                                }"
+        }
+
+        function setChecked(hetu, thisvalue){
+            var id = hetu+'_'+thisvalue
+            document.getElementById(id).checked = true
+        }
+
+    window.onbeforeunload = function() {
+        #foreach ($os in $filteroidytOsallistumiset)
+                var id = 'muutettu${os.hetu}'
+                var nakyvyys = document.getElementById(id).style.visibility
+                if (nakyvyys == 'visible') {
+                    return '$bundle.getString("TallenTaiPeru")';
+                }
         #end
-    </table>
+     }
+    </script>
 
-##javascriptit
-<script type="text/javascript">
-    function asteriskiSet(id, nakyvyys) {
-        document.getElementById(id).style.visibility=nakyvyys;
-    }
+    <input type=hidden value=pressed name=button>
+    <input type=submit class="btn" value=$bundle.getString("tmuutokset") onclick="window.onbeforeunload = null;">
 
-    function check(value) {
-        var sallitut = $Valitsin.sallitutJS
-        return sallitut.indexOf(value) != -1
-    }
+    </form>
+    </div>
 
-    function setChecked(hetu, thisvalue){
-        var id = hetu+'_'+thisvalue
-        document.getElementById(id).checked = true
-    }
-
-window.onbeforeunload = function() {
-    #foreach ($os in $filteroidytOsallistumiset)
-            var id = 'muutettu${os.hetu}'
-            var nakyvyys = document.getElementById(id).style.visibility
-            if (nakyvyys == 'visible') {
-                return '$bundle.getString("TallenTaiPeru")';
-            }
-    #end
- }
-</script>
-
-<input type=hidden value=pressed name=button>
-<input type=submit class="btn" value=$bundle.getString("tmuutokset") onclick="window.onbeforeunload = null;">
-
-</form>
-</div>
+#else
+    $SessioApuri.annaVirhe($request.getSession(), $bundle.getString("opeivastannut"))
+#end
