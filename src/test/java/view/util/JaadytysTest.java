@@ -36,7 +36,7 @@ public class JaadytysTest {
     public void tearDown() {
     }
     
-    /*
+    
     @Test
     public void tarkastaSuorituspvmToimiiOikein() {
         kurssi.setSuoritus_pvm(new Date(112, 11, 24));
@@ -44,5 +44,5 @@ public class JaadytysTest {
         kurssi.setSuoritus_pvm((new Date(114, 11, 24)));
         assertFalse(Jaadytys.tarkastaSuorituspvm(kurssi));
     }
-    */
+    
 }

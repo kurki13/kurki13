@@ -4,9 +4,13 @@
  */
 package view.util;
 
+import static org.mockito.Mockito.*;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Locale;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import model.Kurssi;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -17,6 +21,9 @@ import static org.junit.Assert.*;
 
 public class SuorituspaivamaaraTest {
     Kurssi kurssi;
+    HttpServletRequest request;
+    HttpSession istunto;
+    Lokalisaatio bundle;
     
     public SuorituspaivamaaraTest() {
     }
@@ -32,6 +39,11 @@ public class SuorituspaivamaaraTest {
     @Before
     public void setUp() {
         kurssi = new Kurssi();
+        request = mock(HttpServletRequest.class);
+        istunto = mock(HttpSession.class);
+        bundle = mock(Lokalisaatio.class);
+        bundle.setLocale(new Locale("fi"));
+        bundle.setRequest(request);
     }
     
     @After
@@ -66,4 +78,13 @@ public class SuorituspaivamaaraTest {
         kurssi.setPaattymis_pvm(null);
         assertNull(Suorituspaivamaara.palautaSuorituspvmnYlaraja(kurssi));
     }
+    
+    /*
+    @Test
+    public void tarkastaSuorituspvmPalauttaaNullJosSuoritusPvmAnnettuVirheellisessaMuodossa() {
+        kurssi.setSuoritus_pvm(null);
+        Mockito.when(istunto.getAttribute(SessioApuri.Virhe)).thenReturn(new ArrayList());
+        //assertNull(Suorituspaivamaara.tarkastaSuorituspvm(kurssi, "24x12.2013", istunto, bundle));
+    }
+    */
 }
