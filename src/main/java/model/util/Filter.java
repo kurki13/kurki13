@@ -21,10 +21,6 @@ public class Filter {
         this.expectation = expectation;
     }
 
-    public Filter(StringColumn tenttija, Filter get) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     @Override
     public String toString() {
         return column.getColumnName()+":"+expectation;

@@ -150,6 +150,14 @@ public class Tuloslistat {
             }
             return r.equals("on");
         }
+        
+        public String getOtsikko() {
+            String r = request.getParameter(otsikkoname);
+            if (r == null) {
+                return "";
+            }
+            return r;           
+        }
     }
     
     List<Kohta> kohdat = new ArrayList();
