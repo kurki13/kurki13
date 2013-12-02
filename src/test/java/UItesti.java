@@ -69,7 +69,7 @@ public class UItesti {
         tester.assertSelectOptionPresent("courseId", "Data Mining [2010-03-15] K");
         tester.selectOption("courseId", "Data Mining [2010-03-15] K");
         tester.assertFormElementPresent("serviceId");
-        tester.selectOption("serviceId", "Suoritteiden kirjaus");
+        tester.selectOption("serviceId", "1. Suoritteiden kirjaus");
         tester.assertFormPresent("suoritteidenKirjaus");
         tester.assertFormElementPresent("type");
         tester.assertFormElementPresent("kerta");
@@ -84,7 +84,7 @@ public class UItesti {
         tester.assertSelectOptionPresent("courseId", "Data Mining [2010-03-15] K");
         tester.selectOption("courseId", "Data Mining [2010-03-15] K");
         tester.assertFormElementPresent("serviceId");
-        tester.selectOption("serviceId", "Osallistujatietojen muutokset");
+        tester.selectOption("serviceId", "2. Osallistujatietojen muutokset");
         tester.assertFormPresent("osallistujatiedot");
         tester.assertFormElementPresent("filterRyhma");
         tester.assertFormElementPresent("toiminto");
@@ -98,8 +98,63 @@ public class UItesti {
         tester.assertSelectOptionPresent("courseId", "Data Mining [2010-03-15] K");
         tester.selectOption("courseId", "Data Mining [2010-03-15] K");
         tester.assertFormElementPresent("serviceId");
-        tester.selectOption("serviceId", "Kurssin perustietojen muutokset");
+        tester.selectOption("serviceId", "3. Kurssin perustietojen muutokset");
         tester.assertFormPresent("kurssinPerustiedot");
+        tester.assertSubmitButtonPresent();
+    }
+    
+    @Test
+    public void listat() {
+        tester.beginAt("kurki13");
+        tester.assertFormElementPresent("courseId");
+        tester.assertSelectOptionPresent("courseId", "Data Mining [2010-03-15] K");
+        tester.selectOption("courseId", "Data Mining [2010-03-15] K");
+        tester.assertFormElementPresent("serviceId");
+        tester.selectOption("serviceId", "4. Listat");
+        tester.assertFormPresent("suoritevalinta");
+        tester.assertFormElementPresent("listtype");
+        tester.assertFormElementPresent("kommentti");
+        tester.assertFormElementPresent("ryhma");
+        tester.assertFormElementPresent("filter");
+        tester.assertSubmitButtonPresent();
+    }
+    
+    @Test
+    public void arvostelu() {
+        tester.beginAt("kurki13");
+        tester.assertFormElementPresent("courseId");
+        tester.assertSelectOptionPresent("courseId", "Data Mining [2010-03-15] K");
+        tester.selectOption("courseId", "Data Mining [2010-03-15] K");
+        tester.assertFormElementPresent("serviceId");
+        tester.selectOption("serviceId", "5. Arvostelu");
+        tester.assertFormPresent("arvostelu");
+        tester.assertFormElementPresent("arvostelutapa");
+        tester.assertSubmitButtonPresent();
+    }
+    
+    @Test
+    public void tuloslistat() {
+        tester.beginAt("kurki13");
+        tester.assertFormElementPresent("courseId");
+        tester.assertSelectOptionPresent("courseId", "Data Mining [2010-03-15] K");
+        tester.selectOption("courseId", "Data Mining [2010-03-15] K");
+        tester.assertFormElementPresent("serviceId");
+        tester.selectOption("serviceId", "6. Tuloslistat");
+        tester.assertFormPresent("suoritevalinta");
+        tester.assertFormElementPresent("inc_accepted");
+        tester.assertFormElementPresent("inc_failed");
+        tester.assertSubmitButtonPresent();
+    }
+    
+     @Test
+    public void jaadytys() {
+        tester.beginAt("kurki13");
+        tester.assertFormElementPresent("courseId");
+        tester.assertSelectOptionPresent("courseId", "Data Mining [2010-03-15] K");
+        tester.selectOption("courseId", "Data Mining [2010-03-15] K");
+        tester.assertFormElementPresent("serviceId");
+        tester.selectOption("serviceId", "7. Kurssin jäädytys");
+        tester.assertFormElementPresent("jaadyta");
         tester.assertSubmitButtonPresent();
     }
 }
