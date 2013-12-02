@@ -27,39 +27,41 @@
 
 <form name="osallistujatiedot" action="" method=get class="form-inline">
   
-    <label for="isosnimi">$bundle.getString("isosnimi") <br>
-        <input type="text" id="isosnimi" class="form-control form-inline" style="width:150px"
-                name="filterSukunimi" #if($sukuFilter && !$sukuFilter.equals(""))value=$sukuFilter#end
-                placeholder="$bundle.getString("isosnimi")">
+    <label for="isosnimi">
+        $bundle.getString("isosnimi") <br>
+        <input type="text" id="isosnimi" class="form-control form-inline nimiTextbox"
+               name="filterSukunimi" #if($sukuFilter && !$sukuFilter.equals(""))value=$sukuFilter#end
+               placeholder="$bundle.getString("isosnimi")" >
     </label>
 
     #if(!$toiminto.equals("osallistujat_lisaa.vm")) ##ei näytetä ryhmää opiskelijoita lisättäessä
-      <label for="ryhma">$bundle.getString("ryhma") <br>
-          <select name="filterRyhma" id="ryhma" class="form-control form-inline" style="width:100px">
-          <option value="" selected>Kaikki</option>
-            #foreach($ryhma in $ryhmat)
-                 <option #if($ryhmaFilter && $ryhma==$ryhmaFilter)selected#end value=$ryhma>$ryhma</option>
-            #end
-          </select>
-      </label>
-    #else <input type=hidden name="filterRyhma" value="">
+        <label for="ryhma">$bundle.getString("ryhma") <br>
+            <select name="filterRyhma" id="ryhma" class="form-control form-inline ryhmaSelectbox">
+                <option value="" selected>Kaikki</option>
+                #foreach($ryhma in $ryhmat)
+                    <option #if($ryhmaFilter && $ryhma==$ryhmaFilter)selected#end value=$ryhma>$ryhma</option>
+                #end
+            </select>
+        </label>
+    #else
+        <input type=hidden name="filterRyhma" value="">
     #end
 
     <label for="opnro">$bundle.getString("camelopnro") <br>
-        <input type="text" id="opnro" class="form-control form-inline" style="width:140px" 
+        <input type="text" id="opnro" class="form-control form-inline opTextbox" 
             name="filterOpnro" #if($hetuFilter && !$hetuFilter.equals(""))value=$hetuFilter#end
             placeholder="$bundle.getString("opnro")">
     </label>
 
     <label for="toiminto">$bundle.getString("toiminto") <br>
-        <select name="toiminto" id="toiminto" class="form-control form-inline" style="width:310px">
-         #foreach($t in $toiminnot.entrySet())
+        <select name="toiminto" id="toiminto" class="form-control form-inline toimintoTextbox">
+        #foreach($t in $toiminnot.entrySet())
             #if($t.key == $toiminto)
-              <option value=$t.key selected>$t.value</option>
+                <option value=$t.key selected>$t.value</option>
             #else
-              <option value=$t.key>$t.value</option>
+                <option value=$t.key>$t.value</option>
             #end
-          #end
+        #end
         </select>
     </label>
 
@@ -69,9 +71,10 @@
 
 #if($request.getParameter("hetuParam")) ##tiedot  
     #parse ("osallistuja_tiedot.vm")
-    <br>
 #elseif($toiminto)
     #parse ($toiminto)
+#else 
+    $bundle.getString("ophakuperuste")
 #end
 
 #parse("bottom.vm")

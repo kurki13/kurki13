@@ -112,9 +112,97 @@ h1 {
     text-align: center;
 }
 
+/*Osallistujatietojen tyylit*/
+.nimiTextbox
+{
+    width: 150px;
+}
 
-#OsallistujaTiedotVinkki {
+.ryhmaSelect
+{
+    width: 100px;
+}
+
+.opTextbox
+{
+    width: 140px;
+}
+
+.toimintoTextbox
+{
+    width: 310px;
+}
+
+#OsallistujaTiedotVinkki
+{
     height: 15pt;
     font-size: 12pt;
+    text-align: center;
+}
+
+.pisteTextbox
+{
+    width: 50px;
+}
+
+.kieliSelectbox
+{
+    width: 70px;
+}
+#osallistujatietoTable
+{
+    width:100%;
+}
+
+#osallistujatietoTable th
+{
+    color: #292929;
+}
+#osallistujatietoTable th:hover
+{
+    color: #292929;
+}
+#osallistujatietoTable td
+{
+    text-align: center;
+    vertical-align: middle;
+    height: 40px;
+    color: #464646;
+    border:1px solid #cecece;
+}
+
+#osallistujatietoTable caption
+{
+    text-align: left;
+    font-size: 20pt;
+}
+
+#osallistujatietoTable tt
+{
+    font-size: 11pt;
+}
+
+#osallistujatietoTable a
+{
+    font-weight: bold;
+}
+
+#osallistujatietoTable tr:nth-child(odd) td { background-color:#f0f0f0}
+#osallistujatietoTable tr:nth-child(even) td { background-color:#ffffff}
+#osallistujatietoTable tr:hover td { background-color:#fffbae; }
+
+.lisaaRyhmaanSelect
+{
+    width:150px;
+}
+
+.vaihdaRyhmaSelect
+{
+    width: 75px;
+}
+
+.centerText
+{
+    vertical-align: middle;
     text-align: center;
 }

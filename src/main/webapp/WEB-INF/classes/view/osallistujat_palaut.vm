@@ -1,49 +1,48 @@
-
+##Käydään parametreina tulleet opiskelijat läpi ja palautetaan kurssille
 #foreach($palautettu in $request.getParameterValues("palautettavat"))
     $OsallistujaMuutokset.palautaKurssille($palautettu, $valittuKurssi, $request)
 #end
 
+##Haetaan tietokannasta poistetut opiskelijat.
 #set ($poistetut = $OsallistuminenKyselyt.poistetutKurssilta($valittuKurssi,
- $sukuFilter, $ryhmaFilter, $hetuFilter))
+    $sukuFilter, $ryhmaFilter, $hetuFilter))
     
-<form name=palautaOpiskelijat action="" method=post>
-<table class="table table-condensed table-bordered" style="max-width:1000px">
-  <caption>
-   $bundle.getString("opvalittu") $poistetut.size()
-  </caption>
-  <tr>
-    <th> $bundle.getString("nimiSyntpva") </th>
-    <th> $bundle.getString("camelopnro") </th>
-    <th> $bundle.getString("ryhma") </th>
-    <th> $bundle.getString("palautaKurssille") </th>
-  </tr>
-
+<form name="palautaOpiskelijat" action="" method="post">
+<table id="osallistujatietoTable" class="table table-condensed table-bordered">
+    <caption>
+        $bundle.getString("opvalittu") $poistetut.size()
+    </caption>
+    <tr>
+        <th> $bundle.getString("nimiSyntpva") </th>
+        <th> $bundle.getString("camelopnro") </th>
+        <th> $bundle.getString("ryhma") </th>
+        <th> $bundle.getString("palautaKurssille") </th>
+    </tr>
 
 #foreach($poistet in $poistetut)
-  <tr>
-    <td>
-      <b><a href="mailto:#if($poistet.sahkopostiosoite)$poistet.sahkopostiosoite#end">
-             $poistet.sukunimi, $poistet.etunimi</a></b>
-    </td>
-    <td>
-      <center><tt>$poistet.hetu</tt>
-    </td>
-    <td>
-      <center>$poistet.ilmo_jnro</center>
-    </td>
-    <td>
-      <center>
-        <input type="checkbox" name="palautettavat" value="${poistet.hetu}_${poistet.ryhma_nro}">
-    </td>   
-  </tr>
+    <tr>
+        <td>
+            <a href="mailto:#if($poistet.sahkopostiosoite)$poistet.sahkopostiosoite#end">
+                 $poistet.sukunimi, $poistet.etunimi
+            </a>
+        </td>
+        <td>
+            <tt>$poistet.hetu</tt>
+        </td>
+        <td>
+           $poistet.ilmo_jnro
+        </td>
+        <td>
+            <input type="checkbox" name="palautettavat" value="${poistet.hetu}_${poistet.ryhma_nro}">
+        </td>  
+    </tr>
 #end
-  <tr>
-    <th colspan="6">
-        <center>
-          <input type="submit" class="btn btn-success" value="$bundle.getString("palautaIso")">
-        </center>
-    </th>
-  </tr>
+  
+    <tr>
+        <th colspan="4" class="centerText">
+            <input type="submit" class="btn btn-success" value="$bundle.getString("palautaIso")">
+        </th>
+    </tr>
 </table>
 </form>
 

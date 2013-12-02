@@ -14,6 +14,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import view.util.OsallistujaMuutokset;
 
 /**
  *
@@ -42,7 +43,6 @@ public class OsallistuminenKyselyt {
 
     private static void asetaFiltterit(PreparedStatement ps, String sukunimi,
             String ryhmaFilter, String hetuFilter) throws SQLException {
-
         ps.setString(6, "%" + sukunimi + "%");
         ps.setString(7, "%" + hetuFilter + "%");
         try {
@@ -58,8 +58,8 @@ public class OsallistuminenKyselyt {
             Osallistuminen uusi = new Osallistuminen();
             SQLoader.resultRowToTable(rs, uusi);
             osallistumiset.add(uusi);
-            String etunimi = rs.getString("etunimi");
-            String sukunimi = rs.getString("sukunimi");
+            String etunimi = OsallistujaMuutokset.nimiFormaatti(rs.getString("etunimi"));
+            String sukunimi = OsallistujaMuutokset.nimiFormaatti(rs.getString("sukunimi"));
             uusi.setNimi(etunimi + " " + sukunimi);
             uusi.setEtunimi(etunimi);
             uusi.setSukunimi(sukunimi);

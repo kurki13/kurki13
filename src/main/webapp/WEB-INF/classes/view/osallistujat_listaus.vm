@@ -1,93 +1,79 @@
+#foreach($grp in $request.getParameterValues("vaihdettavat"))
+    $OsallistujaMuutokset.vaihdaRyhmaa($grp, $valittuKurssi, $request)
+#end
+
 #foreach($poistettava in $request.getParameterValues("poistettavat"))
-  $OsallistujaMuutokset.poistaKurssilta($poistettava, $valittuKurssi, $request)
+    $OsallistujaMuutokset.poistaKurssilta($poistettava, $valittuKurssi, $request)
 #end
 
-#foreach($grp in $request.getParameterValues("grp"))
-  $OsallistujaMuutokset.vaihdaRyhmaa($grp, $valittuKurssi, $request)
-#end
-
-#set($kurssinOsallistumiset = $OsallistuminenKyselyt.osallistumisetKurssilla($valittuKurssi))
-##filteröidään kurssin osallistumiset
-#if ($sukuFilter != "" && $hetuFilter != "")
-    #set ($filterit = "${sukuFilter},${hetuFilter}")
-#else
-    #set ($filterit = "${sukuFilter}${hetuFilter}")
-#end 
-$Filter.filterointi($request,$ryhmaFilter,$filterit,$kurssinOsallistumiset)
-#set ($osallistumiset = $Filter.getFilteroidyt())
+##filteröidään kurssin osallistumiset (huom. ei tarvitse filtteröintiä erikseen)
+#set($osallistumiset = $OsallistuminenKyselyt.voimassaKurssilla($valittuKurssi, $sukuFilter, $ryhmaFilter, $hetuFilter))
 
 #if($osallistumiset.size() == 0)
-  $SessioApuri.annaVirhe($request.getSession(), $bundle.getString("opeivastannut"))
+    $SessioApuri.annaVirhe($request.getSession(), $bundle.getString("opeivastannut"))
 #else
 
-<form name=poistaOpiskelijat action="" method=post >
-<table class="table table-condensed table-bordered" style="max-width:1000px">
-  <caption>
-   $bundle.getString("opvalittu") $osallistumiset.size()
-  </caption>
-  <tr>
-    <th> $bundle.getString("nimiSyntpva") </th>
-    <th> $bundle.getString("camelopnro") </th>
-    <th> $bundle.getString("ryhma") </th>
-    <th> $bundle.getString("suor") </th>
-    <th> $bundle.getString("poistaKurssilta") </th>
-    <th> $bundle.getString("naytaTiedot") </th>
-  </tr>
-
+<form name="RyhmaaPoistaOpiskelijat" action="" method="post">
+<table id="osallistujatietoTable" class="table table-condensed table-bordered">
+    <caption>
+        $bundle.getString("opvalittu") $osallistumiset.size()
+    </caption>
+    <tr>
+        <th> $bundle.getString("nimiSyntpva") </th>
+        <th> $bundle.getString("camelopnro") </th>
+        <th> $bundle.getString("ryhma") </th>
+        <th> $bundle.getString("suor") </th>
+        <th> $bundle.getString("poistaKurssilta") </th>
+        <th> $bundle.getString("naytaTiedot") </th>
+    </tr>
 
 #foreach($osallinen in $osallistumiset)
-  <tr>
-    <td>
-      <b><a href="mailto:">$osallinen.sukunimi, $osallinen.etunimi</a>
-        #if($osallinen.jaassa.equals('J'))<img src="images/kurkijaassa.gif">#end
-        #if($osallinen.jaassa.equals('S'))<img src="images/defrost.gif">#end
-      </b>
-    </td>
-    <td>
-      <center>
-        <tt>$osallinen.hetu</tt>
-      </center>
-    </td>
-    <td>
-        <center>
-        #if(!$osallinen.jaassa)
-          <select name="grp" class="form-control form-inline" style="width:70px">
-          #foreach($ryhma in $ryhmat)
-            <option 
-              #if($osallinen.ilmo_jnro==$ryhma) value="" selected 
-              #else value="${osallinen.hetu}_${osallinen.ryhma_nro}_${ryhma}" #end>
-              $ryhma
-            </option>
-          #end
-          </select>
-          #else <b> $osallinen.ilmo_jnro </b> #end
-        </center>
-    </td>
-    <td>
-      <center> #if($osallinen.suoritetuksia())X#end</center>
-    </td>
-    <td>
-        #if(!$osallinen.jaassa)
-          <center>
-            <input type="checkbox" name="poistettavat" value="${osallinen.hetu}_${osallinen.ryhma_nro}">
-          </center>
-        #end
-    </td>
-    <td>
-      <center>
-          <button name="hetuParam" type="submit" class="btn btn-primary" value=$osallinen.hetu> >>> </button>
-      </center>
-    </td>
-  </tr>
-  #end
+    <tr>
+        <td>
+            <a href="mailto:#if($osallinen.sahkopostiosoite)$osallinen.sahkopostiosoite#end">
+                $osallinen.sukunimi, $osallinen.etunimi
+            </a>
+            #if($osallinen.jaassa.equals('J'))<img src="images/kurkijaassa.gif">#end
+            #if($osallinen.jaassa.equals('S'))<img src="images/defrost.gif">#end
+        </td>
+        <td>
+            <tt>$osallinen.hetu</tt>
+        </td>
+        <td>
+            #if(!$osallinen.jaassa)
+            <select name="vaihdettavat" class="vaihdaRyhmaSelect form-control form-inline center">
+            #foreach($ryhma in $ryhmat) ##Kurssissa olevat ryhmävaihtoehdot
+                <option 
+                #if($osallinen.ilmo_jnro==$ryhma)
+                    value="" selected ##Ryhmää ei vaihdeta
+                #else 
+                    value="${osallinen.hetu}_${osallinen.ryhma_nro}_${ryhma}" 
+                #end>
+                    $ryhma
+                </option>
+            #end
+            </select>
+            #else <b> $osallinen.ilmo_jnro </b> #end ##jos on jäässä niin ei voi vaihtaa
+        </td>
+        <td>
+            #if($osallinen.suoritetuksia()) X #end
+        </td>
+        <td>
+            #if(!$osallinen.jaassa)
+                <input type="checkbox" name="poistettavat" value="${osallinen.hetu}_${osallinen.ryhma_nro}">
+            #end
+        </td>
+        <td>
+              <button name="hetuParam" type="submit" class="btn btn-primary" value=$osallinen.hetu> >>> </button>
+        </td>
+    </tr>
+#end
 
-  <tr>
-    <th colspan="6">
-      <center>
-        <input type="submit" class="btn btn-success" value="$bundle.getString("tallenMuutoksetIso")">
-      </center>
-    </th>
-  </tr>
+    <tr>
+        <th colspan="6" class="centerText">
+            <input type="submit" class="btn btn-success" value="$bundle.getString("tallenMuutoksetIso")">
+        </th>
+    </tr>
 </table>
 
 </form>

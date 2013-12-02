@@ -72,7 +72,7 @@ public class OsallistujaMuutokset {
                     annaVirhe(session, Lokalisaatio.bundle(rqst).getString("arvosanaVirheellinen"));
                 }
             } catch (NumberFormatException e) {
-                if (arv.equals("-") || arv.equals("+")) {
+                if (arv.equals("+") || arv.equals("-")) {
                     os.setArvosana(arv);
                 } else {
                     annaVirhe(session, Lokalisaatio.bundle(rqst).getString("arvosanaVirheellinen"));
@@ -195,5 +195,9 @@ public class OsallistujaMuutokset {
         } catch (Exception e) {
             SessioApuri.annaVirhe(request.getSession(), "Sulatus epäonnistui hetulle " + hetu);
         }
+    }
+    
+    public static String nimiFormaatti(String nimi){
+        return nimi.substring(0,1).toUpperCase().concat(nimi.substring(1, nimi.length()).toLowerCase());
     }
 }

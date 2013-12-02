@@ -1,4 +1,3 @@
-
 ##Parametreissa tulleet opiskelijat lisätään
 #foreach($lisattava in $request.getParameterValues("lisattavat"))
     #if($lisattava && !$lisattava.equals(""))
@@ -15,46 +14,42 @@
     $SessioApuri.annaVirhe($request.session,$virhe)
 #end
 
-<form action="" method="post" class="inline" style="margin:0;display:inline;" >
-<table class="table table-condensed table-bordered" style="max-width:1000px">
-  <caption>
-    $bundle.getString("opvalittu") $haetut.size()
-  </caption>
-  <tr>
-    <th> $bundle.getString("nimiSyntpva") </th>
-    <th> $bundle.getString("camelopnro") </th>
-    <th> $bundle.getString("ilmoitakurssille") </th>
-  </tr> 
-    
-  #foreach($opiskelija in $haetut)
-  <tr>
-    <td>
-      <b><a href="mailto:MAIL">$opiskelija.etunimi, $opiskelija.sukunimi</a></b>
-    </td>
-    <td>
-      <center>$opiskelija.hetu</center>
-    </td>
-    <td>
-      <center>
-         <select name="lisattavat" class="form-control form-inline" style="width:150px">
-         <option selected value="">$bundle.getString("eiKurssilla")</option>
-         #foreach($ryhma in $ryhmat)
-           <option value=${opiskelija.hetu}_${ryhma}>$ryhma</option>
-         #end
-         </select>
-      </center>  
-    </td>
-  </tr>
-  #end
+<form name="lisaaOpiskelijat" action="" method="post" >
+<table id="osallistujatietoTable" class="table table-condensed table-bordered">
+    <caption>
+        $bundle.getString("opvalittu") $haetut.size()
+    </caption>
+    <tr>
+        <th> $bundle.getString("nimiSyntpva") </th>
+        <th> $bundle.getString("camelopnro") </th>
+        <th> $bundle.getString("ilmoitakurssille") </th>
+    </tr> 
 
-  <tr>
-    <th colspan="6">
-      <center>
-        <input type="submit" class="btn btn-success" value="$bundle.getString("tallenMuutoksetIso")">
-      </center>
-    </th>
-  </tr>
+#foreach($opiskelija in $haetut)
+    <tr>
+        <td>
+            <a href="mailto:#if($opiskelija.sahkopostiosoite)$opiskelija.sahkopostiosoite#end">
+            $opiskelija.etunimi, $opiskelija.sukunimi
+            </a>
+        </td>
+        <td>
+            <tt>$opiskelija.hetu</tt>
+        </td>
+        <td>
+            <select name="lisattavat" class="lisaaRyhmaanSelect form-inline form-control center">
+            <option selected value="">$bundle.getString("eiKurssilla")</option>
+            #foreach($ryhma in $ryhmat)
+                <option value=${opiskelija.hetu}_${ryhma}>$ryhma</option>
+            #end
+            </select>
+        </td>
+    </tr>
+#end
+
+    <tr>
+        <th colspan="3" class="centerText">
+            <input type="submit" class="btn btn-success" value="$bundle.getString("tallenMuutoksetIso")">
+        </th>
+    </tr>
 </table>
-
-
- </form>    
+</form>    
