@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package debug.model.osasuoritukset;
+package model.osasuoritukset;
 
 import model.osasuoritukset.Osasuoritus;
 import model.osasuoritukset.OsasuoritusIterator;

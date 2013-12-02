@@ -30,11 +30,11 @@ public class Lokalisaatio {
     private Locale locale = new Locale("fi");
     private HttpServletRequest rq;
 
-    public void setRequest(HttpServletRequest request) {
+    private void setRequest(HttpServletRequest request) {
         this.rq = request;
     }
 
-    public void setLocale(Locale locale) {
+    private void setLocale(Locale locale) {
         this.locale = locale;
     }
 

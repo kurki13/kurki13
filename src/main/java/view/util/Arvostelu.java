@@ -49,7 +49,7 @@ public class Arvostelu {
              * Suorituspäivämäärän asetus
              */
             if (!suoritusPvm.equals("")) {
-                suoritusPvm = Suorituspaivamaara.tarkastaSuorituspvm(kurssi, suoritusPvm, request);
+                suoritusPvm = Suorituspaivamaara.tarkastaSuorituspvm(kurssi, suoritusPvm, request.getSession(), Lokalisaatio.bundle(request));
                 if (suoritusPvm != null) {
                     kurssi.setValue(Kurssi.suoritus_pvm, java.sql.Date.valueOf(suoritusPvm));
                 } else {
@@ -90,7 +90,7 @@ public class Arvostelu {
             if (ht_oshyv >= 0 && ht_oshyv <= kurssi.getHarjoitustyoRajat().getMaxPisteetYhteensa()) {
                 kurssi.setValue(Kurssi.min_harjoitustyopisteet_summa, ht_oshyv);
             } else {
-                SessioApuri.annaVirhe(session, Lokalisaatio.bundle(request).getString("hthyvrajavali") + " 0-" + kurssi.getHarjoitustyoRajat().getMaxPisteetYhteensa());
+                SessioApuri.annaVirhe(session, Lokalisaatio.bundle(request).getString("hthyvrajavali") + kurssi.getHarjoitustyoRajat().getMaxPisteetYhteensa());
             }
 
             if (koe_oshyv >= 0 && koe_oshyv <= kurssi.getKoeRajat().getMaxPisteetYhteensa()) {
@@ -127,7 +127,7 @@ public class Arvostelu {
             if (arvostelutapa >= 0 && arvostelutapa <= 9) {
                 kurssi.setValue(Kurssi.laskentakaava, arvostelutapa);
             } else {
-                SessioApuri.annaVirhe(session, Lokalisaatio.bundle(request).getString("arvtavaksitaytyyantaa") + " 1-9");
+                SessioApuri.annaVirhe(session, Lokalisaatio.bundle(request).getString("arvtavaksitaytyyantaa"));
             }
             try {
                 SQLoader.tallennaKantaan(kurssi);
