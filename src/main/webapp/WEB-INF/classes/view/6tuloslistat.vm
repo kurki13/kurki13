@@ -1,9 +1,6 @@
 #parse("top.vm")
 <h1>$bundle.getString("6resultlist")</h1>
 
-$request.setCharacterEncoding("UTF-8")
-$response.setCharacterEncoding("UTF-8")
-
 #if($session.getAttribute('selected_course_id'))
     #set ($valittuKurssi = $KurssiKyselyt.kurssiIDlla($session.getAttribute('selected_course_id')))
 #end
