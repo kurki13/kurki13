@@ -2,6 +2,8 @@
 $Konfiguraatio.lataaKonfiguraatio($request)
 ##Ensin tarkastetaan että kurssit on ladattu sessiomuuttujaan
 $SessioApuri.auta($request)
+$request.setCharacterEncoding("UTF-8")
+$response.setCharacterEncoding("UTF-8")
 ##Lokalisaatiobundlen asetus
 #set($bundle = $Lokalisaatio.bundle($request))
 ##Parametrit käytettäviksi
