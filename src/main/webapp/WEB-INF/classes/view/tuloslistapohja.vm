@@ -100,10 +100,13 @@ $response.setCharacterEncoding("UTF-8")
 
 #parse('tuloslista/arvosanajakauma_allekirj.vm')
 
-#if($request.getParameter("inc_statistics") == "on")
+#if($Tuloslistat.tilastoja.active)
+    <p>
     #set ($osallistumisia = 0)
     #set ($arvosteltu = 0)
     #set ($kokeessa = 0)
+    #set ($hyvaksyttyja = 0)
+    #set ($hylattyja = 0)
     #foreach ($osallistuminen in $osallistumiset)
         #if ($osallistuminen.voimassa == "K")
             #set ($osallistumisia = $osallistumisia + 1)
@@ -114,11 +117,20 @@ $response.setCharacterEncoding("UTF-8")
          #if ($osallistuminen.koepisteet_summa > 0)         
             #set ($kokeessa = $kokeessa + 1)
         #end
-    #end
+        #if ($osallistuminen.arvosana == "1"||$osallistuminen.arvosana == "2"||$osallistuminen.arvosana == "3"||$osallistuminen.arvosana == "4"||$osallistuminen.arvosana == "5"||$osallistuminen.arvosana == "+")
+            #set ($hyvaksyttyja = $hyvaksyttyja + 1)
+        #end
+        #if ($osallistuminen.arvosana == "-"||$osallistuminen.arvosana == "0")         
+            #set ($hylattyja = $hylattyja + 1)
+        #end
+#end
     $bundle.getString("tilastoja")<br>
     $bundle.getString("ilmonneita"): $osallistumisia<br>
     $bundle.getString("osallistuneita"): $arvosteltu<br>
     $bundle.getString("kokeessa"): $kokeessa<br>
+    $bundle.getString("hyvaksyttyja"): $hyvaksyttyja<br>    
+    $bundle.getString("hylattyja"): $hylattyja<br>
+    </p>
 #end
 
 #if ($Tuloslistat.hylatyt.active)
