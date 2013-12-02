@@ -21,7 +21,8 @@ $response.setCharacterEncoding("UTF-8")
 #parse('tuloslista/otsikko.vm')
 
 #if ($Tuloslistat.hyvaksytyt.active)
-    <br>$bundle.getString("hyvaksytyt")<br>
+    <p>
+    <br>$bundle.getString("hyvaksytyt")
     <table class="table table-bordered table-condensed"  style="font-size: 90%;width: auto">
         <tr>
                #if($Tuloslistat.opiskelijanumero.active)
@@ -96,6 +97,7 @@ $response.setCharacterEncoding("UTF-8")
          </tr>
         #end
     </table>
+    </p>
 #end
 
 #parse('tuloslista/arvosanajakauma_allekirj.vm')
@@ -139,7 +141,7 @@ $response.setCharacterEncoding("UTF-8")
     #foreach ($osallistuminen in $osallistumiset)
          #if ($osallistuminen.arvosana == "-"||$osallistuminen.arvosana == "0")
             <br>#if($request.getParameter("inc_ssn") == "on")$osallistuminen.hetu &emsp;#end
-            $osallistuminen.sukunimi, $osallistuminen.etunimi #if($request.getParameter("inc_grade") == "on")<td>$osallistuminen.arvosana</td>#end
+            $osallistuminen.sukunimi, $osallistuminen.etunimi
          #end
     #end
     </p>
