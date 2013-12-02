@@ -4,24 +4,22 @@
  */
 package model.osasuoritukset;
 
-import model.osasuoritukset.Osasuoritus;
-import model.osasuoritukset.OsasuoritusIterator;
-import model.Kurssi;
-import model.Osallistuminen;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import org.junit.Before;
+import model.Kurssi;
+import model.Osallistuminen;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.Before;
 
 /**
  *
  * @author esaaksvu
  */
 public class OsasuoritusIteratorTest {
-    
-    int max_lkm= 10;
+
+    int max_lkm = 10;
     String max = "10,??,??,??,??-??,??,??,??,??-??,??,??,??,??-??,??,??";
     String done = "5,??,??,??,??-??,??,??,??,??-??,??,??,??,??-??,??,??";
     Kurssi k;
@@ -42,12 +40,12 @@ public class OsasuoritusIteratorTest {
 
     @Test
     public void testHasNext() {
-        List<Osasuoritus> l  = new ArrayList();
+        List<Osasuoritus> l = new ArrayList();
         l.add(new Osasuoritus(1, 2));
         l.add(new Osasuoritus(2, 2));
         l.add(new Osasuoritus(2, 2));
         OsasuoritusIterator osi = new OsasuoritusIterator(l, 1);
-        int i =0;
+        int i = 0;
         for (Iterator<Osasuoritus> it = osi; it.hasNext(); osi.next()) {
             i++;
         }

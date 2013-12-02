@@ -7,9 +7,9 @@
 ##Osasuoritustyyppien tiedot. Lista jonka alkioina on osasuoritustyypin nimi, 
 ##lista sen osasuorituksista, ja lyhenne GET-parametria varten
 #set($osasuoritusTyypit = [
-    ["Laskuharjoitus", $valittuKurssi.laskariRajat, "lh"],
-    ["Harjoitustyö", $valittuKurssi.harjoitustyoRajat, "ht"],
-    ["Koe", $valittuKurssi.koeRajat, "koe"]
+    [$bundle.getString("laskuharjoituksia"), $valittuKurssi.laskariRajat, "lh"],
+    [$bundle.getString("harjoitustoita"), $valittuKurssi.harjoitustyoRajat, "ht"],
+    [$bundle.getString("kokeita"), $valittuKurssi.koeRajat, "koe"]
 ]
 )
 

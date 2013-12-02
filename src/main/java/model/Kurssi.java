@@ -83,60 +83,54 @@ public class Kurssi extends Table {
     public static final StringColumn kotisivu = new StringColumn("kotisivu");
     public static final IntegerColumn periodi2 = new IntegerColumn("periodi2");
 
-
     //<editor-fold defaultstate="collapsed" desc="setters">
-    
-    public  void setLaskarikerta_lkm(Integer laskarikerta_lkm) {
+    public void setLaskarikerta_lkm(Integer laskarikerta_lkm) {
         this.setValue(Kurssi.laskarikerta_lkm, laskarikerta_lkm);
-	laskariRajat.setAktiivisia(laskarikerta_lkm);
+        laskariRajat.setAktiivisia(laskarikerta_lkm);
     }
 
-    public  void setPakolliset_laskaritehtava_lkm(Integer pakolliset_laskaritehtava_lkm) {
-         this.setValue(Kurssi.pakolliset_laskaritehtava_lkm, pakolliset_laskaritehtava_lkm);
+    public void setPakolliset_laskaritehtava_lkm(Integer pakolliset_laskaritehtava_lkm) {
+        this.setValue(Kurssi.pakolliset_laskaritehtava_lkm, pakolliset_laskaritehtava_lkm);
     }
 
-
-    public  void setMax_laskaripisteet(Integer max_laskaripisteet) {
-         this.setValue(Kurssi.max_laskaripisteet, max_laskaripisteet);
+    public void setMax_laskaripisteet(Integer max_laskaripisteet) {
+        this.setValue(Kurssi.max_laskaripisteet, max_laskaripisteet);
     }
 
-
-    public  void setHarjoitustyo_lkm(Integer aHarjoitustyo_lkm) {
-         this.setValue(Kurssi.harjoitustyo_lkm,aHarjoitustyo_lkm);
-	 harjoitustyoRajat.setAktiivisia(aHarjoitustyo_lkm);
+    public void setHarjoitustyo_lkm(Integer aHarjoitustyo_lkm) {
+        this.setValue(Kurssi.harjoitustyo_lkm, aHarjoitustyo_lkm);
+        harjoitustyoRajat.setAktiivisia(aHarjoitustyo_lkm);
     }
 
-    public  void setPakolliset_harjoitustyo_lkm(Integer aPakolliset_harjoitustyo_lkm) {
-         this.setValue(Kurssi.pakolliset_harjoitustyo_lkm,aPakolliset_harjoitustyo_lkm);
+    public void setPakolliset_harjoitustyo_lkm(Integer aPakolliset_harjoitustyo_lkm) {
+        this.setValue(Kurssi.pakolliset_harjoitustyo_lkm, aPakolliset_harjoitustyo_lkm);
     }
 
-    public  void setHarjoitustyopisteet(Integer aHarjoitustyopisteet) {
-         this.setValue(Kurssi.harjoitustyopisteet,aHarjoitustyopisteet);
+    public void setHarjoitustyopisteet(Integer aHarjoitustyopisteet) {
+        this.setValue(Kurssi.harjoitustyopisteet, aHarjoitustyopisteet);
     }
 
-
-    public  void setValikokeet_lkm(Integer aValikokeet_lkm) {
-         this.setValue(Kurssi.valikokeet_lkm,aValikokeet_lkm);
-	 koeRajat.setAktiivisia(aValikokeet_lkm);
+    public void setValikokeet_lkm(Integer aValikokeet_lkm) {
+        this.setValue(Kurssi.valikokeet_lkm, aValikokeet_lkm);
+        koeRajat.setAktiivisia(aValikokeet_lkm);
     }
 
-    public  void setPakolliset_koe_lkm(Integer aPakolliset_koe_lkm) {
-         this.setValue(Kurssi.pakolliset_koe_lkm,aPakolliset_koe_lkm);
+    public void setPakolliset_koe_lkm(Integer aPakolliset_koe_lkm) {
+        this.setValue(Kurssi.pakolliset_koe_lkm, aPakolliset_koe_lkm);
     }
-    
+
     public void setArvosteluasteikko(String arv_asteikko) {
         this.setValue(Kurssi.arvostellaanko, arv_asteikko);
     }
-    
+
     public void setSuoritus_pvm(Date suoritusPvm) {
         this.setValue(Kurssi.suoritus_pvm, suoritusPvm);
     }
-    
+
     public void setPaattymis_pvm(Date paattymisPvm) {
         this.setValue(Kurssi.paattymis_pvm, paattymisPvm);
     }
     //</editor-fold>
-    
     OsasuoritusRajat laskariRajat;
     OsasuoritusRajat harjoitustyoRajat;
     OsasuoritusRajat koeRajat;
@@ -171,10 +165,11 @@ public class Kurssi extends Table {
         }
         return koeRajat;
     }
-    
+
     /**
-     * Valmistaa kurssin tallennusta varten. Kurssin osasuoritusten rajat on tulkittu apuolioiksi, joten ne
-     * täytyy ennen tallennusta muuttaa takaisin tietokannassa olevaan muotoon.
+     * Valmistaa kurssin tallennusta varten. Kurssin osasuoritusten rajat on
+     * tulkittu apuolioiksi, joten ne täytyy ennen tallennusta muuttaa takaisin
+     * tietokannassa olevaan muotoon.
      */
     @Override
     public void update() {
@@ -195,7 +190,13 @@ public class Kurssi extends Table {
      * @return
      */
     public String listaString() {
-        return getValue(Kurssi.nimi) + " [" + getValue(Kurssi.alkamis_pvm) + "] " + getValue(Kurssi.tyyppi);
+        String alkamispvm = "";
+        String jaassa = "";
+        if (getValue(Kurssi.alkamis_pvm) != null) {
+            alkamispvm = " [" + getValue(Kurssi.tyyppi) + getValue(Kurssi.alkamis_pvm).toString().substring(2, 4) + "]";
+        }
+        if (getValue(Kurssi.tila).equals("J")) jaassa="* ";
+        return jaassa + getValue(Kurssi.nimi) + alkamispvm;
     }
 
     /**

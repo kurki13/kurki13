@@ -46,21 +46,23 @@ public class OsasuoritusRajat implements Iterable<OsasuoritusRaja> {
     public void setAktiivisia(int aktiivisia) {
         this.aktiivisia = aktiivisia;
     }
-    
+
     public int getAktiivisia() {
         return this.aktiivisia;
     }
 
     //TODO: Is prepared for nulls?
     public OsasuoritusRajat(String minstring, String maxstring, int aktiivisia) {
-        this.aktiivisia = aktiivisia;
-        int[] mins = Muotoilija.stringToIntArray(minstring);
-        int[] max = Muotoilija.stringToIntArray(maxstring);
-        for (int i = 0; i < Muotoilija.MAX_KOKO; i++) {
-            try {
-                osasuoritusrajat.add(new OsasuoritusRaja(mins[i], max[i]));
-            } catch (IndexOutOfBoundsException ie) {
-                osasuoritusrajat.add(new OsasuoritusRaja(Muotoilija.EMPTY, Muotoilija.EMPTY));
+        if (minstring != null && maxstring != null) {
+            this.aktiivisia = aktiivisia;
+            int[] mins = Muotoilija.stringToIntArray(minstring);
+            int[] max = Muotoilija.stringToIntArray(maxstring);
+            for (int i = 0; i < Muotoilija.MAX_KOKO; i++) {
+                try {
+                    osasuoritusrajat.add(new OsasuoritusRaja(mins[i], max[i]));
+                } catch (IndexOutOfBoundsException ie) {
+                    osasuoritusrajat.add(new OsasuoritusRaja(Muotoilija.EMPTY, Muotoilija.EMPTY));
+                }
             }
         }
     }

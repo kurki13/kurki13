@@ -4,7 +4,6 @@
  */
 package model.osasuoritukset;
 
-import model.osasuoritukset.Osasuoritus;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -13,7 +12,7 @@ import static org.junit.Assert.*;
  * @author esaaksvu
  */
 public class OsasuoritusTest {
-    
+
     @Test
     public void testSetPisteet() {
         int pisteet = 10;
@@ -21,7 +20,7 @@ public class OsasuoritusTest {
         instance.setPisteet(pisteet);
         assertEquals(pisteet, instance.getPisteet());
     }
-    
+
     public void testSetSuurempiKuinMax() {
         int pisteet = 100;
         Osasuoritus instance = new Osasuoritus(0, 10);
@@ -42,5 +41,4 @@ public class OsasuoritusTest {
         instance.poistaPisteet();
         assertEquals(instance.getPisteet(), -1);
     }
-   
 }

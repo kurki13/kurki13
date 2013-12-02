@@ -19,7 +19,7 @@
         $bundle.getString("opvalittu") $osallistumiset.size()
     </caption>
     <tr>
-        <th> $bundle.getString("nimiSyntpva") </th>
+        <th> $bundle.getString("isonimi") </th>
         <th> $bundle.getString("camelopnro") </th>
         <th> $bundle.getString("ryhma") </th>
         <th> $bundle.getString("suor") </th>

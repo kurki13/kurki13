@@ -20,7 +20,7 @@
         $bundle.getString("opvalittu") $haetut.size()
     </caption>
     <tr>
-        <th> $bundle.getString("nimiSyntpva") </th>
+        <th> $bundle.getString("isonimi") </th>
         <th> $bundle.getString("camelopnro") </th>
         <th> $bundle.getString("ilmoitakurssille") </th>
     </tr> 

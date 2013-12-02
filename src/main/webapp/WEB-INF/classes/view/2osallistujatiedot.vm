@@ -37,7 +37,7 @@
     #if(!$toiminto.equals("osallistujat_lisaa.vm")) ##ei näytetä ryhmää opiskelijoita lisättäessä
         <label for="ryhma">$bundle.getString("ryhma") <br>
             <select name="filterRyhma" id="ryhma" class="form-control form-inline ryhmaSelectbox">
-                <option value="" selected>Kaikki</option>
+                <option value="" selected>$bundle.getString("kaikki")</option>
                 #foreach($ryhma in $ryhmat)
                     <option #if($ryhmaFilter && $ryhma==$ryhmaFilter)selected#end value=$ryhma>$ryhma</option>
                 #end
