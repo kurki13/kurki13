@@ -12,7 +12,6 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -51,12 +50,11 @@ public class Suorituspaivamaara {
     * 
     * @param kurssi Kurssi, jonka suorituspäivämäärän kelvollisuutta tarkastetaan
     * @param suoritusPvm Kurssin suorituspäivämäärä
-    * @param request 
+    * @param istunto Käyttäjän istunto
+    * @param bundle Lokalisaatio työkalu
     * @return Kurssin suorituspäivämäärä muodossa (vvvv-kk-pp)
     */
-    public static String tarkastaSuorituspvm(Kurssi kurssi, String suoritusPvm, HttpServletRequest request) {
-        HttpSession istunto = request.getSession();
-        Lokalisaatio bundle = Lokalisaatio.bundle(request);
+    public static String tarkastaSuorituspvm(Kurssi kurssi, String suoritusPvm, HttpSession istunto, Lokalisaatio bundle) {
         
         try {
             if (!tarkastaSuorituspvmnMuoto(suoritusPvm, kurssi, istunto, bundle)) {
@@ -261,7 +259,7 @@ public class Suorituspaivamaara {
      * @return Asetettu yläraja
      * @throws NullPointerException Kurssille ei ole asetettu päättymispäivämäärää tietokantaan
      */
-    private static Calendar asetaSuorituspvmlleYlaraja(Kurssi kurssi) throws NullPointerException {
+    public static Calendar asetaSuorituspvmlleYlaraja(Kurssi kurssi) throws NullPointerException {
         Calendar paattymisPaiva = Calendar.getInstance();
         paattymisPaiva.setTime(kurssi.getPaattymis_pvm());
         Calendar ylaraja;
@@ -285,7 +283,7 @@ public class Suorituspaivamaara {
      * @throws NullPointerException Syöte null
      * @throws NumberFormatException Syöte väärässä muodossa
      */
-    private static String vaihdaPvmnMuotoa(String pvm) throws IndexOutOfBoundsException, NullPointerException, NumberFormatException {
+    public static String vaihdaPvmnMuotoa(String pvm) throws IndexOutOfBoundsException, NullPointerException, NumberFormatException {
         int[] paivamaara = parsiPaivamaaraSyote(pvm);
         String palautus = paivamaara[2] + "-" + paivamaara[1] + "-" + paivamaara[0];
         return palautus;
