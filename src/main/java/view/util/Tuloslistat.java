@@ -140,7 +140,11 @@ public class Tuloslistat {
          * @return the otsikkodefault
          */
         public String getOtsikkodefault() {
-            return otsikkodefault;
+            String r = Lokalisaatio.bundle(request).getString(otsikkodefault);
+            if (r == null) {
+                return "";
+            }
+            return r;
         }
         
         public boolean isActive() {
@@ -203,74 +207,74 @@ public class Tuloslistat {
                 (true),
                 "inc_ssn",
                 "opnro",
-                null,
-                null);
+                "inc_opnroheader",
+                "tl.opnro");
         harjoitustyot_eriteltyina = new Kohta(
                 (kurssi.getHarjoitustyo_lkm() > 1),
                 "inc_htsep",
                 "htpsterit",
                 "inc_htsepname",
-                "Työt");
+                "tl.tyot");
         valikokeet_eriteltyina = new Kohta(
                 (kurssi.getValikokeet_lkm() > 1),
                 "inc_koesep",
                 "koepsterit",
                 "inc_koesepname",
-                "Kokeet");
+                "tl.kokeet");
         laskarit_summa = new Kohta(
                 (kurssi.getLaskarikerta_lkm() > 0),
                 "inc_lhsum",
                 "lhtpsum",
                 "inc_lhsumname",
-                "Laskarit");
+                "tl.lhsum");
         harjoitustyot_summa = new Kohta(
                 (kurssi.getHarjoitustyo_lkm() > 0),
                 "inc_htsum",
                 "htpstsum",
                 "inc_htsumname",
-                "Ht?");
+                "tl.htsum");
         kokeet_summa = new Kohta(
                 (kurssi.getValikokeet_lkm() > 0),
                 "inc_koesum",
                 "koepstsum",
                 "inc_koesumname",
-                "Koe_Sum");
+                "tl.koesum");
         laskarit_lisapisteet = new Kohta(
                 (kurssi.getLaskarikerta_lkm() > 0),
                 "inc_lhlp",
                 "lhlpst",
                 "inc_lhlpname",
-                "Lask_lisäp");
+                "tl.lhlp");
         harjoitustyot_lisapisteet = new Kohta(
                 (kurssi.getHarjoitustyo_lkm() > 0),
                 "inc_htlp",
                 "htlpst",
                 "inc_htlpname",
-                "Ht_lisäp");
+                "tl.htlp");
         yhteispisteet = new Kohta(
                 (true),
                 "inc_sum",
                 "yhtpst",
                 "inc_sumname",
-                "Yhteisp.");
+                "tl.yht");
         arvosana = new Kohta(
                 (true),
                 "inc_grade",
                 "Arvosana",
                 "inc_gradename",
-                "Arvos");
+                "tl.arvos");
         opintopisteet = new Kohta(
                 (true),
                 "inc_crunits",
                 "Opintopisteet",
                 "inc_cruname",
-                "Opintopisteet");
+                "tl.op");
         kieli = new Kohta(
                 (true),
                 "inc_language",
                 "kieli",
                 "inc_languagename",
-                "kieli");
+                "tl.kieli");
         tilastoja = new Kohta(
                 (true),
                 "inc_statistics",

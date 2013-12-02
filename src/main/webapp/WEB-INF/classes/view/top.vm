@@ -14,7 +14,7 @@ $SessioApuri.auta($request)
     <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
     <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 
-    <META charset='utf-8'/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>KURKI</title>
 
     <link href="style/bootstrap/css/bootstrap.css" rel="stylesheet">

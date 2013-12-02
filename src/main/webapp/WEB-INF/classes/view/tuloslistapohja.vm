@@ -1,6 +1,6 @@
 <html>
 <head>
-    <META charset='utf-8'/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>KURKI</title>
     <link href="style/bootstrap/css/bootstrap.css" rel="stylesheet">
     <link href="style/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
@@ -8,10 +8,13 @@
         body {
             font-size: 11px;
         }
+        .table {
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
     </style>
 </head>
 <body>
-
 
 #parse('tuloslista/otsikko.vm')
 
@@ -20,9 +23,9 @@
     <table class="table table-bordered table-condensed"  style="font-size: 90%;width: auto">
         <tr>
                #if($Tuloslistat.opiskelijanumero.active)
-                <th></th>
+                <th>$Tuloslistat.opiskelijanumero.otsikko</th>
             #end
-            <th></th>
+            <th>$bundle.getString('tl.nimi')</th>
             #if($Tuloslistat.valikokeet_eriteltyina.active)
                 #set($c = $valittuKurssi.valikokeet_lkm )
                 <th colspan="$c">$Tuloslistat.valikokeet_eriteltyina.otsikko</th>
@@ -106,14 +109,9 @@
             #set ($arvosteltu = $arvosteltu + 1)
         #end
     #end
-    $osallistumisia
-    $arvosteltu
-
 #end
 
-#set ($lol = $request.getParameterNames())
-
-#if ($request.getParameter("inc_failed") == "on")
+#if ($Tuloslistat.hylatyt.active)
     <p>    
     $bundle.getString("isohylatyt")<br>
     #foreach ($osallistuminen in $osallistumiset)
@@ -124,20 +122,6 @@
     #end
     </p>
 #end
-
-#set ($lol = $request.getParameterNames())
-<p>
-<b><br>Nimet:<br></b>
-#foreach ($hihi in $lol)
-$hihi<br>
-#end
-<b>Values:<br></b>
-$request.getParameter("filter")
-$request.getParameter("ltype")
-$request.getParameter("inc_sum")
-$request.getParameter("inc_koesum")
-$request.getParameter("inc_accepted")
-</p>
 </div>
 </body>
 </html>
