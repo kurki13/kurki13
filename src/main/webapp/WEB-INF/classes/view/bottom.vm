@@ -38,14 +38,15 @@
     if(viesti!=null) ilmoitus.appendChild(viesti)
     if(virhe!=null) ilmoitus.appendChild(virhe)
 
-    function rangeChecker(kentta, min, max) {
+    function rangeChecker(kentta, min, max, alkuperainenArvo) {
         var arvo = kentta.value;
         if(min > arvo || max < arvo) {
             kentta.style.borderColor = "Red";
-        } else if (arvo == '+' || kentta.value == "" || (min <= arvo || max >= arvo)) {
+        } else if ((arvo == '+' || arvo == "" || (min <= arvo || max >= arvo)) && arvo != alkuperainenArvo) {
             kentta.style.borderColor = "Green";
         } else { 
-            kentta.value = "";
+            ##tyhjä tai tää
+            kentta.value = alkuperainenArvo;
         }
     }
 

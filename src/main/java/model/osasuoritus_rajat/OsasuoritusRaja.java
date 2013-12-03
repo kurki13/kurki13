@@ -35,7 +35,7 @@ public class OsasuoritusRaja {
     }
 
     public boolean setMin(int min) {
-        if (this.min == min || this.max < min) {
+        if (this.min == min || this.max < min || this.min < -1) {
             return false;
         }
         this.min = min;
@@ -43,7 +43,7 @@ public class OsasuoritusRaja {
     }
 
     public boolean setMax(int max) {
-        if (this.max == max || max > Muotoilija.MAX_PISTE) {
+        if (this.max == max || max > Muotoilija.MAX_PISTE || this.max < -1) {
             return false;
         }
         this.max = max;

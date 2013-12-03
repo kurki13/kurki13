@@ -150,6 +150,4 @@
 </div>
 #end
 
-##valittu $request.getParameter('lisääTähänNimi')
-
 #parse("bottom.vm")

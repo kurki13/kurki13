@@ -11,18 +11,27 @@
 #set($Integer = 0)
 
 ##Laskareiden get-parametrit
-    #set($lh = $params.getParameter('lh'))
+    #set($lh = $request.getParameter('lh'))
     #set($lh_p = $request.getParameter('lh_p'))
     #set($lh_lp = $request.getParameter('lh_lp'))
     #set($arv_asteikko = $request.getParameter('arvosteluasteikko'))
     #if($lh)
-        $valittuKurssi.setLaskarikerta_lkm($Integer.parseInt($lh))
+        #if (!$valittuKurssi.setLaskarikerta_lkm($lh))
+          #set ($virhe = $bundle.getString("virheellinenArvo")+' "'+$lh+'". '+$bundle.getString("laskuharjoituksia")+' '+$bundle.getString("arvoValilta")+' 0 - 18')
+          $SessioApuri.annaVirhe($request.getSession(), $virhe)
+        #end
     #end
     #if($lh_p)
-        $valittuKurssi.setPakolliset_laskaritehtava_lkm($Integer.parseInt($lh_p))
+        #if (!$valittuKurssi.setPakolliset_laskaritehtava_lkm($lh_p, $valittuKurssi.getLaskarikerta_lkm()))
+          #set ($virhe = $bundle.getString("virheellinenArvo")+' "'+$lh_p+'". '+$bundle.getString("laskuharjoituksia")+' '+$bundle.getString("jpakollisia")+' '+$bundle.getString("arvoValilta")+' 0 - '+$valittuKurssi.getLaskarikerta_lkm())
+          $SessioApuri.annaVirhe($request.getSession(), $virhe)
+        #end
     #end
     #if($lh_lp)
-        $valittuKurssi.setMax_laskaripisteet($Integer.parseInt($lh_lp))
+        #if (!$valittuKurssi.setMax_laskaripisteet($lh_lp))
+          #set ($virhe = $bundle.getString("virheellinenArvo")+' "'+$lh_lp+'". '+$bundle.getString("laskuharjoituksia")+' '+$bundle.getString("lisapisteet")+' '+$bundle.getString("arvoValilta")+' 0 - 60')
+          $SessioApuri.annaVirhe($request.getSession(), $virhe)
+        #end
     #end
 
 ##Harjoitustöiden get-parametrit
@@ -30,26 +39,44 @@
     #set($ht_p = $request.getParameter('ht_p'))
     #set($ht_lp = $request.getParameter('ht_lp'))
     #if($ht)
-        $valittuKurssi.setHarjoitustyo_lkm($Integer.parseInt($ht))
+        #if (!$valittuKurssi.setHarjoitustyo_lkm($ht))
+          #set ($virhe = $bundle.getString("virheellinenArvo")+' "'+$ht+'". '+$bundle.getString("harjoitustoita")+' '+$bundle.getString("arvoValilta")+' 0 - 18')
+          $SessioApuri.annaVirhe($request.getSession(), $virhe)
+        #end
     #end
     #if($ht_p)
-        $valittuKurssi.setPakolliset_harjoitustyo_lkm($Integer.parseInt($ht_p))
+        #if (!$valittuKurssi.setPakolliset_harjoitustyo_lkm($ht_p, $valittuKurssi.getHarjoitustyo_lkm()))
+          #set ($virhe = $bundle.getString("virheellinenArvo")+' "'+$ht_p+'". '+$bundle.getString("harjoitustoita")+' '+$bundle.getString("jpakollisia")+' '+$bundle.getString("arvoValilta")+' 0 - '+$valittuKurssi.getHarjoitustyo_lkm())
+          $SessioApuri.annaVirhe($request.getSession(), $virhe)
+        #end
     #end
     #if($ht_lp)
-        $valittuKurssi.setHarjoitustyopisteet($Integer.parseInt($ht_lp))
+        #if (!$valittuKurssi.setHarjoitustyopisteet($ht_lp))
+            #set ($virhe = $bundle.getString("virheellinenArvo")+' "'+$ht_lp+'". '+$bundle.getString("harjoitustoita")+' '+$bundle.getString("lisapisteet")+' '+$bundle.getString("arvoValilta")+' 0 - 60')
+          $SessioApuri.annaVirhe($request.getSession(), $virhe)
+        #end
     #end
 
 ##Kokeiden get-parametrit
     #set($koe = $request.getParameter('koe'))
     #set($koe_p = $request.getParameter('koe_p'))
     #if($koe)
-        $valittuKurssi.setValikokeet_lkm($Integer.parseInt($koe))
+        #if (!$valittuKurssi.setValikokeet_lkm($koe))
+          #set ($virhe = $bundle.getString("virheellinenArvo")+' "'+$koe+'". '+$bundle.getString("kokeita")+' '+$bundle.getString("arvoValilta")+' 0 - 18')
+          $SessioApuri.annaVirhe($request.getSession(), $virhe)
+        #end
     #end
     #if($koe_p)
-        $valittuKurssi.setPakolliset_koe_lkm($Integer.parseInt($koe_p))
+        #if (!$valittuKurssi.setPakolliset_koe_lkm($koe_p, $valittuKurssi.getValikokeet_lkm()))
+          #set ($virhe = $bundle.getString("virheellinenArvo")+' "'+$koe+'". '+$bundle.getString("kokeita")+' '+$bundle.getString("jpakollisia")+' '+$bundle.getString("arvoValilta")+' 0 - '+$valittuKurssi.getValikokeet_lkm())
+          $SessioApuri.annaVirhe($request.getSession(), $virhe)
+        #end
     #end
     #if($arv_asteikko)
-        $valittuKurssi.setArvosteluasteikko($arv_asteikko)
+        #if (!$valittuKurssi.setArvosteluasteikko($arv_asteikko))
+          #set ($virhe = $bundle.getString("vihreellinenAsteikko")+' "'+$arv_asteikko+'"')
+          $SessioApuri.annaVirhe($request.getSession(), $virhe)
+        #end
     #end
 
 ##Tallennetaan kurssi kantaan

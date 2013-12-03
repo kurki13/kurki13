@@ -83,43 +83,128 @@ public class Kurssi extends Table {
     public static final IntegerColumn periodi2 = new IntegerColumn("periodi2");
 
     //<editor-fold defaultstate="collapsed" desc="setters">
-    public void setLaskarikerta_lkm(Integer laskarikerta_lkm) {
-        this.setValue(Kurssi.laskarikerta_lkm, laskarikerta_lkm);
-        laskariRajat.setAktiivisia(laskarikerta_lkm);
+    public boolean setLaskarikerta_lkm(String laskarikerta_lkm) {
+        if (isInteger(laskarikerta_lkm)) {
+            int lkm = Integer.parseInt(laskarikerta_lkm);
+            if (lkm >= 0 && lkm <= 18) {
+                this.setValue(Kurssi.laskarikerta_lkm, lkm);
+                laskariRajat.setAktiivisia(lkm);
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
     }
 
-    public void setPakolliset_laskaritehtava_lkm(Integer pakolliset_laskaritehtava_lkm) {
-        this.setValue(Kurssi.pakolliset_laskaritehtava_lkm, pakolliset_laskaritehtava_lkm);
+    public boolean setPakolliset_laskaritehtava_lkm(String pakolliset_laskaritehtava_lkm, Integer lh_lkm) {
+        if (isInteger(pakolliset_laskaritehtava_lkm)) {
+            int lkm = Integer.parseInt(pakolliset_laskaritehtava_lkm);
+            if (lkm >= 0 && lkm <= 18 && lkm <= lh_lkm) {
+                this.setValue(Kurssi.pakolliset_laskaritehtava_lkm, lkm);
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
     }
 
-    public void setMax_laskaripisteet(Integer max_laskaripisteet) {
-        this.setValue(Kurssi.max_laskaripisteet, max_laskaripisteet);
+    public boolean setMax_laskaripisteet(String max_laskaripisteet) {
+        if (isInteger(max_laskaripisteet)) {
+            int max = Integer.parseInt(max_laskaripisteet);
+            if (max >= 0 && max <= 60) {
+                this.setValue(Kurssi.max_laskaripisteet, max);
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
     }
 
-    public void setHarjoitustyo_lkm(Integer aHarjoitustyo_lkm) {
-        this.setValue(Kurssi.harjoitustyo_lkm, aHarjoitustyo_lkm);
-        harjoitustyoRajat.setAktiivisia(aHarjoitustyo_lkm);
+    public boolean setHarjoitustyo_lkm(String aHarjoitustyo_lkm) {
+        if (isInteger(aHarjoitustyo_lkm)) {
+            int lkm = Integer.parseInt(aHarjoitustyo_lkm);
+            if (lkm >= 0 && lkm <= 18) {
+                this.setValue(Kurssi.harjoitustyo_lkm, lkm);
+                harjoitustyoRajat.setAktiivisia(lkm);
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
     }
 
-    public void setPakolliset_harjoitustyo_lkm(Integer aPakolliset_harjoitustyo_lkm) {
-        this.setValue(Kurssi.pakolliset_harjoitustyo_lkm, aPakolliset_harjoitustyo_lkm);
+    public boolean setPakolliset_harjoitustyo_lkm(String aPakolliset_harjoitustyo_lkm, Integer ht_lkm) {
+        if (isInteger(aPakolliset_harjoitustyo_lkm)) {
+            int lkm = Integer.parseInt(aPakolliset_harjoitustyo_lkm);
+            if (lkm >= 0 && lkm <= 18 && lkm <= ht_lkm) {
+                this.setValue(Kurssi.pakolliset_harjoitustyo_lkm, lkm);
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
     }
 
-    public void setHarjoitustyopisteet(Integer aHarjoitustyopisteet) {
-        this.setValue(Kurssi.harjoitustyopisteet, aHarjoitustyopisteet);
+    public boolean setHarjoitustyopisteet(String aHarjoitustyopisteet) {
+        if (isInteger(aHarjoitustyopisteet)) {
+            int lkm = Integer.parseInt(aHarjoitustyopisteet);
+            if (lkm >= 0 && lkm <= 60) {
+                this.setValue(Kurssi.harjoitustyopisteet, lkm);
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
     }
 
-    public void setValikokeet_lkm(Integer aValikokeet_lkm) {
-        this.setValue(Kurssi.valikokeet_lkm, aValikokeet_lkm);
-        koeRajat.setAktiivisia(aValikokeet_lkm);
+    public boolean setValikokeet_lkm(String aValikokeet_lkm) {
+        if (isInteger(aValikokeet_lkm)) {
+            int lkm = Integer.parseInt(aValikokeet_lkm);
+            if (lkm >= 0 && lkm <= 18) {
+                this.setValue(Kurssi.valikokeet_lkm, lkm);
+                koeRajat.setAktiivisia(lkm);
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
     }
 
-    public void setPakolliset_koe_lkm(Integer aPakolliset_koe_lkm) {
-        this.setValue(Kurssi.pakolliset_koe_lkm, aPakolliset_koe_lkm);
+    public boolean setPakolliset_koe_lkm(String aPakolliset_koe_lkm, Integer koe_lkm) {
+        if (isInteger(aPakolliset_koe_lkm)) {
+            int lkm = Integer.parseInt(aPakolliset_koe_lkm);
+            if (lkm >= 0 && lkm <= 18 && lkm <= koe_lkm) {
+                this.setValue(Kurssi.pakolliset_koe_lkm, lkm);
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return true;
+        }
     }
 
-    public void setArvosteluasteikko(String arv_asteikko) {
-        this.setValue(Kurssi.arvostellaanko, arv_asteikko);
+    public boolean setArvosteluasteikko(String arv_asteikko) {
+        if (arv_asteikko.equals("K") || arv_asteikko.equals("E")) {
+            this.setValue(Kurssi.arvostellaanko, arv_asteikko);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public void setSuoritus_pvm(Date suoritusPvm) {
@@ -165,6 +250,15 @@ public class Kurssi extends Table {
         return koeRajat;
     }
 
+    public static boolean isInteger(String s) {
+        try {
+            Integer.parseInt(s);
+        } catch (NumberFormatException e) {
+            return false;
+        }
+        return true;
+    }
+
     /**
      * Valmistaa kurssin tallennusta varten. Kurssin osasuoritusten rajat on
      * tulkittu apuolioiksi, joten ne täytyy ennen tallennusta muuttaa takaisin
@@ -194,7 +288,9 @@ public class Kurssi extends Table {
         if (getValue(Kurssi.alkamis_pvm) != null) {
             alkamispvm = " [" + getValue(Kurssi.tyyppi) + getValue(Kurssi.alkamis_pvm).toString().substring(2, 4) + "]";
         }
-        if (getValue(Kurssi.tila).equals("J")) jaassa="* ";
+        if (getValue(Kurssi.tila).equals("J")) {
+            jaassa = "* ";
+        }
         return jaassa + getValue(Kurssi.nimi) + alkamispvm;
     }
 
