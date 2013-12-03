@@ -22,7 +22,13 @@
     #if($kohta.ehto)
                 <tr>
                   <td>
-                    <input type="checkbox" name="$kohta.checkboxname" checked>
+                    #if ($kohta.checkboxname == "inc_ssn" || $kohta.checkboxname == "inc_statistics"
+                        || $kohta.checkboxname == "inc_gradeDistr" || $kohta.checkboxname == "inc_feedback"
+                        || $kohta.checkboxname == "inc_signature")
+                        <input type="checkbox" name="$kohta.checkboxname">
+                    #else
+                        <input type="checkbox" name="$kohta.checkboxname" checked>
+                    #end
                   </td>
                   <td nowrap>
                     $bundle.getString($kohta.bundlekey)
