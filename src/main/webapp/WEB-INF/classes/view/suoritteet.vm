@@ -76,8 +76,6 @@ $Filter.filterointi($request, $ryhma, $filterit, $kurssinOsallistumiset)
             ##lisätään radiobuttonien sallitut arvot listaan
             #set ($arvot = $Valitsin.sallitut)
 
-            ##lähetetään filteiröidytosallistumiset-sijaan lista opiskelijoista joiden suoritteita on muutettu!
-
             ##suoritusten tarkistus, onko muuttunut? Käsittelee myös muutetut arvot ja tallentaa kantaan
             $Suoritukset.muutosTarkistus($request, $Valitsin, $filteroidytOsallistumiset)
 
@@ -196,13 +194,7 @@ $Filter.filterointi($request, $ryhma, $filterit, $kurssinOsallistumiset)
 
         function check(value) {
             var sallitut = $Valitsin.sallitutJS
-            return sallitut.indexOf(value) != -1  if(!check(this.value)) {
-                                    alert(this.value + ' ei ole hyväksytty arvo.');
-                                    this.value='${valittuTyyppi}';
-                                    this.style.color='black';
-                                    setChecked('id${os.hetu}', this.value);
-                                    asteriskiSet('muutettu${os.hetu}', 'hidden');
-                                }"
+            return sallitut.indexOf(value) != -1
         }
 
         function setChecked(hetu, thisvalue){
@@ -230,3 +222,5 @@ $Filter.filterointi($request, $ryhma, $filterit, $kurssinOsallistumiset)
 #else
     $SessioApuri.annaVirhe($request.getSession(), $bundle.getString("opeivastannut"))
 #end
+
+#parse("bottom.vm")

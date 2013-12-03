@@ -70,7 +70,7 @@ public class Suoritukset {
                                     lisaaMuutettu(os, arvo);
                                 }
                             } else {
-                                SessioApuri.annaVirhe(request.getSession(), "Väärä toiminto " + tyyppi);
+                                SessioApuri.annaVirhe(request.getSession(), Lokalisaatio.bundle(request).getString("vaaraToiminto") + " " + tyyppi);
                                 return;
                             }
                         } else {
@@ -125,15 +125,15 @@ public class Suoritukset {
                                     lisaaMuutettu(os, arvo);
                                 }
                             } else {
-                                SessioApuri.annaVirhe(request.getSession(), "Väärä toiminto " + tyyppi);
+                                SessioApuri.annaVirhe(request.getSession(), Lokalisaatio.bundle(request).getString("vaaraToiminto") + " " + tyyppi);
                                 return;
                             }
                         }
                     } else {
-                        SessioApuri.annaVirhe(request.getSession(), "hetu " + hetu + " ei ole kurssilla");
+                        SessioApuri.annaVirhe(request.getSession(), Lokalisaatio.bundle(request).getString("opnro") + " " + hetu + " " + Lokalisaatio.bundle(request).getString("eiOleKurssilla"));
                     }
                 } else {
-                    SessioApuri.annaVirhe(request.getSession(), "virheellinen arvo " + arvo + " annettu hetulle " + hetu);
+                    SessioApuri.annaVirhe(request.getSession(), Lokalisaatio.bundle(request).getString("virheellinenArvo") + " " + arvo + " " + Lokalisaatio.bundle(request).getString("annettu") + " " + hetu);
                 }
             }
         }
@@ -201,23 +201,23 @@ public class Suoritukset {
                         } else if (tyyppi.equals("kieli")) {
                             os.setValue(Osallistuminen.kielikoodi, arvo);
                         } else {
-                            SessioApuri.annaVirhe(request.getSession(), "Väärä toiminto " + tyyppi);
+                            SessioApuri.annaVirhe(request.getSession(), Lokalisaatio.bundle(request).getString("vaaraToiminto") + " " + tyyppi);
                             return;
                         }
 
                         //tallennetaan kantaan
                         try {
                             SQLoader.tallennaKantaan(os);
-                            SessioApuri.annaViesti(request.getSession(), "Osasuoritus tallennettu kantaan " + os.getHetu() + "  -  " + arvo);
+                            SessioApuri.annaViesti(request.getSession(), Lokalisaatio.bundle(request).getString("osasuoritusTallennettu") + " " + os.getHetu() + "  -  " + arvo);
                         } catch (SQLException ex) {
-                            SessioApuri.annaVirhe(request.getSession(), "Osasuorituksen kantaan tallennuksessa tapahtui virhe: " + ex.getMessage());
+                            SessioApuri.annaVirhe(request.getSession(), Lokalisaatio.bundle(request).getString("osasuoritusTallennusVirhe") + " " + ex.getMessage());
                         }
 
                     } else {
-                        SessioApuri.annaVirhe(request.getSession(), "hetu " + os.getHetu() + " ei ole kurssilla");
+                        SessioApuri.annaVirhe(request.getSession(), Lokalisaatio.bundle(request).getString("opnro") + " " + os.getHetu() + " " + Lokalisaatio.bundle(request).getString("eiOleKurssilla"));
                     }
                 } else {
-                    SessioApuri.annaVirhe(request.getSession(), "virheellinen arvo " + arvo + " annettu hetulle " + os.getHetu());
+                    SessioApuri.annaVirhe(request.getSession(), Lokalisaatio.bundle(request).getString("virheellinenArvo") + " " + arvo + " " + Lokalisaatio.bundle(request).getString("annettu") + " " + os.getHetu());
                 }
             }
         }

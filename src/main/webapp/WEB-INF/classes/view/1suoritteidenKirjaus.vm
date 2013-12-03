@@ -148,6 +148,5 @@
 		<dd>$bundle.getString("pienetjaisot")</dd>
             </dl>
 </div>
+    #parse("bottom.vm")
 #end
-
-#parse("bottom.vm")
