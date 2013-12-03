@@ -9,7 +9,7 @@ import model.Kurssi;
 import model.SQLkyselyt.KurssiKyselyt;
 import model.SQLkyselyt.OpiskelijaKyselyt;
 import model.SQLkyselyt.OsallistuminenKyselyt;
-import model.util.Table;
+import model.Table;
 import view.util.Lokalisaatio;
 import java.sql.SQLException;
 import java.util.ArrayList;

@@ -9,7 +9,6 @@ import model.column.DateColumn;
 import model.column.DecimalColumn;
 import model.column.IntegerColumn;
 import model.column.StringColumn;
-import model.util.Table;
 import java.sql.Date;
 
 /**

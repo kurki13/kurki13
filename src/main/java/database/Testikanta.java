@@ -7,7 +7,7 @@ package database;
 import model.Kurssi;
 import model.SQLkyselyt.KurssiKyselyt;
 import model.column.Column;
-import model.util.Table;
+import model.Table;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;

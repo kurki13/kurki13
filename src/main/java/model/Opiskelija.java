@@ -7,7 +7,6 @@ package model;
 import model.column.IntegerColumn;
 import model.column.StringColumn;
 import model.column.TimestampColumn;
-import model.util.Table;
 import java.sql.Timestamp;
 
 /**

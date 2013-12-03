@@ -4,6 +4,7 @@
  */
 package model.util;
 
+import model.Table;
 import database.DatabaseConnection;
 import model.column.Column;
 import java.sql.Connection;

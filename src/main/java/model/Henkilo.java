@@ -6,7 +6,6 @@ package model;
 
 import model.column.IntegerColumn;
 import model.column.StringColumn;
-import model.util.Table;
 
 /**
  *
