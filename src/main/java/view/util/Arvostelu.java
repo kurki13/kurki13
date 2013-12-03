@@ -84,7 +84,7 @@ public class Arvostelu {
             if (lh_oshyv >= 0 && lh_oshyv <= kurssi.getLaskariRajat().getMaxPisteetYhteensa()) {
                 kurssi.setValue(Kurssi.pakolliset_laskaritehtava_lkm, lh_oshyv);
             } else {
-                SessioApuri.annaVirhe(session, Lokalisaatio.bundle(request).getString("laskarihyvrajavali") + " 0-" + kurssi.getLaskariRajat().getMaxPisteetYhteensa());
+                SessioApuri.annaVirhe(session, Lokalisaatio.bundle(request).getString("laskarihyvrajavali")  + kurssi.getLaskariRajat().getMaxPisteetYhteensa());
             }
 
             if (ht_oshyv >= 0 && ht_oshyv <= kurssi.getHarjoitustyoRajat().getMaxPisteetYhteensa()) {
@@ -96,7 +96,7 @@ public class Arvostelu {
             if (koe_oshyv >= 0 && koe_oshyv <= kurssi.getKoeRajat().getMaxPisteetYhteensa()) {
                 kurssi.setValue(Kurssi.min_koepisteet_summa, koe_oshyv);
             } else {
-                SessioApuri.annaVirhe(session, Lokalisaatio.bundle(request).getString("koehyvrajavali") + " 0-" + kurssi.getKoeRajat().getMaxPisteetYhteensa());
+                SessioApuri.annaVirhe(session, Lokalisaatio.bundle(request).getString("koehyvrajavali")  + kurssi.getKoeRajat().getMaxPisteetYhteensa());
             }
 
             /**
