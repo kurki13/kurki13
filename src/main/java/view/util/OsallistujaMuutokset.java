@@ -106,7 +106,7 @@ public class OsallistujaMuutokset {
     }
 
     /*
-     * parametrit tulevat muodosssa hetu_ryhma tai hetu_ryhma_vanharyhma
+     * parametrit tulevat muodosssa hetu_ilmoryhma tai hetu_ilmoryhma_ryhmanro
      */
     private static Osallistumistiedot pilkoParametrit(String parametrit) {
         try {
@@ -126,19 +126,19 @@ public class OsallistujaMuutokset {
 
     private static boolean tarkistaParametrit(Kurssi kurssi, Osallistumistiedot tiedot,
             HttpServletRequest request) {
-
         HttpSession session = request.getSession();
+        Lokalisaatio bundle = Lokalisaatio.bundle(request);
         if (kurssi == null) {
-            SessioApuri.annaVirhe(session, "Kurssia ei ole valittu");
+            SessioApuri.annaVirhe(session, bundle.getString("kurssiaEiValittu"));
             return false;
         }
         if (!Muotoilija.hetuTarkastus(tiedot.hetu)) {
-            SessioApuri.annaVirhe(session, "Anna kelvollinen opiskelijanumero");
+            SessioApuri.annaVirhe(session, bundle.getString("kelvotonOpNro"));
             return false;
         }
         if ((tiedot.ryhmänro > 99 && tiedot.ryhmänro < 1)
                 || (tiedot.uusiRyhma != 0 && tiedot.uusiRyhma > 99 && tiedot.ryhmänro < 1)) {
-            SessioApuri.annaVirhe(session, "Ryhmän valinnassa on vikaa");
+            SessioApuri.annaVirhe(session, bundle.getString("ryhmaViallinen"));
             return false;
         }
         return true;
@@ -170,7 +170,8 @@ public class OsallistujaMuutokset {
             SQLProseduurit.vaihdaOpiskelijanRyhmaa(tiedot.uusiRyhma, kurssi,
                     tiedot.ryhmänro, tiedot.hetu, request);
         } else {
-            SessioApuri.annaVirhe(request.getSession(), "Uusi ryhmä ei saa olla 0");
+            Lokalisaatio bundle = Lokalisaatio.bundle(request);
+            SessioApuri.annaVirhe(request.getSession(), bundle.getString("ryhmaNolla"));
         }
     }
 
@@ -184,20 +185,21 @@ public class OsallistujaMuutokset {
 
     public static void sulataOpiskelija(Kurssi kurssi, String hetu,
             HttpServletRequest request) {
+        Lokalisaatio bundle = Lokalisaatio.bundle(request);
         try {
             Osallistuminen os = osallistuminenKurssilla(kurssi, hetu);
             if (os.getJaassa().equals("S")) {
-                SessioApuri.annaVirhe(request.getSession(), "Opiskelija " + hetu + " on jo sulatettu");
+                SessioApuri.annaVirhe(request.getSession(), bundle.getString("opiskelija") + hetu + bundle.getString("onJoSula"));
             }
             os.setJaassa("S");
             SQLoader.tallennaKantaan(os);
-            SessioApuri.annaViesti(request.getSession(), "Sulatus onnistui hetulle " + hetu);
+            SessioApuri.annaViesti(request.getSession(), bundle.getString("sulatusOnnistuiHetulla") + hetu);
         } catch (Exception e) {
-            SessioApuri.annaVirhe(request.getSession(), "Sulatus epäonnistui hetulle " + hetu);
+            SessioApuri.annaVirhe(request.getSession(), bundle.getString("sulatusEpäonnistuiHetulla") + hetu);
         }
     }
-    
-    public static String nimiFormaatti(String nimi){
-        return nimi.substring(0,1).toUpperCase().concat(nimi.substring(1, nimi.length()).toLowerCase());
+
+    public static String nimiFormaatti(String nimi) {
+        return nimi.substring(0, 1).toUpperCase().concat(nimi.substring(1, nimi.length()).toLowerCase());
     }
 }

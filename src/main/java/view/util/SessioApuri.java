@@ -44,7 +44,6 @@ public class SessioApuri {
      */
     private static void lataa_kurssit(HttpServletRequest request) {
         HttpSession session = request.getSession();
-
         if (session.getAttribute(KurssiLista) == null) {
             try {
                 if (request.getRemoteUser().equals("admin")) {
@@ -54,7 +53,8 @@ public class SessioApuri {
                 }
 
             } catch (SQLException sq) {
-                annaVirhe(session, "Kurssien lataaminen kannasta epäonnistui!" + sq.getLocalizedMessage());
+                Lokalisaatio bundle = Lokalisaatio.bundle(request);
+                annaVirhe(session, bundle.getString("kurssinLataaminenEpäonnistui") + sq.getLocalizedMessage());
                 session.setAttribute(KurssiLista, new ArrayList());
             }
         }
@@ -91,30 +91,34 @@ public class SessioApuri {
 
         Kurssi valittuKurssi = (Kurssi) session.getAttribute(ValittuKurssi);
         if (valittuKurssi != null) {
-            lataaKurssinOpiskelijat(session, valittuKurssi);
-            lataaKurssinOsallistumiset(session, valittuKurssi);
+            lataaKurssinOpiskelijat(request, valittuKurssi);
+            lataaKurssinOsallistumiset(request, valittuKurssi);
         }
     }
 
-    private static void lataaKurssinOpiskelijat(HttpSession session, Kurssi valittuKurssi) {
+    private static void lataaKurssinOpiskelijat(HttpServletRequest rqst, Kurssi valittuKurssi) {
+        HttpSession session = rqst.getSession();
         try {
             session.setAttribute(
                     KurssinOpiskelijat,
                     OpiskelijaKyselyt.kurssinOpiskelijat(valittuKurssi));
         } catch (SQLException ex) {
-            annaVirhe(session, "Kurssin opiskelijoiden lataamisessa tapahtui virhe: " + ex.getLocalizedMessage());
+            Lokalisaatio bundle = Lokalisaatio.bundle(rqst);
+            annaVirhe(session, bundle.getString("opiskelijoidenLataamisVirhe") + ex.getLocalizedMessage());
             Logger.getLogger(SessioApuri.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
 
-    private static void lataaKurssinOsallistumiset(HttpSession session, Kurssi valittuKurssi) {
+    private static void lataaKurssinOsallistumiset(HttpServletRequest rqst, Kurssi valittuKurssi) {
+        HttpSession session = rqst.getSession();
         try {
             session.setAttribute(
                     KurssinOsallistumiset,
                     OsallistuminenKyselyt.osallistumisetKurssilla(valittuKurssi));
         } catch (SQLException ex) {
-            annaVirhe(session, "Kurssin osallistumisten lataamisessa tapahtui virhe: " + ex.getLocalizedMessage());
+            Lokalisaatio bundle = Lokalisaatio.bundle(rqst);
+            annaVirhe(session, bundle.getString("osallistumisLataamisVirhe") + ex.getLocalizedMessage());
             Logger.getLogger(SessioApuri.class.getName()).log(Level.SEVERE, null, ex);
         }
 
@@ -130,17 +134,18 @@ public class SessioApuri {
             session.setAttribute(ValitunKurssinId, request.getParameter(KurssiGet));
             session.setAttribute(ValittuKurssi,
                     etsiKurssiListasta((List<Kurssi>) session.getAttribute(KurssiLista),
-                   request.getParameter(KurssiGet), session));
+                    request.getParameter(KurssiGet), request));
         }
         if (request.getParameter(ToimintoGet) != null) {
             session.setAttribute(Toiminto, request.getParameter(ToimintoGet));
         }
     }
 
-    private static Kurssi etsiKurssiListasta(List<Kurssi> kurssit, String id, HttpSession session) {
+    private static Kurssi etsiKurssiListasta(List<Kurssi> kurssit, String id, HttpServletRequest rqst) {
         if (id == null) {
             return null;
         }
+        HttpSession session = rqst.getSession();
         String kurssikoodi, tyyppi, lukukausi;
         int lukuvuosi, kurssi_nro;
         try {
@@ -150,7 +155,8 @@ public class SessioApuri {
             tyyppi = id.split("\\.")[3];
             kurssi_nro = Integer.parseInt(id.split("\\.")[4]);
         } catch (Exception ex) {
-            annaVirhe(session, "Get-parametrissa annetun kurssitunnuksen muoto virheellinen: " + id);
+            Lokalisaatio bundle = Lokalisaatio.bundle(rqst);
+            annaVirhe(session, bundle.getString("getParametriVrihe") + id);
             return null;
         }
         for (Kurssi kurssi : kurssit) {
@@ -162,14 +168,16 @@ public class SessioApuri {
                 return kurssi;
             }
         }
-        annaVirhe(session, "Annetulla kurssitunnuksella ei löytynyt kurssia tälle käyttäjälle");
+        Lokalisaatio bundle = Lokalisaatio.bundle(rqst);
+        annaVirhe(session, bundle.getString("kurssiEiLoytynytKayttajalle"));
         return null;
     }
 
     public String print(HttpServletRequest rq) {
+        Lokalisaatio bundle = Lokalisaatio.bundle(rq);
         HttpSession sesh = rq.getSession();
         String ret = "";
-        ret += "Valittu kurssi: " + sesh.getAttribute(ValittuKurssi);
+        ret += bundle.getString("valittuKurssi") + sesh.getAttribute(ValittuKurssi);
         return ret;
     }
 
@@ -179,7 +187,7 @@ public class SessioApuri {
         }
         return Testikanta.taulunLisaysLause(taulu).replaceAll("(\r\n|\n\r|\r|\n)", "<br />");
     }
-    
+
     public static Kurssi valittuKurssi(HttpServletRequest request) {
         return (Kurssi) request.getSession().getAttribute(ValittuKurssi);
     }
