@@ -55,7 +55,7 @@ public class SQLProseduurit {
      */
     public static String suoritaJaadytys(Kurssi kurssi) throws SQLException {
         Connection tietokantayhteys = DatabaseConnection.makeConnection();
-        CallableStatement kutsuttavaLause = tietokantayhteys.prepareCall("{ ? = call jaadytys05 (?, ?, ?, ?, ?, ?) }");
+        CallableStatement kutsuttavaLause = tietokantayhteys.prepareCall("{ ? = call jaadytys (?, ?, ?, ?, ?, ?) }");
         kutsuttavaLause.registerOutParameter(1, java.sql.Types.VARCHAR);
             
         kutsuttavaLause.setString(2, kurssi.getKurssikoodi());

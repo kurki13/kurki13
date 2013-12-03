@@ -86,7 +86,6 @@ public class Jaadytys {
      */
     private static String asetaAihe(Kurssi kurssi, String kurssinTila) {
         String kurssinTiedot = kurssi.listaString();
-        kurssinTiedot = kurssinTiedot.substring(0, kurssinTiedot.length()-2);
         String aihe = "KURKI: " + kurssinTiedot;
         if (kurssinTila.equals("J")) {
             aihe += " korjaukset";
