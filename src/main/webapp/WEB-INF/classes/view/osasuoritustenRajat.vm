@@ -28,7 +28,7 @@
             #if($raja.setMax($max))
                 #set ($viesti = $rajanNimi+' '+$bundle.getString("nro")+' '+$i+' '+$bundle.getString("maksimiarvoksi")+' '+$max)
                 $SessioApuri.annaViesti($request.getSession(), $viesti)
-            #elseif (!$raja.setMax($max) && $raja.getMax() != $max && ($raja.getMax() != -1 && $max != ""))
+            #elseif (!$raja.setMax($max) && $raja.getMax() != $max && $max != "")
                 #set ($virhe = $rajanNimi+' '+$bundle.getString("nro")+' '+$i+' '+$bundle.getString("virheellinenMaxArvo")+' '+$max)
                 $SessioApuri.annaVirhe($request.getSession(), $virhe)
             #end
@@ -37,7 +37,7 @@
             #if($raja.setMin($min))
                 #set ($viesti = $rajanNimi+' '+$bundle.getString("nro")+' '+$i+' '+$bundle.getString("minimiarvoksi")+' '+$min)
                 $SessioApuri.annaViesti($request.getSession(), $viesti)
-            #elseif (!$raja.setMin($min) && $raja.getMin() != $min && ($raja.getMin() != -1 && $min != ""))
+            #elseif (!$raja.setMin($min) && $raja.getMin() != $min && $min != "")
                 #set ($virhe = $rajanNimi+' '+$bundle.getString("nro")+' '+$i+' '+$bundle.getString("virheellinenMinArvo")+' '+$min)
                 $SessioApuri.annaVirhe($request.getSession(), $virhe)
             #end
@@ -82,13 +82,13 @@ $KurssiKyselyt.tallennaKantaan($valittuKurssi)
                          <input class="form-control mminput" maxlength="2"
                              name="${lomake_tunnus}_${i}_max" 
                              value="$raja.maxString" ##Maksimipisteet
-                             onBlur="rangeChecker(this,0,99,${raja.maxString})"
+                             onBlur="rangeChecker(this,0,99,'${raja.maxString}')"
                              #if($jaassa)readonly#end
                              >
                          <input class="form-control mminput" maxlength="2"
                              name="${lomake_tunnus}_${i}_min" 
                              value="$raja.minString" ##Hyväksymisraja
-                             onBlur="rangeChecker(this,0,99,${raja.minString})"
+                             onBlur="rangeChecker(this,0,99,'${raja.minString}')"
                              #if($jaassa)readonly#end
                              >
                 </div>

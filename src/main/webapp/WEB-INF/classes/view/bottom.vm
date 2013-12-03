@@ -42,10 +42,9 @@
         var arvo = kentta.value;
         if(min > arvo || max < arvo) {
             kentta.style.borderColor = "Red";
-        } else if ((arvo == '+' || arvo == "" || (min <= arvo || max >= arvo)) && arvo != alkuperainenArvo) {
+        } else if ((arvo == '+' || (min <= arvo || max >= arvo)) && arvo != alkuperainenArvo) {
             kentta.style.borderColor = "Green";
         } else { 
-            ##tyhjä tai tää
             kentta.value = alkuperainenArvo;
         }
     }
