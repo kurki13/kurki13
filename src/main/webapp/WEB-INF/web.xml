@@ -61,7 +61,7 @@
     </login-config>
     
     <welcome-file-list>
-      <welcome-file>top.vm</welcome-file>
+      <welcome-file>welcome.vm</welcome-file>
    </welcome-file-list>
    
 </web-app>

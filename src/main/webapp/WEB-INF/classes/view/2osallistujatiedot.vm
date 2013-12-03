@@ -1,9 +1,21 @@
 #parse("top.vm")
 
 ##Filterit/parametrit
-#set($sukuFilter = $request.getParameter('filterSukunimi'))
-#set($ryhmaFilter = $request.getParameter('filterRyhma'))
-#set($hetuFilter = $request.getParameter('filterOpnro'))
+#if($request.getParameter('filterSukunimi'))
+    $session.setAttribute("sukuFilter", $request.getParameter('filterSukunimi'))
+#elseif(!$session.getAttribute("sukuFilter")) $session.setAttribute("sukuFilter", "") #end
+
+#if($request.getParameter('filterRyhma'))
+    $session.setAttribute("ryhmaFilter", $request.getParameter('filterRyhma'))
+#elseif(!$session.getAttribute("ryhmaFilter")) $session.setAttribute("sukuFilter", "") #end
+
+#if($request.getParameter('filterHetu'))
+    $session.setAttribute("hetuFilter", $request.getParameter('filterHetu'))
+#elseif(!$session.getAttribute("hetuFilter")) $session.setAttribute("hetuFilter", "") #end
+
+#set($hetuFilter = $session.getAttribute("hetuFilter"))
+#set($sukuFilter = $session.getAttribute("sukuFilter"))
+#set($ryhmaFilter = $session.getAttribute("ryhmaFilter"))
 #set($toiminto = $request.getParameter('toiminto'))
 
 ##haetaan kurssin ryhmät, ja jätetään pois mystinen ryhmä "0"
@@ -30,8 +42,9 @@
     <label for="isosnimi">
         $bundle.getString("isosnimi") <br>
         <input type="text" id="isosnimi" class="form-control form-inline nimiTextbox"
-               name="filterSukunimi" #if($sukuFilter && !$sukuFilter.equals(""))value=$sukuFilter#end
-               placeholder="$bundle.getString("isosnimi")" >
+               placeholder="$bundle.getString("isosnimi")"
+               name="filterSukunimi"
+               value="$sukuFilter" >
     </label>
 
     #if(!$toiminto.equals("osallistujat_lisaa.vm")) ##ei näytetä ryhmää opiskelijoita lisättäessä
@@ -39,18 +52,16 @@
             <select name="filterRyhma" id="ryhma" class="form-control form-inline ryhmaSelectbox">
                 <option value="" selected>$bundle.getString("kaikki")</option>
                 #foreach($ryhma in $ryhmat)
-                    <option #if($ryhmaFilter && $ryhma==$ryhmaFilter)selected#end value=$ryhma>$ryhma</option>
+                    <option #if($ryhmaFilter && $ryhma==$ryhmaFilter)selected#end value="$ryhma">$ryhma</option>
                 #end
             </select>
         </label>
-    #else
-        <input type=hidden name="filterRyhma" value="">
     #end
 
     <label for="opnro">$bundle.getString("camelopnro") <br>
         <input type="text" id="opnro" class="form-control form-inline opTextbox" 
-            name="filterOpnro" #if($hetuFilter && !$hetuFilter.equals(""))value=$hetuFilter#end
-            placeholder="$bundle.getString("opnro")">
+            placeholder="$bundle.getString("opnro")"
+            name="filterOpnro" value="$hetuFilter" >
     </label>
 
     <label for="toiminto">$bundle.getString("toiminto") <br>

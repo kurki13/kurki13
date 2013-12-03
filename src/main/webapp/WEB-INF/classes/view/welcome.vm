@@ -1,0 +1,9 @@
+#parse ("top.vm")
+
+<p> $bundle.getString("huom") </p>
+<p>$bundle.getString("javascript") </p>
+<p>$bundle.getString("evaste") </p>
+<p>$bundle.getString("indexinfo") </p>
+<p>$bundle.getString("ongelmatilanteet") </p>
+
+#parse ("bottom.vm")

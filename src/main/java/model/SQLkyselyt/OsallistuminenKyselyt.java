@@ -99,7 +99,7 @@ public class OsallistuminenKyselyt {
                 + "AND op.sukunimi like ? \n"
                 + "AND op.hetu like ? \n"
                 + ((!ryhmaFilter.equals("")) ? "AND os.ilmo_jnro = ? \n" : "")
-                + "ORDER BY op.sukunimi ASC, op.etunimi ASC, os.hetu ASC";
+                + "ORDER BY op.sukunimi ASC, op.etunimi ASC, op.hetu ASC";
         return luoYhteys(kurssi, query, sukunimi, ryhmaFilter, hetuFilter);
     }
 

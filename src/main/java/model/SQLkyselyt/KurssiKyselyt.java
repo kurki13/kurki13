@@ -74,7 +74,7 @@ public class KurssiKyselyt {
             + "     k.tila AS orderBy"
             + "  FROM kurssi k"
             + "  WHERE k.tila not in ('S', 'O')"
-            + "ORDER BY nimiOrder ASC, alkamis_pvmOrder ASC";
+            + "ORDER BY k.nimi ASC, k.alkamis_pvm ASC";
     //</editor-fold>
 
     public static List<Kurssi> kurssitYllapitajalle() throws SQLException {

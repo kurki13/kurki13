@@ -10,6 +10,8 @@ import model.column.DecimalColumn;
 import model.column.IntegerColumn;
 import model.column.StringColumn;
 import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 /**
  *
@@ -285,13 +287,17 @@ public class Kurssi extends Table {
     public String listaString() {
         String alkamispvm = "";
         String jaassa = "";
+        String koepvm = "";
+        try {
+            koepvm = ", koe " + new SimpleDateFormat("dd.MM.yy").format(getValue(Kurssi.paattymis_pvm));
+        } catch (Exception e) {} //Päivä näytetään jos se on olemassa ja oikeassa formaatissa
         if (getValue(Kurssi.alkamis_pvm) != null) {
-            alkamispvm = " [" + getValue(Kurssi.tyyppi) + getValue(Kurssi.alkamis_pvm).toString().substring(2, 4) + "]";
+            alkamispvm = " [" + getValue(Kurssi.lukukausi) + getValue(Kurssi.alkamis_pvm).toString().substring(2, 4) + "]";
         }
         if (getValue(Kurssi.tila).equals("J")) {
             jaassa = "* ";
         }
-        return jaassa + getValue(Kurssi.nimi) + alkamispvm;
+        return jaassa + getValue(Kurssi.nimi) + koepvm + alkamispvm;
     }
 
     /**

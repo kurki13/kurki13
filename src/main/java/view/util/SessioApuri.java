@@ -9,16 +9,14 @@ import model.Kurssi;
 import model.SQLkyselyt.KurssiKyselyt;
 import model.SQLkyselyt.OpiskelijaKyselyt;
 import model.SQLkyselyt.OsallistuminenKyselyt;
-import model.Table;
-import view.util.Lokalisaatio;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import model.Table;
 
 public class SessioApuri {
 

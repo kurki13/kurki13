@@ -346,7 +346,7 @@ public class SQLProseduurit {
         
         try {
             String tulos = lisaaOpiskelija(kurssi, ryhmanNumero, opiskelijanumero);
-            tarkastaLisayksenTulos(tulos, istunto, bundle);
+            tarkastaLisayksenTulos(tulos, istunto, bundle, opiskelijanumero);
         } catch (SQLException poikkeus) {
             String virhe = bundle.getString("tkvirhe") + ": " + poikkeus.getLocalizedMessage();
             SessioApuri.annaVirhe(istunto, virhe);
@@ -390,15 +390,15 @@ public class SQLProseduurit {
      * @param istunto Käyttäjän istunto
      * @param bundle Lokalisaatio työkalu
      */
-    private static void tarkastaLisayksenTulos(String tulos, HttpSession istunto, Lokalisaatio bundle) {
+    private static void tarkastaLisayksenTulos(String tulos, HttpSession istunto, Lokalisaatio bundle, String hetu) {
         String virhe;
         String virheilmoituksenAlku = bundle.getString("lisaysKEO") + ": ";
         
         if (tulos.equals("ok")) {
-            String viesti = bundle.getString("lisaysInfo") + ".";
+            String viesti = bundle.getString("lisaysInfo") + " " + hetu + ".";
             SessioApuri.annaViesti(istunto, viesti);
         } else if (tulos.equals("virhe: opiskelija on jo ilmoittautunut kurssille.")) {
-            virhe = virheilmoituksenAlku + bundle.getString("opiskelijaojik") + ".";
+            virhe = virheilmoituksenAlku + bundle.getString("opiskelijaojik") + " " + hetu + ".";
             SessioApuri.annaVirhe(istunto, virhe);
         } else {
             virhe = virheilmoituksenAlku + bundle.getString("tkvirhe");

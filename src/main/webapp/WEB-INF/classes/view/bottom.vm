@@ -1,6 +1,10 @@
 
 </div> ##Middle div ends here
 
+<div id="bottom">
+    <a href="url">Webmaster</a>
+</div>
+
 #if($session.getAttribute("message"))
     <div id=viesti class="alert alert-success">
     #foreach($viesti in $SessioApuri.haeViestit($request))
