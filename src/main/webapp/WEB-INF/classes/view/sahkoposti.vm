@@ -3,9 +3,7 @@ $bundle.getString("HY")
 $bundle.getString("matlu")
 $bundle.getString("cslaitos")
 
-#set($loppuindeksi = $kurssi.listaString().length())
-#set ($loppuindeksi = $loppuindeksi - 2)
-$bundle.getString("opintojakso"): $kurssi.getKurssikoodi(), $kurssi.listaString().substring(0, $loppuindeksi)
+$bundle.getString("opintojakso"): $kurssi.getKurssikoodi(), $kurssi.listaString()
 $bundle.getString("laajuus"): $kurssi.getOpintopisteet() $bundle.getString("op") ($kurssi.getOpintoviikot() $bundle.getString("ov"))
 $bundle.getString("suoritusaika"): $kurssi.getSuoritus_pvm()
 $bundle.getString("hyvaksyja"): $HenkiloKyselyt.haeNimet($kurssi.getOmistaja())
@@ -32,7 +30,7 @@ $bundle.getString("hyvaksyja"): $HenkiloKyselyt.haeNimet($kurssi.getOmistaja())
             #if ($hylatyt == 1) 
                 #set ($hylatytLista = "$listaAlkio ${rivinvaihto}")
             #else
-                #set ($hylatytLista = "$hylatytLista $listaAlkio ${rivinvaihto}")
+                #set ($hylatytLista = "$hylatytLista$listaAlkio ${rivinvaihto}")
             #end
         #end
     #elseif (!$osallistuminen.getArvosana() || $osallistuminen.getArvosana().equals('-'))
@@ -41,7 +39,7 @@ $bundle.getString("hyvaksyja"): $HenkiloKyselyt.haeNimet($kurssi.getOmistaja())
             #if ($poistetutApu == 1) 
                 #set ($poistetutLista = "$listaAlkio ${rivinvaihto}")
             #else 
-                #set ($poistetutLista = "$poistetutLista $listaAlkio ${rivinvaihto}")
+                #set ($poistetutLista = "$poistetutLista$listaAlkio ${rivinvaihto}")
             #end
         #end
     #elseif ($osallistuminen.getVoimassa().equals('K'))
@@ -51,11 +49,11 @@ $bundle.getString("hyvaksyja"): $HenkiloKyselyt.haeNimet($kurssi.getOmistaja())
             #if ($hyvaksytyt == 1)
                 #set ($hyvaksytytLista = "$listaAlkio $osallistuminen.getArvosana() ${rivinvaihto}")
             #else
-                #set ($hyvaksytytLista = "$hyvaksytytLista $listaAlkio $osallistuminen.getArvosana() ${rivinvaihto}")
+                #set ($hyvaksytytLista = "$hyvaksytytLista$listaAlkio $osallistuminen.getArvosana() ${rivinvaihto}")
             #end
         #end
     #end
-    #if (!$osallistuminen.getKoepisteet().equals('??,??,??,??,??-??,??,??,??,??-??,??,??,??,??-??,??,??'))
+    #if ($osallistuminen.getKoepisteet_summa() > 0)
         #set ($kokeessa = $kokeessa +1)
     #end
 #end
