@@ -55,7 +55,7 @@
                   </td>
                   <td>
                     <input type="text" class="form-control input-sm" style="width:80px" 
-                        name="inc_htsepname" size="8" maxlength="8" value="Työt">
+                        name="inc_htsepname" size="8" maxlength="8" value="$bundle.getString('Tyot')">
                   </td>
                 </tr>
 #end
@@ -69,7 +69,7 @@
                   </td>
                   <td>
                     <input type="text" class="form-control input-sm" style="width:80px"
-                        name="inc_koesepname" size="8" maxlength="8">
+                        name="inc_koesepname" size="8" maxlength="8" value="$bundle.getString('kokeet')">
                   </td>
                 </tr>
 #end
@@ -83,7 +83,7 @@
                   </td>
                   <td>
                     <input type="text" class="form-control input-sm" style="width:80px" 
-                        name="inc_lhsumname" size="8" maxlength="8">
+                        name="inc_lhsumname" size="8" maxlength="8" value="$bundle.getString('LhS')">
                   </td>
                 </tr>
 #end
@@ -97,7 +97,7 @@
                   </td>
                   <td>
                     <input type="text" class="form-control input-sm" style="width:80px" 
-                        name="inc_htsumname" size="8" maxlength="8" value="HtS">
+                        name="inc_htsumname" size="8" maxlength="8" value="$bundle.getString('HtS')">
                   </td>
                 </tr>
 #end
@@ -111,7 +111,7 @@
                   </td>
                   <td>
                     <input type="text" class="form-control input-sm" style="width:80px" 
-                        name="inc_koesumname" size="8" maxlength="8">
+                        name="inc_koesumname" size="8" maxlength="8" value="$bundle.getString('KoeS')">
                   </td>
                 </tr>
 #end
@@ -125,7 +125,7 @@
                   </td>
                   <td>
                     <input type="text" class="form-control input-sm" style="width:80px"
-                        name="inc_lhlpname" size="8" maxlength="8">
+                        name="inc_lhlpname" size="8" maxlength="8" value="$bundle.getString('lhp')">
                   </td>
                 </tr>
 #end
@@ -139,7 +139,7 @@
                   </td>
                   <td>
                     <input type="text" class="form-control input-sm" style="width:80px" 
-                        name="inc_htlpname" size="8" maxlength="8" value="HtP">
+                        name="inc_htlpname" size="8" maxlength="8" value="$bundle.getString('htlpstLyhenne')">
                   </td>
                 </tr>
 #end
@@ -153,8 +153,20 @@
                   </td>
                   <td>
                     <input type="text" class="form-control input-sm" style="width:80px" 
-                        name="inc_sumname" size="8" maxlength="8">
+                        name="inc_sumname" size="8" maxlength="8" value="$bundle.getString('yhtLyhenne')">
                   </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <input type="checkbox" name="inc_lang">
+                    </td>
+                    <td nowrap>
+                        $bundle.getString("suorituskieli")
+                    </td>
+                    <td>
+                        <input type="text" class="form-control input-sm" style="width:80px" name="inc_langname" size="8" maxlength="8" value="$bundle.getString('kieli')">
+                    </td>
                 </tr>
 
                 <tr>
@@ -166,7 +178,7 @@
                   </td>
                   <td>
                     <input type="text" class="form-control input-sm" style="width:80px" 
-                        name="inc_gradename" size="8" maxlength="8">
+                        name="inc_gradename" size="8" maxlength="8" value="$bundle.getString('Arvosana')">
                   </td>
                 </tr>
 
@@ -179,7 +191,7 @@
                   </td>
                   <td>
                     <input type="text" class="form-control input-sm" style="width:80px" 
-                        name="inc_cruname" size="8" maxlength="8">
+                        name="inc_cruname" size="8" maxlength="8" value="$bundle.getString('opIsolla')">
                   </td>
                 </tr>
 

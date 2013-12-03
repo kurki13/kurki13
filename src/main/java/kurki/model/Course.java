@@ -12,7 +12,6 @@ import kurki.model.Osasuoritus.OsasuoritusTyyppi;
 import kurki.util.MultiValueCounter;
 import kurki.util.LocalisationBundle;
 import service.Option;
-import debug.model.Henkilo;
 
 public class Course implements Serializable, Option {
     
