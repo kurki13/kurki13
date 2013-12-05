@@ -1,5 +1,6 @@
 #parse("top.vm")
 
+##opiskelijan sulatus yksitellen
 #if($request.getParameter('sulatettavaHetu')) 
     $OsallistujaMuutokset.sulataOpiskelija($valittuKurssi, $request.getParameter('sulatettavaHetu'), $request)
     #stop
@@ -17,7 +18,8 @@
 "op" : $bundle.getString("Opintopisteet"),
 "kieli" : $bundle.getString("Suorituskieli")})
 
-##poistetaan kurssilla käyttämättömät osasuoritukset mapista
+##poistetaan kurssilla käyttämättömät osasuoritukset mapista,
+##ettei ne tule pudotusvalikkoon näkyviin
 #if ($kerrat.get("laskarit") == 0)
     #set ($v = $tyypit.remove("laskarit"))
 #end

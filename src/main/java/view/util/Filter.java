@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import model.Osallistuminen;
-import static view.util.Suoritukset.isInteger;
 
 /**
  *
@@ -53,18 +52,14 @@ public class Filter {
      * filteröintiparametrien mukaan.
      */
     private static void filteriApuri(HttpServletRequest request, String[] filterit, Osallistuminen os, String ryhma) {
-        System.out.println("testii2"+onkoRyhmassa(ryhma, os));
         int hetu = 0;
         int nimi = 0;
         int joukossa = 0;
-        System.out.println(filterit.toString());
         for (String filter : filterit) {
-            System.out.println("f"+filter);
             if (onkoRyhmassa(ryhma, os)) {
                 if (isInteger(filter)) {
                     if (os.getHetu().toLowerCase().startsWith(filter)) {
                         hetu = 1;
-                        System.out.println("hetu");
                     }
                 } else {
                     if (filter.contains("..")) {
@@ -72,7 +67,6 @@ public class Filter {
                             joukossa = 1;
                         }
                     } else if (os.getSukunimi().toLowerCase().startsWith(filter)) {
-                        System.out.println("nimi");
                         nimi = 1;
                     }
                 }
