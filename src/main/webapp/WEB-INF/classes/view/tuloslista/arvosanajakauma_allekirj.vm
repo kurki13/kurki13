@@ -7,20 +7,22 @@
     #set ($kaksi = 0)
     #set ($yksi = 0)
     #foreach ($osallistuminen in $osallistumiset)
-        #if ($osallistuminen.arvosana == 5)
-            #set ($viisi = $viisi+1)
-        #end
-        #if ($osallistuminen.arvosana == 4)
-            #set ($nelja = $nelja+1)
-        #end
-        #if ($osallistuminen.arvosana == 3)
-            #set ($kolme = $kolme+1)
-        #end
-        #if ($osallistuminen.arvosana == 2)
-            #set ($kaksi = $kaksi+1)
-        #end
-        #if ($osallistuminen.arvosana == 1)
-            #set ($yksi = $yksi+1)
+        #if ($osallistuminen.voimassa == "K")
+            #if ($osallistuminen.arvosana == 5)
+                #set ($viisi = $viisi+1)
+            #end
+            #if ($osallistuminen.arvosana == 4)
+                #set ($nelja = $nelja+1)
+            #end
+            #if ($osallistuminen.arvosana == 3)
+                #set ($kolme = $kolme+1)
+            #end
+            #if ($osallistuminen.arvosana == 2)
+                #set ($kaksi = $kaksi+1)
+            #end
+            #if ($osallistuminen.arvosana == 1)
+                #set ($yksi = $yksi+1)
+            #end
         #end
     #end            
 

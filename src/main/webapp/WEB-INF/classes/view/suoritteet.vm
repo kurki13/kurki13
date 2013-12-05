@@ -1,6 +1,3 @@
-##javascriptit erikseen
-##sivua päivittäessä lataa valitut hakukriteerit ym kenttiin
-
 #set($kurssinOsallistumiset = $OsallistuminenKyselyt.osallistumisetKurssilla($valittuKurssi))
 ##filterit
 #set ($tyyppi = $request.getParameter('type'))

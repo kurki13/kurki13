@@ -20,6 +20,45 @@ $response.setCharacterEncoding("UTF-8")
 
 #parse('tuloslista/otsikko.vm')
 
+##tarkistetaan voimassa olevat osallistumiset ja lasketaan tilastot
+#set ($voimassaolevatOsallistumiset = [])
+#set ($hyvaksytyt = [])
+#set ($hylatyt = [])
+#set ($osallistumisia = 0)
+#set ($arvosteltu = 0)
+#set ($kokeessa = 0)
+#set ($hyvaksyttyja = 0)
+#set ($hylattyja = 0)
+
+#foreach ($osallistuminen in $osallistumiset)
+    #if($osallistuminen.voimassa == "K")
+        #if ($voimassaolevatOsallistumiset.add($osallistuminen)) #end
+        #set ($osallistumisia = $osallistumisia + 1)
+        #if ($osallistuminen.arvosana == "1"||$osallistuminen.arvosana == "2"
+            ||$osallistuminen.arvosana == "3"||$osallistuminen.arvosana == "4"
+            ||$osallistuminen.arvosana == "5"||$osallistuminen.arvosana == "+")
+            #if ($hyvaksytyt.add($osallistuminen)) #end
+            #set ($hyvaksyttyja = $hyvaksyttyja + 1)
+        #end
+        #set ($pistesumma = $osallistuminen.kokeet.getYhteispisteet()+$osallistuminen.laskarit.getYhteispisteet()
+                +$osallistuminen.harjoitustyot.getYhteispisteet()+$osallistuminen.laskarihyvitys
+                +$osallistuminen.harjoitustyohyvitys)
+        #if (($osallistuminen.arvosana == "-"||$osallistuminen.arvosana == "0") && $pistesumma > 0)
+            #if ($hylatyt.add($osallistuminen)) #end
+            #set ($hylattyja = $hylattyja + 1)
+        #end
+        #if ($osallistuminen.arvosana == "1"||$osallistuminen.arvosana == "2"
+            ||$osallistuminen.arvosana == "3"||$osallistuminen.arvosana == "4"
+            ||$osallistuminen.arvosana == "5"||$osallistuminen.arvosana == "+"
+            ||$osallistuminen.arvosana == "0")
+            #set ($arvosteltu = $arvosteltu + 1)
+        #end
+        #if ($osallistuminen.kokeet.getYhteispisteet() > 0)         
+            #set ($kokeessa = $kokeessa + 1)
+        #end
+    #end
+#end
+
 #if ($Tuloslistat.hyvaksytyt.active)
     <p>
     <br>$bundle.getString("hyvaksytyt")
@@ -48,17 +87,110 @@ $response.setCharacterEncoding("UTF-8")
             #if($Tuloslistat.opintopisteet.active)<th>$Tuloslistat.opintopisteet.otsikko</th>#end               
             #if($Tuloslistat.kieli.active)<th>$Tuloslistat.kieli.otsikko</th>#end 
         </tr>
-        #foreach ($osallistuminen in $osallistumiset)
+        #foreach ($osallistuminen in $hyvaksytyt)
         <tr>
-             #if ($osallistuminen.arvosana == "1"||$osallistuminen.arvosana == "2"||$osallistuminen.arvosana == "3"||$osallistuminen.arvosana == "4"||$osallistuminen.arvosana == "5"||$osallistuminen.arvosana == "+")
+            #if($Tuloslistat.opiskelijanumero.active)
+                <td>$osallistuminen.hetu</td>
+            #end
+
+
+            <td>$osallistuminen.sukunimi, $osallistuminen.etunimi</td> 
+
+
+            #if($Tuloslistat.valikokeet_eriteltyina.active)
+                #if ($valittuKurssi.valikokeet_lkm > 0)                         
+                #foreach ( $i in [1..$valittuKurssi.valikokeet_lkm] )       
+                 <td>#if($osallistuminen.kokeet.osa($i) != "")
+                    $osallistuminen.kokeet.osa($i)
+                    #else
+                    0
+                    #end</td>
+                #end
+                #end
+            #end
+            #if($Tuloslistat.harjoitustyot_eriteltyina.active)
+                #if ($valittuKurssi.harjoitustyo_lkm > 0)                         
+                #foreach ( $i in [1..$valittuKurssi.harjoitustyo_lkm] )       
+                 <td>#if($osallistuminen.harjoitustyot.osa($i) != "")
+                    $osallistuminen.harjoitustyot.osa($i)
+                    #else
+                    0
+                    #end</td>
+                #end
+                #end
+            #end
+            #if($Tuloslistat.kokeet_summa.active)<td>$osallistuminen.kokeet.getYhteispisteet()</td>#end                
+            #if($Tuloslistat.laskarit_summa.active)<td>$osallistuminen.laskarit.getYhteispisteet()</td>#end
+            #if($Tuloslistat.harjoitustyot_summa.active)<td>$osallistuminen.harjoitustyot.getYhteispisteet()</td>#end
+            #if($Tuloslistat.yhteispisteet.active)
+                #set ($yht = $osallistuminen.laskarihyvitys+$osallistuminen.harjoitustyohyvitys+$osallistuminen.kokeet.getYhteispisteet())
+                <td>$yht</td>
+            #end
+            #if($Tuloslistat.laskarit_lisapisteet.active)<td>$osallistuminen.laskarihyvitys</td>#end
+            #if($Tuloslistat.harjoitustyot_lisapisteet.active)<td>$osallistuminen.harjoitustyohyvitys</td>#end
+            #if($Tuloslistat.arvosana.active)<td>$osallistuminen.arvosana</td>#end
+            #if($Tuloslistat.opintopisteet.active)<td>$osallistuminen.laajuus_op</td>#end               
+            #if($Tuloslistat.kieli.active)<td>#if($osallistuminen.kielikoodi)$osallistuminen.kielikoodi.toUpperCase()#else S #end</td>#end 
+         </tr>
+        #end
+    </table>
+    </p>
+#end
+
+#if($Tuloslistat.tilastoja.active)
+    <p>
+    $bundle.getString("tilastoja")<br>
+    $bundle.getString("ilmonneita"): $osallistumisia<br>
+    $bundle.getString("osallistuneita"): $arvosteltu<br>
+    $bundle.getString("kokeessa"): $kokeessa<br>
+    $bundle.getString("hyvaksyttyja"): $hyvaksyttyja<br>
+        #set ($osallistuneista = $math.ceil($math.mul(100, $math.div($hyvaksyttyja, $arvosteltu))))
+        #set ($kokeessaOlleista = $math.ceil($math.mul(100, $math.div($hyvaksyttyja, $kokeessa))))
+        (#if ($arvosteltu > 0) $osallistuneista% $bundle.getString("osallistuneista")#end 
+	 #if ($kokeessa > 0), $kokeessaOlleista% $bundle.getString("kokeessaOlleista")#end) <br>
+    $bundle.getString("hylattyja"): $hylattyja<br>
+    </p>
+#end
+
+#parse('tuloslista/arvosanajakauma_allekirj.vm')
+
+#if ($Tuloslistat.hylatyt.active)
+    <p>    
+    $bundle.getString("isohylatyt")<br>
+    #if ($hylattyja > 0)
+        <table class="table table-bordered table-condensed"  style="font-size: 90%;width: auto">
+            <tr>
+                   #if($Tuloslistat.opiskelijanumero.active)
+                    <th>$Tuloslistat.opiskelijanumero.otsikko</th>
+                #end
+                <th>$bundle.getString('tl.nimi')</th>
+                #if($Tuloslistat.valikokeet_eriteltyina.active)
+                    #set($c = $valittuKurssi.valikokeet_lkm )
+                    <th colspan="$c">$Tuloslistat.valikokeet_eriteltyina.otsikko</th>
+                #end
+                #if($Tuloslistat.harjoitustyot_eriteltyina.active)
+                    #set($c = $valittuKurssi.harjoitustyo_lkm )
+                    <th colspan="$c">$Tuloslistat.harjoitustyot_eriteltyina.otsikko</th>
+                #end
+                #if($Tuloslistat.kokeet_summa.active)<th>$Tuloslistat.kokeet_summa.otsikko</th>#end                
+                #if($Tuloslistat.laskarit_summa.active)<th>$Tuloslistat.laskarit_summa.otsikko</th>#end
+                #if($Tuloslistat.harjoitustyot_summa.active)<th>$Tuloslistat.harjoitustyot_summa.otsikko</th>#end
+                #if($Tuloslistat.yhteispisteet.active)<th>$Tuloslistat.yhteispisteet.otsikko</th>#end
+
+                #if($Tuloslistat.laskarit_lisapisteet.active)<th>$Tuloslistat.laskarit_lisapisteet.otsikko</th>#end
+                #if($Tuloslistat.harjoitustyot_lisapisteet.active)<th>$Tuloslistat.harjoitustyot_lisapisteet.otsikko</th>#end
+                #if($Tuloslistat.opintopisteet.active)<th>$Tuloslistat.opintopisteet.otsikko</th>#end               
+                #if($Tuloslistat.kieli.active)<th>$Tuloslistat.kieli.otsikko</th>#end 
+            </tr>
+            #foreach ($osallistuminen in $hylatyt)
+            <tr>
                 #if($Tuloslistat.opiskelijanumero.active)
                     <td>$osallistuminen.hetu</td>
                 #end
 
-                
                 <td>$osallistuminen.sukunimi, $osallistuminen.etunimi</td> 
-                
-                
+
+
                 #if($Tuloslistat.valikokeet_eriteltyina.active)
                     #if ($valittuKurssi.valikokeet_lkm > 0)                         
                     #foreach ( $i in [1..$valittuKurssi.valikokeet_lkm] )       
@@ -90,59 +222,13 @@ $response.setCharacterEncoding("UTF-8")
                 #end
                 #if($Tuloslistat.laskarit_lisapisteet.active)<td>$osallistuminen.laskarihyvitys</td>#end
                 #if($Tuloslistat.harjoitustyot_lisapisteet.active)<td>$osallistuminen.harjoitustyohyvitys</td>#end
-                #if($Tuloslistat.arvosana.active)<td>$osallistuminen.arvosana</td>#end
                 #if($Tuloslistat.opintopisteet.active)<td>$osallistuminen.laajuus_op</td>#end               
                 #if($Tuloslistat.kieli.active)<td>#if($osallistuminen.kielikoodi)$osallistuminen.kielikoodi.toUpperCase()#else S #end</td>#end 
-             #end
-         </tr>
-        #end
-    </table>
-    </p>
-#end
-
-#parse('tuloslista/arvosanajakauma_allekirj.vm')
-
-#if($Tuloslistat.tilastoja.active)
-    <p>
-    #set ($osallistumisia = 0)
-    #set ($arvosteltu = 0)
-    #set ($kokeessa = 0)
-    #set ($hyvaksyttyja = 0)
-    #set ($hylattyja = 0)
-    #foreach ($osallistuminen in $osallistumiset)
-        #if ($osallistuminen.voimassa == "K")
-            #set ($osallistumisia = $osallistumisia + 1)
-        #end
-        #if ($osallistuminen.arvosana == "1"||$osallistuminen.arvosana == "2"||$osallistuminen.arvosana == "3"||$osallistuminen.arvosana == "4"||$osallistuminen.arvosana == "5"||$osallistuminen.arvosana == "+"||$osallistuminen.arvosana == "0")
-            #set ($arvosteltu = $arvosteltu + 1)
-        #end
-         #if ($osallistuminen.koepisteet_summa > 0)         
-            #set ($kokeessa = $kokeessa + 1)
-        #end
-        #if ($osallistuminen.arvosana == "1"||$osallistuminen.arvosana == "2"||$osallistuminen.arvosana == "3"||$osallistuminen.arvosana == "4"||$osallistuminen.arvosana == "5"||$osallistuminen.arvosana == "+")
-            #set ($hyvaksyttyja = $hyvaksyttyja + 1)
-        #end
-        #if ($osallistuminen.arvosana == "-"||$osallistuminen.arvosana == "0")         
-            #set ($hylattyja = $hylattyja + 1)
-        #end
-#end
-    $bundle.getString("tilastoja")<br>
-    $bundle.getString("ilmonneita"): $osallistumisia<br>
-    $bundle.getString("osallistuneita"): $arvosteltu<br>
-    $bundle.getString("kokeessa"): $kokeessa<br>
-    $bundle.getString("hyvaksyttyja"): $hyvaksyttyja<br>    
-    $bundle.getString("hylattyja"): $hylattyja<br>
-    </p>
-#end
-
-#if ($Tuloslistat.hylatyt.active)
-    <p>    
-    $bundle.getString("isohylatyt")<br>
-    #foreach ($osallistuminen in $osallistumiset)
-         #if ($osallistuminen.arvosana == "-"||$osallistuminen.arvosana == "0")
-            <br>#if($request.getParameter("inc_ssn") == "on")$osallistuminen.hetu &emsp;#end
-            $osallistuminen.sukunimi, $osallistuminen.etunimi
-         #end
+             </tr>
+            #end
+        </table>
+    #else
+        0
     #end
     </p>
 #end
