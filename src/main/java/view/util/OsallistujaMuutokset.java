@@ -39,9 +39,7 @@ public class OsallistujaMuutokset {
         }
     }
 
-    /**
-     * Tarkistaa arvot
-     */
+ 
     public void suoritusTiedotUpdate(Osallistuminen os, String kieli, String arv,
             String op, HttpServletRequest rqst) {
 
@@ -63,7 +61,7 @@ public class OsallistujaMuutokset {
                 annaVirhe(session, Lokalisaatio.bundle(rqst).getString("opVirheellinen"));
             }
         }
-        if (arv != null && !arv.equals("")) {
+        if (arv != null) {
             try {
                 int arvInt = Integer.parseInt(arv);
                 if (arvInt < 6 && arvInt >= 0) {
@@ -72,7 +70,7 @@ public class OsallistujaMuutokset {
                     annaVirhe(session, Lokalisaatio.bundle(rqst).getString("arvosanaVirheellinen"));
                 }
             } catch (NumberFormatException e) {
-                if (arv.equals("+") || arv.equals("-")) {
+                if (arv.equals("+") || arv.equals("-") || arv.equals("")) {
                     os.setArvosana(arv);
                 } else {
                     annaVirhe(session, Lokalisaatio.bundle(rqst).getString("arvosanaVirheellinen"));

@@ -41,31 +41,29 @@
   
     <label for="isosnimi">
         $bundle.getString("isosnimi") <br>
-        <input type="text" id="isosnimi" class="form-control form-inline nimiTextbox"
+        <input type="text" class="form-control form-inline nimiTextbox"
                placeholder="$bundle.getString("isosnimi")"
                name="filterSukunimi"
                value="$sukuFilter" >
     </label>
 
-    #if(!$toiminto.equals("osallistujat_lisaa.vm")) ##ei näytetä ryhmää opiskelijoita lisättäessä
-        <label for="ryhma">$bundle.getString("ryhma") <br>
-            <select name="filterRyhma" id="ryhma" class="form-control form-inline ryhmaSelectbox">
-                <option value="" selected>$bundle.getString("kaikki")</option>
+    <label for="ryhma">$bundle.getString("ryhma") <br>
+        <select name="filterRyhma" class="form-control form-inline ryhmaSelectbox">
+            <option value="" selected>$bundle.getString("kaikki")</option>
                 #foreach($ryhma in $ryhmat)
                     <option #if($ryhmaFilter && $ryhma==$ryhmaFilter)selected#end value="$ryhma">$ryhma</option>
                 #end
-            </select>
-        </label>
-    #end
+        </select>
+    </label>
 
     <label for="opnro">$bundle.getString("camelopnro") <br>
-        <input type="text" id="opnro" class="form-control form-inline opTextbox" 
+        <input type="text" class="form-control form-inline opTextbox" 
             placeholder="$bundle.getString("opnro")"
-            name="filterOpnro" value="$hetuFilter" >
+            name="filterHetu" value="$hetuFilter">
     </label>
 
     <label for="toiminto">$bundle.getString("toiminto") <br>
-        <select name="toiminto" id="toiminto" class="form-control form-inline toimintoTextbox">
+        <select name="toiminto" class="form-control form-inline toimintoTextbox">
         #foreach($t in $toiminnot.entrySet())
             #if($t.key == $toiminto)
                 <option value=$t.key selected>$t.value</option>
@@ -86,6 +84,8 @@
     #parse ($toiminto)
 #else 
     $bundle.getString("ophakuperuste")
+    <p>$bundle.getString("opiskelijanumerofilterOhje")</p>
+    <p>$bundle.getString("KurssitunnusParam") <tt> courseId=$session.getAttribute("selected_course_id") </tt> </p>
 #end
 
 #parse("bottom.vm")

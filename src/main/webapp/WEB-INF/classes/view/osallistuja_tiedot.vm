@@ -8,9 +8,9 @@
 #set($osallistumiset = $OsallistuminenKyselyt.voimassaKurssilla($valittuKurssi, $sukuFilter, $ryhmaFilter, $hetuFilter))
 #set($edel = $OsallistujaMuutokset.edellinenOsallistuminen($osallistumiset, $opiskelijaTiedot.hetu))
 #set($seur = $OsallistujaMuutokset.seuraavaOsallistuminen($osallistumiset, $opiskelijaTiedot.hetu))
-<form action="" name="EdellisetJaSeuraavat" method="post" class="centerText">
+<form action="" name="EdellisetJaSeuraavat" method="get" class="centerText">
   <button class="btn btn-primary" name="hetuParam" type="submit" value="$edel">$bundle.getString("edellinen")</button>
-  <button class="btn btn-primary" name="toiminto" type="submit" value="osallistujat_lisaa.vm">$bundle.getString("valitselistalta")</button>
+  <button class="btn btn-primary" name="toiminto" type="submit" value="osallistujat_listaus.vm">$bundle.getString("valitselistalta")</button>
   <button class="btn btn-primary" name="hetuParam" type="submit" value="$seur">$bundle.getString("seuraava")</button>
 </form>
 
@@ -84,7 +84,7 @@
   
 ##OSASUORITUKSET
 <div id="OsallistujaTiedotVinkki"> </div> ##Javascriptillä tehtyä ilmoitusta varten
-<form name="OsallistujaTiedot" action="" method="post" >
+<form name="OsallistujaTiedot" action="?hetuParam=$opiskelijaTiedot.hetu" method="post" > ##jäädään tiedot sivulle
 <table class="table">
 #foreach($osat in $osasuoritukset)
 #set($arvot = $osat.get(1))
@@ -167,7 +167,6 @@
 
 <tr>
   <th colspan="6" class="centerText">
-    <input type="hidden" name="hetuParam" value="$opiskelijaTiedot.hetu"> ##jäädään tiedot sivulle
     #if(!$osallistumisTiedot.jaassa.equals('J'))
       <input type="submit" class="btn btn-success" value="$bundle.getString("tallennapisteet")">
     #else 

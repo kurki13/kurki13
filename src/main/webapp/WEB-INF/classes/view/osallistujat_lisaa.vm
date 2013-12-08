@@ -29,7 +29,7 @@
     <tr>
         <td>
             <a href="mailto:#if($opiskelija.sahkopostiosoite)$opiskelija.sahkopostiosoite#end">
-            $opiskelija.etunimi, $opiskelija.sukunimi
+            $OsallistujaMuutokset.nimiFormaatti($opiskelija.etunimi), $OsallistujaMuutokset.nimiFormaatti($opiskelija.sukunimi)
             </a>
         </td>
         <td>
