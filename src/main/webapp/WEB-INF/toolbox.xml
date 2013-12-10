@@ -97,7 +97,7 @@
     
     <tool>
         <key>Filter</key>         
-        <class>view.util.Filter</class>
+        <class>view.util.OsallistuminenSuodatin</class>
     </tool>
     
     <tool>
