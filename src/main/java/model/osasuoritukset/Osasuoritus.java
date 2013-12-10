@@ -4,6 +4,8 @@
  */
 package model.osasuoritukset;
 
+import model.util.Muotoilija;
+
 /**
  * Tämä luokka näyttää Osallistuminen -olion yhden osasuorituksen. Sitä
  * käytetään Osasuoritukset -olion avulla.

@@ -1,6 +1,6 @@
 package model.osasuoritus_rajat;
 
-import model.osasuoritukset.Muotoilija;
+import model.util.Muotoilija;
 
 public class OsasuoritusRaja {
 

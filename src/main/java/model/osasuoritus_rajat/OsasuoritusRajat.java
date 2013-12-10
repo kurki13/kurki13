@@ -4,7 +4,7 @@
  */
 package model.osasuoritus_rajat;
 
-import model.osasuoritukset.Muotoilija;
+import model.util.Muotoilija;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;

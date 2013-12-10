@@ -1,5 +1,6 @@
 package model.osasuoritukset;
 
+import model.util.Muotoilija;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;

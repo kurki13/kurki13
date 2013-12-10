@@ -5,7 +5,7 @@
 package view.util;
 
 import model.Kurssi;
-import model.osasuoritukset.Muotoilija;
+import model.util.Muotoilija;
 import model.util.SQLoader;
 import java.sql.SQLException;
 import javax.servlet.http.HttpServletRequest;

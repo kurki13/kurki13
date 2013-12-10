@@ -4,6 +4,7 @@
  */
 package model.osasuoritukset;
 
+import model.util.Muotoilija;
 import org.junit.Test;
 import static org.junit.Assert.*;
 

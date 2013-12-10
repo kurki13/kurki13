@@ -9,7 +9,7 @@ import model.Kurssi;
 import model.Osallistuminen;
 import static model.SQLkyselyt.OsallistuminenKyselyt.osallistuminenKurssilla;
 import model.SQLkyselyt.SQLProseduurit;
-import model.osasuoritukset.Muotoilija;
+import model.util.Muotoilija;
 import model.util.SQLoader;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
