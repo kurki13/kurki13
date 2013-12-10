@@ -47,13 +47,13 @@ public class SQLProseduurit {
     }
 
     /**
-     * Metodi suorittaa SQL-Proseduurin jaadytys05.
+     * Metodi suorittaa SQL-Proseduurin jaadytys.
      *
      * @param kurssi Jäädytettävä kurssi
      * @return Merkkijono "OK" jos jäädytys onnistui
      * @throws SQLException Tietokantavirhe
      */
-    public static String suoritaJaadytys(Kurssi kurssi) throws SQLException {
+    private static String suoritaJaadytys(Kurssi kurssi) throws SQLException {
         Connection tietokantayhteys = DatabaseConnection.makeConnection();
         CallableStatement kutsuttavaLause = tietokantayhteys.prepareCall("{ ? = call jaadytys (?, ?, ?, ?, ?, ?) }");
         kutsuttavaLause.registerOutParameter(1, java.sql.Types.VARCHAR);
@@ -73,7 +73,7 @@ public class SQLProseduurit {
     }
 
     /**
-     * Metodi tarkastaa SQL-Proseduurin jaadytys05 palautusarvon ja asettaa
+     * Metodi tarkastaa SQL-Proseduurin jaadytys palautusarvon ja asettaa
      * onnistumisviestin tai virheilmoituksen asianmukaisesti. Jos jäädytys
      * onnistui, lähetetään jäädytyksestä tiedottava sähköpostiviesti
      * asianmukaisille tahoille.

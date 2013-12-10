@@ -4,6 +4,7 @@
  */
 package view.util;
 
+import database.Konfiguraatio;
 import database.Testikanta;
 import model.Kurssi;
 import model.SQLkyselyt.KurssiKyselyt;
@@ -46,7 +47,7 @@ public class SessioApuri {
         HttpSession session = request.getSession();
         if (session.getAttribute(KurssiLista) == null) {
             try {
-                if (request.getRemoteUser().equals("admin")) {
+                if (Konfiguraatio.onkoSuperKayttaja(request.getRemoteUser())) {
                     session.setAttribute(KurssiLista, KurssiKyselyt.kurssitYllapitajalle());
                 } else {
                     session.setAttribute(KurssiLista, KurssiKyselyt.kurssitKayttajalle(request.getRemoteUser()));

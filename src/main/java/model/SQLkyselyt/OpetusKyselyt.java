@@ -14,7 +14,6 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class OpetusKyselyt {
-    // Tätä ei välttämättä tarvita hh
     public static final String LATAA_RYHMAT = "SELECT * FROM opetus WHERE \n" 
             + "kurssikoodi = ? \n"
             + "AND lukukausi = ? \n"

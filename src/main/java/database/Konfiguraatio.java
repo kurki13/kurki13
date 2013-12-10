@@ -43,6 +43,22 @@ public class Konfiguraatio {
             }
         }
     }
+    
+    /**
+     * Metodi tarkastaa, onko parametrina annettu käyttäjä määritelty super-käyttäjäksi konfiguraatiossa.
+     * 
+     * @param kayttaja Tarkastettava käyttäjä
+     * @return True, jos käyttäjä on super-käyttäjä.
+     */
+    public static boolean onkoSuperKayttaja(String kayttaja) {
+        String[] superKayttajat = getProperty("superUsers").split(",");
+        for (int i = 0; i < superKayttajat.length; i++) {
+            if (kayttaja.equals(superKayttajat[i].trim())) {
+                return true;
+            }
+        }
+        return false;
+    }
         
     public static String getProperty(String key) {
         return konfiguraatio.getProperty(key);

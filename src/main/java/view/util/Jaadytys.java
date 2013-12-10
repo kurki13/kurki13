@@ -113,6 +113,7 @@ public class Jaadytys {
         konteksti.put("jaadytys", Jaadytys.class);
         konteksti.put("OsallistuminenKyselyt", OsallistuminenKyselyt.class);
         konteksti.put("SQLProseduurit", SQLProseduurit.class);
+        konteksti.put("Suorituspaivamaara", Suorituspaivamaara.class);
         konteksti.put("HenkiloKyselyt", HenkiloKyselyt.class);
         konteksti.put("rivinvaihto", "\n");
         StringWriter kirjoittaja = new StringWriter();

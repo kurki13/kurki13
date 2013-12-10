@@ -354,11 +354,11 @@ public class Suorituspaivamaara {
     /**
      * Metodi tarkastaa onko parametrina annettu olio null
      * 
-     * @param suoritusPvm Tarkastettava parametri
+     * @param tarkastettava Tarkastettava parametri
      * @return Onko parametri null?
      */
-    public static boolean onkoNull(Object suoritusPvm) {
-        if (suoritusPvm == null) {
+    public static boolean onkoNull(Object tarkastettava) {
+        if (tarkastettava == null) {
             return true;
         } else {
             return false;

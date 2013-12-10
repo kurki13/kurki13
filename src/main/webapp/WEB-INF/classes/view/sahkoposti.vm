@@ -33,7 +33,7 @@ $bundle.getString("hyvaksyja"): $HenkiloKyselyt.haeNimet($kurssi.getOmistaja())
                 #set ($hylatytLista = "$hylatytLista$listaAlkio ${rivinvaihto}")
             #end
         #end
-    #elseif (!$osallistuminen.getArvosana() || $osallistuminen.getArvosana().equals('-'))
+    #elseif ($Suorituspaivamaara.onkoNull($osallistuminen.getArvosana()) || $osallistuminen.getArvosana().equals('-'))
         #if ($osallistuminen.getJaassa().equals('S'))
             #set ($poistetutApu = $poistetutApu + 1)
             #if ($poistetutApu == 1) 
