@@ -19,6 +19,11 @@ public class Arvostelu {
 
     public static void kasitteleLomake(Kurssi kurssi, HttpServletRequest request) {
         HttpSession session = request.getSession();
+        
+        if (kurssi.isJaassa()) {
+            SessioApuri.annaVirhe(session, Lokalisaatio.bundle(request).getString("kurssiJaassa"));
+            return;
+        }
 
         try {
             String suoritusPvm = request.getParameter("suoritusPvm");

@@ -11,7 +11,7 @@ $response.setCharacterEncoding("UTF-8")
             font-size: 11px;
         }
         .table {
-            margin-top: 30px;
+            margin-top: 5px;
             margin-bottom: 30px;
         }
     </style>
@@ -61,7 +61,7 @@ $response.setCharacterEncoding("UTF-8")
 
 #if ($Tuloslistat.hyvaksytyt.active)
     <p>
-    <br>$bundle.getString("hyvaksytyt")
+    <h5>$bundle.getString("hyvaksytyt")</h5>
     <table class="table table-bordered table-condensed"  style="font-size: 90%;width: auto">
         <tr>
                #if($Tuloslistat.opiskelijanumero.active)
@@ -139,16 +139,16 @@ $response.setCharacterEncoding("UTF-8")
 
 #if($Tuloslistat.tilastoja.active)
     <p>
-    $bundle.getString("tilastoja")<br>
-    $bundle.getString("ilmonneita"): $osallistumisia<br>
-    $bundle.getString("osallistuneita"): $arvosteltu<br>
-    $bundle.getString("kokeessa"): $kokeessa<br>
-    $bundle.getString("hyvaksyttyja"): $hyvaksyttyja<br>
-        #set ($osallistuneista = $math.ceil($math.mul(100, $math.div($hyvaksyttyja, $arvosteltu))))
-        #set ($kokeessaOlleista = $math.ceil($math.mul(100, $math.div($hyvaksyttyja, $kokeessa))))
-        (#if ($arvosteltu > 0) $osallistuneista% $bundle.getString("osallistuneista")#end 
-	 #if ($kokeessa > 0), $kokeessaOlleista% $bundle.getString("kokeessaOlleista")#end) <br>
-    $bundle.getString("hylattyja"): $hylattyja<br>
+        <h5>$bundle.getString("tilastoja")</h5>
+        $bundle.getString("ilmonneita"): $osallistumisia<br>
+        $bundle.getString("osallistuneita"): $arvosteltu<br>
+        $bundle.getString("kokeessa"): $kokeessa<br>
+        $bundle.getString("hyvaksyttyja"): $hyvaksyttyja<br>
+            #set ($osallistuneista = $math.ceil($math.mul(100, $math.div($hyvaksyttyja, $arvosteltu))))
+            #set ($kokeessaOlleista = $math.ceil($math.mul(100, $math.div($hyvaksyttyja, $kokeessa))))
+            (#if ($arvosteltu > 0) $osallistuneista% $bundle.getString("osallistuneista")#end 
+             #if ($kokeessa > 0), $kokeessaOlleista% $bundle.getString("kokeessaOlleista")#end) <br>
+        $bundle.getString("hylattyja"): $hylattyja<br>
     </p>
 #end
 
@@ -156,7 +156,7 @@ $response.setCharacterEncoding("UTF-8")
 
 #if ($Tuloslistat.hylatyt.active)
     <p>    
-    $bundle.getString("isohylatyt")<br>
+    <h5>$bundle.getString("isohylatyt")</h5>
     #if ($hylattyja > 0)
         <table class="table table-bordered table-condensed"  style="font-size: 90%;width: auto">
             <tr>

@@ -2,11 +2,7 @@
 
 <h1>$bundle.getString("3coursebasics")</h1>
 
-#if ($valittuKurssi.getTila() == "J")
-    #set ($jaassa = true)
-#else
-    #set ($jaassa = false)
-#end
+#set ($jaassa = $valittuKurssi.jaassa)
 
 #set($Integer = 0)
 
@@ -126,8 +122,8 @@ $KurssiKyselyt.tallennaKantaan($valittuKurssi)
     #end
     <br>
     <p> <b>$bundle.getString("arvasteikko"):</b>
-        <input type="radio" name="arvosteluasteikko" value="K" #if($valittuKurssi.arvostellaanko.equals("K")) checked #end>$bundle.getString('arvosanat')
-        <input type="radio" name="arvosteluasteikko" value="E" #if($valittuKurssi.arvostellaanko.equals("E")) checked #end>$bundle.getString('hyvhyl')
+        <input type="radio" name="arvosteluasteikko" value="K" #if($valittuKurssi.arvostellaanko.equals("K")) checked #end #if($jaassa) disabled #end>$bundle.getString('arvosanat')
+        <input type="radio" name="arvosteluasteikko" value="E" #if($valittuKurssi.arvostellaanko.equals("E")) checked #end #if($jaassa) disabled #end>$bundle.getString('hyvhyl')
     </p>
     <br>
 

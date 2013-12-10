@@ -313,6 +313,10 @@ public class Kurssi extends Table {
                 + "." + getValue(Kurssi.tyyppi)
                 + "." + getValue(Kurssi.kurssi_nro);
     }
+    
+    public boolean isJaassa() {
+        return this.getTila().equals("J");
+    }
 
     //<editor-fold defaultstate="collapsed" desc="getters">
     public String getKurssikoodi() {

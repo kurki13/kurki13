@@ -17,7 +17,7 @@ $response.setCharacterEncoding("UTF-8")
     <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>KURKI</title>
+    <title>KURKI 3.0</title>
 
     <link href="style/bootstrap/css/bootstrap.css" rel="stylesheet">
     <link href="style/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
@@ -29,7 +29,7 @@ $response.setCharacterEncoding("UTF-8")
 <body>
 <div id=top>
 <div id=headerntools>
-    <div id=header>KURKI 2.0</div>
+    <div id=header>KURKI 3.0</div>
     <div id=toolbar>
         $bundle.getString("kirjautuneena") $request.getRemoteUser()
         <a href="?locale=en"><img src="images/liput/gb.png"></a>

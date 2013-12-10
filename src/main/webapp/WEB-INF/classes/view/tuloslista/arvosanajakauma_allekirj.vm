@@ -24,14 +24,17 @@
                 #set ($yksi = $yksi+1)
             #end
         #end
-    #end            
-
-    <p>$bundle.getString("arvosanajakauma")<br>
-    &emsp;5: $viisi&emsp;#if ($viisi > 0)#foreach ($i in [1..$viisi])*#end#end<br> 
-    &emsp;4: $nelja&emsp;#if ($nelja > 0)#foreach ($i in [1..$nelja])*#end#end<br>
-    &emsp;3: $kolme&emsp;#if ($kolme > 0)#foreach ($i in [1..$kolme])*#end#end<br>   
-    &emsp;2: $kaksi&emsp;#if ($kaksi > 0)#foreach ($i in [1..$kaksi])*#end#end<br>
-    &emsp;1: $yksi&emsp;#if ($yksi > 0)#foreach ($i in [1..$yksi])*#end#end<br>
+    #end    
+    
+    <p>
+        <h5>$bundle.getString("arvosanajakauma")</h5>
+        <table border="0" style="font-size: 90%;width: auto;">
+        <tr><td>5: $viisi </td><td> #if ($viisi > 0)#foreach ($i in [1..$viisi])*#end#end</td></tr>
+        <tr><td>4: $nelja </td><td> #if ($nelja > 0)#foreach ($i in [1..$nelja])*#end#end</td></tr>
+        <tr><td>3: $kolme </td><td> #if ($kolme > 0)#foreach ($i in [1..$kolme])*#end#end</td></tr> 
+        <tr><td>2: $kaksi </td><td> #if ($kaksi > 0)#foreach ($i in [1..$kaksi])*#end#end</td></tr>
+        <tr><td>1: $yksi </td><td> #if ($yksi > 0)#foreach ($i in [1..$yksi])*#end#end</td></tr>
+        </table>
     </p>
 
 #end 

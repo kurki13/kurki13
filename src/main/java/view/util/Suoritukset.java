@@ -22,7 +22,7 @@ public class Suoritukset {
 
     private static Map<Osallistuminen, String> muutetutArvot = new HashMap<Osallistuminen, String>();
 
-    public static void muutosTarkistus(HttpServletRequest request, Valitsin valitsin, List<Osallistuminen> osallistumiset) {
+    public static void muutosTarkistus(HttpServletRequest request, Valitsin valitsin, List<Osallistuminen> osallistumiset) {        
         if (muutetutArvot != null) {
             muutetutArvot.clear();
         }

@@ -13,7 +13,7 @@ import model.Osallistuminen;
  *
  * @author tkairola
  */
-public class Filter {
+public class OsallistuminenSuodatin {
 
     private static ArrayList<Osallistuminen> filteroidytOsallistumiset = new ArrayList<Osallistuminen>();
 

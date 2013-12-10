@@ -16,6 +16,8 @@
     }
 </style>
 
+#set ($jaassa = $valittuKurssi.jaassa)
+
 #if($request.getParameter("tallenna"))
     $Lisapisterajat.kasitteleLomake($valittuKurssi, $request)
 #end
@@ -35,7 +37,8 @@
                 $i
             </div>
             <div>
-                <input class="lprajainput form-control" name=ltrajat value=$raja>
+                <input class="lprajainput form-control" name=ltrajat value=$raja
+                    #if($jaassa) readonly #end>
             </div>
         </div>
         #set($i = $i + 1)
@@ -52,7 +55,8 @@
                 $i
             </div>
             <div>
-                <input class="lprajainput form-control" name=htrajat value=$raja>
+                <input class="lprajainput form-control" name=htrajat value=$raja
+                    #if($jaassa) readonly #end>
             </div>
         </div>
         #set($i = $i + 1)

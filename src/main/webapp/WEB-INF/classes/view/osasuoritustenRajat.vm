@@ -1,8 +1,4 @@
-#if ($valittuKurssi.getTila() == "J")
-    #set ($jaassa = true)
-#else
-    #set ($jaassa = false)
-#end
+#set ($jaassa = $valittuKurssi.jaassa)
 
 ##Osasuoritustyyppien tiedot. Lista jonka alkioina on osasuoritustyypin nimi, 
 ##lista sen osasuorituksista, ja lyhenne GET-parametria varten
